@@ -1,0 +1,559 @@
+{
+  "name": "ClariFlix",
+  "brand": "CLARIFLIX",
+  "tagline": "Instale clareza, não um prompt.",
+  "version": "0.1.0",
+  "repo": "glaucohf/clariflix-skills",
+  "tap": "hermes skills tap add glaucohf/clariflix-skills",
+  "wellknown": "https://glaucohf.github.io/clariflix-skills",
+  "rows": {
+    "atendimento": "Atendimento & WhatsApp",
+    "rotina": "Agendamento & Rotina",
+    "conferencia": "Conferência & Cálculo",
+    "sop": "Processos",
+    "decisao": "Decisão & Clareza",
+    "setores": "Por setor"
+  },
+  "row_order": [
+    "atendimento",
+    "rotina",
+    "conferencia",
+    "sop",
+    "decisao",
+    "setores"
+  ],
+  "featured": "decisao-diagnostico-pme",
+  "curated": [
+    {
+      "id": "comecar",
+      "title": "Para começar",
+      "note": "Uma semana: descubra onde a IA devolve tempo primeiro, monte o SOP e coloque o agente para responder.",
+      "slugs": [
+        "decisao-diagnostico-pme",
+        "sop-extrair",
+        "atendimento-triagem-whatsapp"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "atendimento-faq-negocio",
+      "version": "0.1.0",
+      "path": "skills/atendimento-faq-negocio/SKILL.md",
+      "description": "Extrai as perguntas reais do histórico de atendimento e monta uma base de FAQ versionada, com dono por resposta. Use: \"monta a FAQ do meu negócio\", \"organiza as perguntas que já respondi\".",
+      "row": "atendimento",
+      "title": "FAQ vivo",
+      "title_netflix": "FAQ VIVO",
+      "subtitle": "Monta e mantém a base de respostas",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 3,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/atendimento-faq-negocio/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/atendimento-faq-negocio/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/atendimento-faq-negocio/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/atendimento-faq-negocio/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 1 referência, 1 template",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"monta a FAQ do meu negócio\"",
+        "elenco": [
+          "Agrupamento por intenção",
+          "Versionamento com dono"
+        ],
+        "generos": [
+          "Atendimento",
+          "FAQ"
+        ],
+        "esta_skill_e": [
+          "Organizada",
+          "Viva",
+          "Com dono"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/atendimento-faq-negocio.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/atendimento-faq-negocio.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-faq-negocio -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-faq-negocio -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-faq-negocio -g"
+    },
+    {
+      "name": "atendimento-tom-de-voz",
+      "version": "0.1.0",
+      "path": "skills/atendimento-tom-de-voz/SKILL.md",
+      "description": "Escreve o guia de tom (traços + exemplos do que falar e não falar) e testa com 10 casos-limite antes de ir ao ar. Use: \"define o tom do meu atendimento\", \"guia de voz\".",
+      "row": "atendimento",
+      "title": "Voz da empresa",
+      "title_netflix": "TOM DE VOZ",
+      "subtitle": "Guia de tom para o agente",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 3,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/atendimento-tom-de-voz/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/atendimento-tom-de-voz/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/atendimento-tom-de-voz/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/atendimento-tom-de-voz/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 1 referência, 1 template",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"define o tom do meu atendimento\"",
+        "elenco": [
+          "Matriz de tom",
+          "10 casos-limite"
+        ],
+        "generos": [
+          "Atendimento",
+          "Marca"
+        ],
+        "esta_skill_e": [
+          "Concreta",
+          "Testada",
+          "Consistente"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/atendimento-tom-de-voz.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/atendimento-tom-de-voz.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-tom-de-voz -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-tom-de-voz -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-tom-de-voz -g"
+    },
+    {
+      "name": "atendimento-triagem-whatsapp",
+      "version": "0.1.0",
+      "path": "skills/atendimento-triagem-whatsapp/SKILL.md",
+      "description": "Responde a 1ª mensagem no WhatsApp, qualifica em 3 perguntas e encaminha para 1 de 4 saídas fixas (agendar, orçar, humano, encerrar). Use: \"monta o atendimento do WhatsApp\", \"triagem de lead\".",
+      "row": "atendimento",
+      "title": "Triagem no WhatsApp",
+      "title_netflix": "TRIAGEM",
+      "subtitle": "Responde, qualifica e encaminha",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 4,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/atendimento-triagem-whatsapp/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/atendimento-triagem-whatsapp/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/atendimento-triagem-whatsapp/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/atendimento-triagem-whatsapp/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 2 referências",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"monta o atendimento do WhatsApp de [negócio]\"",
+        "elenco": [
+          "Árvore de intenção",
+          "4 saídas fixas",
+          "Gatilho de handoff"
+        ],
+        "generos": [
+          "Atendimento",
+          "WhatsApp"
+        ],
+        "esta_skill_e": [
+          "Clara",
+          "Rápida",
+          "Verificável"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/atendimento-triagem-whatsapp.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/atendimento-triagem-whatsapp.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-triagem-whatsapp -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-triagem-whatsapp -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-triagem-whatsapp -g"
+    },
+    {
+      "name": "conferencia-orcamento",
+      "version": "0.1.0",
+      "path": "skills/conferencia-orcamento/SKILL.md",
+      "description": "Monta uma proposta de orçamento a partir da tabela de preço, margens e descontos permitidos, com total que fecha exatamente com a tabela. Use: \"monta o orçamento para\", \"faz a proposta de preço\".",
+      "row": "conferencia",
+      "title": "Orçamento",
+      "title_netflix": "ORÇAMENTO",
+      "subtitle": "Monta proposta a partir de tabela",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 3,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/conferencia-orcamento/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/conferencia-orcamento/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/conferencia-orcamento/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/conferencia-orcamento/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 1 referência, 1 template",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"monta o orçamento para [cliente]\"",
+        "elenco": [
+          "Tabela vigente",
+          "Regras de desconto"
+        ],
+        "generos": [
+          "Conferência",
+          "Precificação"
+        ],
+        "esta_skill_e": [
+          "Rastreável",
+          "Sem inventar valor"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/conferencia-orcamento.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/conferencia-orcamento.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-orcamento -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-orcamento -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-orcamento -g"
+    },
+    {
+      "name": "conferencia-planilha",
+      "version": "0.1.0",
+      "path": "skills/conferencia-planilha/SKILL.md",
+      "description": "Bate uma planilha contra uma regra (tabela, contrato, orçamento) e lista cada divergência com linha e valor. Use: \"confere esta planilha\", \"bate os números com a tabela\".",
+      "row": "conferencia",
+      "title": "Conferência",
+      "title_netflix": "CONFERE",
+      "subtitle": "Bate planilha contra regra",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 3,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/conferencia-planilha/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/conferencia-planilha/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/conferencia-planilha/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/conferencia-planilha/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 1 referência, 1 template",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"confere esta planilha contra a tabela\"",
+        "elenco": [
+          "Chave de comparação",
+          "Tolerância acordada"
+        ],
+        "generos": [
+          "Conferência",
+          "Financeiro"
+        ],
+        "esta_skill_e": [
+          "Exata",
+          "Rastreável",
+          "Sem arredondar problema"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/conferencia-planilha.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/conferencia-planilha.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-planilha -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-planilha -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-planilha -g"
+    },
+    {
+      "name": "decisao-diagnostico-pme",
+      "version": "0.1.0",
+      "path": "skills/decisao-diagnostico-pme/SKILL.md",
+      "description": "Mapeia tarefas repetitivas, estima horas/mês e custo de oportunidade, e aponta os 3 processos onde IA devolve tempo primeiro. Use: \"onde eu começo com IA\", \"diagnóstico do negócio\".",
+      "row": "decisao",
+      "title": "Diagnóstico",
+      "title_netflix": "DIAGNÓSTICO",
+      "subtitle": "Onde a IA devolve tempo primeiro",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 4,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/decisao-diagnostico-pme/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/decisao-diagnostico-pme/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/decisao-diagnostico-pme/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/decisao-diagnostico-pme/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 2 referências, 1 template",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"faz o diagnóstico de [negócio]\"",
+        "elenco": [
+          "Mapa de tarefas",
+          "Custo de oportunidade",
+          "Regra 80/20"
+        ],
+        "generos": [
+          "Decisão",
+          "Priorização"
+        ],
+        "esta_skill_e": [
+          "Direta",
+          "Numérica",
+          "Honesta"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/decisao-diagnostico-pme.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/decisao-diagnostico-pme.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-diagnostico-pme -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-diagnostico-pme -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-diagnostico-pme -g"
+    },
+    {
+      "name": "decisao-proxima-acao",
+      "version": "0.1.0",
+      "path": "skills/decisao-proxima-acao/SKILL.md",
+      "description": "A partir de uma lista de possibilidades, escolhe uma ação, um dono e uma data para esta semana, usando impacto×esforço. Use: \"o que eu faço essa semana\", \"qual a próxima ação\".",
+      "row": "decisao",
+      "title": "Próxima ação",
+      "title_netflix": "PRÓX. AÇÃO",
+      "subtitle": "O que fazer esta semana",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 4,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/decisao-proxima-acao/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/decisao-proxima-acao/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/decisao-proxima-acao/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/decisao-proxima-acao/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 2 referências, 1 template",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"o que eu faço essa semana\"",
+        "elenco": [
+          "Impacto × esforço",
+          "Gate de informação"
+        ],
+        "generos": [
+          "Decisão",
+          "Priorização"
+        ],
+        "esta_skill_e": [
+          "Única",
+          "Com dono",
+          "Com data"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/decisao-proxima-acao.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/decisao-proxima-acao.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-proxima-acao -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-proxima-acao -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-proxima-acao -g"
+    },
+    {
+      "name": "rotina-agenda",
+      "version": "0.1.0",
+      "path": "skills/rotina-agenda/SKILL.md",
+      "description": "Define as regras de agendar, remarcar e confirmar sem duplicar horário nem gerar no-show: slots, confirmação D-1, política de remarcação. Use: \"organiza a agenda\", \"regras de agendamento\".",
+      "row": "rotina",
+      "title": "Agenda",
+      "title_netflix": "AGENDA",
+      "subtitle": "Agendar, remarcar, confirmar",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 4,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/rotina-agenda/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/rotina-agenda/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/rotina-agenda/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/rotina-agenda/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 2 referências, 1 template",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"organiza a agenda de [negócio]\"",
+        "elenco": [
+          "Tamanho de slot",
+          "Confirmação D-1",
+          "Política de no-show"
+        ],
+        "generos": [
+          "Agendamento",
+          "Rotina"
+        ],
+        "esta_skill_e": [
+          "Prática",
+          "Sem duplicidade",
+          "Justa"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/rotina-agenda.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/rotina-agenda.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-agenda -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-agenda -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-agenda -g"
+    },
+    {
+      "name": "rotina-follow-up",
+      "version": "0.1.0",
+      "path": "skills/rotina-follow-up/SKILL.md",
+      "description": "Monta a cadência de follow-up (ex.: 3-7-30 dias) para quem sumiu, com a mensagem certa por etapa, sem soar insistente. Use: \"monta o follow-up de clientes\", \"quem parou de comprar\".",
+      "row": "rotina",
+      "title": "Follow-up",
+      "title_netflix": "FOLLOW-UP",
+      "subtitle": "Quem sumiu, quem volta",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 3,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/rotina-follow-up/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/rotina-follow-up/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/rotina-follow-up/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/rotina-follow-up/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 1 referência, 1 template",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"monta o follow-up de clientes\"",
+        "elenco": [
+          "Cadência 3-7-30",
+          "Regra de saída"
+        ],
+        "generos": [
+          "Retenção",
+          "Rotina"
+        ],
+        "esta_skill_e": [
+          "Gentil",
+          "Cadenciada",
+          "Sem spam"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/rotina-follow-up.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/rotina-follow-up.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-follow-up -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-follow-up -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-follow-up -g"
+    },
+    {
+      "name": "setor-clinica-estetica",
+      "version": "0.1.0",
+      "path": "skills/setor-clinica-estetica/SKILL.md",
+      "description": "Combina triagem, agenda e follow-up com o vocabulário e os limites de uma clínica estética: sem diagnóstico, sem promessa de resultado. Use: \"monta o atendimento da minha clínica estética\".",
+      "row": "setores",
+      "title": "Clínica estética",
+      "title_netflix": "CLÍNICA ESTÉTICA",
+      "subtitle": "Pacote de atendimento + agenda",
+      "genre": "setorial",
+      "since": "0.1.0",
+      "files": 3,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/setor-clinica-estetica/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/setor-clinica-estetica/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/setor-clinica-estetica/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/setor-clinica-estetica/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 2 referências (combina 3 skills)",
+        "requer": "atendimento-triagem-whatsapp, rotina-agenda, rotina-follow-up",
+        "como_usar": "Diga: \"monta o atendimento da minha clínica estética\"",
+        "elenco": [
+          "Limites clínicos",
+          "Vocabulário do setor"
+        ],
+        "generos": [
+          "Por setor",
+          "Estética"
+        ],
+        "esta_skill_e": [
+          "Segura",
+          "Sem diagnóstico",
+          "Sem promessa"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/setor-clinica-estetica.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/setor-clinica-estetica.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill setor-clinica-estetica -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill setor-clinica-estetica -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill setor-clinica-estetica -g"
+    },
+    {
+      "name": "sop-criar",
+      "version": "0.1.0",
+      "path": "skills/sop-criar/SKILL.md",
+      "description": "Escreve o procedimento 2x: versão para pessoa (com checklist) e versão para agente (YAML com estados e decisões). Use: \"escreve o SOP de\", \"versão para agente deste processo\".",
+      "row": "sop",
+      "title": "Por escrito",
+      "title_netflix": "SOP CRIAR",
+      "subtitle": "SOP para pessoa e para agente",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 6,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/sop-criar/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/sop-criar/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/sop-criar/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/sop-criar/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 2 referências, 3 templates",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"escreve o SOP de [processo]\"",
+        "elenco": [
+          "Padrão SOP humano",
+          "YAML de estados",
+          "Checklist"
+        ],
+        "generos": [
+          "Processos",
+          "Documentação"
+        ],
+        "esta_skill_e": [
+          "Clara",
+          "Verificável",
+          "Dupla"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/sop-criar.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/sop-criar.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-criar -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-criar -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-criar -g"
+    },
+    {
+      "name": "sop-extrair",
+      "version": "0.1.0",
+      "path": "skills/sop-extrair/SKILL.md",
+      "description": "Entrevista quem faz o processo hoje e reconstrói o procedimento: gatilho, passos, exceções, dono. Use: \"extrai o processo de\", \"não tem nada escrito\".",
+      "row": "sop",
+      "title": "Da cabeça pro papel",
+      "title_netflix": "SOP EXTRAIR",
+      "subtitle": "Entrevista quem faz, reconstrói o processo",
+      "genre": "procedural",
+      "since": "0.1.0",
+      "files": 4,
+      "badge": "Nova",
+      "install_url": "https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/sop-extrair/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/sop-extrair/SKILL.md",
+      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/sop-extrair/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "github_url": "https://github.com/glaucohf/clariflix-skills/blob/main/skills/sop-extrair/SKILL.md",
+      "painel": {
+        "ano": 2026,
+        "tamanho": "1 procedimento, 2 referências, 1 template",
+        "requer": "nenhuma",
+        "como_usar": "Diga: \"extrai o processo de [tarefa]\" com quem faz disponível",
+        "elenco": [
+          "CTA (Análise de Tarefa Cognitiva)",
+          "5 porquês"
+        ],
+        "generos": [
+          "Processos",
+          "Entrevista"
+        ],
+        "esta_skill_e": [
+          "Investigativa",
+          "Paciente",
+          "Precisa"
+        ]
+      },
+      "runtime_only": false,
+      "zip_url": "https://github.com/glaucohf/clariflix-skills/releases/download/v0.1.0/sop-extrair.zip",
+      "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/sop-extrair.md",
+      "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-extrair -a claude-code -g",
+      "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-extrair -a codex -g",
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-extrair -g"
+    }
+  ]
+}
