@@ -1,0 +1,5 @@
+/catalog.json         https://glaucohf.github.io/clariflix-skills/catalog.json  200
+/.well-known/*         https://glaucohf.github.io/clariflix-skills/.well-known/:splat  200
+/prompt/*              https://glaucohf.github.io/clariflix-skills/prompt/:splat  200
+/covers/*              https://glaucohf.github.io/clariflix-skills/covers/:splat  200
+/download/:tag/:file   https://github.com/glaucohf/clariflix-skills/releases/download/:tag/:file  302
