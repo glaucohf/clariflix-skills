@@ -1,0 +1,13 @@
+processo: nome-do-processo
+gatilho: ""
+states:
+  - id: estado_1
+    acao: ""
+    ferramenta: ""
+    proximo: estado_2
+decisions:
+  - id: ""
+    criterio: ""
+handoff_humano:
+  gatilho: ""
+  para: ""

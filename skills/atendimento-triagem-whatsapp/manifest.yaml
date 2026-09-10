@@ -1,0 +1,14 @@
+row: atendimento
+title: "Triagem no WhatsApp"
+title_netflix: "TRIAGEM"
+subtitle: "Responde, qualifica e encaminha"
+genre: procedural
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 2 referências"
+  requer: "nenhuma"
+  como_usar: 'Diga: "monta o atendimento do WhatsApp de [negócio]"'
+  elenco: ["Árvore de intenção", "4 saídas fixas", "Gatilho de handoff"]
+  generos: ["Atendimento", "WhatsApp"]
+  esta_skill_e: ["Clara", "Rápida", "Verificável"]

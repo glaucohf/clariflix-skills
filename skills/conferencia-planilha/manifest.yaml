@@ -1,0 +1,14 @@
+row: conferencia
+title: "Conferência"
+title_netflix: "CONFERE"
+subtitle: "Bate planilha contra regra"
+genre: procedural
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 1 referência, 1 template"
+  requer: "nenhuma"
+  como_usar: 'Diga: "confere esta planilha contra a tabela"'
+  elenco: ["Chave de comparação", "Tolerância acordada"]
+  generos: ["Conferência", "Financeiro"]
+  esta_skill_e: ["Exata", "Rastreável", "Sem arredondar problema"]

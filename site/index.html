@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="claricia-dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClariFlix · hub de skills para agentes de IA</title>
+<meta name="description" content="ClariFlix: hub de skills para Hermes, Claude, ChatGPT e Codex. Instale clareza, não um prompt.">
+<meta property="og:site_name" content="ClariFlix">
+<meta property="og:title" content="ClariFlix">
+<meta property="og:description" content="Instale clareza, não um prompt. Skills prontas para o seu agente de IA.">
+<link rel="preload" href="catalog.json" as="fetch" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Tema Claricia (papel/verde, IBM Plex) — herdado de claricia/agentes/assets/css/app.css ===== */
+:root, [data-theme="claricia-light"]{
+  --bg:#F5F2EA; --bg-raised:#EDE8DB; --bg-inset:#E6E0D1;
+  --ink:#1C1913; --ink-dim:#6B6255; --ink-faint:#8A8271;
+  --accent:#2F7A63; --accent-ink:#F5F2EA; --accent-soft:rgba(47,122,99,0.12);
+  --line:rgba(28,25,19,0.12); --line-strong:rgba(28,25,19,0.22);
+  --radius:6px; --radius-lg:8px;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --sans:'IBM Plex Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --danger:#B23A3F; --gutter:20px; --card-radius:8px;
+}
+[data-theme="claricia-dark"]{
+  --bg:#14120F; --bg-raised:#1E1B16; --bg-inset:#0F0D0A;
+  --ink:#F1EDE4; --ink-dim:#9C9587; --ink-faint:#6E6759;
+  --accent:#5FBE9E; --accent-ink:#0D1512; --accent-soft:rgba(95,190,158,0.14);
+  --line:rgba(241,237,228,0.10); --line-strong:rgba(241,237,228,0.20);
+  --danger:#E5666B;
+}
+/* ===== Tema Netflix (cinema-black, tokens do DESIGN.md — shadcn.io/design/netflix) ===== */
+[data-theme="netflix"]{
+  --bg:#000000; --bg-raised:#181818; --bg-inset:#2d2d2d;
+  --ink:#ffffff; --ink-dim:#b3b3b3; --ink-faint:#808080;
+  --accent:#e50914; --accent-ink:#ffffff; --accent-soft:rgba(229,9,20,0.14);
+  --line:#414141; --line-strong:#565656;
+  --radius:8px; --radius-lg:8px;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --sans:'Helvetica Neue','IBM Plex Sans',Roboto,Ubuntu,sans-serif;
+  --danger:#E5666B; --gutter:40px; --card-radius:8px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .2s ease,color .2s ease}
+h1,h2,h3{font-family:var(--mono);font-weight:600;margin:0;letter-spacing:-0.01em}
+[data-theme="netflix"] h1{font-weight:900;letter-spacing:-0.02em}
+p{margin:0}
+button,input{font-family:inherit}
+::selection{background:var(--accent-soft);color:var(--ink)}
+a{color:inherit}
+
+/* Topbar */
+.topbar{display:flex;align-items:center;gap:14px;padding:12px var(--gutter);background:var(--bg-raised);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.wordmark{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--accent);letter-spacing:-0.02em;white-space:nowrap}
+.wordmark b{color:var(--ink);font-weight:700}
+.sep{width:1px;height:16px;background:var(--line-strong)}
+.nav-rows{display:flex;gap:16px;font-size:13px;color:var(--ink-dim);flex-wrap:wrap}
+.nav-rows a{text-decoration:none;color:inherit}
+.nav-rows a:hover{color:var(--accent)}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.search-box{display:flex;align-items:center;gap:6px;background:var(--bg-inset);border:1px solid var(--line-strong);border-radius:var(--radius);padding:6px 10px}
+.search-box input{background:none;border:none;color:var(--ink);font-family:var(--mono);font-size:13px;width:150px;outline:none}
+.search-box input::placeholder{color:var(--ink-faint)}
+.theme-toggle{display:flex;gap:2px;background:var(--bg-inset);border:1px solid var(--line-strong);border-radius:20px;padding:2px}
+.theme-toggle button{background:none;border:none;color:var(--ink-faint);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;padding:5px 10px;border-radius:16px;cursor:pointer}
+.theme-toggle button.on{background:var(--accent);color:var(--accent-ink)}
+.chip{font-family:var(--mono);font-size:11px;color:var(--ink-faint);border:1px solid var(--line-strong);border-radius:20px;padding:3px 10px;white-space:nowrap}
+
+/* Hero */
+.hero{position:relative;padding:64px var(--gutter) 48px;background:linear-gradient(180deg,var(--bg-raised),var(--bg) 85%);border-bottom:1px solid var(--line)}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:14px}
+.hero h1{font-size:40px;max-width:16ch;margin-bottom:14px}
+[data-theme="netflix"] .hero h1{font-size:48px}
+.hero p{color:var(--ink-dim);font-size:16px;max-width:56ch;margin-bottom:24px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* Buttons */
+.btn{font-family:var(--mono);font-weight:600;font-size:13.5px;padding:11px 22px;border-radius:var(--radius);cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px}
+.btn-primario{background:var(--accent);color:var(--accent-ink)}
+.btn-primario:hover{filter:brightness(1.08)}
+.btn-ghost{background:none;border:1px solid var(--line-strong);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Fileiras */
+.rowsec{padding:28px 0 8px}
+.rowsec h2{font-size:15px;padding:0 var(--gutter);margin-bottom:14px;color:var(--ink)}
+.rowtrack{display:flex;gap:14px;overflow-x:auto;padding:2px var(--gutter) 16px;scrollbar-width:thin}
+.rowtrack::-webkit-scrollbar{height:6px}
+.rowtrack::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:4px}
+.card{flex:0 0 240px;background:var(--bg-raised);border:1px solid var(--line);border-radius:var(--card-radius);padding:16px;cursor:pointer;transition:border-color .15s ease,transform .15s ease;text-align:left}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card-badge{display:inline-block;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);background:var(--accent-soft);border-radius:20px;padding:2px 8px;margin-bottom:10px}
+.card-title{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+.card-sub{font-size:13px;color:var(--ink-dim);line-height:1.4}
+
+/* Painel / Modal */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;z-index:50;overflow-y:auto}
+.overlay.on{display:flex}
+.panel{background:var(--bg-raised);border:1px solid var(--line);border-radius:12px;max-width:640px;width:100%;padding:32px;position:relative}
+.panel-close{position:absolute;top:16px;right:16px;background:none;border:1px solid var(--line-strong);color:var(--ink-dim);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1}
+.panel-eyebrow{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:10px}
+.panel h3{font-size:26px;margin-bottom:8px}
+.panel-subtitle{color:var(--ink-dim);font-size:14px;margin-bottom:18px}
+.panel-meta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.panel-meta span{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint)}
+.panel-block{margin-top:22px}
+.panel-block h4{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:8px}
+.panel-block p{font-size:14px;color:var(--ink-dim);line-height:1.6}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:11px;border:1px solid var(--line-strong);border-radius:20px;padding:3px 10px;color:var(--ink-dim)}
+
+/* Seletor de agente */
+.agent-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.agent-tab{font-family:var(--mono);font-size:12px;padding:7px 12px;border-radius:20px;border:1px solid var(--line-strong);background:none;color:var(--ink-dim);cursor:pointer}
+.agent-tab.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.cmd-box{background:var(--bg-inset);border:1px solid var(--line-strong);border-radius:var(--radius);padding:14px;font-family:var(--mono);font-size:12.5px;color:var(--ink);white-space:pre-wrap;word-break:break-word;position:relative;line-height:1.6}
+.copy-btn{margin-top:10px}
+.links-row{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap}
+.links-row a{font-family:var(--mono);font-size:12.5px;color:var(--accent);text-decoration:none}
+.links-row a:hover{text-decoration:underline}
+
+/* Busca */
+.results{padding:32px var(--gutter)}
+.results h2{font-size:15px;margin-bottom:16px}
+.results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+
+/* Toast */
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:12.5px;padding:8px 16px;border-radius:20px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:100}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+footer{padding:40px var(--gutter);border-top:1px solid var(--line);color:var(--ink-faint);font-size:12.5px;font-family:var(--mono)}
+
+@media (max-width:640px){
+  .hero{padding:40px 16px 36px}
+  .hero h1{font-size:30px}
+  .nav-rows{display:none}
+  .card{flex-basis:200px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <span class="wordmark">CLARI<b>FLIX</b></span>
+  <span class="sep"></span>
+  <nav class="nav-rows" id="navRows"></nav>
+  <div class="topbar-right">
+    <div class="search-box"><span style="color:var(--ink-faint);font-size:12px">/</span><input id="searchInput" placeholder="Buscar skill…" aria-label="Buscar skill"></div>
+    <div class="theme-toggle" role="tablist" aria-label="Tema visual">
+      <button data-theme-btn="claricia-dark">Claricia</button>
+      <button data-theme-btn="netflix">Netflix</button>
+    </div>
+    <span class="chip" id="listCount">0 na lista</span>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-eyebrow">CLARIFLIX · HUB DE SKILLS PARA AGENTES</div>
+  <h1 id="heroTitle">Instale clareza, não um prompt.</h1>
+  <p id="heroSub">Skills prontas — com procedimento e critério de verificação — para o seu agente de IA (Hermes, Claude, ChatGPT, Codex). Copie o comando certo e o agente faz o resto.</p>
+  <div class="hero-actions">
+    <button class="btn btn-primario" id="heroInstall">Instalar a skill em destaque</button>
+    <button class="btn btn-ghost" id="heroList">Minha lista</button>
+  </div>
+</section>
+
+<main id="rows"></main>
+
+<section class="results" id="results" hidden>
+  <h2 id="resultsTitle">Resultados</h2>
+  <div class="results-grid" id="resultsGrid"></div>
+</section>
+
+<footer>
+  ClariFlix · <span id="footerTap"></span> · skills abertas no GitHub, sob licença MIT.
+  Inspirado em <a href="https://agentsflix.ai" target="_blank" rel="noopener">AgentsFlix</a> (código MIT, José Carlos Amorim).
+</footer>
+
+<div class="overlay" id="overlay">
+  <div class="panel" id="panel"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var THEME_KEY = "clariflix_theme", LIST_KEY = "clariflix_list";
+  var cat = null;
+
+  // ---------- tema ----------
+  function setTheme(t){
+    document.documentElement.setAttribute("data-theme", t);
+    localStorage.setItem(THEME_KEY, t);
+    document.querySelectorAll("[data-theme-btn]").forEach(function(b){
+      b.classList.toggle("on", b.getAttribute("data-theme-btn") === t || (t==="claricia-light" && b.getAttribute("data-theme-btn")==="claricia-dark"));
+    });
+  }
+  document.querySelectorAll("[data-theme-btn]").forEach(function(b){
+    b.addEventListener("click", function(){ setTheme(b.getAttribute("data-theme-btn")); });
+  });
+  setTheme(localStorage.getItem(THEME_KEY) || "claricia-dark");
+
+  // ---------- lista ----------
+  function getList(){ try { return JSON.parse(localStorage.getItem(LIST_KEY) || "[]"); } catch(e){ return []; } }
+  function setList(l){ localStorage.setItem(LIST_KEY, JSON.stringify(l)); document.getElementById("listCount").textContent = l.length + " na lista"; }
+  function toggleList(slug){ var l = getList(); var i = l.indexOf(slug); if(i>-1) l.splice(i,1); else l.push(slug); setList(l); }
+  setList(getList());
+
+  // ---------- toast ----------
+  function toast(msg){
+    var t = document.getElementById("toast");
+    t.textContent = msg; t.classList.add("on");
+    setTimeout(function(){ t.classList.remove("on"); }, 1800);
+  }
+  function copy(text){
+    navigator.clipboard.writeText(text).then(function(){ toast("Copiado"); }).catch(function(){ toast("Não foi possível copiar"); });
+  }
+
+  // ---------- agentes ----------
+  var AGENTS = [
+    { id:"hermes", label:"Hermes", cmd:function(s){ return s.install_cmd; } },
+    { id:"claude", label:"Claude.ai", cmd:function(s){ return "Baixe o zip da release e envie em Customize › Skills › Upload:\n" + s.zip_url; } },
+    { id:"code", label:"Claude Code", cmd:function(s){ return s.npx_claude_code; } },
+    { id:"codex", label:"Codex", cmd:function(s){ return s.npx_codex; } },
+    { id:"outros", label:"Outros agentes", cmd:function(s){ return s.npx_any; } },
+    { id:"colavel", label:"ChatGPT sem Skills", cmd:function(s){ return "Envie este arquivo em Files, num Project:\n" + s.prompt_url; } },
+  ];
+
+  function renderPanel(s){
+    var panel = document.getElementById("panel");
+    var lastAgent = localStorage.getItem("clariflix_agent") || "hermes";
+    function tabsHtml(){
+      return AGENTS.map(function(a){
+        return '<button class="agent-tab' + (a.id===lastAgent?' on':'') + '" data-agent="' + a.id + '">' + a.label + '</button>';
+      }).join("");
+    }
+    panel.innerHTML =
+      '<button class="panel-close" id="panelClose" aria-label="Fechar">×</button>' +
+      '<div class="panel-eyebrow">' + (cat.rows[s.row] || s.row) + '</div>' +
+      '<h3>' + s.title + '</h3>' +
+      '<div class="panel-subtitle">' + s.subtitle + '</div>' +
+      '<div class="panel-meta"><span>' + s.painel.ano + '</span><span>' + s.painel.tamanho + '</span><span>Requer: ' + s.painel.requer + '</span></div>' +
+      '<div class="panel-block"><h4>Sinopse</h4><p>' + s.description + '</p></div>' +
+      '<div class="panel-block"><h4>Como usar</h4><p>' + s.painel.como_usar + '</p></div>' +
+      '<div class="panel-block"><h4>Elenco</h4><div class="tag-row">' + s.painel.elenco.map(function(e){return '<span class="tag">'+e+'</span>';}).join("") + '</div></div>' +
+      '<div class="panel-block"><h4>Gêneros</h4><div class="tag-row">' + s.painel.generos.map(function(e){return '<span class="tag">'+e+'</span>';}).join("") + '</div></div>' +
+      '<div class="panel-block"><h4>Instalar em</h4><div class="agent-tabs">' + tabsHtml() + '</div><div class="cmd-box" id="cmdBox"></div>' +
+        '<button class="btn btn-primario copy-btn" id="copyCmd">Copiar comando</button></div>' +
+      '<div class="links-row">' +
+        '<a href="' + s.github_url + '" target="_blank" rel="noopener">Ver no GitHub</a>' +
+        '<a href="#" id="toggleListBtn">' + (getList().indexOf(s.name)>-1 ? "Remover da lista" : "Adicionar à lista") + '</a>' +
+      '</div>';
+
+    function paintCmd(agentId){
+      var agent = AGENTS.filter(function(a){return a.id===agentId;})[0] || AGENTS[0];
+      document.getElementById("cmdBox").textContent = agent.cmd(s);
+      panel.querySelectorAll(".agent-tab").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-agent")===agent.id); });
+      localStorage.setItem("clariflix_agent", agent.id);
+    }
+    paintCmd(lastAgent);
+    panel.querySelectorAll(".agent-tab").forEach(function(b){
+      b.addEventListener("click", function(){ paintCmd(b.getAttribute("data-agent")); });
+    });
+    document.getElementById("copyCmd").addEventListener("click", function(){
+      copy(document.getElementById("cmdBox").textContent);
+    });
+    document.getElementById("panelClose").addEventListener("click", closePanel);
+    document.getElementById("toggleListBtn").addEventListener("click", function(ev){
+      ev.preventDefault(); toggleList(s.name);
+      ev.target.textContent = getList().indexOf(s.name)>-1 ? "Remover da lista" : "Adicionar à lista";
+    });
+  }
+
+  function openPanel(slug){
+    var s = cat.skills.filter(function(x){return x.name===slug;})[0];
+    if(!s) return;
+    renderPanel(s);
+    document.getElementById("overlay").classList.add("on");
+  }
+  function closePanel(){ document.getElementById("overlay").classList.remove("on"); }
+  document.getElementById("overlay").addEventListener("click", function(ev){ if(ev.target.id==="overlay") closePanel(); });
+  document.addEventListener("keydown", function(ev){ if(ev.key==="Escape") closePanel(); });
+
+  // ---------- cards / fileiras ----------
+  function cardHtml(s){
+    return '<button class="card" data-open="' + s.name + '">' +
+      (s.badge ? '<span class="card-badge">' + s.badge + '</span>' : '') +
+      '<div class="card-title">' + s.title_netflix + '</div>' +
+      '<div class="card-sub">' + s.subtitle + '</div>' +
+      '</button>';
+  }
+
+  function renderRows(){
+    var rowsEl = document.getElementById("rows");
+    var navEl = document.getElementById("navRows");
+    rowsEl.innerHTML = ""; navEl.innerHTML = "";
+    (cat.curated || []).forEach(function(c){
+      var items = cat.skills.filter(function(s){ return c.slugs.indexOf(s.name) > -1; });
+      if(!items.length) return;
+      var sec = document.createElement("section");
+      sec.className = "rowsec"; sec.id = "curated-" + c.id;
+      sec.innerHTML = '<h2>' + c.title + (c.note ? ' <span style="color:var(--ink-faint);font-weight:400;text-transform:none;letter-spacing:0">— ' + c.note + '</span>' : '') + '</h2><div class="rowtrack">' + items.map(cardHtml).join("") + '</div>';
+      rowsEl.appendChild(sec);
+    });
+    cat.row_order.forEach(function(rowId){
+      var items = cat.skills.filter(function(s){ return s.row===rowId; });
+      if(!items.length) return;
+      navEl.innerHTML += '<a href="#row-' + rowId + '">' + cat.rows[rowId] + '</a>';
+      var sec = document.createElement("section");
+      sec.className = "rowsec"; sec.id = "row-" + rowId;
+      sec.innerHTML = '<h2>' + cat.rows[rowId] + '</h2><div class="rowtrack">' + items.map(cardHtml).join("") + '</div>';
+      rowsEl.appendChild(sec);
+    });
+    rowsEl.querySelectorAll("[data-open]").forEach(function(b){
+      b.addEventListener("click", function(){ openPanel(b.getAttribute("data-open")); });
+    });
+  }
+
+  function renderHero(){
+    var s = cat.skills.filter(function(x){return x.name===cat.featured;})[0] || cat.skills[0];
+    if(!s) return;
+    document.getElementById("heroTitle").textContent = s.title;
+    document.getElementById("heroSub").textContent = s.description;
+    document.getElementById("heroInstall").addEventListener("click", function(){ openPanel(s.name); });
+    document.getElementById("heroList").addEventListener("click", function(){ toggleList(s.name); toast("Lista atualizada"); });
+  }
+
+  // ---------- busca ----------
+  var searchInput = document.getElementById("searchInput");
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "/" && document.activeElement !== searchInput){ ev.preventDefault(); searchInput.focus(); }
+  });
+  searchInput.addEventListener("input", function(){
+    var q = searchInput.value.trim().toLowerCase();
+    var resultsSec = document.getElementById("results");
+    var rowsSec = document.getElementById("rows");
+    var hero = document.getElementById("hero");
+    if(!q){ resultsSec.hidden = true; rowsSec.hidden = false; hero.hidden = false; return; }
+    var found = cat.skills.filter(function(s){
+      var hay = (s.title + " " + s.subtitle + " " + s.description + " " + s.painel.elenco.join(" ") + " " + s.painel.generos.join(" ")).toLowerCase();
+      return hay.indexOf(q) > -1;
+    });
+    hero.hidden = true; rowsSec.hidden = true; resultsSec.hidden = false;
+    document.getElementById("resultsTitle").textContent = found.length + ' resultado(s) para "' + searchInput.value + '"';
+    document.getElementById("resultsGrid").innerHTML = found.map(cardHtml).join("") || '<p style="color:var(--ink-faint)">Nada encontrado.</p>';
+    document.getElementById("resultsGrid").querySelectorAll("[data-open]").forEach(function(b){
+      b.addEventListener("click", function(){ openPanel(b.getAttribute("data-open")); });
+    });
+  });
+
+  // ---------- carga ----------
+  fetch("catalog.json", { cache: "no-cache" }).then(function(r){ return r.json(); }).then(function(c){
+    cat = c;
+    document.getElementById("footerTap").textContent = c.tap;
+    renderHero();
+    renderRows();
+  }).catch(function(){
+    document.getElementById("rows").innerHTML = '<p style="padding:40px var(--gutter);color:var(--ink-faint)">Não foi possível carregar o catálogo (catalog.json).</p>';
+  });
+})();
+</script>
+</body>
+</html>

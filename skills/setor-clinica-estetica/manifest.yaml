@@ -1,0 +1,14 @@
+row: setores
+title: "Clínica estética"
+title_netflix: "CLÍNICA ESTÉTICA"
+subtitle: "Pacote de atendimento + agenda"
+genre: setorial
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 2 referências (combina 3 skills)"
+  requer: "atendimento-triagem-whatsapp, rotina-agenda, rotina-follow-up"
+  como_usar: 'Diga: "monta o atendimento da minha clínica estética"'
+  elenco: ["Limites clínicos", "Vocabulário do setor"]
+  generos: ["Por setor", "Estética"]
+  esta_skill_e: ["Segura", "Sem diagnóstico", "Sem promessa"]

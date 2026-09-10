@@ -1,0 +1,14 @@
+row: rotina
+title: "Follow-up"
+title_netflix: "FOLLOW-UP"
+subtitle: "Quem sumiu, quem volta"
+genre: procedural
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 1 referência, 1 template"
+  requer: "nenhuma"
+  como_usar: 'Diga: "monta o follow-up de clientes"'
+  elenco: ["Cadência 3-7-30", "Regra de saída"]
+  generos: ["Retenção", "Rotina"]
+  esta_skill_e: ["Gentil", "Cadenciada", "Sem spam"]

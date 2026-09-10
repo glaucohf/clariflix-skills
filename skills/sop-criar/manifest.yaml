@@ -1,0 +1,14 @@
+row: sop
+title: "Por escrito"
+title_netflix: "SOP CRIAR"
+subtitle: "SOP para pessoa e para agente"
+genre: procedural
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 2 referências, 3 templates"
+  requer: "nenhuma"
+  como_usar: 'Diga: "escreve o SOP de [processo]"'
+  elenco: ["Padrão SOP humano", "YAML de estados", "Checklist"]
+  generos: ["Processos", "Documentação"]
+  esta_skill_e: ["Clara", "Verificável", "Dupla"]

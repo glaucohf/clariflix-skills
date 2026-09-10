@@ -1,0 +1,14 @@
+row: decisao
+title: "Próxima ação"
+title_netflix: "PRÓX. AÇÃO"
+subtitle: "O que fazer esta semana"
+genre: procedural
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 2 referências, 1 template"
+  requer: "nenhuma"
+  como_usar: 'Diga: "o que eu faço essa semana"'
+  elenco: ["Impacto × esforço", "Gate de informação"]
+  generos: ["Decisão", "Priorização"]
+  esta_skill_e: ["Única", "Com dono", "Com data"]

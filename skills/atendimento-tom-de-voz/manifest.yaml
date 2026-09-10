@@ -1,0 +1,14 @@
+row: atendimento
+title: "Voz da empresa"
+title_netflix: "TOM DE VOZ"
+subtitle: "Guia de tom para o agente"
+genre: procedural
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 1 referência, 1 template"
+  requer: "nenhuma"
+  como_usar: 'Diga: "define o tom do meu atendimento"'
+  elenco: ["Matriz de tom", "10 casos-limite"]
+  generos: ["Atendimento", "Marca"]
+  esta_skill_e: ["Concreta", "Testada", "Consistente"]

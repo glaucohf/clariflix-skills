@@ -1,0 +1,14 @@
+row: conferencia
+title: "Orçamento"
+title_netflix: "ORÇAMENTO"
+subtitle: "Monta proposta a partir de tabela"
+genre: procedural
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 1 referência, 1 template"
+  requer: "nenhuma"
+  como_usar: 'Diga: "monta o orçamento para [cliente]"'
+  elenco: ["Tabela vigente", "Regras de desconto"]
+  generos: ["Conferência", "Precificação"]
+  esta_skill_e: ["Rastreável", "Sem inventar valor"]

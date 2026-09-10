@@ -1,0 +1,14 @@
+row: atendimento
+title: "FAQ vivo"
+title_netflix: "FAQ VIVO"
+subtitle: "Monta e mantém a base de respostas"
+genre: procedural
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 1 referência, 1 template"
+  requer: "nenhuma"
+  como_usar: 'Diga: "monta a FAQ do meu negócio"'
+  elenco: ["Agrupamento por intenção", "Versionamento com dono"]
+  generos: ["Atendimento", "FAQ"]
+  esta_skill_e: ["Organizada", "Viva", "Com dono"]

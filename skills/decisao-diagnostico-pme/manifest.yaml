@@ -1,0 +1,14 @@
+row: decisao
+title: "Diagnóstico"
+title_netflix: "DIAGNÓSTICO"
+subtitle: "Onde a IA devolve tempo primeiro"
+genre: procedural
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 2 referências, 1 template"
+  requer: "nenhuma"
+  como_usar: 'Diga: "faz o diagnóstico de [negócio]"'
+  elenco: ["Mapa de tarefas", "Custo de oportunidade", "Regra 80/20"]
+  generos: ["Decisão", "Priorização"]
+  esta_skill_e: ["Direta", "Numérica", "Honesta"]

@@ -1,0 +1,14 @@
+row: sop
+title: "Da cabeça pro papel"
+title_netflix: "SOP EXTRAIR"
+subtitle: "Entrevista quem faz, reconstrói o processo"
+genre: procedural
+badge: "Nova"
+painel:
+  ano: 2026
+  tamanho: "1 procedimento, 2 referências, 1 template"
+  requer: "nenhuma"
+  como_usar: 'Diga: "extrai o processo de [tarefa]" com quem faz disponível'
+  elenco: ["CTA (Análise de Tarefa Cognitiva)", "5 porquês"]
+  generos: ["Processos", "Entrevista"]
+  esta_skill_e: ["Investigativa", "Paciente", "Precisa"]
