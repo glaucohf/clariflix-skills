@@ -6,10 +6,6 @@ agentes. Cada skill é um procedimento com verificação binária, não um promp
 **Catálogo:** https://clariflix.claricia.com.br (em construção) · **Host técnico:** `docs/` deste repo,
 via GitHub Pages, em `https://glaucohf.github.io/clariflix-skills`.
 
-Inspirado em [AgentsFlix/skills](https://github.com/AgentsFlix/skills) (MIT, José Carlos Amorim) — mesma
-arquitetura (site estático lendo `catalog.json`, skills versionadas, release por tag), catálogo e marca
-próprios da Claricia.
-
 ## Instalar uma skill
 
 | agente | como |
