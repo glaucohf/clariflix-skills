@@ -28,6 +28,7 @@ scripts/hub_common.py            constantes únicas (URLs, limite de description
 scripts/build_catalog.py         gera catalog.json a partir de skills/*/manifest.yaml
 catalog.json                     o que o site lê
 site/index.html                  a vitrine (Cloudflare Pages) — temas Claricia e Netflix
+site/images/skills/<slug>.webp   capas geradas por IA, usadas nos cards e painéis
 supabase/migrations/             schema de contas/pagamento (fase 2/3, ainda não ativado)
 docs/                             planejamento completo do projeto
 ```
@@ -37,6 +38,11 @@ docs/                             planejamento completo do projeto
 1. Crie `skills/<slug>/SKILL.md` (frontmatter + When to Use + Quick Reference + Procedure + Pitfalls + Verification) e `manifest.yaml`.
 2. `python3 scripts/build_catalog.py --tag v0.1.0` para regerar `catalog.json`.
 3. Commit, PR, merge; crie uma tag `vX.Y.Z` quando publicar.
+
+As capas são opcionais: salve a imagem em `site/images/skills/<slug>.webp` antes de gerar o catálogo.
+O gerador inclui o campo `image` quando encontra o arquivo. Copie o `catalog.json` atualizado para
+`site/catalog.json` antes de publicar a vitrine. Os prompts da coleção estão em
+[`docs/skill-image-prompts.json`](docs/skill-image-prompts.json).
 
 ## Licença
 

@@ -77,7 +77,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/atendimento-faq-negocio.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-faq-negocio -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-faq-negocio -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-faq-negocio -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-faq-negocio -g",
+      "image": "images/skills/atendimento-faq-negocio.webp"
     },
     {
       "name": "atendimento-tom-de-voz",
@@ -120,7 +121,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/atendimento-tom-de-voz.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-tom-de-voz -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-tom-de-voz -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-tom-de-voz -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-tom-de-voz -g",
+      "image": "images/skills/atendimento-tom-de-voz.webp"
     },
     {
       "name": "atendimento-triagem-whatsapp",
@@ -164,7 +166,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/atendimento-triagem-whatsapp.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-triagem-whatsapp -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-triagem-whatsapp -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-triagem-whatsapp -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill atendimento-triagem-whatsapp -g",
+      "image": "images/skills/atendimento-triagem-whatsapp.webp"
     },
     {
       "name": "conferencia-orcamento",
@@ -206,7 +209,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/conferencia-orcamento.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-orcamento -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-orcamento -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-orcamento -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-orcamento -g",
+      "image": "images/skills/conferencia-orcamento.webp"
     },
     {
       "name": "conferencia-planilha",
@@ -249,7 +253,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/conferencia-planilha.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-planilha -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-planilha -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-planilha -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill conferencia-planilha -g",
+      "image": "images/skills/conferencia-planilha.webp"
     },
     {
       "name": "decisao-diagnostico-pme",
@@ -293,7 +298,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/decisao-diagnostico-pme.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-diagnostico-pme -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-diagnostico-pme -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-diagnostico-pme -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-diagnostico-pme -g",
+      "image": "images/skills/decisao-diagnostico-pme.webp"
     },
     {
       "name": "decisao-proxima-acao",
@@ -336,7 +342,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/decisao-proxima-acao.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-proxima-acao -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-proxima-acao -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-proxima-acao -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill decisao-proxima-acao -g",
+      "image": "images/skills/decisao-proxima-acao.webp"
     },
     {
       "name": "rotina-agenda",
@@ -380,7 +387,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/rotina-agenda.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-agenda -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-agenda -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-agenda -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-agenda -g",
+      "image": "images/skills/rotina-agenda.webp"
     },
     {
       "name": "rotina-follow-up",
@@ -423,7 +431,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/rotina-follow-up.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-follow-up -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-follow-up -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-follow-up -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill rotina-follow-up -g",
+      "image": "images/skills/rotina-follow-up.webp"
     },
     {
       "name": "setor-clinica-estetica",
@@ -466,7 +475,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/setor-clinica-estetica.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill setor-clinica-estetica -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill setor-clinica-estetica -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill setor-clinica-estetica -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill setor-clinica-estetica -g",
+      "image": "images/skills/setor-clinica-estetica.webp"
     },
     {
       "name": "sop-criar",
@@ -510,7 +520,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/sop-criar.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-criar -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-criar -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-criar -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-criar -g",
+      "image": "images/skills/sop-criar.webp"
     },
     {
       "name": "sop-extrair",
@@ -553,7 +564,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/sop-extrair.md",
       "npx_claude_code": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-extrair -a claude-code -g",
       "npx_codex": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-extrair -a codex -g",
-      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-extrair -g"
+      "npx_any": "npx skills add https://glaucohf.github.io/clariflix-skills --skill sop-extrair -g",
+      "image": "images/skills/sop-extrair.webp"
     }
   ]
 }

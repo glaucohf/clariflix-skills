@@ -1,0 +1,67 @@
+{
+  "generator": "Built-in image_gen",
+  "date": "2026-09-18",
+  "base_prompt": "Use case: stylized-concept. Asset type: individual landscape cover illustration for a skill in ClariFlix, a business AI skills catalog. Create ONE polished cinematic 3D editorial illustration, landscape 1536x1024. Consistent collection style: warm charcoal background, emerald and sage green objects, ivory paper, small brass accents, soft studio light, tactile matte materials, subtle grain, refined realistic miniature still-life, visually clear at thumbnail size. Central composition with ample breathing room, all important subjects within central 80%. No text, letters, numbers, logos, watermarks, borders, collage or multiple panels. Subject: ",
+  "images": [
+    {
+      "skill": "atendimento-faq-negocio",
+      "file": "site/images/skills/atendimento-faq-negocio.webp",
+      "subject": "A curated library of ivory answer cards in a green open card-catalog box, with three sculptural speech bubbles hovering above and connecting neatly to their matching cards. Communicate turning repeated customer questions into an organized living answer library."
+    },
+    {
+      "skill": "atendimento-tom-de-voz",
+      "file": "site/images/skills/atendimento-tom-de-voz.webp",
+      "subject": "An elegant emerald studio microphone with a flowing sculptural green sound wave resolving into three ivory speech bubbles with subtly different rounded shapes. Communicate a consistent warm professional brand voice."
+    },
+    {
+      "skill": "atendimento-triagem-whatsapp",
+      "file": "site/images/skills/atendimento-triagem-whatsapp.webp",
+      "subject": "A green smartphone standing on a dark desk, its screen showing only blank chat bubble shapes. Three incoming ivory speech bubbles become four distinct tidy outgoing paths ending in a calendar, calculator, human silhouette token and check mark. Communicate sorting and routing incoming customer chats."
+    },
+    {
+      "skill": "conferencia-orcamento",
+      "file": "site/images/skills/conferencia-orcamento.webp",
+      "subject": "A carefully arranged business proposal still-life: ivory quotation sheets with abstract rule lines only, emerald calculator with blank keys, brass balance scales and neat stacks of coins. Communicate accurate pricing, controlled discounts and a balanced final quote."
+    },
+    {
+      "skill": "conferencia-planilha",
+      "file": "site/images/skills/conferencia-planilha.webp",
+      "subject": "An ivory spreadsheet-like grid sheet with several tiny green square cells and one amber discrepancy cell, examined through a large emerald-handled magnifying glass. A small green check token beside it. Communicate finding numerical discrepancies and verifying records."
+    },
+    {
+      "skill": "decisao-diagnostico-pme",
+      "file": "site/images/skills/decisao-diagnostico-pme.webp",
+      "subject": "A small business represented by a refined miniature workshop and desk, connected to a branching map of task tiles. Three key tiles glow sage green beside a brass hourglass. Communicate diagnosing repetitive business processes and identifying where AI can save the most time."
+    },
+    {
+      "skill": "decisao-proxima-acao",
+      "file": "site/images/skills/decisao-proxima-acao.webp",
+      "subject": "A branching arrangement of ivory paths on a desk converges on one confident emerald arrow leading to a single elevated green task tile with a check mark, with a small calendar tile nearby. Communicate choosing one clear next action from many possibilities."
+    },
+    {
+      "skill": "rotina-agenda",
+      "file": "site/images/skills/rotina-agenda.webp",
+      "subject": "An ivory freestanding calendar with a neat grid of blank squares, three emerald appointment blocks fitting precisely into separate slots, a brass desk clock without numerals and a green confirmation check token. Communicate organized scheduling without overlaps."
+    },
+    {
+      "skill": "rotina-follow-up",
+      "file": "site/images/skills/rotina-follow-up.webp",
+      "subject": "Three ivory message envelopes arranged along a graceful curved timeline of green stepping stones, each with a small emerald speech bubble, ending beside a welcoming brass customer silhouette. Communicate thoughtful spaced follow-up messages and reconnecting with clients."
+    },
+    {
+      "skill": "setor-clinica-estetica",
+      "file": "site/images/skills/setor-clinica-estetica.webp",
+      "subject": "A refined miniature aesthetic clinic reception: curved sage-green reception desk, ivory treatment chair in the background, folded ivory towels, a small botanical branch and simple appointment book. Warm welcoming professional clinic atmosphere without people or medical procedures."
+    },
+    {
+      "skill": "sop-criar",
+      "file": "site/images/skills/sop-criar.webp",
+      "subject": "Two immaculate ivory procedure documents standing side by side: one bears a sequence of green checkboxes and abstract short lines, the other a branching green flowchart of connected nodes. A dark emerald pen lies between them. Communicate writing a clear procedure for both people and AI agents."
+    },
+    {
+      "skill": "sop-extrair",
+      "file": "site/images/skills/sop-extrair.webp",
+      "subject": "A sculptural ivory human head silhouette with loose green idea threads inside, flowing out smoothly into ordered steps on an ivory notebook beside an emerald pen. Communicate extracting practical knowledge from someone's mind into a documented process."
+    }
+  ]
+}

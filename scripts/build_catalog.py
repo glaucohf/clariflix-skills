@@ -77,6 +77,9 @@ def build(tag: str) -> dict:
             "npx_codex": f"npx skills add {WELLKNOWN} --skill {slug} -a codex -g",
             "npx_any": f"npx skills add {WELLKNOWN} --skill {slug} -g",
         }
+        image_path = f"images/skills/{slug}.webp"
+        if (ROOT / "site" / image_path).is_file():
+            item["image"] = image_path
         items.append(item)
 
     catalog = {
