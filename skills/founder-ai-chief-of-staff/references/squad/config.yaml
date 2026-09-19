@@ -1,0 +1,58 @@
+pack:
+  name: founder-ai-chief-of-staff
+  version: 0.1.0
+  short-title: "AI Chief of Staff"
+  description: "Seu segundo cérebro estratégico: nunca mais entre em reunião sem preparo, nunca mais perca um follow-up."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🧑‍✈️"
+  slashPrefix: aiChiefOfStaff
+name: founder-ai-chief-of-staff
+version: 0.1.0
+description: "Seu segundo cérebro estratégico: nunca mais entre em reunião sem preparo, nunca mais perca um follow-up."
+entry_agent: orion
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: founder-office
+  topsquad: "F1"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orion
+  - briefing
+  - kira
+  - vance
+  - sage
+  - intel
+  - atlas
+  - memo
+  - skeptic
+tasks:
+  - preparar-briefing-de-reuniao.md
+  - sintetizar-fontes-abertas.md
+  - gerar-relatorio-semanal.md
+  - validar-output-estrategico.md
+  - monitorar-inteligencia-competitiva.md
+  - gerar-plano-da-semana.md
+  - gerar-drafts-de-updates.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - founder-ai-chief-of-staff-pipeline.yaml
+checklists:
+  - critic-skeptic.md
+integrations:
+  - "Google Calendar / Outlook Calendar (agenda e eventos — trigger principal do Briefing Agent)"
+  - "Gmail / Outlook Email (ingestão de sinais, captura de commitments, envio de lembretes)"
+  - "HubSpot / Salesforce CRM (histórico de contas, deals, notas de relacionamento)"
+  - "ClickUp (gestão de tasks, follow-ups, prova de trabalho do squad)"
+  - "Notion / Mem.ai (knowledge base do founder, notas de reuniões, board packs)"
+  - "Sembly / Fireflies / Otter (transcrição automática de reuniões para captura de ações)"
+  - "Slack (entrega de briefs, alertas, digests e interface conversacional com o founder)"
+  - "LinkedIn (pesquisa de interlocutores para Kira e Intel)"
+  - "Brave Search / Perplexity MCP (deep research para Kira e Intel)"
+  - "Langfuse (observabilidade OTEL, tracing de tokens e custo por agente)"
+  - "Vector DB — Pinecone / Qdrant (corpus do founder para Sage, histórico de intel)"
+  - "Google Analytics / Metabase / Looker (métricas para Memo Agent e Atlas)"

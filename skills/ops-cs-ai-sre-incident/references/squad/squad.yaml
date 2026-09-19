@@ -1,0 +1,45 @@
+name: ops-cs-ai-sre-incident
+version: 0.1.0
+description: "De tempestade de alertas a root cause em minutos: o SRE que nao dorme, nao esquece e documenta tudo."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: as
+components:
+  agents:
+    - ic.md
+    - alert-correlator.md
+    - root-cause-investigator.md
+    - fix-proposer.md
+    - fix-executor.md
+    - incident-communicator.md
+    - post-mortem-writer.md
+    - fix-guardian.md
+  tasks:
+    - correlacionar-alertas.md
+    - analisar-logs-incidente.md
+    - gerar-propostas-de-fix.md
+    - executar-acoes-l2.md
+    - comunicar-incidentes.md
+    - analisar-incidentes.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-ai-sre-incident-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - operacoes-tecnicas-sre-sla-data-pipelines
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O5 · TopSquad de Operações Técnicas: SRE, SLA & Data Pipelines"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

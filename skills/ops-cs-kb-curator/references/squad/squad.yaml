@@ -1,0 +1,45 @@
+name: ops-cs-kb-curator
+version: 0.1.0
+description: "Sua base de conhecimento nunca mais fica velha: o KB Curator detecta gaps, escreve artigos e resolve conflitos antes que o cliente perceba."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: kcs
+components:
+  agents:
+    - kael.md
+    - milo.md
+    - vera.md
+    - lex.md
+    - clio.md
+    - petra.md
+    - arco.md
+    - lex-2.md
+  tasks:
+    - extrair-intencoes-nao-cobertas.md
+    - escrever-artigo-de-kb.md
+    - validar-draft.md
+    - verificar-consistencia-documental.md
+    - monitorar-impacto-artigos.md
+    - controlar-versao-artigo.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-kb-curator-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - qualidade-voz-do-cliente-knowledge-base
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O2 · TopSquad de Qualidade, Voz do Cliente & Knowledge Base"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

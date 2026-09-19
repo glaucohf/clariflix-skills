@@ -1,0 +1,158 @@
+workflow_name: ce_intelligence_flow
+description: >
+  Sub-workflow de inteligência de mercado — processo de pesquisa competitiva,
+  audience profiling, fórmulas de copy e dados de tráfego. Executado por
+  ce-researcher (Radar) imediatamente após a conclusão do ce-discovery-flow.
+  Output obrigatório: intelligence report estruturado com dados acionáveis
+  para ce-copywriter, ce-design-architect e ce-social-proof iniciarem em paralelo.
+
+agent_sequence:
+  - ce-researcher
+
+estimated_duration: "45-90 min"
+
+parallel_execution: false
+
+phases:
+  - name: "Phase 1 — Competitive Spy"
+    agent: ce-researcher (Radar)
+    tasks:
+      - Identificar mínimo de 5 concorrentes diretos (mesmo produto/serviço)
+      - Identificar mínimo de 3 concorrentes indiretos (substitutos ou adjacentes)
+      - Analisar landing page de cada concorrente direto com framework AIDA
+      - Documentar: headline principal, proposta de valor, estrutura de seções, CTAs
+      - Registrar: prova social utilizada, garantias oferecidas, mecanismo de urgência
+      - Capturar screenshots ou notas descritivas das above-the-fold de cada concorrente
+      - Identificar gaps e oportunidades: o que os concorrentes NÃO fazem bem
+      - Identificar padrões comuns: o que todos fazem (expectativas do mercado)
+    checkpoints:
+      entry: "Brief estruturado com 12 campos aprovado recebido de ce-strategist"
+      exit: >
+        Competitive spy completo com: >= 5 concorrentes diretos analisados,
+        >= 3 indiretos documentados, gaps identificados, padrões mapeados
+    veto_conditions:
+      - "Menos de 5 concorrentes diretos analisados → expandir busca antes de prosseguir"
+      - "Análise superficial sem framework AIDA aplicado → refazer análise com estrutura"
+      - "Nenhum gap de oportunidade identificado → revisitar com olhar crítico de diferenciação"
+      - "Concorrentes analisados sem documentação de CTAs → complementar antes de prosseguir"
+
+  - name: "Phase 2 — Audience Profiling"
+    agent: ce-researcher (Radar)
+    tasks:
+      - Construir 2-3 personas primárias com dados demográficos e psicográficos
+      - Mapear as 3 maiores dores do público com linguagem literal (como eles descrevem)
+      - Mapear os 3 maiores desejos/resultados desejados com linguagem literal
+      - Identificar as 5 principais objeções de compra com argumentos de contra-objeção
+      - Pesquisar reviews de produtos concorrentes para extrair linguagem nativa do público
+      - Identificar comunidades, fóruns e grupos onde o público se reúne
+      - Documentar nível de sofisticação do mercado (escala Schwartz 1-5)
+      - Mapear gatilhos emocionais e racionais específicos do nicho
+    checkpoints:
+      entry: "Competitive spy aprovado — Phase 1 concluída"
+      exit: >
+        Audience profile completo com: >= 2 personas, 3 dores em linguagem literal,
+        3 desejos em linguagem literal, 5 objeções com contra-argumentos, nível
+        de sofisticação confirmado
+    veto_conditions:
+      - "Personas sem dados psicográficos (apenas demográficos) → aprofundar"
+      - "Dores descritas em linguagem técnica/corporativa (não literal do público) → reescrever"
+      - "Menos de 5 objeções mapeadas → pesquisar mais profundamente (reviews, fóruns)"
+      - "Nível de sofisticação sem justificativa → documentar evidências antes de prosseguir"
+
+  - name: "Phase 3 — Copy Formula Research"
+    agent: ce-researcher (Radar)
+    tasks:
+      - Identificar as 3 fórmulas de copy mais eficazes para o nível de consciência do público
+      - Pesquisar exemplos de copy de alta conversão no mesmo nicho (swipe file)
+      - Documentar estruturas de headline que performam no nicho específico
+      - Identificar mecanismos de prova, credibilidade e autoridade do mercado
+      - Mapear estrutura de oferta irresistível para o nicho (stack de bônus, garantia)
+      - Pesquisar ângulos de copy não explorados pelos concorrentes (oportunidade)
+      - Documentar palavras e frases poderosas do nicho (power words nativos)
+      - Listar no mínimo 10 ganchos de headline testados e validados no nicho
+    checkpoints:
+      entry: "Audience profile aprovado — Phase 2 concluída"
+      exit: >
+        Formula research completo com: 3 fórmulas identificadas, >= 10 ganchos
+        de headline, swipe file com >= 5 exemplos, ângulos não explorados mapeados
+    veto_conditions:
+      - "Menos de 10 ganchos de headline documentados → pesquisar mais antes de prosseguir"
+      - "Fórmulas sem correspondência com nível de sofisticação do público → revisar seleção"
+      - "Swipe file sem exemplos do mesmo nicho → buscar adjacentes com justificativa de aplicação"
+      - "Nenhum ângulo não explorado identificado → revisitar competitive spy com foco em gaps"
+
+  - name: "Phase 4 — Traffic Data"
+    agent: ce-researcher (Radar)
+    tasks:
+      - Levantar dados de volume de busca para palavras-chave principais do produto
+      - Identificar intenção de busca dominante: informacional, comercial, transacional
+      - Pesquisar CPC médio das palavras-chave para entender valor do tráfego
+      - Mapear sazonalidade do nicho (picos de demanda, baixas temporadas)
+      - Identificar plataformas de tráfego pago mais utilizadas no nicho
+      - Documentar tipos de anúncios que performam (imagem, vídeo, carrossel, texto)
+      - Levantar benchmarks de CTR e CVR para o nicho (se disponíveis)
+      - Estimar tamanho do mercado endereçável e saturação competitiva
+    checkpoints:
+      entry: "Formula research aprovado — Phase 3 concluída"
+      exit: >
+        Traffic data completo com: palavras-chave mapeadas com volume e CPC,
+        intenção de busca definida, plataformas identificadas, benchmarks documentados
+    veto_conditions:
+      - "Dados de volume de busca não localizados → usar estimativas de ferramentas gratuitas com nota de limitação"
+      - "CPC sem dados disponíveis → documentar como 'não verificado' e prosseguir"
+      - "Plataformas de tráfego indefinidas → consultar brief do cliente e registrar hipótese"
+      - "Nicho sem benchmarks públicos disponíveis → documentar e usar referências de nichos adjacentes"
+
+  - name: "Phase 5 — Synthesis"
+    agent: ce-researcher (Radar)
+    tasks:
+      - Consolidar todos os dados das Phases 1-4 em intelligence report estruturado
+      - Priorizar insights por impacto no copy: HIGH / MEDIUM / LOW
+      - Extrair as 5 principais descobertas que devem guiar o copy
+      - Extrair as 3 oportunidades de diferenciação mais fortes
+      - Documentar as 5 objeções que o copy DEVE endereçar obrigatoriamente
+      - Criar briefing específico para ce-copywriter com diretrizes de linguagem
+      - Criar briefing específico para ce-design-architect com referências visuais competitivas
+      - Criar briefing específico para ce-social-proof com tipos de prova prioritários
+      - Validar que o intelligence report responde a todos os 12 campos do brief estratégico
+    checkpoints:
+      entry: "Traffic data aprovado — Phase 4 concluída"
+      exit: >
+        Intelligence report finalizado com: insights priorizados, 3 oportunidades
+        de diferenciação, 5 objeções obrigatórias, 3 briefings específicos por agente
+    veto_conditions:
+      - "Intelligence report sem priorização de insights → adicionar classificação HIGH/MEDIUM/LOW"
+      - "Briefings específicos por agente ausentes → criar antes de liberar para paralelo"
+      - "Report sem as 5 objeções obrigatórias mapeadas → complementar"
+      - "Menos de 3 oportunidades de diferenciação identificadas → revisitar competitive spy"
+      - "Report não responde a todos os 12 campos do brief → complementar gaps"
+
+success_indicators:
+  - "Mínimo de 5 concorrentes diretos analisados com framework AIDA"
+  - "Mínimo de 3 personas com dados psicográficos e linguagem literal"
+  - "Mínimo de 10 ganchos de headline documentados e priorizados"
+  - "Mínimo de 5 objeções mapeadas com contra-argumentos"
+  - "Dados de tráfego com pelo menos volume de busca e plataformas identificadas"
+  - "3 briefings específicos criados para ce-copywriter, ce-design-architect e ce-social-proof"
+  - "3 oportunidades de diferenciação identificadas e priorizadas"
+  - "Intelligence report com classificação HIGH/MEDIUM/LOW para todos os insights"
+
+failure_conditions:
+  - condition: "Nicho extremamente novo sem concorrentes diretos identificados"
+    recovery: >
+      ce-researcher analisa nichos adjacentes e mercados internacionais como
+      referência, documenta como 'mercado pioneer' e ajusta estratégia de copy
+      para educação de mercado
+  - condition: "Produto com público extremamente nichado (sem comunidades públicas)"
+    recovery: >
+      ce-researcher solicita ao cliente acesso a reviews de clientes internos,
+      entrevistas passadas ou depoimentos para extração de linguagem literal
+  - condition: "Dados de tráfego indisponíveis para o nicho"
+    recovery: >
+      ce-researcher usa benchmarks de nichos adjacentes com nota de limitação,
+      documenta como estimativa e recomenda validação pós-lançamento
+  - condition: "Menos de 5 concorrentes identificados após busca expandida"
+    recovery: >
+      ce-researcher expande para mercado internacional (EN, ES), nichos adjacentes
+      e produtos substitutos; se ainda insuficiente, documenta como 'mercado emergente'
+      e usa dados de categoria de produto mais ampla

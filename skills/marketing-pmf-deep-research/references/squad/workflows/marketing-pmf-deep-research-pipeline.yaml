@@ -1,0 +1,173 @@
+workflow_name: marketing_pmf_deep_research_pipeline
+description: "Pare de adivinhar o mercado: valide dor, tamanho e ângulo antes de gastar um real em mídia."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-pmf-deep-research
+area: "Marketing"
+topsquad: "M4 · Inteligência de Mercado, ICP & Concorrência"
+agent_sequence:
+  - orion
+  - marco
+  - iris
+  - vesper
+  - nyx
+  - atlas
+  - brutus
+  - vega
+  - brutus-2
+key_commands:
+  - "*pesquisar-tendencias-industriais"
+  - "*gerar-scoring-de-fit"
+  - "*monitorar-sinais-de-dor"
+  - "*simular-entrevistas-sinteticas"
+  - "*analisar-concorrentes-diretos-indiretos"
+  - "*questionar-premissas"
+  - "*sintetizar-pmf-documento"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Número de hipóteses validadas ou refutadas por ciclo de pesquisa (meta: >= 3 por ciclo de 10 dias)"
+  - "PMF Score final (escala 1-10, meta: >= 7 antes de escalar budget de mídia)"
+  - "Custo de validação por hipótese vs. custo equivalente de mídia exploratória (meta: redução de 40-60%)"
+  - "Taxa de aprovação do Brutus por artefato (meta: >= 70% claims com evidência Alta/Média sem retrabalho)"
+  - "Tempo médio ciclo completo Discovery -> Framework (meta: <= 10 dias úteis)"
+  - "Taxa de adoção de ângulos de posicionamento pelo squad de Copywriter/Media Buying (meta: >= 80% dos ângulos entregues testados)"
+  - "Redução de CPA nas campanhas pós-validação vs. campanhas pré-squad (meta: -25-35% em 60 dias)"
+  - "NPS do cliente sobre qualidade do PMF Framework Document (meta: >= 8/10)"
+deliverable:
+  description: "PMF Framework Document (PDF/Notion, 10-15 páginas executivas) contendo: PMF Score (1-10) com breakdown, ICP Master Profile com 3-5 clusters rankeados, top-3 ângulos de posicionamento com justificativa de evidência, Persona Cards (3-5), Competitive Matrix, Angle Test Kit (3-5 headlines/hooks prontos por canal) e Roadmap de Validação (30 dias). Artefato registrado e versionado no ClickUp como prova de trabalho auditável."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Pesquisar Tendencias Industriais"
+    agent: marco
+    task: pesquisar-tendencias-industriais.md
+    trigger: "Ativado pelo Orion após aprovação do Briefing de Contexto (fase Discovery). Re-ativado quando Brutus retorna claims contestados para revisão."
+    checkpoint:
+      criteria: "Relatório de Deep Research (30-50 páginas): TAM/SAM/SOM estimado, mapa competitivo (pricing, copy, diferenciais, pontos fracos), top-10 insights de mercado rankeados por impacto, fontes primárias e secundárias citadas, PMF Score draft (1-1…"
+      veto_condition: "Saída sem veredito do critic Brutus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Gerar Scoring De Fit"
+    agent: iris
+    task: gerar-scoring-de-fit.md
+    trigger: "Ativado pelo Orion no início da fase Discovery, em paralelo com Vesper. Re-ativado quando cliente fornece novos dados de CRM ou quando Brutus detecta incongruência no perfil."
+    checkpoint:
+      criteria: "ICP Master Profile (documento): 3-5 clusters de ICP rankeados por LTV e propensão, atributos firmográficos e tecnográficos por cluster, padrões comportamentais identificados, ICP Fit Score model (fórmula de scoring) e lista de 50-100 empre…"
+      veto_condition: "Saída sem veredito do critic Brutus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Monitorar Sinais De Dor"
+    agent: vesper
+    task: monitorar-sinais-de-dor.md
+    trigger: "Ativado pelo Orion em paralelo com Iris na fase Discovery. Pode ser re-ativado semanalmente para monitoramento contínuo após entrega do framework."
+    checkpoint:
+      criteria: "Signal Report: top-20 patterns de linguagem de dor com frequencia e exemplos reais (citacoes anonimizadas), mapa de gatilhos de compra por cluster de ICP, reclamacoes recorrentes sobre concorrentes (oportunidades de posicionamento), trendi…"
+      veto_condition: "Saída sem veredito do critic Brutus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Simular Entrevistas Sintéticas"
+    agent: nyx
+    task: simular-entrevistas-sinteticas.md
+    trigger: "Ativado pelo Orion após Marco entregar o Relatório de Deep Research inicial e Íris finalizar o ICP Master Profile. Re-ativado quando novas hipóteses de posicionamento precisam ser testadas."
+    checkpoint:
+      criteria: "Persona Cards (3-5 documentos): nome, foto gerada, background, cargo, dores priorizadas, objeções típicas, canais preferidos, gatilhos de compra e linguagem natural. Synthetic Interview Transcripts: simulação de 5-10 perguntas de discovery…"
+      veto_condition: "Saída sem veredito do critic Brutus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Analisar Concorrentes Diretos Indiretos"
+    agent: atlas
+    task: analisar-concorrentes-diretos-indiretos.md
+    trigger: "Ativado pelo Orion em paralelo com Marco na fase Deep Dive. Re-ativado quando cliente identifica novo concorrente relevante ou quando Brutus detecta claims competitivos sem evidência."
+    checkpoint:
+      criteria: "Competitive Matrix (planilha): 10-15 dimensões de comparação por concorrente. Battle Cards (1 página por concorrente top-3): como vencer, objeções comuns do concorrente e respostas recomendadas, pontos fracos exploráveis. Positioning Gap M…"
+      veto_condition: "Saída sem veredito do critic Brutus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Questionar Premissas"
+    agent: brutus
+    task: questionar-premissas.md
+    trigger: "Ativado pelo Orion automaticamente após cada agente entregar output principal. Executa em série (não paralelo) para ter visão completa. HITL ativado se Brutus reprovar mais de 30% dos claims de qualquer artefato."
+    checkpoint:
+      criteria: "Critique Report por artefato: lista de claims contestados (com grau de confianca: Alto/Medio/Baixo), gaps de evidencia identificados, sugestoes de pesquisa adicional, vieses detectados, endorsements (o que esta solido). PMF Score Audit: aj…"
+      veto_condition: "Saída sem veredito do critic Brutus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Sintetizar PMF Documento"
+    agent: vega
+    task: sintetizar-pmf-documento.md
+    trigger: "Ativado pelo Orion somente após Brutus aprovar todos os artefatos principais (ou Orion+HITL decidirem aceitar ressalvas). E o último agente a executar antes da entrega ao cliente."
+    checkpoint:
+      criteria: "PMF Framework Document (PDF/Notion, 10-15 páginas executivas): executive summary (1 página para o board), PMF Score final (1-10) com breakdown por dimensão, top-3 ângulos de posicionamento rankeados com justificativa, mensagens-chave por p…"
+      veto_condition: "Saída sem veredito do critic Brutus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: brutus-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: PMF Framework Document (PDF/Notion, 10-15 páginas executivas) contendo: PMF Score (1-10) com breakdown, ICP Master Profile com 3-5 clusters rankeados, top-3 ângulos de posicionamento com justificativ…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do Briefing de Contexto (fim da fase Discovery): cliente valida ICP draft, top-10 dores e mapa de fontes antes do deep dive começar — evita 3-5 dias de pesquisa na direção errada"
+  - level: HITL
+    condition: "Revisão do PMF Score draft + aprovação das Persona Cards (meio da fase Deep Dive): cliente confirma se as personas sintéticas refletem a realidade antes de Nyx simular entrevistas"
+  - level: HITL
+    condition: "Auditoria de Brutus com reprovação > 30% em qualquer artefato: Orion escala para humano decidir entre retrabalhar o agente ou aceitar claim com ressalva documentada"
+  - level: HITL
+    condition: "Aprovação final do PMF Framework Document + Angle Test Kit (fim da fase Framework): cliente/board aprova antes do artefato ser passado para squads de execução (Copywriter, Media Buying) — gate L3 porque decisões de mídia são financeiramente irreversíveis"
+  - level: HITL
+    condition: "Qualquer claim de TAM/SAM/SOM acima de R$500M ou abaixo de R$10M que impacte decisão de alocação de budget: requer validação humana independente antes de ser incluído no documento final"
+transitions:
+  - from: orion
+    to: marco
+    condition: "Ativado pelo Orion após aprovação do Briefing de Contexto (fase Discovery). Re-ativado quando Brutus retorna claims contestados para revisão."
+  - from: marco
+    to: iris
+    condition: "Ativado pelo Orion no início da fase Discovery, em paralelo com Vesper. Re-ativado quando cliente fornece novos dados de CRM ou quando Brutus detecta incongruência no perfil."
+  - from: iris
+    to: vesper
+    condition: "Ativado pelo Orion em paralelo com Iris na fase Discovery. Pode ser re-ativado semanalmente para monitoramento contínuo após entrega do framework."
+  - from: vesper
+    to: nyx
+    condition: "Ativado pelo Orion após Marco entregar o Relatório de Deep Research inicial e Íris finalizar o ICP Master Profile. Re-ativado quando novas hipóteses de posicionamento precisam ser testadas."
+  - from: nyx
+    to: atlas
+    condition: "Ativado pelo Orion em paralelo com Marco na fase Deep Dive. Re-ativado quando cliente identifica novo concorrente relevante ou quando Brutus detecta claims competitivos sem evidência."
+  - from: atlas
+    to: brutus
+    condition: "Ativado pelo Orion automaticamente após cada agente entregar output principal. Executa em série (não paralelo) para ter visão completa. HITL ativado se Brutus reprovar mais de 30% dos claims de qualq…"
+  - from: brutus
+    to: vega
+    condition: "Ativado pelo Orion somente após Brutus aprovar todos os artefatos principais (ou Orion+HITL decidirem aceitar ressalvas). E o último agente a executar antes da entrega ao cliente."
+  - from: vega
+    to: brutus-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: brutus-2
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - iris
+  - vesper
+  - atlas
+  - brutus

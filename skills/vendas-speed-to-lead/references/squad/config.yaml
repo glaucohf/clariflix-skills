@@ -1,0 +1,59 @@
+pack:
+  name: vendas-speed-to-lead
+  version: 0.1.0
+  short-title: "Speed-to-Lead"
+  description: "Todo lead inbound respondido em menos de 60 segundos, 24/7 — antes do concorrente atender o telefone."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "⚡"
+  slashPrefix: speedToLead
+name: vendas-speed-to-lead
+version: 0.1.0
+description: "Todo lead inbound respondido em menos de 60 segundos, 24/7 — antes do concorrente atender o telefone."
+entry_agent: claude-opus
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V2"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - claude-opus
+  - flash
+  - sherlock
+  - socrates
+  - atlas
+  - argos
+  - eco
+  - sdr-por-ligacao
+  - sentinel
+tasks:
+  - enviar-primeira-resposta-ao-lead.md
+  - enriquecer-dossie-lead.md
+  - qualificar-lead-conversacionalmente.md
+  - agendar-reuniao.md
+  - priorizar-leads.md
+  - gerenciar-cadencias-de-follow-up.md
+  - realizar-ligacao-qualificadora.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-speed-to-lead-pipeline.yaml
+checklists:
+  - critic-sentinel.md
+integrations:
+  - "CRM: HubSpot (MCP disponivel) / Pipedrive / Salesforce — fonte de verdade de leads, contatos, deals e historico"
+  - "WhatsApp Business API: Gupshup / AiSensy / Interakt / QuickReply.ai — canal principal no Brasil, envio/recepcao de mensagens"
+  - "Voz IA: Vapi (<600ms latencia) ou Retell AI — ligacoes de qualificacao automatizadas com voz natural"
+  - "TTS: ElevenLabs — voz da marca para ligacoes do Vox"
+  - "STT: Deepgram — transcricao de calls em tempo real"
+  - "Email: Gmail API / Outlook API — cadencias de email do Eco e confirmacoes do Atlas"
+  - "Calendario: Google Calendar / Outlook Calendar — agendamento e lembretes do Atlas"
+  - "Enriquecimento: Clay + Apollo (275M+ contatos) — dados do Sherlock"
+  - "Intent Data: sinais de ads (Meta Ads, Google Ads) + plataformas de intent — gatilhos para o Argos"
+  - "Observabilidade: Langfuse (OTEL) — quality gates, evals, rastreamento de tasks por agente"
+  - "Gestao de tarefas: ClickUp — artefatos verificaveis por task, prova de trabalho auditavel"
+  - "Notificacoes internas: Slack / WhatsApp Business — alertas de lead quente e HITL para closers"
+  - "Videoconferencia: Google Meet / Zoom / Teams — links de reuniao gerados pelo Atlas"

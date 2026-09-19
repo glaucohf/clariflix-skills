@@ -1,0 +1,60 @@
+pack:
+  name: vendas-voz-cold-calling-discovery
+  version: 0.1.0
+  short-title: "Voz para Cold Calling e Discovery"
+  description: "Voz de IA sub-600ms que liga, qualifica e agenda — sem SDR humano no primeiro contato."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "📡"
+  slashPrefix: vozParaColdCallingEDiscovery
+name: vendas-voz-cold-calling-discovery
+version: 0.1.0
+description: "Voz de IA sub-600ms que liga, qualifica e agenda — sem SDR humano no primeiro contato."
+entry_agent: orquestrador-comercial-de-voz
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V1"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orquestrador-comercial-de-voz
+  - dossie
+  - vox-worker-de-voz
+  - filtro
+  - agenda
+  - eco
+  - radar
+  - insight
+  - filtro-2
+tasks:
+  - enriquecer-dossie-contextual.md
+  - realizar-ligacao-cold-call.md
+  - analisar-transcricao-call.md
+  - agendar-reuniao.md
+  - reativar-interesse-frios.md
+  - ranquear-leads.md
+  - analisar-padroes-de-conversas.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-voz-cold-calling-discovery-pipeline.yaml
+checklists:
+  - critic-filtro-2.md
+integrations:
+  - "Vapi ou Rétell AI (plataforma de agente de voz sub-600ms)"
+  - "Deepgram (STT — Speech-to-Text de baixa latência)"
+  - "ElevenLabs (TTS — Text-to-Speech com voz personalizada)"
+  - "HubSpot CRM (MCP disponível — leitura e escrita de leads, deals, activities)"
+  - "Google Calendar ou Outlook (agendamento e gestão de disponibilidade do closer)"
+  - "WhatsApp Business API via Gupshup ou AiSensy (confirmações, lembretes, nurture)"
+  - "Apollo.io (enriquecimento de leads — 275M+ contatos)"
+  - "Clay (enriquecimento dinâmico e waterfall de dados)"
+  - "ClickUp (gestão de tarefas e artefatos verificáveis por story)"
+  - "Langfuse (observabilidade OTEL, evals e quality gates por fase)"
+  - "LangGraph (orquestração do grafo de estados conversacional do Vox Agent)"
+  - "Twilio ou Vonage (gateway de telefonia para discagem programática)"
+  - "Google Sheets ou Airtable (lista de prospectos e relatórios para clientes sem CRM robusto)"
+  - "Slack ou Teams (notificações de leads qualificados e alertas de HITL para gestor comercial)"

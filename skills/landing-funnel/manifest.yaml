@@ -1,0 +1,34 @@
+row: especialistas
+title: Funil de conversão completo
+title_netflix: LANDING FUNNEL
+subtitle: Landing page, integrações, analytics e experimentos
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 13 agentes, 57 tarefas, 10 fluxos
+  requer: Brief do produto, evidências, projeto web e acessos autorizados às integrações
+    usadas
+  como_usar: 'Diga: "Use Landing Funnel para construir esta landing page e verificar
+    o funil de leads"'
+  elenco:
+  - ce-strategist
+  - ce-researcher
+  - ce-copywriter
+  - ce-design-architect
+  - ce-image-creator
+  - ce-frontend-dev
+  - ce-backend-dev
+  - ce-integrator
+  - ce-analytics-architect
+  - ce-ab-architect
+  - ce-social-proof
+  - ce-email-strategist
+  - ce-reviewer
+  generos:
+  - Conversão
+  - Web
+  esta_skill_e:
+  - Integrada
+  - Orientada a dados
+  - Criteriosa

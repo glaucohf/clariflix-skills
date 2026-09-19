@@ -1,0 +1,57 @@
+pack:
+  name: vendas-recuperacao-oportunidades-estagnadas
+  version: 0.1.0
+  short-title: "Recuperação de Oportunidades Estagnadas"
+  description: "Nenhum deal morre de inercial — reativamos receita parada antes que o concorrente a pegue."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🔥"
+  slashPrefix: recuperacaoDeOportunidadesEstagnadas
+name: vendas-recuperacao-oportunidades-estagnadas
+version: 0.1.0
+description: "Nenhum deal morre de inercial — reativamos receita parada antes que o concorrente a pegue."
+entry_agent: orquestrador-de-recuperacao
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V4"
+  prioridade: "avançado"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orquestrador-de-recuperacao
+  - worker-de-deteccao-e-triagem
+  - escavador
+  - arquiteto
+  - critic-e-verifier-de-mensagens
+  - worker-de-outreach-multicanal
+  - monge
+  - forense
+  - critic-e-verifier-de-mensagens-2
+tasks:
+  - detectar-sinais-de-estagnacao.md
+  - enriquecer-contexto-lead.md
+  - personalizar-sequencia-mensagens.md
+  - verificar-mensagens.md
+  - enviar-mensagens-multicanal.md
+  - nutrir-leads-longo-prazo.md
+  - analisar-abandono-em-etapas.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-recuperacao-oportunidades-estagnadas-pipeline.yaml
+checklists:
+  - critic-critic-e-verifier-de-mensagens-2.md
+integrations:
+  - "CRM: HubSpot (MCP disponível), Pipedrive, Salesforce — fonte de verdade de deals e histórico"
+  - "WhatsApp Business API: Gupshup, AiSensy ou Interakt — canal principal de recuperação no Brasil"
+  - "Email: SMTP/SendGrid ou sequenciador (Apollo, Instantly) — cadências de nurture e follow-up"
+  - "LinkedIn Sales Navigator — enriquecimento de contexto e outreach via Escavador"
+  - "Voz: Vapi (<600ms latência) ou Retell AI + ElevenLabs TTS — recuperação via ligação para deals de alto valor"
+  - "Enriquecimento: Clay ou Apollo (275M+ contatos) — Escavador busca sinais externos"
+  - "E-commerce/Carrinho: Shopify, WooCommerce, Hotmart — webhooks de abandono de carrinho"
+  - "ClickUp — gestão de tarefas, prova de trabalho, artefatos verificáveis por deal"
+  - "Langfuse (OTEL) — observabilidade, evals e quality gates (dev 70% / staging 85% / prod 95%)"
+  - "Google Calendar / Calendly — booking de reuniões de reativação pelo Worker de Agendamento (quando integrado)"
+  - "Slack / Teams — alertas de resposta e HITL gates para comerciais humanos"

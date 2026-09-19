@@ -1,0 +1,24 @@
+row: especialistas
+title: Execução em ciclos
+title_netflix: FLYWHEEL CORE
+subtitle: Plano, tarefas atômicas, coordenação e revisão
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 4 agentes, 10 tarefas, 2 fluxos
+  requer: Projeto e objetivo; scripts BV/BR/UBS originais não incluídos no pacote
+  como_usar: 'Diga: "Organize a implementação desta funcionalidade em um ciclo Flywheel
+    com beads"'
+  elenco:
+  - flywheel-architect
+  - bead-manager
+  - swarm-coordinator
+  - hardening-specialist
+  generos:
+  - Agentes de IA
+  - Engenharia
+  esta_skill_e:
+  - Coordenada
+  - Incremental
+  - Revisada

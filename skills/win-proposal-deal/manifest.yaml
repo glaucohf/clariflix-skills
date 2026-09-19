@@ -1,0 +1,25 @@
+row: especialistas
+title: Proposta em três opções
+title_netflix: WIN PROPOSAL DEAL
+subtitle: Prospect, escopo, preço e tratamento de objeções
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 4 agentes, 4 tarefas, 2 fluxos
+  requer: Contexto do prospect, oferta, capacidade de entrega, custos e condições
+    comerciais
+  como_usar: 'Diga: "Monte uma proposta comercial com três opções de escopo para este
+    prospect"'
+  elenco:
+  - prospect-analyzer
+  - scope-architect
+  - pricing-strategist
+  - proposal-composer
+  generos:
+  - Vendas
+  - Propostas
+  esta_skill_e:
+  - Consultiva
+  - Estruturada
+  - Persuasiva

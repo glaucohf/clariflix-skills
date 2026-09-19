@@ -1,0 +1,45 @@
+name: ops-cs-sla-health-monitor
+version: 0.1.0
+description: "SLA breach nunca mais — o squad prevê a violação horas antes e escala antes do prazo explodir."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: shm
+components:
+  agents:
+    - sentinela-mor-persona-vitor-analista-senior-de-operacoes-com-obsessao-por-sla.md
+    - radar.md
+    - decifra.md
+    - cronos.md
+    - alarme.md
+    - histos.md
+    - ancora.md
+    - cetico-de-sla.md
+  tasks:
+    - coletar-tickets-sla.md
+    - calcular-complexidade-tickets.md
+    - calcular-probabilidade-de-breach.md
+    - escalonar-tickets.md
+    - analisar-dados-de-sla.md
+    - registrar-prova-de-trabalho.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-sla-health-monitor-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - operacoes-tecnicas-sre-sla-data-pipelines
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O5 · TopSquad de Operações Técnicas: SRE, SLA & Data Pipelines"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

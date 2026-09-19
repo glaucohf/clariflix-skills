@@ -1,0 +1,29 @@
+row: operacoes
+title: Renovacao, Expansao e QBR Automatizado
+title_netflix: RENOVACAO, EXPANSAO E QBR AUTOMATIZADO
+subtitle: Preparar revisões de negócio com clientes, planos de renovação e oportunidades de expansão baseadas em evidências
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-renovacao-expansao-qbr para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Maestro
+  - Radar
+  - Compass
+  - Scout
+  - Briefer
+  - Slides
+  - Pulse
+  - Memory
+  - Verity
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

@@ -1,0 +1,47 @@
+name: ops-cs-dunning-recuperacao-pagamentos
+version: 0.1.0
+description: "Transforma falhas de pagamento em receita recuperada — sem depender de humano para perseguir cada inadimplente com a cadência e o tom certos."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: cer
+components:
+  agents:
+    - cobalt.md
+    - dante.md
+    - iris.md
+    - zap.md
+    - flex.md
+    - pulse.md
+    - atlas.md
+    - vault.md
+    - sentinel.md
+  tasks:
+    - calcular-sequencia-de-cobranca.md
+    - enviar-email-de-recuperacao.md
+    - enviar-mensagens-personalizadas.md
+    - classificar-respostas-cliente.md
+    - enviar-sms-de-reforco.md
+    - analisar-padroes-de-inadimplencia.md
+    - atualizar-dados-de-pagamento.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-dunning-recuperacao-pagamentos-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - back-office-financeiro-cobranca
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O4 · TopSquad de Back-Office Financeiro & Cobrança"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

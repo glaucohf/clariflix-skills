@@ -1,0 +1,33 @@
+workflow_name: athenaeum_workflow
+description: "Primary pipeline for strategic intelligence, systems analysis, scenario design and executive synthesis"
+agent_sequence:
+  - intake-analyst
+  - war-room-facilitator
+  - systems-analyst
+  - emotional-mediator
+  - cultural-analyst
+  - ethics-consultant
+  - creative-ideator
+  - chief-strategist
+  - invisible-patterns-analyst
+  - chief-strategist
+  - communication-specialist
+  - report-synthesizer
+key_commands:
+  - "*solve"
+  - "*compile-report"
+trigger_threshold: 2
+typical_duration: "30-90 minutes"
+success_indicators:
+  - "Strategic clarity achieved"
+  - "Actionable solution plan delivered"
+  - "Executive report completed"
+transitions:
+  challenge_decoded:
+    trigger: "decodedBrief available"
+    confidence: 0.90
+    greeting_message: "Challenge decoded. Workflow proceeds to contextual mapping."
+    next_steps:
+      - command: "*solve"
+        description: "Continue Athenaeum workflow"
+        priority: 1

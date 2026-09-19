@@ -1,0 +1,29 @@
+row: operacoes
+title: Predição e Prevenção de Churn
+title_netflix: PREDIÇÃO E PREVENÇÃO DE CHURN
+subtitle: Analisar sinais de risco de churn e preparar planos de retenção com evidências e responsáveis
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-churn-prediction para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Nexus
+  - Vega
+  - Prism
+  - Mira
+  - Spark
+  - Iris
+  - Lumen
+  - Echo
+  - Argus
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

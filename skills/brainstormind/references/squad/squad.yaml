@@ -1,0 +1,56 @@
+name: brainstormind
+version: 1.0.0
+description: "Workflow Diverge+Converge — swarm de 24 agentes gera 200+ ideias, filtra Top 3, depois refina o melhor insight em design validado. Pipeline de 6 fases com gate interativo, context-manifest pattern, shared macros. ~65% menos tokens que abordagem naive."
+author: "Brain Squad"
+license: MIT
+slashPrefix: brain
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - orchestrator.md
+    - theme-definer.md
+    - idea-generator.md
+    - filter-ranker.md
+    - synthesizer.md
+    - design-facilitator.md
+    - report-builder.md
+  tasks:
+    - start.md
+    - define-themes.md
+    - generate-ideas.md
+    - filter-and-rank.md
+    - synthesize-insights.md
+    - facilitate-design.md
+    - build-report.md
+  workflows:
+    - brain-pipeline.yaml
+    - diverge-only.yaml
+  checklists: []
+  templates:
+    - schemas.md
+  tools: []
+  scripts: []
+
+config:
+  extends: none
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+dependencies:
+  node: []
+  squads: []
+
+tags:
+  - brainstorming
+  - diverge-converge
+  - multi-agent
+  - swarm
+  - design-facilitator
+  - claude-code
+  - pipeline
+  - token-optimized

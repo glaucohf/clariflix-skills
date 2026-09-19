@@ -1,0 +1,103 @@
+workflow_name: brain_pipeline
+description: "Pipeline completo Diverge+Converge — gera 200+ ideias com swarm, filtra Top 3, refina insight selecionado em design validado"
+
+agent_sequence:
+  - theme-definer
+  - idea-generator
+  - filter-ranker
+  - idea-generator
+  - filter-ranker
+  - synthesizer
+  - design-facilitator
+  - report-builder
+
+key_commands:
+  - "*define-themes"
+  - "*generate-ideas"
+  - "*filter-rank-r1"
+  - "*filter-rank-final"
+  - "*synthesize"
+  - "*facilitate-design"
+  - "*build-report"
+
+trigger_threshold: 1
+typical_duration: "15-30 minutes"
+
+success_indicators:
+  - "Top 3 insights gerados e apresentados ao usuario"
+  - "Insight selecionado refinado em design validado"
+  - "brain_report.md consolidado"
+  - ".brainstorm-tmp/ limpo"
+
+transitions:
+  phase_1_setup:
+    trigger: "Topico recebido e .brainstorm-tmp/ criado com topic.txt"
+    confidence: 0.95
+    next_steps:
+      - command: "*define-themes"
+        description: "ThemeDefiner define 10 tipos de associacao"
+        priority: 1
+
+  phase_2_round1_generate:
+    trigger: "themes.json gerado com 10 tipos de associacao"
+    confidence: 0.95
+    next_steps:
+      - command: "*generate-ideas"
+        description: "10x IdeaGenerator Haiku em paralelo (R1)"
+        priority: 1
+
+  phase_3_round1_rank:
+    trigger: "Todos os 10 arquivos agent-*.txt existem em .brainstorm-tmp/r1/"
+    confidence: 0.90
+    next_steps:
+      - command: "*filter-rank-r1"
+        description: "FilterRanker Sonnet filtra 100 itens para Top 10"
+        priority: 1
+
+  phase_4_round2_generate:
+    trigger: "top10.json e top10_summary.txt gerados"
+    confidence: 0.95
+    next_steps:
+      - command: "*generate-ideas"
+        description: "10x IdeaGenerator Haiku em paralelo (R2, expandindo Top 10)"
+        priority: 1
+
+  phase_5_round2_rank:
+    trigger: "Todos os 10 arquivos agent-*.txt existem em .brainstorm-tmp/r2/"
+    confidence: 0.90
+    next_steps:
+      - command: "*filter-rank-final"
+        description: "FilterRanker Sonnet filtra para Top 3 final"
+        priority: 1
+
+  phase_6_synthesize:
+    trigger: "top3.json gerado com 3 insights ranqueados"
+    confidence: 0.95
+    next_steps:
+      - command: "*synthesize"
+        description: "Synthesizer Sonnet formata output final"
+        priority: 1
+
+  gate_transition:
+    trigger: "final_output.md apresentado ao usuario e insight selecionado"
+    confidence: 0.90
+    next_steps:
+      - command: "*facilitate-design"
+        description: "DesignFacilitator Opus inicia facilitacao interativa"
+        priority: 1
+
+  phase_7_design:
+    trigger: "Understanding Lock confirmado e design aceito pelo usuario"
+    confidence: 0.90
+    next_steps:
+      - command: "*build-report"
+        description: "ReportBuilder Sonnet consolida relatorio final"
+        priority: 1
+
+  phase_8_cleanup:
+    trigger: "brain_report.md gerado e apresentado ao usuario"
+    confidence: 0.95
+    next_steps:
+      - command: "cleanup"
+        description: "rm -rf .brainstorm-tmp/"
+        priority: 1

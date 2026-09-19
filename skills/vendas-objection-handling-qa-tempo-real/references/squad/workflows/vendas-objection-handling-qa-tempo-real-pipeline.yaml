@@ -1,0 +1,154 @@
+workflow_name: vendas_objection_handling_qa_tempo_real_pipeline
+description: "Seu vendedor nunca mais trava numa objeção — a resposta certa chega antes do silêncio constrangedor."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-objection-handling-qa-tempo-real
+area: "Vendas"
+topsquad: "V5 · Sales Enablement & Conversation Intelligence"
+agent_sequence:
+  - maestro
+  - rebound
+  - tempo
+  - challenger
+  - tecnico
+  - closer
+  - arquivo
+  - argus
+key_commands:
+  - "*rebater-objecoes-de-preco"
+  - "*rebater-objecoes-timing"
+  - "*rebater-objecoes-concorrente"
+  - "*responder-duvidas-tecnicas"
+  - "*resolver-objecao-autoridade"
+  - "*analisar-objecoes-frequentes"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro
+success_indicators:
+  - "Latência end-to-end: tempo do sinal de entrada (objeção digitada/transcrita) até resposta entregue ao vendedor — meta P50 < 8 segundos, P95 < 15 segundos"
+  - "Taxa de cobertura: % de objeções recebidas que foram respondidas pela base catalogada (vs nova/não catalogada) — meta > 85% em 60 dias de operação"
+  - "Taxa de uso pelo vendedor: % de respostas entregues que o vendedor efetivamente usou (copiou/clicou) — meta > 60% (mede relevância das respostas, não apenas entrega)"
+  - "Taxa de aprovação do ARGUS na primeira passagem: meta > 88% (staging) / > 96% (produção) — mede qualidade dos workers"
+  - "Taxa de conversão pós-objeção: % de objeções onde a resposta do squad foi usada e o deal avançou de stage — meta > 40% (vs baseline pré-squad a ser medido nos primeiros 30 dias)"
+  - "Redução de deals perdidos por objeção de preço/concorrente: comparar cohort de deals com squad ativo vs histórico sem squad — meta -25% de deals perdidos nestas categorias"
+  - "Tempo de resposta do vendedor a objeção (medido via conversation intelligence): redução de silêncio/hesitação em call — meta redução de 60% no tempo médio de resposta após ativação do squad"
+  - "Crescimento da base de battlecards: número de novas objeções catalogadas e validadas por semana — meta 3-5 novas objeções/semana nos primeiros 90 dias (demonstra aprendizado contínuo)"
+deliverable:
+  description: "Pacote de Resposta de Objeção — entregue em < 15 segundos ao vendedor em qualquer canal ativo (widget de call, WhatsApp, chat do CRM): (1) Resposta Principal pronta para falar ou copiar/colar (max 2 linhas, linguagem conversacional do canal), (2) Argumento de Suporte com 2-3 bullets de dado/caso/lógica para aprofundar, (3) Pergunta de Redirecionamento para retomar controle da conversa após a resposta. Artefato verificável registrado no ClickUp por deal com: objeção recebida, worker acionado, resposta entregue, resultado da call. Relatório semanal de inteligência de objeções entregue à liderança de vendas via Slack/email: top objeções da semana, taxas de conversão por tipo, novos padrões detectados, sugestões de atualização de playbook."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Rebater Objeções De Preço"
+    agent: rebound
+    task: rebater-objecoes-de-preco.md
+    trigger: "Disparo pelo MAESTRO quando objeção classificada como price_objection, value_objection, roi_question, contract_terms, ou competitor_price_comparison. SLA: output em < 8 segundos."
+    checkpoint:
+      criteria: "Pacote de resposta com: (1) frase principal pronta para falar (max 2 linhas, linguagem conversacional), (2) 2-3 bullets de argumento com dado/numero especifico, (3) pergunta de redirecionamento para retomar controle, (4) flag de 'usar desc…"
+      veto_condition: "Saída sem veredito do critic ARGUS; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Rebater Objecoes Timing"
+    agent: tempo
+    task: rebater-objecoes-timing.md
+    trigger: "Disparo pelo MAESTRO quando objeção classificada como timing_objection, priority_objection, budget_cycle, ou 'call_me_later'. SLA: output em < 8 segundos."
+    checkpoint:
+      criteria: "Pacote de resposta com: (1) resposta principal personalizada ao momento do prospect, (2) argumento de urgencia baseado em dado concreto (ex: 'empresas do seu setor que adiaram esse investimento em Q4 perderam X% de conversao até o verão'),…"
+      veto_condition: "Saída sem veredito do critic ARGUS; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Rebater Objeções Concorrente"
+    agent: challenger
+    task: rebater-objecoes-concorrente.md
+    trigger: "Disparo pelo MAESTRO quando objeção classificada como competitor_objection, status_quo, incumbent_vendor, ou quando prospect menciona nome de concorrente específico. SLA: output em < 10 segundos (precisa de busca em base de battlecards)."
+    checkpoint:
+      criteria: "Pacote de resposta com: (1) resposta principal que reconhece o concorrente sem atacar + posiciona o diferencial relevante para a dor especifica do prospect, (2) 2 perguntas challenger que revelam gaps do concorrente atual sem mencionar o n…"
+      veto_condition: "Saída sem veredito do critic ARGUS; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Responder Dúvidas Técnicas"
+    agent: tecnico
+    task: responder-duvidas-tecnicas.md
+    trigger: "Disparo pelo MAESTRO quando input classificado como product_qa, integration_question, implementation_question, technical_spec, ou security_compliance. SLA: < 10 segundos para perguntas catalogadas; HITL gate acionado se promessa técnica nã…"
+    checkpoint:
+      criteria: "Resposta técnica em três camadas: (1) resposta direta em linguagem do interlocutor (executivo ou técnico), (2) detalhamento técnico opcional (o vendedor expõe se necessário), (3) próximo passo sugerido se a resposta exigir validação intern…"
+      veto_condition: "Saída sem veredito do critic ARGUS; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Resolver Objeção Autoridade"
+    agent: closer
+    task: resolver-objecao-autoridade.md
+    trigger: "Disparo pelo MAESTRO quando objeção classificada como authority_objection, think_it_over, need_approval, proposal_request, ou closing_stall. SLA: < 8 segundos. Prioridade máxima — é o momento mais crítico do funil."
+    checkpoint:
+      criteria: "Pacote de resposta com: (1) diagnóstico — é objeção real de autoridade ou saída educada? (com indicadores), (2) resposta principal adaptada ao diagnóstico, (3) técnica de fechamento recomendada com script pronto, (4) pergunta de qualificaç…"
+      veto_condition: "Saída sem veredito do critic ARGUS; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Analisar Objeções Frequentes"
+    agent: arquivo
+    task: analisar-objecoes-frequentes.md
+    trigger: "Disparo automático após cada interação (log contínuo). Relatório consolidado gerado toda segunda-feira. Alerta imediato quando novo padrão de objeção não catalogada aparece 3+ vezes em 7 dias. L3 gate para qualquer escrita em CRM de produç…"
+    checkpoint:
+      criteria: "Base de conhecimento atualizada com novas taxas de conversão por resposta, relatório semanal de padrões de objeção (top-5 objeções da semana, objeções em alta, respostas com queda de performance), alertas de novo concorrente ou nova objeçã…"
+      veto_condition: "Saída sem veredito do critic ARGUS; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: argus
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: maestro
+    checkpoint:
+      criteria: "Entregável consolidado: Pacote de Resposta de Objeção — entregue em < 15 segundos ao vendedor em qualquer canal ativo (widget de call, WhatsApp, chat do CRM): (1) Resposta Principal pronta para falar ou copiar/colar (max 2…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Qualquer resposta que envolva promessa de desconto acima do nível autorizado para o vendedor: MAESTRO pausa, notifica supervisor ou gerente de vendas via Slack/WhatsApp, que aprova ou rejeita em tempo real antes da resposta chegar ao vendedor"
+  - level: L3
+    condition: "Qualquer resposta a dúvida técnica que envolva prazo de implementação customizado, SLA não padrão, ou integração não documentada na base: TÉCNICO flag como HITL, vendedor recebe instrução 'vou confirmar com a equipe técnica e te retorno em X horas' em vez de uma promessa não verificada"
+  - level: L3
+    condition: "Escrita de resultados de call e atualização de stage no CRM pelo ARQUIVO: vendedor confirma o resultado via formulário rápido (1 click) antes de qualquer persistência em CRM de produção"
+  - level: L2
+    condition: "Quando ARGUS emite REJEITADO por factualidade: MAESTRO notifica o vendedor que a resposta está sendo verificada e entrega uma resposta genérica segura enquanto o worker corrige — o vendedor decide se usa a genérica ou aguarda a corrigida"
+  - level: L1
+    condition: "Objecão nova não catalogada (aparece pela primeira vez): ARQUIVO sinaliza ao líder de vendas ou product owner que uma nova objecão foi detectada e sugere draft de resposta para validação antes de entrar na base — o líder aprova, edita ou rejeita o draft"
+transitions:
+  - from: maestro
+    to: rebound
+    condition: "Disparo pelo MAESTRO quando objeção classificada como price_objection, value_objection, roi_question, contract_terms, ou competitor_price_comparison. SLA: output em < 8 segundos."
+  - from: rebound
+    to: tempo
+    condition: "Disparo pelo MAESTRO quando objeção classificada como timing_objection, priority_objection, budget_cycle, ou 'call_me_later'. SLA: output em < 8 segundos."
+  - from: tempo
+    to: challenger
+    condition: "Disparo pelo MAESTRO quando objeção classificada como competitor_objection, status_quo, incumbent_vendor, ou quando prospect menciona nome de concorrente específico. SLA: output em < 10 segundos (pre…"
+  - from: challenger
+    to: tecnico
+    condition: "Disparo pelo MAESTRO quando input classificado como product_qa, integration_question, implementation_question, technical_spec, ou security_compliance. SLA: < 10 segundos para perguntas catalogadas; H…"
+  - from: tecnico
+    to: closer
+    condition: "Disparo pelo MAESTRO quando objeção classificada como authority_objection, think_it_over, need_approval, proposal_request, ou closing_stall. SLA: < 8 segundos. Prioridade máxima — é o momento mais cr…"
+  - from: closer
+    to: arquivo
+    condition: "Disparo automático após cada interação (log contínuo). Relatório consolidado gerado toda segunda-feira. Alerta imediato quando novo padrão de objeção não catalogada aparece 3+ vezes em 7 dias. L3 gat…"
+  - from: arquivo
+    to: argus
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: argus
+    to: maestro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

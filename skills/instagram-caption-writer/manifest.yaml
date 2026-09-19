@@ -1,0 +1,26 @@
+row: especialistas
+title: Legendas com intenção
+title_netflix: INSTAGRAM CAPTION WRITER
+subtitle: Ganchos, variações e planejamento para Instagram
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 7 agentes, 4 tarefas, 2 fluxos
+  requer: Tema, nicho, formato, objetivo e tom; produto/oferta quando houver venda
+  como_usar: 'Diga: "Crie uma semana de conteúdo de Instagram para este nicho e objetivo"'
+  elenco:
+  - instagram-caption-chief
+  - caption-strategist
+  - caption-writer
+  - hook-generator
+  - hashtag-researcher
+  - caption-ab-tester
+  - caption-repurposer
+  generos:
+  - Instagram
+  - Copywriting
+  esta_skill_e:
+  - Persuasiva
+  - Adaptável
+  - Planejada

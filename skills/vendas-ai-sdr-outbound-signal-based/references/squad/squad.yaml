@@ -1,0 +1,45 @@
+name: vendas-ai-sdr-outbound-signal-based
+version: 0.1.0
+description: "Do sinal de intenção ao slot agendado em menos de 90 segundos, personalizado por IA e aprovado por crític antes de tocar o lead."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: aso
+components:
+  agents:
+    - nexus.md
+    - radar.md
+    - sherlock.md
+    - magnus.md
+    - penna.md
+    - vox.md
+    - lumen.md
+    - argus.md
+  tasks:
+    - detectar-sinais-intencao.md
+    - construir-dossie-completo.md
+    - classificar-leads.md
+    - redigir-mensagens-personalizadas.md
+    - agendar-mensagens.md
+    - analisar-respostas-recebidas.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-ai-sdr-outbound-signal-based-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - prospeccao-outbound-multicanal
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V1 · TopSquad de Prospecção & Outbound Multicanal"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

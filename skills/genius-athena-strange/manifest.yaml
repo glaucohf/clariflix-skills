@@ -1,0 +1,25 @@
+row: especialistas
+title: Decisões sob incerteza
+title_netflix: GENIUS ATHENA STRANGE
+subtitle: Cisnes Negros, antifragilidade e limites de exposição
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 5 agentes, 5 tarefas, 1 fluxos
+  requer: Decisão ou sistema, exposições, limites e contexto das partes envolvidas
+  como_usar: 'Diga: "Avalie a fragilidade desta estratégia e proponha opções com downside
+    limitado"'
+  elenco:
+  - cygnus-vidente
+  - hydra-arquiteta
+  - seneca-estrategista
+  - medusa-auditora
+  - hermes-orquestrador
+  generos:
+  - Estratégia
+  - Risco
+  esta_skill_e:
+  - Cética
+  - Antifrágil
+  - Prudente

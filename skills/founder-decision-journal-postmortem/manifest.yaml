@@ -1,0 +1,29 @@
+row: gestao
+title: Decision Journal & Postmortem
+title_netflix: DECISION JOURNAL & POSTMORTEM
+subtitle: Registrar decisões, hipóteses e resultados e conduzir postmortems com aprendizados e ações de acompanhamento
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-decision-journal-postmortem para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - VERDICT
+  - ARCHIVIST
+  - SKEPTIC
+  - SCOUT
+  - RADAR
+  - ORACLE
+  - CALIBRADOR
+  - SENTINEL-DJ
+  - MIRROR
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

@@ -1,0 +1,106 @@
+{
+  "source": "maquina-de-receita/squads-gratuitos/win-proposal-deal",
+  "files": [
+    {
+      "path": "agents/pricing-strategist.md",
+      "bytes": 4457,
+      "sha256": "6f07bd8911daf0260455a4810b835fe8981460d3dc1cb268fa4bab91fef012a8"
+    },
+    {
+      "path": "agents/proposal-composer.md",
+      "bytes": 4942,
+      "sha256": "3f6ac857a146093cf2785ce90692d768508ffc8a6004409571c77bf667b74af9"
+    },
+    {
+      "path": "agents/prospect-analyzer.md",
+      "bytes": 4524,
+      "sha256": "b5f8505a0d1f61b6e142acdcba55b417f7ec43d549e0fc4c3718b1b8a93159a2"
+    },
+    {
+      "path": "agents/scope-architect.md",
+      "bytes": 4200,
+      "sha256": "246ff4706c59d5d0df4c15d6719609362583d1338a623190c6898cefd1801f2e"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "bytes": 1499,
+      "sha256": "4e9f6ffb0e4b3ea6826152e8a2b7939e1ab672eddb0890d33786113f35a0f4d2"
+    },
+    {
+      "path": "config/source-tree.md",
+      "bytes": 1375,
+      "sha256": "44e0f7059cce18f83f939a2cd9c23ecc347475f19fd3f8da204929a8e8efcc32"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "bytes": 767,
+      "sha256": "64f3f70b1eea2f8dcb655cc725187f528bf4592890a424bcfed07f41acc9c012"
+    },
+    {
+      "path": "README.ar.md",
+      "bytes": 4663,
+      "sha256": "f0f1509b04259d617aff34c7e8d30c38bbf88e769480553d44eff42dc65924d2"
+    },
+    {
+      "path": "README.en.md",
+      "bytes": 3719,
+      "sha256": "8ddb0dfa031c58d3a4577ff02d42a280b0dabfe211bf9b7279bda475c11d66f6"
+    },
+    {
+      "path": "README.es.md",
+      "bytes": 3804,
+      "sha256": "c52af94e83d8ec2211767cbea7113baeacab2e7207aed8ea18770cd6acc232fa"
+    },
+    {
+      "path": "README.hi.md",
+      "bytes": 6863,
+      "sha256": "de45c44114f113eb6aff52f441316f162ff08b4264e7fc4dc9adbf12de8f09e9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3627,
+      "sha256": "ebae8110af2c824339e2edff0e763cdb76a6cec74e747c97bd9566fa7ffdb3d4"
+    },
+    {
+      "path": "README.zh.md",
+      "bytes": 3417,
+      "sha256": "0c7dbeebeb8bebb99e46345fba06419007c7e0777f35491436219f6140e9f3a8"
+    },
+    {
+      "path": "squad.yaml",
+      "bytes": 972,
+      "sha256": "6ce8213bde37433b430e79a421225b110d6e2ec85053c8554c040592eb33ade9"
+    },
+    {
+      "path": "tasks/analyze-prospect.md",
+      "bytes": 1875,
+      "sha256": "73d1141bb1e8b7cb0b87ec2c9b45b924e34e8ce379c31002376891f68b67d886"
+    },
+    {
+      "path": "tasks/calculate-pricing.md",
+      "bytes": 2126,
+      "sha256": "d4792532f192af68439390c9f6cbd29b5ab413ca81dfcdc4d3b712d6a22bcd60"
+    },
+    {
+      "path": "tasks/compose-proposal.md",
+      "bytes": 2312,
+      "sha256": "25921f182a7aa103a0abfd5040e3b58c9b425618dbe00e64f6850ccad8e8330b"
+    },
+    {
+      "path": "tasks/design-scope.md",
+      "bytes": 1796,
+      "sha256": "47be14cb6d61f3d607ab1dfcafc7167a6e875f8868d26f2e0a667a2ccebd762d"
+    },
+    {
+      "path": "workflows/proposal-generation-pipeline.yaml",
+      "bytes": 2414,
+      "sha256": "9543c9ec779fc9a3189c8093a5e027e850a6f9194781a162dcb4c3219c2cb629"
+    },
+    {
+      "path": "workflows/proposal-revision-flow.yaml",
+      "bytes": 1969,
+      "sha256": "98fb632eeae0a831714ffc1bb678711075e10a6c2ddd5914d4ff415f49791cd8"
+    }
+  ],
+  "provenance_readme_sha256": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83"
+}

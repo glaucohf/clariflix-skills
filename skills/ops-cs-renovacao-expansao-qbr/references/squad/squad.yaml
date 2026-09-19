@@ -1,0 +1,47 @@
+name: ops-cs-renovacao-expansao-qbr
+version: 0.1.0
+description: "Nenhuma renovacao chega de surpresa e nenhuma oportunidade de expansao passa batida — o CSM entra na conversa com o brief pronto, os sinais na mao e o timing certo."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: ree
+components:
+  agents:
+    - maestro.md
+    - radar.md
+    - compass.md
+    - scout.md
+    - briefer.md
+    - slides.md
+    - pulse.md
+    - memory.md
+    - verity.md
+  tasks:
+    - detectar-sinais-de-expansao.md
+    - calcular-renewal-readiness-score.md
+    - analisar-propensao-a-expansao.md
+    - gerar-qbr-brief-e-renewal-package.md
+    - gerar-deck-de-apresentacao.md
+    - criar-pacote-de-renovacao.md
+    - arquivar-resultados-qbr.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-renovacao-expansao-qbr-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - customer-success-onboarding-retencao-expansao
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O3 · TopSquad de Customer Success: Onboarding, Retenção & Expansão"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

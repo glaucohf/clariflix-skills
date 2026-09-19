@@ -1,0 +1,54 @@
+pack:
+  name: founder-agentic-analytics
+  version: 0.1.0
+  short-title: "Ágentic Analytics"
+  description: "O founder faz a pergunta em português e recebe a resposta em 30 segundos — sem analista, sem fila, sem achismo."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "📐"
+  slashPrefix: agenticAnalytics
+name: founder-agentic-analytics
+version: 0.1.0
+description: "O founder faz a pergunta em português e recebe a resposta em 30 segundos — sem analista, sem fila, sem achismo."
+entry_agent: orquestrador-analitico
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: founder-office
+  topsquad: "F2"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orquestrador-analitico
+  - text-to-sql-worker
+  - context-enricher
+  - anomaly-alert-detector
+  - strategic-query-analyst
+  - semantic-layer-guardian
+  - decision-logger
+  - sql-semantic-verifier
+tasks:
+  - traduzir-pergunta-para-sql.md
+  - enriquecer-resultado-com-contexto.md
+  - detectar-anomalias-estatisticas.md
+  - sintetizar-respostas-analiticas.md
+  - registrar-gap-semantico.md
+  - registrar-decisoes-baseadas-em-dados.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - founder-agentic-analytics-pipeline.yaml
+checklists:
+  - critic-sql-semantic-verifier.md
+integrations:
+  - "WrenAI ou equivalente open-source (camada semântica governada, contexto semântico sobre SQL, suporte a 20+ fontes)"
+  - "PostgreSQL / MySQL / BigQuery / Snowflake (banco de dados transacional ou warehouse da empresa)"
+  - "HubSpot ou Salesforce CRM (métricas de pipeline, conversão, receita por fonte)"
+  - "Stripe / Conta Azul / Omie (métricas financeiras: MRR, churn, LTV, inadimplência)"
+  - "Google Ads / Meta Ads (CAC por canal, ROAS, CPC, impressões)"
+  - "Google Sheets / Notion (fontes de dados semi-estruturadas do founder)"
+  - "ClickUp (registro de decisões, audit trail, follow-ups do Clio)"
+  - "Slack (entrega de alertas críticos da Cassandra, interface conversacional opcional)"
+  - "Langfuse (observabilidade OTEL: rastreamento de cada query, custo de tokens, latência, acurácia)"
+  - "Claude Agent SDK + LangGraph (orquestração stateful das sessões analíticas multi-turno)"

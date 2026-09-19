@@ -1,0 +1,45 @@
+name: vendas-forecast-deal-risk
+version: 0.1.0
+description: "Seu pipeline para de mentir: detecta risco antes do silêncio virar perda."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: fdp
+components:
+  agents:
+    - cassandra.md
+    - argus.md
+    - oracle.md
+    - sibila.md
+    - hermes.md
+    - mnemosine.md
+    - cronos.md
+    - nemesis.md
+  tasks:
+    - monitorar-deals-ativos.md
+    - calcular-score-risco-deal.md
+    - gerar-forecast-pipeline.md
+    - formatar-alertas-contextualizados.md
+    - analisar-deals-fechados.md
+    - sugerir-proximo-passo.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-forecast-deal-risk-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - revops-higiene-de-crm-forecast
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V6 · TopSquad de RevOps: Higiene de CRM & Forecast"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

@@ -1,0 +1,54 @@
+pack:
+  name: marketing-whatsapp-qualifier
+  version: 0.1.0
+  short-title: "WhatsApp Qualifier"
+  description: "Nenhum lead esfria mais: qualificacao conversacional purpose-built no WhatsApp que responde em segundos, trata objecao como um bom SDR e agenda reuniao antes da concorrencia ligar."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🧲"
+  slashPrefix: whatsappQualifier
+name: marketing-whatsapp-qualifier
+version: 0.1.0
+description: "Nenhum lead esfria mais: qualificacao conversacional purpose-built no WhatsApp que responde em segundos, trata objecao como um bom SDR e agenda reuniao antes da concorrencia ligar."
+entry_agent: orion
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: marketing
+  topsquad: "M5"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orion
+  - vance
+  - rex
+  - mia
+  - lilo
+  - kira
+  - nova
+  - kira-2
+tasks:
+  - qualificar-conversas-whatsapp.md
+  - enriquecer-lead-em-tempo-real.md
+  - agendar-reuniao-lead.md
+  - analisar-funil-de-qualificacao.md
+  - validar-mensagem-playbook.md
+  - calcular-roi-do-squad.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - marketing-whatsapp-qualifier-pipeline.yaml
+checklists:
+  - critic-kira-2.md
+integrations:
+  - "WhatsApp Business API via BSP purpose-built pos-proibicao Meta — Patagon AI (LATAM-first, recomendado), Leadsales ou BotPenguin como fallback. Gateway principal de entrada e saida de mensagens"
+  - "HubSpot CRM — registro automatico de leads qualificados, campos customizados de BANT (Budget, Authority, Need, Timeline), Lead Score pos-qualificacao, historico de conversa estruturado, trigger de criacao de oportunidade pos-qualificacao"
+  - "Google Calendar / Calendly — disponibilidade em tempo real para Mia agendar reunioes, criacao de eventos com dados do lead, link de videoconferencia automatico (Google Meet / Zoom)"
+  - "Clay — waterfall enrichment em tempo real por Rex (firmographic, technographic, intent signals). Opcional se cliente ja tem Clay; fallback para Apollo direto"
+  - "Apollo.io — prospecting e enriquecimento de contatos B2B como fonte primaria ou backup do Clay"
+  - "ClickUp — prova de trabalho central: task automatica por lead qualificado, dashboard de metricas do squad (taxa de qualificacao, show-rate, ROI), briefing pre-reuniao para o closer, historico de playbook versions"
+  - "Langfuse — observabilidade OTEL de todos os agents, quality gates por ambiente (dev 70% / staging 85% / prod 95% task success), rastreamento de cada conversa como trace completo, evals de qualidade de resposta de Vance"
+  - "n8n — orquestracao de webhooks e workflows de notificacao (complemento no-code): alerta de lead VIP para SDR, notificacao de no-show para reengajamento, relatorio semanal de Lilo para Slack/email"
+  - "Slack / Email — notificacoes de escalada para SDR humano (lead VIP, irritacao, objecao critica), alertas de anomalia de Lilo, relatorio semanal de performance do squad"
+  - "Meta Business Suite / BSP Dashboard — monitoramento de saude da conta WhatsApp Business (Quality Rating, Phone Number Status, Message Template Status) integrado com Kira para alertas precoces de risco de banimento"

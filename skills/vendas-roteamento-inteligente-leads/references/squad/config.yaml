@@ -1,0 +1,55 @@
+pack:
+  name: vendas-roteamento-inteligente-leads
+  version: 0.1.0
+  short-title: "Roteamento Inteligente de Leads"
+  description: "Cada lead no vendedor certo, no segundo certo — zero fila errada, zero lead órfão."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🗓️"
+  slashPrefix: roteamentoInteligenteDeLeads
+name: vendas-roteamento-inteligente-leads
+version: 0.1.0
+description: "Cada lead no vendedor certo, no segundo certo — zero fila errada, zero lead órfão."
+entry_agent: orquestrador-comercial
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V3"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orquestrador-comercial
+  - worker-de-enriquecimento
+  - worker-de-lead-scoring
+  - atlas
+  - worker-de-notificacao-e-aceite
+  - worker-de-higiene-de-crm
+  - veredito
+  - farol
+  - veredito-2
+tasks:
+  - retornar-dossie-estruturado.md
+  - calcular-score-lead.md
+  - consultar-capacidade-vendedores.md
+  - notificar-vendedor-lead.md
+  - consolidar-dados-crm.md
+  - verificar-roteamento.md
+  - monitorar-primeiro-contato.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-roteamento-inteligente-leads-pipeline.yaml
+checklists:
+  - critic-veredito-2.md
+integrations:
+  - "CRM: HubSpot (MCP HubSpot disponível) ou Pipedrive/Salesforce via API — leitura e escrita de leads, contatos, deals, atividades"
+  - "WhatsApp Business API: Gupshup ou AiSensy (crítico Brasil) — notificação de vendedores e mensagem de apresentação ao lead"
+  - "Calendário: Google Calendar e/ou Microsoft Outlook via MCP — consulta de disponibilidade em tempo real para Atlas"
+  - "Enriquecimento: Clay (principal) + Apollo.io (275M+ contatos) — enriquecimento automático pelo Argos"
+  - "Comunicação interna: Slack — alertas do Farol e notificações do Hermes para vendedores"
+  - "Gestão de tarefas/prova de trabalho: ClickUp — cada roteamento gera task com artefato verificável (card de lead + decisão documentada)"
+  - "Observabilidade: Langfuse (OTEL) — rastreamento de todas as decisões de roteamento, latência por agente, quality gates"
+  - "Ads/Sinais de intenção: Meta Ads + Google Ads (UTM params) — contexto de origem do lead para scoring de intenção do Oracle"
+  - "Orquestração: LangGraph (controle fino de estado do funil) + Claude Agent SDK (Maestro como Ópus lead, workers como Sonnet)"

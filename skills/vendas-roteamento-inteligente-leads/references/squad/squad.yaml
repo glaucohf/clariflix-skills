@@ -1,0 +1,47 @@
+name: vendas-roteamento-inteligente-leads
+version: 0.1.0
+description: "Cada lead no vendedor certo, no segundo certo — zero fila errada, zero lead órfão."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: rid
+components:
+  agents:
+    - orquestrador-comercial.md
+    - worker-de-enriquecimento.md
+    - worker-de-lead-scoring.md
+    - atlas.md
+    - worker-de-notificacao-e-aceite.md
+    - worker-de-higiene-de-crm.md
+    - veredito.md
+    - farol.md
+    - veredito-2.md
+  tasks:
+    - retornar-dossie-estruturado.md
+    - calcular-score-lead.md
+    - consultar-capacidade-vendedores.md
+    - notificar-vendedor-lead.md
+    - consolidar-dados-crm.md
+    - verificar-roteamento.md
+    - monitorar-primeiro-contato.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-roteamento-inteligente-leads-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - scoring-roteamento-agendamento
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V3 · TopSquad de Scoring, Roteamento & Agendamento"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

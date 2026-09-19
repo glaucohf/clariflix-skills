@@ -1,0 +1,243 @@
+workflow_name: ce_ab_design
+description: >
+  Workflow exclusivo de A/B testing — não existe nos squads concorrentes.
+  Ciclo completo e estatisticamente rigoroso: análise de dados → formação de
+  hipótese → design de variantes → setup do teste → monitoramento estatístico →
+  análise e decisão → implementação do vencedor. Cada ciclo leva 2-4 semanas e
+  pode ser repetido indefinidamente para otimização contínua da taxa de conversão.
+  Segue princípios estatísticos sólidos: p-value, poder estatístico e duração mínima.
+
+agent_sequence:
+  - ce-analytics-architect
+  - ce-ab-architect
+  - ce-copywriter
+  - ce-design-architect
+  - ce-ab-architect
+  - ce-frontend-dev
+  - ce-analytics-architect
+  - ce-ab-architect
+
+estimated_duration: "2-4 semanas por ciclo"
+
+parallel_execution:
+  description: >
+    ce-copywriter e ce-design-architect podem trabalhar em paralelo ao criar
+    as variantes de copy e design, dependendo do tipo de hipótese.
+  parallel_phases: ["Phase 3 — Variant Design"]
+
+statistical_requirements:
+  minimum_conversions_per_variant: 100
+  minimum_confidence_level: 95
+  minimum_statistical_power: 80
+  minimum_test_duration_days: 7
+  p_value_threshold: 0.05
+  rule: "p-value > 0.05 → continuar teste, não declarar vencedor prematuramente"
+
+phases:
+  - name: "Phase 1 — Data Analysis"
+    agent: ce-analytics-architect (Lens)
+    tasks:
+      - Extrair dados do período mínimo de 7 dias de operação (ou desde o last test)
+      - Calcular taxa de conversão atual por seção, device e fonte de tráfego
+      - Analisar scrollmap: percentual de usuários atingindo cada seção-chave
+      - Identificar heatmaps de clique: elementos que recebem mais/menos atenção
+      - Analisar session recordings: identificar padrões de abandono recorrentes
+      - Calcular drop-off rate por etapa do funil: pageView → formStart → formSubmit → conversion
+      - Identificar as 3 maiores oportunidades de otimização com dados quantitativos
+      - Calcular poder estatístico atual: sessões diárias médias × taxa de conversão atual
+      - Estimar quantos dias de teste serão necessários para cada oportunidade
+      - Entregar data analysis report com oportunidades priorizadas por impacto estimado
+    checkpoints:
+      entry: "Mínimo 500 sessões e 7 dias de operação com dados de analytics"
+      exit: >
+        Data analysis report com: taxa de conversão atual, 3 oportunidades identificadas,
+        poder estatístico calculado, estimativa de duração por oportunidade
+    veto_conditions:
+      - "Menos de 500 sessões acumuladas → aguardar volume antes de analisar"
+      - "Dados de analytics incompletos (eventos faltando) → corrigir tracking antes de analisar"
+      - "Oportunidades identificadas sem suporte em dados quantitativos → revisitar análise"
+      - "Nenhuma oportunidade com potencial de uplift > 10% → documentar e aguardar mais dados"
+
+  - name: "Phase 2 — Hypothesis Formation"
+    agent: ce-ab-architect (Split)
+    tasks:
+      - Receber data analysis report de ce-analytics-architect
+      - Selecionar a hipótese #1 por maior impacto estimado × menor risco de implementação
+      - Formatar hipótese com estrutura obrigatória: SE [mudança] → ENTÃO [resultado] PORQUE [razão]
+      - Definir métrica primária de sucesso: taxa de conversão principal
+      - Definir métricas secundárias: taxa de clique no CTA, scroll depth, tempo na página
+      - "Calcular tamanho de amostra necessário: Variant A e Variant B com poder >= 80%"
+      - Calcular duração estimada do teste baseado em sessões diárias atuais
+      - "Definir regras de early stopping: quando parar antes do prazo (ganho > 30% ou dano > 20%)"
+      - Documentar hipótese em formato de test card com todos os campos preenchidos
+      - Criar backlog de próximas hipóteses (Hipóteses 2-5) para ciclos futuros
+    checkpoints:
+      entry: "Data analysis report recebido com oportunidades identificadas"
+      exit: >
+        Test card completo: hipótese formatada (SE→ENTÃO→PORQUE), métrica primária,
+        métricas secundárias, tamanho de amostra calculado, duração estimada
+    veto_conditions:
+      - "Hipótese sem estrutura SE→ENTÃO→PORQUE → reformatar antes de prosseguir"
+      - "Hipótese testando múltiplas variáveis simultaneamente → separar em testes distintos"
+      - "Tamanho de amostra > 20.000 sessões/variante → reavaliar prioridade (teste muito longo)"
+      - "Hipótese sem métrica primária definida → definir antes de prosseguir"
+      - "Duração estimada < 7 dias → recalcular (teste muito curto = sazonalidade)"
+
+  - name: "Phase 3 — Variant Design"
+    parallel_execution: true
+    trigger: "Test card aprovado por ce-ab-architect"
+    agents:
+      - agent: ce-copywriter (Pulse)
+        condition: "Se a hipótese envolve mudança de copy (headline, CTA, body)"
+        tasks:
+          - Escrever Variant B seguindo exatamente a hipótese formulada
+          - Manter todos os elementos não-testados idênticos ao Variant A (controle)
+          - Escrever headline alternativa (se testando headline)
+          - Escrever CTA alternativo (se testando CTA)
+          - Documentar claramente o que mudou vs. o controle
+      - agent: ce-design-architect (Canvas)
+        condition: "Se a hipótese envolve mudança de design ou layout"
+        tasks:
+          - Criar spec de Variant B seguindo exatamente a hipótese
+          - Manter todos os elementos visuais não-testados idênticos ao controle
+          - Especificar mudanças de layout, cor, espaçamento ou componente
+          - Documentar claramente o que mudou vs. o controle
+    checkpoints:
+      entry: "Test card aprovado com hipótese clara"
+      exit: >
+        Variant B completo (copy e/ou design) com documentação explícita
+        do que mudou vs. o Variant A (controle)
+    veto_conditions:
+      - "Variant B com mais de uma mudança quando hipótese testa apenas uma variável → corrigir"
+      - "Variant B sem documentação das diferenças vs. controle → documentar antes de prosseguir"
+      - "Variant B alterando elementos não relacionados à hipótese → reverter e corrigir"
+
+  - name: "Phase 4 — Test Setup"
+    agent: ce-ab-architect (Split)
+    tasks:
+      - Escolher ferramenta de A/B testing: Google Optimize (se disponível), VWO, Optimizely, ou split nativo Next.js
+      - Configurar split de tráfego: 50% Variant A (controle) / 50% Variant B
+      - Configurar rastreamento da métrica primária na ferramenta de teste
+      - Garantir que o teste não afeta outras seções da página além da testada
+      - Verificar que os dois variants são servidos corretamente para usuários diferentes
+      - Verificar que o mesmo usuário sempre vê o mesmo variant (cookie/localStorage)
+      - Documentar data de início do teste e data de fim esperada
+      - Briefar ce-frontend-dev com spec técnica de implementação do Variant B
+    checkpoints:
+      entry: "Variant B completo e test card aprovado"
+      exit: >
+        Teste configurado e ao ar: split 50/50 ativo, rastreamento funcionando,
+        consistência de variant por usuário validada, datas documentadas
+    veto_conditions:
+      - "Split de tráfego diferente de 50/50 sem justificativa → ajustar"
+      - "Usuário vendo variants diferentes na mesma sessão → corrigir persistência"
+      - "Rastreamento da métrica primária não configurado → configurar antes de iniciar"
+      - "Variant B não sendo servido para usuários reais → investigar implementação"
+
+  - name: "Phase 5 — Statistical Monitoring"
+    agent: ce-analytics-architect (Lens)
+    trigger: "Contínuo durante toda a duração do teste"
+    tasks:
+      - Monitorar dados do teste diariamente: conversões por variant, taxa de conversão
+      - Calcular p-value diariamente após atingir 50 conversões por variant
+      - Verificar se há efeito de novidade (spike inicial que não sustenta)
+      - Monitorar métricas secundárias: CTR, scroll depth, tempo na página
+      - Verificar integridade do teste: split permanecendo em 50/50
+      - Aplicar regra de early stopping se condições forem atingidas
+      - Documentar evolução do teste a cada 3 dias
+      - "Alertar ce-ab-architect imediatamente se p-value <= 0.05 com >= 100 conv/variant"
+    checkpoints:
+      entry: "Teste ao ar com primeiros dados de conversão chegando"
+      exit: >
+        Mínimo 100 conversões por variant E p-value <= 0.05 E mínimo 7 dias de teste
+    veto_conditions:
+      - "p-value > 0.05 com >= 100 conversões/variant → continuar teste, NÃO declarar vencedor"
+      - "Menos de 100 conversões por variant → NÃO concluir análise mesmo com p-value <= 0.05"
+      - "Teste com menos de 7 dias → NÃO concluir (efeito de sazonalidade de dia da semana)"
+      - "Split desviando de 50/50 (> 5% de desvio) → investigar e corrigir ferramenta de split"
+      - "Dados de conversão zerando por mais de 24h → verificar tracking urgentemente"
+
+  - name: "Phase 6 — Analysis & Decision"
+    agent: ce-ab-architect (Split)
+    trigger: "Condições de encerramento atingidas: >= 100 conv/variant + p-value <= 0.05 + >= 7 dias"
+    tasks:
+      - Compilar relatório final do teste com todos os dados
+      - Calcular uplift de taxa de conversão: (Variant B - Variant A) / Variant A × 100
+      - "Confirmar p-value final e nível de confiança (meta: >= 95%)"
+      - Analisar métricas secundárias para efeitos colaterais da mudança
+      - Verificar consistência dos resultados por device (mobile vs. desktop)
+      - Tomar decisão: IMPLEMENT WINNER / CONTINUE TEST / DISCARD
+      - Se IMPLEMENT WINNER: definir Variant B como novo controle e documentar
+      - Se CONTINUE TEST: estender prazo e revisar hipótese
+      - Se DISCARD: documentar aprendizado e seguir para próxima hipótese
+      - Atualizar backlog de hipóteses com o aprendizado do teste
+    checkpoints:
+      entry: "Condições de encerramento validadas por ce-analytics-architect"
+      exit: >
+        Decisão documentada com justificativa estatística, uplift calculado,
+        backlog atualizado com aprendizado
+    veto_conditions:
+      - "Decisão tomada sem p-value calculado → calcular antes de decidir"
+      - "IMPLEMENT WINNER com p-value > 0.05 → bloquear — resultado não estatisticamente significativo"
+      - "IMPLEMENT WINNER sem análise de métricas secundárias → analisar antes de implementar"
+      - "Decisão sem documentação do aprendizado → documentar antes de prosseguir"
+
+  - name: "Phase 7 — Implementation"
+    agent: ce-frontend-dev (Turbo)
+    trigger: "Decisão IMPLEMENT WINNER emitida por ce-ab-architect"
+    tasks:
+      - Receber spec do Variant B vencedor com documentação das mudanças
+      - Implementar o Variant B como novo controle permanente na landing page
+      - Remover o código de A/B testing da seção (limpar split e variações)
+      - Atualizar o componente da seção com as mudanças vencedoras
+      - Verificar que o Variant A (perdedor) foi completamente removido do código
+      - Executar build sem erros TypeScript após a implementação
+      - Validar que a seção implementada é idêntica ao Variant B vencedor
+      - Notificar ce-ab-architect da implementação para iniciar próximo ciclo
+    checkpoints:
+      entry: "Decisão IMPLEMENT WINNER com spec do vencedor recebida"
+      exit: >
+        Variant B implementado como controle, código de split removido,
+        build sem erros, seção validada visualmente
+    veto_conditions:
+      - "Variant A ainda presente no código após implementação → remover completamente"
+      - "Erros de TypeScript após implementação → resolver antes de declarar completo"
+      - "Seção implementada diferente do Variant B aprovado → corrigir"
+      - "Código de split não removido → limpar antes de declarar completo"
+
+success_indicators:
+  - "Hipótese formulada com estrutura SE→ENTÃO→PORQUE completa"
+  - "Tamanho de amostra calculado com poder estatístico >= 80%"
+  - "Teste rodando por mínimo de 7 dias"
+  - "Mínimo de 100 conversões por variant antes de análise final"
+  - "p-value <= 0.05 para declarar vencedor (confiança >= 95%)"
+  - "Uplift de taxa de conversão calculado e documentado"
+  - "Vencedor implementado como novo controle sem código de split residual"
+  - "Aprendizado documentado e backlog atualizado para próximo ciclo"
+  - "Ciclo completo de A/B concluído em 2-4 semanas"
+
+failure_conditions:
+  - condition: "p-value nunca alcança 0.05 após 4 semanas de teste"
+    recovery: >
+      ce-ab-architect revisita a hipótese: o efeito pode ser muito pequeno para
+      detecção ou a variante não é suficientemente diferente; descarta teste,
+      documenta aprendizado e redesenha próxima hipótese com mudança mais distinta
+  - condition: "Menos de 100 conversões por variant após duração estimada"
+    recovery: >
+      ce-analytics-architect verifica volume de tráfego; se tráfego caiu,
+      ce-ab-architect estende o teste; se o produto tem baixa conversão base,
+      recalcula tamanho de amostra com nova realidade e ajusta prazo
+  - condition: "Ferramenta de A/B testing com problemas técnicos"
+    recovery: >
+      ce-frontend-dev implementa split nativo via Next.js middleware com
+      cookies para persistência; ce-analytics-architect ajusta rastreamento
+      para nova implementação
+  - condition: "Variant B com efeitos colaterais negativos nas métricas secundárias"
+    recovery: >
+      ce-ab-architect avalia trade-off: se uplift de conversão > dano em
+      secundárias, implementa com ressalvas; se dano é crítico, descarta
+      e formula nova hipótese que não cause os efeitos colaterais
+  - condition: "Early stopping acionado por dano significativo (queda maior que 20%)"
+    recovery: >
+      ce-ab-architect encerra o teste imediatamente, restaura o Variant A como
+      único controle, analisa o motivo do dano e documenta como aprendizado negativo

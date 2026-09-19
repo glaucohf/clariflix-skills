@@ -1,0 +1,177 @@
+workflow_name: founder_board_investor_relations_pipeline
+description: "Board packs source-grounded em horas, não dias — cada número rastreável a uma fonte, cada narrativa alinhada à tese."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-board-investor-relations
+area: "Founder Office"
+topsquad: "F5 · Investor Relations, Fundraising & M&A"
+agent_sequence:
+  - cassidy
+  - rex
+  - marlowe
+  - vera
+  - sage
+  - quincy
+  - cipher
+  - gate
+  - axiom
+key_commands:
+  - "*reconciliar-metricas"
+  - "*sintetizar-contexto-mercado"
+  - "*auditar-fontes-primarias"
+  - "*alinhar-narrativa"
+  - "*simular-perguntas-board"
+  - "*manter-data-room-atualizado"
+  - "*controlar-envio-externo"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: cassidy
+success_indicators:
+  - "Horas de preparo por ciclo de board pack — baseline 16–32h, meta: <4h em 60 dias"
+  - "% de afirmações com fonte rastreável no artefato final (Vera score) — meta: 95%+ em 60 dias"
+  - "Número de rodadas de revisão pré-envio — baseline 3–5 iterações, meta: 1–2 em 90 dias"
+  - "% de métricas reconciliadas sem divergência entre fontes antes do draft (Rex) — meta: 100% em 30 dias"
+  - "Score de alinhamento narrativo do Sage (0–10) por ciclo — meta: >=8.5"
+  - "Hallucination rate detectado pelo Axiom (claims bloqueados por falta de fonte) — meta: <3% dos claims por ciclo"
+  - "Tempo de geração do Q&A Brief do Quincy — meta: <45 minutos end-to-end"
+  - "% de perguntas do board previstas corretamente pelo Quincy (validado pelo founder após o meeting) — meta: >=70% das top 10"
+  - "Completude do audit trail no data room (Cipher) — meta: 100% dos artefatos enviados arquivados com metadados completos"
+  - "Task success rate no Langfuse — meta: dev 70% / staging 85% / prod 95%"
+  - "NPS interno do squad avaliado pelo founder após cada ciclo — meta: >=8.5"
+deliverable:
+  description: "Board Pack Cycle Artifact — artefato verificável por ciclo composto de: (1) Board Pack ou Investor Update final em PDF/Notion com 95%+ de claims rastreáveis e Source Manifest anexo; (2) Metrics Table canônica do ciclo (todas as fontes, datas de extração, flags de inconsistência resolvidas); (3) Q&A Brief com top 10 perguntas previstas e respostas preparadas pelo founder; (4) Diff de ciclo (o que mudou vs comunicação anterior em métricas e narrativa); (5) Audit trail completo no ClickUp (versão enviada, aprovador, destinatários, timestamp); (6) Score de rastreabilidade do Axiom por seção. Tudo arquivado no data room com versionamento e auditável pelo board ou due diligence de futura rodada."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: cassidy
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Reconciliar Métricas"
+    agent: rex
+    task: reconciliar-metricas.md
+    trigger: "Início de ciclo de board/investor (D-14 antes do meeting). Solicitação ad-hoc de métrica pelo founder. Inconsistência detectada em dado recebido de outro agente. Check mensal automático de health das integrações de dados."
+    checkpoint:
+      criteria: "Metrics Table canônica (formato estruturado JSON + tabela visual): cada métrica com valor, período, fonte primária, data de extração e flag de inconsistência se divergência detectada entre fontes. Query log auditável. Alertas de gap (métri…"
+      veto_condition: "Saída sem veredito do critic Axiom; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Sintetizar Contexto Mercado"
+    agent: marlowe
+    task: sintetizar-contexto-mercado.md
+    trigger: "Início de ciclo de board pack ou IC memo. Claim de narrativa sem fonte detectado pelo Provenance Agent. Founder solicita benchmark específico para suportar argumento de valuation ou posicionamento. Alerta de movimento competitivo relevante."
+    checkpoint:
+      criteria: "Context Brief: bullets de contexto de mercado com fonte citada (URL + data de acesso), benchmarks de comparáveis com metodologia de comparação, análise de 3 movimentos competitivos relevantes do período. Formato: Notion page + JSON estrutu…"
+      veto_condition: "Saída sem veredito do critic Axiom; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Auditar Fontes Primárias"
+    agent: vera
+    task: auditar-fontes-primarias.md
+    trigger: "Draft de qualquer seção submetido para validação. Antes de qualquer output chegar ao Critic. Check automático antes do HITL Gate liberar o documento para revisão do founder."
+    checkpoint:
+      criteria: "Draft anotado com inline citations (formato [Fonte: X, Data: Y]). Source Manifest (JSON): mapa completo de claim → fonte → nível de evidência → data de extração. Score de rastreabilidade por seção (0–100%). Lista de claims pendentes de fon…"
+      veto_condition: "Saída sem veredito do critic Axiom; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Alinhar Narrativa"
+    agent: sage
+    task: alinhar-narrativa.md
+    trigger: "Draft de seção disponível para revisão narrativa. Founder solicita reescrita específica. Critic sinaliza inconsistência de tom ou argumento fraco. Preparação de Q&A para board meeting."
+    checkpoint:
+      criteria: "Seção reescrita com voz e lógica do founder. Score de alinhamento narrativo (0–10) com justificativa para cada seção. Lista de pontos onde o rascunho diverge do posicionamento histórico do founder. Sugestão de 3 perguntas que o board prova…"
+      veto_condition: "Saída sem veredito do critic Axiom; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Simular Perguntas Board"
+    agent: quincy
+    task: simular-perguntas-board.md
+    trigger: "Draft final aprovado pelo founder antes de envio (D-3 antes do meeting). Founder solicita prep de reunião específica com investidor. Novo board member ou investidor sendo apresentado à empresa pela primeira vez."
+    checkpoint:
+      criteria: "Board Q&A Brief: lista das top 10 perguntas previstas ordenadas por dificuldade, com (1) contexto de por que esta pergunta vai surgir, (2) resposta recomendada no tom do founder, (3) dado de suporte para ter na ponta da língua, (4) o que N…"
+      veto_condition: "Saída sem veredito do critic Axiom; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Manter Data Room Atualizado"
+    agent: cipher
+    task: manter-data-room-atualizado.md
+    trigger: "Founder aprova artefato no HITL Gate (trigger imediato). Check mensal de integridade do data room. Solicitação de histórico por founder, board member ou due diligence de nova rodada."
+    checkpoint:
+      criteria: "Versão arquivada no data room com metadados completos. Audit trail entry no ClickUp: versão enviada, quem aprovou, quando, destinatários. Diff de ciclo (Notion page): métricas que mudaram, narrativa que mudou, novos riscos adicionados. Not…"
+      veto_condition: "Saída sem veredito do critic Axiom; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Controlar Envio Externo"
+    agent: gate
+    task: controlar-envio-externo.md
+    trigger: "Qualquer ação de envio externo solicitada por qualquer agente do squad. Acionado automaticamente ao final do pipeline quando Cassidy sinaliza 'pronto para envio'. Nunca pode ser bypassado — é o último gate antes de qualquer saída."
+    checkpoint:
+      criteria: "Tela de confirmação para o founder: resumo de 1 página do que está sendo enviado, para quem, e os 3 principais riscos identificados. Após aprovação: execução do envio com log de confirmação (timestamp, destinatários, versão do artefato). A…"
+      veto_condition: "Saída sem veredito do critic Axiom; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: axiom
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: cassidy
+    checkpoint:
+      criteria: "Entregável consolidado: Board Pack Cycle Artifact — artefato verificável por ciclo composto de: (1) Board Pack ou Investor Update final em PDF/Notion com 95%+ de claims rastreáveis e Source Manifest anexo; (2) Metrics Table…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do founder antes de qualquer envio externo (email, PDF, Notion share) — Gate Agent é L3 por design, nenhuma exceção"
+  - level: HITL
+    condition: "Confirmação do founder antes de comprometer qualquer guidance de valuation, projeção financeira ou tese de rodada em documento enviado ao board ou investidores"
+  - level: HITL
+    condition: "Revisão do Source Manifest (Vera) pelo founder quando % de rastreabilidade de claims críticos estiver abaixo de 90%"
+  - level: HITL
+    condition: "Aprovação da lista de destinatários antes de qualquer novo ciclo — founder confirma quem receberá o board pack (evita envio para investidor errado ou pessoa não autorizada)"
+  - level: HITL
+    condition: "Validação do Founder Clone (Sage) antes de seções estratégicas sensíveis (posicionamento competitivo, resposta a perda de guidance, narrativa de churn ou downround) entrarem no draft final"
+  - level: HITL
+    condition: "Aprovação do Q&A Brief do Quincy antes do board meeting — founder confirma quais respostas está confortável em dar publicamente"
+  - level: HITL
+    condition: "Configuração inicial do corpus do Sage — founder revisa e aprova quais comunicações passadas entram no corpus de clonagem narrativa"
+  - level: HITL
+    condition: "Qualquer mudança de metodologia de cálculo de métrica-chave (ex: mudança de definição de ARR, churn líquido vs bruto) requer aprovação explícita antes de ser refletida no board pack"
+transitions:
+  - from: cassidy
+    to: rex
+    condition: "Início de ciclo de board/investor (D-14 antes do meeting). Solicitação ad-hoc de métrica pelo founder. Inconsistência detectada em dado recebido de outro agente. Check mensal automático de health das…"
+  - from: rex
+    to: marlowe
+    condition: "Início de ciclo de board pack ou IC memo. Claim de narrativa sem fonte detectado pelo Provenance Agent. Founder solicita benchmark específico para suportar argumento de valuation ou posicionamento. A…"
+  - from: marlowe
+    to: vera
+    condition: "Draft de qualquer seção submetido para validação. Antes de qualquer output chegar ao Critic. Check automático antes do HITL Gate liberar o documento para revisão do founder."
+  - from: vera
+    to: sage
+    condition: "Draft de seção disponível para revisão narrativa. Founder solicita reescrita específica. Critic sinaliza inconsistência de tom ou argumento fraco. Preparação de Q&A para board meeting."
+  - from: sage
+    to: quincy
+    condition: "Draft final aprovado pelo founder antes de envio (D-3 antes do meeting). Founder solicita prep de reunião específica com investidor. Novo board member ou investidor sendo apresentado à empresa pela p…"
+  - from: quincy
+    to: cipher
+    condition: "Founder aprova artefato no HITL Gate (trigger imediato). Check mensal de integridade do data room. Solicitação de histórico por founder, board member ou due diligence de nova rodada."
+  - from: cipher
+    to: gate
+    condition: "Qualquer ação de envio externo solicitada por qualquer agente do squad. Acionado automaticamente ao final do pipeline quando Cassidy sinaliza 'pronto para envio'. Nunca pode ser bypassado — é o últim…"
+  - from: gate
+    to: axiom
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: axiom
+    to: cassidy
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

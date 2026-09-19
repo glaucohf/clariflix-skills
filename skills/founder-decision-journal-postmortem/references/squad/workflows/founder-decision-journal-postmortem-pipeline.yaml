@@ -1,0 +1,173 @@
+workflow_name: founder_decision_journal_postmortem_pipeline
+description: "Cada decisao registrada e uma licao que o clone aprende — cada postmortem e calibracao que dinheiro nao compra."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-decision-journal-postmortem
+area: "Founder Office"
+topsquad: "F2 · Performance, KPIs & Calibração de Decisões"
+agent_sequence:
+  - verdict
+  - archivist
+  - skeptic
+  - scout
+  - radar
+  - oracle
+  - calibrador
+  - sentinel-dj
+  - mirror
+key_commands:
+  - "*capturar-decisoes"
+  - "*desafiar-premissas-declarativas"
+  - "*pesquisar-dados-referenciais"
+  - "*monitorar-premissas-decisoes"
+  - "*analisar-decisoes-postmortem"
+  - "*calibrar-julgamento"
+  - "*verificar-integridade-temporal"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: verdict
+success_indicators:
+  - "Taxa de cobertura de decisoes: % de decisoes de alto impacto (acima do threshold configurado) com Decision Journal Entry criada ANTES do resultado ser conhecido — baseline tipico < 10%, meta > 80% em 60 dias de operacao"
+  - "Taxa de postmortem completado: % de decisoes que atingiram a janela de revisao (30/90/180 dias) e tiveram postmortem estruturado realizado — meta > 70% das decisoes elegíveis revisadas em 6 meses"
+  - "Score de calibracao do founder (por tipo de decisao): metrica composta calculada pelo ORACLE — o founder estava correto em que % das premissas declaradas, com que nivel de confianca calibrado? evolucao trimestral esperada de pelo menos 10 pontos percentuais por categoria ativa"
+  - "Qualidade de captura (SENTINEL-DJ): % de entries aprovadas sem ressalvas na primeira passagem — meta > 85%; % de entries com premissas especificas e criterio de validacao observavel — meta > 90%"
+  - "Velocidade de captura: tempo medio entre a tomada da decisao e a criacao da entry no journal — meta < 24h para decisoes de alto impacto, < 72h para media"
+  - "Taxa de atualizacao do Calibration Corpus: numero de premissas testadas adicionadas ou atualizadas por mes com base em postmortems concluidos — indicador de saude do loop de aprendizado do clone"
+  - "Integridade do journal: numero de violacoes de imutabilidade detectadas pelo SENTINEL-DJ — meta: zero; qualquer edicao retroativa detectada e alertada e documentada para auditoria"
+  - "Utilidade dos alertas do RADAR: % de alertas de premissa enviados ao founder que foram classificados por ele como RELEVANTE ou ACIONAVEL — meta > 65% (evitar fadiga de notificacao)"
+  - "Score de aderencia do Red-Team (MIRROR): % de Red-Team Reports do SKEPTIC classificados como GENUINAMENTE DESAFIADOR pelo MIRROR — meta > 80% (evitar que o SKEPTIC vire validador complacente)"
+deliverable:
+  description: "Pacote do Decision Intelligence System — conjunto de artefatos verificaveis e auditaveis: (1) Decision Journal Ativo no Notion — database estruturado com todas as entries, premissas declaradas com timestamp imutavel, Red-Team Reports vinculados, status de cada decisao no ciclo, postmortems associados e links para evidencias de resultado; (2) Calibration Corpus do Founder — banco de premissas testadas com historico de acerto/erro, nivel de confianca calibrado por contexto e referencia ao postmortem de origem; cada entrada e dado de treino de alta qualidade para o clone; (3) Calibration Brief Mensal — relatorio executivo de 1 pagina: score de calibracao do mes por categoria de decisao, top 3 aprendizados com implicacoes acionaveis, evolucao do julgamento vs historico, vieses mais ativos e plano de melhoria; (4) Dashboard de Cobertura no ClickUp — tasks por decisao com pipeline visual: Capturada / Red-Team / Monitorando / Postmortem Pendente / Calibracao Aplicada, com SLA de cada etapa e historico de outputs por agente; (5) Relatorio de Integridade Semanal (SENTINEL-DJ) — taxa de cobertura, decisoes nao capturadas identificadas, violacoes de imutabilidade, score de qualidade das entries; (6) Painel Langfuse — observabilidade em tempo real de custo por ciclo de decisao, latencia por agente, quality gates e score do MIRROR por tipo de postmortem."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: verdict
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Capturar Decisões"
+    agent: archivist
+    task: capturar-decisoes.md
+    trigger: "Trigger automatico por: (1) Valor financeiro acima do threshold configurado detectado em email/Slack/ClickUp, (2) Mudanca de headcount (contratacao ou desligamento acima de nivel X), (3) Novo contrato ou parceria acima de valor Y, (4) Muda…"
+    checkpoint:
+      criteria: "Decision Journal Entry estruturada com: (1) ID unico da decisao (DEC-AAAA-MM-NNN), (2) Metadados: data, tipo, impacto estimado, canal de captura, tempo ate deadline, (3) Contexto narrativo: problema, pressao, stakeholders, (4) Alternativas…"
+      veto_condition: "Saída sem veredito do critic MIRROR; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Desafiar Premissas Declarativas"
+    agent: skeptic
+    task: desafiar-premissas-declarativas.md
+    trigger: "Disparo automatico pelo VERDICT imediatamente apos nova Decision Journal Entry ser persistida pelo ARCHIVIST. Tambem acionado manualmente pelo founder para decisoes em curso que ainda nao passaram pelo processo formal. Prioridade ALTA para…"
+    checkpoint:
+      criteria: "Red-Team Report com: (1) Para cada premissa declarada: rating de solidez (SOLIDA / FRAGIL / CRITICA — requer mais validacao), evidencias contrarias encontradas, pergunta de desafio especifica; (2) Premissas implicitas NAO declaradas que ta…"
+      veto_condition: "Saída sem veredito do critic MIRROR; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Pesquisar Dados Referenciais"
+    agent: scout
+    task: pesquisar-dados-referenciais.md
+    trigger: "Acionado pelo SKEPTIC para pesquisa de base rates de premissas especificas durante red-team. Acionado pelo ORACLE durante analise de postmortem para contextualizar resultado com dados setoriais. Cron job semanal para monitorar dados e publ…"
+    checkpoint:
+      criteria: "Relatorio de Benchmarks com: (1) Base rates encontrados por premissa pesquisada (ex: 'taxa de sucesso de contratacao de VP de Vendas em SaaS B2B: 58% nos primeiros 12 meses — fonte: First Round Capital State of Startups 2024'), (2) Casos a…"
+      veto_condition: "Saída sem veredito do critic MIRROR; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Monitorar Premissas Decisões"
+    agent: radar
+    task: monitorar-premissas-decisoes.md
+    trigger: "Monitoramento continuo via cron job a cada 24 horas para sinais externos (noticias, publicacoes, dados de mercado via EXA). Monitoramento de metricas internas via webhook do CRM/ClickUp/analytics (aciona quando metrica configurada para uma…"
+    checkpoint:
+      criteria: "Alertas de premissa com: (1) ID da decisao afetada, (2) Premissa especifica que o sinal impacta, (3) Descricao do sinal detectado com fonte e data, (4) Direcao do impacto: CONFIRMANDO ou REFUTANDO a premissa, (5) Grau de evidencia (FORTE /…"
+      veto_condition: "Saída sem veredito do critic MIRROR; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Analisar Decisões Postmortem"
+    agent: oracle
+    task: analisar-decisoes-postmortem.md
+    trigger: "Disparo automatico pelo VERDICT nas janelas de revisao configuradas (cron job verificando diariamente decisoes que atingiram 30/90/180 dias). Disparo antecipado quando o RADAR sinaliza resultado emergente com evidencia FORTE antes da janel…"
+    checkpoint:
+      criteria: "Postmortem Report estruturado com: (1) Resumo executivo: decisao foi ACERTO / ERRO / AMBIGUA (cedo demais), score de calibracao agregado (0-10); (2) Analise premissa a premissa: estava correta? grau de acerto? o que foi subestimado ou supe…"
+      veto_condition: "Saída sem veredito do critic MIRROR; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Calibrar Julgamento"
+    agent: calibrador
+    task: calibrar-julgamento.md
+    trigger: "Disparo automatico pelo VERDICT apos cada Postmortem Report aprovado pelo ORACLE. Cron job mensal para geracao da Calibration Brief (primeiro dia util de cada mes). Disparo manual quando o founder ou VERDICT identificam padrao emergente qu…"
+    checkpoint:
+      criteria: "Atualizacoes do Knowledge Graph do founder: (1) Novas entradas no Calibration Corpus (premissa X testada em N decisoes, taxa de acerto Y%, contexto de aplicabilidade Z); (2) Atualizacoes de premissas existentes com evidencia nova (framewor…"
+      veto_condition: "Saída sem veredito do critic MIRROR; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificar Integridade Temporal"
+    agent: sentinel-dj
+    task: verificar-integridade-temporal.md
+    trigger: "Interceptacao automatica de TODA nova entry antes da persistencia — sem excecao, sem bypass. Monitoramento continuo do log de edicoes do Notion (webhook ou polling a cada hora) para detectar alteracoes pos-persistencia. Relatorio semanal d…"
+    checkpoint:
+      criteria: "Verificacao de integridade por entry: APROVADA / APROVADA COM RESSALVAS (premissa X precisa de refinamento — enviada de volta ao ARCHIVIST) / REJEITADA (criterio de validacao ausente, entrada incompleta critica). Alertas de violacao de imu…"
+      veto_condition: "Saída sem veredito do critic MIRROR; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: mirror
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: verdict
+    checkpoint:
+      criteria: "Entregável consolidado: Pacote do Decision Intelligence System — conjunto de artefatos verificaveis e auditaveis: (1) Decision Journal Ativo no Notion — database estruturado com todas as entries, premissas declaradas com ti…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "CALIBRADOR: toda atualizacao do Calibration Corpus critico (premissas fundamentais dos frameworks de decisao do founder) exige aprovacao explicita do founder antes de ser persistida — o clone nunca evolui seus principios nucleares sem consentimento explicito do dono do conhecimento"
+  - level: L3
+    condition: "ARCHIVIST em decisoes de MAXIMA IRREVERSIBILIDADE (ex: desligamento de socio, mudanca de cap table, venda de participacao): entry somente e criada apos confirmacao do founder de que quer registrar — nenhum trigger automatico substitui a intencao explicita para eventos deste nivel"
+  - level: L3
+    condition: "SKEPTIC quando Red-Team Report recomenda REVISAR PREMISSA ANTES DE EXECUTAR em decisao de alto impacto financeiro: founder deve confirmar que revisou e decidiu prosseguir, ou que discorda do SKEPTIC com justificativa registrada — garante accountability do processo, nao apenas do resultado"
+  - level: L2
+    condition: "ORACLE ao gerar Postmortem Report de decisoes AMBÍGUAS (resultado nao conclusivo apos 180 dias): founder valida se tem mais dados contextuais que o ORACLE nao capturou antes do relatorio ser finalizado e enviado ao CALIBRADOR"
+  - level: L2
+    condition: "CALIBRADOR ao identificar padrao de vies persistente que implica mudanca estrutural no processo de decisao do founder (ex: 'voce sistematicamente subestima custo de integracao — recomendamos adicionar gate obrigatorio de validacao tecnica antes de fechar contratos acima de R$X'): founder aprova ou rejeita a mudanca de processo antes de ser codificada"
+  - level: L1
+    condition: "RADAR ao detectar sinal de refutacao FORTE de premissa critica em decisao de alto impacto ANTES da janela de postmortem: notificacao imediata ao founder com sumario do sinal e pergunta direta — 'voce quer antecipar o postmortem ou tem informacao adicional sobre este sinal?'"
+  - level: L1
+    condition: "Configuracao inicial de thresholds (Discovery): founder define pessoalmente os criterios de disparo automatico, as janelas de revisao por tipo de decisao e o nivel de detalhe requerido por categoria — nenhum default e assumido sem validacao explicita"
+transitions:
+  - from: verdict
+    to: archivist
+    condition: "Trigger automatico por: (1) Valor financeiro acima do threshold configurado detectado em email/Slack/ClickUp, (2) Mudanca de headcount (contratacao ou desligamento acima de nivel X), (3) Novo contrat…"
+  - from: archivist
+    to: skeptic
+    condition: "Disparo automatico pelo VERDICT imediatamente apos nova Decision Journal Entry ser persistida pelo ARCHIVIST. Tambem acionado manualmente pelo founder para decisoes em curso que ainda nao passaram pe…"
+  - from: skeptic
+    to: scout
+    condition: "Acionado pelo SKEPTIC para pesquisa de base rates de premissas especificas durante red-team. Acionado pelo ORACLE durante analise de postmortem para contextualizar resultado com dados setoriais. Cron…"
+  - from: scout
+    to: radar
+    condition: "Monitoramento continuo via cron job a cada 24 horas para sinais externos (noticias, publicacoes, dados de mercado via EXA). Monitoramento de metricas internas via webhook do CRM/ClickUp/analytics (ac…"
+  - from: radar
+    to: oracle
+    condition: "Disparo automatico pelo VERDICT nas janelas de revisao configuradas (cron job verificando diariamente decisoes que atingiram 30/90/180 dias). Disparo antecipado quando o RADAR sinaliza resultado emer…"
+  - from: oracle
+    to: calibrador
+    condition: "Disparo automatico pelo VERDICT apos cada Postmortem Report aprovado pelo ORACLE. Cron job mensal para geracao da Calibration Brief (primeiro dia util de cada mes). Disparo manual quando o founder ou…"
+  - from: calibrador
+    to: sentinel-dj
+    condition: "Interceptacao automatica de TODA nova entry antes da persistencia — sem excecao, sem bypass. Monitoramento continuo do log de edicoes do Notion (webhook ou polling a cada hora) para detectar alteraco…"
+  - from: sentinel-dj
+    to: mirror
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: mirror
+    to: verdict
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

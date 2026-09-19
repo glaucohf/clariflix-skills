@@ -1,0 +1,58 @@
+pack:
+  name: marketing-paid-media-autopilot
+  version: 0.1.0
+  short-title: "Paid Media Autopilot"
+  description: "Seu budget nunca mais vai dormir enquanto o concorrente escala — autonomia L2/L3 para bid, pacing e criativo em tempo real."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "📈"
+  slashPrefix: paidMediaAutopilot
+name: marketing-paid-media-autopilot
+version: 0.1.0
+description: "Seu budget nunca mais vai dormir enquanto o concorrente escala — autonomia L2/L3 para bid, pacing e criativo em tempo real."
+entry_agent: orion
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: marketing
+  topsquad: "M2"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orion
+  - argos
+  - midas
+  - prism
+  - vox
+  - atlas
+  - sentinel
+  - aegis
+  - aegis-2
+tasks:
+  - monitorar-performance-campanhas.md
+  - ajustar-bid-e-realocar-budget.md
+  - rotacionar-criativos.md
+  - gerar-copy-para-ads.md
+  - consolidar-dados-de-performance.md
+  - monitorar-sinais-de-mercado.md
+  - verificar-conformidade-compliance.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - marketing-paid-media-autopilot-pipeline.yaml
+checklists:
+  - critic-aegis-2.md
+integrations:
+  - "Google Ads API (MCP server) — leitura de métricas e execução de ajustes de bid/budget/status de criativo"
+  - "Meta Marketing API (MCP server) — leitura de métricas e execução de ações em campanhas Facebook/Instagram Ads"
+  - "HubSpot CRM (MCP server) — closed-loop attribution (lead source, deal value, lifecycle stage por campanha de origem)"
+  - "ClickUp (MCP server) — registro de toda ação executada como task/prova de trabalho auditável, gestão do backlog de criativos solicitados"
+  - "Slack (MCP server) — canal de alertas em tempo real, gate de aprovação L3 (aprovação via reaction/botão no próprio canal)"
+  - "WhatsApp Business API — canal alternativo de alertas urgentes e aprovação L3 para gestores fora do escritório"
+  - "Google Trends API — monitoramento de sinais de demanda pelo Sentinél"
+  - "Meta Ads Library API — monitoramento de criativos de concorrentes pelo Sentinel"
+  - "Google Search Console API — dados de demanda organica como proxy de intent pelo Sentinel"
+  - "Langfuse (observabilidade OTEL) — rastreamento de todas as execuções de agentes, quality gates (dev 70% / staging 85% / prod 95%), evals de performance do squad"
+  - "Google Sheets / Looker Studio — dashboard de KPIs compartilhado com cliente (visualização de ROAS, CAC, pacing, score de criativo em tempo real)"
+  - "n8n — orquestração de automações complementares (webhooks de conversão offline, sincronização de dados entre plataformas, notificações customizadas)"

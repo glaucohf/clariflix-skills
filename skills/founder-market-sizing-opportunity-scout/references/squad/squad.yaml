@@ -1,0 +1,47 @@
+name: founder-market-sizing-opportunity-scout
+version: 0.1.0
+description: "De hunch para tese fundamentada: TAM/SAM/SOM com fontes rastreáveis e oportunidades de expansão dimensionadas em menos de 45 minutos — sem consultoria, sem planilha manual, sem alucinação."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: mso
+components:
+  agents:
+    - atlas.md
+    - cosmos.md
+    - praxis.md
+    - radar.md
+    - scout.md
+    - faro.md
+    - citadel.md
+    - axiom.md
+    - axiom-2.md
+  tasks:
+    - analisar-dados-macro.md
+    - contar-unidades-economicas.md
+    - estimar-mercado-competitivo.md
+    - cacar-oportunidadesadjacentes.md
+    - mapear-barreiras-regulatorias.md
+    - classificar-credibilidade-fontes.md
+    - verificar-convergencia-e-sanity-check.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-market-sizing-opportunity-scout-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - inteligencia-competitiva-de-mercado
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F3 · TopSquad de Inteligência Competitiva & de Mercado"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

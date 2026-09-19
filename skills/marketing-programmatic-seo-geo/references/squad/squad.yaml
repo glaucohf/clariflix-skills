@@ -1,0 +1,45 @@
+name: marketing-programmatic-seo-geo
+version: 0.1.0
+description: "Sua marca indexada em todos os motores — de busca e de IA — antes que o concorrente perceba que o jogo mudou."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: psg
+components:
+  agents:
+    - argo.md
+    - lexus.md
+    - orion.md
+    - scribe.md
+    - beacon.md
+    - atlas.md
+    - sonar.md
+    - lumen.md
+  tasks:
+    - mapear-palavras-chave.md
+    - minerar-dados-brutos.md
+    - otimizar-estrutura-h1.md
+    - otimizar-conteudo-para-ia.md
+    - publicar-conteudo-tecnico.md
+    - monitorar-posicoes-keywords.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-programmatic-seo-geo-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - conteudo-criativo
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M3 · TopSquad de Conteúdo & Criativo (UGC + SEO/GEO)"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

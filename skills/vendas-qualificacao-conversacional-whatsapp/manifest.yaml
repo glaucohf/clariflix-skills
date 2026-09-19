@@ -1,0 +1,29 @@
+row: vendas
+title: Qualificação Conversacional
+title_netflix: QUALIFICAÇÃO CONVERSACIONAL
+subtitle: Preparar conversas de qualificação comercial por WhatsApp com perguntas, critérios de avanço e handoff humano
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-qualificacao-conversacional-whatsapp para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Maestro Comercial
+  - Investigador de Lead
+  - SDR Conversacional
+  - Juiz de Fit
+  - Agendador de Reuniões
+  - Reativador de Pipeline
+  - Guardião do CRM
+  - Analista de Conversas
+  - Censor Comercial
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

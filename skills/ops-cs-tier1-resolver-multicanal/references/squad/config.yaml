@@ -1,0 +1,61 @@
+pack:
+  name: ops-cs-tier1-resolver-multicanal
+  version: 0.1.0
+  short-title: "Suporte Conversacional Multicanal"
+  description: "Resolve 70% dos tickets de suporte sem toque humano — em menos de 90 segundos, em qualquer canal."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "💬"
+  slashPrefix: suporteConversacionalMulticanal
+name: ops-cs-tier1-resolver-multicanal
+version: 0.1.0
+description: "Resolve 70% dos tickets de suporte sem toque humano — em menos de 90 segundos, em qualquer canal."
+entry_agent: nexus
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: operacoes-cs
+  topsquad: "O1"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - nexus
+  - prism
+  - volta
+  - flux
+  - sage
+  - vox
+  - hermes
+  - pulse
+  - argus
+tasks:
+  - consultar-status-de-pedido.md
+  - processar-troca-e-devolucao.md
+  - processar-refund-e-cobranca.md
+  - responder-perguntas-frequentes.md
+  - processar-audio-voz.md
+  - gerenciar-escalonamento.md
+  - monitorar-sinais-de-churn.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - ops-cs-tier1-resolver-multicanal-pipeline.yaml
+checklists:
+  - critic-argus.md
+integrations:
+  - "WhatsApp Business API (canal primário BR — áudio, texto, imagem)"
+  - "Zendesk / Intercom — helpdesk, ticket management, KB"
+  - "ClickUp (Brain2 / MCP server) — hub de tasks e prova de trabalho espelhando AIOX"
+  - "CRM: HubSpot ou Salesforce — dados de conta, health score, histórico"
+  - "ERP / OMS — consulta de pedidos, status, estoque (API REST ou MCP customizado)"
+  - "Gateway de pagamento: Stripe / Pagarme / Iugu — consulta e submissao de refund"
+  - "Logística reversa: Correios, Jadlog, Total Express — geração de etiquetas e rastreamento"
+  - "Deepgram Nova-2 ou Whisper Large-v3 — ASR PT-BR para áudio do WhatsApp e voz"
+  - "ElevenLabs ou Azure TTS — síntese de voz PT-BR para respostas em canal de voz"
+  - "Aircall — call center e telefonia"
+  - "Slack – notificações de escalonamento, alertas de churn, briefings do Pulse"
+  - "Supabase / Postgres – estado dos agentes, health scores, logs de interações, fila de handoff"
+  - "Langfuse — observabilidade OTEL, evals, tracing de cada step do pipeline, quality gates"
+  - "Claude Agent SDK / LangGraph – orquestração multi-agente"
+  - "Email (SMTP/SendGrid) — canal de suporte por email"

@@ -1,0 +1,14 @@
+# Tech stack (integrações da especificação)
+
+- ClickUp (Brain2 / Autopilot Agents + API MCP): hub central do squad — campos customizados de SLA (sla_deadline, breach_probability, risk_status, sla_monitor_log), sub-tasks de escalonamento, dashboard de KPIs em tempo real, view de tickets-em-risco filtrada por VERMELHO/AMARELO
+- Zendesk / Intercom (via MCP server): sistemas de helpdesk de onde o Radar coleta tickets em tempo real via API; campo de SLA deadline lido nativamente das configurações de SLA do helpdesk
+- Slack (Webhooks + Slack MCP): canal dedicado '#sla-monitor-alertas' para notificações do Alarme com template estruturado (ticket, deadline, score, link direto) + canal '#sla-war-room' para P1 críticos + DM para supervisor de plantão
+- HubSpot / Salesforce CRM (via MCP): dados de tier do cliente, ARR, data de renovação e cláusulas de SLA contratual — alimentam o cálculo de prioridade do Cronos e a definição de threshold de escalonamento por conta
+- ChurnZero / Custify / Chargebee: health score do cliente e status de renovação — agravante de risco quando cliente em renovação tem ticket em breach risk (complexity multiplier adicional)
+- Supabase / Postgres: banco de dados de estado persistente do squad — log de auditoria de todos os ciclos, histórico de breach/não-breach para recalibração do Cronos pelo Histos, pesos do modelo preditivo, perfis de velocidade dos agentes
+- Langfuse (OTEL): observabilidade completa do squad — tracing de cada ciclo de 15min (latência total, tokens por agente, scores gerados, decisões tomadas), quality gates por ambiente (dev 70% / staging 85% / prod 95% de acurácia preditiva), dashboard de drift do modelo
+- Google Calendar / Outlook Calendar (via API): disponibilidade dos supervisores de plantão para o Alarme saber quem notificar em qual escalonamento (integração com escala de plantão da equipe)
+- PagerDuty / incident.io (opcional, para clientes com stack de AIOps): integração para tickets P1 que viram incidentes — o Alarme pode criar um PagerDuty incident além do war-room no ClickUp
+- MCP Servers (camada de integração universal): MCP ClickUp, MCP Zendesk/Intercom, MCP CRM — abstraem chamadas de API para os workers e garantem rate limiting seguro
+
+Nível de autonomia por agente: L0/L1 = worker (determinístico/autônomo), L2 = orquestra/decide, L3 = exige aprovação humana. CRITIC verifica toda saída antes de entrega externa.

@@ -1,0 +1,47 @@
+name: founder-fundraising-ops
+version: 0.1.0
+description: "Do mapeamento de investidores ao data room blindado: o founder chega no roadshow com a narrativa testada contra as objeções mais duras — sem gastar meses para preparar."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: ifo
+components:
+  agents:
+    - orion.md
+    - vega.md
+    - atlas.md
+    - pallas.md
+    - brutus.md
+    - hermes.md
+    - mnemo.md
+    - gate.md
+    - hades.md
+  tasks:
+    - mapear-investidores-relevantes.md
+    - auditar-documentos-faltantes.md
+    - construir-narrativa-investimento.md
+    - simular-objecoes-vcs.md
+    - gerenciar-funil-investimento.md
+    - organizar-conhecimento-estrategico.md
+    - controlar-envio-externo.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-fundraising-ops-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - investor-relations-fundraising-m-a
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F5 · TopSquad de Investor Relations, Fundraising & M&A"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

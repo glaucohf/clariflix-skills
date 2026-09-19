@@ -1,0 +1,82 @@
+workflow_name: diverge_only
+description: "Pipeline somente Fase 1 (Diverge) — gera 200+ ideias e filtra Top 3 sem fase de design"
+
+agent_sequence:
+  - theme-definer
+  - idea-generator
+  - filter-ranker
+  - idea-generator
+  - filter-ranker
+  - synthesizer
+
+key_commands:
+  - "*define-themes"
+  - "*generate-ideas"
+  - "*filter-rank-r1"
+  - "*filter-rank-final"
+  - "*synthesize"
+
+trigger_threshold: 1
+typical_duration: "8-15 minutes"
+
+success_indicators:
+  - "Top 3 insights gerados e apresentados ao usuario"
+  - "final_output.md gerado"
+  - ".brainstorm-tmp/ limpo"
+
+transitions:
+  phase_1_setup:
+    trigger: "Topico recebido e .brainstorm-tmp/ criado"
+    confidence: 0.95
+    next_steps:
+      - command: "*define-themes"
+        description: "ThemeDefiner define 10 tipos de associacao"
+        priority: 1
+
+  phase_2_round1:
+    trigger: "themes.json gerado"
+    confidence: 0.95
+    next_steps:
+      - command: "*generate-ideas"
+        description: "10x IdeaGenerator R1 em paralelo"
+        priority: 1
+
+  phase_3_rank1:
+    trigger: "10 arquivos R1 gerados"
+    confidence: 0.90
+    next_steps:
+      - command: "*filter-rank-r1"
+        description: "FilterRanker filtra para Top 10"
+        priority: 1
+
+  phase_4_round2:
+    trigger: "top10.json gerado"
+    confidence: 0.95
+    next_steps:
+      - command: "*generate-ideas"
+        description: "10x IdeaGenerator R2 em paralelo"
+        priority: 1
+
+  phase_5_rank2:
+    trigger: "10 arquivos R2 gerados"
+    confidence: 0.90
+    next_steps:
+      - command: "*filter-rank-final"
+        description: "FilterRanker filtra para Top 3"
+        priority: 1
+
+  phase_6_output:
+    trigger: "top3.json gerado"
+    confidence: 0.95
+    next_steps:
+      - command: "*synthesize"
+        description: "Synthesizer formata output final"
+        priority: 1
+
+  cleanup:
+    trigger: "final_output.md apresentado ao usuario"
+    confidence: 0.95
+    next_steps:
+      - command: "cleanup"
+        description: "rm -rf .brainstorm-tmp/"
+        priority: 1

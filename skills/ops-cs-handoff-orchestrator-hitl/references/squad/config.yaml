@@ -1,0 +1,53 @@
+pack:
+  name: ops-cs-handoff-orchestrator-hitl
+  version: 0.1.0
+  short-title: "Handoff Orchestrator HITL"
+  description: "Nenhuma ação irreversível sem aprovação humana — e nenhum humano sobrecarregado com trivialidades."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "💬"
+  slashPrefix: handoffOrchestratorHitl
+name: ops-cs-handoff-orchestrator-hitl
+version: 0.1.0
+description: "Nenhuma ação irreversível sem aprovação humana — e nenhum humano sobrecarregado com trivialidades."
+entry_agent: hieronimus
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: operacoes-cs
+  topsquad: "O1"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - hieronimus
+  - cassio
+  - beatriz
+  - renato
+  - selene
+  - dora
+  - fabio
+  - vitor
+tasks:
+  - classificar-criticidade.md
+  - empacotar-contexto.md
+  - monitorar-handoffs-l3.md
+  - analisar-falso-positivo.md
+  - determinar-canal-enviado.md
+  - registrar-decisao-humana.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - ops-cs-handoff-orchestrator-hitl-pipeline.yaml
+checklists:
+  - critic-vitor.md
+integrations:
+  - "ClickUp (Brain2/Autopilot Agents) — hub de tasks, prova de trabalho, registro de cada decisão de handoff como task com checklist, espelho do AIOX"
+  - "Claude Agent SDK + LangGraph — orquestração multi-agente, grafo de decisão do Hieronimus, estados de handoff"
+  - "Langfuse — observabilidade OTEL completa, tracing de cada classificação, dashboard de KPIs, quality gates (dev 70% / staging 85% / prod 95%)"
+  - "Supabase/Postgres — estado persistente dos handoffs abertos, log de decisões, banco de treinamento da matriz, histórico de feedbacks"
+  - "Slack (Webhooks + Workflow Builder) — canal #hitl-approvals para briefings L3, botões de ação direta (Aprovar/Rejeitar/Modificar), lembretes de SLA"
+  - "Zendesk / Intercom — webhook de interceptação de ações antes da execução, registro de decisões em tickets, integração com filas de atendimento"
+  - "WhatsApp Business API — interceptação de ações de alto risco iniciadas em atendimentos via WhatsApp antes do envio"
+  - "HubSpot / Salesforce — contexto do cliente (LTV, tier, histórico de contratos, health score) para enriquecer classificação de criticidade"
+  - "MCP Servers (camada universal) — ClickUp MCP, CRM MCP, helpdesk MCP para acesso unificado sem hardcode de API keys"

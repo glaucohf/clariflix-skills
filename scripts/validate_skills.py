@@ -4,6 +4,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 import yaml
+from build_catalog import ROWS
 
 ROOT = Path(__file__).resolve().parent.parent
 REQUIRED_SECTIONS = ["## When to Use", "## Quick Reference", "## Procedure", "## Pitfalls", "## Verification"]
@@ -38,6 +39,17 @@ def check_skill(skill_dir: Path) -> list[str]:
         for key in ["row", "title", "title_netflix", "subtitle", "painel"]:
             if key not in m:
                 errors.append(f"{skill_dir.name}: manifest.yaml sem '{key}'")
+        if m.get("row") not in ROWS:
+            errors.append(f"{skill_dir.name}: categoria desconhecida '{m.get('row')}'")
+        panel = m.get("painel", {})
+        for key in ["ano", "tamanho", "requer", "como_usar", "elenco", "generos"]:
+            if not panel.get(key):
+                errors.append(f"{skill_dir.name}: painel sem '{key}'")
+        for key in ["elenco", "generos"]:
+            if not isinstance(panel.get(key), list) or not all(isinstance(item, str) for item in panel.get(key, [])):
+                errors.append(f"{skill_dir.name}: painel.{key} deve ser uma lista de textos")
+        if "runtime_only" in m and not isinstance(m["runtime_only"], bool):
+            errors.append(f"{skill_dir.name}: runtime_only deve ser booleano")
     return errors
 
 

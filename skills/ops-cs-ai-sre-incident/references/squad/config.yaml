@@ -1,0 +1,59 @@
+pack:
+  name: ops-cs-ai-sre-incident
+  version: 0.1.0
+  short-title: "AI SRE"
+  description: "De tempestade de alertas a root cause em minutos: o SRE que nao dorme, nao esquece e documenta tudo."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🛡️"
+  slashPrefix: aiSre
+name: ops-cs-ai-sre-incident
+version: 0.1.0
+description: "De tempestade de alertas a root cause em minutos: o SRE que nao dorme, nao esquece e documenta tudo."
+entry_agent: ic
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: operacoes-cs
+  topsquad: "O5"
+  prioridade: "avançado"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - ic
+  - alert-correlator
+  - root-cause-investigator
+  - fix-proposer
+  - fix-executor
+  - incident-communicator
+  - post-mortem-writer
+  - fix-guardian
+tasks:
+  - correlacionar-alertas.md
+  - analisar-logs-incidente.md
+  - gerar-propostas-de-fix.md
+  - executar-acoes-l2.md
+  - comunicar-incidentes.md
+  - analisar-incidentes.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - ops-cs-ai-sre-incident-pipeline.yaml
+checklists:
+  - critic-fix-guardian.md
+integrations:
+  - "PagerDuty — recepcao de alertas via webhook, criacao e atualizacao de incidents, escalonamento on-call"
+  - "Datadog — consulta de metricas, alertas, traces, service map e dashboards via API/MCP"
+  - "CloudWatch — logs e metricas de infra AWS"
+  - "Sentry — erros de aplicacao, releases e performance issues"
+  - "Grafana — dashboards de metricas e alertas (Prometheus/Loki)"
+  - "GitHub Actions / ArgoCD — historico de deploys para correlacao com root cause"
+  - "Elastic / Splunk / Loki — consulta de logs durante investigacao"
+  - "Jaeger / Tempo — traces distribuidos para analise de latencia e falhas"
+  - "ClickUp — hub de prova de trabalho: cada incidente = task com timeline, artefatos e action items"
+  - "Slack — war room automatico, notificacoes de stakeholders, canal de HITL"
+  - "Supabase / Postgres — estado dos incidentes, historico de correlacoes, base de runbooks e post-mortems"
+  - "Langfuse — observabilidade OTEL do squad, tracing de chamadas de agentes, quality gates e evals de acuracia de root cause"
+  - "Terraform / AWS SSM / HashiCorp Vault — acesso seguro a credenciais para execucao de acoes L2"
+  - "ServiceNow — opcional: sincronizacao de incidents para empresas com ITSM legado"
+  - "Statuspage.io — atualizacao de status page publica durante incidentes que afetam clientes"

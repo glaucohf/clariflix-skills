@@ -1,0 +1,178 @@
+workflow_name: marketing_creative_ugc_factory_pipeline
+description: "De zero a 50 criativos testados por semana — sem esperar aprovação de agência, sem fadiga de anúncio paralisando escala."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-creative-ugc-factory
+area: "Marketing"
+topsquad: "M3 · Conteúdo & Criativo"
+agent_sequence:
+  - orion
+  - stella
+  - vega
+  - cruz
+  - hoox
+  - sigma
+  - nexus
+  - aegis
+  - aegis-2
+key_commands:
+  - "*analisar-dados-e-intentoes"
+  - "*criar-conceitos-criativos"
+  - "*gerar-copy-performatica"
+  - "*coordenar-producao-de-ugc"
+  - "*gerar-ativos-sinteticos"
+  - "*indexar-criativos"
+  - "*avaliar-criativo-brand-voice"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Variações de criativo produzidas e aprovadas por ciclo semanal (target: >= 30 variações aprovadas pelo Aegis por ciclo — vs 3-5 do processo manual)"
+  - "Taxa de aprovação do Aegis na primeira iteração (target: >= 75% de copy e assets aprovados sem necessidade de revisão — indicador de qualidade do pipeline de produção)"
+  - "CTR médio das variações em teste por ciclo (target: melhoria de >= 20% no CTR médio vs criativos manuais do período anterior — mesma audiência, novo criativo)"
+  - "Tempo de ciclo completo (brief-to-live): do disparo do ciclo pela Stella até o primeiro criativo ativo na plataforma (target: <= 48h para criativos sintéticos; <= 7 dias para UGC real)"
+  - "Tempo de descoberta de criativo vencedor: da ativação do teste até declaração de winner com significância estatística (target: <= 10 dias vs 3-6 semanas manual)"
+  - "Percentual de criativos ativos no banco com CTR acima do baseline (target: > 60% das variações ativas performando acima do CTR baseline da conta)"
+  - "Custo por variação aprovada e ativa (target: <= R$150 por variação sintética; <= R$800 por UGC real com creator — vs R$2.000-5.000 por criativo via agência tradicional)"
+  - "Taxa de escala de criativos vencedores (target: >= 1 vencedor por ciclo que justifique escala de budget — indicador de que o sistema está descobrindo ângulos de conversão reais)"
+  - "Score de task success do squad no Langfuse (target: >= 95% em produção)"
+  - "NPS do cliente com o processo (target: >= 8/10 na avaliação quinzenal — indicador de que a fábrica está entregando qualidade percebida, não só volume)"
+deliverable:
+  description: "Creative Performance Pack — entregável semanal automático gerado pelo Nexus e consolidado pelo Orion contendo: (1) Batch de Criativos Aprovados: lote de 30-50 variações aprovadas pelo Aegis com assets prontos para upload (imagens/vídeos + copy estruturada em JSON formatado para importação direta nas plataformas), (2) Preview Sheet Visual: mosaico de todos os assets da semana para revisão rápida do cliente, (3) Status do Banco de Criativos: dashboard de variações em teste / vencedoras / fatigadas / em produção (UGC pendente), (4) Relatório de Vencedores: criativos que atingiram significância estatística na semana com CTR, hook rate, ROAS e recomendação de escala, (5) ICP Brief do Próximo Ciclo: ângulos recomendados pela Stella para a wave seguinte com justificativa baseada em dados, (6) Log de Ações Auditável: todas as tasks executadas pelo squad no ClickUp com input, output e timestamps — prova de trabalho completa. Formato: PDF executivo (para o cliente) + JSON estruturado (para integração com ferramentas de mídia) + ClickUp board atualizado."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Analisar Dados E Intentões"
+    agent: stella
+    task: analisar-dados-e-intentoes.md
+    trigger: "Acionado pelo Orion no início de cada ciclo de produção (semanal ou a cada nova wave de criativos). Re-acionado se o Aegis rejeitar mais de 30% dos conceitos por desalinhamento com ICP (sinal de que o brief de ICP está desatualizado). Acio…"
+    checkpoint:
+      criteria: "ICP Creative Brief (JSON estruturado): (1) Mapa de dores por segmento de ICP (3-5 dores rankeadas por frequência e intensidade), (2) Vocabulário nativo por dor (as palavras exatas que o ICP usa — não o jargão da empresa), (3) Objeções de c…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Criar Conceitos Criativos"
+    agent: vega
+    task: criar-conceitos-criativos.md
+    trigger: "Acionado pelo Orion após a Stella entregar o ICP Creative Brief validado. Acionado novamente se o Aegis reprovar mais de 40% dos conceitos (sinal de que a conceitualização está sistematicamente errada — retorna ao Vega para revisão antes d…"
+    checkpoint:
+      criteria: "Pacote de Conceitos Criativos (JSON + documento legível): para cada um dos 15-25 conceitos — (1) Nome do conceito (slug identificador), (2) Ângulo de mensagem principal (dor/aspiração/prova social/autoridade/curiosidade/escassez), (3) Form…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Gerar Copy Performatica"
+    agent: cruz
+    task: gerar-copy-performatica.md
+    trigger: "Acionado pelo Orion para cada conceito aprovado pelo Vega (pode rodar em paralelo para múltiplos conceitos). Acionado novamente com instruções específicas se o Aegis reprovar copy por desalinhamento de brand voice ou claim não aprovado — r…"
+    checkpoint:
+      criteria: "Pacote de Copy Estruturado (JSON por conceito): (1) Headlines — 5-8 variações categorizadas por trigger (curiosidade / dor / aspiração / prova social / urgência), (2) Primary text — 3-5 variações em extensões S/M/L com o mesmo ângulo trata…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Coordenar Produção De UGC"
+    agent: hoox
+    task: coordenar-producao-de-ugc.md
+    trigger: "Acionado pelo Orion quando o conceito aprovado requer UGC real (vs sintético). Gate L3 obrigatório antes de publicar o brief na plataforma (envolve contrato e pagamento à creator). Acionado automaticamente quando vídeo é entregue pelo crea…"
+    checkpoint:
+      criteria: "Brief de creator publicado na plataforma Hóox/Insense (formato padronizado: contexto da marca, o que fazer, o que NÃO fazer, script detalhado, especificações técnicas, exemplos de referências, prazo e remuneração), Notificação ao humano re…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-6
+    name: "Gerar Ativos Sinteticos"
+    agent: sigma
+    task: gerar-ativos-sinteticos.md
+    trigger: "Acionado pelo Orion para todos os conceitos que não requerem UGC real (Sigma e o caminho rápido — entrega em horas vs dias do Hoox). Também acionado para complementar UGC real com overlay, thumbnail e versões de formato adicional. Acionado…"
+    checkpoint:
+      criteria: "Assets de criativo sintéticos prontos para upload: (1) Static ads em todos os formatos solicitados (feed 1:1, stories 9:16, banner 16:9) com resolução e peso de arquivo conformes com specs de plataforma, (2) Composições de overlay para víd…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Indexar Criativos"
+    agent: nexus
+    task: indexar-criativos.md
+    trigger: "Acionado automaticamente quando Aegis aprova um lote de criativos (indexação e criação de ad sets). Varredura diária de performance automática às 09h para atualizar scores e identificar vencedores/fatigados. Alerta ao Orion quando: (1) cri…"
+    checkpoint:
+      criteria: "Banco de criativos atualizado (planilha/ClickUp board): status de cada variacao (em_teste / vencedor / fatigado / arquivado / pendente_producao), métricas de performance acumuladas por variacao, data de ativação e desativação. Estrutura de…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Avaliar Criativo Brand Voice"
+    agent: aegis
+    task: avaliar-criativo-brand-voice.md
+    trigger: "Gate obrigatório — acionado pelo Orion antes de qualquer asset chegar em plataforma externa. Também acionado antes da publicação de brief de UGC no Hoox/Insense (ação com custo financeiro = L3 com verificação adicional do Aegis). Acionado…"
+    checkpoint:
+      criteria: "Verdict estruturado por item e por dimensao: APPROVED / NEEDS_REVISION / BLOCKED. Para cada item nao aprovado: (1) Dimensao da violacao (brand voice / Icp resonance / compliance / qualidade tecnica), (2) Problema especifico descrito sem am…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: aegis-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Creative Performance Pack — entregável semanal automático gerado pelo Nexus e consolidado pelo Orion contendo: (1) Batch de Criativos Aprovados: lote de 30-50 variações aprovadas pelo Aegis com asset…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação de Brand Voice Guidelines e Claims: o cliente assina o documento de brand voice e a lista de claims aprovados/proibidos antes do squad operar — sem essa base o Aegis não tem referência para validar, e o squad não ativa"
+  - level: HITL
+    condition: "Gate L3 — Publicação de Brief de UGC na plataforma (Hoox/Insense): publicar um brief de creator envolve compromisso financeiro (pagamento ao creator) — o Hoox gera o brief e aguarda aprovação explícita do humano responsável via Slack/WhatsApp antes de publicar. O cliente vê o brief completo, o perfil de creator selecionado e o custo estimado"
+  - level: HITL
+    condition: "Gate L3 — Upload de novos criativos para plataforma de anuncio (primeira vez): quando o Nexus cria novos ad sets com criativos nao testados anteriormente, o responsavel de midia revisa o preview antes da ativacao — as primeiras impressoes de um criativo novo sao irreversiveis"
+  - level: HITL
+    condition: "Gate L3 — Escala de criativo vencedor acima de threshold de budget: quando o Nexus identifica um vencedor e o Orion recomenda escala (aumento de budget > X% acima do threshold pre-definido), o humano aprova o aumento antes da execução pelo squad de media buying (ou pelo cliente diretamente)"
+  - level: HITL
+    condition: "Aprovação do ICP Creative Brief (apos cada ciclo da Stella): o cliente valida o mapa de dores/ângulos proposto pela Stella antes do Vega começar a conceitualização — garante que os insights estão corretos e alinhados com o momento estratégico da empresa"
+  - level: HITL
+    condition: "Revisão do Preview Sheet semanal (opcional, recomendado): o Sigma gera um mosaico visual de todos os assets da semana — o cliente pode revisar e vetar conceitos antes do upload, mesmo que o Aegis já tenha aprovado (segunda camada de controle de qualidade à critério do cliente)"
+  - level: HITL
+    condition: "Calibração mensal de thresholds: reunião de 30 minutos para revisar os thresholds de vencedor/arquivamento com base na performance real do mês — o squad opera com os parâmetros mais recentes aprovados"
+  - level: HITL
+    condition: "Onboarding de novo creator no banco aprovado: qualquer creator novo (nao pre-validado) que va ser contratado pelo Hoox requer aprovacao do cliente antes de receber o brief — o cliente ve o perfil, o portfolio e o budget antes da contratacao"
+transitions:
+  - from: orion
+    to: stella
+    condition: "Acionado pelo Orion no início de cada ciclo de produção (semanal ou a cada nova wave de criativos). Re-acionado se o Aegis rejeitar mais de 30% dos conceitos por desalinhamento com ICP (sinal de que…"
+  - from: stella
+    to: vega
+    condition: "Acionado pelo Orion após a Stella entregar o ICP Creative Brief validado. Acionado novamente se o Aegis reprovar mais de 40% dos conceitos (sinal de que a conceitualização está sistematicamente errad…"
+  - from: vega
+    to: cruz
+    condition: "Acionado pelo Orion para cada conceito aprovado pelo Vega (pode rodar em paralelo para múltiplos conceitos). Acionado novamente com instruções específicas se o Aegis reprovar copy por desalinhamento…"
+  - from: cruz
+    to: hoox
+    condition: "Acionado pelo Orion quando o conceito aprovado requer UGC real (vs sintético). Gate L3 obrigatório antes de publicar o brief na plataforma (envolve contrato e pagamento à creator). Acionado automatic…"
+  - from: hoox
+    to: sigma
+    condition: "Acionado pelo Orion para todos os conceitos que não requerem UGC real (Sigma e o caminho rápido — entrega em horas vs dias do Hoox). Também acionado para complementar UGC real com overlay, thumbnail…"
+  - from: sigma
+    to: nexus
+    condition: "Acionado automaticamente quando Aegis aprova um lote de criativos (indexação e criação de ad sets). Varredura diária de performance automática às 09h para atualizar scores e identificar vencedores/fa…"
+  - from: nexus
+    to: aegis
+    condition: "Gate obrigatório — acionado pelo Orion antes de qualquer asset chegar em plataforma externa. Também acionado antes da publicação de brief de UGC no Hoox/Insense (ação com custo financeiro = L3 com ve…"
+  - from: aegis
+    to: aegis-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: aegis-2
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - cruz

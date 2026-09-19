@@ -1,0 +1,173 @@
+workflow_name: marketing_cro_landing_agentico_pipeline
+description: "De landing page estática para máquina de conversão autônoma: o squad gera, testa e itera copy e layout em loop contínuo — sem precisar de um time de CRO."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-cro-landing-agentico
+area: "Marketing"
+topsquad: "M2 · Performance: Paid Media, CRO & Attribution"
+agent_sequence:
+  - maestro-cro
+  - hera
+  - sage
+  - muse
+  - pixel
+  - darwin
+  - rex
+  - atlas
+  - rex-2
+key_commands:
+  - "*identificar-abandono-pagina"
+  - "*pesquisar-evidencias-empiricas"
+  - "*gerar-copy-de-conversao"
+  - "*traduzir-hipoteses-de-layout"
+  - "*monitorar-experimentos-ab"
+  - "*verificar-brand-voice-consistencia"
+  - "*documentar-experimentos"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro-cro
+success_indicators:
+  - "Taxa de conversão por página: meta de dobrar o baseline em 90 dias (ex: de 2% para 4%) — KPI primário do squad"
+  - "Número de experimentos ativos em paralelo: meta de 5+ simultâneos após 60 dias de operação (baseline típico: 0-2)"
+  - "Lift médio por ciclo de iteração: meta > 8% de melhora por experimento vencedor (rastreado pelo Darwin e Atlas)"
+  - "Velocidade de aprendizado (throughput): meta de 2 experimentos concluídos por semana em regime de cruzeiro (30 dias+)"
+  - "Taxa de vencedores vs perdedores vs inconclusivos: meta de 30%+ de taxa de vencedores (benchmark indústria: 1 em 7 testes ganha — o squad mira em 1 em 3 com hipóteses mais embasadas)"
+  - "Message Match Score (Rex): 100% das variações publicadas com score de alinhamento ad-landing acima de 8/10"
+  - "Tempo médio de ciclo (hipótese aprovada -> experimento no ar): meta < 5 dias úteis"
+  - "CRO Playbook: >= 20 learnings documentados com evidencia nos primeiros 90 dias"
+  - "Lift acumulado em 6 meses: meta de 30-60% de aumento de conversão sobre baseline (compounding de experimentos vencedores)"
+deliverable:
+  description: "CRO Operations Package — artefato verificável completo por ciclo quinzenal: (1) CRO Audit Report inicial com mapa de fricções e top-10 hipóteses priorizadas por ICE Score; (2) Experiment Packages por wave (hipótese documentada, variações de copy Muse, specs de layout Pixel, configuração Darwin, aprovação Rex); (3) Experiment Conclusion Reports individuais com vencedor/perdedor, lift absoluto/relativo, intervalo de confiança e learning documentado; (4) CRO Playbook vivo e versionado com todos os learnings acumulados (o ativo mais valioso do squad — não vai embora com o agente, fica com o cliente); (5) Velocity Dashboard no ClickUp com taxa de conversão por página, experimentos ativos, lift médio e backlog priorizado; (6) Relatório Executivo Quinzenal para CMO/Growth Lead com resumo de resultados, próximo ciclo planejado e ROI estimado do portfolio de experimentos."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro-cro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Identificar Abandono Página"
+    agent: hera
+    task: identificar-abandono-pagina.md
+    trigger: "Início de ciclo Discovery; encerramento de experimento pelo Darwin (trigger automático para análise pós-teste); ciclo quinzenal de revisão de comportamento; Maestro solicita análise específica de segmento; taxa de conversão cai > 15% em 7…"
+    checkpoint:
+      criteria: "Mapa de Fricções do Funil (por etapa, com evidência de comportamento e severidade), Behavioral Insights Report por experimento encerrado (o que o comportamento explica sobre o resultado), lista priorizada de hipóteses de CRO com evidência…"
+      veto_condition: "Saída sem veredito do critic Rex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Pesquisar Evidências Empíricas"
+    agent: sage
+    task: pesquisar-evidencias-empiricas.md
+    trigger: "Fase Discovery de cada ciclo; inclusão de nova hipótese no backlog que necessita de embasamento; Maestro solicita benchmarking de setor específico; resultado de experimento contraintuitivo que precisa de contexto externo para interpretação"
+    checkpoint:
+      criteria: "CRO Research Report com top-10 hipóteses de experimento evidenciadas (fonte, contexto, lift reportado), Competitive Copy Analysis (como os 5 concorrentes principais trabalham headline, proposta de valor, CTA e social proof), Persuasion Pri…"
+      veto_condition: "Saída sem veredito do critic Rex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Gerar Copy de Conversao"
+    agent: muse
+    task: gerar-copy-de-conversao.md
+    trigger: "Maestro aprova hipótese para produção de variações; resultado de experimento indica que headline foi o fator crítico (Hera diagnóstica) e nova wave é necessária; nova campanha de ads será lançada e precisa de landing page específica; solic…"
+    checkpoint:
+      criteria: "Pacote de variações de copy por experimento: 3-5 versões de headline (com racional de cada uma — qual princípio testa), 3-5 versões de CTA com framing alternativo, variações de hero copy (200-400 palavras) por abordagem (benefício vs dor v…"
+      veto_condition: "Saída sem veredito do critic Rex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Traduzir Hipoteses De Layout"
+    agent: pixel
+    task: traduzir-hipoteses-de-layout.md
+    trigger: "Maestro aprova hipotese de layout para producao; Hera detecta problema de layout especifico no mapa de friccoes (ex: CTA fora do fold no mobile para 60% dos usuarios); nova landing page sendo construida do zero; resultado de teste de copy…"
+    checkpoint:
+      criteria: "Layout Spec Document por variação: wireframe textual estruturado (seção por seção com instruções de posicionamento), especificações de hierarquia visual (o que é H1/H2/H3, o que é destaque visual), instruções específicas de mobile vs deskt…"
+      veto_condition: "Saída sem veredito do critic Rex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Monitorar Experimentos Ab"
+    agent: darwin
+    task: monitorar-experimentos-ab.md
+    trigger: "Maestro aprova experimento para go-live (Darwin configura e verifica tracking antes de publicar); job diário de monitoramento de todos os experimentos ativos; detecção de significância estatística (dispara encerramento e relatório); anomal…"
+    checkpoint:
+      criteria: "Experiment Setup Checklist (pre-launch: hipotese documentada, sample size calculado, duracao estimada, metricas configuradas, QA de tracking confirmado), Experiment Status Dashboard diario (variacoes, conversoes, significancia acumulada, v…"
+      veto_condition: "Saída sem veredito do critic Rex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Verificar Brand Voice Consistência"
+    agent: rex
+    task: verificar-brand-voice-consistencia.md
+    trigger: "Obrigatório: toda vez que Darwin aprova configuração de experimento e este está pronto para go-live (gate não é bypassável); Maestro solicita revisão de variação específica; entrada de nova página no portfolio de testes; qualquer copy que…"
+    checkpoint:
+      criteria: "Experiment Approval Report: APPROVED (pode publicar), NEEDS_REVISION (lista específica de ajustes obrigatórios com justificativa por item) ou BLOCKED (violação crítica de brand/legal que requer revisão humana antes de qualquer ação). Para…"
+      veto_condition: "Saída sem veredito do critic Rex 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Documentar Experimentos"
+    agent: atlas
+    task: documentar-experimentos.md
+    trigger: "Encerramento de qualquer experimento (Darwin trigger); início de novo ciclo de planejamento (quinzenal); solicitação de Maestro para snapshot do estado atual do CRO Playbook; onboarding de nova página no portfolio — Atlas briefia Muse e Pi…"
+    checkpoint:
+      criteria: "CRO Playbook atualizado (markdown estruturado, versionado, organizado por elemento testado: headline / CTA / hero / formulário / social proof / pricing / urgência), Backlog de Hipóteses priorizado via ICE Score (Impact/Confidence/Ease) com…"
+      veto_condition: "Saída sem veredito do critic Rex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: rex-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: maestro-cro
+    checkpoint:
+      criteria: "Entregável consolidado: CRO Operations Package — artefato verificável completo por ciclo quinzenal: (1) CRO Audit Report inicial com mapa de fricções e top-10 hipóteses priorizadas por ICE Score; (2) Experiment Packages por…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do CRO Audit Report ao final do Discovery — CMO/Growth Lead valida a priorização das top-10 hipóteses antes de iniciar produção de copy e layout (L3): a empresa precisa concordar com o diagnóstico antes de escalar produção"
+  - level: HITL
+    condition: "Publicação de variação no ar — Rex retorna APPROVED mas o Maestro aciona HITL para experimentos que alteram elementos above-the-fold na página principal de produto ou páginas com > 50% do budget de tráfego (L3): mudanças de alto impacto requerem olho humano final"
+  - level: HITL
+    condition: "Rex retorna BLOCKED em qualquer verificacao — violacao critica de brand/legal nao pode ser resolvida autonomamente; CMO ou responsavel legal revisa antes de qualquer reescrita (L3)"
+  - level: HITL
+    condition: "Resultado de experimento que sugere mudança estrutural de posicionamento — se o learning indica que a promessa principal do produto precisa mudar, é decisão estratégica que requer stakeholders (L3)"
+  - level: HITL
+    condition: "Aprovação de novas landing pages adicionadas ao portfolio do squad — cada nova página representa expansão de escopo e precisa de alinhamento sobre objetivos, métrica primária e budget de tráfego (L3)"
+  - level: HITL
+    condition: "Escalada de experimento inconclusivo após 4 semanas — Darwin alerta, Maestro analisa, mas decisão de encerrar ou aumentar tráfego para o teste e humana (L1): implica realocação de budget"
+  - level: HITL
+    condition: "Revisao trimestral do CRO Playbook — Atlas apresenta o estado do conhecimento acumulado, Growth Lead decide quais learnings viram regras permanentes e quais hipoteses devem ser arquivadas (L1)"
+transitions:
+  - from: maestro-cro
+    to: hera
+    condition: "Início de ciclo Discovery; encerramento de experimento pelo Darwin (trigger automático para análise pós-teste); ciclo quinzenal de revisão de comportamento; Maestro solicita análise específica de seg…"
+  - from: hera
+    to: sage
+    condition: "Fase Discovery de cada ciclo; inclusão de nova hipótese no backlog que necessita de embasamento; Maestro solicita benchmarking de setor específico; resultado de experimento contraintuitivo que precis…"
+  - from: sage
+    to: muse
+    condition: "Maestro aprova hipótese para produção de variações; resultado de experimento indica que headline foi o fator crítico (Hera diagnóstica) e nova wave é necessária; nova campanha de ads será lançada e p…"
+  - from: muse
+    to: pixel
+    condition: "Maestro aprova hipotese de layout para producao; Hera detecta problema de layout especifico no mapa de friccoes (ex: CTA fora do fold no mobile para 60% dos usuarios); nova landing page sendo constru…"
+  - from: pixel
+    to: darwin
+    condition: "Maestro aprova experimento para go-live (Darwin configura e verifica tracking antes de publicar); job diário de monitoramento de todos os experimentos ativos; detecção de significância estatística (d…"
+  - from: darwin
+    to: rex
+    condition: "Obrigatório: toda vez que Darwin aprova configuração de experimento e este está pronto para go-live (gate não é bypassável); Maestro solicita revisão de variação específica; entrada de nova página no…"
+  - from: rex
+    to: atlas
+    condition: "Encerramento de qualquer experimento (Darwin trigger); início de novo ciclo de planejamento (quinzenal); solicitação de Maestro para snapshot do estado atual do CRO Playbook; onboarding de nova págin…"
+  - from: atlas
+    to: rex-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: rex-2
+    to: maestro-cro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

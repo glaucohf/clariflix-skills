@@ -1,0 +1,171 @@
+workflow_name: founder_ai_chief_of_staff_pipeline
+description: "Seu segundo cérebro estratégico: nunca mais entre em reunião sem preparo, nunca mais perca um follow-up."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-ai-chief-of-staff
+area: "Founder Office"
+topsquad: "F1 · Chief of Staff & Clone do Founder"
+agent_sequence:
+  - orion
+  - briefing
+  - kira
+  - vance
+  - sage
+  - intel
+  - atlas
+  - memo
+  - skeptic
+key_commands:
+  - "*preparar-briefing-de-reuniao"
+  - "*sintetizar-fontes-abertas"
+  - "*gerar-relatorio-semanal"
+  - "*validar-output-estrategico"
+  - "*monitorar-inteligencia-competitiva"
+  - "*gerar-plano-da-semana"
+  - "*gerar-drafts-de-updates"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Horas/semana economizadas do founder (baseline manual vs pós-squad) — meta: -8h/semana em 30 dias"
+  - "% de reuniões com brief automatizado entregue >1h antes — meta: 90% em 30 dias"
+  - "Taxa de follow-ups concluídos no prazo — meta: de ~40% para 85%+ em 60 dias"
+  - "Tempo médio de geração de meeting brief — meta: <15 minutos end-to-end"
+  - "Score de satisfação do founder com briefs (1–5 por reunião) — meta: >=4.2"
+  - "% de board/investor memos aprovados sem revisão estrutural — meta: 80% em 90 dias"
+  - "Hallucination rate nos outputs (Skeptic score <75%) — meta: <5% de artefatos bloqueados"
+  - "NPS interno do squad (founder avalia mensalmente) — meta: >=8"
+  - "Task success rate no Langfuse — meta: dev 70% / staging 85% / prod 95%"
+deliverable:
+  description: "Chief of Staff Weekly Pack (artefato semanal verificável): (1) Plano da Semana com top 3 prioridades e blocos de foco, (2) Meeting Briefs gerados na semana com score de qualidade, (3) Dashboard de follow-ups (prometido vs entregue, % no prazo, escalations), (4) Intel Digest semanal com movimentos de mercado relevantes, (5) Retrospectiva de foco (onde o tempo foi vs onde deveria ter ido). Tudo rastreável no ClickUp e auditável no Langfuse."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Preparar Briefing De Reunião"
+    agent: briefing
+    task: preparar-briefing-de-reuniao.md
+    trigger: "Evento de calendário detectado com 24h de antecedência. Também acionado manualmente via comando '/brief @pessoa' no Slack."
+    checkpoint:
+      criteria: "Meeting Brief PDF/Notion (1 página): contexto, objetivo, perguntas sugeridas, objeções prováveis, próximo passo recomendado. Entregue 2h antes da reunião via Slack/email."
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Sintetizar Fontes Abertas"
+    agent: kira
+    task: sintetizar-fontes-abertas.md
+    trigger: "Reunião de alto impacto (investor, board, deal >R$100k). Pergunta estratégica ad-hoc do founder. Alerta de competidor disparado por Intel Agent."
+    checkpoint:
+      criteria: "Research Brief: sumário executivo (3 parágrafos), achados-chave com fonte citada, gaps de informação identificados, recomendação de ação. Formato: Notion page + JSON estruturado para outros agentes consumirem."
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Gerar Relatório Semanal"
+    agent: vance
+    task: gerar-relatorio-semanal.md
+    trigger: "Fim de reunião (transcrição disponível). Email com linguagem de compromisso detectada. Check-in semanal automático (sexta 17h). Founder solicita status de um follow-up específico."
+    checkpoint:
+      criteria: "Tasks criadas no ClickUp (dono, prazo, contexto). Lembretes automáticos D-2, D-0 e D+1. Relatório semanal de follow-ups (% no prazo, abertos, atrasados, escalados). Alerta de risco para Orion quando deadline crítico está em risco."
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Validar Output Estratégico"
+    agent: sage
+    task: validar-output-estrategico.md
+    trigger: "Validação de brief antes de entrega ao founder. Founder solicita rascunho de email/mensagem. Pergunta ad-hoc que exige resposta 'no meu estilo'. Decisão de baixo impacto que pode ser delegada ao clone."
+    checkpoint:
+      criteria: "Resposta em voz do founder (texto), email redigido pronto para revisão final, score de alinhamento estratégico (0–10) com justificativa para outputs de outros agentes. Marcação de pontos divergentes do pensamento do founder."
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Monitorar Inteligência Competitiva"
+    agent: intel
+    task: monitorar-inteligencia-competitiva.md
+    trigger: "Schedule diário (7h). Keyword hit em fonte monitorada. Menção da empresa do founder em fonte externa. Founder solicita análise de competidor específico."
+    checkpoint:
+      criteria: "Daily intel digest (formato Notion/Slack): 3–5 sinais relevantes do dia com fonte e impacto estimado. Alerta urgente para eventos críticos com recomendação de resposta (contra-jogada). Input para Briefing Agent quando interlocutor é de emp…"
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Gerar Plano Da Semana"
+    agent: atlas
+    task: gerar-plano-da-semana.md
+    trigger: "Schedule semanal (segunda 8h e sexta 17h). Detecção de reunião fora das prioridades declaradas. OKR check-in mensal. Founder solicita revisão de prioridades."
+    checkpoint:
+      criteria: "Plano Semanal (segunda 8h): top 3 prioridades, blocos de foco sugeridos no calendário, itens a delegar ou recusar. Retrospectiva Semanal (sexta 17h): heatmap de onde o tempo foi, score de foco (0–10), recomendação para próxima semana. Aler…"
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Gerar Drafts De Updates"
+    agent: memo
+    task: gerar-drafts-de-updates.md
+    trigger: "30 dias antes de board meeting. Investor solicita update. Founder aciona manualmente para deal memo ou strategic update. Milestone relevante atingido (rodada, produto, expansão)."
+    checkpoint:
+      criteria: "Draft de board pack (Notion/PDF): sumário executivo, highlights do período, métricas-chave com commentary, desafios e plano, próximos passos. Pronto para revisão final do founder antes de qualquer envio."
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: skeptic
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Chief of Staff Weekly Pack (artefato semanal verificável): (1) Plano da Semana com top 3 prioridades e blocos de foco, (2) Meeting Briefs gerados na semana com score de qualidade, (3) Dashboard de fo…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do founder antes de qualquer envio externo (email, memo, board pack) — Memo Agent é L3 por design"
+  - level: HITL
+    condition: "Confirmação antes de criar compromissos no calendário do founder (bloqueio de foco por Atlas)"
+  - level: HITL
+    condition: "Revisão do Meeting Brief para reuniões de alto valor (deals >R$200k, board, investor) antes de ser considerado finalizado"
+  - level: HITL
+    condition: "Aprovação de escalation quando follow-up crítico está atrasado e envolve terceiros externos"
+  - level: HITL
+    condition: "Validação do Founder Clone Agent antes de qualquer resposta ser enviada em nome do founder"
+  - level: HITL
+    condition: "Configuração inicial do corpus do Sage (founder revisa e aprova quais comunicações entram no corpus de clonagem)"
+transitions:
+  - from: orion
+    to: briefing
+    condition: "Evento de calendário detectado com 24h de antecedência. Também acionado manualmente via comando '/brief @pessoa' no Slack."
+  - from: briefing
+    to: kira
+    condition: "Reunião de alto impacto (investor, board, deal >R$100k). Pergunta estratégica ad-hoc do founder. Alerta de competidor disparado por Intel Agent."
+  - from: kira
+    to: vance
+    condition: "Fim de reunião (transcrição disponível). Email com linguagem de compromisso detectada. Check-in semanal automático (sexta 17h). Founder solicita status de um follow-up específico."
+  - from: vance
+    to: sage
+    condition: "Validação de brief antes de entrega ao founder. Founder solicita rascunho de email/mensagem. Pergunta ad-hoc que exige resposta 'no meu estilo'. Decisão de baixo impacto que pode ser delegada ao clon…"
+  - from: sage
+    to: intel
+    condition: "Schedule diário (7h). Keyword hit em fonte monitorada. Menção da empresa do founder em fonte externa. Founder solicita análise de competidor específico."
+  - from: intel
+    to: atlas
+    condition: "Schedule semanal (segunda 8h e sexta 17h). Detecção de reunião fora das prioridades declaradas. OKR check-in mensal. Founder solicita revisão de prioridades."
+  - from: atlas
+    to: memo
+    condition: "30 dias antes de board meeting. Investor solicita update. Founder aciona manualmente para deal memo ou strategic update. Milestone relevante atingido (rodada, produto, expansão)."
+  - from: memo
+    to: skeptic
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: skeptic
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

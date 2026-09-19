@@ -1,0 +1,26 @@
+row: especialistas
+title: Presença no LinkedIn
+title_netflix: LINKEDIN
+subtitle: Tendências, voz autoral, posts e carrosséis
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 6 agentes, 7 tarefas, 1 fluxos
+  requer: Público, objetivo, voz e contexto do autor; fontes atuais para tendências
+  como_usar: 'Diga: "Planeje meu conteúdo semanal no LinkedIn sobre segurança e automação
+    com IA"'
+  elenco:
+  - carousel-designer
+  - ghostwriter
+  - linkedin-chief
+  - profile-analyst
+  - scriptwriter
+  - trend-scout
+  generos:
+  - LinkedIn
+  - Marca Pessoal
+  esta_skill_e:
+  - Autoral
+  - Editorial
+  - Consistente

@@ -1,0 +1,47 @@
+name: ops-cs-tier1-resolver-multicanal
+version: 0.1.0
+description: "Resolve 70% dos tickets de suporte sem toque humano — em menos de 90 segundos, em qualquer canal."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: scm
+components:
+  agents:
+    - nexus.md
+    - prism.md
+    - volta.md
+    - flux.md
+    - sage.md
+    - vox.md
+    - hermes.md
+    - pulse.md
+    - argus.md
+  tasks:
+    - consultar-status-de-pedido.md
+    - processar-troca-e-devolucao.md
+    - processar-refund-e-cobranca.md
+    - responder-perguntas-frequentes.md
+    - processar-audio-voz.md
+    - gerenciar-escalonamento.md
+    - monitorar-sinais-de-churn.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-tier1-resolver-multicanal-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - atendimento-suporte-conversacional
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O1 · TopSquad de Atendimento & Suporte Conversacional"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

@@ -1,0 +1,45 @@
+name: marketing-living-icp-profiler
+version: 0.1.0
+description: "Seu ICP nunca mais vai envelhecer: perfil vivo, versionado e alimentado por 100+ fontes para o time sempre saber para quem vender."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: lip
+components:
+  agents:
+    - maestro.md
+    - atlas.md
+    - iris.md
+    - zara.md
+    - nox.md
+    - rex.md
+    - vera.md
+    - vera-2.md
+  tasks:
+    - construir-personas-calibradas.md
+    - enriquecer-dados-lead.md
+    - monitorar-sinais-de-compra.md
+    - calibrar-icp-com-dados-de-mercado.md
+    - calcular-icp-score.md
+    - verificar-qualidade-de-dados.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-living-icp-profiler-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - inteligencia-de-mercado-icp-concorrencia
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M4 · TopSquad de Inteligência de Mercado, ICP & Concorrência"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

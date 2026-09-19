@@ -1,0 +1,188 @@
+workflow_name: vendas_followup_nurture_reativacao_pipeline
+description: "Cada lead que voce abandona e dinheiro que o concorrente embolsa — nos nao deixamos nenhum esfriar."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-followup-nurture-reativacao
+area: "Vendas"
+topsquad: "V4 · Nurture, Follow-up & Reativação"
+agent_sequence:
+  - maestro
+  - radar
+  - cronos
+  - volta
+  - sherlock
+  - atlas
+  - agenda
+  - memento
+  - vigia
+  - vigia-2
+key_commands:
+  - "*monitorar-eventos-de-reativacao"
+  - "*sequenciar-toques-lead"
+  - "*enviar-mensagem-personalizada"
+  - "*enriquecer-dados-lead"
+  - "*calcular-score-lead"
+  - "*reagendar-reunioes"
+  - "*recuperar-historico-de-interacoes"
+  - "*verificar-mensagem"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro
+success_indicators:
+  - "Taxa de reativação: % de leads frios/no-show que respondem positivamente dentro da cadência (meta: 15-25%)"
+  - "Taxa de re-agendamento pós no-show: % de no-shows que remarcam em até 48h (meta: 40-60%)"
+  - "Taxa de comparecimento em reuniões: redução de no-shows com reminders automáticos (meta: redução de 50%+ vs baseline)"
+  - "Mensagens enviadas por lead reativado: eficiência da cadência (meta: conversão antes do toque 6 em média)"
+  - "Taxa de aprovação do Vigia na primeira tentativa: qualidade de mensagens geradas pelo Volta (meta: >85% aprovadas sem retrabalho)"
+  - "Leads qualificados reativados por semana: volume de pipeline resgatado (depende do funil do cliente)"
+  - "CAC de lead reativado vs novo lead: ROI da reativação vs aquisição nova (meta: CAC de reativado < 10% do CAC novo)"
+  - "Score médio de cadência ativa: saúde do pipeline em reativação (Atlas) — meta de score médio acima de 45/100"
+  - "Task success rate por Langfuse: dev 70% / staging 85% / prod 95% em todas as execuções do squad"
+  - "Tempo médio de primeiro toque pós no-show: velocidade de reação do Agenda (meta: <10 minutos)"
+deliverable:
+  description: "Pacote de Cadências Ativas: conjunto de workflows LangGraph deployados com (1) 4 cadências codificadas (no-show, frio 30/60/90d, proposta fria, nurture longo) com todos os templates de mensagem aprovados pelo Vigia; (2) dashboard de pipeline de reativação no ClickUp com tasks verificáveis por lead e por toque; (3) relatório semanal automático com leads trabalhados, toques realizados, respostas obtidas, reuniões reagendadas e pipeline resgatado em R$; (4) mapa de calor de performance por canal x segmento x horário para otimização contínua."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar Eventos De Reativacao"
+    agent: radar
+    task: monitorar-eventos-de-reativacao.md
+    trigger: "Cron job a cada 15 minutos sobre CRM; webhooks em tempo real para no-show (cancelamento de reunião) e abertura de email; revisão diária às 7h para leads frios de 30/60/90 dias"
+    checkpoint:
+      criteria: "Evento estruturado com: lead_id, segmento_cadência, urgência (1-5), canal_preferencial, último_toque, histórico_resumido, score_atual. Publicado na fila do Maestro. Artefato verificável no ClickUp: task 'Radar-Sinal-{lead_id}-{timestamp}'…"
+      veto_condition: "Saída sem veredito do critic Vigia 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Sequenciar Toques Lead"
+    agent: cronos
+    task: sequenciar-toques-lead.md
+    trigger: "Evento publicado pelo Radar; resposta (ou ausência) de toque anterior; expiração de timer de cadência"
+    checkpoint:
+      criteria: "Instrução de próximo toque: {canal, template_id, ângulo, dados_personalização, horário_envio, fallback_se_sem_resposta}. Estado atualizado da cadência gravado no CRM. Task no ClickUp: 'Cronos-Próximo-Toque-{lead_id}' com status e prazo."
+      veto_condition: "Saída sem veredito do critic Vigia 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Enviar Mensagem Personalizada"
+    agent: volta
+    task: enviar-mensagem-personalizada.md
+    trigger: "Instrução aprovada pelo Crítico e liberada pelo Maestro; horário de envio definido pelo Cronos atingido"
+    checkpoint:
+      criteria: "Mensagem enviada com registro de: canal_utilizado, conteúdo_enviado, timestamp, status_entrega, id_da_mensagem_no_canal. Evento de retorno para Cronos atualizar estado da cadência. Artefato no ClickUp: 'Volta-Envio-{lead_id}-{canal}-{times…"
+      veto_condition: "Saída sem veredito do critic Vigia 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-5
+    name: "Enriquecer Dados Lead"
+    agent: sherlock
+    task: enriquecer-dados-lead.md
+    trigger: "Novo lead entrando em cadência de reativação; lead sem enriquecimento há mais de 30 dias; request manual do Maestro para re-enriquecimento"
+    checkpoint:
+      criteria: "Dossiê do lead em JSON: {nome, cargo_atual, empresa, segmento, tamanho, tecnologias_usadas, notícias_recentes, conexões_em_comum, trigger_de_intenção_identificado, score_de_fit}. Campos atualizados no CRM. Task no ClickUp: 'Sherlock-Dossiê…"
+      veto_condition: "Saída sem veredito do critic Vigia 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Calcular Score Lead"
+    agent: atlas
+    task: calcular-score-lead.md
+    trigger: "Qualquer evento de engajamento do lead (abertura, clique, visita); cron diário de re-scoring geral; evento de enriquecimento do Sherlock concluído"
+    checkpoint:
+      criteria: "Score atualizado (0-100) com breakdown por dimensão (fit, engajamento, intenção, urgência). Lista re-ranqueada de leads por prioridade. Alertas de 'hot signal' ou 'risco de perda' para Maestro. Campo 'lead_score' atualizado no CRM. Task no…"
+      veto_condition: "Saída sem veredito do critic Vigia 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Reagendar Reuniões"
+    agent: agenda
+    task: reagendar-reunioes.md
+    trigger: "Webhook de no-show do calendário (reunião não iniciada 10min após horário); evento de cancelamento; 24h e 1h antes de reunião confirmada (trigger de reminder)"
+    checkpoint:
+      criteria: "Mensagem de re-agendamento enviada com link de booking direto ou 3 opções de horário. Reunião re-agendada confirmada no CRM e no calendário. Série de reminders criada para o novo horário. Artefato no ClickUp: 'Agenda-NoShow-{lead_id}-{time…"
+      veto_condition: "Saída sem veredito do critic Vigia 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Recuperar Histórico de Interações"
+    agent: memento
+    task: recuperar-historico-de-interacoes.md
+    trigger: "Request de contexto antes de qualquer novo toque pelo Volta; conclusão de call (webhook do Gong/Chorus); resposta recebida do lead (para registrar e atualizar histórico)"
+    checkpoint:
+      criteria: "Resumo de contexto em texto (max 500 tokens): últimos N toques, objeções registradas, compromissos feitos, ângulos já utilizados, recomendação de ângulo não utilizado. Histórico atualizado no CRM. Deduplicação de conteúdo (flag se ângulo j…"
+      veto_condition: "Saída sem veredito do critic Vigia 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificar Mensagem"
+    agent: vigia
+    task: verificar-mensagem.md
+    trigger: "Toda mensagem gerada pelo Volta antes do envio (gate obrigatorio); re-review apos correcao do Volta (max 2 iteracoes antes de escalar para HITL)"
+    checkpoint:
+      criteria: "Veredicto: APROVADO | REPROVADO com score por dimensão (0-10) e instrução de correção se reprovado. Mensagem aprovada liberada para envio pelo Volta. Log de verificação no ClickUp: 'Vigia-Review-{mensagem_id}' com score detalhado e justifi…"
+      veto_condition: "Saída sem veredito do critic Vigia 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-10
+    name: "Verificação do critic"
+    agent: vigia-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-11
+    name: "Gates humanos e entrega"
+    agent: maestro
+    checkpoint:
+      criteria: "Entregável consolidado: Pacote de Cadências Ativas: conjunto de workflows LangGraph deployados com (1) 4 cadências codificadas (no-show, frio 30/60/90d, proposta fria, nurture longo) com todos os templates de mensagem aprov…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Envio para leads estratégicos (ticket acima de threshold definido, ex: acima de R$50k): Maestro apresenta rascunho da mensagem e histórico; humano aprova ou edita antes do envio pelo Volta"
+  - level: L3
+    condition: "Qualquer mensagem que mencione desconto, condição especial ou prazo de oferta: exige aprovação do gestor comercial antes do envio"
+  - level: L3
+    condition: "Re-agendamento de lead que já deu no-show 2x ou mais: Agenda apresenta proposta de abordagem; closer decide se vale continuar ou desqualificar"
+  - level: L3
+    condition: "Lead que responde negativamente (não tenho interesse, cancela definitivamente): Maestro notifica o closer para decisão de desqualificação ou mudança de abordagem antes de qualquer novo toque"
+  - level: HITL
+    condition: "Escalation do Vigia – Quando o Volta falha 2x na correção de uma mensagem reprovada: Vigia escala para humano com o draft e o feedback detalhado para revisão manual"
+  - level: HITL
+    condition: "Revisão semanal de cadências — Atlas gera relatório de performance; gestor aprova ajustes de parâmetros (intervalos, canais, thresholds de score) antes de serem aplicados"
+  - level: HITL
+    condition: "Opt-out recebido — Qualquer pedido de descadastro é interrompido imediatamente pelo Cronos e notificado ao responsável para confirmação de remoção do CRM"
+transitions:
+  - from: maestro
+    to: radar
+    condition: "Cron job a cada 15 minutos sobre CRM; webhooks em tempo real para no-show (cancelamento de reunião) e abertura de email; revisão diária às 7h para leads frios de 30/60/90 dias"
+  - from: radar
+    to: cronos
+    condition: "Evento publicado pelo Radar; resposta (ou ausência) de toque anterior; expiração de timer de cadência"
+  - from: cronos
+    to: volta
+    condition: "Instrução aprovada pelo Crítico e liberada pelo Maestro; horário de envio definido pelo Cronos atingido"
+  - from: volta
+    to: sherlock
+    condition: "Novo lead entrando em cadência de reativação; lead sem enriquecimento há mais de 30 dias; request manual do Maestro para re-enriquecimento"
+  - from: sherlock
+    to: atlas
+    condition: "Qualquer evento de engajamento do lead (abertura, clique, visita); cron diário de re-scoring geral; evento de enriquecimento do Sherlock concluído"
+  - from: atlas
+    to: agenda
+    condition: "Webhook de no-show do calendário (reunião não iniciada 10min após horário); evento de cancelamento; 24h e 1h antes de reunião confirmada (trigger de reminder)"
+  - from: agenda
+    to: memento
+    condition: "Request de contexto antes de qualquer novo toque pelo Volta; conclusão de call (webhook do Gong/Chorus); resposta recebida do lead (para registrar e atualizar histórico)"
+  - from: memento
+    to: vigia
+    condition: "Toda mensagem gerada pelo Volta antes do envio (gate obrigatorio); re-review apos correcao do Volta (max 2 iteracoes antes de escalar para HITL)"
+  - from: vigia
+    to: vigia-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: vigia-2
+    to: maestro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

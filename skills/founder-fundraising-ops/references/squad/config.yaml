@@ -1,0 +1,61 @@
+pack:
+  name: founder-fundraising-ops
+  version: 0.1.0
+  short-title: "Investor & Fundraising Ops"
+  description: "Do mapeamento de investidores ao data room blindado: o founder chega no roadshow com a narrativa testada contra as objeções mais duras — sem gastar meses para preparar."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🏦"
+  slashPrefix: investorFundraisingOps
+name: founder-fundraising-ops
+version: 0.1.0
+description: "Do mapeamento de investidores ao data room blindado: o founder chega no roadshow com a narrativa testada contra as objeções mais duras — sem gastar meses para preparar."
+entry_agent: orion
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: founder-office
+  topsquad: "F5"
+  prioridade: "avançado"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orion
+  - vega
+  - atlas
+  - pallas
+  - brutus
+  - hermes
+  - mnemo
+  - gate
+  - hades
+tasks:
+  - mapear-investidores-relevantes.md
+  - auditar-documentos-faltantes.md
+  - construir-narrativa-investimento.md
+  - simular-objecoes-vcs.md
+  - gerenciar-funil-investimento.md
+  - organizar-conhecimento-estrategico.md
+  - controlar-envio-externo.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - founder-fundraising-ops-pipeline.yaml
+checklists:
+  - critic-hades.md
+integrations:
+  - "Crunchbase / PitchBook dados públicos (mapeamento de portfólios de VCs e histórico de investimentos para o Vega)"
+  - "LinkedIn API / Sales Navigator (warm intro path mapping, perfis de GPs e managing partners para o Vega e Mnemo)"
+  - "EXA / Perplexity MCP (pesquisa em tempo real de atividade de investidores, teses publicadas, notícias de mercado)"
+  - "Gmail / Outlook MCP (histórico de comunicações com investidores para o Mnemo, envio controlado via Gate)"
+  - "Google Drive / Notion (repositório do data room, versionamento de documentos pelo Atlas)"
+  - "Dealroom / Captable.io / Carta (cap table atualizado, documentos de rodadas anteriores para o Atlas)"
+  - "Stripe / QuickBooks / Conta Azul (dados financeiros reais para o financial model e métricas do Atlas)"
+  - "HubSpot / Salesforce CRM (cohort de clientes, churn, expansão, CAC — métricas de tração para Atlas e Brutus)"
+  - "Mixpanel / Amplitude / PostHog (métricas de produto, DAU/MAU, NPS, engagement para o data room)"
+  - "ClickUp (Roadshow Tracker — pipeline de captação, tasks, follow-ups, audit trail de toda a operação)"
+  - "Sembly / Fireflies / Otter.ai (transcrições automáticas de meetings com investidores para o Mnemo)"
+  - "Langfuse (observabilidade OTEL — tracing de tokens, custo por agente, task success rate por pipeline)"
+  - "Vector DB — Pinecone / Qdrant (Knowledge Graph do Mnemo, corpus de Intelligence Briefs do Vega, histórico de narrativas)"
+  - "Slack (interface conversacional do founder com o Orion — recebe alertas, approva mensagens, consulta status do roadshow)"
+  - "DocSend / Docsend-compatible viewer (rastreamento de visualização do data room — quem abriu, quanto tempo em cada seção)"

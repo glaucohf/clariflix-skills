@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<!-- ============================================================================
+  TEMPLATE DE PROPOSTA COMERCIAL — deck HTML self-contained, proporção 2:1
+  ============================================================================
+  Estilo: neo-suíço tipográfico (referência Proposta_XFlow) — flat, preto/branco/
+  cinza, espaço em branco radical, divisórias de uma palavra com ponto final.
+
+  COMO USAR ESTE ARQUIVO
+  1. Cada página é uma <section class="page" data-layout="...">. Duplique,
+     remova ou reordene sections conforme a proposta (o rodapé vai junto).
+  2. Re-branding: edite APENAS os tokens no :root (bloco "TOKENS DE MARCA").
+     A cor da marca do usuário substitui os ACENTOS (verde/azul/laranja);
+     os fundos preto/branco/cinza são o design — evite trocá-los.
+  3. Logo: substitua o conteúdo do <symbol id="marca-octogono"> pelo SVG da
+     marca do usuário (instruções no próprio symbol, logo abaixo).
+  4. Visualizar: abra direto no navegador (duplo clique). O deck se ajusta
+     à largura da janela e rola verticalmente entre páginas.
+  5. Exportar PDF: scripts/html2pdf.py, ou manualmente Ctrl+P -> Salvar como
+     PDF -> margens: Nenhuma -> ativar "Gráficos de fundo". Cada section vira
+     exatamente uma página (338.67mm x 169.33mm).
+  Zero dependências obrigatórias: a fonte Inter vem do Google Fonts, mas se
+  não houver internet o deck cai graciosamente para Helvetica/Arial.
+============================================================================= -->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposta Comercial — Café Aurora | Studio Vetor</title>
+<style>
+/* Fonte Inter (Google Fonts). Se offline, o @import falha silenciosamente e o
+   stack cai para 'Helvetica Neue'/Helvetica/Arial — o layout não quebra. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ================= TOKENS DE MARCA (edite aqui o re-branding) =================
+     FUNDOS DE PÁGINA — a base "suíça" do deck. O ritmo claro/escuro/cinza É o
+     design system: em regra, não recebem a cor da marca. */
+  --pagina-branca:    #ffffff;  /* capa, cronograma, investimento, fechamento */
+  --pagina-cinza:     #f8f8f8;  /* página de contexto — variação sutil do branco */
+  --pagina-preta:     #000000;  /* bloco escuro: entregáveis e produtos */
+  --pagina-cinza-med: #b8b8b8;  /* divisória "soft" e página de opcional (título branco sobre ele) */
+
+  /* CARDS SOBRE FUNDO ESCURO */
+  --card-escuro: #161616;                 /* fundo dos cards de toggle do sumário */
+  --card-borda:  rgba(255,255,255,0.08);  /* borda 1px sutil de todos os cards escuros */
+
+  /* TEXTO */
+  --texto-escuro:   #000000;  /* texto primário em páginas claras */
+  --texto-claro:    #ffffff;  /* texto primário em páginas escuras */
+  --texto-muted:    #a5a5a5;  /* parágrafos secundários e bullets — o cinza da casa.
+                                 Padrão de ênfase: parágrafo muted + <strong> na cor primária. */
+  --texto-fantasma: #ececec;  /* elementos decorativos gigantes (ano da capa, logo do fechamento) */
+
+  /* ACENTOS — é AQUI que entra a cor da marca do usuário:
+     - troque o par verde-toggle/verde-icone-bg pela cor primária da marca
+       (tom vivo + tom bem escuro da mesma cor);
+     - troque badge-bg/badge-texto por um par pastel/vivo da marca;
+     - acento-quente é o acento secundário (rótulo "Opcional )" no investimento). */
+  --verde-toggle:   #2fd157;  /* toggle iOS ligado + ícone de check = "está incluído" */
+  --verde-icone-bg: #132315;  /* fundo do quadrado atrás do ícone de check */
+  --badge-bg:       #e4e6ff;  /* fundo do pill "Sprint NN" no cronograma */
+  --badge-texto:    #0079ff;  /* texto do pill "Sprint NN" */
+  --acento-quente:  #ff8770;  /* rótulo "Opcional )" na página de investimento */
+
+  /* ESTRUTURA */
+  --linha-clara: #d9d9d9;     /* linha do cronograma, tracejados e divisores em páginas claras */
+  --fonte: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --margem-x: 64px;           /* margem lateral (~5% de 1280px) */
+  --zoom: 1;                  /* escala de visualização em tela (recalculada via JS) */
+}
+
+/* ============================== BASE ============================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+body {
+  font-family: var(--fonte);
+  background: #e7e7e7;               /* moldura cinza atrás das páginas (só em tela) */
+  -webkit-font-smoothing: antialiased;
+}
+.deck { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 28px 0; }
+
+/* Página base: 1280x640 (2:1). Em tela, `zoom` ajusta ao viewport; na
+   impressão, o zoom é resetado e a section ocupa exatamente uma folha. */
+.page {
+  width: 1280px;
+  height: 640px;
+  position: relative;
+  overflow: hidden;
+  flex: none;
+  zoom: var(--zoom);
+  box-shadow: 0 2px 22px rgba(0,0,0,0.14);
+}
+
+/* Fundos + variáveis contextuais (cor de texto, rodapé e logo por tema) */
+.pg-branca    { background: var(--pagina-branca);    color: var(--texto-escuro); --rodape-cor: #b0b0b0; --logo-cor: #d4d4d4; }
+.pg-cinza     { background: var(--pagina-cinza);     color: var(--texto-escuro); --rodape-cor: #b0b0b0; --logo-cor: #d4d4d4; }
+.pg-preta     { background: var(--pagina-preta);     color: var(--texto-claro); --rodape-cor: #3a3a3a; --logo-cor: rgba(255,255,255,0.35); }
+.pg-cinza-med { background: var(--pagina-cinza-med); color: var(--texto-claro); --rodape-cor: rgba(255,255,255,0.45); --logo-cor: rgba(255,255,255,0.6); }
+
+/* ============================== RODAPÉ PADRÃO ==============================
+   4 colunas fixas em TODAS as páginas exceto o fechamento:
+   documento | quem assina | © | ano  — sempre low-contrast. */
+.rodape {
+  position: absolute;
+  left: var(--margem-x); right: var(--margem-x); bottom: 26px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  font-size: 13px; font-weight: 500; color: var(--rodape-cor);
+}
+.rodape span:nth-child(2) { text-align: center; }
+.rodape span:nth-child(3) { text-align: center; }
+.rodape span:nth-child(4) { text-align: right; }
+
+/* ============================== LOGO (slot) ==============================
+   .logo-marca fica no topo-direito das páginas de conteúdo.
+   Ele referencia o <symbol id="marca-octogono"> definido no <body>. */
+.logo-marca {
+  position: absolute; top: 42px; right: var(--margem-x);
+  width: 46px; height: 46px; color: var(--logo-cor);
+}
+
+/* ============================== TÍTULOS ============================== */
+/* Título de divisória: gigante, uma palavra, SEMPRE com ponto final. */
+.divisoria-titulo {
+  position: absolute; left: var(--margem-x); top: 22px;
+  font-size: 112px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12;
+}
+/* Título de página de conteúdo */
+.titulo-pagina {
+  position: absolute; left: var(--margem-x); top: 34px;
+  font-size: 62px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.08;
+}
+
+/* ============================== CAPA ============================== */
+.capa-linha {
+  position: absolute; left: var(--margem-x); right: var(--margem-x);
+  top: 50%; transform: translateY(-50%);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.capa-nome { font-size: 86px; font-weight: 700; letter-spacing: -0.03em; }
+.capa-nome sup { font-size: 0.3em; vertical-align: super; font-weight: 700; }
+.capa-copy { font-size: 34px; font-weight: 600; color: var(--texto-fantasma); }
+.capa-ano  { font-size: 86px; font-weight: 700; letter-spacing: -0.02em; color: var(--texto-fantasma); } /* mesmo tamanho do nome (regra do design-system) */
+
+/* ============================== CONTEXTO ============================== */
+/* Parágrafo isolado no quadrante inferior-direito — o resto da página fica
+   intencionalmente vazio (espaço em branco radical). */
+.contexto-texto {
+  position: absolute; right: var(--margem-x); bottom: 128px; width: 424px;
+  font-size: 19.5px; line-height: 1.55; color: var(--texto-muted);
+}
+.contexto-texto p + p { margin-top: 26px; }
+.contexto-texto strong { color: var(--texto-escuro); font-weight: 700; }
+
+/* ============================== SUMÁRIO (toggles) ============================== */
+.sumario-texto {
+  position: absolute; left: 640px; width: 420px; top: 40px;
+  font-size: 17.5px; line-height: 1.6; color: var(--texto-muted);
+}
+.sumario-texto strong { color: var(--texto-claro); font-weight: 700; }
+.cards-toggle {
+  position: absolute; left: var(--margem-x); right: var(--margem-x); bottom: 132px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px;
+}
+.card-toggle {
+  height: 62px; background: var(--card-escuro);
+  border: 1px solid var(--card-borda); border-radius: 14px;
+  display: flex; align-items: center; gap: 18px; padding: 0 26px;
+  font-size: 19px; font-weight: 700; color: var(--texto-claro);
+}
+/* Toggle iOS: sempre LIGADO, sempre na cor de acento — significa "incluído
+   na proposta". O upsell opcional NÃO entra no sumário (ele aparece apenas
+   na página de opcional e na linha de opcional do investimento). */
+.toggle { flex: none; width: 40px; height: 24px; border-radius: 999px; background: var(--verde-toggle); position: relative; }
+.toggle::after {
+  content: ""; position: absolute; top: 2.5px; right: 2.5px;
+  width: 19px; height: 19px; border-radius: 50%; background: #ffffff;
+}
+
+/* ============================== PRODUTO (grid 4x2 de features) ============================== */
+.grid-features {
+  position: absolute; left: var(--margem-x); right: var(--margem-x); top: 176px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px 24px;
+  grid-auto-rows: 156px;
+}
+.card-feature {
+  border: 1px solid var(--card-borda); border-radius: 12px;
+  background: rgba(255,255,255,0.015);
+  padding: 18px; display: flex; flex-direction: column; justify-content: space-between;
+}
+.card-feature p { font-size: 16.5px; font-weight: 600; line-height: 1.42; color: #f2f2f2; }
+.icone-check {
+  width: 32px; height: 32px; border-radius: 8px; flex: none;
+  background: var(--verde-icone-bg); color: var(--verde-toggle);
+  display: flex; align-items: center; justify-content: center;
+}
+.icone-check svg { width: 18px; height: 18px; }
+
+/* ============================== OPCIONAL (2 colunas + mini-cards) ============================== */
+.opcional-grade {
+  position: absolute; left: var(--margem-x); right: var(--margem-x); top: 52px; bottom: 72px;
+  display: grid; grid-template-columns: 1fr 0.82fr 0.78fr; column-gap: 42px;
+}
+.opcional-titulo h2 { font-size: 56px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; }
+.opcional-titulo .rotulo { display: block; margin-top: 18px; font-size: 21px; font-weight: 500; color: rgba(255,255,255,0.55); }
+.opcional-col { border-left: 1px solid rgba(255,255,255,0.38); padding-left: 42px; padding-top: 62px; }
+.opcional-col h3 { font-size: 22px; font-weight: 700; line-height: 1.3; margin-bottom: 16px; }
+.opcional-col p  { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.82); }
+.opcional-col hr { border: 0; border-top: 1px solid rgba(255,255,255,0.38); margin: 34px 0; }
+.mini-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
+.mini-card {
+  border: 1px solid rgba(255,255,255,0.5); border-radius: 12px;
+  padding: 12px 16px; display: flex; align-items: center; gap: 14px;
+}
+.mini-card .icone {
+  width: 30px; height: 30px; border-radius: 8px; flex: none;
+  background: rgba(255,255,255,0.22); color: #ffffff;
+  display: flex; align-items: center; justify-content: center;
+}
+.mini-card .icone svg { width: 17px; height: 17px; }
+.mini-card p { font-size: 15.5px; font-weight: 600; line-height: 1.35; }
+
+/* ============================== CRONOGRAMA (timeline) ============================== */
+/* Linha horizontal no centro vertical, dots nas colunas, conteúdo alternando
+   acima/abaixo. Para 4 sprints por página, mude repeat(3,1fr) para repeat(4,1fr)
+   e acrescente um dot em left:75% (com colunas em 0/25/50/75%). */
+.cronograma-area {
+  position: absolute; left: var(--margem-x); right: var(--margem-x); top: 140px; bottom: 60px;
+  display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr;
+}
+.cronograma-area--cheia { top: 60px; }  /* variante para a 2ª página, sem título */
+.cronograma-area::before {              /* linha sólida */
+  content: ""; position: absolute; left: 0; right: -40px; top: 50%;
+  height: 2px; margin-top: -1px; background: var(--linha-clara);
+}
+.cronograma-area::after {               /* trecho tracejado que "entra" pela esquerda */
+  content: ""; position: absolute; left: calc(-1 * var(--margem-x)); width: var(--margem-x);
+  top: 50%; margin-top: -1px; border-top: 2px dashed var(--linha-clara);
+}
+.ponto {
+  position: absolute; top: 50%; width: 11px; height: 11px; border-radius: 50%;
+  background: #c9c9c9; transform: translate(-50%, -50%); z-index: 1;
+}
+.sprint { padding-right: 40px; }
+.sprint--acima  { grid-row: 1; align-self: end;   padding-bottom: 26px; }
+.sprint--abaixo { grid-row: 2; align-self: start; padding-top: 26px; }
+.sprint h4 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 12px 0 10px; }
+.lista-sprint { list-style: none; }
+.lista-sprint li {
+  position: relative; padding-left: 24px; margin-bottom: 7px;
+  font-size: 15px; line-height: 1.4; color: #8d8d8d;
+}
+/* Bullet "asterisco circulado" desenhado em SVG embutido (independe de fonte) */
+.lista-sprint li::before {
+  content: ""; position: absolute; left: 0; top: 3px; width: 15px; height: 15px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23a5a5a5' stroke-width='1.2'%3E%3Ccircle cx='8' cy='8' r='6.4'/%3E%3Cpath d='M8 4.6v6.8M5.1 6.3l5.8 3.4M10.9 6.3l-5.8 3.4'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+/* Badge pill do sprint */
+.badge-sprint {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--badge-bg); color: var(--badge-texto);
+  font-size: 16px; font-weight: 700; padding: 7px 16px; border-radius: 999px;
+}
+.badge-sep { width: 18px; height: 8px; stroke: currentColor; fill: none; stroke-width: 1.6; opacity: 0.55; flex: none; }
+.badge-dias { opacity: 0.62; font-weight: 600; }
+
+/* ============================== PRAZO (fundo dramático) ============================== */
+/* Fundo escuro em CSS puro (gradientes) no lugar da foto, para o template não
+   depender de arquivo externo.
+   PARA USAR UMA FOTO REAL: substitua o background da regra abaixo por
+     background: linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)),
+                 url('data:image/jpeg;base64,SUA_IMAGEM_AQUI') center / cover no-repeat;
+   Mantenha o overlay escuro em >= 80% de opacidade e prefira foto P&B
+   (equipe trabalhando) — a foto é clima, não protagonista.
+   Para gerar o base64 no Windows:
+     python -c "import base64; print(base64.b64encode(open('foto.jpg','rb').read()).decode())" */
+.page[data-layout="prazo-foto"] {
+  background:
+    radial-gradient(900px 500px at 78% 10%, rgba(255,255,255,0.055), transparent 60%),
+    radial-gradient(700px 420px at 10% 88%, rgba(255,255,255,0.04), transparent 55%),
+    repeating-linear-gradient(115deg, rgba(255,255,255,0.016) 0 2px, transparent 2px 96px),
+    linear-gradient(150deg, #141414, #060606 55%, #101010);
+}
+.prazo-texto {
+  position: absolute; left: 640px; width: 430px; bottom: 128px;
+  font-size: 19.5px; line-height: 1.55; color: var(--texto-muted);
+}
+.prazo-texto p + p { margin-top: 26px; }
+.prazo-texto strong { color: var(--texto-claro); font-weight: 700; }
+
+/* ============================== INVESTIMENTO (tabela) ============================== */
+.invest-texto { position: absolute; left: var(--margem-x); width: 490px; bottom: 128px; }
+.invest-lead { font-size: 25px; line-height: 1.42; color: var(--texto-muted); font-weight: 500; }
+.invest-lead strong { color: var(--texto-escuro); font-weight: 700; }
+.invest-corpo { margin-top: 22px; font-size: 16.5px; line-height: 1.6; color: var(--texto-muted); }
+.invest-corpo strong { color: #111111; font-weight: 600; }
+.invest-opcional { margin-top: 30px; font-size: 16px; line-height: 1.6; color: var(--texto-muted); }
+.rotulo-opcional { color: var(--acento-quente); font-weight: 600; }
+/* Tabela: itens separados por linhas tracejadas; total com linha sólida acima. */
+.tabela-investimento { position: absolute; left: 640px; right: var(--margem-x); bottom: 118px; }
+.linha {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 21px 0; font-size: 21px; font-weight: 700; color: var(--texto-escuro);
+}
+.linha + .linha { border-top: 1px dashed #cccccc; }
+.linha--total { border-top: 2px solid #161616 !important; font-size: 22px; }
+
+/* ============================== FECHAMENTO ============================== */
+.logo-fechamento {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 96px; height: 96px; color: var(--texto-fantasma);
+}
+
+/* ============================== IMPRESSÃO ==============================
+   Cada section = exatamente uma folha 2:1, sem margens nem vazamento. */
+@page { size: 338.67mm 169.33mm; margin: 0; }
+@media print {
+  body { background: #ffffff; }
+  .deck { display: block; padding: 0; gap: 0; }
+  .page {
+    zoom: 1 !important;
+    width: 1280px;
+    height: 169.33mm;        /* levemente < 640px: garante que nada vaze para a folha seguinte */
+    margin: 0 !important;
+    box-shadow: none;
+    page-break-after: always; break-after: page;
+    break-inside: avoid;
+  }
+  .page:last-of-type { page-break-after: auto; break-after: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================================
+  BIBLIOTECA DE ÍCONES (SVG inline, reutilizados via <use>)
+  LOGO: substitua o CONTEÚDO do <symbol id="marca-octogono"> pelo SVG do logo
+  do usuário. Dicas:
+   - mantenha o viewBox quadrado (ex.: 0 0 48 48) e traços com stroke="currentColor"
+     (assim o logo herda a cor certa em páginas claras E escuras);
+   - se o logo for um arquivo (PNG/JPG), troque os <svg class="logo-marca">...</svg>
+     das páginas por <img class="logo-marca" src="data:image/png;base64,...">
+     e prefira uma versão monocromática;
+   - sem logo? Troque o symbol por um monograma: <text x="24" y="32"
+     text-anchor="middle" font-size="28" font-weight="700" fill="currentColor">SV</text>
+============================================================================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Placeholder: octógono line-art com cubo (estilo marca XFlow) -->
+    <symbol id="marca-octogono" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M14 4h20l10 10v20L34 44H14L4 34V14Z"/>
+      <path d="M24 14.5l8.5 4.9v9.2L24 33.5l-8.5-4.9v-9.2Z"/>
+      <path d="M15.5 19.4l8.5 4.9 8.5-4.9"/>
+      <path d="M24 24.3v9.2"/>
+    </symbol>
+    <!-- Check circular usado nos cards de feature -->
+    <symbol id="icone-check-circulo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M8.4 12.3l2.4 2.4 4.8-5.3"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main class="deck">
+
+<!-- ===== PÁGINA 1: CAPA (layout: capa) ===== -->
+<!-- Nome do CLIENTE da proposta gigante à esquerda; © e ano em cinza-fantasma.
+     No rodapé, quem assina é o usuário da skill (quem vende). -->
+<section class="page pg-branca" data-layout="capa">
+  <div class="capa-linha">
+    <h1 class="capa-nome">Café Aurora<sup>&reg;</sup></h1>
+    <span class="capa-copy">&copy;</span>
+    <span class="capa-ano">2026</span>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 2: CONTEXTO (layout: contexto) ===== -->
+<!-- Página quase vazia de propósito: um único parágrafo no quadrante
+     inferior-direito. Ênfase seletiva: cinza muted + <strong> escuro. -->
+<section class="page pg-cinza" data-layout="contexto">
+  <svg class="logo-marca" aria-hidden="true"><use href="#marca-octogono"/></svg>
+  <div class="contexto-texto">
+    <p>O Studio Vetor &mdash; consultoria especializada em automa&ccedil;&atilde;o comercial &mdash; desenha sistemas que trabalham enquanto a sua equipe cuida do que importa: o cliente.</p>
+    <p>Nesta proposta, <strong>apresentamos um plano completo de automa&ccedil;&atilde;o para a rede Caf&eacute; Aurora,</strong> conectando pedidos, fidelidade e gest&atilde;o das unidades em uma &uacute;nica opera&ccedil;&atilde;o digital.</p>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 3: DIVISÓRIA ENTREGÁVEIS (layout: divisoria, variante dark) ===== -->
+<!-- Divisória dramática: só a palavra gigante com ponto final. -->
+<section class="page pg-preta" data-layout="divisoria" data-variante="dark">
+  <h2 class="divisoria-titulo">Entreg&aacute;veis.</h2>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 4: SUMÁRIO DE ENTREGÁVEIS (layout: sumario-toggles) ===== -->
+<!-- Toggle sempre ligado = incluído na proposta. Upsells opcionais NÃO entram
+     aqui (aparecem só na página de opcional e no investimento).
+     Grade 2x2; com mais produtos, os cards quebram em novas linhas. -->
+<section class="page pg-preta" data-layout="sumario-toggles">
+  <h2 class="titulo-pagina">Entreg&aacute;veis</h2>
+  <svg class="logo-marca" aria-hidden="true"><use href="#marca-octogono"/></svg>
+  <div class="sumario-texto">
+    <p>Automatize a opera&ccedil;&atilde;o da Caf&eacute; Aurora com um ecossistema que conecta atendimento, fideliza&ccedil;&atilde;o e gest&atilde;o. <strong>Tr&ecirc;s projetos integrados que reduzem filas, aumentam a recorr&ecirc;ncia e d&atilde;o visibilidade total</strong> sobre as 12 unidades da rede.</p>
+  </div>
+  <div class="cards-toggle">
+    <div class="card-toggle"><span class="toggle" aria-hidden="true"></span>Agente de Pedidos</div>
+    <div class="card-toggle"><span class="toggle" aria-hidden="true"></span>Fidelidade Digital</div>
+    <div class="card-toggle"><span class="toggle" aria-hidden="true"></span>Central de Gest&atilde;o</div>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 5: PRODUTO — AGENTE DE PEDIDOS (layout: produto-features-grid) ===== -->
+<!-- Uma página por produto: título + grid 4x2 com 8 features (frases curtas,
+     ~2 linhas cada). Para mais produtos, duplique esta section inteira. -->
+<section class="page pg-preta" data-layout="produto-features-grid">
+  <h2 class="titulo-pagina">Agente de Pedidos</h2>
+  <svg class="logo-marca" aria-hidden="true"><use href="#marca-octogono"/></svg>
+  <div class="grid-features">
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Atendimento 24/7 no WhatsApp com card&aacute;pio interativo</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Pedidos registrados direto no caixa, integrados ao PDV</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Sugest&atilde;o de combos com base no hist&oacute;rico de consumo</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Confirma&ccedil;&atilde;o autom&aacute;tica de retirada e delivery</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Fila priorizada nos hor&aacute;rios de pico</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Status do pedido em tempo real para o cliente</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Transi&ccedil;&atilde;o suave para atendente humano quando necess&aacute;rio</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Relat&oacute;rio di&aacute;rio de pedidos por unidade</p></div>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 6: PRODUTO — FIDELIDADE DIGITAL (layout: produto-features-grid) ===== -->
+<section class="page pg-preta" data-layout="produto-features-grid">
+  <h2 class="titulo-pagina">Fidelidade Digital</h2>
+  <svg class="logo-marca" aria-hidden="true"><use href="#marca-octogono"/></svg>
+  <div class="grid-features">
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Cart&atilde;o fidelidade digital, sem app e sem senha</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Ac&uacute;mulo autom&aacute;tico de pontos a cada compra</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Resgate de recompensas em qualquer unidade</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Campanhas de reativa&ccedil;&atilde;o para clientes inativos</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Cupons personalizados por perfil de consumo</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Oferta autom&aacute;tica para aniversariantes do m&ecirc;s</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Painel de ades&atilde;o e resgates por unidade</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Integra&ccedil;&atilde;o com o caixa das 12 lojas</p></div>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 7: PRODUTO — CENTRAL DE GESTÃO (layout: produto-features-grid) ===== -->
+<section class="page pg-preta" data-layout="produto-features-grid">
+  <h2 class="titulo-pagina">Central de Gest&atilde;o</h2>
+  <svg class="logo-marca" aria-hidden="true"><use href="#marca-octogono"/></svg>
+  <div class="grid-features">
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Painel &uacute;nico com as vendas das 12 unidades em tempo real</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Alertas de ruptura de estoque por insumo</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Reposi&ccedil;&atilde;o autom&aacute;tica junto aos fornecedores</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Consolida&ccedil;&atilde;o di&aacute;ria de caixa por loja</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Ranking de produtos mais vendidos por unidade</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Controle padronizado de perdas e desperd&iacute;cio</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Exporta&ccedil;&atilde;o cont&aacute;bil em um clique</p></div>
+    <div class="card-feature"><span class="icone-check"><svg><use href="#icone-check-circulo"/></svg></span><p>Acessos por perfil: matriz, gerente e franqueado</p></div>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 8: OPCIONAL — CONSULTORIA DE DADOS (layout: opcional-2col) ===== -->
+<!-- Página de upsell em cinza médio: título + rótulo "(Opcional)", duas colunas
+     de texto e coluna de mini-cards com ícones. -->
+<section class="page pg-cinza-med" data-layout="opcional-2col">
+  <svg class="logo-marca" aria-hidden="true"><use href="#marca-octogono"/></svg>
+  <div class="opcional-grade">
+    <div class="opcional-titulo">
+      <h2>Consultoria<br>de Dados</h2>
+      <span class="rotulo">(Opcional)</span>
+    </div>
+    <div class="opcional-col">
+      <h3>Leitura Mensal<br>dos Indicadores</h3>
+      <p>An&aacute;lise recorrente dos dados gerados pelos tr&ecirc;s sistemas, transformando n&uacute;meros de vendas, fidelidade e opera&ccedil;&atilde;o em decis&otilde;es pr&aacute;ticas para a rede.</p>
+      <hr>
+      <h3>Evolu&ccedil;&atilde;o Cont&iacute;nua<br>das Automa&ccedil;&otilde;es</h3>
+      <p>Ajustes mensais nos fluxos de atendimento e nas regras do programa de pontos, considerando sazonalidade, campanhas e o comportamento real dos clientes.</p>
+    </div>
+    <div class="opcional-col">
+      <h3>An&aacute;lise Avan&ccedil;ada<br>&amp; Relat&oacute;rios Mensais</h3>
+      <div class="mini-cards">
+        <div class="mini-card">
+          <span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 20v-8M12 20V5M19 20v-5"/></svg></span>
+          <p>M&eacute;tricas de vendas por unidade e por canal</p>
+        </div>
+        <div class="mini-card">
+          <span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5V12l6 5.5"/></svg></span>
+          <p>An&aacute;lise do comportamento de consumo</p>
+        </div>
+        <div class="mini-card">
+          <span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.4"/><circle cx="18.5" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M7.4 7.4l3.2 8M16.6 7.4l-3.2 8M7.9 6h8.2"/></svg></span>
+          <p>Segmenta&ccedil;&atilde;o dos clientes do fidelidade</p>
+        </div>
+        <div class="mini-card">
+          <span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c1.2-3.8 3.6-5.6 7-5.6s5.8 1.8 7 5.6"/></svg></span>
+          <p>Mapa de hor&aacute;rios de pico por loja</p>
+        </div>
+        <div class="mini-card">
+          <span class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v4h-4"/></svg></span>
+          <p>Recomenda&ccedil;&otilde;es de card&aacute;pio e campanhas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 9: DIVISÓRIA CRONOGRAMA (layout: divisoria, variante light) ===== -->
+<section class="page pg-branca" data-layout="divisoria" data-variante="light">
+  <h2 class="divisoria-titulo">Cronograma.</h2>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 10: CRONOGRAMA PARTE 1 (layout: cronograma-timeline) ===== -->
+<!-- Sprints 01-03. Ímpares abaixo da linha, pares acima (alternância contínua).
+     LIMITES para caber na metade da página: máximo de 4 bullets por sprint e
+     frases de UMA linha (até ~38 caracteres cada). -->
+<section class="page pg-branca" data-layout="cronograma-timeline">
+  <h2 class="titulo-pagina">Cronograma.</h2>
+  <svg class="logo-marca" aria-hidden="true"><use href="#marca-octogono"/></svg>
+  <div class="cronograma-area">
+    <i class="ponto" style="left:0%"></i>
+    <i class="ponto" style="left:33.333%"></i>
+    <i class="ponto" style="left:66.667%"></i>
+    <article class="sprint sprint--abaixo" style="grid-column:1">
+      <span class="badge-sprint">Sprint 01
+        <svg class="badge-sep" viewBox="0 0 18 8" aria-hidden="true"><line x1="1" y1="4" x2="11" y2="4"/><circle cx="14.5" cy="4" r="2.4"/></svg>
+        <span class="badge-dias">1-10 Dias</span>
+      </span>
+      <h4>Imers&atilde;o e Mapeamento</h4>
+      <ul class="lista-sprint">
+        <li>Visita e mapeamento das unidades-piloto</li>
+        <li>Levantamento de card&aacute;pio e combos</li>
+        <li>Acessos a PDV, estoque e fornecedores</li>
+        <li>Metas e indicadores por unidade</li>
+      </ul>
+    </article>
+    <article class="sprint sprint--acima" style="grid-column:2">
+      <span class="badge-sprint">Sprint 02
+        <svg class="badge-sep" viewBox="0 0 18 8" aria-hidden="true"><line x1="1" y1="4" x2="11" y2="4"/><circle cx="14.5" cy="4" r="2.4"/></svg>
+        <span class="badge-dias">11-20 Dias</span>
+      </span>
+      <h4>Agente de Pedidos</h4>
+      <ul class="lista-sprint">
+        <li>Fluxo de pedidos no WhatsApp</li>
+        <li>Card&aacute;pio interativo e combos</li>
+        <li>Integra&ccedil;&atilde;o com o PDV das lojas-piloto</li>
+        <li>Regras de delivery e hor&aacute;rios de pico</li>
+      </ul>
+    </article>
+    <article class="sprint sprint--abaixo" style="grid-column:3">
+      <span class="badge-sprint">Sprint 03
+        <svg class="badge-sep" viewBox="0 0 18 8" aria-hidden="true"><line x1="1" y1="4" x2="11" y2="4"/><circle cx="14.5" cy="4" r="2.4"/></svg>
+        <span class="badge-dias">21-30 Dias</span>
+      </span>
+      <h4>Fidelidade Digital</h4>
+      <ul class="lista-sprint">
+        <li>Estrutura&ccedil;&atilde;o do programa de pontos</li>
+        <li>Regras de ac&uacute;mulo, resgate e expira&ccedil;&atilde;o</li>
+        <li>Campanhas de reativa&ccedil;&atilde;o e anivers&aacute;rio</li>
+        <li>Integra&ccedil;&atilde;o com o caixa das lojas</li>
+      </ul>
+    </article>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 11: CRONOGRAMA PARTE 2 (layout: cronograma-timeline) ===== -->
+<!-- Continuação sem título repetido (.cronograma-area--cheia ocupa a página). -->
+<section class="page pg-branca" data-layout="cronograma-timeline">
+  <svg class="logo-marca" aria-hidden="true"><use href="#marca-octogono"/></svg>
+  <div class="cronograma-area cronograma-area--cheia">
+    <i class="ponto" style="left:0%"></i>
+    <i class="ponto" style="left:33.333%"></i>
+    <i class="ponto" style="left:66.667%"></i>
+    <article class="sprint sprint--acima" style="grid-column:1">
+      <span class="badge-sprint">Sprint 04
+        <svg class="badge-sep" viewBox="0 0 18 8" aria-hidden="true"><line x1="1" y1="4" x2="11" y2="4"/><circle cx="14.5" cy="4" r="2.4"/></svg>
+        <span class="badge-dias">31-40 Dias</span>
+      </span>
+      <h4>Central de Gest&atilde;o</h4>
+      <ul class="lista-sprint">
+        <li>Painel de vendas em tempo real</li>
+        <li>Alertas de estoque e reposi&ccedil;&atilde;o autom&aacute;tica</li>
+        <li>Consolida&ccedil;&atilde;o de caixa e exporta&ccedil;&atilde;o cont&aacute;bil</li>
+      </ul>
+    </article>
+    <article class="sprint sprint--abaixo" style="grid-column:2">
+      <span class="badge-sprint">Sprint 05
+        <svg class="badge-sep" viewBox="0 0 18 8" aria-hidden="true"><line x1="1" y1="4" x2="11" y2="4"/><circle cx="14.5" cy="4" r="2.4"/></svg>
+        <span class="badge-dias">41-50 Dias</span>
+      </span>
+      <h4>Testes Assistidos</h4>
+      <ul class="lista-sprint">
+        <li>Piloto assistido em 3 unidades</li>
+        <li>Ajustes finos com feedback das equipes</li>
+        <li>Treinamento de gerentes e atendentes</li>
+      </ul>
+    </article>
+    <article class="sprint sprint--acima" style="grid-column:3">
+      <span class="badge-sprint">Sprint 06
+        <svg class="badge-sep" viewBox="0 0 18 8" aria-hidden="true"><line x1="1" y1="4" x2="11" y2="4"/><circle cx="14.5" cy="4" r="2.4"/></svg>
+        <span class="badge-dias">51-60 Dias</span>
+      </span>
+      <h4>Implanta&ccedil;&atilde;o na Rede</h4>
+      <ul class="lista-sprint">
+        <li>Ativa&ccedil;&atilde;o nas 12 unidades</li>
+        <li>Acompanhamento em hor&aacute;rio de pico</li>
+        <li>Documenta&ccedil;&atilde;o e passagem de bast&atilde;o</li>
+      </ul>
+    </article>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 12: O PRAZO (layout: prazo-foto) ===== -->
+<!-- Fundo escuro dramático em CSS puro (veja o comentário na regra
+     .page[data-layout="prazo-foto"] no CSS para trocar por foto em base64). -->
+<section class="page" data-layout="prazo-foto" style="color:#ffffff; --rodape-cor:#3a3a3a; --logo-cor:rgba(255,255,255,0.35);">
+  <h2 class="titulo-pagina">O Prazo</h2>
+  <svg class="logo-marca" aria-hidden="true"><use href="#marca-octogono"/></svg>
+  <div class="prazo-texto">
+    <p>Para garantir a m&aacute;xima qualidade na implanta&ccedil;&atilde;o, solicitamos um <strong>prazo total de 60 dias.</strong> As etapas descritas no Cronograma ser&atilde;o organizadas internamente da forma mais eficiente poss&iacute;vel.</p>
+    <p>Obs.: H&aacute; uma <strong>grande possibilidade</strong> de que a entrega final <strong>seja conclu&iacute;da antes do prazo</strong> estipulado.</p>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 13: DIVISÓRIA INVESTIMENTO (layout: divisoria, variante gray) ===== -->
+<section class="page pg-cinza-med" data-layout="divisoria" data-variante="gray">
+  <h2 class="divisoria-titulo">Investimento.</h2>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 14: INVESTIMENTO (layout: investimento-tabela) ===== -->
+<!-- Esquerda: valor total por extenso + condição + opcional mensal (laranja).
+     Direita: tabela com linhas tracejadas e total com linha sólida.
+     REGRA DE OURO: preços e condições vêm SEMPRE do usuário — nunca invente. -->
+<section class="page pg-branca" data-layout="investimento-tabela">
+  <h2 class="titulo-pagina">Investimento</h2>
+  <svg class="logo-marca" aria-hidden="true"><use href="#marca-octogono"/></svg>
+  <div class="invest-texto">
+    <p class="invest-lead">O Investimento ser&aacute; de <strong>R$ 96 mil &agrave; vista,</strong><br><strong>para constru&ccedil;&atilde;o dos 3 projetos.</strong></p>
+    <p class="invest-corpo">Este <strong>investimento inclui todas as ferramentas, licen&ccedil;as e integra&ccedil;&otilde;es</strong> necess&aacute;rias para a execu&ccedil;&atilde;o do projeto &mdash; sem surpresas ou custos adicionais.</p>
+    <p class="invest-opcional"><span class="rotulo-opcional">Opcional )</span> Caso opte pela nossa Consultoria de Dados &mdash; para receber an&aacute;lises e recomenda&ccedil;&otilde;es mensais &mdash; o valor ser&aacute; de R$ 4.500 por m&ecirc;s.</p>
+  </div>
+  <div class="tabela-investimento">
+    <div class="linha"><span>Agente de Pedidos</span><span>R$ 38.000,00</span></div>
+    <div class="linha"><span>Fidelidade Digital</span><span>R$ 26.000,00</span></div>
+    <div class="linha"><span>Central de Gest&atilde;o</span><span>R$ 32.000,00</span></div>
+    <div class="linha linha--total"><span>Investimento Total</span><span>R$ 96.000,00</span></div>
+  </div>
+  <footer class="rodape">
+    <span>Proposta Comercial</span><span>Studio Vetor</span><span>&copy;</span><span>2026</span>
+  </footer>
+</section>
+
+<!-- ===== PÁGINA 15: FECHAMENTO (layout: fechamento-logo) ===== -->
+<!-- Só o logo centralizado em cinza-fantasma. Única página SEM rodapé. -->
+<section class="page pg-branca" data-layout="fechamento-logo">
+  <svg class="logo-fechamento" aria-hidden="true"><use href="#marca-octogono"/></svg>
+</section>
+
+</main>
+
+<script>
+/* Scale-to-fit em tela: ajusta a propriedade --zoom para o deck caber na
+   largura da janela. Na impressão o CSS reseta zoom para 1 (tamanho real).
+   Sem JavaScript, o deck abre em tamanho natural (1280px) — nada quebra. */
+(function () {
+  function ajustarEscala() {
+    var largura = document.documentElement.clientWidth;
+    var escala = Math.min((largura - 48) / 1280, 1.35);
+    if (!(escala > 0)) { escala = 1; }
+    document.documentElement.style.setProperty('--zoom', escala.toFixed(4));
+  }
+  window.addEventListener('resize', ajustarEscala);
+  ajustarEscala();
+})();
+</script>
+
+</body>
+</html>

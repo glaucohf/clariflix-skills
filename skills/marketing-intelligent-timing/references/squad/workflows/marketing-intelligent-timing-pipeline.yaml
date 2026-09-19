@@ -1,0 +1,172 @@
+workflow_name: marketing_intelligent_timing_pipeline
+description: "A mensagem certa perde para o momento errado: este squad aprende quando cada usuario abre, responde e converte — e envia exatamente nesse instante."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-intelligent-timing
+area: "Marketing"
+topsquad: "M2 · Performance: Paid Media, CRO & Attribution"
+agent_sequence:
+  - kronos
+  - sirius
+  - pulsar
+  - helios
+  - vega
+  - nexus
+  - aura
+  - lumina
+  - aura-2
+key_commands:
+  - "*calcular-janelas-receptividade"
+  - "*monitorar-saude-de-canal"
+  - "*construir-modelo-preditivo-timing"
+  - "*otimizar-sequencias-outreach"
+  - "*enviar-mensagens-agendadas"
+  - "*verificar-compliance-e-qualidade"
+  - "*analisar-dados-de-envio"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: kronos
+success_indicators:
+  - "Uplift de open rate vs. baseline: meta >= 25% de melhora em 60 dias (medido em A/B test com grupo controle de envio no horario padrao)"
+  - "Uplift de reply rate vs. baseline: meta >= 20% de melhora em 60 dias para cold outreach multicanal"
+  - "Channel Health Score: todos os canais ativos acima de 70/100 mantidos ao longo do tempo (fadiga controlada)"
+  - "Taxa de unsubscribe: abaixo de 0.3% por mes em email e abaixo de 1% de opt-out em WhatsApp (reducao de fadiga mensuravel)"
+  - "Pipeline incremental gerado por timing otimizado: reunioes adicionais por mes atribuiveis ao uplift de reply rate vs. controle"
+  - "Cobertura de Timing Profile: >= 80% dos leads ativos com perfil de confianca > 50% em 90 dias (maturidade do modelo)"
+  - "Latencia de agendamento: tempo entre calculo de janela otima e disparo efetivo do toque < 5 minutos (eficiencia operacional de Nexus)"
+  - "Compliance rate: 100% dos envios passando pela auditoria de Aura sem violacao de compliance legal (zero tolerancia)"
+deliverable:
+  description: "Timing Intelligence System operacional com: (1) Timing Profile individual por lead publicado como propriedade customizada no CRM (janela otima de abertura por canal, probabilidade estimada, confianca do modelo), (2) Schedule otimizado diario para todos os leads ativos nas sequencias (proximas 48h com canal, horario e justificativa), (3) Timing Performance Report semanal no ClickUp com uplift observado vs. baseline por canal e segmento com significancia estatistica, (4) Channel Health Dashboard com Score 0-100 por canal e historico de 12 semanas, (5) A/B Test Report mensal com uplift confirmado e recomendacao de evolucao do modelo, (6) Uplift Report trimestral com ROI calculado do squad (pipeline incremental / custo operacional), (7) Audit Log completo de todos os envios executados com timestamp, canal, lead e status para rastreabilidade e compliance."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: kronos
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Calcular Janelas Receptividade"
+    agent: sirius
+    task: calcular-janelas-receptividade.md
+    trigger: "Webhook de novo evento de engajamento (near real-time); Job semanal de recalculo completo da base ativa (domingo 2h); Kronos solicita perfil especifico para agendamento de toque iminente; novo lead entra na base sem historico (trigger de i…"
+    checkpoint:
+      criteria: "Timing Profile atualizado por lead (JSON: {lead_id, canal, janela_otima_inicio, janela_otima_fim, probabilidade_abertura, frequencia_max_por_semana, indice_saturacao, ultimo_update, confianca_do_modelo}); Heatmap de engajamento agregado po…"
+      veto_condition: "Saída sem veredito do critic Aura 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Monitorar Saúde De Canal"
+    agent: pulsar
+    task: monitorar-saude-de-canal.md
+    trigger: "Job diario de calculo de Channel Health Score (6h); spike de unsubscribe ou spam report > 2x baseline detectado em tempo real (webhook); Kronos solicita analise antes de ativar campanha nova em um canal; fim de ciclo mensal para relatorio…"
+    checkpoint:
+      criteria: "Channel Health Score semanal por canal (0-100 com breakdown de sub-metricas); Fatigue Alert quando threshold e violado (severidade: warning/critical/emergency); Canal Rebalancing Recommendation (se email esta saturado, sugerir shift para L…"
+      veto_condition: "Saída sem veredito do critic Aura 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Construir Modelo Preditivo Timing"
+    agent: helios
+    task: construir-modelo-preditivo-timing.md
+    trigger: "Job diario de geracao de schedule para proximas 48h (executado 22h D-1); atualizacao de Timing Profile de lead com toque agendado nas proximas 4h (recalculo imediato); Kronos solicita agendamento de campanha nova; resultado de A/B test acu…"
+    checkpoint:
+      criteria: "Schedule otimizado por lead/toque (JSON: {lead_id, toque_id, canal_recomendado, data_hora_envio_otima, probabilidade_abertura_estimada, espacamento_desde_ultimo_toque_horas, confianca_modelo}); Modelo de producao atualizado com metricas de…"
+      veto_condition: "Saída sem veredito do critic Aura 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Otimizar Sequências Outreach"
+    agent: vega
+    task: otimizar-sequencias-outreach.md
+    trigger: "Time de SDR submete nova sequencia para otimizacao; Kronos inicia ciclo de Deep Dive; Pulsar detecta queda de performance em sequencia ativa que justifica redesign; revisao mensal de sequencias ativas (ciclo recorrente); resultado de A/B t…"
+    checkpoint:
+      criteria: "Sequencia Redesenhada (JSON e visualizacao em formato de timeline: cada toque com canal, dia relativo, janela de horario, condicao de avanco ou saida); Relatorio de ajustes feitos vs. sequencia original com justificativa para cada mudanca;…"
+      veto_condition: "Saída sem veredito do critic Aura 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Enviar Mensagens Agendadas"
+    agent: nexus
+    task: enviar-mensagens-agendadas.md
+    trigger: "Timestamp de agendamento atingido (execucao automatica L3 para envios ja aprovados); Novo schedule aprovado pelo time carregado na fila; Kronos aciona disparo imediato de alerta (ex: lead voltou ao site — trigger de toque urgente); Job de…"
+    checkpoint:
+      criteria: "Log de execucao por toque (lead_id, canal, timestamp_agendado, timestamp_real_de_envio, status: sent/failed/queued, message_id para rastreamento); Relatorio de falhas de envio com causa (API down, opt-out detectado, rate limit, bounce); Fe…"
+      veto_condition: "Saída sem veredito do critic Aura 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Verificar Compliance E Qualidade"
+    agent: aura
+    task: verificar-compliance-e-qualidade.md
+    trigger: "Nexus prepara cada batch de envio das proximas 24h (gate obrigatorio — Nexus nao executa sem aprovacao de Aura); Kronos solicita auditoria emergencial de campanha ativa; Pulsar dispara alerta de Channel Health Score critico (< 50) — Aura b…"
+    checkpoint:
+      criteria: "Schedule Auditado com status por toque (APPROVED / BLOCKED / WARNING); Lista de bloqueios com motivo especifico por toque (ex: 'Lead 4821 — BLOCKED: opt-out em 2026-06-10 nao sincronizado com Instantly'); Spot-check Report de qualidade de…"
+      veto_condition: "Saída sem veredito do critic Aura 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Analisar Dados De Envio"
+    agent: lumina
+    task: analisar-dados-de-envio.md
+    trigger: "Job semanal de geracao do Performance Report (segunda-feira 7h); fim de mes para Uplift Report; anomalia detectada em monitoramento continuo (alertas near real-time para quedas abruptas); Kronos solicita analise especifica de performance d…"
+    checkpoint:
+      criteria: "Timing Performance Report semanal (open/reply rate por canal x horario x segmento, comparando tratamento vs. controle com significancia estatistica); Uplift Report mensal (uplift percentual de cada KPI vs. baseline, pipeline incremental es…"
+      veto_condition: "Saída sem veredito do critic Aura 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: aura-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: kronos
+    checkpoint:
+      criteria: "Entregável consolidado: Timing Intelligence System operacional com: (1) Timing Profile individual por lead publicado como propriedade customizada no CRM (janela otima de abertura por canal, probabilidade estimada, confianca…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovacao do Engagement Baseline Report ao final do Discovery — CMO/Head de Aquisicao valida os dados de baseline e confirma qual canal e sequencia sao foco prioritario antes de iniciar o modelo (L3, gate de entrada)"
+  - level: HITL
+    condition: "Ativacao da Sequencia Otimizada v1 redesenhada por Vega — time de SDR/Outreach revisa e aprova a nova distribuicao de toques antes de qualquer envio em producao (L3, gate de seguranca antes de go-live)"
+  - level: HITL
+    condition: "Qualquer campanha com audiencia > 500 contatos ou que envolva budget de ads — Nexus requer aprovacao manual antes de executar, independente do nivel de automacao configurado (L3, por volume e irreversibilidade)"
+  - level: HITL
+    condition: "Quando Channel Health Score de qualquer canal cai abaixo de 50 — Aura bloqueia o canal e Kronos escala para decisao humana sobre pausa, reducao de frequencia ou investigacao de causa raiz (L3, saude de canal critica)"
+  - level: HITL
+    condition: "Promocao de modelo candidato de Helios para producao — uplift confirmado no A/B test e condição necessaria mas nao suficiente; Head de Aquisicao aprova a troca de modelo que afeta toda a base (L3, decisao de alto impacto)"
+  - level: HITL
+    condition: "Quando Aura detecta violacao de compliance legal (opt-out nao respeitado, envio fora de horario legal, campo LGPD violado) — independente de qualquer autonomia configurada, eleva imediatamente para responsavel legal/CMO (L3 emergencial)"
+  - level: HITL
+    condition: "Revisao trimestral de thresholds de timing e limites de frequencia — calibracao dos parametros do modelo com Sales Lead e CMO para alinhar com estrategia comercial atual (L1, ciclo recorrente de governanca)"
+transitions:
+  - from: kronos
+    to: sirius
+    condition: "Webhook de novo evento de engajamento (near real-time); Job semanal de recalculo completo da base ativa (domingo 2h); Kronos solicita perfil especifico para agendamento de toque iminente; novo lead e…"
+  - from: sirius
+    to: pulsar
+    condition: "Job diario de calculo de Channel Health Score (6h); spike de unsubscribe ou spam report > 2x baseline detectado em tempo real (webhook); Kronos solicita analise antes de ativar campanha nova em um ca…"
+  - from: pulsar
+    to: helios
+    condition: "Job diario de geracao de schedule para proximas 48h (executado 22h D-1); atualizacao de Timing Profile de lead com toque agendado nas proximas 4h (recalculo imediato); Kronos solicita agendamento de…"
+  - from: helios
+    to: vega
+    condition: "Time de SDR submete nova sequencia para otimizacao; Kronos inicia ciclo de Deep Dive; Pulsar detecta queda de performance em sequencia ativa que justifica redesign; revisao mensal de sequencias ativa…"
+  - from: vega
+    to: nexus
+    condition: "Timestamp de agendamento atingido (execucao automatica L3 para envios ja aprovados); Novo schedule aprovado pelo time carregado na fila; Kronos aciona disparo imediato de alerta (ex: lead voltou ao s…"
+  - from: nexus
+    to: aura
+    condition: "Nexus prepara cada batch de envio das proximas 24h (gate obrigatorio — Nexus nao executa sem aprovacao de Aura); Kronos solicita auditoria emergencial de campanha ativa; Pulsar dispara alerta de Chan…"
+  - from: aura
+    to: lumina
+    condition: "Job semanal de geracao do Performance Report (segunda-feira 7h); fim de mes para Uplift Report; anomalia detectada em monitoramento continuo (alertas near real-time para quedas abruptas); Kronos soli…"
+  - from: lumina
+    to: aura-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: aura-2
+    to: kronos
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

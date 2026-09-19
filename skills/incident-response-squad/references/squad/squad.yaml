@@ -1,0 +1,285 @@
+name: incident-response-squad
+version: 1.0.0
+protocol: "5.0"
+description: "Squad especialista em resposta a incidentes para DevOps/SRE — análise de logs multi-source, correlação de causa raiz, execução de runbooks de remediação, comunicação de status e geração de post-mortems blameless"
+author: "Luiz Gustavo Vieira Rodrigues <@gutomec>"
+license: MIT
+slashPrefix: irs
+tags:
+  - incident-response
+  - devops
+  - sre
+  - monitoring
+  - on-call
+  - postmortem
+  - runbook
+
+capabilities:
+  - id: devops.incident.respond
+    description: "Resposta a incidentes como decision-support, do alerta ao post-mortem, sobre logs (CloudWatch/ELK/Splunk/Datadog) JÁ fornecidos como paths ou colados: detecção de anomalias; correlação de causa raiz com blast radius e confidence score; runbook de remediação gerado como spec executável com validação pré/pós; mensagens de status por severidade prontas para publicação; e post-mortem blameless com timeline e action items. Ingestão ao vivo, execução e publicação ficam com o operador."
+    domains:
+      - devops
+      - observability
+      - security
+    invoke:
+      type: workflow
+      ref: workflows/full-incident-response-workflow.yaml
+    inputs:
+      - name: incident_alert
+        type: string
+        required: true
+        description: "Descrição do alerta ou incidente a responder"
+      - name: severity
+        type: string
+        required: true
+        description: "Nível de severidade: SEV1, SEV2, SEV3 ou SEV4"
+    outputs:
+      - name: incident_response_package
+        type: markdown
+        description: "Pacote consolidado da resposta ao incidente com todos os artefatos das 5 fases"
+      - name: postmortem
+        type: markdown
+        description: "Post-mortem blameless com timeline, causa raiz, impacto, action items e lições aprendidas"
+      - name: phase_artifacts
+        type: markdown
+        description: "Artefatos intermediários: log-analysis-report.md, root-cause-report.md, execution-log.md (plano/spec de remediação para o operador executar, não registro de ações já executadas), status-update.md (drafts das mensagens de status prontas para publicação)"
+    tools_required:
+      - read
+      - write
+      - grep
+      - glob
+    examples:
+      - "rodar o pipeline completo de resposta a incidente, do alerta ao post-mortem"
+      - "responder a este incidente SEV1: analisar logs, achar causa raiz, remediar, comunicar status e gerar post-mortem"
+      - "fazer a resposta completa a este outage do API gateway com remediação e post-mortem blameless"
+      - "run the full incident response pipeline from alert to blameless post-mortem"
+    not_for:
+      - "fazer apenas triagem rápida sem remediação nem post-mortem (use devops.incident.triage)"
+      - "gerar somente o post-mortem de um incidente já resolvido (use devops.incident.postmortem)"
+      - "executar remediação direto em produção — o squad gera o runbook de remediação como spec validável (pré/pós e plano de rollback), mas a execução das ações e a aprovação ficam com o operador ou integração externa"
+    produces:
+      - incident-response-package-markdown
+      - log-analysis-report-markdown
+      - root-cause-report-markdown
+      - remediation-runbook-spec-markdown
+      - status-update-drafts-markdown
+      - postmortem-markdown
+      - action-items-json
+    example_briefs:
+      - "Tivemos um pico de erros 10x acima do baseline no API gateway e o alerta acabou de disparar como SEV1; roda a resposta completa sobre os logs que eu te passo — agrega os dumps de CloudWatch e Datadog da última hora, correlaciona com as métricas pra achar a causa raiz com confidence score, mapeia o blast radius, gera o runbook de rollback como spec executável com validação pré/pos e plano de rollback pra eu aplicar, redige as mensagens de status por severidade prontas pra eu publicar e me devolve o post-mortem blameless com timeline e action items"
+      - "Run the full incident response pipeline on this production outage from the logs I provide: analyze the supplied ELK and CloudWatch dumps to find anomalies, correlate signals to identify the root cause with a confidence score and blast radius, produce the appropriate remediation runbook as an executable spec with pre and post validation and a rollback plan for me to apply, draft the status messages per the severity matrix ready for me to publish, and produce a blameless post-mortem with timeline, action items and lessons learned"
+      - "Incidente em andamento de latência alta no checkout; te passo os logs e quero o ciclo inteiro de resposta a incidente com diagnóstico de causa raiz, o runbook de remediação especificado como spec validável, os drafts de comunicação de status dentro do SLA da severidade pra eu publicar e post-mortem completo com fatores contribuintes e melhorias sistêmicas"
+    keywords:
+      - resposta a incidente
+      - incident response
+      - incidente
+      - incident
+      - outage
+      - causa raiz
+      - root cause
+      - blast radius
+      - runbook
+      - remediação
+      - remediation
+      - rollback
+      - post-mortem
+      - postmortem
+      - blameless
+      - status page
+      - sre
+      - on-call
+      - severidade
+      - sev1
+      - confidence score
+    fidelity:
+      status: experimental
+      threshold: 0.85
+    score_boost: 1.0
+    model_hint: sonnet
+    estimated_cost_usd: 0.6
+
+  - id: devops.incident.triage
+    description: "Triagem rápida de incidente sem remediação nem post-mortem: análise de logs multi-source com detecção de anomalias, correlação de causa raiz (ou formulação de hipótese com confidence score) e comunicação inicial de status com notificação de stakeholders. Ponto de entrada ágil para diagnóstico e comunicação antes de decidir pela resposta completa devops.incident.respond."
+    domains:
+      - devops
+      - observability
+    invoke:
+      type: workflow
+      ref: workflows/rapid-triage-workflow.yaml
+    inputs:
+      - name: incident_alert
+        type: string
+        required: true
+        description: "Descrição do alerta ou incidente para triagem"
+      - name: severity
+        type: string
+        required: false
+        description: "Nível de severidade inicial: SEV1, SEV2, SEV3 ou SEV4"
+    outputs:
+      - name: triage_summary
+        type: markdown
+        description: "Resumo da triagem com anomalias, hipótese de causa raiz e status inicial comunicado"
+      - name: triage_artifacts
+        type: markdown
+        description: "Artefatos intermediários: log-analysis-report.md, root-cause-report.md, status-update.md"
+    tools_required:
+      - read
+      - write
+      - grep
+      - glob
+    examples:
+      - "fazer uma triagem rápida deste incidente sem remediação nem post-mortem"
+      - "analisar os logs, achar a causa provável e comunicar o status inicial deste alerta"
+      - "triagem ágil: diagnóstico e comunicação antes de decidir pela resposta completa"
+      - "quick triage of this incident: analyze logs, find probable root cause and post an initial status"
+    not_for:
+      - "rodar o pipeline completo com remediação e post-mortem (use devops.incident.respond)"
+      - "executar runbook de remediação ou gerar post-mortem (use devops.incident.respond)"
+    produces:
+      - triage-summary-markdown
+      - log-analysis-report-markdown
+      - root-cause-report-markdown
+      - status-update-markdown
+    example_briefs:
+      - "Acabou de chegar um alerta de error rate elevado e eu ainda não sei se é grave; faz a triagem rápida — agrega os logs na última meia hora, correlaciona o que der pra achar a causa provável com confidence score e publica um status inicial de investigação pros stakeholders, sem mexer em remediação nem post-mortem ainda"
+      - "Quick triage on this incoming alert before I escalate: aggregate the logs, correlate signals to form a root-cause hypothesis with a confidence score, and post an initial investigating status to the status page and stakeholders, skipping the runbook execution and post-mortem"
+      - "Só quero o diagnóstico inicial deste incidente e a comunicação de status para depois decidir se vale o pipeline completo — análise de logs, hipótese de causa raiz e primeira atualização de status"
+    keywords:
+      - triagem
+      - triage
+      - triagem rápida
+      - rapid triage
+      - incidente
+      - incident
+      - análise de logs
+      - log analysis
+      - causa raiz
+      - root cause
+      - hipótese
+      - status inicial
+      - investigating
+      - comunicação de status
+      - sre
+      - on-call
+    fidelity:
+      status: experimental
+      threshold: 0.85
+    score_boost: 1.0
+    model_hint: sonnet
+    estimated_cost_usd: 0.3
+
+  - id: devops.incident.postmortem
+    description: "Geração standalone de post-mortem blameless para um incidente já resolvido, a partir dos artefatos coletados (logs, root cause, execution log, status updates): timeline detalhada com timestamps, análise de causa raiz sem culpar indivíduos, mapeamento de impacto técnico/negócio/usuário, fatores contribuintes, o que funcionou e o que pode melhorar, action items priorizados com owner e prazo, e lições aprendidas. Ponto de entrada para documentar sem rodar o pipeline completo."
+    domains:
+      - devops
+      - observability
+    invoke:
+      type: task
+      ref: tasks/write-postmortem.md
+      agent: postmortem-writer
+    inputs:
+      - name: incident
+        type: string
+        required: true
+        description: "ID ou descrição do incidente já resolvido a documentar"
+      - name: artifacts
+        type: string
+        required: false
+        description: "Caminhos dos artefatos do incidente (log-analysis-report.md, root-cause-report.md, execution-log.md, status-update.md)"
+    outputs:
+      - name: postmortem
+        type: markdown
+        description: "Documento de post-mortem blameless com todas as seções obrigatórias"
+      - name: action_items
+        type: json
+        description: "Lista estruturada de action items com owner, prioridade e prazo"
+    tools_required:
+      - read
+      - write
+      - grep
+      - glob
+    examples:
+      - "gerar o post-mortem blameless deste incidente já resolvido"
+      - "escrever o post-mortem com timeline, causa raiz, action items e lições aprendidas"
+      - "documentar este incidente em formato blameless a partir dos artefatos coletados"
+      - "write a blameless post-mortem for this resolved incident with timeline and action items"
+    not_for:
+      - "rodar o pipeline completo de resposta ao incidente desde o alerta (use devops.incident.respond)"
+      - "diagnosticar a causa raiz de um incidente ainda em andamento (use devops.incident.triage ou devops.incident.respond)"
+    produces:
+      - postmortem-markdown
+      - action-items-json
+      - incident-timeline-markdown
+    example_briefs:
+      - "O incidente INC-2026-0142 do outage do API gateway já foi resolvido e eu tenho os artefatos (análise de logs, root cause report, execution log e os status updates); monta o post-mortem blameless com a timeline completa em UTC, a causa raiz em linguagem sem culpa, o impacto em usuários e negócio, os fatores contribuintes, o que deu certo e o que pode melhorar, e os action items com owner, prioridade e prazo"
+      - "Write a blameless post-mortem for this already-resolved incident from the collected artifacts: build the full timeline with precise timestamps, document the root cause focusing on systems rather than people, quantify the technical, business and user impact, list contributing factors and prioritized action items with owners and deadlines, and extract the lessons learned"
+      - "Preciso só do post-mortem deste incidente que já foi resolvido ontem — timeline, causa raiz blameless, impacto quantificado, action items e lições aprendidas, sem refazer o diagnóstico nem a remediação"
+    keywords:
+      - post-mortem
+      - postmortem
+      - blameless
+      - timeline
+      - action item
+      - lições aprendidas
+      - lessons learned
+      - causa raiz
+      - root cause
+      - fatores contribuintes
+      - contributing factors
+      - impacto
+      - retrospectiva
+      - documentação de incidente
+      - incident documentation
+    fidelity:
+      status: experimental
+      threshold: 0.85
+    score_boost: 1.0
+    model_hint: sonnet
+    estimated_cost_usd: 0.25
+
+components:
+  agents:
+    - log-analyzer.md
+    - root-cause-correlator.md
+    - runbook-executor.md
+    - status-page-updater.md
+    - postmortem-writer.md
+  tasks:
+    - analyze-incident-logs.md
+    - correlate-root-cause.md
+    - execute-runbook.md
+    - update-status-page.md
+    - write-postmortem.md
+    - full-incident-response.md
+  workflows:
+    - full-incident-response-workflow.yaml
+    - rapid-triage-workflow.yaml
+
+runtime_requirements:
+  minimum:
+    - runtime: claude-code
+      version: ">=1.0.0"
+  compatible:
+    - runtime: codex
+      version: ">=0.20.0"
+    - runtime: gemini-cli
+      version: ">=0.4.0"
+    - runtime: antigravity-cli
+      version: ">=0.4.0"
+
+features_required:
+  - max_turns
+  - tool_whitelist
+  - subagent_spawning
+  - handoff_artifacts
+
+features_optional:
+  - hooks
+  - audit_trail
+  - telemetry_otel
+
+output:
+  base_dir: default
+
+legacy:
+  v4_path: ~/squads-trackb-conversion/src/incident-response-squad

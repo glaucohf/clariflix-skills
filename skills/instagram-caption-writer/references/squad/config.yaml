@@ -1,0 +1,108 @@
+name: instagram-caption-writer
+version: 1.1.0
+description: >
+  Write Instagram captions with persuasive copy for feed, reels and carousels.
+  Get 3 variations per post plus 30 segmented hashtags. Engagement-optimized.
+
+category: marketing/social-media
+price: 4.99
+tags:
+  - instagram
+  - captions
+  - social-media
+  - hashtags
+  - reels
+  - copywriting
+  - engagement
+
+agents:
+  - id: instagram-caption-chief
+    file: agents/instagram-caption-chief.md
+    tier: orchestrator
+    role: Entry point. Routes requests and ensures complete output delivery.
+
+  - id: caption-strategist
+    file: agents/caption-strategist.md
+    tier: 0
+    role: Analyzes context and defines caption structure before any writing
+
+  - id: caption-writer
+    file: agents/caption-writer.md
+    tier: 1
+    role: Writes 3 complete caption variations (emotional / logical / provocative)
+
+  - id: hook-generator
+    file: agents/hook-generator.md
+    tier: 1
+    role: Generates 7+ hook options across all hook types
+
+  - id: hashtag-researcher
+    file: agents/hashtag-researcher.md
+    tier: 2
+    role: Delivers 30 segmented hashtags (large / medium / small)
+
+  - id: caption-ab-tester
+    file: agents/caption-ab-tester.md
+    tier: 2
+    role: Scores caption variations and recommends which to publish
+
+  - id: caption-repurposer
+    file: agents/caption-repurposer.md
+    tier: 2
+    role: Adapts captions for LinkedIn, Twitter/X, TikTok, YouTube Shorts
+
+tasks:
+  - id: write-caption
+    file: tasks/write-caption.md
+    description: Main flow — topic to 3 captions + 30 hashtags
+
+  - id: diagnose-caption
+    file: tasks/diagnose-caption.md
+    description: Audit existing caption and rewrite weak points
+
+  - id: generate-hooks-batch
+    file: tasks/generate-hooks-batch.md
+    description: Generate 20+ hooks for a niche
+
+  - id: create-content-pillars
+    file: tasks/create-content-pillars.md
+    description: Define 4–5 content pillars for a profile
+
+workflows:
+  - id: content-week-in-one-shot
+    file: workflows/content-week-in-one-shot.md
+    description: Full week of content (5 posts) in one session
+
+  - id: viral-post-anatomy
+    file: workflows/viral-post-anatomy.md
+    description: Analyze viral post pattern and replicate with user topic
+
+templates:
+  - id: caption-output
+    file: templates/caption-output.md
+    description: Final output template for user delivery
+
+flow:
+  entry: instagram-caption-chief
+  tier_0: [caption-strategist]
+  tier_1: [caption-writer, hook-generator]
+  tier_2: [hashtag-researcher, caption-ab-tester, caption-repurposer]
+
+supported_formats:
+  - feed
+  - reels
+  - carousel
+  - stories
+
+inputs_required:
+  - post topic
+  - format (feed / reels / carousel / stories)
+  - goal (engagement / authority / sale)
+  - voice tone
+  - product or service (if sale post)
+
+outputs_delivered:
+  - 3 complete caption variations
+  - 30 hashtags segmented by competition level
+  - recommended CTA by goal
+  - best posting time by niche

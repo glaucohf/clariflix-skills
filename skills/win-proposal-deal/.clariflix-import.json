@@ -1,0 +1,32 @@
+{
+  "managed_by": "clariflix-skills/scripts/import_free_squads.py",
+  "version": "0.2.0",
+  "files": {
+    "LICENSE": "de32e9be9d148af515ad291d1c8adfad723c2c57de5cbd956d67fb112e4c2b99",
+    "SKILL.md": "c9dc286e0901cee7a7057d1fbed2f1a7843bf56b9492fe54d683575bfef51ce4",
+    "SOURCE.md": "9abebf465bee794cf407991132e59358d8bc01b05e753a8b27acfa43d83375ab",
+    "manifest.yaml": "6c934c6659cd65fb36ed2918dfbc287d7531992737ae60f8a68185325e95305d",
+    "references/UPSTREAM-PROVENANCE.md": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83",
+    "references/source-inventory.json": "ba720781c63ae7730009af7b2ad52025970aa1f55b2e41d42776271470762923",
+    "references/squad/README.ar.md": "f0f1509b04259d617aff34c7e8d30c38bbf88e769480553d44eff42dc65924d2",
+    "references/squad/README.en.md": "8ddb0dfa031c58d3a4577ff02d42a280b0dabfe211bf9b7279bda475c11d66f6",
+    "references/squad/README.es.md": "c52af94e83d8ec2211767cbea7113baeacab2e7207aed8ea18770cd6acc232fa",
+    "references/squad/README.hi.md": "de45c44114f113eb6aff52f441316f162ff08b4264e7fc4dc9adbf12de8f09e9",
+    "references/squad/README.md": "ebae8110af2c824339e2edff0e763cdb76a6cec74e747c97bd9566fa7ffdb3d4",
+    "references/squad/README.zh.md": "0c7dbeebeb8bebb99e46345fba06419007c7e0777f35491436219f6140e9f3a8",
+    "references/squad/agents/pricing-strategist.md": "6f07bd8911daf0260455a4810b835fe8981460d3dc1cb268fa4bab91fef012a8",
+    "references/squad/agents/proposal-composer.md": "3f6ac857a146093cf2785ce90692d768508ffc8a6004409571c77bf667b74af9",
+    "references/squad/agents/prospect-analyzer.md": "b5f8505a0d1f61b6e142acdcba55b417f7ec43d549e0fc4c3718b1b8a93159a2",
+    "references/squad/agents/scope-architect.md": "246ff4706c59d5d0df4c15d6719609362583d1338a623190c6898cefd1801f2e",
+    "references/squad/config/coding-standards.md": "4e9f6ffb0e4b3ea6826152e8a2b7939e1ab672eddb0890d33786113f35a0f4d2",
+    "references/squad/config/source-tree.md": "44e0f7059cce18f83f939a2cd9c23ecc347475f19fd3f8da204929a8e8efcc32",
+    "references/squad/config/tech-stack.md": "64f3f70b1eea2f8dcb655cc725187f528bf4592890a424bcfed07f41acc9c012",
+    "references/squad/squad.yaml": "6ce8213bde37433b430e79a421225b110d6e2ec85053c8554c040592eb33ade9",
+    "references/squad/tasks/analyze-prospect.md": "73d1141bb1e8b7cb0b87ec2c9b45b924e34e8ce379c31002376891f68b67d886",
+    "references/squad/tasks/calculate-pricing.md": "d4792532f192af68439390c9f6cbd29b5ab413ca81dfcdc4d3b712d6a22bcd60",
+    "references/squad/tasks/compose-proposal.md": "25921f182a7aa103a0abfd5040e3b58c9b425618dbe00e64f6850ccad8e8330b",
+    "references/squad/tasks/design-scope.md": "47be14cb6d61f3d607ab1dfcafc7167a6e875f8868d26f2e0a667a2ccebd762d",
+    "references/squad/workflows/proposal-generation-pipeline.yaml": "9543c9ec779fc9a3189c8093a5e027e850a6f9194781a162dcb4c3219c2cb629",
+    "references/squad/workflows/proposal-revision-flow.yaml": "98fb632eeae0a831714ffc1bb678711075e10a6c2ddd5914d4ff415f49791cd8"
+  }
+}

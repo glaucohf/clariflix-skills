@@ -1,0 +1,159 @@
+workflow_name: marketing_whatsapp_qualifier_pipeline
+description: "Nenhum lead esfria mais: qualificacao conversacional purpose-built no WhatsApp que responde em segundos, trata objecao como um bom SDR e agenda reuniao antes da concorrencia ligar."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-whatsapp-qualifier
+area: "Marketing"
+topsquad: "M5 · Captura, Qualificação & Reativação de Leads"
+agent_sequence:
+  - orion
+  - vance
+  - rex
+  - mia
+  - lilo
+  - kira
+  - nova
+  - kira-2
+key_commands:
+  - "*qualificar-conversas-whatsapp"
+  - "*enriquecer-lead-em-tempo-real"
+  - "*agendar-reuniao-lead"
+  - "*analisar-funil-de-qualificacao"
+  - "*validar-mensagem-playbook"
+  - "*calcular-roi-do-squad"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Tempo de primeira resposta: meta < 5 minutos para 95% dos leads (baseline atual a medir no Discovery, tipicamente 2-47 horas)"
+  - "Taxa de qualificacao (lead -> reuniao agendada): meta > 50% em 60 dias de producao (baseline tipico: 20-30%)"
+  - "Show-rate de reunioes agendadas pelo squad: meta > 65% (baseline tipico: 40-50%). Mia otimiza por slots de melhor historico"
+  - "Lead Score medio de leads enviados para o closer: meta > 7.0/10 (indica qualidade da qualificacao, nao apenas volume)"
+  - "Taxa de escalada desnecessaria para SDR humano: meta < 15% do total de leads (escaladas devem ser casos reais de VIP ou objecao critica, nao falhas de Vance)"
+  - "Compliance Score de Kira: 100% das versoes de playbook publicadas com score >= 90/100. Zero flags criticos em producao"
+  - "Taxa de abandono por etapa do funil de qualificacao: rastreada por Lilo, meta de reducao de 10% por mes durante os 3 primeiros meses"
+  - "ROI do squad (Nova): pipeline gerado >= 10x o custo mensal do squad em 90 dias de producao"
+  - "Quality Gate Langfuse: task success rate >= 95% em producao (Vance respondendo adequadamente, Rex enriquecendo, Mia agendando sem erros)"
+deliverable:
+  description: "Artefato principal verificavel no ClickUp: Lead Qualification Record — por cada lead processado pelo squad, um registro estruturado contendo: (1) Transcript da conversa WhatsApp com etapas de qualificacao marcadas, (2) BANT Score preenchido por campo (0-3 por dimensao), (3) Lead Score total pos-qualificacao (0-10), (4) Enrichment Record de Rex com dados da empresa e contato, (5) Status final (Qualificado+Agendado / Qualificado+Pendente / Desqualificado com motivo / Escalado para SDR com motivo), (6) Link do evento de calendario criado por Mia (se agendado), (7) Briefing pre-reuniao de 5 linhas para o closer. Artefatos secundarios: Playbook Conversacional versionado (Kira-approved), Dashboard semanal de metricas (Lilo), ROI Report mensal (Nova), Audit Log de conformidade Meta (Kira)."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Qualificar Conversas WhatsApp"
+    agent: vance
+    task: qualificar-conversas-whatsapp.md
+    trigger: "Nova mensagem recebida no WhatsApp Business API (webhook em tempo real); lead retoma conversa apos pausa de > 2h; Orion dispara follow-up ativo para leads que entraram mas nao responderam em 24h; SDR humano retorna lead para fluxo automati…"
+    checkpoint:
+      criteria: "Conversa qualificada com campos BANT preenchidos, Lead Score pos-qualificacao (0-10), Status do lead (Qualificado/Desqualificado/Escalado/Agendado/Nurture), transcricao estruturada da conversa para CRM, trigger de agendamento para Mia (se…"
+      veto_condition: "Saída sem veredito do critic Kira 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Lead Em Tempo Real"
+    agent: rex
+    task: enriquecer-lead-em-tempo-real.md
+    trigger: "Vance recebe primeira mensagem de lead desconhecido (< 10 segundos apos trigger de Vance); ciclo de re-enriquecimento semanal de leads em nurture; Orion solicita enrichment adicional para lead de alta prioridade"
+    checkpoint:
+      criteria: "Lead enrichment record com: empresa, cargo, tamanho da empresa, setor, stack tecnologico (se disponivel), historico CRM (cliente anterior? lead frio?), ICP Fit Score preliminar (0-10), tier de prioridade (1/2/3), flag de duplicata (lead ja…"
+      veto_condition: "Saída sem veredito do critic Kira 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Agendar Reunião Lead"
+    agent: mia
+    task: agendar-reuniao-lead.md
+    trigger: "Vance sinaliza Lead Score >= threshold de qualificacao; lead responde positivamente a convite de reuniao; no-show detectado (reuniao passou sem entrada no meet) — trigger de reengajamento; lead cancela reuniao agendada — trigger de reagend…"
+    checkpoint:
+      criteria: "Agendamento confirmado no calendario do closer, evento criado com dados do lead (empresa, cargo, BANT summary, Link CRM), mensagem de confirmacao enviada ao lead via WhatsApp com data/hora e link de videoconferencia, tarefa criada no Click…"
+      veto_condition: "Saída sem veredito do critic Kira 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Analisar Funil De Qualificação"
+    agent: lilo
+    task: analisar-funil-de-qualificacao.md
+    trigger: "Ciclo semanal automatico (toda segunda-feira 8h); anomalia detectada em tempo real (taxa de qualificacao cai > 20% em janela de 24h); Orion solicita analise especifica de segmento ou campanha; fim de mes para relatorio executivo"
+    checkpoint:
+      criteria: "Dashboard semanal de metricas (taxa de qualificacao, show-rate, objecoes top 5, funil de abandono por etapa), Anomaly Report quando KPI cai > 15% vs semana anterior, recomendacao de ajuste de playbook (quais perguntas/objecoes estao gerand…"
+      veto_condition: "Saída sem veredito do critic Kira 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Validar Mensagem Playbook"
+    agent: kira
+    task: validar-mensagem-playbook.md
+    trigger: "Sempre que uma nova versao do Playbook Conversacional e submetida para producao (gate obrigatorio); ciclo diario de auditoria de conversas (sample de 10-20%); alerta de atualizacao de politica Meta recebido; Orion solicita auditoria emerge…"
+    checkpoint:
+      criteria: "Audit Report do Playbook: APPROVED / NEEDS_REVISION / BLOCKED com lista de itens a corrigir por severidade (critico/aviso/sugestao), Compliance Score (0-100) por versao do playbook, Daily Monitoring Report com sample de conversas auditadas…"
+      veto_condition: "Saída sem veredito do critic Kira 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Calcular ROI do Squad"
+    agent: nova
+    task: calcular-roi-do-squad.md
+    trigger: "Ciclo mensal automatico (primeiro dia util do mes); Orion solicita analise de ROI para apresentacao ao cliente; deal marcado como fechado no CRM (trigger de atribuicao imediata); budget de campanha alterado (trigger de projecao de impacto)"
+    checkpoint:
+      criteria: "ROI Report mensal: pipeline gerado pelo squad (R$), deals fechados atribuidos (R$), CAC por fonte de lead qualificado, taxa de conversao por etapa (lead -> qualificado -> reuniao -> oportunidade -> fechado), relatorio de perda pos-qualific…"
+      veto_condition: "Saída sem veredito do critic Kira 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: kira-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Artefato principal verificavel no ClickUp: Lead Qualification Record — por cada lead processado pelo squad, um registro estruturado contendo: (1) Transcript da conversa WhatsApp com etapas de qualifi…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovacao do Mapa de Jornada WhatsApp + Inventario de Objecoes ao final do Discovery — head de vendas valida o que funciona hoje antes do squad ser configurado (L3, sem aprovacao o squad nao avanca)"
+  - level: HITL
+    condition: "Aprovacao do Playbook Conversacional v1 antes de ir para producao — head de vendas e CMO revisam cada mensagem, pergunta de qualificacao e resposta a objecao. Kira ja auditou conformidade, mas humano decide se o tom esta certo (L3, gate obrigatorio)"
+  - level: HITL
+    condition: "Escalada de lead VIP para SDR humano sênior — quando Rex detecta empresa acima do threshold de tamanho/ICP fit, Orion alerta SDR sênior para assumir a conversa manualmente antes de Vance responder (L3, acao irreversivel: primeira impressao com conta estrategica)"
+  - level: HITL
+    condition: "Gate semanal de 30 minutos — head de vendas revisa 5-10 conversas de baixo desempenho selecionadas por Lilo, aprova ajustes de playbook propostos por Orion antes de Vance ser atualizado (L2, recorrente toda segunda-feira)"
+  - level: HITL
+    condition: "Aprovacao de nova versao do Playbook apos ajustes significativos (> 30% das mensagens alteradas) — qualquer revisao estrutural do playbook passa por gate L3 com head de vendas e Kira antes de producao"
+  - level: HITL
+    condition: "Decisao de escalada por irritacao detectada — quando Vance detecta 3+ sinais de irritacao em sequencia, Orion alerta SDR humano via notificacao para assumir a conversa. Humano decide se assume imediatamente ou deixa Vance tentar uma ultima mensagem de reengajamento (L3)"
+  - level: HITL
+    condition: "Revisao mensal de metricas com Nova — CEO/CMO aprova redistribuicao de budget por fonte de lead com base no ROI report de Nova (L3, envolve gasto financeiro)"
+transitions:
+  - from: orion
+    to: vance
+    condition: "Nova mensagem recebida no WhatsApp Business API (webhook em tempo real); lead retoma conversa apos pausa de > 2h; Orion dispara follow-up ativo para leads que entraram mas nao responderam em 24h; SDR…"
+  - from: vance
+    to: rex
+    condition: "Vance recebe primeira mensagem de lead desconhecido (< 10 segundos apos trigger de Vance); ciclo de re-enriquecimento semanal de leads em nurture; Orion solicita enrichment adicional para lead de alt…"
+  - from: rex
+    to: mia
+    condition: "Vance sinaliza Lead Score >= threshold de qualificacao; lead responde positivamente a convite de reuniao; no-show detectado (reuniao passou sem entrada no meet) — trigger de reengajamento; lead cance…"
+  - from: mia
+    to: lilo
+    condition: "Ciclo semanal automatico (toda segunda-feira 8h); anomalia detectada em tempo real (taxa de qualificacao cai > 20% em janela de 24h); Orion solicita analise especifica de segmento ou campanha; fim de…"
+  - from: lilo
+    to: kira
+    condition: "Sempre que uma nova versao do Playbook Conversacional e submetida para producao (gate obrigatorio); ciclo diario de auditoria de conversas (sample de 10-20%); alerta de atualizacao de politica Meta r…"
+  - from: kira
+    to: nova
+    condition: "Ciclo mensal automatico (primeiro dia util do mes); Orion solicita analise de ROI para apresentacao ao cliente; deal marcado como fechado no CRM (trigger de atribuicao imediata); budget de campanha a…"
+  - from: nova
+    to: kira-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: kira-2
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

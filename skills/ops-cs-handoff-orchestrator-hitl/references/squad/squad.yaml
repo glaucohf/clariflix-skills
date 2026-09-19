@@ -1,0 +1,45 @@
+name: ops-cs-handoff-orchestrator-hitl
+version: 0.1.0
+description: "Nenhuma ação irreversível sem aprovação humana — e nenhum humano sobrecarregado com trivialidades."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: hoh
+components:
+  agents:
+    - hieronimus.md
+    - cassio.md
+    - beatriz.md
+    - renato.md
+    - selene.md
+    - dora.md
+    - fabio.md
+    - vitor.md
+  tasks:
+    - classificar-criticidade.md
+    - empacotar-contexto.md
+    - monitorar-handoffs-l3.md
+    - analisar-falso-positivo.md
+    - determinar-canal-enviado.md
+    - registrar-decisao-humana.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-handoff-orchestrator-hitl-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - atendimento-suporte-conversacional
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O1 · TopSquad de Atendimento & Suporte Conversacional"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

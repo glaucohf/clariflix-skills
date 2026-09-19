@@ -1,0 +1,25 @@
+row: especialistas
+title: Ceticismo que testa
+title_netflix: SKEPTIC PROTOCOL
+subtitle: Acusações de falha, testes, implementação e revisão adversarial
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 5 agentes, 5 tarefas, 2 fluxos
+  requer: Requisito ou código, ambiente de testes e escopo autorizado de alteração
+  como_usar: 'Diga: "Aplique o SKEPTIC Protocol a esta implementação e verifique os
+    casos extremos"'
+  elenco:
+  - failure-predictor
+  - test-engineer
+  - solution-implementer
+  - red-teamer
+  - skeptic-orchestrator
+  generos:
+  - Engenharia
+  - Qualidade
+  esta_skill_e:
+  - Cética
+  - Testável
+  - Preventiva

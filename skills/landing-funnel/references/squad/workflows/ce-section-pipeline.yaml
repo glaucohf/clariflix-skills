@@ -1,0 +1,245 @@
+workflow_name: ce_section_pipeline
+description: >
+  Micro-workflow por seção — ciclo de 4 etapas sequenciais para construir cada
+  seção da landing page com máxima qualidade de conversão: copy → CRO design →
+  imagem → código. Executado como sub-rotina do ce-full-pipeline durante as
+  fases de copy e build, garantindo que cada seção seja tratada de forma
+  completa e integrada antes de avançar. Aplicável a todas as 12 seções padrão.
+
+agent_sequence:
+  - ce-copywriter
+  - ce-design-architect
+  - ce-image-creator
+  - ce-frontend-dev
+
+estimated_duration: "20-40 min por seção"
+
+parallel_execution: false
+
+sections:
+  standard_sequence:
+    - id: navigation
+      priority: critical
+      estimated_time: "10-15 min"
+    - id: hero
+      priority: critical
+      estimated_time: "30-40 min"
+    - id: social-proof-bar
+      priority: high
+      estimated_time: "15-20 min"
+    - id: problem-agitation
+      priority: critical
+      estimated_time: "25-35 min"
+    - id: solution-demo
+      priority: critical
+      estimated_time: "25-35 min"
+    - id: testimonials
+      priority: high
+      estimated_time: "20-30 min"
+    - id: benefits
+      priority: high
+      estimated_time: "20-30 min"
+    - id: features
+      priority: medium
+      estimated_time: "20-30 min"
+    - id: pricing
+      priority: critical
+      estimated_time: "30-40 min"
+    - id: faq
+      priority: high
+      estimated_time: "15-25 min"
+    - id: final-cta
+      priority: critical
+      estimated_time: "20-30 min"
+    - id: footer
+      priority: medium
+      estimated_time: "10-15 min"
+
+phases:
+  - name: "Step 1 — writeSectionCopy"
+    agent: ce-copywriter (Pulse)
+    tasks:
+      - Identificar objetivo de conversão específico da seção (o que o leitor deve sentir/fazer)
+      - Selecionar fórmula de copy mais adequada para a seção (AIDA, PAS, BEFORE-AFTER-BRIDGE, etc.)
+      - Escrever headline da seção (se aplicável) e subheadline
+      - Redigir body copy completo com hierarquia de informação definida
+      - Escrever CTA da seção: texto do botão, texto de suporte, texto de reassurance
+      - Especificar tom e voz: urgência, empatia, autoridade, curiosidade (conforme seção)
+      - Adicionar notas de design intent para ce-design-architect (o que o copy precisa do layout)
+      - Validar que o copy endereça pelo menos 1 objeção do intelligence report
+    checkpoints:
+      entry: "Intelligence report + brief da seção disponíveis"
+      exit: "Copy da seção completo com headline, body, CTA e notas de design intent"
+    section_specific_rules:
+      navigation:
+        - "Logo + menu simplificado (máximo 3 links) + CTA de destaque"
+        - "Copy do CTA de navegação deve criar urgência ou curiosidade"
+      hero:
+        - "Headline: benefício + diferencial + audiência em <= 10 palavras"
+        - "Subheadline: expande o benefício com especificidade em <= 25 palavras"
+        - "CTA acima do fold: verbo de ação + benefício imediato"
+        - "3 variações de headline obrigatórias"
+      social-proof-bar:
+        - "Números de impacto: clientes, resultados, anos de mercado"
+        - "Copy deve incluir pelo menos um dado quantitativo validado"
+      problem-agitation:
+        - "Nomear a dor com linguagem literal do público (extraída do intelligence report)"
+        - "Agitação sem sensacionalismo — empático e verdadeiro"
+      solution-demo:
+        - "Apresentar solução como mecanismo único — não feature list"
+        - "Demo copy deve focar em resultado, não em processo"
+      testimonials:
+        - "Introdução da seção com headline de resultado coletivo"
+        - "Cada testimonial: nome, cargo/contexto, resultado específico"
+      benefits:
+        - "Benefícios em linguagem de resultado, não de feature"
+        - "Máximo 6 benefícios — qualidade > quantidade"
+      features:
+        - "Feature → transformada em benefício com 'o que isso significa para você'"
+        - "Máximo 8 features — priorizar por impacto no público"
+      pricing:
+        - "Nomear o plano/oferta (não apenas 'Plano A')"
+        - "Especificar o que está incluído + bônus + garantia"
+        - "CTA de pricing: específico ao valor, não genérico"
+      faq:
+        - "Mínimo 6 perguntas, máximo 10"
+        - "Última pergunta deve ser sobre garantia ou risco"
+        - "Cada resposta: máximo 80 palavras"
+      final-cta:
+        - "Repetir o benefício principal da hero em nova formulação"
+        - "CTA final mais direto e urgente que o da hero"
+        - "Incluir reassurance: sem risco, garantia, acesso imediato"
+      footer:
+        - "Links legais: privacidade, termos, política de reembolso"
+        - "Informações de contato e CNPJ (se Brasil)"
+    veto_conditions:
+      - "Copy da seção sem CTA definido (exceto footer e social-proof-bar) → completar"
+      - "Hero sem 3 variações de headline → criar antes de prosseguir"
+      - "Copy sem notas de design intent → adicionar antes de entregar a ce-design-architect"
+      - "Problem-agitation com linguagem genérica (não extraída do intelligence report) → reescrever"
+      - "Pricing sem especificação do que está incluído → completar"
+
+  - name: "Step 2 — designSection (com CRO Audit)"
+    agent: ce-design-architect (Canvas)
+    tasks:
+      - Receber copy da seção com notas de design intent de ce-copywriter
+      - Aplicar layout CRO específico da seção (baseado em design spec document)
+      - Definir hierarquia visual: tamanho de fonte, peso, espaçamento por elemento
+      - Especificar posicionamento: above/below fold, lado esquerdo/direito, grid
+      - Definir estados interativos: hover do CTA, focus states, animações sutis
+      - Executar CRO audit da seção: verificar 5 princípios de conversão aplicados
+      - Entregar spec de seção: mockup textual + especificações CSS/Tailwind para ce-frontend-dev
+    checkpoints:
+      entry: "Copy da seção aprovado com notas de design intent"
+      exit: "Spec de seção completa com layout CRO, hierarquia visual e especificações técnicas"
+    cro_audit_checklist:
+      - "Contraste do CTA: botão claramente visível e diferenciado do fundo"
+      - "Hierarquia de leitura: F-pattern ou Z-pattern aplicado corretamente"
+      - "Espaço em branco: suficiente para não criar ansiedade visual"
+      - "Mobile-first: layout funciona em 320px sem quebras"
+      - "Friction reduction: formulários com mínimo de campos necessários"
+    section_specific_rules:
+      hero:
+        - "CTA acima do fold em 100% dos dispositivos — validar em 375px"
+        - "Hero image: direita em desktop, acima em mobile (não bloqueia copy)"
+      pricing:
+        - "Plano recomendado em destaque visual (borda, badge, cor diferente)"
+        - "Garantia visualmente próxima ao botão de compra"
+      testimonials:
+        - "Foto do autor visível e próxima ao texto do depoimento"
+        - "Rating visual (estrelas) se aplicável"
+    veto_conditions:
+      - "CRO audit com menos de 4 de 5 princípios aprovados → revisar layout"
+      - "CTA oculto abaixo do fold no mobile → redesenhar seção"
+      - "Contraste do CTA abaixo de 4.5:1 → corrigir antes de entregar"
+      - "Spec sem especificações de classes Tailwind → completar para ce-frontend-dev"
+
+  - name: "Step 3 — generateSectionImage"
+    agent: ce-image-creator (Flash)
+    tasks:
+      - Receber copy e spec de design da seção
+      - Identificar necessidade de imagem: obrigatória / opcional / nenhuma (por seção)
+      - Gerar ou selecionar imagem alinhada com headline e design system
+      - Aplicar diretrizes CRO: foco visual apontando para o CTA ou elemento-chave
+      - Otimizar para web: formato WebP, <= 200KB, dimensões corretas para mobile e desktop
+      - Gerar variante mobile da imagem se proporção diferente (ex.: hero retrato em mobile)
+      - "Nomear arquivo com convenção: `{seção}-{tipo}-{dimensão}.webp` (ex.: hero-main-1200x630.webp)"
+      - Preencher alt text descritivo e relevante para SEO
+      - Entregar assets em pasta nomeada por seção para ce-frontend-dev
+    checkpoints:
+      entry: "Copy aprovado + spec de design aprovada da seção"
+      exit: "Assets de imagem gerados, nomeados, otimizados e com alt text preenchido"
+    section_image_requirements:
+      navigation: "Logo (fornecido pelo cliente) — sem geração"
+      hero: "Imagem principal: obrigatória + variante mobile"
+      social-proof-bar: "Logos de clientes (fornecidos) + ícones de métricas"
+      problem-agitation: "Imagem de dor/frustração: opcional mas recomendada"
+      solution-demo: "Screenshot do produto ou ilustração de solução: obrigatória"
+      testimonials: "Fotos dos autores dos depoimentos: obrigatórias (fornecidas ou placeholder)"
+      benefits: "Ícones por benefício: obrigatórios"
+      features: "Ícones ou screenshots por feature: recomendados"
+      pricing: "Sem imagem principal — foco em tipografia e CTA"
+      faq: "Sem imagem — foco em tipografia e espaço em branco"
+      final-cta: "Imagem de resultado ou pessoa satisfeita: opcional mas recomendada"
+      footer: "Logo em versão mono/branca: fornecido pelo cliente"
+    veto_conditions:
+      - "Imagem obrigatória não gerada → gerar antes de entregar a ce-frontend-dev"
+      - "Asset acima de 200KB sem compressão → comprimir com TinyPNG ou equivalente"
+      - "Alt text vazio em qualquer imagem → preencher antes de entregar"
+      - "Imagem sem variante mobile para hero → gerar variante antes de entregar"
+      - "Arquivo nomeado de forma incorreta (sem convenção) → renomear antes de entregar"
+
+  - name: "Step 4 — buildSection"
+    agent: ce-frontend-dev (Turbo)
+    tasks:
+      - Receber copy, spec de design e assets de imagem da seção
+      - "Criar componente React/Next.js para a seção: `{SectionName}Section.tsx`"
+      - Implementar copy exatamente como escrito pelo ce-copywriter (sem reescrita)
+      - Implementar layout CRO conforme spec do ce-design-architect
+      - Integrar assets de imagem com next/image e priority flag (hero apenas)
+      - Implementar responsividade mobile-first com classes Tailwind
+      - Adicionar data-layer attributes nos elementos de conversão (CTA, formulário)
+      - Implementar animações de entrada (fade-in, slide-up) com Intersection Observer
+      - Testar renderização em 320px, 375px, 768px, 1024px, 1280px
+      - Validar acessibilidade: aria-labels, roles, tab order, contraste
+      - "Integrar seção no layout principal `page.tsx`"
+    checkpoints:
+      entry: "Copy aprovado + spec de design aprovada + assets de imagem recebidos"
+      exit: >
+        Componente buildado sem erros TypeScript, responsividade validada em 5
+        breakpoints, acessibilidade básica validada, integrado ao layout principal
+    veto_conditions:
+      - "Copy alterado pelo frontend sem aprovação do ce-copywriter → reverter"
+      - "Erros de TypeScript no componente → resolver antes de avançar para próxima seção"
+      - "Layout quebrado em mobile (320px) → corrigir antes de avançar"
+      - "Imagem sem atributo alt → adicionar antes de avançar"
+      - "CTA sem data-layer attribute → adicionar para rastreamento de analytics"
+      - "Componente não integrado ao page.tsx → integrar antes de avançar"
+
+success_indicators:
+  - "Ciclo de 4 steps concluído para cada uma das 12 seções do escopo"
+  - "Copy implementado identicamente ao escrito pelo ce-copywriter"
+  - "Layout CRO aplicado conforme spec do ce-design-architect"
+  - "Assets otimizados: WebP, <= 200KB, alt text preenchido"
+  - "Componente com zero erros TypeScript"
+  - "Responsividade validada em 5 breakpoints"
+  - "Data-layer attributes presentes em todos os CTAs"
+  - "Tempo médio por seção: 20-40 min (hero e pricing podem ir até 45 min)"
+
+failure_conditions:
+  - condition: "Copy da seção insuficiente para o agente de design trabalhar"
+    recovery: >
+      ce-design-architect documenta o que está faltando e retorna a ce-copywriter
+      para complementação antes de prosseguir (não inventar copy)
+  - condition: "Asset de imagem inviável de gerar (ex: foto real de pessoa específica)"
+    recovery: >
+      ce-image-creator usa placeholder profissional com especificações claras
+      para o cliente fornecer a imagem real; documenta como dependência de cliente
+  - condition: "Seção com bug de layout que não resolve em 20 min"
+    recovery: >
+      ce-frontend-dev marca seção como WIP, registra o bug com detalhes,
+      prossegue para próxima seção e retorna ao bug após todas as seções concluídas
+  - condition: "Design spec inconsistente com copy (ex: espaço insuficiente para o texto)"
+    recovery: >
+      ce-frontend-dev documenta a inconsistência, aplica ajuste mínimo necessário
+      e aciona ce-design-architect para validar a adaptação feita

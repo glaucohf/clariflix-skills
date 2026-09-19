@@ -1,0 +1,29 @@
+row: marketing
+title: Creative UGC Factory
+title_netflix: CREATIVE UGC FACTORY
+subtitle: Preparar conceitos, roteiros e variações de criativos UGC com revisão de marca e critérios de teste
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use marketing-creative-ugc-factory para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orion
+  - Stella
+  - Vega
+  - Cruz
+  - Hoox
+  - Sigma
+  - Nexus
+  - Aegis
+  - Aegis 2
+  generos:
+  - Marketing
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

@@ -1,0 +1,172 @@
+workflow_name: vendas_qualificacao_conversacional_whatsapp_pipeline
+description: "Seu melhor SDR nunca dorme, nunca perde um lead e qualifica BANT/MEDDIC em 3 mensagens no WhatsApp."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-qualificacao-conversacional-whatsapp
+area: "Vendas"
+topsquad: "V2 · Qualificação Conversacional & Speed-to-Lead"
+agent_sequence:
+  - maestro-comercial
+  - investigador-de-lead
+  - sdr-conversacional
+  - juiz-de-fit
+  - agendador-de-reunioes
+  - reativador-de-pipeline
+  - guardiao-do-crm
+  - analista-de-conversas
+  - censor-comercial
+key_commands:
+  - "*enriquecer-dossie-lead"
+  - "*conduzir-conversa-estruturada"
+  - "*priorizar-leads"
+  - "*agendar-reuniao"
+  - "*reativar-leads-frios"
+  - "*auditar-saude-do-pipeline"
+  - "*analisar-conversas-qualificadas"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro-comercial
+success_indicators:
+  - "Taxa de qualificação completa: % de leads que completam o fluxo BANT/MEDDIC inteiro (meta: >60% dos leads que iniciam conversa)"
+  - "Tempo médio de qualificação: minutos do primeiro contato até scorecard gerado (meta: <8 minutos)"
+  - "Taxa de conversão Lead-to-Meeting: % de leads qualificados que agendam reunião (meta: >35%)"
+  - "Qualidade dos leads entregues: avaliação do closer sobre leads recebidos 1-5 (meta: média >4.2)"
+  - "Taxa de abandono por etapa: % de leads que dropam em cada pergunta BANT (diagnóstico de gargalo)"
+  - "Task success rate por agente: monitorado no Langfuse (dev 70% / staging 85% / prod 95%)"
+  - "Score médio dos leads qualificados: média do score Magnus na fila do closer (meta: >65)"
+  - "Taxa de reativação de leads frios: % de COLD que voltam ao funil com Lazaro (meta: >15% em 30 dias)"
+  - "CAC de qualificação: custo por lead qualificado (tokens LLM + custo de ferramentas / n. de leads qualificados)"
+  - "Taxa de falso positivo: % de leads classificados HOT que não avançam apos reuniao com closer (meta: <20%)"
+deliverable:
+  description: "Dossiê de Qualificação Acionável: para cada lead processado, o squad entrega ao closer um artefato padronizado contendo — (1) qualification_scorecard.json com score 0-100 por dimensão BANT/MEDDIC, (2) conversation_log completo anotado com as respostas-chave do lead, (3) resumo executivo em 5 bullets (dor principal, budget confirmado, decisor identificado, urgência, objeção principal), (4) slot de reunião agendado ou próximo passo recomendado, (5) deal criado/atualizado no HubSpot com todos os campos preenchidos. Artefato linkado no ClickUp como prova de trabalho verificável."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro-comercial
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Enriquecer Dossiê Lead"
+    agent: investigador-de-lead
+    task: enriquecer-dossie-lead.md
+    trigger: "Disparado pelo Orchestrator imediatamente após recepção de novo lead. Também disparado quando Worker de Higiene detecta campo crítico vazio em lead existente."
+    checkpoint:
+      criteria: "Dossiê JSON enriquecido com: nome_completo, empresa, cargo, segmento, tamanho_empresa, canal_origem, anúncio_clicado, score_inicial_0a100, campos_bant_preenchidos_do_contexto. Escrito no HubSpot como propriedades do contato."
+      veto_condition: "Saída sem veredito do critic Censor Comercial; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Conduzir Conversa Estruturada"
+    agent: sdr-conversacional
+    task: conduzir-conversa-estruturada.md
+    trigger: "Disparado pelo Orchestrator após enriquecimento do Sherlock. Também reativado pelo Worker de Follow-up quando lead volta a interagir após período de silêncio."
+    checkpoint:
+      criteria: "Conversa de WhatsApp conduzida até coleta completa dos critérios. Score BANT/MEDDIC 0-100 calculado por dimensão e consolidado. Campos BANT preenchidos no HubSpot. Status do lead: QUALIFIED / NURTURE / DISQUALIFIED. Resumo de qualificação…"
+      veto_condition: "Saída sem veredito do critic Censor Comercial; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Priorizar Leads"
+    agent: juiz-de-fit
+    task: priorizar-leads.md
+    trigger: "Disparado automaticamente ao fim da qualificação da Vera. Também re-executado a cada 72h para leads WARM ainda no pipeline (re-scoring com novos sinais de intenção)."
+    checkpoint:
+      criteria: "Score final 0-100 com breakdown por dimensão. Tier de prioridade: HOT (>=70) / WARM (40-69) / COLD (<40). Justificativa em 3 linhas legível pelo humano. Deal value estimado. Próximo passo recomendado. Escrito no HubSpot como lead_score + t…"
+      veto_condition: "Saída sem veredito do critic Censor Comercial; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Agendar Reunião"
+    agent: agendador-de-reunioes
+    task: agendar-reuniao.md
+    trigger: "Disparado pelo Orchestrator quando Magnus classifica lead como HOT ou WARM. Também disparado por webhook de cancelamento do Calendly para iniciar reagendamento."
+    checkpoint:
+      criteria: "Agendamento confirmado no calendario. Evento criado com descricao contendo o dossie de qualificacao completo para o closer. Mensagens de confirmacao e lembrete enviadas ao lead. Status atualizado no HubSpot: stage = 'Meeting Scheduled'. Ar…"
+      veto_condition: "Saída sem veredito do critic Censor Comercial; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Reativar Leads Frios"
+    agent: reativador-de-pipeline
+    task: reativar-leads-frios.md
+    trigger: "Disparado 24h após lead ser classificado COLD ou 48h após lead WARM não responder ao convite de agendamento. Também acionado por sinal de intenção detectado em lead hibernado (visita ao site, engajamento com anúncio)."
+    checkpoint:
+      criteria: "Sequência de mensagens de nurture enviadas com timestamps. Log de tentativas por lead. Taxa de reativação por cadência. Leads reativados sinalizados ao Orchestrator para novo ciclo de qualificação. Artefato: nurture_cadence_log.json atuali…"
+      veto_condition: "Saída sem veredito do critic Censor Comercial; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Auditar Saúde Do Pipeline"
+    agent: guardiao-do-crm
+    task: auditar-saude-do-pipeline.md
+    trigger: "Cron: executa toda segunda-feira 07h00 para relatório semanal. Também disparado em tempo real quando Orchestrator detecta anomalia (ex: mesmo lead criado duas vezes por fontes diferentes)."
+    checkpoint:
+      criteria: "Relatorio de saude do CRM: n. de duplicatas fundidas, campos preenchidos, deals re-ativados, alertas de SLA violado. Dados corrigidos escritos de volta no HubSpot. Artefato: crm_health_report_YYYYMMDD.json salvo no ClickUp com link no cana…"
+      veto_condition: "Saída sem veredito do critic Censor Comercial; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Analisar Conversas Qualificadas"
+    agent: analista-de-conversas
+    task: analisar-conversas-qualificadas.md
+    trigger: "Cron: toda sexta-feira 18h00 para fechamento de ciclo semanal. Também acionado após qualquer batch de >50 qualificações para análise por lote."
+    checkpoint:
+      criteria: "Relatório de insights: top 5 perguntas com maior taxa de abandono, top 3 objeções não mapeadas, sugestões de ajuste de prompt para Vera, sugestões de recalibragem de pesos para Magnus. Artefato: conversation_intelligence_report_W{N}.md sal…"
+      veto_condition: "Saída sem veredito do critic Censor Comercial; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: censor-comercial
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: maestro-comercial
+    checkpoint:
+      criteria: "Entregável consolidado: Dossiê de Qualificação Acionável: para cada lead processado, o squad entrega ao closer um artefato padronizado contendo — (1) qualification_scorecard.json com score 0-100 por dimensão BANT/MEDDIC, (2…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "HITL-1 (L3): Aprovação humana obrigatória antes de qualquer mensagem proativa para lista importada (cold outbound) — risco legal e reputacional. Gestor comercial aprova batch antes do disparo."
+  - level: HITL
+    condition: "HITL-2 (L3): Concessão de desconto ou alteração de condições comerciais mencionadas na conversa — Vera nunca cita preço sem aprovação. Se lead pergunta por desconto, Vera responde 'vou verificar com nosso especialista' e escala ao closer via notificação imediata."
+  - level: HITL
+    condition: "HITL-3 (L3): Lead VIP (score >= 85 + empresa > 200 funcionários ou deal value estimado > R$100k) — Orchestrator notifica closer diretamente via WhatsApp antes de qualquer ação automática adicional. Closer decide se assume a conversa ou deixa o squad continuar."
+  - level: HITL
+    condition: "HITL-4 (L2): Reagendamento após segunda recusa do lead — Tempo tenta 2x automaticamente; na 3ª recusa, notifica o closer para abordagem manual personalizada."
+  - level: HITL
+    condition: "HITL-5 (L2): Objecão não mapeada detectada pelo Veto na conversa da Vera — Vera pausa, escala notificação ao gestor comercial com contexto completo. Gestor responde o que fazer; resposta é adicionada ao playbook para aprendizado."
+  - level: HITL
+    condition: "HITL-6 (L1): Relatório semanal do Eco com sugestões de ajuste de prompt — gestor revisa e aprova antes de qualquer alteração ser aplicada nos prompts da Vera ou nos pesos do Magnus."
+transitions:
+  - from: maestro-comercial
+    to: investigador-de-lead
+    condition: "Disparado pelo Orchestrator imediatamente após recepção de novo lead. Também disparado quando Worker de Higiene detecta campo crítico vazio em lead existente."
+  - from: investigador-de-lead
+    to: sdr-conversacional
+    condition: "Disparado pelo Orchestrator após enriquecimento do Sherlock. Também reativado pelo Worker de Follow-up quando lead volta a interagir após período de silêncio."
+  - from: sdr-conversacional
+    to: juiz-de-fit
+    condition: "Disparado automaticamente ao fim da qualificação da Vera. Também re-executado a cada 72h para leads WARM ainda no pipeline (re-scoring com novos sinais de intenção)."
+  - from: juiz-de-fit
+    to: agendador-de-reunioes
+    condition: "Disparado pelo Orchestrator quando Magnus classifica lead como HOT ou WARM. Também disparado por webhook de cancelamento do Calendly para iniciar reagendamento."
+  - from: agendador-de-reunioes
+    to: reativador-de-pipeline
+    condition: "Disparado 24h após lead ser classificado COLD ou 48h após lead WARM não responder ao convite de agendamento. Também acionado por sinal de intenção detectado em lead hibernado (visita ao site, engajam…"
+  - from: reativador-de-pipeline
+    to: guardiao-do-crm
+    condition: "Cron: executa toda segunda-feira 07h00 para relatório semanal. Também disparado em tempo real quando Orchestrator detecta anomalia (ex: mesmo lead criado duas vezes por fontes diferentes)."
+  - from: guardiao-do-crm
+    to: analista-de-conversas
+    condition: "Cron: toda sexta-feira 18h00 para fechamento de ciclo semanal. Também acionado após qualquer batch de >50 qualificações para análise por lote."
+  - from: analista-de-conversas
+    to: censor-comercial
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: censor-comercial
+    to: maestro-comercial
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

@@ -1,0 +1,160 @@
+workflow_name: marketing_ai_sdr_outbound_pipeline
+description: "Do ICP vivo ao outreach personalizado 1:1 em escala — seu SDR nunca mais vai perder tempo pesquisando quando deveria estar conversando."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-ai-sdr-outbound
+area: "Marketing"
+topsquad: "M1 · Demand Gen & ABM Orchestration"
+agent_sequence:
+  - maestro
+  - icp-cartografo
+  - scout-profiler
+  - calibre-scorer
+  - cyrano-copywriter
+  - cadence-dispatcher
+  - pulse-analyst
+  - sentinel
+key_commands:
+  - "*mapear-estrategista-de-mercado"
+  - "*enriquecer-dossie-contas"
+  - "*pontuar-leads"
+  - "*redigir-mensagens-personalizadas"
+  - "*enviar-mensagens-multicanal"
+  - "*analisar-respostas-recebidas"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro
+success_indicators:
+  - "Reply rate por canal: email (baseline vs meta >10%), WhatsApp (meta >25%), LinkedIn (meta >15%) — medido semanalmente por cohort de mensagens"
+  - "Reuniões agendadas por SDR por semana: meta de 3-5x o baseline pré-implantação sem adição de headcount"
+  - "Pipeline gerado por toque (R$): valor total de oportunidades abertas atribuídas a cada sequência do squad — meta: ROI 3x do custo do squad no primeiro trimestre"
+  - "Volume de contas prospectadas por semana: meta 300-600 contas/semana vs 20-40 do SDR manual (10-15x de alavancagem de volume)"
+  - "Taxa de aprovação do Sentinel no primeiro ciclo: meta >70% — indica qualidade dos drafts do Cyrano e calibragem dos playbooks"
+  - "Score médio de personalização das mensagens aprovadas: meta >7/10 (média de elementos específicos do dossiê usados por mensagem)"
+  - "Tempo de ciclo: da entrada de um lead na fila ao primeiro outreach enviado e aprovado: meta <30 minutos para leads HOT/FIRE"
+  - "Taxa de task success por agente no Langfuse: gate produção = 95% (abaixo disto aciona alerta automático para revisão do agente)"
+  - "Redução do tempo do SDR humano em tarefas de pesquisa e redação: meta liberação de 60%+ do tempo para calls e atividades de relacionamento"
+  - "Acurácia do ICP Cartografo: taxa de leads FIRE que efetivamente agendam reunião (meta >30%) vs leads WARM (meta >15%) — valida o modelo de scoring do Calibre"
+deliverable:
+  description: "Pacote de outreach verificado, personalizado e rastreável por lead: (1) ICP Card vivo atualizado (ICP Cartografo) salvo no ClickUp — base de toda a prospecção; (2) Dossiê de conta estruturado (Scout Profiler) com score de confiança, fontes verificadas e ângulos de personalização — salvo no ClickUp e linkado ao lead no CRM; (3) Score de fit com breakdown auditável por dimensão (Calibre Scorer) — campo atualizado no CRM; (4) Draft de mensagem aprovado pelo Sentinel com score de personalização e checklist de compliance — versionado no ClickUp; (5) Log de envio imutável com timestamp, canal, variação A/B e status (Cadence Dispatcher) — activity no CRM e ClickUp; (6) Análise de resposta com intenção estruturada, objeções mapeadas e próximo passo recomendado (Pulse Analyst) — CRM atualizado, notificação ao SDR. Todo o pipeline e auditável por design: cada artefato tem agente responsável, timestamp, veredicto do Sentinel e rastro do Langfuse. O SDR humano opera os gates L3 e vê o contexto completo de cada lead em um único painel."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Mapear Estrategista De Mercado"
+    agent: icp-cartografo
+    task: mapear-estrategista-de-mercado.md
+    trigger: "Trigger inicial no onboarding para construção do ICP baseline. Refresh mensal automático via cron. Re-trigger imediato se Pulse Analyst detectar shift significativo em patterns de resposta (ex: objeção nova emergindo em >30% das respostas…"
+    checkpoint:
+      criteria: "ICP vivo estruturado em Markdown com 4 seções: (1) Firmográfico — segmentos-alvo, porte (funcionários/receita), verticais, tecnologias em uso como indicadores de fit, regiões prioritárias; (2) Comportamental — triggers de compra (hiring, e…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Dossiê Contas"
+    agent: scout-profiler
+    task: enriquecer-dossie-contas.md
+    trigger: "Ativado pelo Maestro para cada empresa aprovada no Calibre Scorer com score >= 60. Re-trigger se novos sinais de intent forem detectados para uma empresa ja no funil. Trigger em batch diario para lista de contas frias priorizadas pelo SDR…"
+    checkpoint:
+      criteria: "Dossiê de conta estruturado em Markdown com 6 seções: (1) Visão Geral da Empresa — segmento, porte, receita estimada, número de funcionários, sede, site; (2) Decisores Identificados — lista de 3-5 contatos por cargo com nome, LinkedIn URL,…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Pontuar Leads"
+    agent: calibre-scorer
+    task: pontuar-leads.md
+    trigger: "Automaticamente apos Scout Profiler entregar o dossie completo. Re-trigger a cada novo sinal de intent detectado para o mesmo lead. Re-trigger se o lead interagir com qualquer mensagem enviada (abertura de email, click, resposta). Trigger…"
+    checkpoint:
+      criteria: "Score numérico (0-100) com breakdown por dimensão: ICP Fit (0-30, peso maior por ser o critério mais preditivo), Intent Signal Strength (0-25), Engagement History (0-20), Deal Size Estimate (0-15), Timing Urgency (0-10). Tag de prioridade:…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Redigir Mensagens Personalizadas"
+    agent: cyrano-copywriter
+    task: redigir-mensagens-personalizadas.md
+    trigger: "Ativado pelo Maestro após Calibre Scorer classificar o lead como FIRE ou HOT e o dossiê estar com score de confiança >= 70. Re-trigger (reescritura) se Sentinel reprovar — max 1 reescritura automática antes de escalar para HITL. Trigger pa…"
+    checkpoint:
+      criteria: "Pack de outreach completo: 2 variacoes (A/B) por canal ativo com subject line (email, max 50 chars), preview text, corpo da mensagem, CTA unico e P.S. quando aplicavel. Para sequencias: 4 mensagens completas (D0/D2/D5/D10) por variacao. Ca…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Enviar Mensagens Multicanal"
+    agent: cadence-dispatcher
+    task: enviar-mensagens-multicanal.md
+    trigger: "Ativado pelo Maestro imediatamente após Sentinel aprovar o draft. Triggers de follow-up automático nos dias configurados (D2, D5, D10) se nenhuma resposta detectada. Trigger de oportunidade: lead abre email ou clica em link = prioridade im…"
+    checkpoint:
+      criteria: "Log de envio verificável e imutável no ClickUp por cada mensagem: { message_id, lead_id, channel, variação_ab, sent_at, status (sent / queued / blocked_for_hitl), open_tracked, click_tracked }. Atualização do CRM com activity de outreach (…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Analisar Respostas Recebidas"
+    agent: pulse-analyst
+    task: analisar-respostas-recebidas.md
+    trigger: "Webhook em tempo real para qualquer mensagem incoming (email, WhatsApp, LinkedIn). Processamento em batch a cada 4 horas para transcrições de calls. Trigger semanal automático para relatório de patterns e retroalimentação do ICP Cartografo…"
+    checkpoint:
+      criteria: "Análise de resposta estruturada por lead: { sentiment (positive / neutral / negative / objection / not_now / wrong_person / unsubscribe), intent_score (0-100), objections_detected: [lista com categoria e texto exato], next_best_action (sch…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: sentinel
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: maestro
+    checkpoint:
+      criteria: "Entregável consolidado: Pacote de outreach verificado, personalizado e rastreável por lead: (1) ICP Card vivo atualizado (ICP Cartografo) salvo no ClickUp — base de toda a prospecção; (2) Dossiê de conta estruturado (Scout…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Gate L3 no Cadence Dispatcher: qualquer envio para contas estratégicas (deal estimado acima do threshold configurado no onboarding) bloqueia e notifica o SDR humano com draft completo, dossiê e score para aprovação ou rejeição com 1 clique antes de qualquer disparo."
+  - level: HITL
+    condition: "Reescritura falhou 2x no Sentinel: draft reprovado pelo Sentinel que nao passou nem com a reescritura automatica do Cyrano e escalado para o SDR humano com o feedback detalhado do critic para reescritura manual."
+  - level: HITL
+    condition: "Score de confiança do dossiê do Scout Profiler abaixo de 60: alerta ao SDR humano para verificar manualmente os dados antes de autorizar o outreach – agente não envia com informação não verificada."
+  - level: HITL
+    condition: "Pulse Analyst detecta intent = CONFIRMED_INTEREST ou sentiment = VERY_POSITIVE em qualquer resposta: notificacao imediata e urgente ao SDR/Closer humano para assumir a conversa — o squad nao conduz negociacao, apenas entrega o contexto completo e recua."
+  - level: HITL
+    condition: "Mensagem com condição comercial detectada pelo Sentinel (desconto, condição especial, prazo garantido): bloqueio automático e encaminhamento para aprovação do gestor comercial antes de qualquer envio."
+  - level: HITL
+    condition: "ICP Cartografo detecta shift significativo de mercado (nova objecao emergindo em >30% das respostas, queda de >20% no reply rate em 2 semanas consecutivas): alerta ao time de marketing e vendas para revisao estrategica do ICP e playbooks antes de continuar prospeccao."
+  - level: HITL
+    condition: "Opt-out ou resposta negativa agressiva: processado pelo Pulse Analyst, sequência cancelada automaticamente, CRM atualizado, notificação ao SDR para decisão sobre blacklist permanente — decisão de blacklist é sempre humana."
+transitions:
+  - from: maestro
+    to: icp-cartografo
+    condition: "Trigger inicial no onboarding para construção do ICP baseline. Refresh mensal automático via cron. Re-trigger imediato se Pulse Analyst detectar shift significativo em patterns de resposta (ex: objeç…"
+  - from: icp-cartografo
+    to: scout-profiler
+    condition: "Ativado pelo Maestro para cada empresa aprovada no Calibre Scorer com score >= 60. Re-trigger se novos sinais de intent forem detectados para uma empresa ja no funil. Trigger em batch diario para lis…"
+  - from: scout-profiler
+    to: calibre-scorer
+    condition: "Automaticamente apos Scout Profiler entregar o dossie completo. Re-trigger a cada novo sinal de intent detectado para o mesmo lead. Re-trigger se o lead interagir com qualquer mensagem enviada (abert…"
+  - from: calibre-scorer
+    to: cyrano-copywriter
+    condition: "Ativado pelo Maestro após Calibre Scorer classificar o lead como FIRE ou HOT e o dossiê estar com score de confiança >= 70. Re-trigger (reescritura) se Sentinel reprovar — max 1 reescritura automátic…"
+  - from: cyrano-copywriter
+    to: cadence-dispatcher
+    condition: "Ativado pelo Maestro imediatamente após Sentinel aprovar o draft. Triggers de follow-up automático nos dias configurados (D2, D5, D10) se nenhuma resposta detectada. Trigger de oportunidade: lead abr…"
+  - from: cadence-dispatcher
+    to: pulse-analyst
+    condition: "Webhook em tempo real para qualquer mensagem incoming (email, WhatsApp, LinkedIn). Processamento em batch a cada 4 horas para transcrições de calls. Trigger semanal automático para relatório de patte…"
+  - from: pulse-analyst
+    to: sentinel
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: sentinel
+    to: maestro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

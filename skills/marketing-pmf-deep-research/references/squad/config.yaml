@@ -1,0 +1,58 @@
+pack:
+  name: marketing-pmf-deep-research
+  version: 0.1.0
+  short-title: "PMF & Market Deep Research Squad"
+  description: "Pare de adivinhar o mercado: valide dor, tamanho e ângulo antes de gastar um real em mídia."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🔭"
+  slashPrefix: pmfMarketDeepResearchSquad
+name: marketing-pmf-deep-research
+version: 0.1.0
+description: "Pare de adivinhar o mercado: valide dor, tamanho e ângulo antes de gastar um real em mídia."
+entry_agent: orion
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: marketing
+  topsquad: "M4"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orion
+  - marco
+  - iris
+  - vesper
+  - nyx
+  - atlas
+  - brutus
+  - vega
+  - brutus-2
+tasks:
+  - pesquisar-tendencias-industriais.md
+  - gerar-scoring-de-fit.md
+  - monitorar-sinais-de-dor.md
+  - simular-entrevistas-sinteticas.md
+  - analisar-concorrentes-diretos-indiretos.md
+  - questionar-premissas.md
+  - sintetizar-pmf-documento.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - marketing-pmf-deep-research-pipeline.yaml
+checklists:
+  - critic-brutus-2.md
+integrations:
+  - "HubSpot / Salesforce — leitura de dados de CRM para ICP profiling (Iris)"
+  - "Clay — waterfall enrichment de 100+ fontes para enriquecimento de ICP e sinais de intent"
+  - "Apollo.io — prospecting e enriquecimento de contatos para validacao de ICP"
+  - "SEMrush / SimilarWeb — share of voice, keywords e tráfego de concorrentes (Marco, Atlas)"
+  - "Meta Ad Library / Google Ads Transparency — análise de criativos e copy de concorrentes (Atlas)"
+  - "G2 / Capterra / Trustpilot — reviews públicos para signal sensing e competitive intel (Vesper, Atlas)"
+  - "LinkedIn — sinais de hiring, conteúdo e movimentos estratégicos de concorrentes (Vesper, Atlas)"
+  - "Reddit / forums do nicho — captura de linguagem de dor organica (Vesper)"
+  - "Notion / Google Docs — entrega do PMF Framework Document e Persona Cards ao cliente"
+  - "ClickUp — registro de tasks, prova de trabalho e rastreamento de artefatos entregues por ciclo"
+  - "Langfuse — observabilidade OTEL, evals e quality gates dos agentes (dev 70% / staging 85% / prod 95%)"
+  - "Slack / WhatsApp Business — notificações de HITL ao cliente/board para aprovações críticas"

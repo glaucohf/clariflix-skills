@@ -1,0 +1,158 @@
+workflow_name: vendas_ai_sdr_outbound_signal_based_pipeline
+description: "Do sinal de intenção ao slot agendado em menos de 90 segundos, personalizado por IA e aprovado por crític antes de tocar o lead."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-ai-sdr-outbound-signal-based
+area: "Vendas"
+topsquad: "V1 · Prospecção & Outbound Multicanal"
+agent_sequence:
+  - nexus
+  - radar
+  - sherlock
+  - magnus
+  - penna
+  - vox
+  - lumen
+  - argus
+key_commands:
+  - "*detectar-sinais-intencao"
+  - "*construir-dossie-completo"
+  - "*classificar-leads"
+  - "*redigir-mensagens-personalizadas"
+  - "*agendar-mensagens"
+  - "*analisar-respostas-recebidas"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: nexus
+success_indicators:
+  - "Volume de leads prospectados por semana (baseline vs pós-implantação, meta: 3-5x)"
+  - "Tempo de resposta a sinal de intenção: da detecção ao primeiro outreach enviado (meta: <2 minutos para sinais HOT)"
+  - "Taxa de aprovação do Critic no primeiro ciclo (meta: >70% sem reescritura)"
+  - "Taxa de resposta ao cold outreach por canal (email: meta >8%, WhatsApp: meta >20%, LinkedIn: meta >12%)"
+  - "Taxa de conversão de lead contactado para reunião agendada (meta: >15% em HOT leads)"
+  - "Número de reuniões agendadas por semana (meta: 3-5x o baseline manual)"
+  - "Score médio de personalização das mensagens aprovadas (Argus metric, meta: >7/10)"
+  - "Taxa de tâsk success no Langfuse por agênt (gâte: dêv 70% / stâging 85% / prôd 95%)"
+  - "Redução de tempo do SDR humano em tarefas de pesquisa e redação (meta: liberação de 60%+ do tempo para calls e fechamento)"
+  - "Pipeline gerado pelo squad em R$ (meta: ROI 3x no primeiro trimestre)"
+deliverable:
+  description: "Pacote de outreach verificado e rastreável por lead: (1) Dossiê de conta estruturado (Sherlock) salvo no ClickUp e CRM, (2) Draft de mensagem aprovado pelo Argus com score de personalização e checklist de compliance, (3) Log de envio com timestamp e canal no CRM e ClickUp, (4) Score de lead atualizado com breakdown (Magnus), (5) Análise de resposta com intenção e próxima ação sugerida (Lumen). Todo o pipeline é auditável: cada artefato tem prova de trabalho com agente responsável, timestamp e veredicto do critic."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: nexus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Detectar Sinais Intencao"
+    agent: radar
+    task: detectar-sinais-intencao.md
+    trigger: "Cron a cada 15 minutos para polling de APIs de intent; webhook imediato para eventos de alta prioridade (visita de decisor ao site de pricing, abertura de vaga de SDR na empresa-alvo, mudanca de VP de Vendas no LinkedIn)."
+    checkpoint:
+      criteria: "Alerta de sinal estruturado em JSON: { lead_id, company, signal_type, signal_strength (1-10), signal_timestamp, raw_evidence_url, suggested_priority, icp_match_score }. Persiste no CRM como activity e aciona o Nexus via webhook."
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Construir Dossiê Completo"
+    agent: sherlock
+    task: construir-dossie-completo.md
+    trigger: "Ativado pelo Nexus imediatamente após validação do sinal pelo Radar. Reativado se o sinal for atualizado (ex: nova notícia sobre a empresa emerge 24h depois)."
+    checkpoint:
+      criteria: "Dossiê de conta em Markdown estruturado: seções de Contexto da Empresa, Decisores Identificados (nome/cargo/LinkedIn/email verificado), Stack Tecnológica, Notícias Recentes (max 3 relevantes), Dores Inferidas do Sinal, Ângulos de Personali…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Classificar Leads"
+    agent: magnus
+    task: classificar-leads.md
+    trigger: "Automaticamente apos Sherlock entregar o dossie. Re-trigger a cada novo sinal detectado pelo Radar para o mesmo lead. Re-trigger se o lead interagir com qualquer mensagem enviada."
+    checkpoint:
+      criteria: "Score numérico (0-100) com breakdown detalhado por dimensão: ICP Fit (0-25), Signal Strength (0-25), Engagement History (0-20), Deal Size Estimate (0-15), Timing Urgency (0-15). Tag de prioridade: HOT (>75), WARM (50-75), COLD (<50). Atual…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Redigir Mensagens Personalizadas"
+    agent: penna
+    task: redigir-mensagens-personalizadas.md
+    trigger: "Ativado pelo Nexus após Magnus classificar o lead como HOT ou WARM e o dossiê estar completo. Re-trigger se o Critic reprovar o draft (max 2 reescrituras automáticas antes de escalar para HITL)."
+    checkpoint:
+      criteria: "Pack de outreach: 2 variações de mensagem por canal ativo, com subject line (email), preview text, corpo, CTA e P.S. quando aplicável. Cada draft inclui metadados: personalização_score (quantos elementos do dossiê foram usados), compliance…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Agendar Mensagens"
+    agent: vox
+    task: agendar-mensagens.md
+    trigger: "Ativado pelo Nexus imediatamente apos aprovacao do Critic. Re-trigger nos dias D+2, D+4, D+7 para follow-up automatico se nao houver resposta. Trigger especial se lead abrir email ou clicar em link (sinal de engajamento = prioridade imedia…"
+    checkpoint:
+      criteria: "Log de envio verificável no ClickUp: { message_id, lead_id, channel, sent_at, status (sent/queued/blocked_for_hitl), tracking_url }. Atualização do CRM com activity de outreach. Para respostas positivas: link de booking enviado e slot rese…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Analisar Respostas Recebidas"
+    agent: lumen
+    task: analisar-respostas-recebidas.md
+    trigger: "Webhook em tempo real para qualquer resposta incoming. Processamento em batch diário de transcrições de calls das 24h anteriores. Trigger semanal para relatório de patterns."
+    checkpoint:
+      criteria: "Analise de resposta estruturada: { sentiment (positive/neutral/negative/objection), intent (interested/not_now/wrong_person/unsubscribe), objections_detected: [], suggested_reply_angle, coaching_note_for_sdr }. Atualizacao do CRM. Se inter…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: argus
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: nexus
+    checkpoint:
+      criteria: "Entregável consolidado: Pacote de outreach verificado e rastreável por lead: (1) Dossiê de conta estruturado (Sherlock) salvo no ClickUp e CRM, (2) Draft de mensagem aprovado pelo Argus com score de personalização e checkli…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Envio para contas estratégicas (Tier 1, deal estimado acima do threshold configurado): Vox bloqueia e notifica SDR humano com draft + dossiê para aprovação antes do disparo."
+  - level: HITL
+    condition: "Mensagem com desconto, condição especial ou promessa comercial detectada pelo Argus: bloqueio automático e encaminhamento para aprovação do gestor comercial."
+  - level: HITL
+    condition: "Draft reprovado 2x pelo Argus sem aprovacao: escala para SDR humano com o feedback do critic para reescritura manual."
+  - level: HITL
+    condition: "Lead responde com interesse alto (sentiment = positive + intent = interested): notificação imediata ao SDR/Closer humano para assumir a conversa — o agente não conduz a negociação, apenas passa o contexto completo."
+  - level: HITL
+    condition: "Score de confiança do dossiê do Sherlock abaixo de 60: alerta ao SDR humano para verificar manualmente antes de autorizar o outreach."
+  - level: HITL
+    condition: "Unsubscribe ou resposta negativa agressiva: processado pelo Lumen, CRM atualizado, notificação ao SDR para decisão sobre blacklist permanente."
+transitions:
+  - from: nexus
+    to: radar
+    condition: "Cron a cada 15 minutos para polling de APIs de intent; webhook imediato para eventos de alta prioridade (visita de decisor ao site de pricing, abertura de vaga de SDR na empresa-alvo, mudanca de VP d…"
+  - from: radar
+    to: sherlock
+    condition: "Ativado pelo Nexus imediatamente após validação do sinal pelo Radar. Reativado se o sinal for atualizado (ex: nova notícia sobre a empresa emerge 24h depois)."
+  - from: sherlock
+    to: magnus
+    condition: "Automaticamente apos Sherlock entregar o dossie. Re-trigger a cada novo sinal detectado pelo Radar para o mesmo lead. Re-trigger se o lead interagir com qualquer mensagem enviada."
+  - from: magnus
+    to: penna
+    condition: "Ativado pelo Nexus após Magnus classificar o lead como HOT ou WARM e o dossiê estar completo. Re-trigger se o Critic reprovar o draft (max 2 reescrituras automáticas antes de escalar para HITL)."
+  - from: penna
+    to: vox
+    condition: "Ativado pelo Nexus imediatamente apos aprovacao do Critic. Re-trigger nos dias D+2, D+4, D+7 para follow-up automatico se nao houver resposta. Trigger especial se lead abrir email ou clicar em link (…"
+  - from: vox
+    to: lumen
+    condition: "Webhook em tempo real para qualquer resposta incoming. Processamento em batch diário de transcrições de calls das 24h anteriores. Trigger semanal para relatório de patterns."
+  - from: lumen
+    to: argus
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: argus
+    to: nexus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

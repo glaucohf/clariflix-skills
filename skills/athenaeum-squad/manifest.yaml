@@ -1,0 +1,31 @@
+row: especialistas
+title: Sala de estratégia
+title_netflix: ATHENAEUM SQUAD
+subtitle: Inteligência estratégica e transformação organizacional
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 11 agentes, 12 tarefas, 1 fluxos
+  requer: Desafio, contexto organizacional, partes interessadas e evidências disponíveis
+  como_usar: 'Diga: "Use Athenaeum para analisar este desafio organizacional e propor
+    cenários"'
+  elenco:
+  - chief-strategist
+  - intake-analyst
+  - war-room-facilitator
+  - systems-analyst
+  - emotional-mediator
+  - cultural-analyst
+  - ethics-consultant
+  - creative-ideator
+  - invisible-patterns-analyst
+  - communication-specialist
+  - report-synthesizer
+  generos:
+  - Estratégia
+  - Organizações
+  esta_skill_e:
+  - Sistêmica
+  - Multidisciplinar
+  - Analítica

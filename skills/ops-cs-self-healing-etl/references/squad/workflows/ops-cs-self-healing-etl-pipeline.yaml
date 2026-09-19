@@ -1,0 +1,171 @@
+workflow_name: ops_cs_self_healing_etl_pipeline
+description: "Pipelines que quebram silenciosamente custam decisoes: o Self-Healing ETL detecta a anomalia, diagnostica a causa raiz e recupera a ingestao antes do dashboard mentir."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-self-healing-etl
+area: "Operações & CS"
+topsquad: "O5 · Operações Técnicas: SRE, SLA & Data Pipelines"
+agent_sequence:
+  - orion
+  - argus
+  - remi
+  - finn
+  - coda
+  - nexus
+  - vega
+  - loki
+  - vega-2
+key_commands:
+  - "*monitorar-pipelines"
+  - "*testar-hipoteses-sequenciais"
+  - "*curar-falhas-reversiveis"
+  - "*gerar-plano-de-remediacao"
+  - "*calibrar-thresholds-baseline"
+  - "*verificar-acoes-automaticas"
+  - "*documentar-incidente"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "MTTR (Mean Time to Recovery): tempo médio entre detecção da anomalia e freshness restaurada (meta: < 2h para 80% dos incidentes, baseline típico: 24-48h)"
+  - "MTTD (Mean Time to Detection): tempo entre a falha ocorrer e o Argus gerar o alerta (meta: < 15 minutos para pipelines P1-P2, < 30 minutos para P3-P4)"
+  - "Taxa de incidentes auto-resolvidos (L0-L2): % de incidentes resolvidos sem intervenção humana (meta: 65-75% em 90 dias)"
+  - "Taxa de falsos positivos do Argus: % de alertas que não eram anomalias reais (meta: < 15% após calibração, monitorado pelo Nexus)"
+  - "Taxa de falsos negativos do Vega: % de ações bloqueadas incorretamente (meta: < 10%, balanceado com taxa de falsos positivos < 1%)"
+  - "Freshness SLA compliance: % de pipelines que entregam dados dentro do SLA de freshness contratado (meta: > 99% para P1, > 95% para P2)"
+  - "Custo de horas de engenharia salvas: horas/mês que seriam gastas em investigação e recuperação manual (meta: 20-40h/mês em clientes com 15+ pipelines ativos)"
+  - "Pipeline Health Score médio: média dos health scores de todos os pipelines monitorados (0-100, meta: > 85 em 90 dias)"
+  - "Tempo de onboarding de novo pipeline: horas para onboarding completo de um novo pipeline (baseline + thresholds + recovery_policy + assignees) (meta: < 4h por pipeline)"
+deliverable:
+  description: "Incident Card no ClickUp por anomalia detectada (prova de trabalho verificavel): (1) Alerta estruturado do Argus — pipeline, timestamp, anomaly_type, severity, evidencia bruta; (2) Root Cause Report do Remi — root cause confirmado, confidence score, evidence chain, recommended action; (3) Verification Report do Vega — verdict APPROVED/BLOCKED com justificativa por dimensao; (4) Recovery Action Record do Finn (para auto-resolucao) OU Fix Plan do Coda (para HITL L3) — acao tomada, resultado, rows recovered, freshness restored at; (5) Post-recovery freshness timestamp confirmando que o pipeline voltou ao SLA; (6) Task fechada no ClickUp com historico completo de timestamps por etapa (MTTD e MTTR calculados automaticamente). Bonus semanal: Weekly Incident Report com metricas agregadas de confiabilidade e ROI de horas salvas."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar Pipelines"
+    agent: argus
+    task: monitorar-pipelines.md
+    trigger: "Cron a cada 5 minutos (configurável por pipeline por criticidade: pipelines P1 a cada 1min, P4 a cada 15min) + webhooks de failure de execução do ETL tool + chamada manual do Orion."
+    checkpoint:
+      criteria: "Evento de anomalia (JSON estruturado: pipeline_id, timestamp, anomaly_type [SCHEMA_DRIFT | SOURCE_DOWN | VOLUME_ANOMALY | HIGH_ERROR_RATE | FRESHNESS_VIOLATION | NULL_EXPLOSION], severity [P1-P4], evidência bruta, upstream_pipelines_affect…"
+      veto_condition: "Saída sem veredito do critic Vega 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Testar Hipóteses Sequenciais"
+    agent: remi
+    task: testar-hipoteses-sequenciais.md
+    trigger: "Chamado pelo Orion imediatamente após receber evento de anomalia do Argus. SLA interno: diagnóstico completo em < 5 minutos para P1-P2, < 15 minutos para P3-P4."
+    checkpoint:
+      criteria: "Root Cause Report (JSON: root_cause [SCHEMA_DRIFT | SOURCE_OUTAGE | SEASONAL_VOLUME | TRANSFORMATION_BUG | DATA_QUALITY_DEGRADATION | UNKNOWN], confidence_score 0-100, evidence_chain [lista de checagens e resultados], severity_final [P1-P4…"
+      veto_condition: "Saída sem veredito do critic Vega 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Curar Falhas Reversíveis"
+    agent: finn
+    task: curar-falhas-reversiveis.md
+    trigger: "Chamado pelo Orion após Root Cause Report do Remi + validação APPROVED do Vega, SOMENTE para ações reversíveis em pipelines P3-P4 (ou P2 com autorização explícita). NUNCA chamado diretamente — sempre via Orion + Vega."
+    checkpoint:
+      criteria: "Recovery Action Record (JSON: action_taken, action_params, execution_timestamp, result [SUCCESS | PARTIAL | FAILED], rows_recovered, freshness_restored_at, side_effects, rollback_procedure_if_needed). Em caso de FAILED, gera Escalation Req…"
+      veto_condition: "Saída sem veredito do critic Vega 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Gerar Plano De Remediacao"
+    agent: coda
+    task: gerar-plano-de-remediacao.md
+    trigger: "Chamado pelo Orion quando o Root Cause Report do Remi classifica a acao necessaria como IRREVERSIBLE ou severity P1-P2 sem acao automatica segura disponivel. Tambem chamado quando o Finn falha em recuperacao automatica e precisa escalar."
+    checkpoint:
+      criteria: "Fix Plan Document (Markdown estruturado: resumo executivo em 3 linhas, root cause confirmado, acoes passo-a-passo numeradas com responsavel e SLA estimado, DDL/codigo de fix com syntax highlight, rollback procedure, impacto se nao corrigid…"
+      veto_condition: "Saída sem veredito do critic Vega 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Calibrar Thresholds Baseline"
+    agent: nexus
+    task: calibrar-thresholds-baseline.md
+    trigger: "Cron semanal (domingo 03h00) para recalibração geral + chamado pelo Orion quando taxa de falsos positivos do Argus supera 30% na semana + onboarding de novo pipeline."
+    checkpoint:
+      criteria: "anomaly_config.json atualizado por pipeline (thresholds de volume [min/max por hora/dia/semana], latência máxima aceitável, null_rate_threshold por coluna, schema_stability_score, criticidade do pipeline). Calibration Report semanal (Markd…"
+      veto_condition: "Saída sem veredito do critic Vega 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Verificar Ações Automaticas"
+    agent: vega
+    task: verificar-acoes-automaticas.md
+    trigger: "Chamado pelo Orion SEMPRE antes de acionar o Finn para qualquer ação automática. Não há bypass — toda ação passa pelo Vega. Também chamado quando o Coda finaliza um Fix Plan antes de enviar para HITL (para garantir que o plano proposto é s…"
+    checkpoint:
+      criteria: "Verification Report (JSON: verdict [APPROVED | BLOCKED | ESCALATE_HITL], checks_passed [lista de dimensoes aprovadas], checks_failed [lista de dimensoes reprovadas com justificativa], blast_radius_assessment, rollback_feasibility_score 0-1…"
+      veto_condition: "Saída sem veredito do critic Vega 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Documentar Incidente"
+    agent: loki
+    task: documentar-incidente.md
+    trigger: "Chamado pelo Orion ao início de cada incidente (para criar a task) e ao final (para fechar com resultado). Também roda cron semanal (segunda 08h00) para gerar o Weekly Report. Dispara notificação Slack imediata para P1 e P2."
+    checkpoint:
+      criteria: "Task no ClickUp por incidente (titulo padronizado: [PIPELINE] [SEVERITY] root_cause — status, com checklist de etapas, attachments dos reports, timestamp de cada etapa, prova de trabalho = freshness restaurada + rows_recovered). Weekly Inc…"
+      veto_condition: "Saída sem veredito do critic Vega 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: vega-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Incident Card no ClickUp por anomalia detectada (prova de trabalho verificavel): (1) Alerta estruturado do Argus — pipeline, timestamp, anomaly_type, severity, evidencia bruta; (2) Root Cause Report…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Ações irreversíveis ou P1-P2: qualquer ação que altere schema em produção, reprocesse mais de 24h de dados, faça rollback de tabela ou envolva custo de compute significativo requer aprovação explícita. Loki cria task no ClickUp com Fix Plan do Coda (checklist de aprovação) e notifica via Slack. SLA de resposta: P1 = 30min, P2 = 2h. Se SLA expirar sem resposta, Orion escala para gestor do pipeline."
+  - level: L3
+    condition: "Vega emite BLOCKED: quando a verificacao do Vega reprova qualquer dimensao (proporcionalidade, reversibilidade, scope, precedente), a acao e bloqueada independente da classificacao original. Requer override explicito humano com justificativa registrada."
+  - level: L3
+    condition: "Schema drift complexo: quando Remi identifica schema drift que não se enquadra nos patches automáticos seguros (ex: renomeação ambígua, remoção de campo usado downstream, mudança de tipo com perda de dados), o Coda prepara o plano de migração DDL completo para aprovação humana antes de qualquer alteração."
+  - level: L2
+    condition: "Revisão do Calibration Report semanal do Nexus: humano (engenheiro de dados responsável) revisa os thresholds recalibrados antes da aplicação. Não bloqueia operação, mas permite ajuste fino de sensibilidade por pipeline crítico."
+  - level: L2
+    condition: "Onboarding de novo pipeline: antes de iniciar monitoramento de um pipeline novo, humano valida o anomaly_config.json gerado pelo Nexus (thresholds, criticidade, recovery_policy) e confirma os assignees responsáveis por incidentes HITL."
+  - level: L1
+    condition: "Weekly Incident Report: gestor de dados recebe o relatório semanal do Loki e pode re-classificar incidentes (true/false positive), ajustar prioridades e confirmar o cálculo de ROI para reportar para o cliente."
+transitions:
+  - from: orion
+    to: argus
+    condition: "Cron a cada 5 minutos (configurável por pipeline por criticidade: pipelines P1 a cada 1min, P4 a cada 15min) + webhooks de failure de execução do ETL tool + chamada manual do Orion."
+  - from: argus
+    to: remi
+    condition: "Chamado pelo Orion imediatamente após receber evento de anomalia do Argus. SLA interno: diagnóstico completo em < 5 minutos para P1-P2, < 15 minutos para P3-P4."
+  - from: remi
+    to: finn
+    condition: "Chamado pelo Orion após Root Cause Report do Remi + validação APPROVED do Vega, SOMENTE para ações reversíveis em pipelines P3-P4 (ou P2 com autorização explícita). NUNCA chamado diretamente — sempre…"
+  - from: finn
+    to: coda
+    condition: "Chamado pelo Orion quando o Root Cause Report do Remi classifica a acao necessaria como IRREVERSIBLE ou severity P1-P2 sem acao automatica segura disponivel. Tambem chamado quando o Finn falha em rec…"
+  - from: coda
+    to: nexus
+    condition: "Cron semanal (domingo 03h00) para recalibração geral + chamado pelo Orion quando taxa de falsos positivos do Argus supera 30% na semana + onboarding de novo pipeline."
+  - from: nexus
+    to: vega
+    condition: "Chamado pelo Orion SEMPRE antes de acionar o Finn para qualquer ação automática. Não há bypass — toda ação passa pelo Vega. Também chamado quando o Coda finaliza um Fix Plan antes de enviar para HITL…"
+  - from: vega
+    to: loki
+    condition: "Chamado pelo Orion ao início de cada incidente (para criar a task) e ao final (para fechar com resultado). Também roda cron semanal (segunda 08h00) para gerar o Weekly Report. Dispara notificação Sla…"
+  - from: loki
+    to: vega-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: vega-2
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

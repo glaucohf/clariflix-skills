@@ -1,0 +1,47 @@
+name: marketing-pmf-deep-research
+version: 0.1.0
+description: "Pare de adivinhar o mercado: valide dor, tamanho e ângulo antes de gastar um real em mídia."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: pmd
+components:
+  agents:
+    - orion.md
+    - marco.md
+    - iris.md
+    - vesper.md
+    - nyx.md
+    - atlas.md
+    - brutus.md
+    - vega.md
+    - brutus-2.md
+  tasks:
+    - pesquisar-tendencias-industriais.md
+    - gerar-scoring-de-fit.md
+    - monitorar-sinais-de-dor.md
+    - simular-entrevistas-sinteticas.md
+    - analisar-concorrentes-diretos-indiretos.md
+    - questionar-premissas.md
+    - sintetizar-pmf-documento.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-pmf-deep-research-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - inteligencia-de-mercado-icp-concorrencia
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M4 · TopSquad de Inteligência de Mercado, ICP & Concorrência"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

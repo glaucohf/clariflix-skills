@@ -1,0 +1,47 @@
+name: founder-ai-chief-of-staff
+version: 0.1.0
+description: "Seu segundo cérebro estratégico: nunca mais entre em reunião sem preparo, nunca mais perca um follow-up."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: aco
+components:
+  agents:
+    - orion.md
+    - briefing.md
+    - kira.md
+    - vance.md
+    - sage.md
+    - intel.md
+    - atlas.md
+    - memo.md
+    - skeptic.md
+  tasks:
+    - preparar-briefing-de-reuniao.md
+    - sintetizar-fontes-abertas.md
+    - gerar-relatorio-semanal.md
+    - validar-output-estrategico.md
+    - monitorar-inteligencia-competitiva.md
+    - gerar-plano-da-semana.md
+    - gerar-drafts-de-updates.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-ai-chief-of-staff-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - chief-of-staff-clone-do-founder
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F1 · TopSquad de Chief of Staff & Clone do Founder"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

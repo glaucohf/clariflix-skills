@@ -1,0 +1,192 @@
+workflow_name: founder_due_diligence_ma_screening_pipeline
+description: "Triagem de aquisições em 48h com inteligência de Opus — red flags, tese e memo prontos antes do primeiro call."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-due-diligence-ma-screening
+area: "Founder Office"
+topsquad: "F5 · Investor Relations, Fundraising & M&A"
+agent_sequence:
+  - nexus
+  - argus
+  - fenix
+  - themis
+  - sigma
+  - atlas
+  - vox
+  - eco
+  - columbo
+  - columbo-2
+key_commands:
+  - "*coletar-dados-abertos"
+  - "*analisar-metricas-financeiras"
+  - "*analisar-processos-judiciais"
+  - "*analisar-mercado-competitivo"
+  - "*analisar-maturidade-tecnologica"
+  - "*avaliar-cultura-organizacional"
+  - "*reescrever-tese"
+  - "*verificar-claims-fontes"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: nexus
+success_indicators:
+  - "Targets triados por ciclo mensal (baseline: 2-3 manuais → meta: 8-12 com o squad)"
+  - "% de red flags materiais identificados no screening vs due diligence aprofundado (meta: >90%)"
+  - "Tempo médio de triagem por target (baseline: 3-6 semanas → meta: 24-48h)"
+  - "Custo por triagem em tokens/API (meta: < R$200 por target em custos de infra)"
+  - "Score de confianca medio do Columbo por ciclo (meta: > 80 antes de entregar ao founder)"
+  - "% de Investment Memos aprovados sem revisão maior pelo founder (meta: > 70% aprovados com ajustes mínimos)"
+  - "Taxa de conversão screening → due diligence aprofundado (meta: só targets com score >= 7/12 no Scorecard M&A avançam)"
+  - "Redução de custo de assessoria externa por triagem (meta: 90% de redução vs linha de base)"
+  - "NPS do founder com o memo (pesquisa pós-entrega, meta: > 8/10)"
+  - "Número de red flags Critical corretamente identificados que teriam passado no processo manual (métrica de aprendizado contínuo)"
+deliverable:
+  description: "Pacote M&A Screening completo por target: (1) Target Profile v0 JSON (dados normalizados de fontes abertas); (2) 5 Sub-relatorios de workers (Financeiro, Juridico, Mercado, Tech, Pessoas) com claims 100% rastreados; (3) Relatorio de Verificacao do Columbo com score de confianca; (4) Scorecard M&A (12 dimensoes, 0-10); (5) Red Flag Register com severidade e evidencia; (6) Tese de Aquisicao com hipoteses de valor e sinergias; (7) Investment Memo personalizado na voz do founder (PDF + Markdown) com recomendacao Go/Conditional Go/No-Go. Tudo gravado no ClickUp como prova de trabalho e no knowledge base do squad para aprendizado continuo."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: nexus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Coletar Dados Abertos"
+    agent: argus
+    task: coletar-dados-abertos.md
+    trigger: "Ativado pelo Nexus ao receber novo target. Re-ativado se score de completude < 60 apos complementação pelo founder."
+    checkpoint:
+      criteria: "Target Profile v0 (JSON): razão social, CNPJ, sócios/fundadores, estrutura societária, histórico de litígios (número de processos, valor em risco), métricas financeiras públicas, cobertura de mídia últimos 24 meses, patentes registradas, c…"
+      veto_condition: "Saída sem veredito do critic Columbo 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Analisar Metricas Financeiras"
+    agent: fenix
+    task: analisar-metricas-financeiras.md
+    trigger: "Ativado pelo Nexus em paralelo com outros workers após aprovação do Target Profile v0 (completude >= 60)."
+    checkpoint:
+      criteria: "Sub-relatório Financeiro: valuation range (método múltiplos + DCF se dados suficientes), unit economics estimados, EBITDA margin benchmark vs setor, red flags financeiros com evidência e fonte, score financeiro 0-10"
+      veto_condition: "Saída sem veredito do critic Columbo 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Analisar Processos Judiciais"
+    agent: themis
+    task: analisar-processos-judiciais.md
+    trigger: "Ativado pelo Nexus em paralelo com outros workers após aprovação do Target Profile v0."
+    checkpoint:
+      criteria: "Sub-relatório Jurídico: lista de processos (quantidade, valor em risco, estágio, probabilidade de perda estimada), compliance score por regulator setorial, registro de marcas/patentes (ativos vs contestados), red flags jurídicos severidade…"
+      veto_condition: "Saída sem veredito do critic Columbo 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Analisar Mercado Competitivo"
+    agent: sigma
+    task: analisar-mercado-competitivo.md
+    trigger: "Ativado pelo Nexus em paralelo com outros workers apos aprovação do Target Profile v0."
+    checkpoint:
+      criteria: "Sub-relatório de Mercado: TAM/SAM/SOM estimados com fontes, posicionamento vs top 3 concorrentes, share de mercado estimado, moat assessment (network effects, switching cost, brand, cost), tendências favoráveis/desfavoráveis, sinergias qua…"
+      veto_condition: "Saída sem veredito do critic Columbo 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Analisar Maturidade Tecnológica"
+    agent: atlas
+    task: analisar-maturidade-tecnologica.md
+    trigger: "Ativado pelo Nexus em paralelo com outros workers após aprovacao do Target Profile v0."
+    checkpoint:
+      criteria: "Sub-relatório Tech/Produto: stack tecnológico identificado, estimativa de divida técnica (Low/Medium/High/Critical), tamanho do time de engenharia, NPS/rating público do produto, red flags de produto (churn de reviews negativas, bugs críti…"
+      veto_condition: "Saída sem veredito do critic Columbo 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Avaliar Cultura Organizacional"
+    agent: vox
+    task: avaliar-cultura-organizacional.md
+    trigger: "Ativado pelo Nexus em paralelo com outros workers após aprovacao do Target Profile v0."
+    checkpoint:
+      criteria: "Sub-relatório Pessoas/Cultura: perfil dos fundadores (background, exits, reputação), histórico de C-level (tenure médio, churn rate), cultura score via Glassdoor (CEO approval, recommend to friend), red flags de pessoas (litígios pessoais,…"
+      veto_condition: "Saída sem veredito do critic Columbo 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Reescrever Tese"
+    agent: eco
+    task: reescrever-tese.md
+    trigger: "Ativado pelo Nexus após consolidação dos 5 sub-relatórios e validação pelo Critic (Columbo). Último agente ativado antes do HITL Gate final."
+    checkpoint:
+      criteria: "Investment Memo personalizado (PDF + Markdown): Executive Summary (meia página), Contexto do Target, Financials & Valuation, Red Flags com plano de mitigação, Tese de Aquisição, Recomendação (Go/Conditional Go/No-Go) com justificativa, Pró…"
+      veto_condition: "Saída sem veredito do critic Columbo 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificar Claims Fontes"
+    agent: columbo
+    task: verificar-claims-fontes.md
+    trigger: "Ativado pelo Nexus automaticamente após recepção dos 5 sub-relatórios. Bloqueia o pipeline: Eco não é ativado até Columbo emitir status APPROVED (confiança >= 75) ou o founder aprovar manualmente no HITL Gate."
+    checkpoint:
+      criteria: "Relatório de Verificação: lista de claims por worker com status (VERIFIED/UNVERIFIED/DISPUTED), score de confiança geral por sub-relatório (0-100), lista de alucinações detectadas (claims sem fonte), contra-argumentos do vendedor por red f…"
+      veto_condition: "Saída sem veredito do critic Columbo 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-10
+    name: "Verificação do critic"
+    agent: columbo-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-11
+    name: "Gates humanos e entrega"
+    agent: nexus
+    checkpoint:
+      criteria: "Entregável consolidado: Pacote M&A Screening completo por target: (1) Target Profile v0 JSON (dados normalizados de fontes abertas); (2) 5 Sub-relatorios de workers (Financeiro, Juridico, Mercado, Tech, Pessoas) com claims…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "HITL Gate L3 — Aprovação do Target Profile v0: Antes de avançar para o Deep Dive, o founder recebe o Target Profile com score de completude e aprova ou complementa com dados adicionais (especialmente se completude < 60). Criticidade: ALTA — avançar com dados incompletos invalida todo o pipeline."
+  - level: HITL
+    condition: "HITL Gate L3 — Columbo Score < 75: Se o Critic retorna confiança geral abaixo de 75, o Nexus pausa o pipeline e apresenta ao founder a lista de claims UNVERIFIED/DISPUTED para decisão: aceitar o risco e prosseguir, solicitar pesquisa adicional (re-ativa workers específicos), ou cancelar a triagem do target."
+  - level: HITL
+    condition: "HITL Gate L3 — Red Flag Critical Detectado: Qualquer red flag classificado como 'Critical' (ex: ação penal criminal contra fundador, passivo trabalhista > 20% do valuation estimado, irregularidade fiscal grave) pausa o pipeline e exige confirmação do founder antes de prosseguir. Pode levar ao cancelamento imediato da triagem."
+  - level: HITL
+    condition: "HITL Gate L3 — Aprovação do Investment Memo para envio externo: O memo personalizado pelo Eco e entregue ao founder para revisão antes de qualquer compartilhamento com advisors, bancos, co-investidores ou o próprio target. Ações irreversíveis (envio externo) sempre requerem aprovação humana explícita."
+  - level: HITL
+    condition: "HITL Gate L2 — Ajuste de Tom/Voz do Memo: O founder pode solicitar reescrita do memo pelo Eco com ajustes de tom, nível de detalhe ou ênfase em determinados pontos. Eco re-executa com instruções específicas. Não é irreversível, mas é um checkpoint de qualidade importante."
+  - level: HITL
+    condition: "HITL Gate L1 — Configuração Inicial do Target: O founder define a intenção estratégica (por que este target, qual a tese inicial, quais setores/mercados são relevantes) antes do início do pipeline. Isso calibra os pesos do Scorecard e o foco dos workers."
+transitions:
+  - from: nexus
+    to: argus
+    condition: "Ativado pelo Nexus ao receber novo target. Re-ativado se score de completude < 60 apos complementação pelo founder."
+  - from: argus
+    to: fenix
+    condition: "Ativado pelo Nexus em paralelo com outros workers após aprovação do Target Profile v0 (completude >= 60)."
+  - from: fenix
+    to: themis
+    condition: "Ativado pelo Nexus em paralelo com outros workers após aprovação do Target Profile v0."
+  - from: themis
+    to: sigma
+    condition: "Ativado pelo Nexus em paralelo com outros workers apos aprovação do Target Profile v0."
+  - from: sigma
+    to: atlas
+    condition: "Ativado pelo Nexus em paralelo com outros workers após aprovacao do Target Profile v0."
+  - from: atlas
+    to: vox
+    condition: "Ativado pelo Nexus em paralelo com outros workers após aprovacao do Target Profile v0."
+  - from: vox
+    to: eco
+    condition: "Ativado pelo Nexus após consolidação dos 5 sub-relatórios e validação pelo Critic (Columbo). Último agente ativado antes do HITL Gate final."
+  - from: eco
+    to: columbo
+    condition: "Ativado pelo Nexus automaticamente após recepção dos 5 sub-relatórios. Bloqueia o pipeline: Eco não é ativado até Columbo emitir status APPROVED (confiança >= 75) ou o founder aprovar manualmente no…"
+  - from: columbo
+    to: columbo-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: columbo-2
+    to: nexus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - fenix
+  - themis
+  - sigma
+  - atlas
+  - vox

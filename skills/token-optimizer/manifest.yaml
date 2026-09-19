@@ -1,0 +1,25 @@
+row: especialistas
+title: Menos tokens, mesma função
+title_netflix: TOKEN OPTIMIZER
+subtitle: Auditoria e otimização de squads por impacto e custo
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 5 agentes, 5 tarefas, 2 fluxos
+  requer: Pasta de squad AIOS; guia TOKEN-OPTIMIZATION-GUIDE.md não incluído no pacote
+  como_usar: 'Diga: "Audite este squad e proponha otimizações de tokens sem perder
+    seus contratos"'
+  elenco:
+  - squad-scanner
+  - anti-pattern-detector
+  - optimization-planner
+  - optimization-executor
+  - quality-auditor
+  generos:
+  - Agentes de IA
+  - Eficiência
+  esta_skill_e:
+  - Mensurável
+  - Conservadora
+  - Priorizada

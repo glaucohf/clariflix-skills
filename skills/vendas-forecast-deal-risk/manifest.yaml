@@ -1,0 +1,28 @@
+row: vendas
+title: Forecast de Pipeline e Risco de Deal
+title_netflix: FORECAST DE PIPELINE E RISCO DE DEAL
+subtitle: Revisar pipeline, identificar riscos de oportunidades e preparar previsões de vendas com hipóteses explícitas
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-forecast-deal-risk para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Cassandra
+  - Argus
+  - Oracle
+  - Sibila
+  - Hermes
+  - Mnemosine
+  - Cronos
+  - Nemesis
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

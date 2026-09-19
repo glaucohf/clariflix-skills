@@ -1,0 +1,45 @@
+name: vendas-inteligencia-conta-battlecards
+version: 0.1.0
+description: "Seu vendedor entra na reunião sabendo mais sobre o prospect do que ele mesmo."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: idc
+components:
+  agents:
+    - nexus.md
+    - scout.md
+    - iris.md
+    - warfare.md
+    - oracle.md
+    - herald.md
+    - memoria.md
+    - sentinel.md
+  tasks:
+    - investigar-empresa-completa.md
+    - mapear-stakeholders.md
+    - montar-battlecard-competitiva.md
+    - analisar-dores-setoriais.md
+    - entregar-artefatos-formatados.md
+    - persistir-contexto-no-crm.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-inteligencia-conta-battlecards-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - sales-enablement-conversation-intelligence
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V5 · TopSquad de Sales Enablement & Conversation Intelligence"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

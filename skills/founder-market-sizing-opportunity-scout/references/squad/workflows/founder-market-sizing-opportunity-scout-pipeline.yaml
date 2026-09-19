@@ -1,0 +1,175 @@
+workflow_name: founder_market_sizing_opportunity_scout_pipeline
+description: "De hunch para tese fundamentada: TAM/SAM/SOM com fontes rastreáveis e oportunidades de expansão dimensionadas em menos de 45 minutos — sem consultoria, sem planilha manual, sem alucinação."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-market-sizing-opportunity-scout
+area: "Founder Office"
+topsquad: "F3 · Inteligência Competitiva & de Mercado"
+agent_sequence:
+  - atlas
+  - cosmos
+  - praxis
+  - radar
+  - scout
+  - faro
+  - citadel
+  - axiom
+  - axiom-2
+key_commands:
+  - "*analisar-dados-macro"
+  - "*contar-unidades-economicas"
+  - "*estimar-mercado-competitivo"
+  - "*cacar-oportunidadesadjacentes"
+  - "*mapear-barreiras-regulatorias"
+  - "*classificar-credibilidade-fontes"
+  - "*verificar-convergencia-e-sanity-check"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: atlas
+success_indicators:
+  - "Tempo médio de geração de Market Opportunity Report completo (target < 45 min vs. baseline 72h manual)"
+  - "Taxa de convergência entre métodos no relatório final — % de relatórios onde desvio entre top-down e bottom-up < 40% (target >= 80%)"
+  - "Taxa de claims quantitativos com citação verificada credibilidade >= 3 (target 100%)"
+  - "Número médio de fontes únicas por relatório de sizing (target >= 20 fontes)"
+  - "Número de oportunidades de expansão dimensionadas com fontes por trimestre (target 12-15 vs. baseline 2-3)"
+  - "NPS do founder com o relatório — pesquisa pós-entrega (target >= 9/10)"
+  - "Taxa de relatórios aprovados sem solicitação de re-pesquisa (target >= 75%)"
+  - "Custo médio por relatório em tokens (target < U$6 por sizing completo com triangulação)"
+  - "Taxa de teses de sizing usadas em decisão real pelo founder (proxy de impacto — documentado no ClickUp)"
+  - "Economia estimada vs. consultoria externa por trimestre (target R$30k-80k substituídos)"
+deliverable:
+  description: "Market Opportunity Report — documento estruturado entregue em Notion e Slack contendo: (1) Executive Summary com TAM/SAM/SOM finais em reais/dólares com intervalo de confiança, (2) Sizing Waterfall top-down com cada etapa do cálculo e fonte inline [Fonte N], (3) Sizing bottom-up com tabela de sensibilidade (3 cenários), (4) Competitive Sizing com receitas dos principais players e TAM implícito, (5) Triangulação dos três métodos com análise de convergência ou divergência explicada, (6) Mapa de Oportunidades de Expansão rankeadas por potencial x esforço x timing com sizing individual de cada oportunidade, (7) Tese de Entrada recomendada com lógica explícita e 3 hipóteses de execução, (8) Barrier Map com SOM adjustment justificado, (9) Appendix de Fontes completo (20+ fontes com URL, data, credibilidade score), (10) Audit Trail (metodologia, queries, workers ativados, timestamp). Disponível em duas densidades: 1-pager executivo para board/investidores e relatório analítico completo. Tasks de follow-up criadas automaticamente no ClickUp com responsáveis e prazos."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: atlas
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Analisar Dados Macro"
+    agent: cosmos
+    task: analisar-dados-macro.md
+    trigger: "Atlas roteia dimensão classificada como 'top-down sizing' ou 'market size macro'. Ativado em toda análise de Market Entry e Geographic Expansion. Re-ativado se Axiom detectar divergência > 60% entre métodos e solicitar dados adicionais."
+    checkpoint:
+      criteria: "Sizing top-down estruturado: { market_name, tam_value, tam_currency, tam_year, sam_value, sam_rationale, calculation_steps: [{step, value, source_url, source_credibility}], cagr_estimate, cagr_source, confidence_level (High/Medium/Low), da…"
+      veto_condition: "Saída sem veredito do critic Axiom 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Contar Unidades Econômicas"
+    agent: praxis
+    task: contar-unidades-economicas.md
+    trigger: "Atlas roteia dimensão como 'bottom-up sizing' ou 'unit economics sizing'. Ativado em análises de Customer Segment Expansion e Adjacent Product onde o mercado não tem dados macro consolidados. Sempre ativado em paralelo com Cosmos para tria…"
+    checkpoint:
+      criteria: "Sizing bottom-up estruturado: { base_unit_count, base_unit_source_url, avg_ticket, avg_ticket_source_url, purchase_frequency, penetration_assumption, penetration_rationale, sam_value, som_value, som_rationale, sensitivity_table: [{scenario…"
+      veto_condition: "Saída sem veredito do critic Axiom 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Estimar Mercado Competitivo"
+    agent: radar
+    task: estimar-mercado-competitivo.md
+    trigger: "Atlas sempre ativa Radar em paralelo com Cosmos e Praxis para triangulação. Ativado de forma isolada quando o objetivo é entender dinâmica competitiva de um mercado antes de entrada. Re-ativado por Axiom quando sizing top-down e bottom-up…"
+    checkpoint:
+      criteria: "Competitive sizing estruturado: { player_name, revenue_estimate, revenue_source_url, revenue_year, market_share_estimate, market_share_rationale, implied_tam, growth_rate, growth_source_url }[]. TAM implícito calculado por método competiti…"
+      veto_condition: "Saída sem veredito do critic Axiom 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Caçar OportunidadesAdjacentes"
+    agent: scout
+    task: cacar-oportunidadesadjacentes.md
+    trigger: "Ativado pelo Atlas quando tipo de análise é 'Opportunity Scouting', 'Expansion Strategy' ou 'Adjacent Market'. Sempre ativado na fase Framework para enriquecer o Market Opportunity Report com próximos passos concretos. Pode ser ativado dir…"
+    checkpoint:
+      criteria: "Mapa de Oportunidades estruturado: { opportunity_name, opportunity_type (Geographic/Vertical/Adjacent/Segment), estimated_sam, sam_confidence, estimated_entry_effort (1-5), estimated_time_to_revenue_months, strategic_fit_score (1-5), signa…"
+      veto_condition: "Saída sem veredito do critic Axiom 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Mapear Barreiras Regulatórias"
+    agent: faro
+    task: mapear-barreiras-regulatorias.md
+    trigger: "Ativado pelo Atlas em toda análise que envolva nova geografia, novo produto regulado ou nova vertical com players estabelecidos. Sempre ativado antes da síntese final para calibrar o SOM. Ativação manual pelo founder via '/barriers [mercad…"
+    checkpoint:
+      criteria: "Barrier Map estruturado: { barrier_type, severity (Alto/Médio/Baixo), description, mitigation_path, time_to_overcome_months, cost_estimate, source_url, recommendation }[]. SOM adjustment factor: multiplicador aplicado ao SAM para chegar ao…"
+      veto_condition: "Saída sem veredito do critic Axiom 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Classificar Credibilidade Fontes"
+    agent: citadel
+    task: classificar-credibilidade-fontes.md
+    trigger: "Ativado automaticamente após todos os workers concluírem, antes do Axiom. Processo determinístico — sem geração de conteúdo, apenas normalização, verificação de acessibilidade e classificação. Ativado novamente se Axiom solicitar dados adi…"
+    checkpoint:
+      criteria: "Corpus normalizado com citações padronizadas e índice numerado de fontes. Score de cobertura: % de claims quantitativos com citação credibilidade >= 3. Lista de claims órfãos (sem fonte) e de dados com fonte de baixa credibilidade para rev…"
+      veto_condition: "Saída sem veredito do critic Axiom 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificar Convergência E Sanity Check"
+    agent: axiom
+    task: verificar-convergencia-e-sanity-check.md
+    trigger: "Ativado automaticamente após Citadel concluir normalização. Re-ativado pelo Atlas após workers complementares entregarem dados adicionais solicitados. Pode ser ativado manualmente pelo founder via '/verify-sizing [número]' para fact-check…"
+    checkpoint:
+      criteria: "Corpus auditado com anotações de confiança por número. Relatório de verificação: { tam_convergence_pct, confidence_classification (High/Medium/Low/Reject), methods_used, contradictions_found, red_team_som_findings, gaps_requiring_research…"
+      veto_condition: "Saída sem veredito do critic Axiom 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: axiom-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: atlas
+    checkpoint:
+      criteria: "Entregável consolidado: Market Opportunity Report — documento estruturado entregue em Notion e Slack contendo: (1) Executive Summary com TAM/SAM/SOM finais em reais/dólares com intervalo de confiança, (2) Sizing Waterfall t…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "SIZING BRIEF APPROVAL (L3): Antes de Atlas disparar qualquer worker, o Sizing Brief com metodologia proposta, fontes-alvo e custo estimado de tokens é apresentado ao founder para aprovação explícita. Perguntas que envolvam sizing de mercados para M&A, captação ou due diligence de parceiros têm este gate obrigatório e não podem ser puladas."
+  - level: HITL
+    condition: "REGULATORY BARRIER FLAG (L1→L3): Quando Faro classifica uma barreira regulatória como Alta (ex: exige licença BACEN, certificação ANVISA, autorização CADE) — o Market Opportunity Report é retido e o founder recebe alerta com a barreira descrita. O SOM do relatório final é ajustado para refletir a barreira e marcado como 'pendente de validação jurídica' até que especialista humano confirme a análise. Inclui recomendação de consultor jurídico parceiro."
+  - level: HITL
+    condition: "CONVERGENCE FAILURE ALERT (L2→L3): Se Axiom detectar divergência > 60% entre os três métodos de sizing e os workers adicionais não resolverem o gap — o relatório é enviado ao founder com flag explícita de 'sizing com alta incerteza metodológica'. O founder decide se aceita o intervalo de incerteza ou solicita pesquisa adicional paga (escopo ampliado)."
+  - level: HITL
+    condition: "INVESTMENT MEMO / PITCH USE (L3): Quando o founder sinaliza que vai usar o Market Opportunity Report em pitch a investidores, board pack ou material de captação — Axiom executa uma rodada adicional de verificação adversarial de nível máximo (100% de claims quantitativos devem ter fonte credibilidade >= 4) e o founder deve revisar e assinar o relatório antes do envio externo. Nexar (Founder Clone) não escreve versão de pitch sem este gate."
+  - level: HITL
+    condition: "COST THRESHOLD (L3): Se a estimativa de custo de tokens de uma pesquisa superar o limite configurado (default: U$8 por análise de sizing completo) — Atlas pausa, apresenta o breakdown de custo por worker e solicita aprovação explícita antes de continuar."
+  - level: HITL
+    condition: "NEW MARKET ENTRY RECOMMENDATION (L3): Quando Scout ranquear uma oportunidade com recomendação de ação imediata (ex: janela de entrada fechando em < 3 meses, sinal de concorrente se posicionando) — o alerta é escalado para o founder com nível de urgência explícito antes de qualquer automação de follow-up no ClickUp."
+transitions:
+  - from: atlas
+    to: cosmos
+    condition: "Atlas roteia dimensão classificada como 'top-down sizing' ou 'market size macro'. Ativado em toda análise de Market Entry e Geographic Expansion. Re-ativado se Axiom detectar divergência > 60% entre…"
+  - from: cosmos
+    to: praxis
+    condition: "Atlas roteia dimensão como 'bottom-up sizing' ou 'unit economics sizing'. Ativado em análises de Customer Segment Expansion e Adjacent Product onde o mercado não tem dados macro consolidados. Sempre…"
+  - from: praxis
+    to: radar
+    condition: "Atlas sempre ativa Radar em paralelo com Cosmos e Praxis para triangulação. Ativado de forma isolada quando o objetivo é entender dinâmica competitiva de um mercado antes de entrada. Re-ativado por A…"
+  - from: radar
+    to: scout
+    condition: "Ativado pelo Atlas quando tipo de análise é 'Opportunity Scouting', 'Expansion Strategy' ou 'Adjacent Market'. Sempre ativado na fase Framework para enriquecer o Market Opportunity Report com próximo…"
+  - from: scout
+    to: faro
+    condition: "Ativado pelo Atlas em toda análise que envolva nova geografia, novo produto regulado ou nova vertical com players estabelecidos. Sempre ativado antes da síntese final para calibrar o SOM. Ativação ma…"
+  - from: faro
+    to: citadel
+    condition: "Ativado automaticamente após todos os workers concluírem, antes do Axiom. Processo determinístico — sem geração de conteúdo, apenas normalização, verificação de acessibilidade e classificação. Ativad…"
+  - from: citadel
+    to: axiom
+    condition: "Ativado automaticamente após Citadel concluir normalização. Re-ativado pelo Atlas após workers complementares entregarem dados adicionais solicitados. Pode ser ativado manualmente pelo founder via '/…"
+  - from: axiom
+    to: axiom-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: axiom-2
+    to: atlas
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - praxis
+  - radar

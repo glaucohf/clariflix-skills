@@ -1,0 +1,25 @@
+row: especialistas
+title: Do alerta ao post-mortem
+title_netflix: INCIDENT RESPONSE SQUAD
+subtitle: Diagnóstico de incidente e plano de resposta para o operador
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 5 agentes, 6 tarefas, 2 fluxos
+  requer: Alerta, severidade SEV1–SEV4 e logs fornecidos pelo operador
+  como_usar: 'Diga: "Faça a triagem deste incidente com os logs e prepare o plano
+    de resposta"'
+  elenco:
+  - log-analyzer
+  - root-cause-correlator
+  - runbook-executor
+  - status-page-updater
+  - postmortem-writer
+  generos:
+  - DevOps
+  - Confiabilidade
+  esta_skill_e:
+  - Rastreável
+  - Objetiva
+  - Sem culpabilização

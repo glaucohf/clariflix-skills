@@ -1,0 +1,53 @@
+pack:
+  name: vendas-forecast-deal-risk
+  version: 0.1.0
+  short-title: "Forecast de Pipeline e Risco de Deal"
+  description: "Seu pipeline para de mentir: detecta risco antes do silêncio virar perda."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "📊"
+  slashPrefix: forecastDePipelineERiscoDeDeal
+name: vendas-forecast-deal-risk
+version: 0.1.0
+description: "Seu pipeline para de mentir: detecta risco antes do silêncio virar perda."
+entry_agent: cassandra
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V6"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - cassandra
+  - argus
+  - oracle
+  - sibila
+  - hermes
+  - mnemosine
+  - cronos
+  - nemesis
+tasks:
+  - monitorar-deals-ativos.md
+  - calcular-score-risco-deal.md
+  - gerar-forecast-pipeline.md
+  - formatar-alertas-contextualizados.md
+  - analisar-deals-fechados.md
+  - sugerir-proximo-passo.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-forecast-deal-risk-pipeline.yaml
+checklists:
+  - critic-nemesis.md
+integrations:
+  - "CRM: HubSpot (MCP disponível), Pipedrive, Salesforce — fonte primária de dados de deals, atividades e estágios"
+  - "ClickUp — gestão de tarefas de intervenção, registro de próximo passo, prova de trabalho por deal"
+  - "Slack — canal principal de alertas para closers e gestores (webhook)"
+  - "WhatsApp Business API (Gupshup / AiSensy) — alertas urgentes para closers via WhatsApp"
+  - "Email (SMTP/SendGrid) — digest semanal para gestores e report para board"
+  - "Langfuse (OTEL) — observabilidade do squad, quality gates (70% dev / 85% staging / 95% prod), rastreio de accuracy do forecast"
+  - "Google Calendar / Outlook Calendar — verificação de disponibilidade para sugestões de próximo passo do Cronos"
+  - "Clay / Apollo — enriquecimento de dados do contato quando necessário para contexto do alerta"
+  - "Notion / Google Sheets — export do relatório de forecast para clientes sem dashboard dedicado"

@@ -1,0 +1,47 @@
+name: founder-knowledge-base-institucional
+version: 0.1.0
+description: "O conhecimento que vive na cabeça do founder vira grafo consultável, clone estratégico e vantagem competitiva permanente."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: kbi
+components:
+  agents:
+    - orion.md
+    - scribe.md
+    - cartographer.md
+    - persona-forge.md
+    - scrivener.md
+    - radar.md
+    - chief-of-staff.md
+    - wargame.md
+    - auditor.md
+  tasks:
+    - transformar-conhecimento-tacito.md
+    - construir-grafo-conhecimento.md
+    - sintetizar-respostas-confidentes.md
+    - gerar-drafts-narrativos.md
+    - monitorar-sinais-estrategicos.md
+    - preparar-reunioes-importantes.md
+    - simular-cenarios-futuros.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-knowledge-base-institucional-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - chief-of-staff-clone-do-founder
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F1 · TopSquad de Chief of Staff & Clone do Founder"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

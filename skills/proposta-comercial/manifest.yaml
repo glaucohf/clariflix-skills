@@ -1,0 +1,15 @@
+row: vendas
+title: Proposta que apresenta valor
+title_netflix: PROPOSTA COMERCIAL
+subtitle: Do briefing ao deck HTML e PDF com a identidade da sua marca
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 5 fases, 4 referências, template HTML e exportador PDF
+  requer: Arquivos e navegador; Python e Edge/Chrome/Chromium para exportar PDF
+  como_usar: 'Diga: "crie uma proposta comercial para [cliente]" e envie o briefing e os materiais da marca'
+  elenco: [Descoberta, Identidade visual, Narrativa, Design, QA comercial]
+  generos: [Vendas, Propostas, Design]
+  esta_skill_e: [Visual, Estruturada, Verificável]

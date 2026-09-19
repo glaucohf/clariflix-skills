@@ -1,0 +1,170 @@
+workflow_name: marketing_abm_signal_orchestrator_pipeline
+description: "Cada sinal de intent em conta estrategica vira campanha coordenada antes que o concorrente responda."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-abm-signal-orchestrator
+area: "Marketing"
+topsquad: "M1 · Demand Gen & ABM Orchestration"
+agent_sequence:
+  - nexus
+  - radar
+  - atlas
+  - vox
+  - pixel
+  - hermes
+  - chronos
+  - prism
+  - aegis
+key_commands:
+  - "*monitorar-sinais-de-intent"
+  - "*enriquecer-conta-icp"
+  - "*gerar-copy-personalizada"
+  - "*criar-audiencias-customizadas"
+  - "*sequenciar-contato-multicanal"
+  - "*orquestrar-canais-de-mensagens"
+  - "*consolidar-sinais-engajamento-conta"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: nexus
+success_indicators:
+  - "Penetração em contas-alvo: % de contas Tier 1 com pelo menos 2 stakeholders engajados (meta: subir de ~12% para ~35% em 90 dias)"
+  - "Pipeline ABM gerado: R$ em oportunidades abertas no CRM atribuídas ao programa ABM (meta: 3-5x vs baseline sem ABM)"
+  - "Engajamento multi-stakeholder: media de contatos engajados por conta Tier 1 (meta: >= 2.5 por conta)"
+  - "Tempo de resposta a sinal de intent: de detecção do sinal até primeiro toque personalizado (meta: < 4 horas para Tier 1)"
+  - "Taxa de abertura de email ABM: benchmark > 35% (vs 20% de campanha generica)"
+  - "Taxa de resposta positiva de outreach: benchmark > 8% (vs 2% de cold outreach gênerico)"
+  - "Reuniões agendadas por conta Tier 1: meta >= 1 meeting/conta nos primeiros 60 dias de ativação"
+  - "Task Success Rate no Langfuse: >= 85% em staging, >= 95% em produção"
+deliverable:
+  description: "ABM Campaign Package por conta ativada — artefato verificavel no ClickUp contendo: Account Intelligence Profile (buying committee mapeado, ICP score, sinais detectados), ABM Copy Package aprovado pelo Aegis (email sequences, LinkedIn messages, ad copy, call script), cronograma de touches aprovado pelo Chronos, campanhas ativas nas plataformas de ads, sequencias ativas no CRM, e Account Engagement Dashboard com tracking em tempo real. Cada campanha e uma task no ClickUp com checklist de aprovacoes HITL, historico de versoes de copy e metricas de performance linkadas."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: nexus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar Sinais De Intent"
+    agent: radar
+    task: monitorar-sinais-de-intent.md
+    trigger: "Webhook de novo sinal nas fontes configuradas; job scheduling diário para varredura de fontes que não tem webhook; alerta de mudança de status de conta no CRM"
+    checkpoint:
+      criteria: "Intent Signal Alert (JSON estruturado): conta_id, tipo_de_sinal, intensidade (1-10), stakeholders_envolvidos, fonte, timestamp, contexto_raw, recommended_tier_action"
+      veto_condition: "Saída sem veredito do critic Aegis; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Conta Icp"
+    agent: atlas
+    task: enriquecer-conta-icp.md
+    trigger: "Intent Signal Alert de Radar com intensidade >= 6; solicitação manual do Nexus para conta específica; scheduled refresh semanal para contas Tier 1 ativas"
+    checkpoint:
+      criteria: "Account Intelligence Profile: empresa (tech stack, financiamento, headcount, notícias recentes), buying committee (nome, cargo, LinkedIn, email, telefone, histórico de interações CRM), ICP score 0-100, recommended messaging angle, next bes…"
+      veto_condition: "Saída sem veredito do critic Aegis; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Gerar Copy Personalizada"
+    agent: vox
+    task: gerar-copy-personalizada.md
+    trigger: "Account Intelligence Profile validado pelo Atlas; solicitação de refresh de mensagem por baixa performance (CTR < 2%); nova persona identificada na conta"
+    checkpoint:
+      criteria: "ABM Copy Package: email sequences (3 variantes x 3 touches por stakeholder), LinkedIn messages, ad copy (5 variantes por formato), subject lines testadas (10 opções), call scripts para SDR, landing page copy customizada por conta"
+      veto_condition: "Saída sem veredito do critic Aegis; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Criar Audiências Customizadas"
+    agent: pixel
+    task: criar-audiencias-customizadas.md
+    trigger: "Aprovação humana (L3) de campanha ABM para conta específica; alerta de engajamento elevado em conta Tier 1 (reforço de bid); fim de ciclo mensal (revisão de budget)"
+    checkpoint:
+      criteria: "Campanhas ativas nas plataformas configuradas, relatório de impressões/cliques/engajamento por conta, alertas de conta com engajamento elevado (sinal de intent reforço), sugestão de reallocation de budget"
+      veto_condition: "Saída sem veredito do critic Aegis; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-6
+    name: "Sequenciar Contato Multicanal"
+    agent: hermes
+    task: sequenciar-contato-multicanal.md
+    trigger: "Aprovação humana (L3) de outreach para conta; resposta de prospect (trigger imediato de follow-up); inatividade de 7 dias em stakeholder Tier 1 (nudge automático); handoff de Pixel com conta com alto engajamento em ads"
+    checkpoint:
+      criteria: "Sequências ativas no CRM, log de todos os touches por stakeholder, taxa de abertura/resposta em tempo real, alertas de hot lead (respondeu, clicou 3x, visitou pricing page), handoff estruturado para SDR humano quando engajamento qualifica"
+      veto_condition: "Saída sem veredito do critic Aegis; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Orquestrar Canais De Mensagens"
+    agent: chronos
+    task: orquestrar-canais-de-mensagens.md
+    trigger: "Novo plano de campanha ABM aprovado pelo Nexus; detecção de sobreposição de canais pelo Nexus; revisão semanal de cronogramas ativos"
+    checkpoint:
+      criteria: "Cronograma otimizado de touches por stakeholder (data/hora/canal para cada mensagem), alertas de conflito de canal, relatório de sequenciamento para aprovacao do Nexus"
+      veto_condition: "Saída sem veredito do critic Aegis; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Consolidar Sinais Engajamento Conta"
+    agent: prism
+    task: consolidar-sinais-engajamento-conta.md
+    trigger: "Scheduled diário (atualiza scores de conta); novo deal criado no CRM vinculado a conta ABM (atribuição); anomalia detectada em conta Tier 1 (alerta imediato); fim de semana (relatório executivo)"
+    checkpoint:
+      criteria: "Account Engagement Dashboard (score por conta, touchpoints, fase do funil), pipeline ABM gerado por período, anomaly alerts, relatório executivo semanal, recomendações de reallocation de esforço (contas com score caindo vs subindo)"
+      veto_condition: "Saída sem veredito do critic Aegis; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: aegis
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: nexus
+    checkpoint:
+      criteria: "Entregável consolidado: ABM Campaign Package por conta ativada — artefato verificavel no ClickUp contendo: Account Intelligence Profile (buying committee mapeado, ICP score, sinais detectados), ABM Copy Package aprovado pel…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Aprovação de lançamento de campanha de anúncio pago para conta (Pixel): humano valida budget, audiência e criativos antes de qualquer gasto financeiro em plataformas de ads"
+  - level: L3
+    condition: "Aprovação de outreach externo para nova conta (Hermes): humano revisa a sequência completa antes do primeiro toque em conta que nunca foi contactada pelo squad"
+  - level: L3
+    condition: "Aprovação de mensagem WhatsApp para stakeholder C-Level (Hermes): canais de alta criticidade exigem revisão humana antes do envio"
+  - level: L2
+    condition: "Revisão do Account Intelligence Profile para contas Tier 1 (Atlas): humano valida mapeamento do buying committee e ICP score antes de Nexus decompor campanha completa"
+  - level: L2
+    condition: "Revisão de anomalias críticas reportadas por Prism: contas Tier 1 com queda brusca de engajamento ou stakeholder que deixou a empresa requerem decisão humana sobre próximos passos"
+  - level: L1
+    condition: "Curadoria do Account Universe Map: adicionar/remover contas do universo ABM e ajustar Tiers requer input estratégico humano (revisão quinzenal)"
+transitions:
+  - from: nexus
+    to: radar
+    condition: "Webhook de novo sinal nas fontes configuradas; job scheduling diário para varredura de fontes que não tem webhook; alerta de mudança de status de conta no CRM"
+  - from: radar
+    to: atlas
+    condition: "Intent Signal Alert de Radar com intensidade >= 6; solicitação manual do Nexus para conta específica; scheduled refresh semanal para contas Tier 1 ativas"
+  - from: atlas
+    to: vox
+    condition: "Account Intelligence Profile validado pelo Atlas; solicitação de refresh de mensagem por baixa performance (CTR < 2%); nova persona identificada na conta"
+  - from: vox
+    to: pixel
+    condition: "Aprovação humana (L3) de campanha ABM para conta específica; alerta de engajamento elevado em conta Tier 1 (reforço de bid); fim de ciclo mensal (revisão de budget)"
+  - from: pixel
+    to: hermes
+    condition: "Aprovação humana (L3) de outreach para conta; resposta de prospect (trigger imediato de follow-up); inatividade de 7 dias em stakeholder Tier 1 (nudge automático); handoff de Pixel com conta com alto…"
+  - from: hermes
+    to: chronos
+    condition: "Novo plano de campanha ABM aprovado pelo Nexus; detecção de sobreposição de canais pelo Nexus; revisão semanal de cronogramas ativos"
+  - from: chronos
+    to: prism
+    condition: "Scheduled diário (atualiza scores de conta); novo deal criado no CRM vinculado a conta ABM (atribuição); anomalia detectada em conta Tier 1 (alerta imediato); fim de semana (relatório executivo)"
+  - from: prism
+    to: aegis
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: aegis
+    to: nexus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

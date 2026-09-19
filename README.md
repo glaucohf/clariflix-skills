@@ -1,45 +1,61 @@
 # ClariFlix · hub de skills para agentes de IA
 
-Skills instaláveis por comando — copy-paste — para Hermes, Claude, ChatGPT/Codex, Claude Code e outros
-agentes. Cada skill é um procedimento com verificação binária, não um prompt solto.
+90 habilidades instaláveis para Hermes, Claude Code, Codex e outros agentes. Cada pacote reúne um procedimento, critérios de verificação e seus arquivos de apoio.
 
-**Catálogo:** https://clariflix.claricia.com.br (em construção) · **Host técnico:** `docs/` deste repo,
-via GitHub Pages, em `https://glaucohf.github.io/clariflix-skills`.
+**Catálogo:** https://clariflix.claricia.com.br · **Host técnico:** https://glaucohf.github.io/clariflix-skills
 
-## Instalar uma skill
+## Instalar uma habilidade
 
-| agente | como |
-|---|---|
-| Hermes | `hermes skills install https://raw.githubusercontent.com/glaucohf/clariflix-skills/v0.1.0/skills/<slug>/SKILL.md` |
-| Claude Code / Codex / outros | `npx skills add https://glaucohf.github.io/clariflix-skills --skill <slug> -a claude-code -g` |
-| Claude.ai | baixe o zip da [release](https://github.com/glaucohf/clariflix-skills/releases) e envie em Customize › Skills › Upload |
+Copie o comando na página da habilidade ou escolha um pacote pelo terminal:
 
-Veja o comando exato de cada skill na página ou em `catalog.json`.
-
-## Estrutura
-
-```
-skills/<slug>/SKILL.md, references/, templates/, manifest.yaml   fonte de cada skill
-scripts/hub_common.py            constantes únicas (URLs, limite de description)
-scripts/build_catalog.py         gera catalog.json a partir de skills/*/manifest.yaml
-catalog.json                     o que o site lê
-site/index.html                  a vitrine (Cloudflare Pages) — temas Claricia e Netflix
-site/images/skills/<slug>.webp   capas geradas por IA, usadas nos cards e painéis
-supabase/migrations/             schema de contas/pagamento (fase 2/3, ainda não ativado)
-docs/                             planejamento completo do projeto
+```sh
+npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0 --list
+npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0 --skill proposta-comercial -a codex -g
 ```
 
-## Publicar uma skill nova
+Troque `codex` por `claude-code` ou `hermes-agent` para esses agentes. Para escolher outro destino, omita `-a codex`. O instalador copia o pacote completo, incluindo agentes, workflows, referências, templates e scripts. Ele não executa os workflows nem configura serviços externos.
 
-1. Crie `skills/<slug>/SKILL.md` (frontmatter + When to Use + Quick Reference + Procedure + Pitfalls + Verification) e `manifest.yaml`.
-2. `python3 scripts/build_catalog.py --tag v0.1.0` para regerar `catalog.json`.
-3. Commit, PR, merge; crie uma tag `vX.Y.Z` quando publicar.
+No Claude.ai, baixe o ZIP individual da [release v0.2.0](https://github.com/glaucohf/clariflix-skills/releases/tag/v0.2.0) e envie em Customize › Skills › Upload. Para chats com arquivos de projeto, a vitrine oferece uma versão Markdown que reúne os suportes textuais; ela não habilita ferramentas ausentes no chat. A proposta em PDF requer navegador e um ambiente capaz de executar a exportação.
 
-As capas são opcionais: salve a imagem em `site/images/skills/<slug>.webp` antes de gerar o catálogo.
-O gerador inclui o campo `image` quando encontra o arquivo. Copie o `catalog.json` atualizado para
-`site/catalog.json` antes de publicar a vitrine. Os prompts da coleção estão em
-[`docs/skill-image-prompts.json`](docs/skill-image-prompts.json).
+## Coleção Máquina de Receita
 
-## Licença
+A versão 0.2.0 acrescenta 78 habilidades às 12 originais:
 
-MIT — veja `LICENSE`.
+| Área | Novas habilidades |
+|---|---:|
+| Vendas | 16 squads + proposta-comercial |
+| Marketing | 16 squads |
+| Operações & Customer Success | 16 squads |
+| Gestão & Estratégia | 16 squads |
+| Squads Especialistas | 13 squads |
+
+Cada squad ganhou um `SKILL.md` com instruções para carregar os papéis e executar o workflow com as ferramentas disponíveis. Os arquivos de origem estão em `references/squad/`, com inventário de integridade e proveniência em `SOURCE.md`. Os gates humanos são mantidos; integrações como CRM, WhatsApp e mídia paga exigem configuração e autorização próprias. As metas e estimativas dos materiais de origem não são resultados comprovados do ClariFlix.
+
+## Desenvolvimento e publicação
+
+```sh
+python -m pip install -r requirements-dev.txt
+python scripts/validate_skills.py
+python -m unittest discover -s tests -v
+python scripts/build_catalog.py --tag v0.2.0
+python scripts/build_distribution.py
+```
+
+O catálogo é gerado a partir de `skills/<slug>/manifest.yaml` e `SKILL.md`. A distribuição sincroniza `catalog.json`, `site/catalog.json` e `docs/catalog.json`, gera os arquivos para anexar em `docs/prompt/` e ZIPs completos e reproduzíveis em `dist/`. As capas em `site/images/skills/<slug>.webp` são opcionais.
+
+Para atualizar os snapshots dos squads a partir do acervo local autorizado:
+
+```sh
+python scripts/import_generated_squads.py --source-root /caminho/maquina-de-receita
+python scripts/import_free_squads.py --source-root /caminho/maquina-de-receita
+```
+
+Acrescente `--check` para verificar reprodução sem escrever. Os importadores não sobrescrevem diretórios alheios à própria geração. A proposta-comercial é mantida em `skills/proposta-comercial/`; template, referências e exportador foram preservados da origem.
+
+Use PR e merge para publicar alterações. O CI valida skills, testes e artefatos gerados. Uma tag `vX.Y.Z` aciona o workflow que cria a release e envia um ZIP por habilidade. GitHub Pages serve `docs/`; a vitrine Cloudflare Pages publica `site/`.
+
+## Autoria e licenças
+
+A infraestrutura original do ClariFlix permanece MIT, conforme [LICENSE](LICENSE). Os conteúdos importados mantêm autoria e condições próprias: 64 squads Proprietary, 11 squads MIT, um Commercial, um sem licença declarada e a proposta sob as condições do Máquina de Receita. Consulte `LICENSE` e `SOURCE.md` de cada pacote; a licença da raiz não relicencia conteúdo de terceiros.
+
+Origem da coleção: [Máquina de Receita](https://github.com/educacional-lendario/maquina-de-receita), de Gabriel Marcondes, com montagem e revisão pela Academia Lendária. O mantenedor confirmou em 2026-09-18 possuir autorização dos autores para a disponibilização pública desta coleção. Isso não concede redistribuição irrestrita aos destinatários. A proveniência dos 13 squads de terceiros acompanha cada pacote.

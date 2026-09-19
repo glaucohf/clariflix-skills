@@ -1,0 +1,29 @@
+row: marketing
+title: Competitive Intelligence & Ad-Spy
+title_netflix: COMPETITIVE INTELLIGENCE & AD-SPY
+subtitle: Analisar campanhas e anúncios de concorrentes, reunir referências verificáveis e propor hipóteses de marketing
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use marketing-competitive-adspy para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orion
+  - Falcon
+  - Cipher
+  - Prism
+  - Echo
+  - Volta
+  - Nexus
+  - Sigma
+  - Sigma 2
+  generos:
+  - Marketing
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

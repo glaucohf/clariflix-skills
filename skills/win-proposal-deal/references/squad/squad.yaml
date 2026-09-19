@@ -1,0 +1,47 @@
+name: win-proposal-deal
+version: 1.0.0
+description: "Propostas comerciais que fecham — 4 agentes IA analisam seu prospect, desenham 3 opcoes de escopo, precificam com win-rate preditivo e entregam proposta persuasiva pronta em minutos"
+author: "Renato Medeiros <@Renat0z>"
+license: MIT
+slashPrefix: proposal
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - prospect-analyzer.md
+    - scope-architect.md
+    - pricing-strategist.md
+    - proposal-composer.md
+  tasks:
+    - analyze-prospect.md
+    - design-scope.md
+    - calculate-pricing.md
+    - compose-proposal.md
+  workflows:
+    - proposal-generation-pipeline.yaml
+    - proposal-revision-flow.yaml
+  checklists: []
+  templates: []
+  tools: []
+  scripts: []
+
+config:
+  extends: none
+
+dependencies:
+  node: []
+  squads: []
+
+tags:
+  - proposal
+  - sales
+  - win-rate
+  - pricing
+  - commercial
+  - automation
+  - closing
+  - dealforge
+  - agency

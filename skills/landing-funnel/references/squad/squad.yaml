@@ -1,0 +1,276 @@
+name: landing-funnel
+version: 1.0.0
+description: >
+  Squad de criação e otimização de landing pages com pipeline end-to-end em 3 fases:
+  construção, lançamento e otimização pós-lançamento. 13 agentes especializados,
+  57 tasks e 10 workflows — do briefing ao A/B test. Inclui agentes exclusivos de
+  Analytics (GTM/GA4/Pixels), A/B Testing, Social Proof System e Email Nurture,
+  ausentes em qualquer outro squad de landing page.
+author: squad-creator-pro
+license: Commercial
+slashPrefix: lf
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    # PRÉ-LANÇAMENTO (melhorados)
+    - ce-strategist.md
+    - ce-researcher.md
+    - ce-copywriter.md
+    - ce-design-architect.md
+    - ce-image-creator.md
+    - ce-frontend-dev.md
+    - ce-backend-dev.md
+    - ce-integrator.md
+    # PÓS-LANÇAMENTO (exclusivos — não existem no concorrente)
+    - ce-analytics-architect.md
+    - ce-ab-architect.md
+    - ce-social-proof.md
+    - ce-email-strategist.md
+    - ce-reviewer.md
+
+  tasks:
+    # Strategist (4)
+    - ce-strategist-discover.md
+    - ce-strategist-funnel-map.md
+    - ce-strategist-elicit.md
+    - ce-strategist-scope.md
+    # Researcher (5)
+    - ce-researcher-competitors.md
+    - ce-researcher-audience.md
+    - ce-researcher-copy-formulas.md
+    - ce-researcher-traffic-data.md
+    - ce-researcher-synthesize.md
+    # Copywriter (4)
+    - ce-copywriter-write-section.md
+    - ce-copywriter-write-vsl.md
+    - ce-copywriter-write-ab-variants.md
+    - ce-copywriter-review-tone.md
+    # Design Architect (5)
+    - ce-design-architect-select-ds.md
+    - ce-design-architect-tokens.md
+    - ce-design-architect-cro-audit.md
+    - ce-design-architect-components.md
+    - ce-design-architect-sections.md
+    # Image Creator (3)
+    - ce-image-creator-hero.md
+    - ce-image-creator-sections.md
+    - ce-image-creator-social-assets.md
+    # Frontend Dev (5)
+    - ce-frontend-dev-setup.md
+    - ce-frontend-dev-design-system.md
+    - ce-frontend-dev-build-section.md
+    - ce-frontend-dev-performance.md
+    - ce-frontend-dev-assemble.md
+    # Backend Dev (4)
+    - ce-backend-dev-setup.md
+    - ce-backend-dev-leads.md
+    - ce-backend-dev-events.md
+    - ce-backend-dev-admin.md
+    # Integrator (5)
+    - ce-integrator-whatsapp.md
+    - ce-integrator-email.md
+    - ce-integrator-crm.md
+    - ce-integrator-payments.md
+    - ce-integrator-connect.md
+    # Analytics Architect (4) — EXCLUSIVO
+    - ce-analytics-gtm-setup.md
+    - ce-analytics-ga4-config.md
+    - ce-analytics-pixels.md
+    - ce-analytics-heatmap.md
+    # A/B Architect (4) — EXCLUSIVO
+    - ce-ab-hypothesis.md
+    - ce-ab-design-variants.md
+    - ce-ab-setup.md
+    - ce-ab-analyze.md
+    # Social Proof (4) — EXCLUSIVO
+    - ce-social-proof-audit.md
+    - ce-social-proof-testimonials.md
+    - ce-social-proof-cases.md
+    - ce-social-proof-badges.md
+    # Email Strategist (4) — EXCLUSIVO
+    - ce-email-sequence-map.md
+    - ce-email-write-series.md
+    - ce-email-automation.md
+    - ce-email-optimize.md
+    # Reviewer (6)
+    - ce-reviewer-copy.md
+    - ce-reviewer-design.md
+    - ce-reviewer-seo-a11y.md
+    - ce-reviewer-conversion.md
+    - ce-reviewer-backend.md
+    - ce-reviewer-final-report.md
+
+  workflows:
+    - ce-full-pipeline.yaml
+    - ce-discovery-flow.yaml
+    - ce-intelligence-flow.yaml
+    - ce-copy-design-parallel.yaml
+    - ce-build-parallel.yaml
+    - ce-section-pipeline.yaml
+    - ce-launch-prep.yaml
+    - ce-post-launch.yaml
+    - ce-ab-design.yaml
+    - ce-qa-gate.yaml
+
+  checklists: []
+  templates: []
+  tools: []
+  scripts: []
+
+config:
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+dependencies:
+  node: []
+  python:
+    - "fastapi>=0.115.0"
+    - "sqlalchemy>=2.0.0"
+    - "alembic>=1.13.0"
+    - "pydantic>=2.0.0"
+    - "python-jose>=3.3.0"
+    - "passlib>=1.7.0"
+    - "uvicorn>=0.30.0"
+  squads: []
+
+mcpTools:
+  required:
+    - nano-banana-pro: "Geração de imagens para hero e seções"
+  optional:
+    - playwright: "Auditoria de páginas concorrentes em tempo real"
+    - dalle3: "Geração alternativa de imagens"
+    - shadcn: "Componentes UI base para design system"
+
+conditionalComponents:
+  backend:
+    flag: "backend"
+    agents: ["ce-backend-dev"]
+    tasks:
+      - ce-backend-dev-setup.md
+      - ce-backend-dev-leads.md
+      - ce-backend-dev-events.md
+      - ce-backend-dev-admin.md
+    description: "Backend Python FastAPI com captura de leads, event tracking e admin panel"
+
+  analytics:
+    flag: "analytics"
+    agents: ["ce-analytics-architect"]
+    tasks:
+      - ce-analytics-gtm-setup.md
+      - ce-analytics-ga4-config.md
+      - ce-analytics-pixels.md
+      - ce-analytics-heatmap.md
+    description: "Setup completo de analytics: GTM, GA4, Meta Pixel, Google Ads, Hotjar"
+
+  ab_testing:
+    flag: "ab_testing"
+    agents: ["ce-ab-architect"]
+    tasks:
+      - ce-ab-hypothesis.md
+      - ce-ab-design-variants.md
+      - ce-ab-setup.md
+      - ce-ab-analyze.md
+    description: "Ciclo completo de A/B testing com análise estatística"
+
+  social_proof:
+    flag: "social_proof"
+    agents: ["ce-social-proof"]
+    tasks:
+      - ce-social-proof-audit.md
+      - ce-social-proof-testimonials.md
+      - ce-social-proof-cases.md
+      - ce-social-proof-badges.md
+    description: "Sistema completo de prova social: testimonials, cases, trust badges"
+
+  email_nurture:
+    flag: "email_nurture"
+    agents: ["ce-email-strategist"]
+    tasks:
+      - ce-email-sequence-map.md
+      - ce-email-write-series.md
+      - ce-email-automation.md
+      - ce-email-optimize.md
+    description: "Sequência de email pós-conversão com automação"
+
+  whatsapp:
+    flag: "whatsapp"
+    agents: ["ce-integrator"]
+    tasks: ["ce-integrator-whatsapp.md"]
+    description: "Integração WhatsApp via evolution-api"
+
+  payments:
+    flag: "payments"
+    agents: ["ce-integrator"]
+    tasks: ["ce-integrator-payments.md"]
+    description: "Integração Stripe para checkout direto na landing page"
+
+  crm:
+    flag: "crm"
+    agents: ["ce-integrator"]
+    tasks: ["ce-integrator-crm.md"]
+    description: "Integração com CRM (HubSpot, ActiveCampaign, RD Station)"
+
+landingPageSections:
+  - navigation
+  - hero
+  - social-proof-bar
+  - problem-agitation
+  - solution-demo
+  - testimonials
+  - benefits
+  - features
+  - pricing
+  - faq
+  - final-cta
+  - footer
+
+conversionLayers:
+  pre_launch:
+    - discovery
+    - market-intelligence
+    - copy-strategy
+    - design-system
+    - development
+    - qa
+  launch:
+    - launch-prep
+    - final-checklist
+  post_launch:
+    - analytics-setup
+    - heatmap-config
+    - ab-test-design
+    - email-nurture
+    - optimization-loop
+
+tags:
+  - landing-page
+  - conversion-optimization
+  - cro
+  - fullstack
+  - copywriting
+  - design-system
+  - atomic-design
+  - seo
+  - accessibility
+  - wcag-aaa
+  - light-dark-mode
+  - fastapi
+  - nextjs
+  - analytics
+  - gtm
+  - ga4
+  - ab-testing
+  - social-proof
+  - email-marketing
+  - whatsapp
+  - stripe
+  - lead-capture
+  - funnel
+  - post-launch
+  - image-generation
+  - vsl

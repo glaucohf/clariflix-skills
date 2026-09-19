@@ -1,0 +1,56 @@
+pack:
+  name: marketing-funnel-analytics-attribution
+  version: 0.1.0
+  short-title: "Funnel Analytics & Attribution Squad"
+  description: "Pare de adivinhar o que gera receita: atribuição cross-channel precisa, anomalias detectadas em minutos, forecast de pipeline com intervalo de confiança real."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "📈"
+  slashPrefix: funnelAnalyticsAttributionSquad
+name: marketing-funnel-analytics-attribution
+version: 0.1.0
+description: "Pare de adivinhar o que gera receita: atribuição cross-channel precisa, anomalias detectadas em minutos, forecast de pipeline com intervalo de confiança real."
+entry_agent: atlas
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: marketing
+  topsquad: "M2"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - atlas
+  - nexus
+  - hermes
+  - argus
+  - cassandra
+  - lumen
+  - oracle
+  - skeptic
+tasks:
+  - coletar-etl-dados.md
+  - calcular-atribuicao-multi-modelo.md
+  - detectar-anomalias-kpis.md
+  - gerar-forecast-pipeline.md
+  - auditar-qualidade-de-tracking.md
+  - gerar-relatorios-executivos.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - marketing-funnel-analytics-attribution-pipeline.yaml
+checklists:
+  - critic-skeptic.md
+integrations:
+  - "Google Ads API (via MCP server) — ingestão de impressões, cliques, CPC, conversões, spend por campanha/ad group/keyword"
+  - "Meta Ads API (via MCP server) — ingestão de métricas de performance de Facebook/Instagram Ads com breakdown por objetivo"
+  - "LinkedIn Ads API (via MCP server) — ingestão de métricas de campanhas B2B com audience insights"
+  - "Google Analytics 4 / Segment (via MCP server ou webhook) — eventos de conversão no site, jornada anônima de usuário, sessões por source/medium"
+  - "HubSpot CRM API (via MCP server) — oportunidades criadas, stage transitions, MQL/SQL/Closed-Won com valores, contatos e companies para match com touchpoints"
+  - "Salesforce API (alternativa ao HubSpot) — pipeline, opportunities, closed-won, lead source nativo"
+  - "ClickUp API — criação automática de tasks para anomalias P1/P2 (prova de trabalho), tracking de itens de ação de relatório, status de campanhas ativas"
+  - "Slack Webhook — alertas de anomalia em tempo real por severidade (P1: canal #alerts-críticos, P2/P3: canal #marketing-ops)"
+  - "Notion ou Google Sheets — output de relatórios executivos (Oracle escreve diretamente via API)"
+  - "Langfuse — observabilidade OTEL de todas as chamadas de agente, quality gates (dev 70% / staging 85% / prod 95% task success), rastreamento de custo por execução"
+  - "n8n (opcional, no-code orchestration layer) — alternativa para schedule de jobs e webhooks sem necessidade de infra custom"
+  - "BigQuery ou Snowflake (data warehouse) — persistência do dataset canônico de touchpoints gerado pelo Nexus, base para todos os modelos"

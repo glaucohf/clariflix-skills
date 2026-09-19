@@ -1,0 +1,55 @@
+pack:
+  name: vendas-agendamento-appointment-setting
+  version: 0.1.0
+  short-title: "Agendamento"
+  description: "Do lead ao calendário confirmado: zero atrito, zero no-show, zero slot perdido."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🗓️"
+  slashPrefix: agendamento
+name: vendas-agendamento-appointment-setting
+version: 0.1.0
+description: "Do lead ao calendário confirmado: zero atrito, zero no-show, zero slot perdido."
+entry_agent: maestro
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V3"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - maestro
+  - radar
+  - slot
+  - vigil
+  - bounce
+  - intell
+  - pulse
+  - sentinela
+tasks:
+  - qualificar-lead-conversacionalmente.md
+  - criar-evento.md
+  - enviar-lembretes-agendados.md
+  - reagendar-oportunidades-perdidas.md
+  - enriquecer-dossie-lead.md
+  - priorizar-leads.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-agendamento-appointment-setting-pipeline.yaml
+checklists:
+  - critic-sentinela.md
+integrations:
+  - "CRM: HubSpot (MCP nativo disponível) ou Pipedrive ou Salesforce — fonte de verdade de leads, deals e histórico"
+  - "Calendário: Google Calendar API ou Microsoft Outlook/Graph API — leitura de disponibilidade e criação de eventos"
+  - "Agendamento: Calendly API (alternativa ao calendário direto, mais simples para B2C)"
+  - "WhatsApp Business API: Gupshup, AiSensy ou Interakt — canal principal de comunicação no Brasil"
+  - "Email: SMTP transacional (SendGrid, Resend) ou Gmail API para lembretes e confirmações por email"
+  - "Videochamada: Google Meet API ou Zoom API — geração de link único por reunião"
+  - "Enriquecimento: Apollo.io API (275M+ contatos) ou Clay — dados firmográficos e de contato"
+  - "Observabilidade: Langfuse (OTEL) — rastreamento de todas as tarefas, evals e quality gates"
+  - "Gestão de Tarefas: ClickUp — prova de trabalho por task, artefatos verificáveis"
+  - "Notificações Internas: Slack webhook ou email — alertas de no-show, leads quentes, aprovações L3"
+  - "Voz (opcional avançado): Vapi ou Retell AI — ligação automática de lembrete ou confirmação por voz"

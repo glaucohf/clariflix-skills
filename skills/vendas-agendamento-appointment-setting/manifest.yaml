@@ -1,0 +1,28 @@
+row: vendas
+title: Agendamento
+title_netflix: AGENDAMENTO
+subtitle: Preparar agendamento comercial com critérios de qualificação, disponibilidade, confirmação e tratamento de reagendamentos
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-agendamento-appointment-setting para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Maestro
+  - Radar
+  - Slot
+  - Vigil
+  - Bounce
+  - Intell
+  - Pulse
+  - Sentinela
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

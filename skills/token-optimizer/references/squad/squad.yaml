@@ -1,0 +1,47 @@
+name: token-optimizer
+version: "1.0.0"
+description: "Analisa squads AIOS existentes e produz otimizacoes priorizadas por ROI — qualidade, velocidade e economia de tokens — usando TOKEN-OPTIMIZATION-GUIDE.md como base de conhecimento."
+author: "Renato Medeiros <@Renat0z>"
+license: MIT
+slashPrefix: squad-opt
+aios:
+  minVersion: "2.1.0"
+  type: squad
+components:
+  agents:
+    - squad-scanner.md
+    - anti-pattern-detector.md
+    - optimization-planner.md
+    - optimization-executor.md
+    - quality-auditor.md
+  tasks:
+    - scan-squad.md
+    - detect-anti-patterns.md
+    - plan-optimization.md
+    - execute-optimization.md
+    - audit-quality.md
+  workflows:
+    - optimization-pipeline.yaml
+    - audit-only.yaml
+  commands:
+    - start.md
+    - run.md
+  checklists: []
+  templates: []
+  tools: []
+  scripts: []
+config:
+  extends: none
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+dependencies:
+  node: []
+  squads: []
+tags:
+  - token-optimization
+  - squad-analysis
+  - anti-pattern-detection
+  - cost-reduction
+  - quality-improvement
+  - aios

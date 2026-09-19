@@ -1,0 +1,56 @@
+pack:
+  name: ops-cs-self-healing-etl
+  version: 0.1.0
+  short-title: "Self-Healing ETL Squad"
+  description: "Pipelines que quebram silenciosamente custam decisoes: o Self-Healing ETL detecta a anomalia, diagnostica a causa raiz e recupera a ingestao antes do dashboard mentir."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🛡️"
+  slashPrefix: selfHealingEtlSquad
+name: ops-cs-self-healing-etl
+version: 0.1.0
+description: "Pipelines que quebram silenciosamente custam decisoes: o Self-Healing ETL detecta a anomalia, diagnostica a causa raiz e recupera a ingestao antes do dashboard mentir."
+entry_agent: orion
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: operacoes-cs
+  topsquad: "O5"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orion
+  - argus
+  - remi
+  - finn
+  - coda
+  - nexus
+  - vega
+  - loki
+  - vega-2
+tasks:
+  - monitorar-pipelines.md
+  - testar-hipoteses-sequenciais.md
+  - curar-falhas-reversiveis.md
+  - gerar-plano-de-remediacao.md
+  - calibrar-thresholds-baseline.md
+  - verificar-acoes-automaticas.md
+  - documentar-incidente.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - ops-cs-self-healing-etl-pipeline.yaml
+checklists:
+  - critic-vega-2.md
+integrations:
+  - "Airbyte / Matillion / Workato / Peliqan — ETL tools principais: webhooks de execução (success/failure), API para reexecução de runs (Finn), acesso a logs de run, configuração de schedules"
+  - "Supabase / Postgres / BigQuery / Snowflake — destinos de dados: acesso de leitura para schema inspection (Argus, Rémi), acesso de escrita limitado a staging para patches (Finn), schema history e fingerprints (Nexus)"
+  - "ClickUp (Brain² / Super Agents / Autopilot Agents + MCP) — hub de tasks e prova de trabalho: task por incidente (Loki), HITL L³ approval flow, Weekly Reports, integração com AIOX via espelhamento de workflow"
+  - "Slack — notificações em tempo real: P1/P2 alertas imediatos com context card (pipeline, root cause, ação tomada ou pendente), HITL L3 aprovação urgente, Weekly Incident Report no canal #data-reliability"
+  - "Langfuse — observabilidade OTEL: tracing de cada incidente (deteccao -> diagnostico -> validacao -> recuperacao), evals automatizados por tipo de root cause, quality gates (dev 70% / staging 85% / prod 95% task success), dashboard de MTTR e MTTD por pipeline"
+  - "PagerDuty / Datadog / incident.io — AIOps integration: receber alertas de infra correlacionados (ex: source database down confirmado pelo Datadog antes do Remi investigar), escalonamento de P1 para on-call engineer via PagerDuty quando HITL nao responde no SLA"
+  - "GitHub / GitLab — acesso de leitura ao repositório de transformações (Coda para identificar linha exata do bug), PR automático com fix sugerido para aprovação humana em casos de transformation bug"
+  - "dbt (se aplicável) — acesso a manifests e lineage graph para mapeamento de dependências downstream (Rémi/Coda), identificação de modelos afetados por schema drift"
+  - "Claude Agent SDK / LangGraph — orquestração multi-agente (Orion coordenando Argus, Rémi, Finn, Coda, Nexus, Vega, Loki), state management do pipeline de incidentes"
+  - "MCP Servers (camada de integração universal) — ClickUp MCP, Supabase MCP, GitHub MCP para acesso padronizado sem implementação custom por cliente"

@@ -1,0 +1,29 @@
+row: vendas
+title: Speed-to-Lead
+title_netflix: SPEED-TO-LEAD
+subtitle: Planejar triagem e primeira resposta a novos leads, com priorização, qualificação e encaminhamento comercial
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-speed-to-lead para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Claude Opus
+  - Flash
+  - Sherlock
+  - Sócrates
+  - Atlas
+  - Argos
+  - Eco
+  - SDR por Ligacao
+  - Sentinel
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

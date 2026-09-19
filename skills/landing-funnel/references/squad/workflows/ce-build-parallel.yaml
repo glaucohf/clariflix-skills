@@ -1,0 +1,173 @@
+workflow_name: ce_build_parallel
+description: >
+  Sub-workflow paralelo — ce-frontend-dev (Turbo), ce-backend-dev (Vault) e
+  ce-analytics-architect (Lens) executam simultaneamente após todos os assets
+  de imagem serem aprovados por ce-image-creator. Cada agente constrói seu
+  domínio de forma independente, convergindo em um integration gate gerenciado
+  por ce-integrator (Link). Reduz tempo desta fase de 9-12h (sequencial) para 3-4h.
+
+agent_sequence:
+  - ce-frontend-dev
+  - ce-backend-dev
+  - ce-analytics-architect
+  - ce-integrator
+
+estimated_duration: "3-4 horas"
+
+parallel_execution:
+  enabled: true
+  strategy: "fork-join"
+  fork_trigger: "Todos os assets de imagem aprovados por ce-image-creator"
+  join_gate: "integration_gate_all_ready"
+  join_condition: "frontend_ready AND backend_ready AND analytics_ready"
+  join_owner: ce-integrator (Link)
+
+phases:
+  - name: "Phase 1A — Frontend Build [PARALELO]"
+    agent: ce-frontend-dev (Turbo)
+    parallel_with: ["Phase 1B — Backend Setup", "Phase 1C — Analytics Configuration"]
+    tasks:
+      - "Setup do projeto: Next.js 14+ (App Router), TypeScript strict, Tailwind CSS"
+      - Configurar estrutura de pastas: app/, components/, lib/, public/, styles/
+      - Implementar design system em variáveis CSS e tokens Tailwind
+      - Executar ce-section-pipeline.yaml para cada seção do escopo
+      - Implementar responsividade mobile-first para todas as seções
+      - Otimizar Core Web Vitals: LCP < 2.5s, CLS < 0.1, INP < 200ms
+      - Implementar otimização de imagens: next/image, WebP, lazy loading, priority flag no hero
+      - Configurar metadata SEO: title, description, OG tags, Twitter cards por página
+      - Implementar schema markup (JSON-LD): Product, Review, FAQPage onde aplicável
+      - Setup de formulários com validação client-side e tratamento de erros de UX
+      - "Configurar `next.config.js` com headers de segurança e compressão"
+      - Build final sem erros TypeScript e sem warnings de lint
+    checkpoints:
+      entry: "Assets de imagem aprovados e design spec document recebido de ce-design-architect"
+      exit: >
+        Projeto buildado sem erros: TypeScript clean, lint passing, todas as seções
+        implementadas, mobile-first validado, Core Web Vitals dentro das metas
+    veto_conditions:
+      - "Erros de TypeScript no build → resolver antes de declarar pronto para integration gate"
+      - "Lint warnings críticos não resolvidos → corrigir antes de declarar pronto"
+      - "Seção obrigatória ausente na implementação → completar antes do integration gate"
+      - "LCP > 3.0s no teste inicial → otimizar antes de declarar pronto"
+      - "Layout quebrado em mobile (320px, 375px, 428px) → corrigir antes de declarar pronto"
+      - "Formulário sem validação de campos obrigatórios → implementar antes de declarar pronto"
+
+  - name: "Phase 1B — Backend Setup [PARALELO]"
+    agent: ce-backend-dev (Vault)
+    parallel_with: ["Phase 1A — Frontend Build", "Phase 1C — Analytics Configuration"]
+    tasks:
+      - Setup de API routes em Next.js App Router (route.ts) para captura de leads
+      - Implementar endpoint POST /api/leads com validação server-side (Zod)
+      - Configurar integração com CRM (ActiveCampaign, HubSpot, RD Station, conforme brief)
+      - Configurar integração com plataforma de email marketing
+      - Implementar webhook handler para confirmação de conversão
+      - Configurar envio de email de confirmação/boas-vindas pós-captura
+      - Implementar rate limiting: máximo 5 submissões por IP por hora
+      - Implementar honeypot e proteção anti-bot nos formulários
+      - Configurar variáveis de ambiente: .env.local com todos os tokens necessários
+      - Implementar logging de erros server-side
+      - Escrever testes de API: POST /api/leads (happy path + error paths)
+      - Documentar endpoints e payloads esperados para ce-integrator
+    checkpoints:
+      entry: "Brief estruturado com integrações de CRM e email especificadas"
+      exit: >
+        Backend funcional com: API de leads validada, integrações configuradas,
+        rate limiting ativo, testes de API passing, documentação de endpoints entregue
+    veto_conditions:
+      - "API de leads sem validação server-side → implementar antes de declarar pronto"
+      - "Testes de API falhando (qualquer um) → corrigir antes do integration gate"
+      - "CRM não configurado (token inválido ou endpoint errado) → resolver antes de declarar pronto"
+      - "Rate limiting ausente → implementar antes de declarar pronto"
+      - "Variáveis de ambiente sem documentação (.env.example ausente) → criar antes de declarar pronto"
+      - "Endpoint de leads sem tratamento de erro para falha de CRM → implementar fallback"
+
+  - name: "Phase 1C — Analytics Configuration [PARALELO]"
+    agent: ce-analytics-architect (Lens)
+    parallel_with: ["Phase 1A — Frontend Build", "Phase 1B — Backend Setup"]
+    tasks:
+      - Criar conta e container GTM para o projeto
+      - Configurar data layer estruturado com eventos: pageView, formStart, formSubmit, leadCapture
+      - Implementar snippet GTM no layout.tsx (head + body noscript)
+      - Setup GA4 com stream de dados configurado e enhanced measurement ativo
+      - Criar eventos customizados GA4: page_view, form_submit, conversion, scroll_depth
+      - Configurar conversões no GA4 (marcar leadCapture como evento de conversão principal)
+      - Implementar Meta Pixel com eventos: PageView, Lead, InitiateCheckout (se aplicável)
+      - Implementar Google Ads conversion tracking (se aplicável ao projeto)
+      - Configurar Hotjar ou Microsoft Clarity para heatmaps e session recording
+      - Setup de funil de conversão no GA4: pageView → formStart → formSubmit → conversion
+      - Testar todos os eventos com GTM Preview Mode e GA4 DebugView
+      - Documentar data layer events para ce-backend-dev integrar server-side events
+    checkpoints:
+      entry: "Brief estruturado com plataformas de tráfego e analytics especificadas"
+      exit: >
+        Analytics completo com: GTM container live, GA4 recebendo pageViews,
+        eventos customizados validados, pixels configurados, heatmaps ativos,
+        funil de conversão configurado no GA4
+    veto_conditions:
+      - "GTM snippet ausente no layout.tsx → implementar antes de declarar pronto"
+      - "GA4 sem nenhum evento disparando no DebugView → investigar e corrigir"
+      - "Meta Pixel sem evento PageView validado → resolver antes de declarar pronto"
+      - "Evento de conversão principal não marcado como conversão no GA4 → configurar"
+      - "Heatmap tool sem snippet no site → implementar antes de declarar pronto"
+      - "GTM Preview Mode mostrando erros de disparo → corrigir antes de declarar pronto"
+
+  - name: "Phase 2 — Integration Gate (Validação de Prontidão)"
+    agent: ce-integrator (Link)
+    tasks:
+      - Confirmar build sem erros do frontend (ce-frontend-dev)
+      - Confirmar testes de API passing do backend (ce-backend-dev)
+      - Confirmar eventos de analytics disparando (ce-analytics-architect)
+      - Verificar compatibilidade entre frontend e API routes do backend
+      - Validar que formulários do frontend apontam para endpoints corretos do backend
+      - Testar fluxo completo de lead: submissão → API → CRM → email → confirmação
+      - Validar que eventos GA4 disparam corretamente no fluxo de lead
+      - Validar que Meta Pixel dispara evento Lead na conversão
+      - Registrar quaisquer incompatibilidades e retornar aos agentes responsáveis
+      - Declarar integration gate APPROVED quando fluxo end-to-end validado
+    checkpoints:
+      entry: "Recebimento de confirmação de prontidão de frontend, backend E analytics"
+      exit: >
+        Integration gate APPROVED: fluxo end-to-end validado com lead de teste
+        real chegando em CRM, email disparado, GA4 registrando conversão,
+        Meta Pixel disparando evento Lead
+    veto_conditions:
+      - "Qualquer agente não declarando pronto → aguardar, não forçar integração"
+      - "Lead de teste não chegando no CRM → diagnosticar e retornar a ce-backend-dev"
+      - "Email de boas-vindas não disparando → retornar a ce-backend-dev"
+      - "GA4 sem evento de conversão no fluxo de teste → retornar a ce-analytics-architect"
+      - "Meta Pixel sem evento Lead disparando → retornar a ce-analytics-architect"
+      - "Frontend com 404 em qualquer rota principal → retornar a ce-frontend-dev"
+      - "Formulário enviando para endpoint errado → corrigir imediatamente e re-testar"
+
+success_indicators:
+  - "Três agentes executando em paralelo sem bloqueio entre si"
+  - "Frontend buildado sem erros TypeScript e lint passing"
+  - "API de leads com testes passing e rate limiting ativo"
+  - "GTM, GA4 e pixels validados com eventos disparando corretamente"
+  - "Integration gate aprovado com fluxo end-to-end funcional"
+  - "Lead de teste real chegando no CRM e e-mail de boas-vindas enviado"
+  - "GA4 registrando evento de conversão no DebugView"
+  - "Tempo total de execução dentro de 3-4h"
+
+failure_conditions:
+  - condition: "Frontend com erros de TypeScript que bloqueiam o build"
+    recovery: >
+      ce-frontend-dev resolve erros em modo de prioridade máxima;
+      ce-backend-dev e ce-analytics-architect continuam em paralelo sem interrupção
+  - condition: "CRM com credenciais inválidas ou API down"
+    recovery: >
+      ce-backend-dev documenta o bloqueio, implementa mock de CRM para não
+      bloquear o integration gate, e registra como débito técnico para resolver
+      antes do Launch Prep
+  - condition: "GTM bloqueado por CSP (Content Security Policy) no projeto"
+    recovery: >
+      ce-frontend-dev e ce-analytics-architect colaboram para ajustar headers
+      CSP no next.config.js para permitir domínios necessários do GTM
+  - condition: "Integration gate bloqueado por incompatibilidade de payload"
+    recovery: >
+      ce-integrator convoca sessão de alinhamento rápido entre ce-frontend-dev
+      e ce-backend-dev para alinhar contrato de API e corrigir
+  - condition: "Testes de API falhando por problemas de ambiente"
+    recovery: >
+      ce-backend-dev verifica variáveis de ambiente, documenta o gap e
+      re-executa testes após correção de configuração

@@ -1,0 +1,164 @@
+workflow_name: marketing_lead_scoring_router_pipeline
+description: "Nenhum lead quente espera fila: score em tempo real, roteamento inteligente e o lead certo na mão certa em menos de 5 minutos."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-lead-scoring-router
+area: "Marketing"
+topsquad: "M5 · Captura, Qualificação & Reativação de Leads"
+agent_sequence:
+  - orion
+  - scout
+  - apex
+  - iris
+  - vector
+  - pulse
+  - critique
+  - critique-2
+key_commands:
+  - "*monitorar-e-normalizar-leads"
+  - "*calcular-score-lead"
+  - "*enriquecer-dados-lead"
+  - "*rotear-lead-para-destino-correto"
+  - "*monitorar-pipeline-de-scoring"
+  - "*calibrar-modelo-scoring"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Speed-to-lead para leads Hot: meta < 5 minutos do Scout ao SDR designado (baseline atual a medir no Discovery, tipicamente > 4h)"
+  - "Taxa de leads órfãos: meta < 3% (sem followup em 48h) — baseline típico de 25-30%"
+  - "Precisão do modelo (Precision@Hot): % de leads Hot que o SDR confirma como qualificados — meta > 60% em 90 dias"
+  - "Recall do modelo (Recall@Hot): % dos leads que converteram que foram classificados como Hot ou Warm — meta > 75% em 90 dias"
+  - "Taxa de conversão Lead -> Oportunidade Qualificada por tier: Hot meta > 30%, Warm meta > 15%, Cold meta > 5% (rastreado separadamente para validar poder preditivo do modelo)"
+  - "Cobertura de enriquecimento: >= 85% dos campos prioritários preenchidos para leads Hot antes do roteamento"
+  - "SLA de roteamento cumprido: >= 95% dos leads Hot roteados em < 5 minutos, >= 90% dos leads Warm em < 2h"
+  - "Score de qualidade de auditoria (Critique): Precision@Hot e Recall@Hot dentro das metas acima — qualquer semana abaixo do threshold dispara revisão de modelo"
+  - "Redução de CAC por segmento: meta de 15% em 6 meses via melhora de targeting e velocidade de resposta"
+  - "Volume de leads processados sem erro: >= 99% dos leads normalizados e roteados sem falha técnica (health do pipeline)"
+deliverable:
+  description: "Pipeline de scoring e roteamento de leads em produção entregando: (1) Score Card automático por lead (Fit + Intent + Composto + Tier + Reasoning narrativo) publicado no CRM em < 60 segundos da entrada do lead, (2) Roteamento automático de leads Hot para SDR designado em < 5 minutos com brief completo (empresa, score breakdown, sinal de intent, histórico de interações, próximos passos sugeridos), (3) Ativação automática de sequências de email + WhatsApp para leads Warm com personalização baseada no score, (4) Dashboard de KPIs em tempo real no ClickUp (speed-to-lead, distribuição de tiers, health dos webhooks, taxa de órfãos), (5) Relatório semanal de performance do modelo com Precision/Recall por tier e recomendações de calibração, (6) Score Card Model versionado com histórico de performance por versão e changelog de calibrações."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar E Normalizar Leads"
+    agent: scout
+    task: monitorar-e-normalizar-leads.md
+    trigger: "Webhook de nova submissão de formulário; evento de novo lead em Meta/Google/LinkedIn Ads; novo contato no WhatsApp Business; importação manual acionada via ClickUp; cron de varredura de novos contatos no CRM a cada 15 minutos"
+    checkpoint:
+      criteria: "Lead normalizado em schema padrão (JSON estruturado com todos os campos disponíveis preenchidos e campos ausentes marcados como null), flag de deduplicação (novo vs existente vs possível duplicata), fonte e timestamp de entrada, UTMs compl…"
+      veto_condition: "Saída sem veredito do critic Critique 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Calcular Score Lead"
+    agent: apex
+    task: calcular-score-lead.md
+    trigger: "Lead normalizado e deduplicado pelo Scout (trigger primário); conclusão do ciclo de enriquecimento pelo Iris (re-score com dados completos); solicitação manual de re-score via ClickUp (quando SDR atualiza informações do lead); ciclo semana…"
+    checkpoint:
+      criteria: "Score Card completo por lead: Score de Fit (0-100 com breakdown por dimensao firmografica), Score de Intent (0-100 com breakdown por sinal comportamental), Score Composto final (0-100), Tier classificado (Hot/Warm/Cold/Unfit), Reasoning na…"
+      veto_condition: "Saída sem veredito do critic Critique 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Enriquecer Dados Lead"
+    agent: iris
+    task: enriquecer-dados-lead.md
+    trigger: "Lead normalizado e enfileirado pelo Scout (trigger automatico, roda em paralelo com scoring inicial); Apex solicita re-enriquecimento de lead com score de baixa confianca; ciclo semanal de re-enriquecimento de leads Warm sem conversao; imp…"
+    checkpoint:
+      criteria: "Lead enriquecido com 30+ atributos preenchidos: dados da empresa (tamanho, setor, receita estimada, localizacao, fundacao, stack tecnologico), dados do contato (cargo normalizado, seniority level, LinkedIn URL, telefone direto quando dispo…"
+      veto_condition: "Saída sem veredito do critic Critique 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Rotear Lead Para Destino Correto"
+    agent: vector
+    task: rotear-lead-para-destino-correto.md
+    trigger: "Score Card gerado pelo Apex com tier definido (trigger primário); re-score de lead Warm que subiu para Hot (re-roteamento imediato); lead órfão detectado pelo Pulse (sem atividade em 48h — re-roteia ou escala); alteração de disponibilidade…"
+    checkpoint:
+      criteria: "Roteamento executado com prova de trabalho: CRM deal/contact atualizado com score, tier, fonte e timestamp, task no ClickUp criada para SDR com brief completo (empresa, score breakdown, sinal de intent, próximos passos sugeridos), sequênci…"
+      veto_condition: "Saída sem veredito do critic Critique 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Monitorar Pipeline De Scoring"
+    agent: pulse
+    task: monitorar-pipeline-de-scoring.md
+    trigger: "Job de monitoramento a cada 5 minutos (cron); lead Hot registrado no Vector sem primeiro contato no CRM apos 15 minutos; desvio de distribuição de scores > 20% vs média histórica dos últimos 30 dias; webhook de fonte sem evento em > 24h; s…"
+    checkpoint:
+      criteria: "Dashboard de KPIs em tempo real no ClickUp: speed-to-lead por fonte e por tier, % de leads órfãos, taxa de conversão corrente vs baseline por tier, distribuição de scores (histograma), health dos webhooks. Alertas escalonados: Warning para…"
+      veto_condition: "Saída sem veredito do critic Critique 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Calibrar Modelo Scoring"
+    agent: critique
+    task: calibrar-modelo-scoring.md
+    trigger: "Ciclo quinzenal automático de auditoria de amostra; lead Hot marcado como não qualificado pelo SDR (trigger imediato); taxa de conversão de tier Hot cai abaixo de 25% em qualquer semana (anomalia crítica); proposta de recalibração de pesos…"
+    checkpoint:
+      criteria: "Auditoria de qualidade: APPROVED/NEEDS_CALIBRATION/ALERT com justificativa detalhada, lista de falsos positivos e falsos negativos identificados com análise de causa raiz, Precision@tier (% de leads Hot que realmente eram qualificados), Re…"
+      veto_condition: "Saída sem veredito do critic Critique 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: critique-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Pipeline de scoring e roteamento de leads em produção entregando: (1) Score Card automático por lead (Fit + Intent + Composto + Tier + Reasoning narrativo) publicado no CRM em < 60 segundos da entrad…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Definição dos critérios de Lead Hot antes do go-live — Sales Lead e CMO devem definir explicitamente o que é um lead Hot para essa empresa específica (o threshold de 75 é ajustável) e validar a Routing Matrix antes de ativar em produção (L3)"
+  - level: HITL
+    condition: "Aprovação do Score Card Model v1 após backtesting no Discovery — o modelo deve ser validado com dados históricos pelo Sales Lead antes de processar novos leads (L3)"
+  - level: HITL
+    condition: "Recalibração de pesos do modelo de scoring — qualquer alteração nos pesos por dimensão (Fit vs Intent, firmográfico vs comportamental) proposta por Critique deve ser aprovada pelo Sales Lead antes de Orion aplicar em produção (L3)"
+  - level: HITL
+    condition: "Lead Hot com score entre 65-80 e sinais contraditories — Orion escala para SDR Manager decidir manualmente o roteamento quando o modelo esta em zona de incerteza (L3)"
+  - level: HITL
+    condition: "Lead Hot sem primeiro contato do SDR em mais de 30 minutos — Pulse escala para SDR Manager via Slack + WhatsApp para intervenção imediata (L3)"
+  - level: HITL
+    condition: "Desvio crítico de performance detectado por Critique — quando Precision@Hot cai abaixo de 40% ou Recall cai abaixo de 50%, o squad entra em modo de revisão e não processa novos leads sem autorização humana (L3)"
+  - level: HITL
+    condition: "Ativação de nova fonte de leads (novo canal, novo formulário) — Scout não ativa fonte nova automaticamente, requer validação do schema de campos e regras de normalização pelo time de operações (L1)"
+  - level: HITL
+    condition: "Ajuste de capacidade de SDR na Routing Matrix — quando SDR entra em ferias ou saı da empresa, Vector nao rebalanceia automaticamente sem confirmacao do Sales Lead (L1)"
+transitions:
+  - from: orion
+    to: scout
+    condition: "Webhook de nova submissão de formulário; evento de novo lead em Meta/Google/LinkedIn Ads; novo contato no WhatsApp Business; importação manual acionada via ClickUp; cron de varredura de novos contato…"
+  - from: scout
+    to: apex
+    condition: "Lead normalizado e deduplicado pelo Scout (trigger primário); conclusão do ciclo de enriquecimento pelo Iris (re-score com dados completos); solicitação manual de re-score via ClickUp (quando SDR atu…"
+  - from: apex
+    to: iris
+    condition: "Lead normalizado e enfileirado pelo Scout (trigger automatico, roda em paralelo com scoring inicial); Apex solicita re-enriquecimento de lead com score de baixa confianca; ciclo semanal de re-enrique…"
+  - from: iris
+    to: vector
+    condition: "Score Card gerado pelo Apex com tier definido (trigger primário); re-score de lead Warm que subiu para Hot (re-roteamento imediato); lead órfão detectado pelo Pulse (sem atividade em 48h — re-roteia…"
+  - from: vector
+    to: pulse
+    condition: "Job de monitoramento a cada 5 minutos (cron); lead Hot registrado no Vector sem primeiro contato no CRM apos 15 minutos; desvio de distribuição de scores > 20% vs média histórica dos últimos 30 dias;…"
+  - from: pulse
+    to: critique
+    condition: "Ciclo quinzenal automático de auditoria de amostra; lead Hot marcado como não qualificado pelo SDR (trigger imediato); taxa de conversão de tier Hot cai abaixo de 25% em qualquer semana (anomalia crí…"
+  - from: critique
+    to: critique-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: critique-2
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - iris

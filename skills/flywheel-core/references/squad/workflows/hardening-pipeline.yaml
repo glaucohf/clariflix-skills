@@ -1,0 +1,25 @@
+workflow_name: hardening_pipeline
+version: 1.0.0
+description: "Pipeline de reforço técnico e garantia de qualidade (Hardening) pós-execução."
+success_indicators:
+  - "UBS_REPORT.md gerado sem bugs críticos"
+  - "BLUNDER_LOG.md resolvido"
+  - "Qualidade do código validada via Cross-Review"
+
+agent_sequence:
+  - id: hardening-specialist
+    tasks:
+      - blunderHunt()
+      - ubsScan()
+  - id: flywheel-architect
+    tasks:
+      - crossReview()
+  - id: swarm-coordinator
+    tasks:
+      - brLock()
+      - swarmStatus()
+
+# Metadados de Qualidade
+quality_assurance:
+  gate: checklists/hardening-quality-gate.md
+  recovery: "Rollback to previous stable Bead state and re-trigger Hardening Specialist."

@@ -1,0 +1,29 @@
+row: operacoes
+title: Copíloto do Agente Humano
+title_netflix: COPÍLOTO DO AGENTE HUMANO
+subtitle: Preparar sugestões de resposta e consulta à base de conhecimento para apoiar atendentes humanos em casos de suporte
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-agent-assist-copilot para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Compass
+  - Radar
+  - Vault
+  - Scribe
+  - Memo
+  - Lumen
+  - Echo
+  - Shield
+  - Prism
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

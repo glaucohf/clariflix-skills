@@ -1,0 +1,170 @@
+workflow_name: vendas_higiene_enriquecimento_crm_revops_pipeline
+description: "Seu CRM e o solo onde toda venda cresce — se o solo é lixo, a colheita também é."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-higiene-enriquecimento-crm-revops
+area: "Vendas"
+topsquad: "V6 · RevOps: Higiene de CRM & Forecast"
+agent_sequence:
+  - nexus
+  - validador-de-entradas
+  - detector-de-duplicatas
+  - enriquecedor-de-conta-e-lead
+  - sincronizador-de-fontes
+  - pythia
+  - cassandra
+  - gerador-de-golden-record
+  - sentinel
+key_commands:
+  - "*validar-formato-de-entradas"
+  - "*detectar-duplicatas"
+  - "*consultar-fontes-confianca"
+  - "*propagar-atualizacoes-fonte"
+  - "*calcular-score-registro"
+  - "*detectar-sinais-de-intencao"
+  - "*gerar-golden-record"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: nexus
+success_indicators:
+  - "Taxa de completude de campos criticos (target: >90% dos registros com cargo, email, telefone e empresa preenchidos)"
+  - "Taxa de duplicatas na base (target: <2% após implantação, medido mensalmente)"
+  - "Score médio de qualidade de registro (target: média Gold >80 para base ativa)"
+  - "Tempo médio de enriquecimento por registro (target: <90 segundos do trigger ao golden record atualizado)"
+  - "Taxa de bounce de email na base (target: <5% apos higiene continua)"
+  - "Custo por registro enriquecido (target: <R$0.50/registro usando waterfall com fallback entre provedores)"
+  - "Taxa de mérges revertidos pelo húmano (índicador de qualidadê do Gemini — târget: <10% de réversal ratê)"
+  - "Cobertura de sync downstream (target: 100% dos campos críticos sincronizados em <1h após update no CRM)"
+deliverable:
+  description: "Golden Record Dashboard: relatório semanal exportado para ClickUp e enviado ao operador RevOps com: score agregado da base (Gold/Silver/Bronze distribution), top 20 registros Bronze com deal aberto (prioritários para ação manual), log de merges da semana (quantidade, campos afetados, revertidos), custo de enriquecimento consumido vs budget, alertas de Cassandra pendentes de ação, e gráficos de tendência de qualidade ao longo do tempo. Cada ciclo de processamento gera um artefato imutável de auditoria no ClickUp com hash de integridade."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: nexus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Validar Formato De Entradas"
+    agent: validador-de-entradas
+    task: validar-formato-de-entradas.md
+    trigger: "Webhook de novo contato/empresa criado no CRM; importação em batch via CSV; formulário de landing page convertido."
+    checkpoint:
+      criteria: "Mesmo payload com campos validados anotados: { field, value, valid: bool, confidence: 0-1, issue: string }. Artefato gravado no ClickUp como 'Validação #ID'."
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Detectar Duplicatas"
+    agent: detector-de-duplicatas
+    task: detectar-duplicatas.md
+    trigger: "Apos Argos validar novo registro; varredura agendada semanal (domingo 02h) em toda a base."
+    checkpoint:
+      criteria: "Lista de clusters: [ { master_id, duplicate_ids[], confidence, merge_fields: { field, master_value, duplicate_value, recommended } } ]. Duplicatas L1 marcadas para merge automático. Duplicatas L2 enviadas para HITL queue."
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Consultar Fontes Confiança"
+    agent: enriquecedor-de-conta-e-lead
+    task: consultar-fontes-confianca.md
+    trigger: "Apos Geminî processar registro (novos lêads); mudançâ de estagio do deal (MQL → SQL dispara re-enriquecimento); varredurâ mensal de registros sem enriquecimento nos últimos 60 dias."
+    checkpoint:
+      criteria: "Patch de enriquecimento: { contact_id, enriched_fields: [ { field, old_value, new_value, source, confidence, timestamp } ] }. Gravado no CRM como nota de atividade + artefato no ClickUp. Custo de API estimado por registro incluído no log."
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Propagar Atualizações Fonte"
+    agent: sincronizador-de-fontes
+    task: propagar-atualizacoes-fonte.md
+    trigger: "Webhook de update no CRM (campo crítico alterado); agendamento diário 06h para sync incremental; trigger manual por operador RevOps."
+    checkpoint:
+      criteria: "Log de sincronizacao: { contact_id, sync_targets: [ { system, field, old_value, new_value, status: synced|failed|skipped, timestamp } ] }. Alertas de falha enviados ao Slack do time de RevOps."
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Calcular Score Registro"
+    agent: pythia
+    task: calcular-score-registro.md
+    trigger: "Após qualquer update de enriquecimento ou validação; agendamento semanal para re-scoring da base completa; solicitação de relatório pelo operador RevOps."
+    checkpoint:
+      criteria: "Score card: { contact_id, quality_score: 0-100, tier: gold|silver|bronze, missing_critical_fields: [], last_enriched: date, recommendation: string }. Atualizado como campo customizado no CRM. Dashboard agregado exportado para ClickUp."
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Detectar Sinais De Intencao"
+    agent: cassandra
+    task: detectar-sinais-de-intencao.md
+    trigger: "Webhook de email bounce; agendamento diário de verificação de mudanças de cargo via API; threshold de inatividade (lead sem engajamento >180 dias)."
+    checkpoint:
+      criteria: "Fila de alertas classificados: { contact_id, signal_type: rotting|intent_high|intent_medium, signal_source, recommended_action, urgency: high|medium|low }. Integrado ao ClickUp como tasks com prioridade. Registros podres marcados para HITL…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Gerar Golden Record"
+    agent: gerador-de-golden-record
+    task: gerar-golden-record.md
+    trigger: "Aprovação de merge pelo humano na fila HITL; merge automático L1 após score >0.90 no Gemini; solicitação manual de merge pelo operador RevOps."
+    checkpoint:
+      criteria: "Golden record consolidado no CRM com: todos os campos do master atualizados, histórico completo preservado, nota de merge com diff detalhado, e registro de auditoria imutável. Artefato de merge gravado no ClickUp com aprovador e timestamp."
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: sentinel
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: nexus
+    checkpoint:
+      criteria: "Entregável consolidado: Golden Record Dashboard: relatório semanal exportado para ClickUp e enviado ao operador RevOps com: score agregado da base (Gold/Silver/Bronze distribution), top 20 registros Bronze com deal aberto (…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação de merges de duplicatas com confidence score 0.75-0.89 (Gemini, fila no Slack/ClickUp com justificativa e diff visual)"
+  - level: HITL
+    condition: "Confirmação de exclusão definitiva de registros marcados como 'podres' por Cassandra (irreversível — sempre L3)"
+  - level: HITL
+    condition: "Aprovação de alteração em massa de campo crítico (ex: mudar setor de 200 registros de uma vez)"
+  - level: HITL
+    condition: "Revisão de registros Golden Bronze com deal aberto (operador RevOps decide: enriquecer manualmente ou descartar deal)"
+  - level: HITL
+    condition: "Configuração inicial do playbook de golden record no onboarding (quem decide vence em cada campo — decisão estratégica do cliente)"
+  - level: HITL
+    condition: "Aprovação de integração de nova fonte de dados ao pipeline (ex: adicionar novo formulário ou importação de lista de parceiro)"
+transitions:
+  - from: nexus
+    to: validador-de-entradas
+    condition: "Webhook de novo contato/empresa criado no CRM; importação em batch via CSV; formulário de landing page convertido."
+  - from: validador-de-entradas
+    to: detector-de-duplicatas
+    condition: "Apos Argos validar novo registro; varredura agendada semanal (domingo 02h) em toda a base."
+  - from: detector-de-duplicatas
+    to: enriquecedor-de-conta-e-lead
+    condition: "Apos Geminî processar registro (novos lêads); mudançâ de estagio do deal (MQL → SQL dispara re-enriquecimento); varredurâ mensal de registros sem enriquecimento nos últimos 60 dias."
+  - from: enriquecedor-de-conta-e-lead
+    to: sincronizador-de-fontes
+    condition: "Webhook de update no CRM (campo crítico alterado); agendamento diário 06h para sync incremental; trigger manual por operador RevOps."
+  - from: sincronizador-de-fontes
+    to: pythia
+    condition: "Após qualquer update de enriquecimento ou validação; agendamento semanal para re-scoring da base completa; solicitação de relatório pelo operador RevOps."
+  - from: pythia
+    to: cassandra
+    condition: "Webhook de email bounce; agendamento diário de verificação de mudanças de cargo via API; threshold de inatividade (lead sem engajamento >180 dias)."
+  - from: cassandra
+    to: gerador-de-golden-record
+    condition: "Aprovação de merge pelo humano na fila HITL; merge automático L1 após score >0.90 no Gemini; solicitação manual de merge pelo operador RevOps."
+  - from: gerador-de-golden-record
+    to: sentinel
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: sentinel
+    to: nexus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

@@ -1,0 +1,57 @@
+pack:
+  name: marketing-cro-landing-agentico
+  version: 0.1.0
+  short-title: "CRO & Landing Page Agêntico"
+  description: "De landing page estática para máquina de conversão autônoma: o squad gera, testa e itera copy e layout em loop contínuo — sem precisar de um time de CRO."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "📈"
+  slashPrefix: croLandingPageAgentico
+name: marketing-cro-landing-agentico
+version: 0.1.0
+description: "De landing page estática para máquina de conversão autônoma: o squad gera, testa e itera copy e layout em loop contínuo — sem precisar de um time de CRO."
+entry_agent: maestro-cro
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: marketing
+  topsquad: "M2"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - maestro-cro
+  - hera
+  - sage
+  - muse
+  - pixel
+  - darwin
+  - rex
+  - atlas
+  - rex-2
+tasks:
+  - identificar-abandono-pagina.md
+  - pesquisar-evidencias-empiricas.md
+  - gerar-copy-de-conversao.md
+  - traduzir-hipoteses-de-layout.md
+  - monitorar-experimentos-ab.md
+  - verificar-brand-voice-consistencia.md
+  - documentar-experimentos.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - marketing-cro-landing-agentico-pipeline.yaml
+checklists:
+  - critic-rex-2.md
+integrations:
+  - "Google Analytics 4 — fonte primária de dados de conversão, funil de comportamento por fonte/dispositivo/segmento, eventos de objetivo configurados por página"
+  - "Hotjar ou Microsoft Clarity — heatmaps, gravações de sessão, scroll depth maps e pesquisas on-exit; Hera é o principal consumidor desta integração"
+  - "Google Optimize / VWO / Unbounce Smart Traffic / Optimizely — ferramentas de teste A/B e multivariado; Darwin configura e monitora experimentos aqui (escolha depende da stack do cliente)"
+  - "Unbounce / Webflow / WordPress + Elementor — construtores de landing page onde as variações são implementadas pelo time após aprovação de Rex"
+  - "HubSpot CRM — tracking de leads gerados por variação de landing page (UTM parameters por variação para atribuição de pipeline), integração de formulário com campos de source/medium/experiment_id"
+  - "Google Ads / Meta Ads — source de tráfego das campanhas; Rex verifica message match entre o ad e a landing page antes de publicar variação"
+  - "ClickUp — prova de trabalho: task automática por experimento (hipótese, resultado, learning), dashboard de KPIs de CRO (taxa de conversão por página, experimentos ativos, lift acumulado), backlog de hipóteses como lista priorizada"
+  - "Figma / Whimsical — Pixel deposita wireframes e specs de layout como artefatos verificáveis antes de implementação"
+  - "Langfuse — observabilidade OTEL de todos os agentes, quality gates (dev 70% / staging 85% / prod 95% task success), rastreamento de custo por ciclo de experimentação"
+  - "n8n — orquestração de webhooks entre GA4, ferramentas de teste e ClickUp (alertas de significância estatística, notificações de anomalia de conversão, triggers de ciclo quinzenal)"
+  - "Slack / Email — notificações de experimento encerrado com resultado, alertas de anomalia de conversão e despacho de relatório quinzenal de velocidade de aprendizado para stakeholders"

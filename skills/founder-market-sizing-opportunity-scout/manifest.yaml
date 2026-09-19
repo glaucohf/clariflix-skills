@@ -1,0 +1,29 @@
+row: gestao
+title: Market Sizing & Opportunity Scout
+title_netflix: MARKET SIZING & OPPORTUNITY SCOUT
+subtitle: Estimar mercados e avaliar oportunidades usando hipóteses explícitas, fontes e cenários comparáveis
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-market-sizing-opportunity-scout para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Atlas
+  - Cosmos
+  - Praxis
+  - Radar
+  - Scout
+  - Faro
+  - Citadel
+  - Axiom
+  - Axiom 2
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

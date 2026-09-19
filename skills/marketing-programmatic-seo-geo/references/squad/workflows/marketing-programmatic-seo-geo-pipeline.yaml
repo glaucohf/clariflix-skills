@@ -1,0 +1,161 @@
+workflow_name: marketing_programmatic_seo_geo_pipeline
+description: "Sua marca indexada em todos os motores — de busca e de IA — antes que o concorrente perceba que o jogo mudou."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-programmatic-seo-geo
+area: "Marketing"
+topsquad: "M3 · Conteúdo & Criativo"
+agent_sequence:
+  - argo
+  - lexus
+  - orion
+  - scribe
+  - beacon
+  - atlas
+  - sonar
+  - lumen
+key_commands:
+  - "*mapear-palavras-chave"
+  - "*minerar-dados-brutos"
+  - "*otimizar-estrutura-h1"
+  - "*otimizar-conteudo-para-ia"
+  - "*publicar-conteudo-tecnico"
+  - "*monitorar-posicoes-keywords"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: argo
+success_indicators:
+  - "Páginas indexadas e ranqueando: total de páginas publicadas pelo squad que estão indexadas no Google, com breakdown por posição (top 3, top 10, top 100) — meta crescimento de 20-30% ao mês no primeiro trimestre"
+  - "GEO Score mensal: % dos 50 termos prioritários do cliente em que a marca é citada em pelo menos 1 motor de IA (ChatGPT, Perplexity, Google AI Overviews) — baseline no onboarding, meta +5 pontos percentuais por mês"
+  - "Tráfego orgânico total (sessões/mês): crescimento mês-a-mês de tráfego via busca orgânica com atribuição por cluster temático — meta +15-25% ao mês nos primeiros 6 meses"
+  - "Tráfego assistido por IA (dark traffic atribuível): visitas diretas ou de referência que aumentam em correlação com o aumento do GEO Score — indicador indireto de visibilidade em search generativo"
+  - "Volume de produção verificada: páginas publicadas/mês com score Lumen >= threshold — meta de produção: 50-200 páginas programáticas + 8-16 artigos editoriais por mês dependendo do tier"
+  - "Taxa de aprovação do Lumen no primeiro ciclo: meta >65% para produção programática, >75% para artigos editoriais — indica qualidade dos templates e calibragem dos agentes de produção"
+  - "Tempo de ciclo de produção: da aprovação do backlog item pelo Argo ao conteúdo publicado e submetido ao GSC — meta <4 horas para páginas programáticas, <24 horas para artigos editoriais"
+  - "Taxa de indexação pós-publicação: % das páginas publicadas pelo Atlas que são indexadas pelo Google em 7 dias — meta >80%; abaixo disso aciona investigação de crawl budget ou qualidade de conteúdo"
+  - "Taxa de task success por agente no Langfuse: gate produção = 95%; qualquer agente abaixo do threshold aciona alerta automático para revisão"
+  - "CPL orgânico (Custo por Lead orgânico): leads gerados por tráfego orgânico / custo mensal do squad — meta: custo de aquisição via orgânico 70% menor que via tráfego pago equivalente após 6 meses de operação"
+  - "Featured Snippets e AI Overviews conquistados: número de posições zero e citações em AI Overviews ganhas no período — indicador direto da eficácia do Beacon e da estratégia GEO"
+deliverable:
+  description: "Portfolio de conteúdo SEO+GEO verificado, publicado e monitorado de forma contínua: (1) Universo de keywords e entidade map (Lexus) — documento vivo no ClickUp com backlog priorizado, atualizado mensalmente; (2) Datasets programáticos estruturados (Orion) — base de dados verificada com score de qualidade por registro e log de fontes, rastreável no ClickUp; (3) Conteúdo aprovado por página (Scribe + Beacon) — Markdown completo com SEO score, GEO score, checklist do Lumen aprovado e versionamento no ClickUp; (4) Log de publicação imutável por batch (Atlas) — URL publicada, timestamp, internal links inseridos, schema markup aplicado, status de indexação no GSC, screenshot do preview; (5) Dashboard de visibilidade semanal (Sonar) — posições por keyword, GEO Score por motor de IA, oportunidades detectadas, alertas de queda, backlinks novos/perdidos, Core Web Vitals; (6) Relatório mensal de ROI — crescimento de tráfego orgânico, evolução do GEO Score, páginas ranqueando em top 10, leads atribuídos ao orgânico vs baseline pré-implantação. Todo o pipeline e auditável por design: cada página publicada tem agente responsável em cada etapa, timestamp, veredicto do Lumen, trace no Langfuse e artefato verificável no ClickUp. O gestor de conteúdo opera os gates L3 e vê o status completo de cada batch em um único painel."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: argo
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Mapear Palavras-chave"
+    agent: lexus
+    task: mapear-palavras-chave.md
+    trigger: "Trigger inicial no onboarding para construção do universo baseline. Refresh mensal automático via cron. Re-trigger imediato quando Sonar detectar queda de >15% em tráfego de um cluster ou surgimento de concorrente novo em posição top 3. Re…"
+    checkpoint:
+      criteria: "Universo de keywords estruturado em 4 camadas: (1) Cluster map — tópicos temáticos com keyword principal e 5-20 keywords semanticamente relacionadas por cluster, volume e dificuldade de cada uma; (2) Matriz de oportunidade — scoring de pri…"
+      veto_condition: "Saída sem veredito do critic Lumen; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Minerar Dados Brutos"
+    agent: orion
+    task: minerar-dados-brutos.md
+    trigger: "Ativado pelo Argo para cada novo template de página programática aprovado pelo time. Re-trigger mensal para atualizar dados de páginas já publicadas (preços, estatísticas, ranking) que ficam desatualizados. Re-trigger pontual quando Sonar…"
+    checkpoint:
+      criteria: "Dataset estruturado em JSON ou CSV por tipo de página programática: cada registro tem os campos obrigatórios para preencher o template (entidade principal, atributos de unicidade, dados de suporte, fontes verificáveis com URL e data, texto…"
+      veto_condition: "Saída sem veredito do critic Lumen; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Otimizar Estrutura H1"
+    agent: scribe
+    task: otimizar-estrutura-h1.md
+    trigger: "Ativado pelo Argo em batches conforme o calendario editorial programatico configurado (ex: 50 paginas/semana para modo programatico, 4-8 artigos/semana para modo editorial). Re-trigger se Lumen reprovar um lote — max 1 reescritura automati…"
+    checkpoint:
+      criteria: "Conteúdo completo por página em formato Markdown estruturado: (1) Meta title (max 60 chars, keyword na frente), meta description (max 155 chars, CTA incluso), H1 único com keyword principal, slug de URL otimizado; (2) Corpo do conteúdo com…"
+      veto_condition: "Saída sem veredito do critic Lumen; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Otimizar Conteúdo Para IA"
+    agent: beacon
+    task: otimizar-conteudo-para-ia.md
+    trigger: "Ativado pelo Argo imediatamente após o Scribe entregar o conteúdo completo — sempre no mesmo batch, nunca em atraso. Re-trigger mensal para páginas publicadas com GEO score em queda (detectado pelo Sonar). Trigger pontual para páginas estr…"
+    checkpoint:
+      criteria: "Conteudo otimizado para GEO/AEO em Markdown com as seguintes adicoes/modificacoes sobre o original do Scribe: (1) Citability score por secao — identifica e destaca os 3-5 trechos de maior probabilidade de citacao por LLMs com justificativa…"
+      veto_condition: "Saída sem veredito do critic Lumen; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Publicar Conteúdo Tecnico"
+    agent: atlas
+    task: publicar-conteudo-tecnico.md
+    trigger: "Ativado pelo Argo imediatamente após Lumen aprovar o lote de conteúdo. Trigger de publicação incremental para evitar publicação em massa (max configurável de páginas por dia para proteger a reputação do domínio). Trigger de atualização men…"
+    checkpoint:
+      criteria: "Confirmação de publicação por página com: URL final publicada, timestamp, status de indexação (submitted to GSC / indexed / crawl_error), internal links inseridos (lista de páginas linkadas), schema markup aplicado, screenshot do preview d…"
+      veto_condition: "Saída sem veredito do critic Lumen; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Monitorar Posicoes Keywords"
+    agent: sonar
+    task: monitorar-posicoes-keywords.md
+    trigger: "Monitoramento de posições Google: daily via GSC API, weekly via SemRush para top 500 keywords. Monitoramento de citações em IA: a cada 48 horas para os 50 termos prioritários (mais frequente para termos de alta intenção comercial). Monitor…"
+    checkpoint:
+      criteria: "Dashboard de visibilidade atualizado diariamente no ClickUp com: (1) Posições top 100 por keyword com delta 7 dias e 30 dias; (2) GEO Score semanal — % dos 50 termos prioritários em que a marca é citada em pelo menos 1 motor de IA (ChatGPT…"
+      veto_condition: "Saída sem veredito do critic Lumen; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: lumen
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: argo
+    checkpoint:
+      criteria: "Entregável consolidado: Portfolio de conteúdo SEO+GEO verificado, publicado e monitorado de forma contínua: (1) Universo de keywords e entidade map (Lexus) — documento vivo no ClickUp com backlog priorizado, atualizado mens…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Gate L3 no Atlas: qualquer publicacao ou edicao de paginas na lista de URLs estrategicas (pillar pages, paginas com backlinks externos, paginas de alta competicao definidas no onboarding) bloqueia e notifica o gestor de conteudo com preview completo para aprovacao antes de publicar um caracter."
+  - level: HITL
+    condition: "Lumen reprova 2x no mesmo item: conteúdo que falhou no ciclo automático de otimização (Scribe ou Beacon reescreve 1x, Lumen reprova novamente) e escalado para o editor humano com o checklist completo de reprovações e sugestões específicas de correção."
+  - level: HITL
+    condition: "Factualidade questionável detectada pelo Lumen: qualquer dado que não tem fonte verificável com URL ativo e data recente é imediatamente bloqueado e sinalizado para o time de conteúdo verificar manualmente antes de qualquer publicação — zero tolerância para afirmação sem rastreabilidade."
+  - level: HITL
+    condition: "Batch de publicação programática acima de 50 páginas: qualquer batch acima do threshold configurado (default: 50 páginas/batch) requer aprovação do gestor de SEO antes do Atlas iniciar a publicação — para proteger o crawl budget e a reputação do domínio."
+  - level: HITL
+    condition: "Queda abrupta de visibilidade detectada pelo Sonar: queda de >30% em tráfego orgânico em 7 dias ou desaparecimento de cluster inteiro das SERPs = alerta imediato ao time de SEO para investigação manual antes de qualquer ação automática do squad — pode ser update algorítmico que requer análise humana."
+  - level: HITL
+    condition: "Novos templates programáticos: sempre que Lexus ou Argo identificam um novo tipo de página programática não mapeada anteriormente, o template precisa de aprovação humana antes de entrar em produção em escala — para garantir alinhamento estratégico e qualidade do formato."
+  - level: HITL
+    condition: "Decisões de redirects e exclusão de conteúdo: qualquer ação que envolva deletar, redirecionar ou desindexar páginas existentes (especialmente com tráfego ou backlinks) é sempre humana — reversibilidade zero para ações de remoção de conteúdo já indexado."
+transitions:
+  - from: argo
+    to: lexus
+    condition: "Trigger inicial no onboarding para construção do universo baseline. Refresh mensal automático via cron. Re-trigger imediato quando Sonar detectar queda de >15% em tráfego de um cluster ou surgimento…"
+  - from: lexus
+    to: orion
+    condition: "Ativado pelo Argo para cada novo template de página programática aprovado pelo time. Re-trigger mensal para atualizar dados de páginas já publicadas (preços, estatísticas, ranking) que ficam desatual…"
+  - from: orion
+    to: scribe
+    condition: "Ativado pelo Argo em batches conforme o calendario editorial programatico configurado (ex: 50 paginas/semana para modo programatico, 4-8 artigos/semana para modo editorial). Re-trigger se Lumen repro…"
+  - from: scribe
+    to: beacon
+    condition: "Ativado pelo Argo imediatamente após o Scribe entregar o conteúdo completo — sempre no mesmo batch, nunca em atraso. Re-trigger mensal para páginas publicadas com GEO score em queda (detectado pelo S…"
+  - from: beacon
+    to: atlas
+    condition: "Ativado pelo Argo imediatamente após Lumen aprovar o lote de conteúdo. Trigger de publicação incremental para evitar publicação em massa (max configurável de páginas por dia para proteger a reputação…"
+  - from: atlas
+    to: sonar
+    condition: "Monitoramento de posições Google: daily via GSC API, weekly via SemRush para top 500 keywords. Monitoramento de citações em IA: a cada 48 horas para os 50 termos prioritários (mais frequente para ter…"
+  - from: sonar
+    to: lumen
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: lumen
+    to: argo
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

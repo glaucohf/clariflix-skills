@@ -1,0 +1,171 @@
+workflow_name: vendas_recuperacao_oportunidades_estagnadas_pipeline
+description: "Nenhum deal morre de inercial — reativamos receita parada antes que o concorrente a pegue."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-recuperacao-oportunidades-estagnadas
+area: "Vendas"
+topsquad: "V4 · Nurture, Follow-up & Reativação"
+agent_sequence:
+  - orquestrador-de-recuperacao
+  - worker-de-deteccao-e-triagem
+  - escavador
+  - arquiteto
+  - critic-e-verifier-de-mensagens
+  - worker-de-outreach-multicanal
+  - monge
+  - forense
+  - critic-e-verifier-de-mensagens-2
+key_commands:
+  - "*detectar-sinais-de-estagnacao"
+  - "*enriquecer-contexto-lead"
+  - "*personalizar-sequencia-mensagens"
+  - "*verificar-mensagens"
+  - "*enviar-mensagens-multicanal"
+  - "*nutrir-leads-longo-prazo"
+  - "*analisar-abandono-em-etapas"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orquestrador-de-recuperacao
+success_indicators:
+  - "Taxa de Recuperação: % de deals estagnados que retomaram atividade após intervenção do squad (meta: 15-35% em 30 dias)"
+  - "Receita Recuperada: R$ de oportunidades reativadas que fecharam em 90 dias pós-ativação do squad"
+  - "Tempo Médio de Detecção-a-Primeiro-Toque: minutos entre detecção de estagnação e envío da primeira mensagem (meta: <15 min)"
+  - "Taxa de Resposta por Canal: % de mensagens que geraram resposta por canal (WhatsApp, email, LinkedIn, voz)"
+  - "Opt-out Rate: % de leads que solicitaram descadastramento (meta: <1% — indica qualidade da personalizacao)"
+  - "Playbook Conversion Rate: % de deals em cada playbook que convertêram (identifica playbooks eficazes x ineficazes)"
+  - "Task Success Rate: % de tasks completadas com sucesso nos quality gates (meta: dev 70% / staging 85% / prod 95%)"
+  - "HITL Trigger Rate: % de deals que necessitaram aprovação humana (calibra o nível de autonomia do squad)"
+  - "CAC de Recuperação: R$0 — toda oportunidade recuperada e receita incremental sem novo custo de aquisição"
+deliverable:
+  description: "Painel de Recuperação Ativa no ClickUp com: (1) Mapa de Oportunidades Estagnadas atualizado em tempo real por bucket e valor em risco, (2) Log de cada tentativa de recuperação com status e resultado (artefato verificável por deal), (3) Relatório semanal de conversões e perdas com análise de padrões do Forense, (4) Biblioteca de playbooks vivos atualizados por feedback loop, (5) Dashboard de KPIs de recuperação com comparativo antes/depois da implantação do squad."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orquestrador-de-recuperacao
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Detectar Sinais De Estagnação"
+    agent: worker-de-deteccao-e-triagem
+    task: detectar-sinais-de-estagnacao.md
+    trigger: "Deal sem atividade por mais de N dias (configurável por etapa: 3 dias em Proposta, 7 dias em Qualificação, 1 dia em Carrinho Abandonado), mudança de status para Stalled no CRM, trigger manual pelo comercial"
+    checkpoint:
+      criteria: "Fila priorizada de oportunidades estagnadas com Score de Urgência, bucket de classificação (Salvar Agora / Nutrir / Reciclar / Arquivar) e contexto completo do deal. Artefato: stagnation-report-{date}.json no ClickUp"
+      veto_condition: "Saída sem veredito do critic Critic e Verifier de Mensagens 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Contexto Lead"
+    agent: escavador
+    task: enriquecer-contexto-lead.md
+    trigger: "Deal classificado como Salvar Agora ou Nutrir pelo Radar, solicitação manual do Orquestrador para deals de alto valor"
+    checkpoint:
+      criteria: "Dossiê de Reativação com: 3 ganchos de personalização priorizados, sinais de intenção detectados, janela de oportunidade (sim/não + justificativa), contexto atualizado para scripts. Artefato: enrichment-{dealId}.json"
+      veto_condition: "Saída sem veredito do critic Critic e Verifier de Mensagens 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Personalizar Sequência Mensagens"
+    agent: arquiteto
+    task: personalizar-sequencia-mensagens.md
+    trigger: "Dossiê de Reativação entregue pelo Escavador, classificação de bucket confirmada pelo Orquestrador"
+    checkpoint:
+      criteria: "Sequência de recuperação personalizada: N mensagens com canal, timing, copy completo e CTA. Artefato: playbook-{dealId}.json com todas as mensagens prontas para revisão do Guardião"
+      veto_condition: "Saída sem veredito do critic Critic e Verifier de Mensagens 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Verificar Mensagens"
+    agent: critic-e-verifier-de-mensagens
+    task: verificar-mensagens.md
+    trigger: "Playbook entregue pelo Arquiteto, antes de qualquer envio externo"
+    checkpoint:
+      criteria: "Mensagens aprovadas com selo de validação OU lista de correções obrigatórias com justificativa. Artefato: review-{dealId}.json com resultado do checklist"
+      veto_condition: "Saída sem veredito do critic Critic e Verifier de Mensagens 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Enviar Mensagens Multicanal"
+    agent: worker-de-outreach-multicanal
+    task: enviar-mensagens-multicanal.md
+    trigger: "Aprovação do Guardião, janela de tempo configurada (não enviar fora de horário comercial), confirmação do HITL Gatekeeper para deals acima do threshold de valor"
+    checkpoint:
+      criteria: "Log de envios com status (entregue, aberto, respondido, optout), registro automático no CRM de cada interação, alertas de resposta para o comercial humano. Artefato: outreach-log-{dealId}.json"
+      veto_condition: "Saída sem veredito do critic Critic e Verifier de Mensagens 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Nutrir Leads Longo Prazo"
+    agent: monge
+    task: nutrir-leads-longo-prazo.md
+    trigger: "Classificação Nutrir pelo Radar, sinais de reaquecimento (engajamento acima de threshold), ciclo semanal automático de verificação de status"
+    checkpoint:
+      criteria: "Cadência de nurture ativa com histórico de engajamentos, alertas de reaquecimento ao Orquestrador, transferência de leads quentes para fluxo de recuperação ativa. Artefato: nurture-status-{leadId}.json atualizado semanalmente"
+      veto_condition: "Saída sem veredito do critic Critic e Verifier de Mensagens 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Analisar Abandono Em Etapas"
+    agent: forense
+    task: analisar-abandono-em-etapas.md
+    trigger: "Ciclo semanal automático, deal movido para Perdido/Arquivado, acumulação de 10+ deals sem resposta no mesmo playbook"
+    checkpoint:
+      criteria: "Relatório semanal de perdas com padrões identificados, proposta de ajustes nos playbooks (para aprovação humana), atualização dos thresholds de Score de Urgência. Artefato: loss-analysis-{week}.md no ClickUp"
+      veto_condition: "Saída sem veredito do critic Critic e Verifier de Mensagens 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: critic-e-verifier-de-mensagens-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orquestrador-de-recuperacao
+    checkpoint:
+      criteria: "Entregável consolidado: Painel de Recuperação Ativa no ClickUp com: (1) Mapa de Oportunidades Estagnadas atualizado em tempo real por bucket e valor em risco, (2) Log de cada tentativa de recuperação com status e resultado…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação de envio para deals acima de threshold de valor (ex: oportunidades acima de R$50k exigem OK do gerente comercial antes do primeiro toque automatizado — gate L3 no Mensageiro)"
+  - level: HITL
+    condition: "Resposta do lead que sinaliza interesse real em negociar (preço, escopo, prazo) — Mensageiro alerta comercial humano para assumir a conversa"
+  - level: HITL
+    condition: "Qualquer mensagem que mencione desconto ou condição especial — bloqueada automaticamente pelo Guardião, vai para aprovação do responsável comercial"
+  - level: HITL
+    condition: "Mudança de playbook baseada em proposta do Forense — ajustes em playbooks existentes exigem aprovação humana antes de entrar em produção"
+  - level: HITL
+    condition: "Primeiro contato via voz (Vapi/Retell) para leads de alto valor — script revisado e aprovado pelo responsavel antes do disparo"
+  - level: HITL
+    condition: "Opt-out recebido — registrado imediatamente, comunicado ao comercial, nenhuma acao adicional automatica alem do registro de compliance"
+transitions:
+  - from: orquestrador-de-recuperacao
+    to: worker-de-deteccao-e-triagem
+    condition: "Deal sem atividade por mais de N dias (configurável por etapa: 3 dias em Proposta, 7 dias em Qualificação, 1 dia em Carrinho Abandonado), mudança de status para Stalled no CRM, trigger manual pelo co…"
+  - from: worker-de-deteccao-e-triagem
+    to: escavador
+    condition: "Deal classificado como Salvar Agora ou Nutrir pelo Radar, solicitação manual do Orquestrador para deals de alto valor"
+  - from: escavador
+    to: arquiteto
+    condition: "Dossiê de Reativação entregue pelo Escavador, classificação de bucket confirmada pelo Orquestrador"
+  - from: arquiteto
+    to: critic-e-verifier-de-mensagens
+    condition: "Playbook entregue pelo Arquiteto, antes de qualquer envio externo"
+  - from: critic-e-verifier-de-mensagens
+    to: worker-de-outreach-multicanal
+    condition: "Aprovação do Guardião, janela de tempo configurada (não enviar fora de horário comercial), confirmação do HITL Gatekeeper para deals acima do threshold de valor"
+  - from: worker-de-outreach-multicanal
+    to: monge
+    condition: "Classificação Nutrir pelo Radar, sinais de reaquecimento (engajamento acima de threshold), ciclo semanal automático de verificação de status"
+  - from: monge
+    to: forense
+    condition: "Ciclo semanal automático, deal movido para Perdido/Arquivado, acumulação de 10+ deals sem resposta no mesmo playbook"
+  - from: forense
+    to: critic-e-verifier-de-mensagens-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: critic-e-verifier-de-mensagens-2
+    to: orquestrador-de-recuperacao
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

@@ -1,0 +1,47 @@
+name: marketing-abm-signal-orchestrator
+version: 0.1.0
+description: "Cada sinal de intent em conta estrategica vira campanha coordenada antes que o concorrente responda."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: aso
+components:
+  agents:
+    - nexus.md
+    - radar.md
+    - atlas.md
+    - vox.md
+    - pixel.md
+    - hermes.md
+    - chronos.md
+    - prism.md
+    - aegis.md
+  tasks:
+    - monitorar-sinais-de-intent.md
+    - enriquecer-conta-icp.md
+    - gerar-copy-personalizada.md
+    - criar-audiencias-customizadas.md
+    - sequenciar-contato-multicanal.md
+    - orquestrar-canais-de-mensagens.md
+    - consolidar-sinais-engajamento-conta.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-abm-signal-orchestrator-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - demand-gen-abm-orchestration
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M1 · TopSquad de Demand Gen & ABM Orchestration"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

@@ -1,0 +1,156 @@
+workflow_name: marketing_living_icp_profiler_pipeline
+description: "Seu ICP nunca mais vai envelhecer: perfil vivo, versionado e alimentado por 100+ fontes para o time sempre saber para quem vender."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-living-icp-profiler
+area: "Marketing"
+topsquad: "M4 · Inteligência de Mercado, ICP & Concorrência"
+agent_sequence:
+  - maestro
+  - atlas
+  - iris
+  - zara
+  - nox
+  - rex
+  - vera
+  - vera-2
+key_commands:
+  - "*construir-personas-calibradas"
+  - "*enriquecer-dados-lead"
+  - "*monitorar-sinais-de-compra"
+  - "*calibrar-icp-com-dados-de-mercado"
+  - "*calcular-icp-score"
+  - "*verificar-qualidade-de-dados"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro
+success_indicators:
+  - "ICP Fit Score medio da pipeline: meta > 7.5/10 em 90 dias (baseline atual a medir no Discovery)"
+  - "% de leads dentro do ICP: meta > 65% em 90 dias (de baseline típico de ~35-40%)"
+  - "Cobertura de enriquecimento: >= 85% dos campos prioritários preenchidos para leads tier 1"
+  - "Taxa de conversão por segmento de fit: rastreada por quartil de score (Q1-Q4) para validar poder preditivo do modelo"
+  - "Tempo de detecção de sinal até alerta no CRM: meta < 24h para Hot Accounts"
+  - "Freshness do ICP: versão do ICP com < 30 dias de idade (nunca mais um ICP de slide com 6 meses)"
+  - "Data Quality Score (Vera): >= 85/100 em cada publicação de nova versão"
+  - "Redução de CAC por segmento ICP: meta de 20% em 6 meses via melhora de targeting"
+deliverable:
+  description: "ICP Profile vivo e versionado publicado no CRM (HubSpot/Salesforce) com: (1) ICP Fit Score automático por lead (0-10 com breakdown por dimensão), (2) Segmentos priorizados com PMF Score e TAM estimado, (3) Mapa de 40+ atributos por segmento com confidence score, (4) Signal Feed diário de Hot Accounts com intent score, (5) Dashboard de fit score médio da pipeline no ClickUp, (6) Changelog de versões do ICP com rastreabilidade completa, (7) Relatório mensal de desvio de ICP (quando o perfil real dos leads está divergindo do ideal)."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Construir Personas Calibradas"
+    agent: atlas
+    task: construir-personas-calibradas.md
+    trigger: "Início de ciclo Discovery; delta de fit score > 15% detectado pelo Maestro; novo segmento de mercado identificado por Zara; solicitação manual via ClickUp task"
+    checkpoint:
+      criteria: "ICP Hypothesis Canvas (markdown estruturado), Synthetic Persona Cards (3-5 personas por segmento), Competitive ICP Map (como concorrentes definem seu ICP), Research Report com fontes citadas"
+      veto_condition: "Saída sem veredito do critic Vera 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Dados Lead"
+    agent: iris
+    task: enriquecer-dados-lead.md
+    trigger: "Novo lead entra no CRM (webhook HubSpot/Salesforce); ciclo semanal de re-enriquecimento de pipeline ativa; Maestro dispara Deep Dive; lista de prospecting nova importada"
+    checkpoint:
+      criteria: "Lead enrichment records com 40+ atributos preenchidos, ICP Fit Score por lead (0-10 com breakdown por dimensão), confidence score por atributo, lista de atributos ausentes por fonte, relatório de cobertura de enriquecimento"
+      veto_condition: "Saída sem veredito do critic Vera 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Monitorar Sinais De Compra"
+    agent: zara
+    task: monitorar-sinais-de-compra.md
+    trigger: "Job de monitoramento diário automático (cron 6h); alerta de funding round detectado via webhook; Maestro solicita análise de sinais para segmento específico; revisão semanal de ICP"
+    checkpoint:
+      criteria: "Signal Feed diário com contas priorizadas por score de intent, Intent Score por conta (0-100), breakdown de sinais detectados por categoria, alertas de Hot Accounts (score > 70) para ação imediata no CRM, tendências de segmento (quais seto…"
+      veto_condition: "Saída sem veredito do critic Vera 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Calibrar Icp Com Dados De Mercado"
+    agent: nox
+    task: calibrar-icp-com-dados-de-mercado.md
+    trigger: "Ciclo trimestral de revisao de ICP; novo produto/feature lancado; Maestro detecta queda de conversion rate em segmento especifico; solicitacao manual do CMO/CEO"
+    checkpoint:
+      criteria: "PMF Score por segmento (1-10 com justificativa), TAM/SAM/SOM estimado por segmento, Dores primárias x secundárias mapeadas por segmento, Adjacency Map (novos segmentos com fit potencial), recomendação de priorização de segmentos para o ICP"
+      veto_condition: "Saída sem veredito do critic Vera 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Calcular Icp Score"
+    agent: rex
+    task: calcular-icp-score.md
+    trigger: "Maestro sinaliza ciclo de consolidação concluído; delta de fit score médio > 15% detectado; nova versão de enriquecimento concluída; fim de ciclo mensal automático"
+    checkpoint:
+      criteria: "ICP Profile versionado (JSON estruturado com todos os atributos, pesos e scores por dimensão), Changelog de mudanças entre versões, ICP Score composto atualizado no CRM (campo customizado), notificação de nova versão para stakeholders via…"
+      veto_condition: "Saída sem veredito do critic Vera 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Verificar Qualidade De Dados"
+    agent: vera
+    task: verificar-qualidade-de-dados.md
+    trigger: "Sempre que Rex prepara nova versão de ICP para publicação (gate obrigatório); Maestro solicita auditoria de qualidade; anomalia de dados detectada no pipeline de enriquecimento"
+    checkpoint:
+      criteria: "Quality Report com APPROVED/NEEDS_REVISION/BLOCKED, lista de inconsistências detectadas com severity (critical/warning/info), Score de qualidade dos dados (0-100), sugestões de correção específicas, flag de conformidade LGPD com itens a co…"
+      veto_condition: "Saída sem veredito do critic Vera 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: vera-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: maestro
+    checkpoint:
+      criteria: "Entregável consolidado: ICP Profile vivo e versionado publicado no CRM (HubSpot/Salesforce) com: (1) ICP Fit Score automático por lead (0-10 com breakdown por dimensão), (2) Segmentos priorizados com PMF Score e TAM estimad…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do ICP Hypothesis Canvas ao final do Discovery — CEO/CMO valida ou refuta hipóteses de segmentos antes de iniciar enriquecimento em escala (L3)"
+  - level: HITL
+    condition: "Publicação de nova versão major do ICP (v1.x -> v2.0) — mudanças estruturais de perfil requerem aprovação do CMO antes de atualizar o CRM (L3)"
+  - level: HITL
+    condition: "Ativação de monitoramento de contas em novo segmento adjacente identificado por Nox — expansão de ICP é decisão estratégica (L3)"
+  - level: HITL
+    condition: "Quando Vera retorna BLOCKED em auditoria de qualidade — time deve revisar manualmente as inconsistências críticas apontadas antes de Maestro reprocessar (L3)"
+  - level: HITL
+    condition: "Calibração de pesos por dimensão do ICP Score — revisão trimestral com Sales Lead e CMO para ajustar o que o time considera mais preditivo de conversão (L1)"
+  - level: HITL
+    condition: "Aprovação de integração com nova fonte de dados de enriquecimento que implica custo adicional — qualquer nova ferramenta paga requer validação financeira (L3)"
+transitions:
+  - from: maestro
+    to: atlas
+    condition: "Início de ciclo Discovery; delta de fit score > 15% detectado pelo Maestro; novo segmento de mercado identificado por Zara; solicitação manual via ClickUp task"
+  - from: atlas
+    to: iris
+    condition: "Novo lead entra no CRM (webhook HubSpot/Salesforce); ciclo semanal de re-enriquecimento de pipeline ativa; Maestro dispara Deep Dive; lista de prospecting nova importada"
+  - from: iris
+    to: zara
+    condition: "Job de monitoramento diário automático (cron 6h); alerta de funding round detectado via webhook; Maestro solicita análise de sinais para segmento específico; revisão semanal de ICP"
+  - from: zara
+    to: nox
+    condition: "Ciclo trimestral de revisao de ICP; novo produto/feature lancado; Maestro detecta queda de conversion rate em segmento especifico; solicitacao manual do CMO/CEO"
+  - from: nox
+    to: rex
+    condition: "Maestro sinaliza ciclo de consolidação concluído; delta de fit score médio > 15% detectado; nova versão de enriquecimento concluída; fim de ciclo mensal automático"
+  - from: rex
+    to: vera
+    condition: "Sempre que Rex prepara nova versão de ICP para publicação (gate obrigatório); Maestro solicita auditoria de qualidade; anomalia de dados detectada no pipeline de enriquecimento"
+  - from: vera
+    to: vera-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: vera-2
+    to: maestro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

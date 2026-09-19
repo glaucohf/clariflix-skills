@@ -1,0 +1,29 @@
+row: vendas
+title: Recuperação de Oportunidades Estagnadas
+title_netflix: RECUPERAÇÃO DE OPORTUNIDADES ESTAGNADAS
+subtitle: Diagnosticar oportunidades paradas e preparar planos de recuperação com próximos passos e mensagens para revisão
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-recuperacao-oportunidades-estagnadas para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orquestrador de Recuperação
+  - Worker de Detecção e Triagem
+  - Escavador
+  - Arquiteto
+  - Critic e Verifier de Mensagens
+  - Worker de Outreach Multicanal
+  - Monge
+  - Forense
+  - Critic e Verifier de Mensagens 2
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

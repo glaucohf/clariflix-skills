@@ -1,0 +1,121 @@
+{
+  "source": "maquina-de-receita/squads-gratuitos/incident-response-squad",
+  "files": [
+    {
+      "path": "agents/log-analyzer.md",
+      "bytes": 4269,
+      "sha256": "5fcc6819d2a2f313510bf6869827e17e9689cd949dd4c2f3358d2abc8d393a1d"
+    },
+    {
+      "path": "agents/postmortem-writer.md",
+      "bytes": 5649,
+      "sha256": "baddcda472cadd766b6f3e839a168243e00b09f0a9af2082ad2fbbf1f3e020d5"
+    },
+    {
+      "path": "agents/root-cause-correlator.md",
+      "bytes": 4985,
+      "sha256": "051fc931bca55e009ddfa0bc31ecc51e874ac0dd68b1a77f742864adf4a4c878"
+    },
+    {
+      "path": "agents/runbook-executor.md",
+      "bytes": 4948,
+      "sha256": "8bade0617b796ecd8fb131980755e2ba1ab74d91202a90287c02c8f71cc1bcfc"
+    },
+    {
+      "path": "agents/status-page-updater.md",
+      "bytes": 5266,
+      "sha256": "fc5c32001dc250d63f94e7822d2f8e4b65284b3e8d8dc12c3adca70d41ae89b4"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "bytes": 1955,
+      "sha256": "29536a6789db894c62f50e8b2f1a24f943e4364eda074a285eb8d0c431cc3b5c"
+    },
+    {
+      "path": "config/source-tree.md",
+      "bytes": 1999,
+      "sha256": "4eb565fe2fce687d527b4c8707d80d0c72af0b3262f86616b773244dcf8f5fd1"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "bytes": 2402,
+      "sha256": "9e1c92a9867deef1809c4b1f3049f61b21f3ef992e21b82075b414968c947125"
+    },
+    {
+      "path": "README.ar.md",
+      "bytes": 4123,
+      "sha256": "b574796ead788a1df8d8cd600e31c8cc251306015689e0ab0a1571f275d55b4a"
+    },
+    {
+      "path": "README.en.md",
+      "bytes": 3058,
+      "sha256": "63ccf9a270830a1518d5972339df1280e0b1b7c6240846f2b5e20b732f63dd5b"
+    },
+    {
+      "path": "README.es.md",
+      "bytes": 3304,
+      "sha256": "94a4654453a47a2a35561ae4684d3060123f506c0da7ee47053b8a10e5db65d0"
+    },
+    {
+      "path": "README.hi.md",
+      "bytes": 5455,
+      "sha256": "a87ce147ec9e25d91d907e4da5ab00e50718d5cbc490383ac66a41d2c116cf53"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3247,
+      "sha256": "396cf7a5b21f4cc163504495cbd1f028a9b0c1c79679db801b2cfedd67d4ed3d"
+    },
+    {
+      "path": "README.zh.md",
+      "bytes": 2824,
+      "sha256": "bca6cf3130fae850bb84a557f651933f961e19f387057a90fcfa7f73a590a5fe"
+    },
+    {
+      "path": "squad.yaml",
+      "bytes": 13726,
+      "sha256": "db1dec6e0a257e7d653a25b132ab8df5df21eac2942c3316297659c84abb3603"
+    },
+    {
+      "path": "tasks/analyze-incident-logs.md",
+      "bytes": 2700,
+      "sha256": "89241b7410d683c184e9aa605fe4f6f1bdd56ab884ff44defc71432efc97b716"
+    },
+    {
+      "path": "tasks/correlate-root-cause.md",
+      "bytes": 3228,
+      "sha256": "28e3e65d93dc9b2faeb892187d2fb93010ce287f5c30d4ad43a06f3449a4fc26"
+    },
+    {
+      "path": "tasks/execute-runbook.md",
+      "bytes": 3212,
+      "sha256": "20097572bcc691c0959faae68e1e73bed5db4c2b3cf7a1786a104c38ab93b527"
+    },
+    {
+      "path": "tasks/full-incident-response.md",
+      "bytes": 4395,
+      "sha256": "9fd8c87c48f92f6eb89d97763fb9c4819395cf220700908e9d299272dfdbda49"
+    },
+    {
+      "path": "tasks/update-status-page.md",
+      "bytes": 2916,
+      "sha256": "7a9004fb3416333b8713ea49217238d03cb81a361a9376ea9de3b37f49e63a3a"
+    },
+    {
+      "path": "tasks/write-postmortem.md",
+      "bytes": 3646,
+      "sha256": "2df88928c00fb36353f8bffbc716c1df668cf4396a3347f63856e3c84bbb6626"
+    },
+    {
+      "path": "workflows/full-incident-response-workflow.yaml",
+      "bytes": 3168,
+      "sha256": "b4271b292e1fd5994c123518692b03077df18ee0e9b1b5c2a532f114f09c74ca"
+    },
+    {
+      "path": "workflows/rapid-triage-workflow.yaml",
+      "bytes": 2002,
+      "sha256": "73ab74ef52cb98fd68e16ffcc99bb0cd1dbdd4bfabe45ecea147ce7186c0dd6f"
+    }
+  ],
+  "provenance_readme_sha256": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83"
+}

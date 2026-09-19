@@ -1,0 +1,47 @@
+name: vendas-recuperacao-oportunidades-estagnadas
+version: 0.1.0
+description: "Nenhum deal morre de inercial — reativamos receita parada antes que o concorrente a pegue."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: rdo
+components:
+  agents:
+    - orquestrador-de-recuperacao.md
+    - worker-de-deteccao-e-triagem.md
+    - escavador.md
+    - arquiteto.md
+    - critic-e-verifier-de-mensagens.md
+    - worker-de-outreach-multicanal.md
+    - monge.md
+    - forense.md
+    - critic-e-verifier-de-mensagens-2.md
+  tasks:
+    - detectar-sinais-de-estagnacao.md
+    - enriquecer-contexto-lead.md
+    - personalizar-sequencia-mensagens.md
+    - verificar-mensagens.md
+    - enviar-mensagens-multicanal.md
+    - nutrir-leads-longo-prazo.md
+    - analisar-abandono-em-etapas.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-recuperacao-oportunidades-estagnadas-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - nurture-follow-up-reativacao
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V4 · TopSquad de Nurture, Follow-up & Reativação"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

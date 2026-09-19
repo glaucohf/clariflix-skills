@@ -1,0 +1,29 @@
+row: gestao
+title: Board & Investor Relations
+title_netflix: BOARD & INVESTOR RELATIONS
+subtitle: Preparar materiais de conselho, atualizações a investidores e acompanhamento de decisões e compromissos
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-board-investor-relations para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Cassidy
+  - Rex
+  - Marlowe
+  - Vera
+  - Sage
+  - Quincy
+  - Cipher
+  - Gate
+  - Axiom
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

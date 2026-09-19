@@ -1,0 +1,47 @@
+name: ops-cs-back-office-financeiro-reconciliacao
+version: 0.1.0
+description: "Planilha de reconciliacao e auditoria de confiabilidade zero: o squad faz o matching de transacoes, classifica exceptions e prepara os lancamentos — o humano so aprova o que o agente nao consegue resolver sozinho."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: bof
+components:
+  agents:
+    - maestro-caixa.md
+    - fluxo.md
+    - nexus.md
+    - iris.md
+    - solano.md
+    - ledger.md
+    - aurum.md
+    - dunna.md
+    - aurum-2.md
+  tasks:
+    - extrair-e-normalizar-transacoes.md
+    - cruzar-transacoes.md
+    - classificar-exceptions.md
+    - investigar-exceptions-automaticamente.md
+    - preparar-closing-package.md
+    - verificar-qualidade-financeira.md
+    - gerar-aging-analysis-automatica.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-back-office-financeiro-reconciliacao-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - back-office-financeiro-cobranca
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O4 · TopSquad de Back-Office Financeiro & Cobrança"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

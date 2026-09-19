@@ -1,0 +1,156 @@
+workflow_name: marketing_funnel_analytics_attribution_pipeline
+description: "Pare de adivinhar o que gera receita: atribuição cross-channel precisa, anomalias detectadas em minutos, forecast de pipeline com intervalo de confiança real."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-funnel-analytics-attribution
+area: "Marketing"
+topsquad: "M2 · Performance: Paid Media, CRO & Attribution"
+agent_sequence:
+  - atlas
+  - nexus
+  - hermes
+  - argus
+  - cassandra
+  - lumen
+  - oracle
+  - skeptic
+key_commands:
+  - "*coletar-etl-dados"
+  - "*calcular-atribuicao-multi-modelo"
+  - "*detectar-anomalias-kpis"
+  - "*gerar-forecast-pipeline"
+  - "*auditar-qualidade-de-tracking"
+  - "*gerar-relatorios-executivos"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: atlas
+success_indicators:
+  - "Attribution Coverage Score: % do pipeline com pelo menos 1 touchpoint rastreável — meta >95% (baseline típico: 60-75%)"
+  - "Tempo médio de detecção de anomalia P1: da ocorrência ao alerta — meta <2h (baseline indústria: 48-72h)"
+  - "Acurácia do forecast de pipeline: Mean Absolute Percentage Error (MAPE) — meta <12% no horizonte de 30 dias"
+  - "% de campanhas lançadas sem UTM inválido: meta 100% (zero campanhas sem UTM correto após 30 dias de operação)"
+  - "Tempo de resposta a alerta P1 (HITL acknowledgment): meta <30 min em horário comercial"
+  - "Redução de CAC por canal pos-otimização: meta de redução de 15-25% nos primeiros 90 dias por realocação baseada em atribuição"
+  - "Task success rate no Langfuse: dev >70%, staging >85%, prod >95% por workflow do squad"
+  - "Frequência de relatório executivo entregue no prazo: meta 100% dos relatórios semanais entregues antes de segunda-feira 8h"
+deliverable:
+  description: "Attribution Intelligence Report — relatório semanal multi-formato (Executive Brief 2p + Marketing Ops Report detalhado + Finance Report) gerado automaticamente todo domingo às 20h, contendo: (1) Attribution Scorecard com crédito por canal em 4 modelos, (2) Anomaly Log do período com status de resolução, (3) Pipeline Forecast para as próximas 4 semanas com confidence interval, (4) UTM Health Score com lista de itens de ação, (5) Top-3 recomendações priorizadas por impacto estimado em R$. Artefato registrado no ClickUp como task fechada (prova de trabalho verificável) e entregue via Notion/Google Docs + Slack summary."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: atlas
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Coletar ETL Dados"
+    agent: nexus
+    task: coletar-etl-dados.md
+    trigger: "Schedule horário automático para dados de ads e conversões; schedule diário para sync completo de CRM (oportunidades, fechamentos, valores); webhook imediato quando GA4/Segment emite evento de conversão de alto valor (>R$X configurável); a…"
+    checkpoint:
+      criteria: "Tabela normalizada de touchpoints (JSON/Parquet) no formato canônico com schema versionado, log de qualidade de ingestão (% de registros com UTM completo, fontes ativas/inativas, volume por fonte vs baseline) e alertas de desvio de volume…"
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Calcular Atribuição Multi-Modelo"
+    agent: hermes
+    task: calcular-atribuicao-multi-modelo.md
+    trigger: "Após cada ingestão diária completa do Nexus; quando Atlas recebe pergunta de negócio sobre performance de canal; quando Coverage Score cai abaixo de 85% (alerta de degradação de tracking); início de novo mês para relatório mensal comparati…"
+    checkpoint:
+      criteria: "Relatório de atribuição multi-model (JSON + CSV): crédito por canal/campanha em cada modelo, CAC por canal/modelo, Attribution Coverage Score, top-3 discrepâncias entre modelos com explicação textual, e recomendação de modelo primário para…"
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Detectar Anomalias KPIs"
+    agent: argus
+    task: detectar-anomalias-kpis.md
+    trigger: "Schedule a cada 30min para métricas P1 (CVR, CPC, volume de leads); schedule horário para métricas P2 (CTR, bounce rate, tempo de qualificação); trigger imediato quando Nexus reporta queda de volume >30% em qualquer fonte; início de campan…"
+    checkpoint:
+      criteria: "Alertas de anomalia estruturados (severidade, metrica afetada, canal/campanha, magnitude do desvio, timestamp de inicio, impacto estimado em R$ de pipeline, hipoteses provavies de causa, acoes recomendadas imediatas). Canal de notificacao:…"
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Gerar Forecast Pipeline"
+    agent: cassandra
+    task: gerar-forecast-pipeline.md
+    trigger: "Todo domingo as 18h (forecast semanal automático); primeiro dia útil do mês (forecast mensal); quando Atlas recebe pergunta de forecast ou what-if; quando Argus detecta anomalia P1 (refaz forecast com cenário pessimista)."
+    checkpoint:
+      criteria: "Relatório de forecast semanal: pipeline esperado (P50), range de confiança (P20-P80), gap vs meta com semáforo (verde/amarelo/vermelho), top-3 riscos ao forecast com probabilidade, cenários what-if solicitados pelo usuário e recomendações…"
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Auditar Qualidade De Tracking"
+    agent: lumen
+    task: auditar-qualidade-de-tracking.md
+    trigger: "Pré-lançamento de qualquer campanha (gate obrigatório antes de ir ao ar); schedule diário as 7h para auditoria de campanhas ativas; quando Coverage Score do Hermes cai abaixo de 85%; quando Nexus detecta spike de tráfego 'direct' inexplicá…"
+    checkpoint:
+      criteria: "Relatório diário de UTM Health Score (0-100) com lista de URLs sem UTM ou com UTM malformado, match rate entre conversões GA4 e CRM (%), alertas de campanha bloqueada (requer aprovação L3) com causa específica, sugestões de UTM correto par…"
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Gerar Relatórios Executivos"
+    agent: oracle
+    task: gerar-relatorios-executivos.md
+    trigger: "Todo domingo as 20h (relatório semanal, após forecast da Cassandra); primeiro dia útil do mês (relatório mensal); quando Atlas recebe pedido explícito de relatório; quando anomalia P1 é resolvida (relatório de incidente automático); on-dem…"
+    checkpoint:
+      criteria: "Relatórios executivos em 3 formatos: (1) Executive Brief PDF/Notion — 2 páginas com highlights, status do pipeline vs meta, top anomalias resolvidas/abertas, forecast e top-3 recomendações; (2) Marketing Ops Report — detalhamento por canal…"
+      veto_condition: "Saída sem veredito do critic Skeptic; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: skeptic
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: atlas
+    checkpoint:
+      criteria: "Entregável consolidado: Attribution Intelligence Report — relatório semanal multi-formato (Executive Brief 2p + Marketing Ops Report detalhado + Finance Report) gerado automaticamente todo domingo às 20h, contendo: (1) Attr…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Aprovação de bloqueio de campanha pelo Lumen: quando Lumen bloqueia lançamento por UTM inválido, um humano (marketing ops ou gerente de campanha) deve aprovar ou corrigir antes do go-live. SLA: 30min para resposta, após isso o sistema notifica o gestor direto."
+  - level: L3
+    condition: "Recomendacao de realocacao de budget >R$10k: quando Hermes ou Cassandra recomendam mover budget significativo entre canais, requer aprovacao do CMO ou gestor de media antes de execucao. O squad gera o racional completo, humano aprova ou rejeita com comentario."
+  - level: L3
+    condition: "Alerta de anomalia P1 com impacto >R$50k de pipeline: quando Argus detecta anomalia P1 de alta severidade, notifica imediatamente o CMO via Slack com briefing de 5 linhas e aguarda confirmação de que foi visto (acknowledgment) antes de escalar para investigação automática mais profunda."
+  - level: L2
+    condition: "Calibração de thresholds de anomalia: mensalmente, um humano (analista de dados ou marketing ops) revisa os thresholds de detecção do Argus e aprova ou ajusta. Previne drift de sensibilidade ao longo do tempo."
+  - level: L2
+    condition: "Seleção de modelo de atribuição primário: o Hermes recomenda, mas a decisão final de qual modelo usar como 'source of truth' para budget decisions é do CMO/VP de Marketing. Revisão trimestral."
+  - level: L1
+    condition: "Revisão de relatório executivo antes de envio ao board: Oracle gera, Skeptic valida, mas um humano (CMO ou analista sênior) faz leitura final antes de envio ao CEO/board. Opcional para relatórios internos de time."
+transitions:
+  - from: atlas
+    to: nexus
+    condition: "Schedule horário automático para dados de ads e conversões; schedule diário para sync completo de CRM (oportunidades, fechamentos, valores); webhook imediato quando GA4/Segment emite evento de conver…"
+  - from: nexus
+    to: hermes
+    condition: "Após cada ingestão diária completa do Nexus; quando Atlas recebe pergunta de negócio sobre performance de canal; quando Coverage Score cai abaixo de 85% (alerta de degradação de tracking); início de…"
+  - from: hermes
+    to: argus
+    condition: "Schedule a cada 30min para métricas P1 (CVR, CPC, volume de leads); schedule horário para métricas P2 (CTR, bounce rate, tempo de qualificação); trigger imediato quando Nexus reporta queda de volume…"
+  - from: argus
+    to: cassandra
+    condition: "Todo domingo as 18h (forecast semanal automático); primeiro dia útil do mês (forecast mensal); quando Atlas recebe pergunta de forecast ou what-if; quando Argus detecta anomalia P1 (refaz forecast co…"
+  - from: cassandra
+    to: lumen
+    condition: "Pré-lançamento de qualquer campanha (gate obrigatório antes de ir ao ar); schedule diário as 7h para auditoria de campanhas ativas; quando Coverage Score do Hermes cai abaixo de 85%; quando Nexus det…"
+  - from: lumen
+    to: oracle
+    condition: "Todo domingo as 20h (relatório semanal, após forecast da Cassandra); primeiro dia útil do mês (relatório mensal); quando Atlas recebe pedido explícito de relatório; quando anomalia P1 é resolvida (re…"
+  - from: oracle
+    to: skeptic
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: skeptic
+    to: atlas
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

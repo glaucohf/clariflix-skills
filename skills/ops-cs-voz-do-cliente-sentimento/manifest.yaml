@@ -1,0 +1,28 @@
+row: operacoes
+title: Voz do Cliente
+title_netflix: VOZ DO CLIENTE
+subtitle: Consolidar feedback de clientes, analisar temas e sentimento e priorizar insights para produto e operações
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-voz-do-cliente-sentimento para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orion
+  - Haruki
+  - Yara
+  - Orion 2
+  - Lyra
+  - Rapid
+  - Atlas
+  - Cassandra
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

@@ -1,0 +1,29 @@
+row: gestao
+title: Knowledge Base Institucional do Founder
+title_netflix: KNOWLEDGE BASE INSTITUCIONAL DO FOUNDER
+subtitle: Estruturar conhecimento institucional, registrar decisões e organizar fontes para consulta e atualização pelo founder
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-knowledge-base-institucional para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - ORION
+  - SCRIBE
+  - CARTOGRAPHER
+  - PERSONA FORGE
+  - SCRIVENER
+  - RADAR
+  - CHIEF OF STAFF
+  - WARGAME
+  - AUDITOR
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

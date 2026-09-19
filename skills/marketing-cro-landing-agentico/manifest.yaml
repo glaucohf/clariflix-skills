@@ -1,0 +1,29 @@
+row: marketing
+title: CRO & Landing Page Agêntico
+title_netflix: CRO & LANDING PAGE AGÊNTICO
+subtitle: Diagnosticar páginas de conversão e preparar hipóteses, textos e planos de experimentos para landing pages
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use marketing-cro-landing-agentico para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Maestro CRO
+  - Hera
+  - Sage
+  - Muse
+  - Pixel
+  - Darwin
+  - Rex
+  - Atlas
+  - Rex 2
+  generos:
+  - Marketing
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

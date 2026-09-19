@@ -1,0 +1,29 @@
+row: vendas
+title: Roteamento Inteligente de Leads
+title_netflix: ROTEAMENTO INTELIGENTE DE LEADS
+subtitle: Definir regras de distribuição de leads, avaliar responsáveis e preparar roteamento comercial com justificativa
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-roteamento-inteligente-leads para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orquestrador Comercial
+  - Worker de Enriquecimento
+  - Worker de Lead Scoring
+  - Atlas
+  - Worker de Notificação e Aceite
+  - Worker de Higiene de CRM
+  - Veredito
+  - Farol
+  - Veredito 2
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

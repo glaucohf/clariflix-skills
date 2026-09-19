@@ -1,0 +1,116 @@
+{
+  "source": "maquina-de-receita/squads-gratuitos/linkedin",
+  "files": [
+    {
+      "path": "agents/carousel-designer.md",
+      "bytes": 3704,
+      "sha256": "2340079eb71b81605d701f18dcace19a95b1d498c347dbd2dbd6395c86ba88e5"
+    },
+    {
+      "path": "agents/ghostwriter.md",
+      "bytes": 3215,
+      "sha256": "2f4da34e24791b4e188606bce394744ea1c5c5fde08a1636056aca6d015e72f7"
+    },
+    {
+      "path": "agents/linkedin-chief.md",
+      "bytes": 2305,
+      "sha256": "38ac5ce9e65e2516aaf0c299a188b27cb34995fb0b02cb958426e7d31071d0f0"
+    },
+    {
+      "path": "agents/profile-analyst.md",
+      "bytes": 3240,
+      "sha256": "58d1e8d5f445f9fbeb33a449a1af3b12fd81cd3004b9848b830f3991a86aecee"
+    },
+    {
+      "path": "agents/scriptwriter.md",
+      "bytes": 5914,
+      "sha256": "c840512c30e6aedbb77b4e6840d38e5dda376e30d3043352081c38f4a11eb888"
+    },
+    {
+      "path": "agents/trend-scout.md",
+      "bytes": 3124,
+      "sha256": "7781cbf34210ab6416aca5bc2e989171e1358f908ea93b4b20f5c54fc4d14212"
+    },
+    {
+      "path": "data/writing-style.md",
+      "bytes": 2275,
+      "sha256": "c6cf671cba95b5b623bcc863c34d3dcb3c55136702ad0a7853d7c6a5c3b32357"
+    },
+    {
+      "path": "outputs/post-imersao-aiox-bastidores.md",
+      "bytes": 3267,
+      "sha256": "ba6eb974e5d10da1712bd52832721a559dd5ffabb8342ee5a38e642d13ca34cc"
+    },
+    {
+      "path": "outputs/post-imersao-aiox-resultado.md",
+      "bytes": 3190,
+      "sha256": "689ac724c7a97d2d7c2150adb0262fc6255eb50bf5d3b8c54d4b22f82083e6c3"
+    },
+    {
+      "path": "outputs/roteiro-desafio-aiox-v1.md",
+      "bytes": 20608,
+      "sha256": "69a156e9e21beafbd8bb107805e725b72c2a5f6e51b7f50d78024d41e58727e3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3202,
+      "sha256": "d859ced4d48f06ea05eb98558323d9d01c832f5bfcdb075be9908bf278d03ef8"
+    },
+    {
+      "path": "squad.yaml",
+      "bytes": 3282,
+      "sha256": "d08929f0fda71a270ecfafa500d2a88fa2deaf16aa10fcd4623e7fbdf3cca5da"
+    },
+    {
+      "path": "tasks/analyze-profile.md",
+      "bytes": 3677,
+      "sha256": "512c884c615d5b68af7796a3300676fe6e4536292337fb44f00023acf1376bea"
+    },
+    {
+      "path": "tasks/analyze-trending.md",
+      "bytes": 3665,
+      "sha256": "085437ccfb276f46198df67421763551f3295b7d21e4ec7fe7d2aa2a109b9ae2"
+    },
+    {
+      "path": "tasks/generate-carousel.md",
+      "bytes": 3980,
+      "sha256": "0ad1cc3840458433426227fb3a87d3afaecfd0010a72622bb2c59a6e211e9694"
+    },
+    {
+      "path": "tasks/generate-post.md",
+      "bytes": 4207,
+      "sha256": "0ced272720dfef0b847f8e8ee7aa740aa5c3e5411935ac7f495dd0e9ca7fd57f"
+    },
+    {
+      "path": "tasks/generate-script.md",
+      "bytes": 3695,
+      "sha256": "95cf73f197d9c8794b7b3dc14692da1ff67fedb2ff92e2cf431f0e88c852486d"
+    },
+    {
+      "path": "tasks/suggest-topics.md",
+      "bytes": 3379,
+      "sha256": "a822a977f5d4ae5dd3062eec903f59957dfee3de7db62a5cf3aae13bc6a38026"
+    },
+    {
+      "path": "tasks/weekly-content-plan.md",
+      "bytes": 3984,
+      "sha256": "d97091da4f58bd27624670005c7dd04ab4e4376ecd2ed7433a770d68a2b2c98e"
+    },
+    {
+      "path": "templates/carousel-template.md",
+      "bytes": 3101,
+      "sha256": "1660b5d3f5076316cc3f318e6f16dd6ea95145bba4c9e3d7eeed9095162e2f13"
+    },
+    {
+      "path": "templates/post-template.md",
+      "bytes": 1147,
+      "sha256": "13a41eee9bdd648aa3d58ec7334ede0deb3d68c3ae8f1a9ebb52b572ef9c0031"
+    },
+    {
+      "path": "workflows/weekly-content-cycle.yaml",
+      "bytes": 8485,
+      "sha256": "5e8d85f1cce491e12bbfbf61e1e9089097e1f4a2708f4f12594d37f8e72bf526"
+    }
+  ],
+  "provenance_readme_sha256": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83"
+}

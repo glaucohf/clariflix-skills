@@ -1,0 +1,158 @@
+workflow_name: founder_risk_scenario_sentinel_pipeline
+description: "Enquanto seu concorrente lê o jornal de ontem, o Sentinel já mapeou os três futuros regulatórios que vão remodelar seu mercado amanhã — e o founder recebe o alerta antes do mercado precificar."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-risk-scenario-sentinel
+area: "Founder Office"
+topsquad: "F4 · Foresight, Risco & Research Estratégico"
+agent_sequence:
+  - nexus
+  - lexis
+  - gaia
+  - chronos
+  - vela
+  - oraculo
+  - cipher
+  - argos
+key_commands:
+  - "*monitorar-risco-regulatorio"
+  - "*estimar-impacto-financeiro"
+  - "*analisar-riscos-estrategicos"
+  - "*monitorar-indicadores-tripwire"
+  - "*interpretar-riscos-estrategicos"
+  - "*redigir-risk-briefs-executivos"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: nexus
+success_indicators:
+  - "Tempo médio de antecipação de evento de risco material — dias entre o alerta do Sentinel e a materialização pública do risco (target >= 30 dias de antecipação, baseline 0 — descoberta reativa)"
+  - "Número de alertas acionáveis emitidos por trimestre (alertas que geraram decisão ou ação do founder, não apenas leitura — target >= 6 alertas materiais/trimestre)"
+  - "Taxa de verificação de claims (% de claims materiais no Risk Brief com fonte primária verificada por Argos — target >= 85% para qualquer Brief entregue ao founder)"
+  - "False positive rate de alertas (% de alertas classificados como Crítico que não se materializaram em evento de risco real — target < 20%; acima disso indica necessidade de calibração de thresholds)"
+  - "% de decisões estratégicas do founder > R$50k com Risk Brief anterior à alocação de capital (target: 100%, baseline < 10%)"
+  - "Cobertura do Risk Register — número de riscos ativos monitorados com tripwire configurado (target: 100% dos riscos identificados em ciclos anteriores têm tripwire ativo)"
+  - "Tempo de ciclo de Risk & Scenario Brief completo — do intake à entrega ao founder (target < 3 horas para ciclo padrão, < 30 minutos para Emergency Brief)"
+  - "Acurácia de cenários: % de cenários materializados dentro do range de probabilidade e horizonte previstos após 6 meses (target >= 65% para cenário-base — proxy de calibração do Chronos)"
+  - "NPS do founder com o Risk & Scenario Brief (pesquisa pós-entrega — target >= 9/10; mede se o Brief é acionável e não apenas informativo)"
+  - "Custo por ciclo completo em tokens (target < R$600 por Risk Brief padrão, < R$1.200 por Emergency Deep Dive — monitorado via Langfuse)"
+deliverable:
+  description: "Risk & Scenario Brief — documento de inteligência estratégica entregue em Notion e Slack contendo: (1) Risk Register Snapshot — status atualizado de todos os riscos ativos com classificação de materialidade e urgência, sinalizando mudanças desde o último ciclo; (2) New Risk Alerts — novos riscos identificados no ciclo com fonte primária verificada por Argos, impacto estimado no modelo de negócio do cliente e janela de resposta disponível; (3) Scenario Matrix de Risco — 3 cenários estruturados (Adaptativo/Disruptivo/Bloqueio Total) com probabilidades bayesianas atualizadas, horizonte de materialização e ações de resposta por cenário; (4) Expert Lens — interpretação do mapa de riscos no raciocínio e frameworks do founder (quando corpus configurado — via Oráculo); (5) Action Recommendations — 3-5 ações concretas priorizadas por urgência com owner sugerido e prazo; (6) Watchlist Update — novos sinais adicionados ao monitoramento de Vela com thresholds configurados; (7) Verification Trail completo via Argos (% de claims verificados, fontes primárias, flags de claims não verificados). Entregue em três formatos: Founder Brief 1-página no Slack (leitura em 5 minutos), Risk Intelligence Report completo no Notion (detalhe técnico para consulta), e Board Risk Update trimestral formatado (L3 aprovação obrigatória). Frequência padrão: semanal para digest de monitoramento, imediato para alertas Críticos de Vela, trimestral para Board Risk Update."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: nexus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar Risco Regulatório"
+    agent: lexis
+    task: monitorar-risco-regulatorio.md
+    trigger: "Cron semanal automático para SCAN do pipeline regulatório setorial. Ativado por Nexus no Deep Dive quando founder submete input com tema regulatório. Ativado diretamente pelo founder via '/risk-reg [norma ou pergunta]' para investigação po…"
+    checkpoint:
+      criteria: "Regulatory Risk Report estruturado: { risk_id, source_type (ConsultaPublica/ProjetodeLei/Resolucao/Jurisprudencia/Autorregulacao), source_url, publication_date, title, summary_plain_language (150 palavras em português claro, sem juridiquês…"
+      veto_condition: "Saída sem veredito do critic Argos; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Estimar Impacto Financeiro"
+    agent: gaia
+    task: estimar-impacto-financeiro.md
+    trigger: "Cron quinzenal para varredura de sinais macro e geopolíticos. Cron semanal para monitoramento de indicadores de alta frequência (câmbio, Selic, spreads de crédito, VIX equivalente BR). Ativado por Nexus no Deep Dive quando founder submete…"
+    checkpoint:
+      criteria: "Macro-Geo Risk Report estruturado: { risk_id, risk_category (Macro_Domestico/Macro_Internacional/Geopolitico_Estrategico), event_description, geographic_scope, probability_30d/90d/180d (%), estimated_financial_impact_BRL_range, business_ar…"
+      veto_condition: "Saída sem veredito do critic Argos; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Analisar Riscos Estratégicos"
+    agent: chronos
+    task: analisar-riscos-estrategicos.md
+    trigger: "Ativado por Nexus após receber outputs de Lexis e Gaia no ciclo semanal/quinzenal. Ativado por Nexus no Pre-Decision Risk Scan quando founder está prestes a tomar decisão estratégica específica. Re-ativado quando Vela (Alert & Tripwire) si…"
+    checkpoint:
+      criteria: "Risk Scenario Matrix estruturada: { scenario_id, scenario_label (Adaptativo/Disruptivo/Bloqueio_Total), trigger_risks (IDs de Lexis e Gaia que geram este cenário), narrative_plain_language (300 palavras em português executivo), probability…"
+      veto_condition: "Saída sem veredito do critic Argos; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Monitorar Indicadores Tripwire"
+    agent: vela
+    task: monitorar-indicadores-tripwire.md
+    trigger: "Configurada automaticamente por Nexus ao final de cada Risk & Scenario Brief aceito pelo founder. Crons escalonados por frequência de indicador: diário (câmbio, Selic, Google Alerts), semanal (pipeline regulatório, movimentos políticos), q…"
+    checkpoint:
+      criteria: "Alert Feed estruturado: { alert_id, risk_id, risk_name, indicator_name, current_value, threshold_value, gap_percentage, alert_level (Informativo/Atencao/Critico), evidence_url, summary_plain_language (100 palavras), recommended_immediate_a…"
+      veto_condition: "Saída sem veredito do critic Argos; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Interpretar Riscos Estratégicos"
+    agent: oraculo
+    task: interpretar-riscos-estrategicos.md
+    trigger: "Ativado por Nexus automaticamente após síntese do Risk & Scenario Brief quando corpus do founder está configurado e ativo. Ativado diretamente pelo founder via '/oracle [cenário ou pergunta]' para perspectiva ad hoc. Requer HITL L1 — outpu…"
+    checkpoint:
+      criteria: "Expert Lens Report: { situation_framing (como o founder enquadraria este momento de risco dentro da narrativa estratégica maior), priority_risks_from_expert_perspective (quais 1-3 riscos o founder priorizaria dado seu modelo mental), strat…"
+      veto_condition: "Saída sem veredito do critic Argos; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Redigir Risk Briefs Executivos"
+    agent: cipher
+    task: redigir-risk-briefs-executivos.md
+    trigger: "Ativado por Nexus após Risk & Scenario Brief validado por Argos no ciclo regular. Ativado em modo emergencial por Nexus quando Vela dispara alerta Crítico (Cipher produz Emergency Brief em 30 minutos). Ativado diretamente pelo founder via…"
+    checkpoint:
+      criteria: "Executive Risk Communication: { document_type (Founder_Brief/Board_Update/Team_Alert), target_audience, risk_summary_headline (1 frase), top_3_risks_ranked (com materialidade, urgência e janela de resposta), scenario_outlook (Adaptativo/Di…"
+      veto_condition: "Saída sem veredito do critic Argos; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: argos
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: nexus
+    checkpoint:
+      criteria: "Entregável consolidado: Risk & Scenario Brief — documento de inteligência estratégica entregue em Notion e Slack contendo: (1) Risk Register Snapshot — status atualizado de todos os riscos ativos com classificação de materi…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "INTAKE GATE — RISCO CRÍTICO (L3): Antes de disparar workers para investigação profunda, Nexus apresenta o Mapa de Exposição inicial ao founder quando o risco é classificado como Crítico (impacto estimado > R$200k ou impacto em licença/operação). O founder valida o escopo da investigação, confirma as agências e mercados a investigar, e aprova o nível de profundidade (scan rápido vs. deep dive). Para riscos Médios e Baixos, Nexus opera de forma autônoma sem gate obrigatório."
+  - level: HITL
+    condition: "RISCO EM MATERIALIZAÇÃO ATIVA — ALERTA CRÍTICO (L3): Quando Vela classifica um alerta como Crítico (risco está se materializando dentro da janela de resposta), o squad pausa toda recomendação de ação com impacto financeiro ou operacional e escalona para o founder com urgência máxima. O founder recebe: (a) o Evidence Report do Argos com fontes primárias que confirmam a materialização, (b) os cenários ativos de Chronos com janelas de resposta restantes, (c) as 3 ações prioritárias de Cipher. O founder deve responder com decisão explícita antes de qualquer ação ser executada."
+  - level: HITL
+    condition: "PREMISSA DE CENÁRIO INVERSAMENTE VALIDADA (L2): Quando Argos identifica que uma premissa central de um cenário ativo no Risk Register foi invalidada por nova evidência (ex: a norma que estava em consulta pública foi arquivada, alterando radicalmente o cenário regulatório), o squad notifica o founder com o impacto na matrix de cenários antes de atualizar o Risk Register. O founder confirma a revisão ou solicita novo ciclo de análise."
+  - level: HITL
+    condition: "BOARD/INVESTOR RISK UPDATE E COMUNICAÇÕES EXTERNAS (L3): Cipher nunca envia qualquer documento para audiência externa (board, conselheiros, investidores, parceiros) sem revisão e aprovação explícita do founder. Todo documento produzido para audiência externa vai primeiro para Notion como draft com notificação Slack ao founder. Apenas após founder aprovar explicitamente (clique no botão 'Aprovar para envio' ou mensagem de aprovação no Slack) o envio é autorizado. Este gate é inviolável."
+  - level: HITL
+    condition: "CONFIGURAÇÃO DO ORÁCULO E CORPUS DO FOUNDER (L2): A configuração inicial do corpus do Oráculo (quais documentos, transcrições e decisões do founder são ingeridas) requer aprovação explícita item a item pelo founder. O founder define o que entra no corpus (controle de privacidade sobre decisões sensíveis) e o que fica fora. Atualizações mensais automáticas do corpus precisam de revisão semestral do founder para remoção de decisões desatualizadas."
+  - level: HITL
+    condition: "AJUSTE DE THRESHOLDS DE ALERTA (L2): Os thresholds de early-warning de Vela (o que configura Informativo vs. Atenção vs. Crítico para cada indicador) são configurados no onboarding e revisados trimestralmente com o founder. O founder pode ajustar thresholds via '/risk-config [indicador] [threshold]' mas qualquer ajuste que reduza a sensibilidade (aumenta threshold) requer justificativa explícita para evitar que o founder 'desligue' alertas por conveniência e depois seja pego de surpresa."
+transitions:
+  - from: nexus
+    to: lexis
+    condition: "Cron semanal automático para SCAN do pipeline regulatório setorial. Ativado por Nexus no Deep Dive quando founder submete input com tema regulatório. Ativado diretamente pelo founder via '/risk-reg […"
+  - from: lexis
+    to: gaia
+    condition: "Cron quinzenal para varredura de sinais macro e geopolíticos. Cron semanal para monitoramento de indicadores de alta frequência (câmbio, Selic, spreads de crédito, VIX equivalente BR). Ativado por Ne…"
+  - from: gaia
+    to: chronos
+    condition: "Ativado por Nexus após receber outputs de Lexis e Gaia no ciclo semanal/quinzenal. Ativado por Nexus no Pre-Decision Risk Scan quando founder está prestes a tomar decisão estratégica específica. Re-a…"
+  - from: chronos
+    to: vela
+    condition: "Configurada automaticamente por Nexus ao final de cada Risk & Scenario Brief aceito pelo founder. Crons escalonados por frequência de indicador: diário (câmbio, Selic, Google Alerts), semanal (pipeli…"
+  - from: vela
+    to: oraculo
+    condition: "Ativado por Nexus automaticamente após síntese do Risk & Scenario Brief quando corpus do founder está configurado e ativo. Ativado diretamente pelo founder via '/oracle [cenário ou pergunta]' para pe…"
+  - from: oraculo
+    to: cipher
+    condition: "Ativado por Nexus após Risk & Scenario Brief validado por Argos no ciclo regular. Ativado em modo emergencial por Nexus quando Vela dispara alerta Crítico (Cipher produz Emergency Brief em 30 minutos…"
+  - from: cipher
+    to: argos
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: argos
+    to: nexus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

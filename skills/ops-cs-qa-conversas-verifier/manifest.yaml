@@ -1,0 +1,28 @@
+row: operacoes
+title: QÁ de Conversas 100%
+title_netflix: QÁ DE CONVERSAS 100%
+subtitle: Auditar conversas de atendimento com critérios de qualidade, evidências por item e recomendações de melhoria
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-qa-conversas-verifier para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - KRONOS
+  - LEXIS
+  - ARIA
+  - VERITAS
+  - NEXUS
+  - HERALD
+  - CALIBRA
+  - VERITAS-SENTINEL
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

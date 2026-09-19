@@ -1,0 +1,55 @@
+pack:
+  name: ops-cs-onboarding-psa-agentica
+  version: 0.1.0
+  short-title: "Onboarding & Implementação"
+  description: "De SOW assinado a cliente com valor entregue em metade do tempo — sem plano de projeto manual, sem marco perdido, sem churn precoce."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🌱"
+  slashPrefix: onboardingImplementacao
+name: ops-cs-onboarding-psa-agentica
+version: 0.1.0
+description: "De SOW assinado a cliente com valor entregue em metade do tempo — sem plano de projeto manual, sem marco perdido, sem churn precoce."
+entry_agent: maestro
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: operacoes-cs
+  topsquad: "O3"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - maestro
+  - atlas
+  - cassandra
+  - hermes
+  - iris
+  - vitor
+  - crono
+  - argus
+tasks:
+  - criar-plano-de-implementacao.md
+  - monitorar-desvios-de-cronograma.md
+  - enviar-mensagens-contextualizadas.md
+  - processar-documentos-sow.md
+  - calcular-health-score-cliente.md
+  - gerar-relatorio-de-delivery.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - ops-cs-onboarding-psa-agentica-pipeline.yaml
+checklists:
+  - critic-argus.md
+integrations:
+  - "ClickUp (MCP nativo) — hub de tasks, marcos, status e prova de trabalho; espelha estrutura AIOX"
+  - "CRM (HubSpot ou Salesforce via MCP) — webhook de deal closed-won para trigger de onboarding; dados de conta e contatos"
+  - "WhatsApp Business API — notificações proativas e follow-ups de pendências do cliente"
+  - "Slack — alertas internos, notificações de risco, aprovações HITL via workflow de aprovação"
+  - "Google Drive / Notion — ingestão de SOW e documentos de kickoff via connector ou URL"
+  - "Calendário (Google Calendar / Outlook via MCP) — leitura de calls agendadas para trigger de relatório pré-reunião"
+  - "Produto SaaS do cliente (API de uso) — dados de engajamento e ativação para health score"
+  - "Supabase / Postgres — estado dos agentes, histórico de onboardings, health scores, risk matrix"
+  - "Langfuse — observabilidade OTEL, tracing de chamadas, quality gates (dev 70% / staging 85% / prod 95%)"
+  - "Email (SMTP/SendGrid) — envio de relatórios de delivery e notificações formais"
+  - "Rocketlane (referência de arquitetura PSA) — benchmark de fluxo de onboarding e estrutura de portal do cliente"

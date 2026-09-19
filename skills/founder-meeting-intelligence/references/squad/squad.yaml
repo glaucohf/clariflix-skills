@@ -1,0 +1,47 @@
+name: founder-meeting-intelligence
+version: 0.1.0
+description: "Toda reunião vira um ativo estratégico: decisões extraídas, ações no ClickUp e a KB institucional alimentada automaticamente — do áudio bruto ao artefato rastreável em menos de 10 minutos."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: mi
+components:
+  agents:
+    - maestro.md
+    - vox.md
+    - pulse.md
+    - quill.md
+    - vector.md
+    - hermes.md
+    - echo.md
+    - argos.md
+    - argos-2.md
+  tasks:
+    - transcrever-video.md
+    - enriquecer-contexto-transcricao.md
+    - extrair-decisoes.md
+    - conectar-outputs-extracao.md
+    - despachar-artefatos-sistemas-cliente.md
+    - monitorar-action-items.md
+    - verificar-completeness.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-meeting-intelligence-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - chief-of-staff-clone-do-founder
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F1 · TopSquad de Chief of Staff & Clone do Founder"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

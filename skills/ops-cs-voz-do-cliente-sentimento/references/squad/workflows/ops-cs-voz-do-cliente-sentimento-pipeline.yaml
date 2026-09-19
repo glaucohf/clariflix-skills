@@ -1,0 +1,162 @@
+workflow_name: ops_cs_voz_do_cliente_sentimento_pipeline
+description: "Transforma o barulho espalhado de tickets, NPS e reviews em insights priorizados que produto e ops podem agir amanhã – não no próximo trimestre."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-voz-do-cliente-sentimento
+area: "Operações & CS"
+topsquad: "O2 · Qualidade, Voz do Cliente & Knowledge Base"
+agent_sequence:
+  - orion
+  - haruki
+  - yara
+  - orion-2
+  - lyra
+  - rapid
+  - atlas
+  - cassandra
+key_commands:
+  - "*coletar-e-normalizar-feedback"
+  - "*classificar-temas-e-sentimento"
+  - "*detectar-tendencias-acionaveis"
+  - "*sintetizar-relatorio-executivo"
+  - "*monitorar-pico-de-volume"
+  - "*criar-tasks-rastreaveis"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Número de Insights Acionáveis por Semana: total de tendências no relatório semanal com score acima do threshold que geraram ao menos uma task de ação aprovada (meta: >= 3 por semana, crescente com o tempo)"
+  - "Lead Time de Detecção de Tendência Emergente: dias entre primeira menção de um tema novo e primeira aparição no relatório semanal como tendência confirmada (meta: <= 7 dias; baseline atual estimado em 30-60 dias com processo manual)"
+  - "Correlação de Insights com Variação de NPS: variação do NPS médio 30 dias após ação tomada sobre tendência identificada vs períodos sem ação baseada em VOC (meta: tendências atacadas correlacionam com +5 pontos de NPS em 60 dias)"
+  - "Taxa de Conversão Insight → Ação → Resultado: % de insights do relatório que viram tasks (meta: >= 60%), % de tasks concluídas em 30 dias (meta: >= 70%), % com resultado reportado no ClickUp (meta: >= 50%)"
+  - "Accuracy de Classificação de Temas: % de registros classificados corretamente pelo Yara validados na amostra mensal pelo Critic Cassandra (meta: >= 85% em produção)"
+  - "Taxa de Falsos Positivos em Alertas: % de alertas do Rapid classificados como 'Falso Positivo' pelo time (meta: <= 20%; thresholds auto-ajustados para convergir para este valor)"
+  - "Redução de Tickets Repetitivos: variação mensal no volume de tickets sobre temas que receberam ação a partir de insight VOC (meta: -35% a -50% em 90 dias pós-ação)"
+  - "Cobertura de Canais Ativos: % de canais de feedback configurados com ingestão bem-sucedida nas últimas 24h (meta: >= 95% de uptime; alerta quando canal fica offline > 4h)"
+  - "Tempo de Revisão Humana por Semana: horas que PM ou Head de CS gastam revisando e aprovando o relatório VOC (meta: <= 30 minutos; indica qualidade do relatório gerado)"
+  - "Relatórios Aprovados Sem Revisão Maior: % de relatórios semanais que passam pelo HITL com aprovação direta sem solicitação de ajuste substancial (meta: >= 75% após primeiro mês de operação)"
+deliverable:
+  description: "CICLO DIÁRIO: (1) Log de ingestão no Supabase por canal — volume de registros, % de qualidade válida, anomalias detectadas — prova de trabalho verificável pelo time de dados; (2) Alertas em tempo real no Slack (#voc-alertas) quando temas cruzam threshold de emergência — com volume concreto, verbatims e sugestão de ação imediata; (3) Dashboard Langfuse atualizado com métricas de pipeline: registros processados, distribuição de sentimento do dia, top-5 temas por volume. CICLO SEMANAL: Relatório de Tendências Priorizadas — o artefato central do squad — entregue toda segunda-feira às 09h com: sumário executivo de 200 palavras, top-5 tendências com score de priorização, volume (menções com número absoluto e % do total), variação vs semana anterior (delta%), sentimento médio, breakdown por segmento de cliente, 3-5 verbatims representativos com canal e data citados (rastreabilidade completa), correlação com evento de produto se existir, e sugestão de ação específica por tendência. Versão completa no Notion, versão resumida no Slack. Tasks de ação aprovadas criadas no ClickUp com prova de trabalho rastreável (tag VOC). CICLO MENSAL: Relatório de impacto — insights gerados vs ações tomadas vs variação de NPS e volume de tickets nos temas atacados — ROI mensurável do squad."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Coletar E Normalizar Feedback"
+    agent: haruki
+    task: coletar-e-normalizar-feedback.md
+    trigger: "Cron job diário 07h00 pelo Orchestrator Orion para batch completo; webhook de integração quando canal envia evento em tempo real (NPS response crítico, ticket com keyword configurada); acionado manualmente para re-ingestão de período espec…"
+    checkpoint:
+      criteria: "Registros normalizados persistidos no Supabase (tabela: voc_raw_feedback) com campos: id, canal, data_criação, data_ingestão, account_id, segmento, texto_normalizado, score_numérico, idioma_detectado, qualidade_flag (OK / TEXTO_VAZIO / IDI…"
+      veto_condition: "Saída sem veredito do critic Cassandra; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Classificar Temas E Sentimento"
+    agent: yara
+    task: classificar-temas-e-sentimento.md
+    trigger: "Acionado pelo Orchestrator Orion após Haruki confirmar conclusão da ingestão diária (evento no Supabase: vóc_ingestion_completed); acionado para re-processamento quando PM ou Head de CS atualiza a taxonomia via painel de configuração; acio…"
+    checkpoint:
+      criteria: "Registros enriquecidos persistidos no Supabase (tabela: voc_analyzed_feedback) com campos adicionais: sentimento_score (float), sentimento_categoria (POSITIVO/NEUTRO/NEGATIVO), sentimento_intensidade (string), temas_primarios (array de 1-3…"
+      veto_condition: "Saída sem veredito do critic Cassandra; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Detectar Tendências Acionáveis"
+    agent: orion-2
+    task: detectar-tendencias-acionaveis.md
+    trigger: "Cron diário 08h30 após Yara confirmar processamento; cron a cada 4h para detecção de emergência (verifica apenas os últimos registros vs threshold); webhook do produto quando evento crítico e registrado (incidente, hotfix, release major) p…"
+    checkpoint:
+      criteria: "Tabela de tendências priorizadas persistida no Supabase (tabela: voc_trends_daily): {tema_id, tema_nome, volume_7d, volume_14d, volume_30d, delta_7d_pct, delta_14d_pct, velocidade_24h, score_priorização, status_tendência (EMERGINDO/CRESCEN…"
+      veto_condition: "Saída sem veredito do critic Cassandra; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Sintetizar Relatório Executivo"
+    agent: lyra
+    task: sintetizar-relatorio-executivo.md
+    trigger: "Cron semanal segunda-feira 09h00 após Orion confirmar ranking semanal disponível; acionado sob demanda pelo PM ou Head de CS via comando no ClickUp ('*gerar-relatório-voc agora'); acionado automaticamente quando Rapid confirma alerta de em…"
+    checkpoint:
+      criteria: "Relatorio semanal completo em markdown persistido no Supabase e postado no Notion (tabela: voc_weekly_reports): titulo com data, sumario executivo, top-5 tendencias com evidencias citadas, alertas, declinos, sugestoes de acao e metricas. V…"
+      veto_condition: "Saída sem veredito do critic Cassandra; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Monitorar Pico De Volume"
+    agent: rapid
+    task: monitorar-pico-de-volume.md
+    trigger: "Cron a cada 4 horas (00h, 04h, 08h, 12h, 16h, 20h); webhook imediato quando Haruki detecta pico anômalo de volume em ingestão; suprimido para o mesmo tema por 12h após alerta recente para evitar spam (cooldown configurável por tema)"
+    checkpoint:
+      criteria: "Mensagem formatada de alerta em Slack para o canal #voc-alertas com: tipo de alerta, tema afetado, números concretos (X menções em Y horas, crescimento de Z%), 2-3 verbatims representativos, segmentos afetados e sugestão de ação imediata.…"
+      veto_condition: "Saída sem veredito do critic Cassandra; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Criar Tasks Rastreáveis"
+    agent: atlas
+    task: criar-tasks-rastreaveis.md
+    trigger: "Acionado pelo Orchestrator Orion após Lyra confirmar relatório semanal e HITL aprovar lista de ações; acionado para alerta de emergência classificado como CRÍTICO após notificação HITL e confirmação de ação; acionado manualmente pelo PM vi…"
+    checkpoint:
+      criteria: "Tasks criadas no ClickUp com todos os campos preenchidos, retornando lista de task URLs e IDs para o Orchestrator. Notificação Slack para o responsável de cada task com contexto resumido em 2 linhas. Log de ativação no Supabase (tabela: vo…"
+      veto_condition: "Saída sem veredito do critic Cassandra; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: cassandra
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: CICLO DIÁRIO: (1) Log de ingestão no Supabase por canal — volume de registros, % de qualidade válida, anomalias detectadas — prova de trabalho verificável pelo time de dados; (2) Alertas em tempo rea…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do relatório semanal antes de distribuição — PM ou Head de CS recebe o relatório no Slack com botão de aprovação; sem aprovação em 4h, sistema envia lembrete; sem resposta em 8h, relatório é enviado com disclaimer 'pendente de revisão humana'"
+  - level: HITL
+    condition: "Criação de tasks no ClickUp pelo Atlas — qualquer task gerada automaticamente pelo squad requer confirmação do responsável (PM para produto, Head de CS para atendimento) antes de aparecer no backlog ativo; aprovação via bot no Slack com preview da task"
+  - level: HITL
+    condition: "Alertas de emergência classificados como CRÍTICO — Rapid envia para canal Slack com botão 'Confirmar Alerta / Falso Positivo'; se confirmado, Lyra gera briefing imediato e Atlas cria task de emergência; se falso positivo, threshold é ajustado automaticamente"
+  - level: HITL
+    condition: "Atualização de taxonomia de temas — qualquer alteração nos 15-25 temas da taxonomia (adição, remoção, renomeação) requer aprovação do PM antes de Yara re-processar histórico; impacto estimado em registros afetados e apresentado antes da aprovação"
+  - level: HITL
+    condition: "Relatório reprovado pelo Critic Cassandra após 2 iterações — escalonado para analista humano revisar os dados de entrada e a taxonomia antes de reprocessar; indica possível drift na linguagem dos clientes ou bug na ingestão"
+  - level: HITL
+    condition: "Publicacao de insight que menciona concorrente especifico por nome — Lyra sinaliza e o Head de CS aprova antes de distribuir para evitar vazamento de informacao competitive sensivel"
+  - level: HITL
+    condition: "Re-calibração de thresholds de alerta após detecção de falsos positivos recorrentes — o Rapid documenta a sugestão de ajuste e aguarda aprovação do PM ou Head de CS para alterar o threshold de produção"
+  - level: HITL
+    condition: "Feedback de canal com volume insuficiente para análise estatística identificado pós-Discovery — Haruki notifica e aguarda decisão humana sobre incluir ou excluir canal do pipeline de produção"
+transitions:
+  - from: orion
+    to: haruki
+    condition: "Cron job diário 07h00 pelo Orchestrator Orion para batch completo; webhook de integração quando canal envia evento em tempo real (NPS response crítico, ticket com keyword configurada); acionado manua…"
+  - from: haruki
+    to: yara
+    condition: "Acionado pelo Orchestrator Orion após Haruki confirmar conclusão da ingestão diária (evento no Supabase: vóc_ingestion_completed); acionado para re-processamento quando PM ou Head de CS atualiza a ta…"
+  - from: yara
+    to: orion-2
+    condition: "Cron diário 08h30 após Yara confirmar processamento; cron a cada 4h para detecção de emergência (verifica apenas os últimos registros vs threshold); webhook do produto quando evento crítico e registr…"
+  - from: orion-2
+    to: lyra
+    condition: "Cron semanal segunda-feira 09h00 após Orion confirmar ranking semanal disponível; acionado sob demanda pelo PM ou Head de CS via comando no ClickUp ('*gerar-relatório-voc agora'); acionado automatica…"
+  - from: lyra
+    to: rapid
+    condition: "Cron a cada 4 horas (00h, 04h, 08h, 12h, 16h, 20h); webhook imediato quando Haruki detecta pico anômalo de volume em ingestão; suprimido para o mesmo tema por 12h após alerta recente para evitar spam…"
+  - from: rapid
+    to: atlas
+    condition: "Acionado pelo Orchestrator Orion após Lyra confirmar relatório semanal e HITL aprovar lista de ações; acionado para alerta de emergência classificado como CRÍTICO após notificação HITL e confirmação…"
+  - from: atlas
+    to: cassandra
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: cassandra
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

@@ -1,0 +1,47 @@
+name: marketing-cro-landing-agentico
+version: 0.1.0
+description: "De landing page estática para máquina de conversão autônoma: o squad gera, testa e itera copy e layout em loop contínuo — sem precisar de um time de CRO."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: clp
+components:
+  agents:
+    - maestro-cro.md
+    - hera.md
+    - sage.md
+    - muse.md
+    - pixel.md
+    - darwin.md
+    - rex.md
+    - atlas.md
+    - rex-2.md
+  tasks:
+    - identificar-abandono-pagina.md
+    - pesquisar-evidencias-empiricas.md
+    - gerar-copy-de-conversao.md
+    - traduzir-hipoteses-de-layout.md
+    - monitorar-experimentos-ab.md
+    - verificar-brand-voice-consistencia.md
+    - documentar-experimentos.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-cro-landing-agentico-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - performance-paid-media-cro-attribution
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M2 · TopSquad de Performance: Paid Media, CRO & Attribution"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

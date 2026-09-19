@@ -1,0 +1,29 @@
+row: marketing
+title: Intelligent Timing Orchestrator
+title_netflix: INTELLIGENT TIMING ORCHESTRATOR
+subtitle: Planejar horários e cadências de contato a partir de sinais disponíveis, evitando conflitos entre canais
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use marketing-intelligent-timing para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Kronos
+  - Sirius
+  - Pulsar
+  - Helios
+  - Vega
+  - Nexus
+  - Aura
+  - Lumina
+  - Aura 2
+  generos:
+  - Marketing
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

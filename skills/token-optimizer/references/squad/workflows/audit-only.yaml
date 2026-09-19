@@ -1,0 +1,33 @@
+workflow_name: squad_audit_only
+description: "Auditoria rapida: escaneia squad, detecta anti-patterns e produz relatorio sem executar otimizacoes"
+agent_sequence:
+  - squad-scanner
+  - anti-pattern-detector
+  - quality-auditor
+key_commands:
+  - "*sqopt-scan"
+  - "*sqopt-detect"
+  - "*sqopt-audit"
+transitions:
+  scan_phase:
+    trigger: "squadPath fornecido e squad.yaml encontrado"
+    confidence: 0.95
+    next_steps:
+      - command: "*sqopt-detect"
+        description: "Detectar anti-patterns no inventario produzido"
+        priority: 1
+  detection_phase:
+    trigger: "squad-inventory.json completo e anti-patterns identificados"
+    confidence: 0.90
+    next_steps:
+      - command: "*sqopt-audit"
+        description: "Auditar e gerar relatorio de findings sem otimizar"
+        priority: 1
+  audit_phase:
+    trigger: "optimization-report.md gerado com findings e savings projetados"
+    confidence: 0.95
+    next_steps: []
+success_indicators:
+  - "optimization-report.md gerado com findings e savings projetados"
+  - "Anti-patterns catalogados com severidade e ROI estimado"
+  - "Relatorio completo sem necessidade de execucao"

@@ -1,0 +1,28 @@
+row: marketing
+title: Dormant Lead Reactivation
+title_netflix: DORMANT LEAD REACTIVATION
+subtitle: Segmentar leads inativos e preparar campanhas de reativação com mensagens, critérios de elegibilidade e revisão
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use marketing-dormant-lead-reactivation para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Lazaro
+  - Arqueologa
+  - Radar
+  - Oraculo Scorer
+  - Lázaro Writer
+  - Charon Dispatcher
+  - Echo Analyst
+  - Atena
+  generos:
+  - Marketing
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

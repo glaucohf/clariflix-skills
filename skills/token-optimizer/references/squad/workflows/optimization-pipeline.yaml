@@ -1,0 +1,51 @@
+workflow_name: squad_optimization_pipeline
+description: "Pipeline completo de otimizacao: escaneia squad, detecta anti-patterns, planeja, executa e audita"
+agent_sequence:
+  - squad-scanner
+  - anti-pattern-detector
+  - optimization-planner
+  - optimization-executor
+  - quality-auditor
+key_commands:
+  - "*sqopt-scan"
+  - "*sqopt-detect"
+  - "*sqopt-plan"
+  - "*sqopt-execute"
+  - "*sqopt-audit"
+transitions:
+  scan_phase:
+    trigger: "squadPath fornecido e squad.yaml encontrado"
+    confidence: 0.95
+    next_steps:
+      - command: "*sqopt-detect"
+        description: "Detectar anti-patterns no inventario produzido"
+        priority: 1
+  detection_phase:
+    trigger: "squad-inventory.json completo e anti-patterns identificados"
+    confidence: 0.90
+    next_steps:
+      - command: "*sqopt-plan"
+        description: "Criar plano de otimizacao priorizado por ROI"
+        priority: 1
+  planning_phase:
+    trigger: "anti-patterns-report.json completo e plano de otimizacao pronto"
+    confidence: 0.90
+    next_steps:
+      - command: "*sqopt-execute"
+        description: "Executar otimizacoes nos arquivos do squad"
+        priority: 1
+  execution_phase:
+    trigger: "optimization-plan.json executado e arquivos otimizados gerados"
+    confidence: 0.90
+    next_steps:
+      - command: "*sqopt-audit"
+        description: "Auditar resultado e gerar relatorio final"
+        priority: 1
+  audit_phase:
+    trigger: "optimization-report.md gerado com metricas before/after"
+    confidence: 0.95
+    next_steps: []
+success_indicators:
+  - "optimization-report.md gerado com metricas before/after"
+  - "Todos os arquivos otimizados sem erros de validacao"
+  - "Reducao de tokens mensuravel no relatorio final"

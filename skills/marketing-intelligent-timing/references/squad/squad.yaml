@@ -1,0 +1,47 @@
+name: marketing-intelligent-timing
+version: 0.1.0
+description: "A mensagem certa perde para o momento errado: este squad aprende quando cada usuario abre, responde e converte — e envia exatamente nesse instante."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: ito
+components:
+  agents:
+    - kronos.md
+    - sirius.md
+    - pulsar.md
+    - helios.md
+    - vega.md
+    - nexus.md
+    - aura.md
+    - lumina.md
+    - aura-2.md
+  tasks:
+    - calcular-janelas-receptividade.md
+    - monitorar-saude-de-canal.md
+    - construir-modelo-preditivo-timing.md
+    - otimizar-sequencias-outreach.md
+    - enviar-mensagens-agendadas.md
+    - verificar-compliance-e-qualidade.md
+    - analisar-dados-de-envio.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-intelligent-timing-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - performance-paid-media-cro-attribution
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M2 · TopSquad de Performance: Paid Media, CRO & Attribution"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"
