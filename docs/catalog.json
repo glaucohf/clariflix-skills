@@ -92,7 +92,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/apex-context-supreme.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/apex-context-supreme --skill apex-context-supreme -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/apex-context-supreme --skill apex-context-supreme -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/apex-context-supreme --skill apex-context-supreme -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/apex-context-supreme --skill apex-context-supreme -g",
+      "image": "images/skills/apex-context-supreme.webp"
     },
     {
       "name": "atendimento-faq-negocio",
@@ -285,7 +286,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/athenaeum-squad.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/athenaeum-squad --skill athenaeum-squad -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/athenaeum-squad --skill athenaeum-squad -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/athenaeum-squad --skill athenaeum-squad -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/athenaeum-squad --skill athenaeum-squad -g",
+      "image": "images/skills/athenaeum-squad.webp"
     },
     {
       "name": "brainstormind",
@@ -335,7 +337,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/brainstormind.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/brainstormind --skill brainstormind -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/brainstormind --skill brainstormind -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/brainstormind --skill brainstormind -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/brainstormind --skill brainstormind -g",
+      "image": "images/skills/brainstormind.webp"
     },
     {
       "name": "conferencia-orcamento",
@@ -474,7 +477,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/data-quality-guardian.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/data-quality-guardian --skill data-quality-guardian -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/data-quality-guardian --skill data-quality-guardian -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/data-quality-guardian --skill data-quality-guardian -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/data-quality-guardian --skill data-quality-guardian -g",
+      "image": "images/skills/data-quality-guardian.webp"
     },
     {
       "name": "decisao-diagnostico-pme",
@@ -614,7 +618,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/flywheel-core.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/flywheel-core --skill flywheel-core -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/flywheel-core --skill flywheel-core -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/flywheel-core --skill flywheel-core -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/flywheel-core --skill flywheel-core -g",
+      "image": "images/skills/flywheel-core.webp"
     },
     {
       "name": "founder-agentic-analytics",
@@ -666,7 +671,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-agentic-analytics.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-agentic-analytics --skill founder-agentic-analytics -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-agentic-analytics --skill founder-agentic-analytics -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-agentic-analytics --skill founder-agentic-analytics -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-agentic-analytics --skill founder-agentic-analytics -g",
+      "image": "images/skills/founder-agentic-analytics.webp"
     },
     {
       "name": "founder-ai-chief-of-staff",
@@ -719,7 +725,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-ai-chief-of-staff.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-ai-chief-of-staff --skill founder-ai-chief-of-staff -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-ai-chief-of-staff --skill founder-ai-chief-of-staff -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-ai-chief-of-staff --skill founder-ai-chief-of-staff -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-ai-chief-of-staff --skill founder-ai-chief-of-staff -g",
+      "image": "images/skills/founder-ai-chief-of-staff.webp"
     },
     {
       "name": "founder-board-investor-relations",
@@ -772,7 +779,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-board-investor-relations.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-board-investor-relations --skill founder-board-investor-relations -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-board-investor-relations --skill founder-board-investor-relations -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-board-investor-relations --skill founder-board-investor-relations -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-board-investor-relations --skill founder-board-investor-relations -g",
+      "image": "images/skills/founder-board-investor-relations.webp"
     },
     {
       "name": "founder-clone-digital-twin",
@@ -825,7 +833,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-clone-digital-twin.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-clone-digital-twin --skill founder-clone-digital-twin -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-clone-digital-twin --skill founder-clone-digital-twin -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-clone-digital-twin --skill founder-clone-digital-twin -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-clone-digital-twin --skill founder-clone-digital-twin -g",
+      "image": "images/skills/founder-clone-digital-twin.webp"
     },
     {
       "name": "founder-competitive-intelligence",
@@ -877,7 +886,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-competitive-intelligence.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-competitive-intelligence --skill founder-competitive-intelligence -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-competitive-intelligence --skill founder-competitive-intelligence -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-competitive-intelligence --skill founder-competitive-intelligence -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-competitive-intelligence --skill founder-competitive-intelligence -g",
+      "image": "images/skills/founder-competitive-intelligence.webp"
     },
     {
       "name": "founder-decision-journal-postmortem",
@@ -930,7 +940,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-decision-journal-postmortem.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-decision-journal-postmortem --skill founder-decision-journal-postmortem -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-decision-journal-postmortem --skill founder-decision-journal-postmortem -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-decision-journal-postmortem --skill founder-decision-journal-postmortem -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-decision-journal-postmortem --skill founder-decision-journal-postmortem -g",
+      "image": "images/skills/founder-decision-journal-postmortem.webp"
     },
     {
       "name": "founder-deep-research-orchestrator",
@@ -984,7 +995,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-deep-research-orchestrator.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-deep-research-orchestrator --skill founder-deep-research-orchestrator -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-deep-research-orchestrator --skill founder-deep-research-orchestrator -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-deep-research-orchestrator --skill founder-deep-research-orchestrator -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-deep-research-orchestrator --skill founder-deep-research-orchestrator -g",
+      "image": "images/skills/founder-deep-research-orchestrator.webp"
     },
     {
       "name": "founder-due-diligence-ma-screening",
@@ -1038,7 +1050,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-due-diligence-ma-screening.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-due-diligence-ma-screening --skill founder-due-diligence-ma-screening -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-due-diligence-ma-screening --skill founder-due-diligence-ma-screening -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-due-diligence-ma-screening --skill founder-due-diligence-ma-screening -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-due-diligence-ma-screening --skill founder-due-diligence-ma-screening -g",
+      "image": "images/skills/founder-due-diligence-ma-screening.webp"
     },
     {
       "name": "founder-fundraising-ops",
@@ -1091,7 +1104,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-fundraising-ops.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-fundraising-ops --skill founder-fundraising-ops -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-fundraising-ops --skill founder-fundraising-ops -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-fundraising-ops --skill founder-fundraising-ops -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-fundraising-ops --skill founder-fundraising-ops -g",
+      "image": "images/skills/founder-fundraising-ops.webp"
     },
     {
       "name": "founder-knowledge-base-institucional",
@@ -1144,7 +1158,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-knowledge-base-institucional.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-knowledge-base-institucional --skill founder-knowledge-base-institucional -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-knowledge-base-institucional --skill founder-knowledge-base-institucional -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-knowledge-base-institucional --skill founder-knowledge-base-institucional -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-knowledge-base-institucional --skill founder-knowledge-base-institucional -g",
+      "image": "images/skills/founder-knowledge-base-institucional.webp"
     },
     {
       "name": "founder-kpi-okr-pulse",
@@ -1196,7 +1211,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-kpi-okr-pulse.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-kpi-okr-pulse --skill founder-kpi-okr-pulse -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-kpi-okr-pulse --skill founder-kpi-okr-pulse -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-kpi-okr-pulse --skill founder-kpi-okr-pulse -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-kpi-okr-pulse --skill founder-kpi-okr-pulse -g",
+      "image": "images/skills/founder-kpi-okr-pulse.webp"
     },
     {
       "name": "founder-market-sizing-opportunity-scout",
@@ -1249,7 +1265,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-market-sizing-opportunity-scout.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-market-sizing-opportunity-scout --skill founder-market-sizing-opportunity-scout -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-market-sizing-opportunity-scout --skill founder-market-sizing-opportunity-scout -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-market-sizing-opportunity-scout --skill founder-market-sizing-opportunity-scout -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-market-sizing-opportunity-scout --skill founder-market-sizing-opportunity-scout -g",
+      "image": "images/skills/founder-market-sizing-opportunity-scout.webp"
     },
     {
       "name": "founder-meeting-intelligence",
@@ -1302,7 +1319,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-meeting-intelligence.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-meeting-intelligence --skill founder-meeting-intelligence -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-meeting-intelligence --skill founder-meeting-intelligence -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-meeting-intelligence --skill founder-meeting-intelligence -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-meeting-intelligence --skill founder-meeting-intelligence -g",
+      "image": "images/skills/founder-meeting-intelligence.webp"
     },
     {
       "name": "founder-risk-scenario-sentinel",
@@ -1354,7 +1372,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-risk-scenario-sentinel.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-risk-scenario-sentinel --skill founder-risk-scenario-sentinel -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-risk-scenario-sentinel --skill founder-risk-scenario-sentinel -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-risk-scenario-sentinel --skill founder-risk-scenario-sentinel -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-risk-scenario-sentinel --skill founder-risk-scenario-sentinel -g",
+      "image": "images/skills/founder-risk-scenario-sentinel.webp"
     },
     {
       "name": "founder-strategic-foresight-wargaming",
@@ -1406,7 +1425,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-strategic-foresight-wargaming.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-strategic-foresight-wargaming --skill founder-strategic-foresight-wargaming -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-strategic-foresight-wargaming --skill founder-strategic-foresight-wargaming -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-strategic-foresight-wargaming --skill founder-strategic-foresight-wargaming -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-strategic-foresight-wargaming --skill founder-strategic-foresight-wargaming -g",
+      "image": "images/skills/founder-strategic-foresight-wargaming.webp"
     },
     {
       "name": "founder-tech-radar-build-vs-buy",
@@ -1459,7 +1479,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/founder-tech-radar-build-vs-buy.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-tech-radar-build-vs-buy --skill founder-tech-radar-build-vs-buy -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-tech-radar-build-vs-buy --skill founder-tech-radar-build-vs-buy -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-tech-radar-build-vs-buy --skill founder-tech-radar-build-vs-buy -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/founder-tech-radar-build-vs-buy --skill founder-tech-radar-build-vs-buy -g",
+      "image": "images/skills/founder-tech-radar-build-vs-buy.webp"
     },
     {
       "name": "genius-athena-strange",
@@ -1507,7 +1528,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/genius-athena-strange.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/genius-athena-strange --skill genius-athena-strange -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/genius-athena-strange --skill genius-athena-strange -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/genius-athena-strange --skill genius-athena-strange -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/genius-athena-strange --skill genius-athena-strange -g",
+      "image": "images/skills/genius-athena-strange.webp"
     },
     {
       "name": "incident-response-squad",
@@ -1555,7 +1577,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/incident-response-squad.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/incident-response-squad --skill incident-response-squad -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/incident-response-squad --skill incident-response-squad -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/incident-response-squad --skill incident-response-squad -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/incident-response-squad --skill incident-response-squad -g",
+      "image": "images/skills/incident-response-squad.webp"
     },
     {
       "name": "instagram-caption-writer",
@@ -1605,7 +1628,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/instagram-caption-writer.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/instagram-caption-writer --skill instagram-caption-writer -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/instagram-caption-writer --skill instagram-caption-writer -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/instagram-caption-writer --skill instagram-caption-writer -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/instagram-caption-writer --skill instagram-caption-writer -g",
+      "image": "images/skills/instagram-caption-writer.webp"
     },
     {
       "name": "landing-funnel",
@@ -1661,7 +1685,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/landing-funnel.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/landing-funnel --skill landing-funnel -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/landing-funnel --skill landing-funnel -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/landing-funnel --skill landing-funnel -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/landing-funnel --skill landing-funnel -g",
+      "image": "images/skills/landing-funnel.webp"
     },
     {
       "name": "linkedin",
@@ -1710,7 +1735,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/linkedin.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/linkedin --skill linkedin -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/linkedin --skill linkedin -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/linkedin --skill linkedin -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/linkedin --skill linkedin -g",
+      "image": "images/skills/linkedin.webp"
     },
     {
       "name": "marketing-abm-signal-orchestrator",
@@ -1763,7 +1789,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-abm-signal-orchestrator.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-abm-signal-orchestrator --skill marketing-abm-signal-orchestrator -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-abm-signal-orchestrator --skill marketing-abm-signal-orchestrator -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-abm-signal-orchestrator --skill marketing-abm-signal-orchestrator -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-abm-signal-orchestrator --skill marketing-abm-signal-orchestrator -g",
+      "image": "images/skills/marketing-abm-signal-orchestrator.webp"
     },
     {
       "name": "marketing-ai-sdr-outbound",
@@ -1815,7 +1842,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-ai-sdr-outbound.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-ai-sdr-outbound --skill marketing-ai-sdr-outbound -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-ai-sdr-outbound --skill marketing-ai-sdr-outbound -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-ai-sdr-outbound --skill marketing-ai-sdr-outbound -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-ai-sdr-outbound --skill marketing-ai-sdr-outbound -g",
+      "image": "images/skills/marketing-ai-sdr-outbound.webp"
     },
     {
       "name": "marketing-competitive-adspy",
@@ -1868,7 +1896,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-competitive-adspy.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-competitive-adspy --skill marketing-competitive-adspy -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-competitive-adspy --skill marketing-competitive-adspy -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-competitive-adspy --skill marketing-competitive-adspy -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-competitive-adspy --skill marketing-competitive-adspy -g",
+      "image": "images/skills/marketing-competitive-adspy.webp"
     },
     {
       "name": "marketing-creative-ugc-factory",
@@ -1921,7 +1950,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-creative-ugc-factory.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-creative-ugc-factory --skill marketing-creative-ugc-factory -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-creative-ugc-factory --skill marketing-creative-ugc-factory -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-creative-ugc-factory --skill marketing-creative-ugc-factory -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-creative-ugc-factory --skill marketing-creative-ugc-factory -g",
+      "image": "images/skills/marketing-creative-ugc-factory.webp"
     },
     {
       "name": "marketing-cro-landing-agentico",
@@ -1974,7 +2004,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-cro-landing-agentico.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-cro-landing-agentico --skill marketing-cro-landing-agentico -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-cro-landing-agentico --skill marketing-cro-landing-agentico -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-cro-landing-agentico --skill marketing-cro-landing-agentico -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-cro-landing-agentico --skill marketing-cro-landing-agentico -g",
+      "image": "images/skills/marketing-cro-landing-agentico.webp"
     },
     {
       "name": "marketing-demand-sensing-radar",
@@ -2026,7 +2057,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-demand-sensing-radar.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-demand-sensing-radar --skill marketing-demand-sensing-radar -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-demand-sensing-radar --skill marketing-demand-sensing-radar -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-demand-sensing-radar --skill marketing-demand-sensing-radar -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-demand-sensing-radar --skill marketing-demand-sensing-radar -g",
+      "image": "images/skills/marketing-demand-sensing-radar.webp"
     },
     {
       "name": "marketing-dormant-lead-reactivation",
@@ -2078,7 +2110,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-dormant-lead-reactivation.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-dormant-lead-reactivation --skill marketing-dormant-lead-reactivation -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-dormant-lead-reactivation --skill marketing-dormant-lead-reactivation -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-dormant-lead-reactivation --skill marketing-dormant-lead-reactivation -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-dormant-lead-reactivation --skill marketing-dormant-lead-reactivation -g",
+      "image": "images/skills/marketing-dormant-lead-reactivation.webp"
     },
     {
       "name": "marketing-funnel-analytics-attribution",
@@ -2130,7 +2163,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-funnel-analytics-attribution.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-funnel-analytics-attribution --skill marketing-funnel-analytics-attribution -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-funnel-analytics-attribution --skill marketing-funnel-analytics-attribution -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-funnel-analytics-attribution --skill marketing-funnel-analytics-attribution -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-funnel-analytics-attribution --skill marketing-funnel-analytics-attribution -g",
+      "image": "images/skills/marketing-funnel-analytics-attribution.webp"
     },
     {
       "name": "marketing-influencer-creator-outreach",
@@ -2182,7 +2216,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-influencer-creator-outreach.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-influencer-creator-outreach --skill marketing-influencer-creator-outreach -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-influencer-creator-outreach --skill marketing-influencer-creator-outreach -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-influencer-creator-outreach --skill marketing-influencer-creator-outreach -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-influencer-creator-outreach --skill marketing-influencer-creator-outreach -g",
+      "image": "images/skills/marketing-influencer-creator-outreach.webp"
     },
     {
       "name": "marketing-intelligent-timing",
@@ -2235,7 +2270,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-intelligent-timing.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-intelligent-timing --skill marketing-intelligent-timing -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-intelligent-timing --skill marketing-intelligent-timing -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-intelligent-timing --skill marketing-intelligent-timing -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-intelligent-timing --skill marketing-intelligent-timing -g",
+      "image": "images/skills/marketing-intelligent-timing.webp"
     },
     {
       "name": "marketing-lead-scoring-router",
@@ -2287,7 +2323,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-lead-scoring-router.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-lead-scoring-router --skill marketing-lead-scoring-router -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-lead-scoring-router --skill marketing-lead-scoring-router -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-lead-scoring-router --skill marketing-lead-scoring-router -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-lead-scoring-router --skill marketing-lead-scoring-router -g",
+      "image": "images/skills/marketing-lead-scoring-router.webp"
     },
     {
       "name": "marketing-living-icp-profiler",
@@ -2339,7 +2376,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-living-icp-profiler.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-living-icp-profiler --skill marketing-living-icp-profiler -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-living-icp-profiler --skill marketing-living-icp-profiler -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-living-icp-profiler --skill marketing-living-icp-profiler -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-living-icp-profiler --skill marketing-living-icp-profiler -g",
+      "image": "images/skills/marketing-living-icp-profiler.webp"
     },
     {
       "name": "marketing-paid-media-autopilot",
@@ -2392,7 +2430,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-paid-media-autopilot.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-paid-media-autopilot --skill marketing-paid-media-autopilot -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-paid-media-autopilot --skill marketing-paid-media-autopilot -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-paid-media-autopilot --skill marketing-paid-media-autopilot -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-paid-media-autopilot --skill marketing-paid-media-autopilot -g",
+      "image": "images/skills/marketing-paid-media-autopilot.webp"
     },
     {
       "name": "marketing-pmf-deep-research",
@@ -2445,7 +2484,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-pmf-deep-research.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-pmf-deep-research --skill marketing-pmf-deep-research -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-pmf-deep-research --skill marketing-pmf-deep-research -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-pmf-deep-research --skill marketing-pmf-deep-research -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-pmf-deep-research --skill marketing-pmf-deep-research -g",
+      "image": "images/skills/marketing-pmf-deep-research.webp"
     },
     {
       "name": "marketing-programmatic-seo-geo",
@@ -2497,7 +2537,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-programmatic-seo-geo.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-programmatic-seo-geo --skill marketing-programmatic-seo-geo -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-programmatic-seo-geo --skill marketing-programmatic-seo-geo -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-programmatic-seo-geo --skill marketing-programmatic-seo-geo -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-programmatic-seo-geo --skill marketing-programmatic-seo-geo -g",
+      "image": "images/skills/marketing-programmatic-seo-geo.webp"
     },
     {
       "name": "marketing-whatsapp-qualifier",
@@ -2549,7 +2590,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/marketing-whatsapp-qualifier.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-whatsapp-qualifier --skill marketing-whatsapp-qualifier -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-whatsapp-qualifier --skill marketing-whatsapp-qualifier -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-whatsapp-qualifier --skill marketing-whatsapp-qualifier -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/marketing-whatsapp-qualifier --skill marketing-whatsapp-qualifier -g",
+      "image": "images/skills/marketing-whatsapp-qualifier.webp"
     },
     {
       "name": "ops-cs-agent-assist-copilot",
@@ -2602,7 +2644,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-agent-assist-copilot.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-agent-assist-copilot --skill ops-cs-agent-assist-copilot -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-agent-assist-copilot --skill ops-cs-agent-assist-copilot -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-agent-assist-copilot --skill ops-cs-agent-assist-copilot -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-agent-assist-copilot --skill ops-cs-agent-assist-copilot -g",
+      "image": "images/skills/ops-cs-agent-assist-copilot.webp"
     },
     {
       "name": "ops-cs-ai-sre-incident",
@@ -2654,7 +2697,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-ai-sre-incident.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-ai-sre-incident --skill ops-cs-ai-sre-incident -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-ai-sre-incident --skill ops-cs-ai-sre-incident -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-ai-sre-incident --skill ops-cs-ai-sre-incident -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-ai-sre-incident --skill ops-cs-ai-sre-incident -g",
+      "image": "images/skills/ops-cs-ai-sre-incident.webp"
     },
     {
       "name": "ops-cs-back-office-financeiro-reconciliacao",
@@ -2707,7 +2751,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-back-office-financeiro-reconciliacao.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-back-office-financeiro-reconciliacao --skill ops-cs-back-office-financeiro-reconciliacao -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-back-office-financeiro-reconciliacao --skill ops-cs-back-office-financeiro-reconciliacao -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-back-office-financeiro-reconciliacao --skill ops-cs-back-office-financeiro-reconciliacao -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-back-office-financeiro-reconciliacao --skill ops-cs-back-office-financeiro-reconciliacao -g",
+      "image": "images/skills/ops-cs-back-office-financeiro-reconciliacao.webp"
     },
     {
       "name": "ops-cs-churn-prediction",
@@ -2760,7 +2805,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-churn-prediction.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-churn-prediction --skill ops-cs-churn-prediction -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-churn-prediction --skill ops-cs-churn-prediction -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-churn-prediction --skill ops-cs-churn-prediction -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-churn-prediction --skill ops-cs-churn-prediction -g",
+      "image": "images/skills/ops-cs-churn-prediction.webp"
     },
     {
       "name": "ops-cs-dunning-recuperacao-pagamentos",
@@ -2813,7 +2859,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-dunning-recuperacao-pagamentos.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-dunning-recuperacao-pagamentos --skill ops-cs-dunning-recuperacao-pagamentos -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-dunning-recuperacao-pagamentos --skill ops-cs-dunning-recuperacao-pagamentos -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-dunning-recuperacao-pagamentos --skill ops-cs-dunning-recuperacao-pagamentos -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-dunning-recuperacao-pagamentos --skill ops-cs-dunning-recuperacao-pagamentos -g",
+      "image": "images/skills/ops-cs-dunning-recuperacao-pagamentos.webp"
     },
     {
       "name": "ops-cs-handoff-orchestrator-hitl",
@@ -2865,7 +2912,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-handoff-orchestrator-hitl.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-handoff-orchestrator-hitl --skill ops-cs-handoff-orchestrator-hitl -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-handoff-orchestrator-hitl --skill ops-cs-handoff-orchestrator-hitl -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-handoff-orchestrator-hitl --skill ops-cs-handoff-orchestrator-hitl -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-handoff-orchestrator-hitl --skill ops-cs-handoff-orchestrator-hitl -g",
+      "image": "images/skills/ops-cs-handoff-orchestrator-hitl.webp"
     },
     {
       "name": "ops-cs-kb-curator",
@@ -2917,7 +2965,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-kb-curator.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-kb-curator --skill ops-cs-kb-curator -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-kb-curator --skill ops-cs-kb-curator -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-kb-curator --skill ops-cs-kb-curator -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-kb-curator --skill ops-cs-kb-curator -g",
+      "image": "images/skills/ops-cs-kb-curator.webp"
     },
     {
       "name": "ops-cs-onboarding-psa-agentica",
@@ -2969,7 +3018,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-onboarding-psa-agentica.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-onboarding-psa-agentica --skill ops-cs-onboarding-psa-agentica -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-onboarding-psa-agentica --skill ops-cs-onboarding-psa-agentica -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-onboarding-psa-agentica --skill ops-cs-onboarding-psa-agentica -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-onboarding-psa-agentica --skill ops-cs-onboarding-psa-agentica -g",
+      "image": "images/skills/ops-cs-onboarding-psa-agentica.webp"
     },
     {
       "name": "ops-cs-qa-conversas-verifier",
@@ -3021,7 +3071,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-qa-conversas-verifier.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-qa-conversas-verifier --skill ops-cs-qa-conversas-verifier -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-qa-conversas-verifier --skill ops-cs-qa-conversas-verifier -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-qa-conversas-verifier --skill ops-cs-qa-conversas-verifier -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-qa-conversas-verifier --skill ops-cs-qa-conversas-verifier -g",
+      "image": "images/skills/ops-cs-qa-conversas-verifier.webp"
     },
     {
       "name": "ops-cs-renovacao-expansao-qbr",
@@ -3074,7 +3125,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-renovacao-expansao-qbr.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-renovacao-expansao-qbr --skill ops-cs-renovacao-expansao-qbr -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-renovacao-expansao-qbr --skill ops-cs-renovacao-expansao-qbr -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-renovacao-expansao-qbr --skill ops-cs-renovacao-expansao-qbr -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-renovacao-expansao-qbr --skill ops-cs-renovacao-expansao-qbr -g",
+      "image": "images/skills/ops-cs-renovacao-expansao-qbr.webp"
     },
     {
       "name": "ops-cs-self-healing-etl",
@@ -3127,7 +3179,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-self-healing-etl.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-self-healing-etl --skill ops-cs-self-healing-etl -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-self-healing-etl --skill ops-cs-self-healing-etl -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-self-healing-etl --skill ops-cs-self-healing-etl -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-self-healing-etl --skill ops-cs-self-healing-etl -g",
+      "image": "images/skills/ops-cs-self-healing-etl.webp"
     },
     {
       "name": "ops-cs-sla-health-monitor",
@@ -3179,7 +3232,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-sla-health-monitor.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-sla-health-monitor --skill ops-cs-sla-health-monitor -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-sla-health-monitor --skill ops-cs-sla-health-monitor -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-sla-health-monitor --skill ops-cs-sla-health-monitor -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-sla-health-monitor --skill ops-cs-sla-health-monitor -g",
+      "image": "images/skills/ops-cs-sla-health-monitor.webp"
     },
     {
       "name": "ops-cs-tier1-resolver-multicanal",
@@ -3232,7 +3286,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-tier1-resolver-multicanal.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-tier1-resolver-multicanal --skill ops-cs-tier1-resolver-multicanal -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-tier1-resolver-multicanal --skill ops-cs-tier1-resolver-multicanal -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-tier1-resolver-multicanal --skill ops-cs-tier1-resolver-multicanal -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-tier1-resolver-multicanal --skill ops-cs-tier1-resolver-multicanal -g",
+      "image": "images/skills/ops-cs-tier1-resolver-multicanal.webp"
     },
     {
       "name": "ops-cs-triagem-roteamento-priorizacao",
@@ -3284,7 +3339,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-triagem-roteamento-priorizacao.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-triagem-roteamento-priorizacao --skill ops-cs-triagem-roteamento-priorizacao -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-triagem-roteamento-priorizacao --skill ops-cs-triagem-roteamento-priorizacao -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-triagem-roteamento-priorizacao --skill ops-cs-triagem-roteamento-priorizacao -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-triagem-roteamento-priorizacao --skill ops-cs-triagem-roteamento-priorizacao -g",
+      "image": "images/skills/ops-cs-triagem-roteamento-priorizacao.webp"
     },
     {
       "name": "ops-cs-voz-do-cliente-sentimento",
@@ -3336,7 +3392,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-voz-do-cliente-sentimento.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-voz-do-cliente-sentimento --skill ops-cs-voz-do-cliente-sentimento -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-voz-do-cliente-sentimento --skill ops-cs-voz-do-cliente-sentimento -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-voz-do-cliente-sentimento --skill ops-cs-voz-do-cliente-sentimento -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-voz-do-cliente-sentimento --skill ops-cs-voz-do-cliente-sentimento -g",
+      "image": "images/skills/ops-cs-voz-do-cliente-sentimento.webp"
     },
     {
       "name": "ops-cs-voz-ia-telefonia",
@@ -3389,7 +3446,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/ops-cs-voz-ia-telefonia.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-voz-ia-telefonia --skill ops-cs-voz-ia-telefonia -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-voz-ia-telefonia --skill ops-cs-voz-ia-telefonia -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-voz-ia-telefonia --skill ops-cs-voz-ia-telefonia -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/ops-cs-voz-ia-telefonia --skill ops-cs-voz-ia-telefonia -g",
+      "image": "images/skills/ops-cs-voz-ia-telefonia.webp"
     },
     {
       "name": "proposta-comercial",
@@ -3438,7 +3496,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/proposta-comercial.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/proposta-comercial --skill proposta-comercial -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/proposta-comercial --skill proposta-comercial -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/proposta-comercial --skill proposta-comercial -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/proposta-comercial --skill proposta-comercial -g",
+      "image": "images/skills/proposta-comercial.webp"
     },
     {
       "name": "rotina-agenda",
@@ -3625,7 +3684,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/skeptic-protocol.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/skeptic-protocol --skill skeptic-protocol -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/skeptic-protocol --skill skeptic-protocol -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/skeptic-protocol --skill skeptic-protocol -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/skeptic-protocol --skill skeptic-protocol -g",
+      "image": "images/skills/skeptic-protocol.webp"
     },
     {
       "name": "sop-criar",
@@ -3766,7 +3826,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/token-optimizer.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/token-optimizer --skill token-optimizer -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/token-optimizer --skill token-optimizer -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/token-optimizer --skill token-optimizer -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/token-optimizer --skill token-optimizer -g",
+      "image": "images/skills/token-optimizer.webp"
     },
     {
       "name": "vendas-agendamento-appointment-setting",
@@ -3818,7 +3879,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-agendamento-appointment-setting.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-agendamento-appointment-setting --skill vendas-agendamento-appointment-setting -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-agendamento-appointment-setting --skill vendas-agendamento-appointment-setting -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-agendamento-appointment-setting --skill vendas-agendamento-appointment-setting -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-agendamento-appointment-setting --skill vendas-agendamento-appointment-setting -g",
+      "image": "images/skills/vendas-agendamento-appointment-setting.webp"
     },
     {
       "name": "vendas-ai-sdr-outbound-signal-based",
@@ -3870,7 +3932,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-ai-sdr-outbound-signal-based.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-ai-sdr-outbound-signal-based --skill vendas-ai-sdr-outbound-signal-based -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-ai-sdr-outbound-signal-based --skill vendas-ai-sdr-outbound-signal-based -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-ai-sdr-outbound-signal-based --skill vendas-ai-sdr-outbound-signal-based -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-ai-sdr-outbound-signal-based --skill vendas-ai-sdr-outbound-signal-based -g",
+      "image": "images/skills/vendas-ai-sdr-outbound-signal-based.webp"
     },
     {
       "name": "vendas-conversation-intelligence-coaching",
@@ -3923,7 +3986,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-conversation-intelligence-coaching.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-conversation-intelligence-coaching --skill vendas-conversation-intelligence-coaching -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-conversation-intelligence-coaching --skill vendas-conversation-intelligence-coaching -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-conversation-intelligence-coaching --skill vendas-conversation-intelligence-coaching -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-conversation-intelligence-coaching --skill vendas-conversation-intelligence-coaching -g",
+      "image": "images/skills/vendas-conversation-intelligence-coaching.webp"
     },
     {
       "name": "vendas-followup-nurture-reativacao",
@@ -3977,7 +4041,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-followup-nurture-reativacao.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-followup-nurture-reativacao --skill vendas-followup-nurture-reativacao -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-followup-nurture-reativacao --skill vendas-followup-nurture-reativacao -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-followup-nurture-reativacao --skill vendas-followup-nurture-reativacao -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-followup-nurture-reativacao --skill vendas-followup-nurture-reativacao -g",
+      "image": "images/skills/vendas-followup-nurture-reativacao.webp"
     },
     {
       "name": "vendas-forecast-deal-risk",
@@ -4029,7 +4094,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-forecast-deal-risk.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-forecast-deal-risk --skill vendas-forecast-deal-risk -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-forecast-deal-risk --skill vendas-forecast-deal-risk -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-forecast-deal-risk --skill vendas-forecast-deal-risk -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-forecast-deal-risk --skill vendas-forecast-deal-risk -g",
+      "image": "images/skills/vendas-forecast-deal-risk.webp"
     },
     {
       "name": "vendas-higiene-enriquecimento-crm-revops",
@@ -4082,7 +4148,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-higiene-enriquecimento-crm-revops.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-higiene-enriquecimento-crm-revops --skill vendas-higiene-enriquecimento-crm-revops -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-higiene-enriquecimento-crm-revops --skill vendas-higiene-enriquecimento-crm-revops -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-higiene-enriquecimento-crm-revops --skill vendas-higiene-enriquecimento-crm-revops -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-higiene-enriquecimento-crm-revops --skill vendas-higiene-enriquecimento-crm-revops -g",
+      "image": "images/skills/vendas-higiene-enriquecimento-crm-revops.webp"
     },
     {
       "name": "vendas-inteligencia-conta-battlecards",
@@ -4134,7 +4201,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-inteligencia-conta-battlecards.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-inteligencia-conta-battlecards --skill vendas-inteligencia-conta-battlecards -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-inteligencia-conta-battlecards --skill vendas-inteligencia-conta-battlecards -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-inteligencia-conta-battlecards --skill vendas-inteligencia-conta-battlecards -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-inteligencia-conta-battlecards --skill vendas-inteligencia-conta-battlecards -g",
+      "image": "images/skills/vendas-inteligencia-conta-battlecards.webp"
     },
     {
       "name": "vendas-lead-scoring-preditivo",
@@ -4186,7 +4254,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-lead-scoring-preditivo.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-lead-scoring-preditivo --skill vendas-lead-scoring-preditivo -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-lead-scoring-preditivo --skill vendas-lead-scoring-preditivo -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-lead-scoring-preditivo --skill vendas-lead-scoring-preditivo -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-lead-scoring-preditivo --skill vendas-lead-scoring-preditivo -g",
+      "image": "images/skills/vendas-lead-scoring-preditivo.webp"
     },
     {
       "name": "vendas-objection-handling-qa-tempo-real",
@@ -4238,7 +4307,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-objection-handling-qa-tempo-real.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-objection-handling-qa-tempo-real --skill vendas-objection-handling-qa-tempo-real -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-objection-handling-qa-tempo-real --skill vendas-objection-handling-qa-tempo-real -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-objection-handling-qa-tempo-real --skill vendas-objection-handling-qa-tempo-real -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-objection-handling-qa-tempo-real --skill vendas-objection-handling-qa-tempo-real -g",
+      "image": "images/skills/vendas-objection-handling-qa-tempo-real.webp"
     },
     {
       "name": "vendas-qualificacao-conversacional-whatsapp",
@@ -4291,7 +4361,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-qualificacao-conversacional-whatsapp.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-qualificacao-conversacional-whatsapp --skill vendas-qualificacao-conversacional-whatsapp -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-qualificacao-conversacional-whatsapp --skill vendas-qualificacao-conversacional-whatsapp -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-qualificacao-conversacional-whatsapp --skill vendas-qualificacao-conversacional-whatsapp -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-qualificacao-conversacional-whatsapp --skill vendas-qualificacao-conversacional-whatsapp -g",
+      "image": "images/skills/vendas-qualificacao-conversacional-whatsapp.webp"
     },
     {
       "name": "vendas-recuperacao-oportunidades-estagnadas",
@@ -4344,7 +4415,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-recuperacao-oportunidades-estagnadas.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-recuperacao-oportunidades-estagnadas --skill vendas-recuperacao-oportunidades-estagnadas -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-recuperacao-oportunidades-estagnadas --skill vendas-recuperacao-oportunidades-estagnadas -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-recuperacao-oportunidades-estagnadas --skill vendas-recuperacao-oportunidades-estagnadas -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-recuperacao-oportunidades-estagnadas --skill vendas-recuperacao-oportunidades-estagnadas -g",
+      "image": "images/skills/vendas-recuperacao-oportunidades-estagnadas.webp"
     },
     {
       "name": "vendas-reengajamento-pos-evento",
@@ -4397,7 +4469,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-reengajamento-pos-evento.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-reengajamento-pos-evento --skill vendas-reengajamento-pos-evento -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-reengajamento-pos-evento --skill vendas-reengajamento-pos-evento -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-reengajamento-pos-evento --skill vendas-reengajamento-pos-evento -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-reengajamento-pos-evento --skill vendas-reengajamento-pos-evento -g",
+      "image": "images/skills/vendas-reengajamento-pos-evento.webp"
     },
     {
       "name": "vendas-roteamento-inteligente-leads",
@@ -4450,7 +4523,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-roteamento-inteligente-leads.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-roteamento-inteligente-leads --skill vendas-roteamento-inteligente-leads -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-roteamento-inteligente-leads --skill vendas-roteamento-inteligente-leads -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-roteamento-inteligente-leads --skill vendas-roteamento-inteligente-leads -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-roteamento-inteligente-leads --skill vendas-roteamento-inteligente-leads -g",
+      "image": "images/skills/vendas-roteamento-inteligente-leads.webp"
     },
     {
       "name": "vendas-social-selling-linkedin",
@@ -4503,7 +4577,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-social-selling-linkedin.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-social-selling-linkedin --skill vendas-social-selling-linkedin -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-social-selling-linkedin --skill vendas-social-selling-linkedin -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-social-selling-linkedin --skill vendas-social-selling-linkedin -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-social-selling-linkedin --skill vendas-social-selling-linkedin -g",
+      "image": "images/skills/vendas-social-selling-linkedin.webp"
     },
     {
       "name": "vendas-speed-to-lead",
@@ -4556,7 +4631,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-speed-to-lead.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-speed-to-lead --skill vendas-speed-to-lead -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-speed-to-lead --skill vendas-speed-to-lead -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-speed-to-lead --skill vendas-speed-to-lead -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-speed-to-lead --skill vendas-speed-to-lead -g",
+      "image": "images/skills/vendas-speed-to-lead.webp"
     },
     {
       "name": "vendas-voz-cold-calling-discovery",
@@ -4609,7 +4685,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/vendas-voz-cold-calling-discovery.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-voz-cold-calling-discovery --skill vendas-voz-cold-calling-discovery -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-voz-cold-calling-discovery --skill vendas-voz-cold-calling-discovery -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-voz-cold-calling-discovery --skill vendas-voz-cold-calling-discovery -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/vendas-voz-cold-calling-discovery --skill vendas-voz-cold-calling-discovery -g",
+      "image": "images/skills/vendas-voz-cold-calling-discovery.webp"
     },
     {
       "name": "win-proposal-deal",
@@ -4656,7 +4733,8 @@
       "prompt_url": "https://glaucohf.github.io/clariflix-skills/prompt/win-proposal-deal.md",
       "npx_claude_code": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/win-proposal-deal --skill win-proposal-deal -a claude-code -g",
       "npx_codex": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/win-proposal-deal --skill win-proposal-deal -a codex -g",
-      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/win-proposal-deal --skill win-proposal-deal -g"
+      "npx_any": "npx skills add https://github.com/glaucohf/clariflix-skills/tree/v0.2.0/skills/win-proposal-deal --skill win-proposal-deal -g",
+      "image": "images/skills/win-proposal-deal.webp"
     }
   ]
 }
