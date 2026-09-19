@@ -1,0 +1,206 @@
+name: data-quality-guardian
+version: 1.0.0
+protocol: "5.0"
+description: "Squad especialista em qualidade de dados — profiling de datasets, detecção de anomalias, validação de schemas, geração de relatórios de qualidade e sugestão de remediações automatizadas para pipelines de dados"
+author: "Luiz Gustavo Vieira Rodrigues <@gutomec>"
+license: MIT
+slashPrefix: dqg
+tags:
+  - data-engineering
+  - data-quality
+  - data-governance
+  - anomaly-detection
+  - schema-validation
+  - etl
+
+capabilities:
+  - id: data.quality.audit
+    description: "Auditoria completa de qualidade de dados sobre um dataset, do profiling à remediação: profiling estatístico de 100% das colunas (distribuições, nulls, cardinalidade, tipos), detecção de anomalias (outliers, data drift, valores impossíveis) classificada por severidade, validação de schema e integridade referencial com breaking changes, relatório de qualidade com score composto por 6 dimensões e plano de remediação priorizado com scripts automatizados."
+    domains:
+      - data_engineering
+      - qa
+      - analytics
+      - observability
+    invoke:
+      type: workflow
+      ref: workflows/full-data-quality-audit-workflow.yaml
+    inputs:
+      - name: dataset
+        type: string
+        required: true
+        description: "Caminho ou referência do dataset a auditar (csv, parquet, json, tabela SQL)"
+      - name: depth
+        type: string
+        required: false
+        description: "Profundidade da auditoria: quick, standard ou deep; default standard"
+    outputs:
+      - name: quality_report
+        type: markdown
+        description: "Relatório completo de qualidade com score composto por 6 dimensões e violações de SLA"
+      - name: remediation_plan
+        type: markdown
+        description: "Plano de remediação priorizado por impacto x esforço com scripts de limpeza"
+      - name: audit_artifacts
+        type: markdown
+        description: "Relatórios intermediários: profiling-report.md, anomaly-report.md, schema-validation-report.md"
+    tools_required:
+      - read
+      - write
+      - grep
+      - glob
+    examples:
+      - "fazer uma auditoria completa de qualidade deste dataset, do profiling à remediação"
+      - "rodar o pipeline completo de qualidade de dados com score e plano de correção"
+      - "auditar este parquet por anomalias, breaking changes de schema e gerar relatório com score"
+      - "run a full data quality audit on this dataset with anomaly detection, schema validation and a remediation plan"
+    not_for:
+      - "fazer só profiling e validação de schema sem anomalias nem remediação (use data.quality.check)"
+      - "checar rapidamente um dataset sem o pipeline completo (use data.quality.check)"
+      - "corrigir ou limpar os dados diretamente — este squad sugere remediações e gera scripts, não executa a limpeza no dataset"
+    produces:
+      - data-quality-report-markdown
+      - quality-score-json
+      - profiling-report-markdown
+      - anomaly-report-markdown
+      - schema-validation-report-markdown
+      - remediation-plan-markdown
+      - cleaning-scripts
+    example_briefs:
+      - "Tenho uma tabela de transações que vai alimentar um modelo e desconfio que tem sujeira; roda a auditoria completa — profila todas as colunas, detecta outliers e valores impossíveis, valida o schema contra breaking changes, calcula o score de qualidade nas 6 dimensões e me devolve um plano de remediação priorizado com scripts de limpeza prontos"
+      - "Run a full data quality audit on this customer dataset before the migration: profile every column with descriptive stats and null rates, detect anomalies and data drift against baseline, validate the schema and referential integrity flagging breaking changes, produce a composite quality score across completeness, accuracy, consistency, timeliness, uniqueness and validity, and hand me a prioritized remediation plan"
+      - "Antes de promover este dataset para produção quero a auditoria completa com profiling profundo, detecção estatística e por regras de anomalias, validação de schema com integridade referencial, relatório executivo com score e SLA, e remediações automatizáveis priorizadas por impacto"
+    keywords:
+      - qualidade de dados
+      - data quality
+      - auditoria de dados
+      - data quality audit
+      - profiling
+      - anomalia
+      - anomaly detection
+      - outlier
+      - data drift
+      - schema validation
+      - breaking change
+      - integridade referencial
+      - quality score
+      - remediação
+      - remediation
+      - data governance
+      - governança de dados
+      - SLA
+    fidelity:
+      status: experimental
+      threshold: 0.85
+    score_boost: 1.0
+    model_hint: sonnet
+    estimated_cost_usd: 0.5
+
+  - id: data.quality.check
+    description: "Verificação rápida de qualidade de um dataset, sem detecção detalhada de anomalias nem remediação: profiling básico das colunas (tipos, nulls, cardinalidade), validação de schema (tipos e constraints) e relatório de qualidade simplificado. Ponto de entrada leve para um sanity check antes da auditoria completa data.quality.audit."
+    domains:
+      - data_engineering
+      - qa
+      - analytics
+    invoke:
+      type: workflow
+      ref: workflows/quick-data-check-workflow.yaml
+    inputs:
+      - name: dataset
+        type: string
+        required: true
+        description: "Caminho ou referência do dataset para a verificação rápida (csv, parquet, json, tabela SQL)"
+    outputs:
+      - name: quality_report
+        type: markdown
+        description: "Relatório de qualidade simplificado com profiling básico e validação de schema"
+      - name: check_artifacts
+        type: markdown
+        description: "Relatórios intermediários: profiling-report.md e schema-validation-report.md"
+    tools_required:
+      - read
+      - write
+      - grep
+      - glob
+    examples:
+      - "fazer uma verificação rápida de qualidade deste dataset"
+      - "checar rápido os nulls, tipos e schema deste arquivo sem auditoria completa"
+      - "rodar um sanity check de qualidade antes da auditoria completa"
+      - "quick data quality check of this dataset: basic profiling and schema validation only"
+    not_for:
+      - "rodar o pipeline completo com anomalias e remediação (use data.quality.audit)"
+      - "detectar outliers, data drift ou gerar plano de remediação (use data.quality.audit)"
+    produces:
+      - data-quality-report-markdown
+      - profiling-report-markdown
+      - schema-validation-report-markdown
+    example_briefs:
+      - "Recebi um CSV novo e só quero um sanity check rápido antes de decidir se vale a auditoria completa: profila o básico (tipos, taxa de nulos, cardinalidade), valida o schema contra os tipos e constraints esperados e me dá um relatório simplificado de qualidade"
+      - "Quick quality check on this incoming parquet before ingestion: run a basic column profile with null rates and types, validate the schema and constraints, and give me a simplified quality report without the anomaly detection or remediation steps"
+      - "Só preciso saber se este dataset está minimamente saudável — profiling básico e validação de schema, relatório curto, sem detecção de anomalias nem plano de correção"
+    keywords:
+      - verificação rápida
+      - quick check
+      - data check
+      - sanity check
+      - qualidade de dados
+      - data quality
+      - profiling básico
+      - basic profiling
+      - validação de schema
+      - schema validation
+      - nulls
+      - tipos de dados
+      - relatório simplificado
+    fidelity:
+      status: experimental
+      threshold: 0.85
+    score_boost: 1.0
+    model_hint: sonnet
+    estimated_cost_usd: 0.25
+
+components:
+  agents:
+    - data-profiler.md
+    - anomaly-detector.md
+    - schema-validator.md
+    - data-quality-reporter.md
+    - remediation-suggester.md
+  tasks:
+    - profile-dataset.md
+    - detect-anomalies.md
+    - validate-schema.md
+    - generate-quality-report.md
+    - suggest-remediation.md
+    - full-data-quality-audit.md
+  workflows:
+    - full-data-quality-audit-workflow.yaml
+    - quick-data-check-workflow.yaml
+
+runtime_requirements:
+  minimum:
+    - runtime: claude-code
+      version: ">=1.0.0"
+  compatible:
+    - runtime: codex
+      version: ">=0.20.0"
+    - runtime: gemini-cli
+      version: ">=0.4.0"
+    - runtime: antigravity-cli
+      version: ">=0.4.0"
+
+features_required:
+  - max_turns
+  - tool_whitelist
+  - subagent_spawning
+  - handoff_artifacts
+
+features_optional:
+  - hooks
+  - audit_trail
+  - telemetry_otel
+
+output:
+  base_dir: default
+
+legacy:
+  v4_path: ~/squads-trackb-conversion/src/data-quality-guardian

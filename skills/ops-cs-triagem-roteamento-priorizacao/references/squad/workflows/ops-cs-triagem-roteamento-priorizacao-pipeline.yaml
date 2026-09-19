@@ -1,0 +1,161 @@
+workflow_name: ops_cs_triagem_roteamento_priorizacao_pipeline
+description: "Ticket certo, fila certa, no primeiro toque — zero reassignment, SLA intacto."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-triagem-roteamento-priorizacao
+area: "Operações & CS"
+topsquad: "O1 · Atendimento & Suporte Conversacional"
+agent_sequence:
+  - triador-mor
+  - lara
+  - dante
+  - enzo
+  - bela
+  - rex
+  - faq-l0
+  - auditor-de-roteamento
+key_commands:
+  - "*classificar-intencao"
+  - "*classificar-prioridade-ticket"
+  - "*selecionar-fila-destino"
+  - "*enriquecer-contexto-cliente"
+  - "*detectar-e-agrupar-duplicatas"
+  - "*autoresponder-consultas"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: triador-mor
+success_indicators:
+  - "% de roteamento correto no primeiro toque (target: >95%, baseline estimado 60-65%)"
+  - "Taxa de reassignment após triagem automática (target: <5%, baseline ~35-40%)"
+  - "Tempo médio até atribuição qualificada — ticket entra até agente certo ter o ticket (target: <2min, baseline 4-8h com triagem manual)"
+  - "SLA compliance em tickets P1/P2 (target: >98%, baseline ~60%)"
+  - "Taxa de auto-resolução pelo Nina (target: 20-30% do volume de FAQ/L0, 0% de falsos positivos)"
+  - "Acurácia de classificação de intenção (target: >90%, medido pelo Sócrates em amostragem diária)"
+  - "Tickets agrupados como surto vs. processados individualmente (eficiência do Rex em eventos de incidente)"
+  - "Custo por ticket triado (tokens + infra, target: <R$0,05 por ticket para volume acima de 200/dia)"
+deliverable:
+  description: "Ticket com taxonomia completa no ClickUp: tags de intent_l1, intent_l2, priority_tier (P1-P4), canal, produto/módulo, cliente_tier + assignee/fila de destino setados + sla_deadline definido + campo routing_justification preenchido com texto legível ('Cliente Enterprise P1 — Bug crítico em módulo de pagamentos com impacto em 47 usuários, risco de churn alto — roteado para Fila Suporte Técnico L2, SLA 2h') + briefing de conta da Bela anexado. Este é o artefato verificável (prova de trabalho) auditável pelo Sócrates e pelo ops lead."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: triador-mor
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Classificar Intenção"
+    agent: lara
+    task: classificar-intencao.md
+    trigger: "Disparada pelo Triador-Mor para todo ticket novo recebido. Re-disparada se Auditor de Roteamento retornar flag de inconsistência."
+    checkpoint:
+      criteria: "JSON com campos: intent_l1, intent_l2, entities{produto, modulo, erro, data}, confidence_score (0-1), ambiguity_flag (boolean). Se confidence < 0.75, sinaliza para HITL."
+      veto_condition: "Saída sem veredito do critic Auditor de Roteamento; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Classificar Prioridade Ticket"
+    agent: dante
+    task: classificar-prioridade-ticket.md
+    trigger: "Disparado pelo Triador-Mor após output da Lara. Também re-executado se cliente atualiza o ticket com informação nova de impacto."
+    checkpoint:
+      criteria: "JSON com campos: priority_tier (P1/P2/P3/P4), sla_deadline (timestamp), priority_score (0-100), priority_rationale (texto de 1-2 frases explicando o score), churn_risk_flag (boolean)"
+      veto_condition: "Saída sem veredito do critic Auditor de Roteamento; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Selecionar Fila Destino"
+    agent: enzo
+    task: selecionar-fila-destino.md
+    trigger: "Disparado pelo Triador-Mor após outputs de Lara e Dante consolidados. Re-disparado pelo Triador-Mor se Auditor retornar veredito REROUTE."
+    checkpoint:
+      criteria: "Ticket atualizado no ClickUp com: tags aplicadas (intent_l1, intent_l2, priority_tier, canal, produto, cliente_tier), assignee/fila de destino definidos, sla_deadline setado, campo 'routing_justification' preenchido com texto legível. Noti…"
+      veto_condition: "Saída sem veredito do critic Auditor de Roteamento; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Enriquecer Contexto Cliente"
+    agent: bela
+    task: enriquecer-contexto-cliente.md
+    trigger: "Disparada em paralelo com Dante (não bloqueia o roteamento, enriquece o ticket antes do agente humano abrir). Disparada apenas para P1/P2 ou clientes Enterprise por padrão (configurável)."
+    checkpoint:
+      criteria: "Bloco de contexto padronizado (max 300 palavras) anexado ao ticket no ClickUp: resumo da conta (tier, ARR, data de início), últimos 3 tickets (status, resolução), eventos recentes (renovação, onboarding, incidente), health score atual, fla…"
+      veto_condition: "Saída sem veredito do critic Auditor de Roteamento; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Detectar E Agrupar Duplicatas"
+    agent: rex
+    task: detectar-e-agrupar-duplicatas.md
+    trigger: "Disparado pelo Triador-Mor após classificação da Lara, antes do Enzo executar o roteamento final. Execução paralela com Dante."
+    checkpoint:
+      criteria: "Flag de deduplicação: UNIQUE (segue fluxo normal) | DUPLICATE (vincula ao pai, fecha o novo) | SURGE (agrega em incidente, roteia para fila de incidentes). Em caso de SURGE, cria ticket-mestre com lista de afetados e notifica canal Slack d…"
+      veto_condition: "Saída sem veredito do critic Auditor de Roteamento; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Autoresponder Consultas"
+    agent: faq-l0
+    task: autoresponder-consultas.md
+    trigger: "Disparada pelo Triador-Mor apenas para tickets classificados como intent_l1=FAQ ou status_query com confidence >= 0.85 na classificação da Lara. NUNCA disparada para P1 ou intenções de churn/cancelamento."
+    checkpoint:
+      criteria: "Resposta ao cliente (se auto-resolução confirmada, confidence >= 0.90) OU sumário de tentativa de resolução (para o agente humano, se confidence < 0.90). Ticket atualizado com campo 'auto_resolution_attempted' e confidence score."
+      veto_condition: "Saída sem veredito do critic Auditor de Roteamento; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: auditor-de-roteamento
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: triador-mor
+    checkpoint:
+      criteria: "Entregável consolidado: Ticket com taxonomia completa no ClickUp: tags de intent_l1, intent_l2, priority_tier (P1-P4), canal, produto/módulo, cliente_tier + assignee/fila de destino setados + sla_deadline definido + campo r…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Confiança de classificação < 0.75 (Lara sinalizou ambiguidade): humano revisa intenção antes do roteamento prosseguir"
+  - level: HITL
+    condition: "Ticket P1 criado: notificação imediata para supervisor via Slack com justificativa do score, supervisor confirma ou rebaixa prioridade em até 5min"
+  - level: HITL
+    condition: "Intenção de churn/cancelamento detectada (intent_l1=churn): roteamento bloqueado automaticamente até CS Manager aprovar estratégia de resposta (L3 por risco de perda de receita)"
+  - level: HITL
+    condition: "Rex detecta surto (SURGE): incident manager humano é notificado e confirma se é incidente real antes de agrupar tickets — evita falso positivo que agruparia tickets distintos"
+  - level: HITL
+    condition: "Nina tentou auto-resolução mas confidence < 0.90: agente humano recebe ticket com contexto da tentativa e decide a resposta final"
+  - level: HITL
+    condition: "Novo tipo de intenção detectado (não mapeado na taxonomia): Triador-Mor para o fluxo e aciona ops lead para expandir a taxonomia antes de processar o lote"
+  - level: HITL
+    condition: "Auditoria do Sócrates aponta drift de acurácia < 85%: revisão semanal obrigatória com ops lead para recalibrar pesos da matriz de roteamento"
+transitions:
+  - from: triador-mor
+    to: lara
+    condition: "Disparada pelo Triador-Mor para todo ticket novo recebido. Re-disparada se Auditor de Roteamento retornar flag de inconsistência."
+  - from: lara
+    to: dante
+    condition: "Disparado pelo Triador-Mor após output da Lara. Também re-executado se cliente atualiza o ticket com informação nova de impacto."
+  - from: dante
+    to: enzo
+    condition: "Disparado pelo Triador-Mor após outputs de Lara e Dante consolidados. Re-disparado pelo Triador-Mor se Auditor retornar veredito REROUTE."
+  - from: enzo
+    to: bela
+    condition: "Disparada em paralelo com Dante (não bloqueia o roteamento, enriquece o ticket antes do agente humano abrir). Disparada apenas para P1/P2 ou clientes Enterprise por padrão (configurável)."
+  - from: bela
+    to: rex
+    condition: "Disparado pelo Triador-Mor após classificação da Lara, antes do Enzo executar o roteamento final. Execução paralela com Dante."
+  - from: rex
+    to: faq-l0
+    condition: "Disparada pelo Triador-Mor apenas para tickets classificados como intent_l1=FAQ ou status_query com confidence >= 0.85 na classificação da Lara. NUNCA disparada para P1 ou intenções de churn/cancelam…"
+  - from: faq-l0
+    to: auditor-de-roteamento
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: auditor-de-roteamento
+    to: triador-mor
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - bela
+  - rex

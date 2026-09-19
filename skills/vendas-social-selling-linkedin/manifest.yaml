@@ -1,0 +1,29 @@
+row: vendas
+title: Social Selling e Inbound LinkedIn
+title_netflix: SOCIAL SELLING E INBOUND LINKEDIN
+subtitle: Pesquisar contexto profissional e preparar conteúdo e abordagens de social selling no LinkedIn para revisão
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-social-selling-linkedin para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orion
+  - Scout
+  - Sherlock
+  - Cypher
+  - Argus
+  - Pulso
+  - Radar
+  - Nexus
+  - Argus 2
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

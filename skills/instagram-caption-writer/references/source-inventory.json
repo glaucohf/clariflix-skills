@@ -1,0 +1,101 @@
+{
+  "source": "maquina-de-receita/squads-gratuitos/instagram-caption-writer",
+  "files": [
+    {
+      "path": "agents/caption-ab-tester.md",
+      "bytes": 6007,
+      "sha256": "c5b274cb03e6b7a4234db499a997ca0dae2e5f368bf2e1b384a9e4527db381a0"
+    },
+    {
+      "path": "agents/caption-repurposer.md",
+      "bytes": 7041,
+      "sha256": "21315b35b5f84813819ecaaa25ba43efc5286e9fb3cc014b83aa5937556f6169"
+    },
+    {
+      "path": "agents/caption-strategist.md",
+      "bytes": 6554,
+      "sha256": "d390a38048710e512851d88fd36e30d725cd659373bd331d12d8ffef22b74c19"
+    },
+    {
+      "path": "agents/caption-writer.md",
+      "bytes": 7124,
+      "sha256": "41fa41c2e234e52692b1585cb590f51734671b3dd03973afba15020bab0eb148"
+    },
+    {
+      "path": "agents/hashtag-researcher.md",
+      "bytes": 5831,
+      "sha256": "7c0359b005f3da39e4156eb7e601f940aeec1bd5ef05ee42c718a13d8c287a61"
+    },
+    {
+      "path": "agents/hook-generator.md",
+      "bytes": 5999,
+      "sha256": "7001d7a59eac634929c3e74fe793df0ac1e9a6b542eadeb3d917e8578ca8b326"
+    },
+    {
+      "path": "agents/instagram-caption-chief.md",
+      "bytes": 4755,
+      "sha256": "5e304e4f0669b0cee0fbb023b148b2ca3e6886ebd6aa483ac3b221d2679dd002"
+    },
+    {
+      "path": "config/copy-standards.md",
+      "bytes": 2215,
+      "sha256": "7c4f5577069e9dbff30a2996f6b75edf7fea000fd104c101aa4c0418682461d1"
+    },
+    {
+      "path": "config/platform-rules.md",
+      "bytes": 2479,
+      "sha256": "a5894ad536a99e9a810b357b6796cd9df8c60be9cc3cbbe94ffde91f05b84e91"
+    },
+    {
+      "path": "config.yaml",
+      "bytes": 3060,
+      "sha256": "5e3ea81f4010d21a4b578b72928b86e93a3240dfb4fb204ecf76239dbbe6545b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5973,
+      "sha256": "e1662e583b6596ec442e8daa8c853c44b4b2a9af8401f6e8a83b61a1796becbe"
+    },
+    {
+      "path": "squad.yaml",
+      "bytes": 895,
+      "sha256": "7abdfa8d8f77ab51246ff482792428a4a47d8c424d49942b3e904f3575953295"
+    },
+    {
+      "path": "tasks/create-content-pillars.md",
+      "bytes": 3338,
+      "sha256": "03927bca0ecb19dc7090eeebc5acdbfca302fb01753d0e3aa61c127feadac9ff"
+    },
+    {
+      "path": "tasks/diagnose-caption.md",
+      "bytes": 2891,
+      "sha256": "33dcabd242a844fc7949d04066f6a448dc819ab1570c288d0dd1271d9bb0cc90"
+    },
+    {
+      "path": "tasks/generate-hooks-batch.md",
+      "bytes": 2459,
+      "sha256": "831c808541d6a981f54f0f1ee8c768f5443facbbbc50b24546284304347e07a1"
+    },
+    {
+      "path": "tasks/write-caption.md",
+      "bytes": 3105,
+      "sha256": "98c18e0224bc9e69171abcd66f353f0af7ba709edef657cb34617cbcbb9aee2f"
+    },
+    {
+      "path": "templates/caption-output.md",
+      "bytes": 1390,
+      "sha256": "ade6952b11beb5030ac4ae54c0d6cb03339d0d08c0cdeedd576b40bfc1fa7875"
+    },
+    {
+      "path": "workflows/content-week-in-one-shot.md",
+      "bytes": 2384,
+      "sha256": "68f37ebe5d7265d92ed69340c4f62ad6ace4fa922190a040dc65108efa8c2e9a"
+    },
+    {
+      "path": "workflows/viral-post-anatomy.md",
+      "bytes": 2421,
+      "sha256": "b6c95b3fac38e2d0ed6270accb647519c2077790532fcc0f376be71eab0701a0"
+    }
+  ],
+  "provenance_readme_sha256": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83"
+}

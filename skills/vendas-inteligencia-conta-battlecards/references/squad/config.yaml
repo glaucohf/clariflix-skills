@@ -1,0 +1,56 @@
+pack:
+  name: vendas-inteligencia-conta-battlecards
+  version: 0.1.0
+  short-title: "Inteligência de Conta e Battlecards"
+  description: "Seu vendedor entra na reunião sabendo mais sobre o prospect do que ele mesmo."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🎧"
+  slashPrefix: inteligenciaDeContaEBattlecards
+name: vendas-inteligencia-conta-battlecards
+version: 0.1.0
+description: "Seu vendedor entra na reunião sabendo mais sobre o prospect do que ele mesmo."
+entry_agent: nexus
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V5"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - nexus
+  - scout
+  - iris
+  - warfare
+  - oracle
+  - herald
+  - memoria
+  - sentinel
+tasks:
+  - investigar-empresa-completa.md
+  - mapear-stakeholders.md
+  - montar-battlecard-competitiva.md
+  - analisar-dores-setoriais.md
+  - entregar-artefatos-formatados.md
+  - persistir-contexto-no-crm.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-inteligencia-conta-battlecards-pipeline.yaml
+checklists:
+  - critic-sentinel.md
+integrations:
+  - "CRM: HubSpot (MCP disponível) ou Pipedrive — leitura de histórico e escrita de atualizações via MEMÓRIA"
+  - "Calendário: Google Calendar ou Outlook (MCP) — leitura de reuniões agendadas para disparo automático do pipeline"
+  - "LinkedIn: Clay ou Apollo para enriquecimento de perfis de stakeholders (IRIS)"
+  - "Dados de empresa: Apollo.io (275M+ contatos e firmografia), Clearbit Enrichment (SCOUT)"
+  - "Stack tecnológica: BuiltWith API ou Wappalyzer (SCOUT — detecção de tecnologias do prospect)"
+  - "Notícias e sinais: Google News API, RSS feeds setoriais (SCOUT e ORACLE)"
+  - "ClickUp: gestão de tarefas e armazenamento de artefatos como prova de trabalho verificável (HERALD)"
+  - "Slack: notificação push do dossiê finalizado ao vendedor (HERALD)"
+  - "WhatsApp Business API: entrega alternativa do resumo executivo para vendedores mobile-first (HERALD)"
+  - "Observabilidade: Langfuse (OTEL) — rastreamento de cada execução, latência por worker, taxa de aprovação do SENTINEL, quality gates por ambiente"
+  - "Orquestração: LangGraph ou Claude Agent SDK — controle de estado do pipeline, paralelismo dos workers, retry logic"
+  - "Armazenamento de battlecards: base vetorial (Supabase pgvector ou Pinecone) para recuperação semântica de battlecards análogos"

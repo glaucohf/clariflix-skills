@@ -1,0 +1,63 @@
+pack:
+  name: founder-due-diligence-ma-screening
+  version: 0.1.0
+  short-title: "Due Diligence / M&A Screening"
+  description: "Triagem de aquisições em 48h com inteligência de Opus — red flags, tese e memo prontos antes do primeiro call."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🏦"
+  slashPrefix: dueDiligenceMAScreening
+name: founder-due-diligence-ma-screening
+version: 0.1.0
+description: "Triagem de aquisições em 48h com inteligência de Opus — red flags, tese e memo prontos antes do primeiro call."
+entry_agent: nexus
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: founder-office
+  topsquad: "F5"
+  prioridade: "avançado"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - nexus
+  - argus
+  - fenix
+  - themis
+  - sigma
+  - atlas
+  - vox
+  - eco
+  - columbo
+  - columbo-2
+tasks:
+  - coletar-dados-abertos.md
+  - analisar-metricas-financeiras.md
+  - analisar-processos-judiciais.md
+  - analisar-mercado-competitivo.md
+  - analisar-maturidade-tecnologica.md
+  - avaliar-cultura-organizacional.md
+  - reescrever-tese.md
+  - verificar-claims-fontes.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - founder-due-diligence-ma-screening-pipeline.yaml
+checklists:
+  - critic-columbo-2.md
+integrations:
+  - "ClickUp — Gerenciamento de tasks e prova de trabalho: cada triagem e uma task com sub-tasks por agente, status tracking e entrega do artefato final linkado"
+  - "Notion / Obsidian — Knowledge base do founder (corpus de decisões, memos anteriores, teses) que alimenta o Eco (Clone Agent)"
+  - "Vector DB (Pinecone / Supabase pgvector) — Embeddings do corpus do founder e histórico de triagens anteriores para o Eco e o Columbo aprenderem com cada ciclo"
+  - "DataJud (CNJ) — Processos judiciais públicos via API para o Themis"
+  - "Receita Federal / CNPJ.info — Dados societários e CNPJ para o Argus"
+  - "LinkedIn Sales Navigator — Histórico profissional, tenure de C-level, headcount para Vox e Atlas"
+  - "Crunchbase API — Funding history, exits, investors para Fênix e Sigma"
+  - "Glassdoor / Blind (scraping) — Cultura e reviews para Vox"
+  - "BuiltWith / Wappalyzer — Stack tecnológico para Atlas"
+  - "Google News API — Cobertura de mídia para Argus e Vox"
+  - "Langfuse — Observabilidade OTEL: tracing de tokens, custo por triagem, latência por agente, task success rate por fase"
+  - "Slack — Notificações de status do pipeline ao founder (Target Profile pronto, Deep Dive completo, Memo disponível para revisão, gates L3 aguardando aprovação)"
+  - "Gmail / Email — Entrega do Investment Memo final em PDF após aprovacao L3"
+  - "INPI — Consulta de patentes e marcas registradas para Themis e Atlas"
+  - "BACEN (SCR/API) — Regularidade financeira e dados de crédito para Fenix e Themis"

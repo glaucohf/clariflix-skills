@@ -1,0 +1,45 @@
+name: marketing-ai-sdr-outbound
+version: 0.1.0
+description: "Do ICP vivo ao outreach personalizado 1:1 em escala — seu SDR nunca mais vai perder tempo pesquisando quando deveria estar conversando."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: aso
+components:
+  agents:
+    - maestro.md
+    - icp-cartografo.md
+    - scout-profiler.md
+    - calibre-scorer.md
+    - cyrano-copywriter.md
+    - cadence-dispatcher.md
+    - pulse-analyst.md
+    - sentinel.md
+  tasks:
+    - mapear-estrategista-de-mercado.md
+    - enriquecer-dossie-contas.md
+    - pontuar-leads.md
+    - redigir-mensagens-personalizadas.md
+    - enviar-mensagens-multicanal.md
+    - analisar-respostas-recebidas.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-ai-sdr-outbound-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - demand-gen-abm-orchestration
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M1 · TopSquad de Demand Gen & ABM Orchestration"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

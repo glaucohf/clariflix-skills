@@ -1,0 +1,328 @@
+workflow_name: ce_qa_gate
+description: >
+  Gate de qualidade multidimensional — ce-reviewer (Audit) orquestra avaliações
+  em 7 dimensões independentes, cada uma com score de 0-100. O score geral é a
+  média ponderada das 7 dimensões. Score geral < 75 bloqueia aprovação sem exceção.
+  Cada dimensão com score < 60 exige correção obrigatória com o agente responsável
+  antes de re-QA. O QA Gate é executado após ce-integrator aprovar o integration
+  gate e antes do ce-launch-prep ser ativado.
+
+agent_sequence:
+  - ce-reviewer
+  - ce-copywriter
+  - ce-design-architect
+  - ce-frontend-dev
+  - ce-analytics-architect
+  - ce-backend-dev
+
+estimated_duration: "1-2 horas"
+
+hard_veto:
+  rule: "Score geral < 75 → BLOQUEAR aprovação — sem exceção e sem waiver"
+  secondary_rule: "Qualquer dimensão com score < 60 → correção obrigatória antes de re-QA"
+
+scoring:
+  method: "Média ponderada das 7 dimensões"
+  dimensions:
+    - name: "Copy QA"
+      weight: 0.20
+      min_passing: 60
+      recommended: 75
+    - name: "Design QA"
+      weight: 0.15
+      min_passing: 60
+      recommended: 75
+    - name: "SEO/A11y QA"
+      weight: 0.15
+      min_passing: 60
+      recommended: 75
+    - name: "Conversion QA"
+      weight: 0.20
+      min_passing: 60
+      recommended: 80
+    - name: "Backend QA"
+      weight: 0.15
+      min_passing: 60
+      recommended: 75
+    - name: "Analytics QA"
+      weight: 0.15
+      min_passing: 60
+      recommended: 75
+
+phases:
+  - name: "Phase 1 — Copy QA (Score 0-100)"
+    agent: ce-reviewer (Audit)
+    correction_agent: ce-copywriter (Pulse)
+    weight: 0.20
+    tasks:
+      - Verificar headline: clareza de benefício, especificidade, audiência explícita
+      - Validar que copy endereça as 5 objeções obrigatórias do intelligence report
+      - Verificar consistência de tom e voz em todas as seções
+      - Validar que todos os CTAs contêm verbo de ação + benefício explícito
+      - Checar ortografia e gramática em 100% do conteúdo textual
+      - Verificar que urgência e escassez são legítimas (não fabricadas)
+      - Validar que prova social está presente e específica (dados mensuráveis)
+      - Verificar que garantia está clara e localizada próxima ao CTA de pricing
+      - Avaliar se o copy flui logicamente do awareness para a conversão
+      - Verificar que microcopy (erros, confirmações, labels) está completo e amigável
+    scoring_rubric:
+      95-100: "Copy de classe mundial — pronto para veicular tráfego pago"
+      85-94: "Copy excelente com pequenas oportunidades de refinamento"
+      75-84: "Copy sólido — aprovado com recomendações de melhoria"
+      60-74: "Copy funcional mas com gaps — correções recomendadas antes do lançamento"
+      below_60: "BLOQUEADO — issues críticos de copy que impactam conversão diretamente"
+    critical_issues:
+      - "Headline sem benefício claro → -20 pontos"
+      - "CTA genérico em seção principal → -15 pontos"
+      - "Nenhuma objeção endereçada no copy → -25 pontos"
+      - "Urgência fabricada detectada → -20 pontos"
+      - "Erro ortográfico em headline ou CTA → -10 pontos por ocorrência"
+    checkpoints:
+      entry: "Integration gate aprovado por ce-integrator"
+      exit: "Score de Copy QA calculado e documentado"
+    veto_conditions:
+      - "Score < 60 → acionar ce-copywriter para correções e re-QA da dimensão"
+      - "Headline principal sem benefício → CRÍTICO — corrigir antes de prosseguir"
+      - "Urgência fabricada não declarada pelo cliente → bloquear até resolução"
+
+  - name: "Phase 2 — Design QA (Score 0-100)"
+    agent: ce-reviewer (Audit)
+    correction_agent: ce-design-architect (Canvas)
+    weight: 0.15
+    tasks:
+      - Validar consistência do design system em todas as seções
+      - Verificar contraste de todos os elementos de texto: mínimo WCAG AA (4.5:1)
+      - Verificar contraste específico do CTA: mínimo 4.5:1 sobre o fundo
+      - Avaliar hierarquia visual: olho do usuário guiado corretamente em cada seção
+      - Verificar responsividade em 5 breakpoints: 320px, 375px, 768px, 1024px, 1280px
+      - Avaliar espaçamento e respiro visual: sem elementos sobrepostos ou apertados
+      - Verificar consistência de tipografia: família, pesos, escalas respeitados
+      - Avaliar CRO design: CTAs visíveis, formulário acima do fold no mobile
+      - Verificar estados interativos: hover, focus, disabled implementados
+      - Avaliar qualidade geral das imagens: resolução, relevância, compressão
+    scoring_rubric:
+      95-100: "Design de alta conversão — profissional e consistente"
+      85-94: "Design excelente com pequenos ajustes de polish"
+      75-84: "Design sólido — aprovado com recomendações visuais"
+      60-74: "Design funcional com inconsistências — correções recomendadas"
+      below_60: "BLOQUEADO — problemas de design que prejudicam conversão ou credibilidade"
+    critical_issues:
+      - "CTA invisível ou de baixo contraste → -25 pontos"
+      - "Layout quebrado em mobile (320px ou 375px) → -30 pontos"
+      - "Imagens de baixa qualidade na hero → -20 pontos"
+      - "Inconsistência de tipografia entre seções → -10 pontos"
+      - "Estados de hover/focus ausentes em elementos interativos → -10 pontos"
+    checkpoints:
+      entry: "Copy QA score documentado"
+      exit: "Score de Design QA calculado e documentado"
+    veto_conditions:
+      - "Score < 60 → acionar ce-design-architect para correções e re-QA da dimensão"
+      - "Layout quebrado em mobile → CRÍTICO — corrigir imediatamente"
+      - "CTA sem contraste adequado → CRÍTICO — corrigir antes de prosseguir"
+
+  - name: "Phase 3 — SEO/A11y QA (Score 0-100)"
+    agent: ce-reviewer (Audit)
+    correction_agent: ce-frontend-dev (Turbo)
+    weight: 0.15
+    tasks:
+      - Validar meta title: <= 60 chars, keyword principal presente, marca incluída
+      - Validar meta description: <= 155 chars, proposta de valor e CTA presentes
+      - Verificar heading hierarchy: H1 único, H2-H6 em ordem lógica sem pulos
+      - Validar Open Graph: og:title, og:description, og:image (1200x630) presentes
+      - Verificar schema markup: validado no Rich Results Test sem erros
+      - "Executar Lighthouse Accessibility: meta >= 90"
+      - Verificar alt text em 100% das imagens
+      - Testar navegação por teclado: Tab, Shift+Tab, Enter funcionando corretamente
+      - Verificar aria-labels em elementos interativos sem texto visível
+      - Validar canonical URL configurada corretamente
+      - Verificar robots.txt e sitemap.xml (se aplicável)
+    scoring_rubric:
+      95-100: "SEO e acessibilidade de excelência"
+      85-94: "Sólido com oportunidades menores de otimização"
+      75-84: "Aprovado — boas práticas seguidas com gaps menores"
+      60-74: "Funcional mas com gaps que impactam indexação ou experiência"
+      below_60: "BLOQUEADO — problemas críticos de SEO ou acessibilidade"
+    critical_issues:
+      - "H1 ausente ou múltiplos H1 → -30 pontos"
+      - "Meta title ausente → -25 pontos"
+      - "Imagens sem alt text (> 3 ocorrências) → -20 pontos"
+      - "Lighthouse Accessibility < 80 → -25 pontos"
+      - "Schema markup com erros de validação → -15 pontos"
+    checkpoints:
+      entry: "Design QA score documentado"
+      exit: "Score de SEO/A11y QA calculado e documentado"
+    veto_conditions:
+      - "Score < 60 → acionar ce-frontend-dev para correções e re-QA"
+      - "H1 ausente → CRÍTICO — corrigir imediatamente"
+      - "Lighthouse Accessibility < 70 → bloquear até correção"
+
+  - name: "Phase 4 — Conversion QA (Score 0-100)"
+    agent: ce-reviewer (Audit)
+    correction_agents: [ce-copywriter, ce-design-architect, ce-frontend-dev]
+    weight: 0.20
+    tasks:
+      - Avaliar estrutura de funil: sequência de seções leva logicamente à conversão
+      - Verificar que o CTA principal está acima do fold em 100% dos devices
+      - Avaliar densidade de CTAs: frequência adequada sem parecer spam
+      - Verificar que formulário de captura tem mínimo de campos necessários (máx: 3 para topo de funil)
+      - Avaliar presença e posicionamento de prova social nas seções críticas
+      - Verificar que garantia está visível e próxima ao maior ponto de fricção
+      - Avaliar mecanismo de urgência: legítimo e crível
+      - Verificar que pricing é claro, sem ambiguidade sobre o que está incluído
+      - Avaliar friction points: obstáculos desnecessários à conversão
+      - Testar fluxo de conversão completo: clique no CTA → formulário → submissão → confirmação
+      - Calcular Conversion Score com base nos 10 critérios acima (10 pontos cada)
+    scoring_rubric:
+      95-100: "Landing page de alta conversão — estrutura exemplar"
+      85-94: "Excelente potencial de conversão com otimizações pontuais"
+      75-84: "Aprovado — estrutura de conversão sólida"
+      60-74: "Funcional com gaps de conversão — otimizações recomendadas"
+      below_60: "BLOQUEADO — problemas estruturais de conversão"
+    critical_issues:
+      - "CTA fora do fold no mobile → -25 pontos"
+      - "Formulário com > 5 campos (para topo de funil) → -20 pontos"
+      - "Fluxo de submissão com erro → -40 pontos (bloqueio imediato)"
+      - "Pricing ambíguo sem detalhe do que está incluído → -15 pontos"
+      - "Nenhuma prova social acima do fold → -15 pontos"
+    checkpoints:
+      entry: "SEO/A11y QA score documentado"
+      exit: "Score de Conversion QA calculado e documentado"
+    veto_conditions:
+      - "Score < 60 → acionar agentes responsáveis para correções e re-QA"
+      - "Fluxo de submissão com erro → HARD VETO — bloquear imediatamente"
+      - "CTA ausente acima do fold no mobile → CRÍTICO — corrigir antes de prosseguir"
+
+  - name: "Phase 5 — Backend QA (Score 0-100)"
+    agent: ce-reviewer (Audit)
+    correction_agent: ce-backend-dev (Vault)
+    weight: 0.15
+    tasks:
+      - Executar lead de teste completo e verificar chegada no CRM
+      - Confirmar que email de boas-vindas é enviado imediatamente após captura
+      - Testar rate limiting: 6ª submissão do mesmo IP deve ser bloqueada
+      - Verificar proteção anti-bot: honeypot field funcionando
+      - Validar que API de leads retorna erros apropriados (400, 422, 500)
+      - Verificar que variáveis de ambiente não estão expostas no client-side
+      - Executar testes de API automatizados: todos devem passar
+      - Verificar CORS: apenas origens permitidas acessam a API
+      - Testar submissão com dados inválidos: validação server-side rejeitando
+      - Verificar logs de erro: sistema registrando falhas sem expor dados sensíveis
+    scoring_rubric:
+      95-100: "Backend robusto e seguro — production-ready"
+      85-94: "Backend sólido com oportunidades menores de hardening"
+      75-84: "Aprovado — funcional e seguro nos pontos críticos"
+      60-74: "Funcional com gaps de segurança ou confiabilidade"
+      below_60: "BLOQUEADO — falhas críticas de backend que comprometem captura de leads"
+    critical_issues:
+      - "Lead de teste não chegando no CRM → -40 pontos (bloqueio imediato)"
+      - "Email de boas-vindas não enviado → -30 pontos"
+      - "Rate limiting ausente → -20 pontos"
+      - "Testes de API falhando → -25 pontos"
+      - "Variáveis secretas expostas no client-side → -50 pontos (bloqueio imediato)"
+    checkpoints:
+      entry: "Conversion QA score documentado"
+      exit: "Score de Backend QA calculado e documentado"
+    veto_conditions:
+      - "Score < 60 → acionar ce-backend-dev para correções e re-QA"
+      - "Lead não chegando no CRM → HARD VETO — bloquear imediatamente"
+      - "Secrets expostos no client → HARD VETO — bloquear imediatamente"
+      - "Testes de API falhando → bloquear até resolução"
+
+  - name: "Phase 6 — Analytics QA (Score 0-100)"
+    agent: ce-reviewer (Audit)
+    correction_agent: ce-analytics-architect (Lens)
+    weight: 0.15
+    tasks:
+      - Abrir GA4 DebugView e validar evento page_view disparando
+      - Validar evento form_start disparando ao interagir com formulário
+      - Validar evento form_submit disparando após submissão
+      - Validar evento de conversão principal no GA4 (leadCapture ou equivalente)
+      - Abrir Meta Events Manager e confirmar PageView em tempo real
+      - Confirmar evento Lead do Meta Pixel após conversão de teste
+      - Verificar que GTM está carregando sem erros no console do browser
+      - Validar funil de conversão no GA4: todas as etapas configuradas
+      - Verificar que heatmap tool está registrando sessão de teste
+      - Executar fluxo completo e confirmar todos os eventos na cadeia
+    scoring_rubric:
+      95-100: "Analytics completo e validado — rastreamento de excelência"
+      85-94: "Analytics sólido com eventos menores para otimizar"
+      75-84: "Aprovado — eventos essenciais funcionando corretamente"
+      60-74: "Funcional com gaps de rastreamento — dados parciais"
+      below_60: "BLOQUEADO — rastreamento insuficiente para tomar decisões com dados"
+    critical_issues:
+      - "GA4 sem nenhum evento disparando → -50 pontos (bloqueio imediato)"
+      - "Evento de conversão ausente no GA4 → -35 pontos"
+      - "Meta Pixel sem PageView → -30 pontos"
+      - "GTM com erros no console → -20 pontos"
+      - "Funil de conversão não configurado no GA4 → -15 pontos"
+    checkpoints:
+      entry: "Backend QA score documentado"
+      exit: "Score de Analytics QA calculado e documentado"
+    veto_conditions:
+      - "Score < 60 → acionar ce-analytics-architect para correções e re-QA"
+      - "GA4 sem eventos → HARD VETO — bloquear imediatamente"
+      - "Evento de conversão não registrado → CRÍTICO — bloquear"
+
+  - name: "Phase 7 — Final Report (Score Geral)"
+    agent: ce-reviewer (Audit)
+    tasks:
+      - Calcular score ponderado de cada dimensão
+      - Calcular score geral (média ponderada das 6 dimensões)
+      - Listar todos os issues encontrados por dimensão com severidade (CRITICAL/HIGH/MEDIUM/LOW)
+      - Listar itens que bloqueiam aprovação (score < 60 em qualquer dimensão)
+      - Emitir veredicto: QA APPROVED ou QA BLOCKED
+      - Se QA APPROVED: liberar para ce-launch-prep
+      - Se QA BLOCKED: emitir relatório de correções prioritizadas para cada agente responsável
+      - Definir prazo máximo para re-QA após correções (máx: 2h para issues críticos)
+      - Documentar conversion score final no story file do projeto
+    scoring_formula: |
+      score_geral = (
+        copy_score × 0.20 +
+        design_score × 0.15 +
+        seo_a11y_score × 0.15 +
+        conversion_score × 0.20 +
+        backend_score × 0.15 +
+        analytics_score × 0.15
+      )
+    checkpoints:
+      entry: "Todas as 6 dimensões avaliadas com scores documentados"
+      exit: "Veredicto emitido: QA APPROVED ou QA BLOCKED com relatório completo"
+    veto_conditions:
+      - "Score geral < 75 → QA BLOCKED — sem exceção e sem waiver"
+      - "Qualquer dimensão com score < 60 → QA BLOCKED — correção obrigatória"
+      - "Issues CRITICAL não resolvidos → QA BLOCKED independente do score geral"
+      - "Hard veto ativo em qualquer dimensão → QA BLOCKED — prioridade máxima"
+
+success_indicators:
+  - "Score geral >= 75 (média ponderada das 6 dimensões)"
+  - "Nenhuma dimensão com score < 60"
+  - "Zero issues de severidade CRITICAL não resolvidos"
+  - "Fluxo end-to-end funcional: lead → CRM → email → GA4 → Meta Pixel"
+  - "Copy idêntico ao aprovado sem alterações não autorizadas"
+  - "Layout mobile sem quebras em 320px, 375px e 428px"
+  - "GTM carregando sem erros no console"
+  - "Relatório de QA completo com scores por dimensão emitido"
+  - "Veredicto QA APPROVED documentado e entregue para ce-launch-prep"
+
+failure_conditions:
+  - condition: "Score geral < 75 após primeira rodada de QA"
+    recovery: >
+      ce-reviewer emite relatório de correções prioritizadas por dimensão;
+      cada agente responsável recebe sua lista de itens; sprint de correção
+      de no máximo 2h para issues críticos, 4h para issues altos;
+      re-QA total após todas as correções implementadas
+  - condition: "Fluxo end-to-end com erro que bloqueia a captura de leads"
+    recovery: >
+      ce-reviewer interrompe o QA, aciona ce-backend-dev e ce-integrator
+      imediatamente para diagnóstico; QA é suspenso até resolução confirmada
+      com novo lead de teste bem-sucedido
+  - condition: "Issues críticos identificados tarde (Phase 6 ou 7)"
+    recovery: >
+      ce-reviewer retrocede ao agente responsável da dimensão bloqueada,
+      corrige o issue crítico, reexecuta apenas a dimensão afetada e
+      recalcula o score geral com o novo valor
+  - condition: "Re-QA após correções ainda resulta em score < 75"
+    recovery: >
+      ce-reviewer escala para ce-strategist; revisão de escopo pode ser
+      necessária; cliente é comunicado do atraso com estimativa revisada;
+      sprint adicional de correção com prazo definido

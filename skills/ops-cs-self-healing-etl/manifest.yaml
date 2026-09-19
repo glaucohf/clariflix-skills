@@ -1,0 +1,29 @@
+row: operacoes
+title: Self-Healing ETL Squad
+title_netflix: SELF-HEALING ETL SQUAD
+subtitle: Investigar falhas e anomalias de ingestão de dados e preparar planos de recuperação de pipelines para revisão
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-self-healing-etl para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orion
+  - Argus
+  - Remi
+  - Finn
+  - Coda
+  - Nexus
+  - Vega
+  - Loki
+  - Vega 2
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

@@ -1,0 +1,126 @@
+workflow_name: ce_discovery_flow
+description: >
+  Sub-workflow de discovery — processo estruturado para absorver o produto,
+  mapear o funil completo, conduzir questionário com o cliente e definir
+  o escopo da landing page com flags de risco. Executado exclusivamente por
+  ce-strategist (Vortex) antes de qualquer outro agente do squad ser ativado.
+  Output obrigatório: brief estruturado com 12 campos preenchidos.
+
+agent_sequence:
+  - ce-strategist
+
+estimated_duration: "30-60 min"
+
+parallel_execution: false
+
+phases:
+  - name: "Phase 1 — Absorção do Produto"
+    agent: ce-strategist (Vortex)
+    tasks:
+      - Ler URL da landing page atual (se existir) ou URL do produto/serviço
+      - Analisar materiais fornecidos pelo cliente (deck, PDF, vídeo, docs)
+      - Identificar proposta de valor central (UVP) com evidências do material
+      - Registrar categoria de produto: info-produto, SaaS, e-commerce, serviço, outro
+      - Mapear posicionamento atual vs. posicionamento desejado
+      - Identificar diferenciais competitivos declarados pelo cliente
+    checkpoints:
+      entry: "URL ou briefing inicial fornecido pelo cliente"
+      exit: >
+        Campos preenchidos: produto, categoria, UVP, posicionamento atual,
+        posicionamento desejado, diferenciais (6 de 12 campos do brief)
+    veto_conditions:
+      - "URL inacessível e nenhum material alternativo fornecido → solicitar ao cliente antes de prosseguir"
+      - "Produto sem proposta de valor identificável → bloquear e agendar call de alinhamento"
+      - "Categoria de produto não classificável → solicitar clarificação ao cliente"
+
+  - name: "Phase 2 — Mapeamento de Funil"
+    agent: ce-strategist (Vortex)
+    tasks:
+      - Mapear estágio de consciência do público-alvo (Eugene Schwartz: 1-5)
+      - Definir jornada: topo → meio → fundo de funil
+      - Identificar fonte de tráfego principal: cold (anúncios), warm (email/retargeting), organic
+      - Mapear ação de conversão principal (compra, lead, trial, agendamento)
+      - Identificar ações secundárias e micro-conversões
+      - Definir proposta da landing page no contexto do funil completo
+    checkpoints:
+      entry: "Phase 1 concluída com 6 campos do brief preenchidos"
+      exit: >
+        Funil mapeado com: estágio de consciência definido, fonte de tráfego
+        identificada, conversão principal e secundárias documentadas
+    veto_conditions:
+      - "Estágio de consciência indefinido → aplicar framework de Schwartz antes de prosseguir"
+      - "Fonte de tráfego desconhecida → solicitar ao cliente antes de prosseguir (impacta copy radicalmente)"
+      - "Ação de conversão ambígua → alinhar com cliente, escolher uma conversão principal"
+
+  - name: "Phase 3 — Questionário Estruturado"
+    agent: ce-strategist (Vortex)
+    tasks:
+      - Conduzir questionário assíncrono (formulário) ou síncrono (call 30 min)
+      - "Perguntas obrigatórias: público-alvo primário, maior dor/frustração, resultado desejado"
+      - "Perguntas obrigatórias: principal objeção de compra, prova social disponível"
+      - "Perguntas obrigatórias: urgência/escassez real, garantia oferecida"
+      - "Perguntas obrigatórias: preço e posicionamento de preço, concorrentes conhecidos"
+      - Validar respostas para consistência com material absorvido na Phase 1
+      - Documentar contradições ou gaps para exploração posterior
+    checkpoints:
+      entry: "Funil mapeado e aprovado — Phase 2 concluída"
+      exit: >
+        Questionário completo com respostas para: público-alvo, dor primária,
+        resultado desejado, objeção principal, prova social, urgência, garantia,
+        preço, concorrentes conhecidos
+    veto_conditions:
+      - "Cliente não responde em 24h (assíncrono) → follow-up com formulário simplificado de 5 perguntas essenciais"
+      - "Respostas genéricas sem especificidade ('meu público é todo mundo') → reprovar e solicitar refinamento"
+      - "Contradição crítica entre materiais e respostas → documentar e alinhar antes de prosseguir"
+      - "Ausência de qualquer forma de prova social → registrar como flag crítico e incluir no escopo de Trust"
+
+  - name: "Phase 4 — Escopo + Flags de Risco"
+    agent: ce-strategist (Vortex)
+    tasks:
+      - Definir seções obrigatórias da landing page baseado no estágio de consciência
+      - Definir seções opcionais baseado em recursos e objetivos
+      - Calcular estimativa de seções totais (mínimo 8, recomendado 10-14)
+      - Preencher os 3 campos finais do brief: escopo de seções, timeline, budget awareness
+      - Levantar flags de risco: prova social fraca, nicho competitivo extremo, produto novo sem dados
+      - Documentar dependências críticas: assets que o cliente deve fornecer
+      - Emitir brief estruturado final com 12 campos completos
+    checkpoints:
+      entry: "Questionário respondido — Phase 3 concluída"
+      exit: >
+        Brief estruturado finalizado com 12/12 campos preenchidos:
+        produto, categoria, UVP, posicionamento atual, posicionamento desejado,
+        diferenciais, estágio de consciência, fonte de tráfego, conversão principal,
+        público-alvo detalhado, flags de risco, escopo de seções
+    veto_conditions:
+      - "Brief com menos de 10 campos preenchidos → retornar às phases anteriores para complementação"
+      - "Escopo com menos de 8 seções definidas → revisar (landing page incompleta)"
+      - "Flags de risco críticos sem plano de mitigação documentado → bloquear entrega do brief"
+      - "Assets críticos do cliente não listados nas dependências → complementar antes de entregar"
+
+success_indicators:
+  - "Brief estruturado com exatamente 12 campos preenchidos e validados"
+  - "Estágio de consciência do público definido com justificativa (escala Schwartz)"
+  - "Fonte de tráfego identificada e documentada"
+  - "Conversão principal única e mensurável definida"
+  - "Escopo de seções definido com mínimo de 8 e máximo de 14 seções"
+  - "Flags de risco documentados com plano de mitigação"
+  - "Dependências de assets do cliente listadas e confirmadas"
+  - "Brief aprovado pelo cliente antes de acionar ce-researcher"
+
+failure_conditions:
+  - condition: "Cliente não fornece materiais suficientes para absorção"
+    recovery: >
+      ce-strategist cria brief baseado em análise do produto no mercado,
+      registra suposições como hipóteses e solicita validação antes de prosseguir
+  - condition: "Questionário não respondido após 48h"
+    recovery: >
+      ce-strategist envia versão simplificada com 5 perguntas essenciais por
+      WhatsApp/email e agenda call de 20 min como fallback
+  - condition: "Escopo impossível dentro do prazo (muitas seções, pouco tempo)"
+    recovery: >
+      ce-strategist propõe versão MVP (8 seções) e versão completa (12+ seções),
+      cliente escolhe baseado em timeline
+  - condition: "Produto sem diferenciais claros identificados"
+    recovery: >
+      ce-strategist documenta o gap e aciona ce-researcher para análise de
+      oportunidade de diferenciação baseada em gaps dos concorrentes

@@ -1,0 +1,49 @@
+name: founder-deep-research-orchestrator
+version: 0.1.0
+description: "Transforma qualquer pergunta estratégica em um brief 100% citado em minutos — sem fragmentação, sem alucinação, com rastreabilidade total de fontes."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: dre
+components:
+  agents:
+    - orion.md
+    - nexus.md
+    - blade.md
+    - lex.md
+    - thesis.md
+    - prism.md
+    - parallax.md
+    - vera.md
+    - sage.md
+    - vera-2.md
+  tasks:
+    - analisar-tendencias-setoriais.md
+    - monitorar-concorrentes.md
+    - analisar-riscos-regulatorios.md
+    - analisar-teses-investimento.md
+    - analisar-tecnologiasemergentes.md
+    - verificar-credibilidade-fonte.md
+    - verificar-contradicoes-claims.md
+    - humanizar-briefs.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-deep-research-orchestrator-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - foresight-risco-research-estrategico
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F4 · TopSquad de Foresight, Risco & Research Estratégico"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

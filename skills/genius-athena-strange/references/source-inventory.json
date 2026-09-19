@@ -1,0 +1,126 @@
+{
+  "source": "maquina-de-receita/squads-gratuitos/genius-athena-strange",
+  "files": [
+    {
+      "path": "agents/cygnus-vidente.md",
+      "bytes": 4366,
+      "sha256": "56ab2e8b3728c16a6d8139a598230e9d367cfa02502cb660082255ac69ca8ccd"
+    },
+    {
+      "path": "agents/hermes-orquestrador.md",
+      "bytes": 4083,
+      "sha256": "8cdb4afb4336c470daa6981b2cc9a5f2e83b6d7575fcd16be99eca4a9a6f2f3e"
+    },
+    {
+      "path": "agents/hydra-arquiteta.md",
+      "bytes": 4444,
+      "sha256": "ab43c73149373e3d0e2cb6f5a75ea2ca1aba2ddd57eee9e36bdbedd19bdd7211"
+    },
+    {
+      "path": "agents/medusa-auditora.md",
+      "bytes": 4571,
+      "sha256": "3355c923d7768ed6f31b9166cb01ecfeba20f85926d51a09be950a1227d1c241"
+    },
+    {
+      "path": "agents/seneca-estrategista.md",
+      "bytes": 4688,
+      "sha256": "3b480d34d308daeed5595ebc195efd6465fc4fcf746e593c2a0828ed587e43b8"
+    },
+    {
+      "path": "checklists/fragility-gate.md",
+      "bytes": 1730,
+      "sha256": "23b99274cbdeb523d96d9c00e91ca8151cb013d02a454283f5562e59bef7f1fe"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "bytes": 922,
+      "sha256": "4be49149c9dfc27f875453418d3986de618a34df4a6ee185f132ff2719aa5d2a"
+    },
+    {
+      "path": "config/source-tree.md",
+      "bytes": 1635,
+      "sha256": "ec887d568d90a08bce049102d8270d29acaa6642ae4fc4ce636b1ab2549aeaa1"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "bytes": 638,
+      "sha256": "3b844f5b8f001077d009ecc97d823b37bf1e6d5e41d96a8647be333038494a90"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1093,
+      "sha256": "a080d92203860f5862ad537c4d0055a3a51a994bcb3e4f52ab8198fb08a0051d"
+    },
+    {
+      "path": "README.ar.md",
+      "bytes": 5027,
+      "sha256": "79fd5abd4b39ff365ba95f02c6bf21f258dc5b92bfa286a500ed9e94703267ba"
+    },
+    {
+      "path": "README.en.md",
+      "bytes": 3793,
+      "sha256": "d6fd94fc3d3bbf8a646a049b98a13490e53470db1bd83f037575520a0f6ee934"
+    },
+    {
+      "path": "README.es.md",
+      "bytes": 3727,
+      "sha256": "883ea9f6cbba00bb4ab8a7e1a167337676f09a6f3d763f19627f5e85fd86bfdd"
+    },
+    {
+      "path": "README.hi.md",
+      "bytes": 7853,
+      "sha256": "84d2b4784a8dee2ee08294b425c1b3ada718b8010cff5f755bbba9a0f3437337"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7794,
+      "sha256": "bfb0190ad1808dd02abf52c2fdc82f0e6c25ce364e3007709c8b10b969406d97"
+    },
+    {
+      "path": "README.zh.md",
+      "bytes": 3504,
+      "sha256": "f4f87999d2fd148d25df1975180d4541a2ace87f11cd0bed930ada26a3ca5e9d"
+    },
+    {
+      "path": "squad.yaml",
+      "bytes": 1211,
+      "sha256": "5b48a456615025c1776fac6f431c693a2c4135d5e68561776cd79aee2aee8bc1"
+    },
+    {
+      "path": "tasks/aplicar-barbell.md",
+      "bytes": 2164,
+      "sha256": "34df573c788c02617fc36b216e1a9027683005f969689eea77022802d6ada958"
+    },
+    {
+      "path": "tasks/auditar-fragilidade.md",
+      "bytes": 2324,
+      "sha256": "1ff04ca00bc278e493a7e14f21f7e0d9182ae61f07896b69b7f7cd31c4b5a56b"
+    },
+    {
+      "path": "tasks/mapear-cisnes-negros.md",
+      "bytes": 2825,
+      "sha256": "7f278278546312dcb20adfbaf9236fff54472eb48047b4a62a9771017bdfe64c"
+    },
+    {
+      "path": "tasks/projetar-antifragilidade.md",
+      "bytes": 2195,
+      "sha256": "eb1ca7a842c0d9597e02c862cb9bf1a8d51839d11991ac3c5e998097e5127232"
+    },
+    {
+      "path": "tasks/sintetizar-relatorio.md",
+      "bytes": 2155,
+      "sha256": "d5e68735a075043514a4cd388f8f5afdf1b4b4ca2f1e62784043d24d60619bd3"
+    },
+    {
+      "path": "templates/barbell-template.md",
+      "bytes": 752,
+      "sha256": "74351b3c708986da37f7ec134d0e922d845a603254cb2dc7b9ffb65da0878565"
+    },
+    {
+      "path": "workflows/taleb-pipeline.yaml",
+      "bytes": 2597,
+      "sha256": "ef1a95fcd98804cd87961615fde7f9a9465a2fe5605223e3b5fefeb405baab3c"
+    }
+  ],
+  "provenance_readme_sha256": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83"
+}

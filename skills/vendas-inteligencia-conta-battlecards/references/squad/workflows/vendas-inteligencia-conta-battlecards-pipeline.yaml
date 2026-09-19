@@ -1,0 +1,157 @@
+workflow_name: vendas_inteligencia_conta_battlecards_pipeline
+description: "Seu vendedor entra na reunião sabendo mais sobre o prospect do que ele mesmo."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-inteligencia-conta-battlecards
+area: "Vendas"
+topsquad: "V5 · Sales Enablement & Conversation Intelligence"
+agent_sequence:
+  - nexus
+  - scout
+  - iris
+  - warfare
+  - oracle
+  - herald
+  - memoria
+  - sentinel
+key_commands:
+  - "*investigar-empresa-completa"
+  - "*mapear-stakeholders"
+  - "*montar-battlecard-competitiva"
+  - "*analisar-dores-setoriais"
+  - "*entregar-artefatos-formatados"
+  - "*persistir-contexto-no-crm"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: nexus
+success_indicators:
+  - "Tempo de geracao do dossie completo: meta < 8 minutos do disparo ao entregavel validado pelo SENTINEL"
+  - "Taxa de aprovação do SENTINEL na primeira passagem: meta > 85% (staging) / > 95% (produção)"
+  - "Tempo de preparo do vendedor (pesquisa manual eliminada): redução de 2-4h para 15-20 min de revisão — medido por survey quinzenal com o time de vendas"
+  - "Taxa de avanco de deal pos-uso do dossie: comparar deals com dossie vs sem dossie no CRM — meta +25% de discovery-to-proposal"
+  - "Cobertura de reuniões: % de reuniões que tiveram dossiê gerado e entregue antes do horário — meta > 90%"
+  - "Frescor dos dados: % de informações no dossiê com fonte datada nos últimos 90 dias — meta > 80%"
+  - "Adesão do vendedor: % de vendedores que abriram o dossiê antes da reunião (tracking de abertura) — meta > 75%"
+  - "Enriquecimento de CRM pelo MEMÓRIA: % de campos críticos preenchidos após cada reunião — meta > 70% de completude por conta"
+deliverable:
+  description: "Pacote de Inteligência Pre-Reunião — composto por dois artefatos verificáveis no ClickUp: (1) Dossiê de Conta (versão executiva 1 página + versão completa): Visão Geral da Empresa, Momento Atual, Mapa de Stakeholders com abordagem por perfil, Dores Previstas, Perguntas de Discovery Recomendadas, Red Flags e Oportunidades; (2) Battlecard Competitivo: tabela comparativa com até 3 concorrentes, objeções previstas com respostas prontas, ângulo de ataque recomendado. Entregues ao vendedor via Slack/WhatsApp/email com resumo de 5 bullets até 30 minutos antes da reunião (ou em < 8 minutos para reuniões ad-hoc)."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: nexus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Investigar Empresa Completa"
+    agent: scout
+    task: investigar-empresa-completa.md
+    trigger: "Disparo pelo NEXUS após validação de que não existe dossiê recente em cache. Também acionado manualmente pelo vendedor via comando no ClickUp ou chat."
+    checkpoint:
+      criteria: "JSON estruturado com: dados firmográficos, tecnologias detectadas, timeline de eventos recentes (últimos 90 dias), estimativa de maturidade digital, sinais de compra (ex: contratação de cargo relacionado ao produto), fontes com URLs e datas"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Mapear Stakeholders"
+    agent: iris
+    task: mapear-stakeholders.md
+    trigger: "Disparo pelo NEXUS em paralelo ao SCOUT, após receber lista de participantes da reunião (extraída do convite de calendário via MCP de calendário ou inserida manualmente)."
+    checkpoint:
+      criteria: "Perfil por stakeholder com: resumo executivo (3-5 linhas), dores previstas pelo cargo, ganchos de abertura baseados em conteudo recente, estilo de abordagem recomendado (data-driven / relacional / tecnico), mapa de poder da conta (diagrama…"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Montar Battlecard Competitiva"
+    agent: warfare
+    task: montar-battlecard-competitiva.md
+    trigger: "Disparo pelo NEXUS apos output parcial do SCOUT (precisa da stack tecnologica detectada). Pode ser reacionado manualmente quando o vendedor informa que um concorrente especifico entrou no deal."
+    checkpoint:
+      criteria: "Battlecard por concorrente (máximo 3) com: tabela comparativa (5-7 dimensões chave), objeções previstas com respostas sugeridas, ângulo de ataque recomendado, casos análogos de win com este perfil de conta, red flags que indicam risco de p…"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Analisar Dores Setoriais"
+    agent: oracle
+    task: analisar-dores-setoriais.md
+    trigger: "Disparo pelo NEXUS em paralelo aos outros workers, baseado apenas nos dados da ficha inicial (setor + cargo). E o worker mais rápido pois opera principalmente sobre base de conhecimento pré-processada."
+    checkpoint:
+      criteria: "Briefing setorial com: 3-5 pressões/dores dominantes do setor no momento, benchmarks relevantes com fontes, 8-12 perguntas de discovery recomendadas ordenadas por impacto, gatilhos de urgência que podem ser explorados no discurso, frame na…"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Entregar Artefatos Formatados"
+    agent: herald
+    task: entregar-artefatos-formatados.md
+    trigger: "Disparo pelo NEXUS após aprovação do SENTINEL. Se SENTINEL rejeitar, NEXUS re-roteia para correção antes de acionar HERALD."
+    checkpoint:
+      criteria: "Dossie de Conta formatado (PDF/Notion/ClickUp doc), Battlecard formatado (tabela), notificacao com resumo de 5 bullets enviada ao vendedor, tarefa marcada como concluida no ClickUp com link para os artefatos"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Persistir Contexto No Crm"
+    agent: memoria
+    task: persistir-contexto-no-crm.md
+    trigger: "Disparo automático 2 horas após o horário da reunião (via cron/webhook de calendário). Também acionado manualmente pelo vendedor ao registrar resultado da reunião."
+    checkpoint:
+      criteria: "CRM atualizado com: campos de conta enriquecidos, novas atividades registradas, stage do deal atualizado, battlecard incrementado com objeções reais, alerta para o vendedor se detectar mudança de stakeholder ou sinal de risco no deal"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: sentinel
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: nexus
+    checkpoint:
+      criteria: "Entregável consolidado: Pacote de Inteligência Pre-Reunião — composto por dois artefatos verificáveis no ClickUp: (1) Dossiê de Conta (versão executiva 1 página + versão completa): Visão Geral da Empresa, Momento Atual, Map…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Atualização de stage e dados críticos no CRM pelo MEMÓRIA: vendedor confirma resultado da reunião e valida informações antes de persistência permanente no CRM de produção"
+  - level: L3
+    condition: "Qualquer ação de outreach gerada como sugestão pelo dossiê (ex: envio de email de follow-up personalizado): vendedor aprova texto antes do envio, nunca envio automático sem leitura humana"
+  - level: L2
+    condition: "Revisão do dossiê completo pelo vendedor antes da reunião: o artefato é uma ferramenta de preparo, não um script — o vendedor valida o que vai usar e descarta o que não se aplica"
+  - level: L1
+    condition: "Quando SENTINEL emite REJEITADO: NEXUS pausa pipeline e notifica o vendedor sobre o gap de qualidade, permitindo que ele decida se quer prosseguir com versão parcial ou aguardar correção"
+  - level: L1
+    condition: "Identificação de stakeholders de alto risco (ex: prospect e ex-funcionário de empresa cliente com conflito): IRIS sinaliza e vendedor decide como abordar antes de qualquer ação"
+transitions:
+  - from: nexus
+    to: scout
+    condition: "Disparo pelo NEXUS após validação de que não existe dossiê recente em cache. Também acionado manualmente pelo vendedor via comando no ClickUp ou chat."
+  - from: scout
+    to: iris
+    condition: "Disparo pelo NEXUS em paralelo ao SCOUT, após receber lista de participantes da reunião (extraída do convite de calendário via MCP de calendário ou inserida manualmente)."
+  - from: iris
+    to: warfare
+    condition: "Disparo pelo NEXUS apos output parcial do SCOUT (precisa da stack tecnologica detectada). Pode ser reacionado manualmente quando o vendedor informa que um concorrente especifico entrou no deal."
+  - from: warfare
+    to: oracle
+    condition: "Disparo pelo NEXUS em paralelo aos outros workers, baseado apenas nos dados da ficha inicial (setor + cargo). E o worker mais rápido pois opera principalmente sobre base de conhecimento pré-processad…"
+  - from: oracle
+    to: herald
+    condition: "Disparo pelo NEXUS após aprovação do SENTINEL. Se SENTINEL rejeitar, NEXUS re-roteia para correção antes de acionar HERALD."
+  - from: herald
+    to: memoria
+    condition: "Disparo automático 2 horas após o horário da reunião (via cron/webhook de calendário). Também acionado manualmente pelo vendedor ao registrar resultado da reunião."
+  - from: memoria
+    to: sentinel
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: sentinel
+    to: nexus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - iris
+  - oracle

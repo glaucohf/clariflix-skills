@@ -1,0 +1,47 @@
+name: marketing-creative-ugc-factory
+version: 0.1.0
+description: "De zero a 50 criativos testados por semana — sem esperar aprovação de agência, sem fadiga de anúncio paralisando escala."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: cuf
+components:
+  agents:
+    - orion.md
+    - stella.md
+    - vega.md
+    - cruz.md
+    - hoox.md
+    - sigma.md
+    - nexus.md
+    - aegis.md
+    - aegis-2.md
+  tasks:
+    - analisar-dados-e-intentoes.md
+    - criar-conceitos-criativos.md
+    - gerar-copy-performatica.md
+    - coordenar-producao-de-ugc.md
+    - gerar-ativos-sinteticos.md
+    - indexar-criativos.md
+    - avaliar-criativo-brand-voice.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-creative-ugc-factory-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - conteudo-criativo
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M3 · TopSquad de Conteúdo & Criativo (UGC + SEO/GEO)"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

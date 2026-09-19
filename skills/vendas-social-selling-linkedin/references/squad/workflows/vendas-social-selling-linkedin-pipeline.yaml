@@ -1,0 +1,174 @@
+workflow_name: vendas_social_selling_linkedin_pipeline
+description: "Captura sinais de intenção no LinkedIn antes que o concorrente veja a oportunidade."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-social-selling-linkedin
+area: "Vendas"
+topsquad: "V1 · Prospecção & Outbound Multicanal"
+agent_sequence:
+  - orion
+  - scout
+  - sherlock
+  - cypher
+  - argus
+  - pulso
+  - radar
+  - nexus
+  - argus-2
+key_commands:
+  - "*monitorar-sinais-de-intencao"
+  - "*enriquecer-dados-firmograficos"
+  - "*conectar-dor-implicita"
+  - "*verificar-mensagem-antes-do-envio"
+  - "*executar-cadencia-pulso"
+  - "*classificar-intencao"
+  - "*sincronizar-dados-crm"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Time-to-Signal-Response: tempo médio entre detecção do sinal e envio da primeira mensagem (meta: <15 min)"
+  - "Taxa de Aceite de Conexão: % de connection requests aceitas (baseline mercado: 15-20%, meta squad: 40-55%)"
+  - "Taxa de Resposta a DMs: % de DMs que recebem resposta (baseline: 5-8%, meta squad: 15-25%)"
+  - "Lead-to-HOT Rate: % de leads abordados que classificam como HOT (meta: >8%)"
+  - "Meetings Booked via LinkedIn: reunioes agendadas origindas do canal LinkedIn por semana"
+  - "Pipeline Gerado LinkedIn (R$): valor total de oportunidades abertas com origem em sinal LinkedIn nos ultimos 30 dias"
+  - "Custo por Lead Qualificado: custo de API + infra / total de HOTs gerados (meta: <R$50/HOT)"
+  - "Taxa de Aprovação do Critic: % de mensagens aprovadas pelo Argus na primeira iteração (meta: >80%)"
+  - "CRM Data Completeness: % de contatos com LinkedIn URL + cargo + empresa atualizados (meta: >95%)"
+  - "Sinal-to-Meeting Conversion: % de sinais detectados que resultam em reunião agendada (meta: >3%)"
+deliverable:
+  description: "Signal-to-Meeting Dossie: para cada lead abordado, um artefato verificável no ClickUp contendo — (1) Signal Card (tipo de sinal, timestamp, score de urgência, fonte), (2) Lead Dossie completo (Sherlock), (3) Message Package aprovado pelo Argus com score de personalização, (4) Execution Log da cadência com timestamps de cada toque, (5) Classification Card da resposta (se houver), (6) CRM Update Confirmation com link para o deal/contato. Dashboard consolidado no ClickUp com métricas do squad em tempo real e relatório executivo semanal automático."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar Sinais De Intencao"
+    agent: scout
+    task: monitorar-sinais-de-intencao.md
+    trigger: "Cron a cada 30 minutos para verificação de feed LinkedIn; webhook imediato para alertas de mudança de cargo via Apollo; evento de engajamento em post próprio da empresa."
+    checkpoint:
+      criteria: "Signal Events JSON com: lead_id, tipo_sinal, urgência_score (1-10), contexto_sinal (texto do post ou evento), janela_timing_estimada (horas), dados_enriquecidos_lead, flag_HITL se conta tier-1."
+      veto_condition: "Saída sem veredito do critic Argus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Dados Firmográficos"
+    agent: sherlock
+    task: enriquecer-dados-firmograficos.md
+    trigger: "Signal Event recebido do Orquestrador com score >= 5; solicitação manual de enriquecimento de SDR via ClickUp."
+    checkpoint:
+      criteria: "Lead Dossiê JSON: perfil_linkedin_completo, histórico_cargo (3 últimas posições), empresa (tamanho, setor, stack, notícias_recentes), conexões_em_comum, conteúdo_recente_publicado (3 últimos posts), interações_crm_anteriores, talking_point…"
+      veto_condition: "Saída sem veredito do critic Argus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Conectar Dor Implicita"
+    agent: cypher
+    task: conectar-dor-implicita.md
+    trigger: "Lead Dossiê recebido do Orquestrador; re-trigger em caso de reprovação pelo Critic com feedback específico."
+    checkpoint:
+      criteria: "Message Draft Package: connection_request_note (300 chars), linkedin_dm_v1 (abertura + gancho de sinal + CTA), linkedin_dm_followup_d3, linkedin_dm_followup_d7, variante_email (se email disponível), score_personalização (0-100), justificat…"
+      veto_condition: "Saída sem veredito do critic Argus 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-5
+    name: "Verificar Mensagem Antes Do Envio"
+    agent: argus
+    task: verificar-mensagem-antes-do-envio.md
+    trigger: "Message Draft Package recebido; re-validação apos correção do Cypher (max 2 iterações antes de escalar para HITL)."
+    checkpoint:
+      criteria: "Validation Report: verdict (APROVADO / REVISAR / BLOQUEADO), score_personalizacao_validado, score_factualidade (0-100), issues_encontrados (lista com severidade), sugestoes_de_correcao, mensagem_aprovada_final (se APROVADO), motivo_bloquei…"
+      veto_condition: "Saída sem veredito do critic Argus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Executar Cadencia Pulso"
+    agent: pulso
+    task: executar-cadencia-pulso.md
+    trigger: "Mensagem aprovada pelo Argus; cron diário para verificar follow-ups pendentes na fila; webhook de resposta LinkedIn/email; evento de resposta detectado pelo monitor de inbox."
+    checkpoint:
+      criteria: "Execution Log por lead: timestamp_cada_toque, canal_utilizado, status_entrega, resposta_recebida (sim/não), tipo_resposta (positiva/negativa/neutra), próxima_acao_recomendada, atualização_CRM_confirmada, alert_HITL se resposta recebida em…"
+      veto_condition: "Saída sem veredito do critic Argus 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Classificar Intencao"
+    agent: radar
+    task: classificar-intencao.md
+    trigger: "Webhook de nova resposta no inbox LinkedIn ou email; revisão manual solicitada pelo SDR via ClickUp."
+    checkpoint:
+      criteria: "Lead Classification: classificação (HOT/WARM/COLD/UNSUBSCRIBE), confidence_score (0-100), resumo_intenção (2-3 linhas), ação_recomendada, rascunho_resposta_sugerida (para HOT/WARM), urgência (IMEDIATO/HOJE/SEMANA), trigger_agendamento (se…"
+      veto_condition: "Saída sem veredito do critic Argus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Sincronizar Dados Crm"
+    agent: nexus
+    task: sincronizar-dados-crm.md
+    trigger: "Evento de conclusão de qualquer worker (batch a cada 15 min); cron diário para relatório consolidado; trigger semanal para relatório executivo."
+    checkpoint:
+      criteria: "CRM Update Confirmation: contatos_atualizados, deals_criados, tarefas_criadas_no_clickup, métricas_diárias (sinais_detectados, mensagens_enviadas, respostas_recebidas, HOTs_gerados, reuniões_agendadas), alert_de_anomalia (queda brusca de s…"
+      veto_condition: "Saída sem veredito do critic Argus 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: argus-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Signal-to-Meeting Dossie: para cada lead abordado, um artefato verificável no ClickUp contendo — (1) Signal Card (tipo de sinal, timestamp, score de urgência, fonte), (2) Lead Dossie completo (Sherlo…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Mensagens para contas tier-1 (lista de contas estratégicas definida pelo cliente): humano aprova cada toque antes do envio — L3 obrigatório."
+  - level: HITL
+    condition: "Resposta HOT de lead em conta tier-1: notificação imediata ao closer/AE com contexto completo antes de qualquer resposta automatizada."
+  - level: HITL
+    condition: "Mensagem bloqueada pelo Argus após 2 iterações de revisão: escala para SDR humano com o feedback do Critic para reescrever manualmente."
+  - level: HITL
+    condition: "Qualquer menção a preço, desconto ou condição comercial detectada no rascunho do Cypher: bloqueia e encaminha para aprovação humana."
+  - level: HITL
+    condition: "Anomalia detectada pelo Nexus (ex: taxa de resposta cai >30% em 48h, sinais zerados, spike de unsubscribes): alerta para gestor de vendas revisar configuração."
+  - level: HITL
+    condition: "Primeiro envio de cadência para um novo segmento/persona não testado anteriormente: SDR revisa amostra de 5 mensagens antes de liberar automação plena."
+  - level: HITL
+    condition: "Lead responde mencionando nome de concorrente ou fazendo pergunta técnica complexa: desvia para SDR humano com contexto completo da conversa."
+transitions:
+  - from: orion
+    to: scout
+    condition: "Cron a cada 30 minutos para verificação de feed LinkedIn; webhook imediato para alertas de mudança de cargo via Apollo; evento de engajamento em post próprio da empresa."
+  - from: scout
+    to: sherlock
+    condition: "Signal Event recebido do Orquestrador com score >= 5; solicitação manual de enriquecimento de SDR via ClickUp."
+  - from: sherlock
+    to: cypher
+    condition: "Lead Dossiê recebido do Orquestrador; re-trigger em caso de reprovação pelo Critic com feedback específico."
+  - from: cypher
+    to: argus
+    condition: "Message Draft Package recebido; re-validação apos correção do Cypher (max 2 iterações antes de escalar para HITL)."
+  - from: argus
+    to: pulso
+    condition: "Mensagem aprovada pelo Argus; cron diário para verificar follow-ups pendentes na fila; webhook de resposta LinkedIn/email; evento de resposta detectado pelo monitor de inbox."
+  - from: pulso
+    to: radar
+    condition: "Webhook de nova resposta no inbox LinkedIn ou email; revisão manual solicitada pelo SDR via ClickUp."
+  - from: radar
+    to: nexus
+    condition: "Evento de conclusão de qualquer worker (batch a cada 15 min); cron diário para relatório consolidado; trigger semanal para relatório executivo."
+  - from: nexus
+    to: argus-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: argus-2
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

@@ -1,0 +1,45 @@
+name: founder-agentic-analytics
+version: 0.1.0
+description: "O founder faz a pergunta em português e recebe a resposta em 30 segundos — sem analista, sem fila, sem achismo."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: aa
+components:
+  agents:
+    - orquestrador-analitico.md
+    - text-to-sql-worker.md
+    - context-enricher.md
+    - anomaly-alert-detector.md
+    - strategic-query-analyst.md
+    - semantic-layer-guardian.md
+    - decision-logger.md
+    - sql-semantic-verifier.md
+  tasks:
+    - traduzir-pergunta-para-sql.md
+    - enriquecer-resultado-com-contexto.md
+    - detectar-anomalias-estatisticas.md
+    - sintetizar-respostas-analiticas.md
+    - registrar-gap-semantico.md
+    - registrar-decisoes-baseadas-em-dados.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-agentic-analytics-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - performance-kpis-calibracao-de-decisoes
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F2 · TopSquad de Performance, KPIs & Calibração de Decisões"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

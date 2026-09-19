@@ -1,0 +1,59 @@
+pack:
+  name: marketing-abm-signal-orchestrator
+  version: 0.1.0
+  short-title: "ABM Signal Orchestrator"
+  description: "Cada sinal de intent em conta estrategica vira campanha coordenada antes que o concorrente responda."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🎯"
+  slashPrefix: abmSignalOrchestrator
+name: marketing-abm-signal-orchestrator
+version: 0.1.0
+description: "Cada sinal de intent em conta estrategica vira campanha coordenada antes que o concorrente responda."
+entry_agent: nexus
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: marketing
+  topsquad: "M1"
+  prioridade: "avançado"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - nexus
+  - radar
+  - atlas
+  - vox
+  - pixel
+  - hermes
+  - chronos
+  - prism
+  - aegis
+tasks:
+  - monitorar-sinais-de-intent.md
+  - enriquecer-conta-icp.md
+  - gerar-copy-personalizada.md
+  - criar-audiencias-customizadas.md
+  - sequenciar-contato-multicanal.md
+  - orquestrar-canais-de-mensagens.md
+  - consolidar-sinais-engajamento-conta.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - marketing-abm-signal-orchestrator-pipeline.yaml
+checklists:
+  - critic-aegis.md
+integrations:
+  - "HubSpot CRM — fonte de verdade de contas, contatos, deals e histórico de interações; receptor de todos os touches e atualizações de engajamento"
+  - "Clay — waterfall enrichment com 100+ fontes para Account Intelligence Profile; source primária de sinais de intent via Clay Intelligence"
+  - "Apollo.io — prospecting, enriquecimento de contatos, sequenciamento de email frio via Apollo Sequences"
+  - "Instantly — cold email infrastructure com alta deliverabilidade, rotação de caixas de entrada, warmup automático"
+  - "LinkedIn (via API/Phantombuster) — connection requests, messages, monitoramento de atividade de stakeholders"
+  - "Meta Business Manager — campanhas de Account-Based Advertising com custom audiences por conta"
+  - "Google Ads — campanhas RLSA e Customer Match para contas-alvo"
+  - "LinkedIn Campaign Manager — Matched Audiences por empresa e lista de contatos"
+  - "WhatsApp Business API (via Patagon AI ou Leadsales) — canal de outreach para stakeholders qualificados, pós-proibição Meta de chatbots gênericos"
+  - "ClickUp — camada de prova-de-trabalho: cada campanha ABM criada vira task com artefatos verificáveis, checklists e histórico de aprovações HITL"
+  - "Langfuse — observabilidade OTEL de todos os agentes, quality gates (dev 70% / staging 85% / prod 95%), rastreamento de custo por campanha ABM"
+  - "Bombora / G2 / TechTarget — sinais de intent third-party por topico e categoria de produto"
+  - "Clearbit / Crunchbase — funding signals, hiring signals, tech stack changes para enriquecimento do Radar"

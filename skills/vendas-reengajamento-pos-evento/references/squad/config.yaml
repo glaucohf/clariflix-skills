@@ -1,0 +1,58 @@
+pack:
+  name: vendas-reengajamento-pos-evento
+  version: 0.1.0
+  short-title: "Reengajamento Pós-Evento e Webinar"
+  description: "Transforma lista fria de evento em pipeline quente em 48 horas — antes que o concorrente perceba que você estava no mesmo stand."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🔥"
+  slashPrefix: reengajamentoPosEventoEWebinar
+name: vendas-reengajamento-pos-evento
+version: 0.1.0
+description: "Transforma lista fria de evento em pipeline quente em 48 horas — antes que o concorrente perceba que você estava no mesmo stand."
+entry_agent: claude-opus
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V4"
+  prioridade: "avançado"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - claude-opus
+  - recon
+  - sherlock-evento
+  - alta-intencao
+  - engajamento-medio
+  - argos-evento
+  - eco-evento
+  - atlas-evento
+  - vigilia
+tasks:
+  - processar-lista-de-participantes.md
+  - enriquecer-dossie-contato.md
+  - agendar-reuniao-demo.md
+  - enviar-mensagem-adicional.md
+  - conduzir-qualificacao-conversacional.md
+  - gerenciar-leads-baixo-engajamento.md
+  - agendar-reuniao-contextualizada.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-reengajamento-pos-evento-pipeline.yaml
+checklists:
+  - critic-vigilia.md
+integrations:
+  - "CRM: HubSpot (MCP disponível) / Pipedrive / Salesforce / RD Station CRM — fonte de verdade de contatos, dedup, histórico e pipeline de oportunidades"
+  - "Plataformas de webinar: Zoom Webinar (API de participantes + engajamento), Hotmart, Eduzz, StreamYard — fonte de metadados de engajamento pós-evento"
+  - "Plataformas de evento físico: Sympla, Eventbrite, sistemas proprietários de badge scan — fonte de lista de participantes e dados de visita ao estande"
+  - "WhatsApp Business API: Gupshup / AiSensy / Interakt / QuickReply.ai — canal principal de outreach pós-evento no Brasil (Score A e B)"
+  - "Email: Gmail API / Outlook API / SendGrid — cadencias de email para todos os scores, nurture de longo prazo"
+  - "LinkedIn: LinkedIn API / Phantombuster — outreach Score A via DM apos tentativas de WhatsApp/email sem resposta"
+  - "Enriquecimento: Clay + Apollo (275M+ contatos) — dossiê de conta e contato para todos os leads novos"
+  - "Calendário: Google Calendar / Outlook Calendar — agendamento e lembretes do Atlas Evento"
+  - "Observabilidade: Langfuse (OTEL) — quality gates, evals, rastreamento de tasks por agente e por evento"
+  - "Gestão de tarefas: ClickUp — artefatos verificáveis por task, prova de trabalho auditável, dashboard de ROI por evento"
+  - "Notificações internas: Slack / WhatsApp Business — alertas de SQL gerado e HITL para closers e gestão"
+  - "Videoconferência: Google Meet / Zoom / Teams — links de reunião gerados pelo Atlas Evento com pauta personalizada"

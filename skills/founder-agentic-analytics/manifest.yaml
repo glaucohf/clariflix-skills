@@ -1,0 +1,28 @@
+row: gestao
+title: Ágentic Analytics
+title_netflix: ÁGENTIC ANALYTICS
+subtitle: Analisar indicadores do negócio, investigar variações e preparar recomendações rastreáveis para o founder
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-agentic-analytics para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orquestrador Analítico
+  - Text-to-SQL Worker
+  - Context Enricher
+  - Anomaly & Alert Detector
+  - Strategic Query Analyst
+  - Semantic Layer Guardian
+  - Decision Logger
+  - SQL & Semantic Verifier
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

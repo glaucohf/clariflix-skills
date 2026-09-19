@@ -1,0 +1,216 @@
+{
+  "source": "maquina-de-receita/squads-gratuitos/athenaeum-squad",
+  "files": [
+    {
+      "path": "agents/chief-strategist.md",
+      "bytes": 1718,
+      "sha256": "aa53e5a620b61ca9cc5af10160f23aa5d9b126910ee9c301dcfe60c944eab6e2"
+    },
+    {
+      "path": "agents/communication-specialist.md",
+      "bytes": 1817,
+      "sha256": "1831bbe233d7a7de0f99e0e02ef9a23d938d4fbc95bb82797d9d9b2acad70459"
+    },
+    {
+      "path": "agents/creative-ideator.md",
+      "bytes": 1717,
+      "sha256": "53064b5dddc3a524a3cd5c4fbcbb81d94f4f8475f712929bfcc65254c1080cbb"
+    },
+    {
+      "path": "agents/cultural-analyst.md",
+      "bytes": 1740,
+      "sha256": "d5750d5c63cf6a5df52e98a3953956f2f76a46aa2e40e7b0798f0dcd03e4c6c0"
+    },
+    {
+      "path": "agents/emotional-mediator.md",
+      "bytes": 1730,
+      "sha256": "01e59a536e5b39c84fcf92aefe2317e2eed2e767c7f7daddc09753a7defb1633"
+    },
+    {
+      "path": "agents/ethics-consultant.md",
+      "bytes": 1742,
+      "sha256": "c237daf1c4839b41fafe4300837afc3b9f1afcc762c01d8955522e89276ecbf2"
+    },
+    {
+      "path": "agents/intake-analyst.md",
+      "bytes": 1693,
+      "sha256": "e4e28e2ae01fc5328e71f48780a033432db251dd40d2ef9929ef1517bba3326a"
+    },
+    {
+      "path": "agents/invisible-patterns-analyst.md",
+      "bytes": 1810,
+      "sha256": "4325fc79e8861871e499433e6fe5e631f39a30848459c2d62e4ea9e519430689"
+    },
+    {
+      "path": "agents/report-synthesizer.md",
+      "bytes": 1732,
+      "sha256": "26e9f0d764b25c50b1fdbb627cd5e8bba6d2ae1f5c47b546b1f2dc6c50fd356f"
+    },
+    {
+      "path": "agents/systems-analyst.md",
+      "bytes": 1704,
+      "sha256": "5d9c5a5979cf0631af8f23c88f6af09a34f735f41385e9f2c6c54d20325ce7e9"
+    },
+    {
+      "path": "agents/war-room-facilitator.md",
+      "bytes": 1775,
+      "sha256": "3014425fcaae612f2fc2ccc0b396c006c4084e56728f115485fc5cdc99380781"
+    },
+    {
+      "path": "analysis.md",
+      "bytes": 2073,
+      "sha256": "3f6580376fbcb92a12ee0593511184a1017ff3b52987fd5535bea208b8f81567"
+    },
+    {
+      "path": "checklists/pre-publish-checklist.md",
+      "bytes": 128,
+      "sha256": "5c372a6f43d6f417c2a47005e93a7732533bae9d9f95ce0d33c55c0f546fe86a"
+    },
+    {
+      "path": "checklists/squad-generation-quality-gate.md",
+      "bytes": 297,
+      "sha256": "25681d6d25aa65b216686d1bc84067ec0dc81a27e5e20f917cb38ebcd9b44f32"
+    },
+    {
+      "path": "component-registry.md",
+      "bytes": 1264,
+      "sha256": "eb66b598c4f999693d085a311cdf2964d520fe005af025f8c070758e6163893f"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "bytes": 318,
+      "sha256": "0d0bdc8a76906a1d06c581a828fbd59a853656a821760974f03598e78b845532"
+    },
+    {
+      "path": "config/source-tree.md",
+      "bytes": 302,
+      "sha256": "44f542fe101299d473abb5404ad62592c0bb46cce59a70a3a53225ab220606b7"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "bytes": 181,
+      "sha256": "25e315b641419f083c7e5cfafe2830b87c3b0e4288a8aad9cdeca31fbd69e040"
+    },
+    {
+      "path": "README.ar.md",
+      "bytes": 124,
+      "sha256": "e812d0340cefabb58c6eeddb5bfbcff320b7c157c6bda1464a84e629ac2d7016"
+    },
+    {
+      "path": "README.en.md",
+      "bytes": 458,
+      "sha256": "0749f2d16d79b3224cd1e41075798945947ce9dd253ba620cb7c61bc53f1c83c"
+    },
+    {
+      "path": "README.es.md",
+      "bytes": 120,
+      "sha256": "9157373b4758c2617f396db530a518048b86bbe268ddfaf0f80b085eaa90ce2f"
+    },
+    {
+      "path": "README.hi.md",
+      "bytes": 191,
+      "sha256": "224b478e7bc53ef67978eca0fb3ed7a4d23f9cae65f137647ce2d53d100544fd"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2916,
+      "sha256": "b758ba554d0d55dfc488ecd4a2d76254b0d23c6f18ddc1cb689a7b7823b2f480"
+    },
+    {
+      "path": "README.zh.md",
+      "bytes": 94,
+      "sha256": "26a9653d1396497aa2b1e2e4561d4258275e09409d0c68929209cfca0ea6f7e6"
+    },
+    {
+      "path": "squad.yaml",
+      "bytes": 1586,
+      "sha256": "9d9fd70476ff769700a70e667525e7ab846b77da65e22bd8dbe8ecb77ee33890"
+    },
+    {
+      "path": "tasks/analyzeSystems.md",
+      "bytes": 728,
+      "sha256": "83668c7e771afb4c6396dc945bf63e5b70b6206879390a4291f590711bdb8848"
+    },
+    {
+      "path": "tasks/assessCulturalInfluences.md",
+      "bytes": 753,
+      "sha256": "0224c5fe5ac99f921c9b59b9bef6c1b6f03fde8f76519146d9608b56dd9d4403"
+    },
+    {
+      "path": "tasks/assessEmotionalFactors.md",
+      "bytes": 748,
+      "sha256": "3446383ba470753377c6a0b573627e8c0f7c8f03f9cefa18a2cb29418d8d0ce3"
+    },
+    {
+      "path": "tasks/assessEthics.md",
+      "bytes": 742,
+      "sha256": "5a687651f304080be135d0df640fdcd35ba040f0f9b807530d8f8ac3b026515c"
+    },
+    {
+      "path": "tasks/compileFinalReport.md",
+      "bytes": 728,
+      "sha256": "72340bc3e6f69e1a69e26728d1ef1a749bb97c3d6d0fc9882e73594ca745dd02"
+    },
+    {
+      "path": "tasks/craftCommunication.md",
+      "bytes": 747,
+      "sha256": "54f36cbc8a82120db803527189204ffba892315c83e305d31cbcc36614002644"
+    },
+    {
+      "path": "tasks/designSolution.md",
+      "bytes": 741,
+      "sha256": "9457c36a89f5635e0087c1259d368559466838d2ff416c866eaac71fb690b565"
+    },
+    {
+      "path": "tasks/developScenarios.md",
+      "bytes": 749,
+      "sha256": "d0a8f9e52a72510fff8e3f31225d532e40be1af00e8093b1d030809276a7f5ba"
+    },
+    {
+      "path": "tasks/discoverInvisibleConnections.md",
+      "bytes": 764,
+      "sha256": "ffb86a1e7ebd7ad989e8d246b5e0a1018eff1975ac5ef05e84b07b940ef62d81"
+    },
+    {
+      "path": "tasks/facilitateWarRoom.md",
+      "bytes": 731,
+      "sha256": "d4c9f251289d25eb0d0cc1b29e38366395a52a9c694732dfc5f19de5ee5fffd6"
+    },
+    {
+      "path": "tasks/generateCreativeInsights.md",
+      "bytes": 742,
+      "sha256": "07daf497f96550cbda7aa5649da186c36bb3bace5a4856d732a8953981d566db"
+    },
+    {
+      "path": "tasks/intakeChallenge.md",
+      "bytes": 718,
+      "sha256": "4292131dbd8fa20baffe3c2914e000aea7b5bc68db7c1364af0ce8498625620c"
+    },
+    {
+      "path": "templates/agent.template.md",
+      "bytes": 138,
+      "sha256": "7a804d2c8c85b3c36dfe35c38b6fbd15989b81ef850541be83b6dbca7e636c67"
+    },
+    {
+      "path": "templates/squad-yaml.template.md",
+      "bytes": 85,
+      "sha256": "8cec966e0a03b66e31584179df362f5555b6bb4cd6efce5ae6c367247857db61"
+    },
+    {
+      "path": "templates/task.template.md",
+      "bytes": 104,
+      "sha256": "38573bb7e015d6be3e9acf7d20e15c29aae96a5ab6e555ac140a863963e69257"
+    },
+    {
+      "path": "templates/workflow.template.md",
+      "bytes": 128,
+      "sha256": "07934f45ad2c83fe15843103e19196d64bc6efa48a59359ed70707bf9a117196"
+    },
+    {
+      "path": "workflows/athenaeum-workflow.yaml",
+      "bytes": 998,
+      "sha256": "b20571662c53e4732a82b62f142239809e86bc5ad21533a30ec662c29cc55372"
+    }
+  ],
+  "provenance_readme_sha256": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83"
+}

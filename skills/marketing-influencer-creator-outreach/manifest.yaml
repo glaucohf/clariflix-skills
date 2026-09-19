@@ -1,0 +1,28 @@
+row: marketing
+title: Influencer & Creator Outreach Agentico
+title_netflix: INFLUENCER & CREATOR OUTREACH AGENTICO
+subtitle: Pesquisar criadores e influenciadores, avaliar aderência e preparar propostas e mensagens de parceria para revisão
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use marketing-influencer-creator-outreach para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Curator
+  - Radar Scout
+  - Persona Fit Analyst
+  - Contrato Maestro
+  - Brief Architect
+  - Content Guardian
+  - ROAS Tracker
+  - Parceiro Certo
+  generos:
+  - Marketing
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

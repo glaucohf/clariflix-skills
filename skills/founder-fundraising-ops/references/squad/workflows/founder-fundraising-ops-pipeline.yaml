@@ -1,0 +1,178 @@
+workflow_name: founder_fundraising_ops_pipeline
+description: "Do mapeamento de investidores ao data room blindado: o founder chega no roadshow com a narrativa testada contra as objeções mais duras — sem gastar meses para preparar."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-fundraising-ops
+area: "Founder Office"
+topsquad: "F5 · Investor Relations, Fundraising & M&A"
+agent_sequence:
+  - orion
+  - vega
+  - atlas
+  - pallas
+  - brutus
+  - hermes
+  - mnemo
+  - gate
+  - hades
+key_commands:
+  - "*mapear-investidores-relevantes"
+  - "*auditar-documentos-faltantes"
+  - "*construir-narrativa-investimento"
+  - "*simular-objecoes-vcs"
+  - "*gerenciar-funil-investimento"
+  - "*organizar-conhecimento-estrategico"
+  - "*controlar-envio-externo"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Data Room Readiness Score (Atlas) — baseline <50%, meta: 95%+ em 30 dias de operação"
+  - "Número de objeções mapeadas com contra-argumento preparado (Brutus) — baseline 0–2 ad-hoc, meta: 25+ estruturadas antes do roadshow"
+  - "Tempo de preparo do roadshow (founder-hours) — baseline 8–12 semanas, meta: 2–3 semanas com squad operacional"
+  - "Score de fit médio dos investidores no pipeline ativo (Vega) — meta: média >=7.5/10 nos top 20 abordados"
+  - "Taxa de conversão first contact → first meeting — baseline estimado 5–10%, meta: 15–25% com outreach personalizado"
+  - "Taxa de conversão first meeting → second meeting — baseline estimado 20–30%, meta: 40–55% com prep de objeções"
+  - "% de claims no deck e data room com fonte rastreável (Hades score) — meta: 95%+ antes do primeiro meeting"
+  - "Tempo de geração de Investor Intelligence Brief por investidor (Vega) — meta: <30 minutos end-to-end"
+  - "% de objeções reais em meetings previstas pelo Objection Playbook do Brutus (validado pelo founder pós-meeting) — meta: >=65% das objeções recebidas já estavam no playbook"
+  - "Audit trail completude (Gate) — meta: 100% das comunicações externas logadas com destinatário, versão, timestamp e aprovador"
+  - "Task success rate no Langfuse — meta: dev 70% / staging 85% / prod 95%"
+  - "NPS do founder com o squad após o primeiro roadshow concluído — meta: >=9/10"
+deliverable:
+  description: "Fundraising Readiness Package — artefato verificável e auditável entregue antes do roadshow, composto de: (1) Investor Universe Map ranqueado com 80–150 investidores e score de fit, warm intro paths e Intelligence Briefs individuais para os top 20; (2) Data Room completo e auditado com 95%+ dos documentos requeridos, cada dado rastreável à fonte e versão controlada; (3) Pitch Narrative Framework com one-liner, elevator pitch, estrutura de deck por slide e variantes por perfil de investidor; (4) Objection Playbook com 25–40 objeções categorizadas, contra-argumentos com dado de suporte e Top 5 'buracos da tese' com plano de mitigação; (5) Roadshow Tracker no ClickUp com pipeline de investidores, sequência de outreach personalizada pronta para aprovação e dashboard de funil; (6) Knowledge Graph inicial da operação de captação (Mnemo) populado com histórico disponível. Após roadshow iniciado: atualização contínua do Objection Playbook com objeções reais recebidas, briefing pré-meeting 48h antes de cada reunião e relatório semanal de funil com projeção de fechamento."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Mapear Investidores Relevantes"
+    agent: vega
+    task: mapear-investidores-relevantes.md
+    trigger: "Início do processo de captação (founder define parâmetros da rodada). Atualização semanal automática dos top 20 investidores (sinais de atividade). Founder adiciona novo investidor para pesquisa. Reunião com investidor agendada (brief deta…"
+    checkpoint:
+      criteria: "Investor Universe Map: spreadsheet/database com 80–150 investidores ranqueados por score de fit (0–10), incluindo nome, fundo, ticket médio, estágios, tese resumida, portfólio relevante, contato e warm intro path. Investor Intelligence Bri…"
+      veto_condition: "Saída sem veredito do critic Hades; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Auditar Documentos Faltantes"
+    agent: atlas
+    task: auditar-documentos-faltantes.md
+    trigger: "Início do processo de captação (auditoria completa inicial). Reunião de due diligence agendada com investidor específico (gera checklist customizado para o perfil daquele investidor). Atualização mensal automática do Readiness Score. Found…"
+    checkpoint:
+      criteria: "Data Room Gap Report: lista completa de documentos requeridos com status (pronto / desatualizado / faltante / rascunho disponível), criticidade (blocker para due diligence vs nice-to-have) e owner designado. Rascunhos de documentos faltant…"
+      veto_condition: "Saída sem veredito do critic Hades; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Construir Narrativa Investimento"
+    agent: pallas
+    task: construir-narrativa-investimento.md
+    trigger: "Início do processo de captação (narrative framework inicial). Founder recebe feedback de reunião com investidor (narrativa atualizada com os aprendizados). Vega identifica novo investidor tier-1 na lista com tese diferente dos anteriores (…"
+    checkpoint:
+      criteria: "Pitch Narrative Framework: (1) One-liner de empresa (1 frase, testado contra padrões de clareza); (2) Elevator pitch (90 segundos, escrito e roteirizado); (3) Estrutura narrativa completa do deck (slide por slide com headline, conteúdo sug…"
+      veto_condition: "Saída sem veredito do critic Hades; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Simular Objeções VCs"
+    agent: brutus
+    task: simular-objecoes-vcs.md
+    trigger: "Pitch Narrative v1 disponível (rodada inicial de stress test). Founder recebe objeção real em meeting (objeção adicionada ao playbook com análise). Vega identifica novo investidor alvo com histórico de perguntas específicas (objeções custo…"
+    checkpoint:
+      criteria: "Objection Playbook completo: 25–40 objeções organizadas por categoria (mercado, tração, time, competição, modelo de negócio, governança/legal, valuation, uso de recursos), cada uma com (1) pergunta exata no tom do VC, (2) dado que o VC usa…"
+      veto_condition: "Saída sem veredito do critic Hades; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Gerenciar Funil Investimento"
+    agent: hermes
+    task: gerenciar-funil-investimento.md
+    trigger: "Investor Universe Map finalizado e aprovado pelo founder (inicia sequência de outreach). Founder aprova mensagem no HITL Gate (executa envio e registra no tracker). Investidor responde (Hermes atualiza status no tracker e prepara próximo p…"
+    checkpoint:
+      criteria: "Mensagens de outreach personalizadas por investidor (cold email ou intro request) — rascunhadas para aprovação do founder antes de qualquer envio. Sequência de follow-up por investidor (timing e mensagem adaptados ao estágio no funil). Roa…"
+      veto_condition: "Saída sem veredito do critic Hades; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Organizar Conhecimento Estratégico"
+    agent: mnemo
+    task: organizar-conhecimento-estrategico.md
+    trigger: "Transcrição de meeting com investidor disponível (ingestão imediata). Founder registra feedback pós-meeting (estruturado e adicionado ao grafo). 48h antes de reunião com investidor (briefing pré-meeting gerado automaticamente). Consulta ad…"
+    checkpoint:
+      criteria: "Knowledge Graph consultável de toda a operação de captação (relações entre investidores, perguntas, respostas, decisões e artefatos). Respostas a consultas em linguagem natural do founder sobre o histórico de captação. Briefing pré-meeting…"
+      veto_condition: "Saída sem veredito do critic Hades; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Controlar Envio Externo"
+    agent: gate
+    task: controlar-envio-externo.md
+    trigger: "Qualquer ação de envio externo solicitada por qualquer agente do squad (Hermes, Atlas, Pallas). Compartilhamento de link de data room. Agendamento de reunião com confirmação de detalhes. Acionado automaticamente pelo Hermes quando mensagem…"
+    checkpoint:
+      criteria: "Tela de confirmação para o founder: (1) destinatário e histórico resumido, (2) mensagem exata que será enviada, (3) nível de acesso de data room sendo concedido (se aplicável), (4) status de NDA (assinado / não assinado / em processo), (5)…"
+      veto_condition: "Saída sem veredito do critic Hades; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: hades
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Fundraising Readiness Package — artefato verificável e auditável entregue antes do roadshow, composto de: (1) Investor Universe Map ranqueado com 80–150 investidores e score de fit, warm intro paths…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do founder para QUALQUER mensagem de outreach antes de envio ao investidor — Gate Agent é L3 por design, sem exceção nem bypass possível"
+  - level: HITL
+    condition: "Confirmação do founder antes de compartilhar qualquer link de data room ou documento financeiro (L3 — checklist duplo: investidor correto, NDA status, versão do documento, nível de acesso)"
+  - level: HITL
+    condition: "Revisão do Objection Playbook pelo founder antes do roadshow — founder confirma que está confortável com cada contra-argumento e decide quais vulnerabilidades abordar proativamente vs deixar sem abordar"
+  - level: HITL
+    condition: "Aprovação do Investor Universe Map ranqueado antes de iniciar qualquer outreach — founder confirma critérios de fit, remove investidores indesejados e ajusta priorização"
+  - level: HITL
+    condition: "Validação do Data Room Gap Report pelo founder antes de Atlas começar a gerar rascunhos de documentos faltantes — founder decide quais gaps fechar internamente vs delegar à IA para rascunho"
+  - level: HITL
+    condition: "Aprovação da Pitch Narrative Framework pelo founder antes de qualquer variante ser usada em meeting — founder valida o posicionamento, o use of funds e o valuation target antes de comunicar ao mercado"
+  - level: HITL
+    condition: "Configuração inicial do Knowledge Graph do Mnemo — founder autoriza explicitamente quais fontes de dados históricos (emails, transcrições) podem ser ingeridas e quem tem acesso"
+  - level: HITL
+    condition: "Qualquer mudança nos termos da rodada refletida nos artefatos (ticket, valuation, estrutura) requer aprovação explícita antes de Hermes atualizar mensagens de outreach ou Atlas atualizar documentos do data room"
+transitions:
+  - from: orion
+    to: vega
+    condition: "Início do processo de captação (founder define parâmetros da rodada). Atualização semanal automática dos top 20 investidores (sinais de atividade). Founder adiciona novo investidor para pesquisa. Reu…"
+  - from: vega
+    to: atlas
+    condition: "Início do processo de captação (auditoria completa inicial). Reunião de due diligence agendada com investidor específico (gera checklist customizado para o perfil daquele investidor). Atualização men…"
+  - from: atlas
+    to: pallas
+    condition: "Início do processo de captação (narrative framework inicial). Founder recebe feedback de reunião com investidor (narrativa atualizada com os aprendizados). Vega identifica novo investidor tier-1 na l…"
+  - from: pallas
+    to: brutus
+    condition: "Pitch Narrative v1 disponível (rodada inicial de stress test). Founder recebe objeção real em meeting (objeção adicionada ao playbook com análise). Vega identifica novo investidor alvo com histórico…"
+  - from: brutus
+    to: hermes
+    condition: "Investor Universe Map finalizado e aprovado pelo founder (inicia sequência de outreach). Founder aprova mensagem no HITL Gate (executa envio e registra no tracker). Investidor responde (Hermes atuali…"
+  - from: hermes
+    to: mnemo
+    condition: "Transcrição de meeting com investidor disponível (ingestão imediata). Founder registra feedback pós-meeting (estruturado e adicionado ao grafo). 48h antes de reunião com investidor (briefing pré-meet…"
+  - from: mnemo
+    to: gate
+    condition: "Qualquer ação de envio externo solicitada por qualquer agente do squad (Hermes, Atlas, Pallas). Compartilhamento de link de data room. Agendamento de reunião com confirmação de detalhes. Acionado aut…"
+  - from: gate
+    to: hades
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: hades
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

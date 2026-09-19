@@ -1,0 +1,29 @@
+row: gestao
+title: Clône Estratégico do Founder
+title_netflix: CLÔNE ESTRATÉGICO DO FOUNDER
+subtitle: Estruturar um perfil de critérios e estilo decisório do founder para simular decisões e revisar recomendações
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-clone-digital-twin para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - ORION
+  - ECHO
+  - ATLAS
+  - CHRONICLE
+  - STRATEGOS
+  - HERALD
+  - VIGIL
+  - GATE
+  - SENTINEL
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

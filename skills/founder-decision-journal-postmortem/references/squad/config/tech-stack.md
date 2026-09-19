@@ -1,0 +1,15 @@
+# Tech stack (integrações da especificação)
+
+- Slack (MCP): canal principal de captura conversacional pelo ARCHIVIST, entrega de Red-Team Reports pelo SKEPTIC, alertas do RADAR, notificacoes de postmortem pendente — inbox central do VERDICT para o squad
+- WhatsApp Business API: canal de alta urgencia para alertas L3 do SENTINEL-DJ (violacao de imutabilidade), sinais CRITICOS do RADAR, e aprovacoes do CALIBRADOR para atualizacoes de corpus — founder responde APROVAR/REJEITAR diretamente
+- Notion (MCP): repositorio primario do Decision Journal — database estruturado com todas as entries, postmortems vinculados, Calibration Corpus e Calibration Briefs mensais. Schema rigido com campos imutaveis (pre-resultado) e campos de postmortem separados
+- ClickUp (MCP): prova de trabalho verificavel — cada decisao e uma task com status (Capturada / Red-Team Feito / Monitorando / Postmortem Pendente / Calibracao Aplicada / Concluida), subtasks por agente, historico de outputs e timestamps de cada etapa do ciclo
+- Gmail / Google Workspace (MCP): monitoramento de emails estrategicos pelo RADAR (sinais de resultado de decisoes abertas), ingestao de documentos e comunicacoes para o ARCHIVIST em decisoes identificadas via email
+- HubSpot / CRM (MCP): fonte de metricas de resultado para decisoes relacionadas a vendas, pipeline, contratacoes de vendas e expansao de contas — RADAR conecta resultados de CRM a premissas abertas do journal
+- EXA MCP (via Docker): busca web em tempo real para o SCOUT (base rates, benchmarks) e o RADAR (sinais externos de premissas de mercado) — toda afirmacao vem com citacao de fonte
+- Apify (via Docker): scraping de relatorios setoriais, benchmarks de VCs, estudos de caso e publicacoes de mercado para o SCOUT — fontes estruturadas para base rates de premissas
+- Langfuse (OTEL): observabilidade completa — tracing de cada ciclo de decisao (captura → red-team → monitoramento → postmortem → calibracao), score de qualidade do MIRROR por etapa, custo de tokens por tipo de decisao, latencia de cada worker, quality gates por ambiente (dev 70% / staging 85% / prod 95% task success)
+- LangGraph / Claude Agent SDK: orquestracao stateful do pipeline de decisao — controle de estado por decision ID ao longo de meses (uma decisao pode estar em monitoramento por 180 dias), paralelismo do SKEPTIC + SCOUT para red-team, retry logic para falhas de captura
+- Supabase (pgvector): base vetorial para busca semantica de decisoes analogas — quando o ORACLE analisa um postmortem, busca os 5 casos mais similares do historico para analise de padroes; tambem para o SKEPTIC identificar decisoes passadas com premissas similares e seus outcomes
+
+Nível de autonomia por agente: L0/L1 = worker (determinístico/autônomo), L2 = orquestra/decide, L3 = exige aprovação humana. CRITIC verifica toda saída antes de entrega externa.

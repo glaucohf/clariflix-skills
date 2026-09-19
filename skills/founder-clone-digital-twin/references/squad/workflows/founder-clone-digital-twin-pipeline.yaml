@@ -1,0 +1,173 @@
+workflow_name: founder_clone_digital_twin_pipeline
+description: "Seu conhecimento tácito responde 24/7 — sem precisar de vócê."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-clone-digital-twin
+area: "Founder Office"
+topsquad: "F1 · Chief of Staff & Clone do Founder"
+agent_sequence:
+  - orion
+  - echo
+  - atlas
+  - chronicle
+  - strategos
+  - herald
+  - vigil
+  - gate
+  - sentinel
+key_commands:
+  - "*responder-perguntas"
+  - "*conduzir-pesquisa-multi-fonte"
+  - "*ingerir-fontes-de-conhecimento"
+  - "*simular-cenarios-futuros"
+  - "*gerar-drafts-de-board-packs"
+  - "*monitorar-sinais-competitivos"
+  - "*controlar-acoes-l3"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Taxa de autonomia do clone: % de demandas estratégicas respondidas pelo ECHO sem intervenção do founder — baseline típico 10-20%, meta 60-80% em 90 dias de operação"
+  - "Tempo médio de resposta a demandas estratégicas: baseline 24-72h (aguardando founder), meta < 2h para 70% das demandas em Clone Mode e Research Mode"
+  - "Score de fidelidade cognitiva (SENTINEL): % de respostas classificadas como FIEL pelo SENTINEL na primeira passagem — meta > 85% em staging / > 92% em produção"
+  - "Taxa de aprovação em L3 (GATE): % de ações L3 aprovadas vs rejeitadas — meta de rejeição < 5% (indica que o squad está gerando propostas bem calibradas, não forçando aprovação)"
+  - "Cobertura do corpus: score de completude do Knowledge Graph por categoria (operacional / estratégica / cultural / técnica) medido pelo CHRONICLE — meta > 80% de cobertura em categorias de alto volume"
+  - "Redução de interrupções ao founder: número de interrupções diretas (Slack DM, WhatsApp urgente) por semana — meta redução de 60% em 60 dias vs baseline"
+  - "Qualidade do VIGIL: % de alertas competitivos classificados como RELEVANTE ou CRITICO que o founder confirmou como acionaveis — meta > 70% de precision (evitar fadiga de alertas)"
+  - "Latência de geração de comunicação (HERALD): tempo do disparo ao draft aprovado pelo SENTINEL — meta < 15 minutos para board updates padrão"
+  - "Loop de aprendizado: número de atualizações válidas do Knowledge Graph por semana via feedback do founder — indicador de saúde do sistema de melhoria contínua"
+deliverable:
+  description: "Pacote do Digital Twin Operacional — conjunto de artefatos verificáveis no ClickUp e Notion: (1) Knowledge Graph do Founder v{N} — grafo estruturado e auditável com frameworks, princípios, decisões e vocabulário do founder, com score de completude por categoria; (2) Log de Demandas Atendidas — histórico completo de cada pergunta recebida, modo de resposta ativado, output gerado, veredicto do SENTINEL e decisão de HITL quando aplicável; (3) Relatório Semanal de Inteligência (VIGIL) — movimentos competitivos, oportunidades e alertas da semana com fontes; (4) Relatório Mensal do Clone — métricas de autonomia, score de fidelidade, gaps identificados e plano de melhoria do corpus para o próximo mês; (5) Drafts de Comunicação (HERALD) — board packs, memos e comunicados com histórico de versões e aprovações; (6) Dashboard Langfuse — observabilidade em tempo real de custo, latência, quality gates e taxa de aprovação do SENTINEL por tipo de demanda."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Responder Perguntas"
+    agent: echo
+    task: responder-perguntas.md
+    trigger: "Disparo pelo ORION quando confiança do corpus para a query e >= 70%. Também acionado diretamente para drafts de comunicação interna, onboarding de novos colaboradores, respostas a perguntas culturais e estratégicas recorrentes."
+    checkpoint:
+      criteria: "Resposta estruturada no tôm e lógica do founder com: (1) Resposta direta (ação ou diretriz recomendada), (2) Raciocínio subjacente (qual framework ou princípio guiou a resposta), (3) Precedentes análogos do corpus (decisões passadas simila…"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Conduzir Pesquisa Multi-fonte"
+    agent: atlas
+    task: conduzir-pesquisa-multi-fonte.md
+    trigger: "Disparo pelo ORION quando a demanda requer dados externos (Research Mode). Também acionado proativamente para o monitoramento semanal de concorrentes (COMPETITIVE INTEL) e para pre-briefings de reuniões com stakeholders externos."
+    checkpoint:
+      criteria: "Relatório de pesquisa com: resumo executivo (3-5 bullets), findings detalhados por ângulo de pesquisa, todas as afirmações com fonte + URL + data, grau de confiabilidade por claim (VERIFICADO / INFERIDO / HIPÓTESE), gaps de informação iden…"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Ingerir Fontes De Conhecimento"
+    agent: chronicle
+    task: ingerir-fontes-de-conhecimento.md
+    trigger: "Ingestão contínua: disparado por webhook sempre que nova fonte é adicionada ao repositório (Notion, Google Drive, email marcado com label específico). Loop de aprendizado: disparado após cada ciclo de feedback do founder. Relatório semanal…"
+    checkpoint:
+      criteria: "Knowledge Graph atualizado (novas entidades, relações, exemplos canônicos adicionados), base vetorial sincronizada, relatório de atualização (o que foi adicionado, o que foi corrigido, gaps identificados), alertas de gaps críticos para o O…"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Simular Cenarios Futuros"
+    agent: strategos
+    task: simular-cenarios-futuros.md
+    trigger: "Acionado pelo ORION para decisões classificadas como ALTA COMPLEXIDADE + ALTA IRREVERSIBILIDADE. Também disparado manualmente pelo founder ou por membro de confiança do time para análise estratégica proativa. Frequência típica: 1-3 vezes p…"
+    checkpoint:
+      criteria: "Análise de cenários com: (1) Árvore de decisão com 3-5 caminhos principais e probabilidades estimadas, (2) Para cada caminho: upside, downside, riscos não óbvios e triggers de mudança de curso, (3) Simulação de reação de concorrentes chave…"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Gerar Drafts De Board Packs"
+    agent: herald
+    task: gerar-drafts-de-board-packs.md
+    trigger: "Acionado pelo ORION para comunicações externas ou críticas. Cron job semanal para Board Update Draft toda sexta às 9h. Também acionado manualmente pelo founder ou assistente executivo para qualquer comunicação de alto impacto."
+    checkpoint:
+      criteria: "Draft de comunicação no tom do founder com: (1) Versão completa formatada, (2) Versão TL;DR de 3-5 bullets, (3) Indicação de cada afirmação factual com fonte/dado que a embasa, (4) Sugestões de customização por perfil de audiência, (5) Che…"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Monitorar Sinais Competitivos"
+    agent: vigil
+    task: monitorar-sinais-competitivos.md
+    trigger: "Monitoramento contínuo via cron job a cada 6 horas. Relatório semanal consolidado toda segunda às 7h (antes da semana começar). Alertas CRÍTICOS disparados imediatamente ao detectar sinais de threshold alto. Também acionado manualmente par…"
+    checkpoint:
+      criteria: "Relatório Semanal de Inteligência Competitiva com: (1) Movimentos de concorrentes na semana (classificados por impacto: CRÍTICO / RELEVANTE / INFORMATIVO), (2) Sinais de mercado (tendências, novos entrantes, funding), (3) Oportunidades ide…"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Controlar Ações L3"
+    agent: gate
+    task: controlar-acoes-l3.md
+    trigger: "Interceptação automática de qualquer ação L3 antes da execução — não pode ser bypassado. Disparado pelo ORION toda vez que classifica uma ação como IRREVERSÍVEL, FINANCEIRA, ENVIO EXTERNO CRÍTICO ou NOVO TERRITÓRIO ESTRATÉGICO. Também moni…"
+    checkpoint:
+      criteria: "Briefing de aprovação com: (1) Descrição clara da ação em linguagem não técnica, (2) Contexto — por que está sendo proposta, (3) Impacto se APROVADO vs se REJEITADO, (4) Risco de reversibilidade (escala 1-5), (5) Opções: texto exato do que…"
+      veto_condition: "Saída sem veredito do critic SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: sentinel
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Pacote do Digital Twin Operacional — conjunto de artefatos verificáveis no ClickUp e Notion: (1) Knowledge Graph do Founder v{N} — grafo estruturado e auditável com frameworks, princípios, decisões e…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "HERALD: todo draft de comunicação externa (board memo, email para investidor, comunicado público) exige aprovação explícita do founder antes de qualquer envio – o squad nunca envia comunicação externa autonomamente"
+  - level: L3
+    condition: "GATE intercepta: qualquer decisão ou ação classificada como irreversível, com impacto financeiro direto, novo posicionamento estratégico ou mudança de política interna – founder aprova com opções claras antes da execução"
+  - level: L3
+    condition: "Atualizacao do Knowledge Graph com novos frameworks ou correcoes de principios fundamentais: founder valida que a mudanca representa genuinamente sua evolucao de pensamento antes de ser persistida no corpus canônico"
+  - level: L2
+    condition: "ECHO em modo MÉDIA CONFIANÇA (50-69%): resposta e entregue com flag explícita de incerteza e solicitação de validação ao founder – o usuário sabe que é uma aproximação e pode escalonar"
+  - level: L2
+    condition: "STRATEGOS em analises de cenarios para decisoes de alta irreversibilidade: founder revisa a arvore de decisao e as probabilidades estimadas antes que qualquer caminho seja comunicado como recomendacao oficial do squad"
+  - level: L1
+    condition: "VIGIL ao detectar sinal competitivo CRÍTICO fora do ciclo semanal: notificação imediata ao founder com proposta de contra-jogada — founder decide se ativa resposta ou aguarda mais informações"
+  - level: L1
+    condition: "CHRONICLE ao identificar gap crítico no corpus que impacta a confiabilidade do ECHO em categoria de alto volume: agenda sessão de captura de conhecimento com o founder antes de continuar respondendo naquela categoria"
+transitions:
+  - from: orion
+    to: echo
+    condition: "Disparo pelo ORION quando confiança do corpus para a query e >= 70%. Também acionado diretamente para drafts de comunicação interna, onboarding de novos colaboradores, respostas a perguntas culturais…"
+  - from: echo
+    to: atlas
+    condition: "Disparo pelo ORION quando a demanda requer dados externos (Research Mode). Também acionado proativamente para o monitoramento semanal de concorrentes (COMPETITIVE INTEL) e para pre-briefings de reuni…"
+  - from: atlas
+    to: chronicle
+    condition: "Ingestão contínua: disparado por webhook sempre que nova fonte é adicionada ao repositório (Notion, Google Drive, email marcado com label específico). Loop de aprendizado: disparado após cada ciclo d…"
+  - from: chronicle
+    to: strategos
+    condition: "Acionado pelo ORION para decisões classificadas como ALTA COMPLEXIDADE + ALTA IRREVERSIBILIDADE. Também disparado manualmente pelo founder ou por membro de confiança do time para análise estratégica…"
+  - from: strategos
+    to: herald
+    condition: "Acionado pelo ORION para comunicações externas ou críticas. Cron job semanal para Board Update Draft toda sexta às 9h. Também acionado manualmente pelo founder ou assistente executivo para qualquer c…"
+  - from: herald
+    to: vigil
+    condition: "Monitoramento contínuo via cron job a cada 6 horas. Relatório semanal consolidado toda segunda às 7h (antes da semana começar). Alertas CRÍTICOS disparados imediatamente ao detectar sinais de thresho…"
+  - from: vigil
+    to: gate
+    condition: "Interceptação automática de qualquer ação L3 antes da execução — não pode ser bypassado. Disparado pelo ORION toda vez que classifica uma ação como IRREVERSÍVEL, FINANCEIRA, ENVIO EXTERNO CRÍTICO ou…"
+  - from: gate
+    to: sentinel
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: sentinel
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

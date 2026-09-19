@@ -1,0 +1,174 @@
+workflow_name: marketing_competitive_adspy_pipeline
+description: "Enquanto seus concorrentes testam ângulos, você já sabe quais funcionaram — inteligência competitiva continua que converte swipe files em vantagem de aquisição antes do mercado reagir."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-competitive-adspy
+area: "Marketing"
+topsquad: "M4 · Inteligência de Mercado, ICP & Concorrência"
+agent_sequence:
+  - orion
+  - falcon
+  - cipher
+  - prism
+  - echo
+  - volta
+  - nexus
+  - sigma
+  - sigma-2
+key_commands:
+  - "*monitorar-anuncios-concorrentes"
+  - "*classificar-angulos-narrativos"
+  - "*monitorar-mudancas-concorrenciais"
+  - "*curar-swipe-file"
+  - "*sintetizar-tendencias-mercado"
+  - "*gerar-briefings-acionaveis"
+  - "*verificar-inteligencia-competitiva"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Tempo médio de detecção de mudança competitiva: meta abaixo de 48h entre o evento (novo ad, mudança de preço, novo ângulo) e o alerta chegar ao CMO — baseline atual tipicamente 2-4 semanas"
+  - "Cobertura de concorrentes monitorados: % de concorrentes Tier 1 com varredura diária ativa e pelo menos 1 alerta gerado nos últimos 7 dias (meta: 100% de cobertura Tier 1, 80% Tier 2)"
+  - "Ângulos swipe reutilizados por mês: número de itens do swipe file que foram usados como base de briefing de criativo — meta de 10+ itens reutilizados por mês indicando que a biblioteca é acionável"
+  - "Taxa de false positive de Sigma: % de alertas bloqueados por Sigma por evidência fraca ou hipótese sólida — meta abaixo de 20% (indica que Cipher e Falcon estão calibrados para sinal real, não ruído)"
+  - "Intelligence Quality Score médio: média dos scores de Sigma nos itens aprovados — meta acima de 7,5/10 (garante que velocidade não sacrifica qualidade da inteligência entregue)"
+  - "CTR delta de ads usando ângulos do swipe file: comparação de CTR médio de ads briefados com base em swipe file versus ads criados sem referência competitiva — meta de +20% de CTR em ads com swipe file como base"
+  - "Pricing Change Lead Time: quanto antes a empresa soube da mudança de preço do concorrente versus quando o cliente ou SDR reportou — meta de detectar 100% das mudanças de Tier 1 antes de chegar via canal humano"
+  - "Competitive Brief to Action Rate: % de Competitive Briefs entregues por Nexus que resultaram em ação concreta do time (novo criativo, ajuste de campanha, mudança de landing page) em 7 dias — meta acima de 60%"
+deliverable:
+  description: "Competitive Intelligence Weekly Pack entregue toda segunda-feira no ClickUp e Slack contendo: (1) Competitive Activity Dashboard — Competitive Activity Score por concorrente com variação versus semana anterior e highlight dos 3 movimentos mais relevantes da semana; (2) New Winning Ads — ads de concorrentes Tier 1 com 30+ dias de veiculação identificados por Cipher com análise completa de ângulo e hipótese de performance; (3) Swipe File Weekly Update — novos itens adicionados por Echo com contexto de reutilização e sugestão de adaptação para a empresa; (4) Positioning Diff Report — mudanças detectadas por Prism em landing pages e preços de Tier 1 com destaque do que mudou literalmente; (5) Category Trend Alert (quando aplicável) — síntese de Volta sobre convergências de ângulo, formato ou oferta detectadas com hipótese estratégica; (6) Competitive Briefs da semana — movimentos que geraram briefings de reação com status de execução pelo time; (7) Intelligence Quality Metrics — Intelligence Quality Score médio da semana, false positive rate, cobertura de concorrentes monitorados. Artefato verificável: task no ClickUp fechada por Orion com todos os documentos anexados, rastreável por data e responsável."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar Anúncios Concorrentes"
+    agent: falcon
+    task: monitorar-anuncios-concorrentes.md
+    trigger: "Job de varredura diária automática (cron 6h para Tier 1, 24h para Tier 2, 72h para Tier 3); webhook de alerta de burst (5+ ads novos de mesmo concorrente em 48h); Orion solicita varredura emergencial para concorrente específico; ciclo sema…"
+    checkpoint:
+      criteria: "Feed diário de novos ads detectados (JSON estruturado com: concorrente, plataforma, data de início estimada, formato, thumbnail/screenshot, copy headline, CTA, URL de destino), Competitive Activity Score semanal por concorrente com variaçã…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Classificar Angulos Narrativos"
+    agent: cipher
+    task: classificar-angulos-narrativos.md
+    trigger: "Feed diário de Falcon com novos ads para análise; Winning Ad Flag de Falcon (ad com 30+ dias — análise prioritária em 4h); Orion solicita análise profunda de concorrente específico antes de lançamento de campanha própria; ciclo semanal de…"
+    checkpoint:
+      criteria: "Ad Intelligence Card por criativo analisado (ângulo narrativo, estrutura hook/body/CTA, ICP inferido, estimativa de budget relativo, score de relevância para a empresa de 0-10), Winning Ad Report para qualquer ad com 30+ dias de veiculação…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Monitorar Mudanças Concorrenciais"
+    agent: prism
+    task: monitorar-mudancas-concorrenciais.md
+    trigger: "Job de varredura semanal de todas as páginas monitoradas com geração de diff; alerta imediato quando mudança de preço é detectada (varredura diária de páginas de preço de Tier 1); Orion solicita snapshot imediato de concorrente antes de la…"
+    checkpoint:
+      criteria: "Positioning Diff semanal por concorrente (o que mudou literalmente — texto anterior vs. atual com highlight), Pricing Change Alert em menos de 24h quando qualquer mudanca de preco e detectada em Tier 1, Offer Evolution Timeline por concorr…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Curar Swipe File"
+    agent: echo
+    task: curar-swipe-file.md
+    trigger: "Cipher entrega Ad Intelligence Card aprovado para curadoria; gate de Sigma aprovado para novo item; ciclo semanal de atualização do swipe file; time de criativo solicita swipe file por categoria específica antes de briefing; Orion identifi…"
+    checkpoint:
+      criteria: "Swipe File semanal no ClickUp com novos itens categorizados (formato padrão: screenshot/copy original + ângulo classificado + elementos reutilizáveis extraídos + contexto de uso + restrições de adaptação), Swipe File Digest mensal com top…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Sintetizar Tendencias Mercado"
+    agent: volta
+    task: sintetizar-tendencias-mercado.md
+    trigger: "Ciclo quinzenal automático de síntese de tendências; Category Trend Alert quando Cipher ou Prism detecta convergência de 3+ concorrentes; lançamento de nova campanha própria sendo planejada (input de contexto competitivo para briefing); ev…"
+    checkpoint:
+      criteria: "Market Intelligence Report quinzenal (tendências de ângulo, formato e oferta detectadas com evidências de múltiplos concorrentes e hipótese estratégica), Category Trend Alert quando convergência de 3+ concorrentes é detectada em menos de 3…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Gerar Briefings Acionáveis"
+    agent: nexus
+    task: gerar-briefings-acionaveis.md
+    trigger: "Qualquer alerta crítico de Falcon (burst de Tier 1), Prism (mudança de preço) ou Volta (Category Trend Alert); Orion eleva prioridade de movimento competitivo para reação imediata; lançamento identificado de produto ou oferta nova de conco…"
+    checkpoint:
+      criteria: "Competitive Brief formatado (o que aconteceu + hipótese + janela de reação + ação sugerida), task no ClickUp criada para o responsável com prioridade e prazo definidos, notificação no Slack no canal #competitive-intel com resumo executivo…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificar Inteligência Competitiva"
+    agent: sigma
+    task: verificar-inteligencia-competitiva.md
+    trigger: "SEMPRE antes de qualquer entrega de intelligence ao time de marketing (gate obrigatorio — nenhum briefing, swipe file item, trend alert ou winning ad report chega ao time sem aprovacao de Sigma), antes de qualquer reacao tatica urgente pro…"
+    checkpoint:
+      criteria: "Veredicto APPROVED/NEEDS_REVISION/BLOCKED com justificativa especifica para cada item revisado, lista de ajustes necessarios se NEEDS_REVISION com sugestoes concretas (ex: 'hipotese de lancamento e fraca — o ad novo pode ser teste A/B dado…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: sigma-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Competitive Intelligence Weekly Pack entregue toda segunda-feira no ClickUp e Slack contendo: (1) Competitive Activity Dashboard — Competitive Activity Score por concorrente com variação versus seman…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do Competitive Map no Discovery (Semana 2) — CMO valida lista de concorrentes Tier 1/2/3, plataformas a monitorar por concorrente e critérios de alerta antes de qualquer monitoramento ir ao ar (L3, gate obrigatório — define o escopo de toda a operação)"
+  - level: HITL
+    condition: "Validação dos primeiros 10 Winning Ads identificados por Cipher no Deep Dive — Head de Marketing confirma se as classificações de ângulo fazem sentido para o contexto do setor antes do squad entrar em produção completa (L3, calibração crítica de taxonomia)"
+  - level: HITL
+    condition: "Aprovação de Pricing Change Alert de concorrente Tier 1 — quando Prism detecta mudança de preço, o CMO ou Head de Produto deve revisar e decidir sobre reação antes de qualquer briefing ser disparado ao time (L3, irreversível — reação de preço e decisão estratégica)"
+  - level: HITL
+    condition: "Aprovação de Category Trend Alert — quando Volta detecta convergência de 3+ concorrentes, o CMO deve validar a hipótese estratégica antes de escalar como diretriz de campanha (L3, decisão estratégica de posicionamento)"
+  - level: HITL
+    condition: "Revisão de Competitive Brief de reação urgente — qualquer briefing com prazo de reação de 4h (mudança de Tier 1) deve ser revisado por Head de Marketing antes de ser entregue ao time de criativo (L3, velocidade não elimina o gate humano em movimentos críticos)"
+  - level: HITL
+    condition: "Aprovação de itens do swipe file antes de publicação no ClickUp — revisão quinzenal pelo Head de Marketing dos itens aprovados por Sigma para garantir alinhamento estratégico com prioridades de campanha do período (L1, ciclo recorrente de curadoria editorial)"
+  - level: HITL
+    condition: "Revisão mensal do Competitive Intelligence Baseline — CMO e Head de Vendas revisam com Orion quais concorrentes devem subir ou descer de tier, se novos concorrentes devem ser adicionados, e se os critérios de alerta precisam de ajuste (L1, governança estratégica do escopo do squad)"
+  - level: HITL
+    condition: "Quando Sigma retorna BLOCKED em gate de compliance (risco de plágio ou evidência muito fraca) — revisão humana obrigatória antes de reprocessar o item ou descartar (L3, risco legal e reputacional)"
+transitions:
+  - from: orion
+    to: falcon
+    condition: "Job de varredura diária automática (cron 6h para Tier 1, 24h para Tier 2, 72h para Tier 3); webhook de alerta de burst (5+ ads novos de mesmo concorrente em 48h); Orion solicita varredura emergencial…"
+  - from: falcon
+    to: cipher
+    condition: "Feed diário de Falcon com novos ads para análise; Winning Ad Flag de Falcon (ad com 30+ dias — análise prioritária em 4h); Orion solicita análise profunda de concorrente específico antes de lançament…"
+  - from: cipher
+    to: prism
+    condition: "Job de varredura semanal de todas as páginas monitoradas com geração de diff; alerta imediato quando mudança de preço é detectada (varredura diária de páginas de preço de Tier 1); Orion solicita snap…"
+  - from: prism
+    to: echo
+    condition: "Cipher entrega Ad Intelligence Card aprovado para curadoria; gate de Sigma aprovado para novo item; ciclo semanal de atualização do swipe file; time de criativo solicita swipe file por categoria espe…"
+  - from: echo
+    to: volta
+    condition: "Ciclo quinzenal automático de síntese de tendências; Category Trend Alert quando Cipher ou Prism detecta convergência de 3+ concorrentes; lançamento de nova campanha própria sendo planejada (input de…"
+  - from: volta
+    to: nexus
+    condition: "Qualquer alerta crítico de Falcon (burst de Tier 1), Prism (mudança de preço) ou Volta (Category Trend Alert); Orion eleva prioridade de movimento competitivo para reação imediata; lançamento identif…"
+  - from: nexus
+    to: sigma
+    condition: "SEMPRE antes de qualquer entrega de intelligence ao time de marketing (gate obrigatorio — nenhum briefing, swipe file item, trend alert ou winning ad report chega ao time sem aprovacao de Sigma), ant…"
+  - from: sigma
+    to: sigma-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: sigma-2
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

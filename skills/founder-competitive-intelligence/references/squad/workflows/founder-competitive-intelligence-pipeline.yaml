@@ -1,0 +1,161 @@
+workflow_name: founder_competitive_intelligence_pipeline
+description: "Enquanto seus concorrentes executam o próximo movimento, você já tem a contra-jogada pronta — monitoramento 24/7 com alertas preditivos que transformam inteligência em vantagem antes que a janela de reação feche."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-competitive-intelligence
+area: "Founder Office"
+topsquad: "F3 · Inteligência Competitiva & de Mercado"
+agent_sequence:
+  - atlas
+  - hawk
+  - lynx
+  - ares
+  - hermes
+  - memo
+  - veritas
+  - veritas-2
+key_commands:
+  - "*coletar-sinais-competitivos"
+  - "*classificar-movimentos-estrategicos"
+  - "*simular-cenarios-estrategicos"
+  - "*enviar-alertas-formatados"
+  - "*sintetizar-inteligencia-competitiva"
+  - "*verificar-qualidade-da-evidencia"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: atlas
+success_indicators:
+  - "Tempo médio de detecção de movimento competitivo: meta abaixo de 48h entre o evento (mudança de preço publicada, job posting relevante, rodada anunciada) e o Competitive Flash Card chegar ao founder — baseline típico sem o squad e 2-6 semanas"
+  - "Counter-Play Execution Rate: porcentagem de Competitive Flash Alerts CRÍTICOS e ALTOS que resultaram em ação concreta do founder nos 7 dias subsequentes — meta acima de 60% (indica que os briefings são acionáveis e não apenas informativos)"
+  - "Intelligence Credibility Score medio de Veritas: media dos scores dos Counter-Play Briefs aprovados no periodo — meta acima de 7.5/10 com breakdown por dimensao (evidencia, hipotese, alternativas, completude, rastreabilidade)"
+  - "False Positive Rate de alertas: porcentagem de Competitive Flash Alerts que o founder classificou como 'não relevante ou não acionável' no feedback pós-revisão — meta abaixo de 15% (indica calibração sólida de Lynx e Veritas)"
+  - "Cobertura de concorrentes Tier 1: porcentagem de concorrentes Tier 1 com varredura diária ativa e pelo menos 1 sinal processado por Lynx nos últimos 7 dias — meta de 100% (nenhum ponto cego em Tier 1)"
+  - "Decisões estratégicas do founder com suporte de intel competitiva: número de decisões de alto impacto (preço, produto, parceria) no trimestre que tiveram Decision Intelligence Brief de Memo como input — meta de 100% das decisões do quadrante estratégico"
+  - "Board Pack Intelligence Coverage: porcentagem de afirmacoes competitivas em Board Intelligence Packs com footnote rastreavel aprovado por Veritas — meta de 100% (zero afirmacoes sem evidencia em documentos externos)"
+  - "Sequence Pattern Detection Rate: quantos movimentos competitivos maiores (funding, lançamento, ofensiva comercial) foram detectados antes do anúncio oficial via Sequence Pattern Alert de Lynx — meta de detectar 70% dos movimentos maiores de Tier 1 em fase preparatória (antes do anúncio público)"
+  - "Latência de Competitive Flash: tempo entre Veritas aprovar Counter-Play Brief e Hermes entregar o Flash Card ao founder — meta abaixo de 30 minutos (SLA de entrega pos-aprovação)"
+deliverable:
+  description: "Competitive Intelligence Weekly Pack entregue toda sexta-feira no ClickUp (task fechada por Atlas com todos os artefatos anexados) e no canal Slack #competitive-intel, contendo: (1) Competitive Activity Dashboard — Competitive Activity Index por concorrente Tier 1 e Tier 2 com variacao versus semana anterior e top 3 movimentos da semana com scoring de Lynx; (2) Counter-Play Briefs da semana — todos os FLASH alerts gerados com hipotese estrategica de Ares, contra-jogadas recomendadas e status de execucao pelo founder; (3) Movement Profiles Update — o que mudou nos perfis estrategicos de cada Tier 1 (preco atual, headcount delta, foco de produto aparente, saude financeira aparente); (4) Sequence Pattern Alerts (quando aplicavel) — padroes de multiplos sinais de mesmo concorrente sugerindo movimento maior em preparacao; (5) Intelligence Quality Metrics da semana — Intelligence Credibility Score medio, false positive rate, cobertura de Tier 1, latencia media de deteccao, custo por alerta (via Langfuse). ADICIONAL MENSAL: Competitive Landscape Report com Wargame dos proximos 90 dias e Strategic Opportunity Map. ADICIONAL SOB DEMANDA: Board Intelligence Pack e Decision Intelligence Brief. Artefato verificavel: task no ClickUp com numero sequencial, timestamp de entrega, assinatura digital de Atlas e link para todos os documentos — rastreavel por semana, por concorrente e por categoria de movimento."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: atlas
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Coletar Sinais Competitivos"
+    agent: hawk
+    task: coletar-sinais-competitivos.md
+    trigger: "Cron diário automático (páginas de preço e job postings Tier 1 a cada 6h, LinkedIn e blog a cada 12h, Crunchbase e Product Hunt a cada 24h, Tier 2 a cada 48h, Tier 3 semanal); Burst Alert quando 3+ sinais de Tier 1 em 48h; Atlas solicita v…"
+    checkpoint:
+      criteria: "Feed diario de sinais novos detectados (JSON estruturado por concorrente: fonte, timestamp de deteccao, tipo de mudanca, dados brutos — texto anterior vs. atual para diffs de preco/pagina, job posting completo extraido, post ou review novo…"
+      veto_condition: "Saída sem veredito do critic Veritas 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Classificar Movimentos Estrategicos"
+    agent: lynx
+    task: classificar-movimentos-estrategicos.md
+    trigger: "Cada batch de sinais novos de Hawk (processamento contínuo com latência máxima de 1h entre coleta e classificação para sinais Tier 1); Sequence Pattern Alert quando 3+ sinais relacionados de mesmo concorrente em 30 dias; Atlas solicita aná…"
+    checkpoint:
+      criteria: "Sinais classificados e pontuados (categoria, subtipo, score de relevância 0-10, urgência FLASH/WEEKLY/MONITOR, contexto estratégico de 2-3 frases explicando por que este sinal importa), Sequence Pattern Alert quando detecta padrão de múlti…"
+      veto_condition: "Saída sem veredito do critic Veritas 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Simular Cenários Estratégicos"
+    agent: ares
+    task: simular-cenarios-estrategicos.md
+    trigger: "Lynx eleva sinal para FLASH em Tier 1 (Reactive Mode imediato, Counter-Play Brief em menos de 3h); Atlas escala ameaça para análise profunda; ciclo mensal de Wargame Mode antes do Competitive Landscape Report; founder solicita análise estr…"
+    checkpoint:
+      criteria: "Counter-Play Brief para cada sinal FLASH ou ameaça elevada: hipótese de intenção estratégica do concorrente (1 parágrafo com nível de confiança), sequência de movimentos previstos nos próximos 30-90 dias, 2-4 contra-jogadas ranqueadas por…"
+      veto_condition: "Saída sem veredito do critic Veritas 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Enviar Alertas Formatados"
+    agent: hermes
+    task: enviar-alertas-formatados.md
+    trigger: "Veritas aprova Counter-Play Brief de sinal FLASH (entrega imediata, latência máxima de 30min pós-aprovação); Atlas finaliza consolidação do Weekly Briefing (toda sexta-feira até 16h no horário configurado); Atlas finaliza Competitive Lands…"
+    checkpoint:
+      criteria: "Competitive Flash Card entregue via Slack e email (estrutura padrão: O QUE + QUEM + POR QUE IMPORTA + JANELA DE AÇÃO + PRÓXIMOS PASSOS), task criada no ClickUp com prioridade e prazo definidos e link para Counter-Play Brief completo, Compe…"
+      veto_condition: "Saída sem veredito do critic Veritas 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-6
+    name: "Sintetizar Inteligência Competitiva"
+    agent: memo
+    task: sintetizar-inteligencia-competitiva.md
+    trigger: "Founder agenda board meeting ou investor update (Atlas notifica Memo com 2 semanas de antecedência para Board Intelligence Pack); founder inicia processo de decisão estratégica de alto impacto (solicita Decision Intelligence Brief via Atla…"
+    checkpoint:
+      criteria: "Board Intelligence Pack (documento 3-5 paginas, source-grounded: Competitive Landscape Summary + Top 3 Movimentos do Periodo + Counter-Plays Executados + Posicionamento Atual vs. Concorrencia + Recomendacoes para Discussao), Decision Intel…"
+      veto_condition: "Saída sem veredito do critic Veritas 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Verificar Qualidade Da Evidencia"
+    agent: veritas
+    task: verificar-qualidade-da-evidencia.md
+    trigger: "SEMPRE antes de qualquer Competitive Flash FLASH ser entregue ao founder (gate obrigatório, latência máxima de 1h para não perder janela de reação); sempre antes de qualquer documento de Memo ser compartilhado com o founder para aprovação…"
+    checkpoint:
+      criteria: "Veredicto APPROVED/NEEDS_REVISION/BLOCKED com justificativa estruturada para cada item revisado (minimo 3 razoes para BLOCKED, 1-2 para NEEDS_REVISION), lista especifica de ajustes necessarios se NEEDS_REVISION (ex: 'hipotese de lancamento…"
+      veto_condition: "Saída sem veredito do critic Veritas 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: veritas-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: atlas
+    checkpoint:
+      criteria: "Entregável consolidado: Competitive Intelligence Weekly Pack entregue toda sexta-feira no ClickUp (task fechada por Atlas com todos os artefatos anexados) e no canal Slack #competitive-intel, contendo: (1) Competitive Activ…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do Competitive Map no Discovery (Semana 2) — founder valida e assina a lista de concorrentes por tier, fontes de monitoramento por concorrente, critérios de alerta por categoria de movimento e janela de reação por tipo antes de qualquer monitoramento ir ao ar (L3, gate obrigatório — define o escopo de toda a operação e a sensibilidade dos alertas)"
+  - level: HITL
+    condition: "Calibração do Corpus do Founder para Ares (Semana 3-4) — founder revisa e valida os frameworks de decisão estratégica, o posicionamento atual e as restrições reais do negócio capturados por Atlas para alimentar o Wargame Engine — sem calibração, as contra-jogadas de Ares são genéricas (L3, input crítico que define qualidade das recomendações)"
+  - level: HITL
+    condition: "Validação do Competitive Intelligence Baseline (fim do Deep Dive) — founder revisa o primeiro snapshot completo de todos os Tier 1, confirma se as classificações de movimento fazem sentido para o contexto real do mercado e calibra thresholds de scoring de Lynx (L3, calibração crítica antes de produção)"
+  - level: HITL
+    condition: "Aprovação de Competitive Flash antes de Counter-Play urgente (score >= 9 em Tier 1) — quando Hermes recebe sinal CRÍTICO aprovado por Veritás, o founder deve confirmar ciência e decisão antes de qualquer ação irreversível ser executada (L3, irreversível por natureza — resposta competitiva errada pode ser pior que nenhuma resposta)"
+  - level: HITL
+    condition: "Revisão mensal do Competitive Landscape Report — founder revisa com Atlas o cenário competitivo do mês, valida os cenários de wargame de Ares para os próximos 90 dias, aprova os playbooks de resposta como diretriz estratégica e ajusta os critérios de alerta do Competitive Map se necessário (L3, governança estratégica mensal obrigatória)"
+  - level: HITL
+    condition: "Aprovação pré-distribuição de Board Intelligence Pack e Decision Intelligence Brief de Memo — qualquer documento de Memo deve ser revisado e aprovado pelo founder antes de chegar à board ou investidores (L3, irreversível — documento compartilhado externamente não tem recall)"
+  - level: HITL
+    condition: "Calibracao trimestral de scoring de Lynx — founder revisa junto com Atlas e Veritas os falsos positivos e falsos negativos dos ultimos 90 dias, ajusta os pesos de scoring por categoria e tier, e valida se os Movement Profiles de concorrentes Tier 1 estao acurados (L1, ciclo de melhoria continua da qualidade do squad)"
+  - level: HITL
+    condition: "Quando Veritas retorna BLOCKED em gate de rastreabilidade ou hipótese inflatada — revisão obrigatória do founder antes de reprocessamento ou descarte do item, com log da razão do bloqueio para calibração futura (L3, risco de decisão estratégica baseada em inteligência de baixa qualidade)"
+transitions:
+  - from: atlas
+    to: hawk
+    condition: "Cron diário automático (páginas de preço e job postings Tier 1 a cada 6h, LinkedIn e blog a cada 12h, Crunchbase e Product Hunt a cada 24h, Tier 2 a cada 48h, Tier 3 semanal); Burst Alert quando 3+ s…"
+  - from: hawk
+    to: lynx
+    condition: "Cada batch de sinais novos de Hawk (processamento contínuo com latência máxima de 1h entre coleta e classificação para sinais Tier 1); Sequence Pattern Alert quando 3+ sinais relacionados de mesmo co…"
+  - from: lynx
+    to: ares
+    condition: "Lynx eleva sinal para FLASH em Tier 1 (Reactive Mode imediato, Counter-Play Brief em menos de 3h); Atlas escala ameaça para análise profunda; ciclo mensal de Wargame Mode antes do Competitive Landsca…"
+  - from: ares
+    to: hermes
+    condition: "Veritas aprova Counter-Play Brief de sinal FLASH (entrega imediata, latência máxima de 30min pós-aprovação); Atlas finaliza consolidação do Weekly Briefing (toda sexta-feira até 16h no horário config…"
+  - from: hermes
+    to: memo
+    condition: "Founder agenda board meeting ou investor update (Atlas notifica Memo com 2 semanas de antecedência para Board Intelligence Pack); founder inicia processo de decisão estratégica de alto impacto (solic…"
+  - from: memo
+    to: veritas
+    condition: "SEMPRE antes de qualquer Competitive Flash FLASH ser entregue ao founder (gate obrigatório, latência máxima de 1h para não perder janela de reação); sempre antes de qualquer documento de Memo ser com…"
+  - from: veritas
+    to: veritas-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: veritas-2
+    to: atlas
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

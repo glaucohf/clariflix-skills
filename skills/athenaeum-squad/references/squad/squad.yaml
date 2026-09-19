@@ -1,0 +1,67 @@
+name: athenaeum-squad
+version: 1.0.0
+description: "AIOS squad for strategic intelligence, sensemaking, scenarios and organizational transformation"
+author: "Marcio Bisognin"
+license: MIT
+slashPrefix: athenaeum
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - chief-strategist.md
+    - intake-analyst.md
+    - war-room-facilitator.md
+    - systems-analyst.md
+    - emotional-mediator.md
+    - cultural-analyst.md
+    - ethics-consultant.md
+    - creative-ideator.md
+    - invisible-patterns-analyst.md
+    - communication-specialist.md
+    - report-synthesizer.md
+  tasks:
+    - intakeChallenge.md
+    - facilitateWarRoom.md
+    - analyzeSystems.md
+    - assessEmotionalFactors.md
+    - assessCulturalInfluences.md
+    - assessEthics.md
+    - generateCreativeInsights.md
+    - developScenarios.md
+    - discoverInvisibleConnections.md
+    - designSolution.md
+    - craftCommunication.md
+    - compileFinalReport.md
+  workflows:
+    - athenaeum-workflow.yaml
+  checklists:
+    - squad-generation-quality-gate.md
+    - pre-publish-checklist.md
+  templates:
+    - agent.template.md
+    - task.template.md
+    - workflow.template.md
+    - squad-yaml.template.md
+  tools: []
+  scripts: []
+
+config:
+  extends: none
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+dependencies:
+  node: []
+  squads: []
+
+tags:
+  - aios
+  - squad
+  - strategic-intelligence
+  - systems-thinking
+  - scenario-planning
+  - organizational-transformation

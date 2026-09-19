@@ -1,0 +1,28 @@
+row: marketing
+title: Living ICP Profiler
+title_netflix: LIVING ICP PROFILER
+subtitle: Construir e revisar o perfil de cliente ideal com dados de contas, evidências e critérios de segmentação
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use marketing-living-icp-profiler para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Maestro
+  - Atlas
+  - Iris
+  - Zara
+  - Nox
+  - Rex
+  - Vera
+  - Vera 2
+  generos:
+  - Marketing
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

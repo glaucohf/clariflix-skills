@@ -1,0 +1,31 @@
+row: gestao
+title: Deep Research Estratégico
+title_netflix: DEEP RESEARCH ESTRATÉGICO
+subtitle: Conduzir pesquisa estratégica em etapas, confrontar fontes e produzir uma síntese de evidências para decisões do
+  founder
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 10 papéis, 10 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-deep-research-orchestrator para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orion
+  - Nexus
+  - Blade
+  - Lex
+  - Thesis
+  - Prism
+  - Parallax
+  - Vera
+  - Sage
+  - Vera 2
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

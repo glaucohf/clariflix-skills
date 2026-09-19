@@ -1,0 +1,45 @@
+name: vendas-lead-scoring-preditivo
+version: 0.1.0
+description: "Pare de adivinhar: o pipeline se reordena sozinho, colocando os deals mais quentes na frente do closer certo — antes que o concorrente ligue primeiro."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: lsp
+components:
+  agents:
+    - orion.md
+    - radar.md
+    - sherlock.md
+    - vega.md
+    - atlas.md
+    - nexus.md
+    - oracle.md
+    - argus.md
+  tasks:
+    - capturar-sinais-de-intencao.md
+    - enriquecer-dados-firmograficos.md
+    - calcular-score-numerico.md
+    - priorizar-fila-de-contato.md
+    - cadenciar-leads-multi-canal.md
+    - detectar-risco-deal.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-lead-scoring-preditivo-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - scoring-roteamento-agendamento
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V3 · TopSquad de Scoring, Roteamento & Agendamento"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

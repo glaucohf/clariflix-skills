@@ -1,0 +1,178 @@
+workflow_name: ops_cs_renovacao_expansao_qbr_pipeline
+description: "Nenhuma renovacao chega de surpresa e nenhuma oportunidade de expansao passa batida — o CSM entra na conversa com o brief pronto, os sinais na mao e o timing certo."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-renovacao-expansao-qbr
+area: "Operações & CS"
+topsquad: "O3 · Customer Success: Onboarding, Retenção & Expansão"
+agent_sequence:
+  - maestro
+  - radar
+  - compass
+  - scout
+  - briefer
+  - slides
+  - pulse
+  - memory
+  - verity
+key_commands:
+  - "*detectar-sinais-de-expansao"
+  - "*calcular-renewal-readiness-score"
+  - "*analisar-propensao-a-expansao"
+  - "*gerar-qbr-brief-e-renewal-package"
+  - "*gerar-deck-de-apresentacao"
+  - "*criar-pacote-de-renovacao"
+  - "*arquivar-resultados-qbr"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro
+success_indicators:
+  - "NRR (Net Revenue Retention): variacao percentual do NRR mes a mes na base monitorada vs baseline dos 12 meses anteriores (meta: de 100-105% para 115-125% em 12 meses)"
+  - "% de Renovacoes com Brief Pronto: percentual de renovacoes que chegam com QBR Brief e Renewal Package gerados pelo squad pelo menos 30 dias antes da data (meta: >= 95% da base monitorada)"
+  - "Taxa de Renovacao sem Atrito: % de renovacoes concluidas dentro do prazo esperado sem negociacao reativa de desconto ou extensao de emergencia (meta: > 80% das renovacoes monitoradas)"
+  - "Expansion Pipeline Identificado: ARR de oportunidades de expansao qualificadas pelo Scout no mes vs ARR de expansoes efetivamente realizadas (meta: taxa de conversao >= 25% das oportunidades qualificadas)"
+  - "Tempo de Preparacao de QBR pelo CSM: horas gastas pelo CSM preparando QBR sem apoio do squad vs com o squad (meta: < 90 minutos de revisao e personalizacao, reducao de 70% vs baseline de 6-8h)"
+  - "Score de Avaliacao do Brief pelo CSM: media das avaliacoes de qualidade que CSMs dao ao brief e deck gerados (escala 1-5 coletada no ClickUp) (meta: media >= 4.2)"
+  - "Critic Approval Rate: % de briefs aprovados pelo Verity na primeira iteracao sem devolucao ao Briefer (meta: >= 80%)"
+  - "Lead Time de Deteccao de Expansao: media de dias entre o sinal de expansao detectado pelo Radar e a conversa de expansao iniciada pelo CSM (meta: <= 14 dias apos deteccao do sinal)"
+  - "MRR Incremental de Expansao Atribuivel: soma do MRR de expansoes onde o brief do Scout foi utilizado como base da conversa (campo de atribuicao na task ClickUp), medido mensalmente"
+  - "Cobertura de Contas por QBR: % de contas com ARR acima do threshold minimo que tiveram pelo menos 1 QBR nos ultimos 90 dias com brief gerado pelo squad (meta: 100% de contas Enterprise, >= 80% de contas Mid)"
+deliverable:
+  description: "Por conta em janela de renovacao: (1) QBR Brief completo em markdown (max 600 palavras) com Resumo de Valor do Trimestre, Metricas de Adocao com comparativo, Marcos Entregues, Status de Comprometimentos Anteriores, Pontos de Tensao baseados em sentimento e Agenda Proposta de QBR — armazenado no Supabase e na task ClickUp como prova de trabalho auditavel; (2) Deck de QBR gerado automaticamente via API (Google Slides ou PowerPoint) com os dados do brief, salvo no Google Drive na pasta do CSM, link direto na task ClickUp; (3) Renewal Package com Renewal Readiness Score interpretado, Top-5 Evidencias de ROI em linguagem do decisor, e Proposta de Expansao qualificada (se aplicavel) com sinais que a embasam; (4) Pacote de tarefas no ClickUp: task principal de renovacao/QBR com todas as subtasks, prazos calculados e checklists de preparacao — prova de trabalho completa do squad rastreavel por conta, CSM e data. Por semana: relatorio de cobertura de renovacoes (% de renovacoes nos proximos 30 dias com pacote pronto) e pipeline de expansao identificado (numero de oportunidades e ARR total). Por mes: relatorio de NRR impact com MRR protegido em renovacoes e MRR incremental de expansoes atribuiveis ao squad."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Detectar Sinais De Expansão"
+    agent: radar
+    task: detectar-sinais-de-expansao.md
+    trigger: "Cron job 05h30 diario para batch completo; webhook de renovacao criada/alterada no CRM; webhook de evento de produto acima de threshold (usuarios ativos, feature usage); flag de renovacao em < 30 dias sem brief gerado (verificacao horaria)"
+    checkpoint:
+      criteria: "JSON estruturado por conta com: (1) status de renovacao (dias_para_renovacao, mrr_em_risco, brief_ja_gerado: sim/nao, urgencia: CRITICA/ALTA/MEDIA/BAIXA); (2) sinais de expansao detectados com valor concreto por sinal (ex: 'usuarios_ativos…"
+      veto_condition: "Saída sem veredito do critic Verity; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Calcular Renewal Readiness Score"
+    agent: compass
+    task: calcular-renewal-readiness-score.md
+    trigger: "Acionado pelo Maestro para toda conta que o Radar colocar na fila diaria; acionado em modo urgente quando Radar detecta renovacao em < 30 dias sem score calculado nos ultimos 7 dias"
+    checkpoint:
+      criteria: "Renewal Readiness Score (0-100) com breakdown das 5 dimensoes, Renewal Risk Index (CRITICO/ALTO/MEDIO/BAIXO), tendencia de score (melhora/piora/estavel vs ultimo calculo), e lista priorizada de 'dimensoes mais frageis' para o Briefer focar…"
+      veto_condition: "Saída sem veredito do critic Verity; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Analisar Propensão a Expansão"
+    agent: scout
+    task: analisar-propensao-a-expansao.md
+    trigger: "Acionado pelo Maestro em paralelo ao Compass para toda conta com sinais de expansao detectados pelo Radar (score_expansao > 0); acionado sob demanda quando CSM solicita analise de expansao para conta especifica via comando ClickUp"
+    checkpoint:
+      criteria: "Expansion Signal Report por conta: (1) oportunidade principal qualificada (tipo: upsell/cross-sell/seat expansion, produto/modulo alvo, MRR incremental estimado); (2) evidencias do uso atual que suportam a oportunidade com valores concreto…"
+      veto_condition: "Saída sem veredito do critic Verity; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Gerar Qbr Brief E Renewal Package"
+    agent: briefer
+    task: gerar-qbr-brief-e-renewal-package.md
+    trigger: "Acionado pelo Maestro para toda conta com Renewal Readiness Score calculado e renovacao em janela (< 90 dias) ou com Expansion Signal Report com oportunidade qualificada de alto valor; acionado sob demanda por CSM via ClickUp para preparac…"
+    checkpoint:
+      criteria: "QBR Brief em markdown estruturado (max 600 palavras) com secoes: Resumo Executivo de Valor, Metricas de Adocao, Marcos Entregues, Status de Compromissos Anteriores, Pontos de Tensao, Agenda Proposta. Renewal Package em markdown com: Renewa…"
+      veto_condition: "Saída sem veredito do critic Verity; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Gerar Deck De Apresentacao"
+    agent: slides
+    task: gerar-deck-de-apresentacao.md
+    trigger: "Acionado pelo Maestro apos Briefer entregar o QBR Brief aprovado pelo Verity para conta com renovacao em janela <= 60 dias; acionado sob demanda quando CSM solicita deck via ClickUp para reuniao ad-hoc"
+    checkpoint:
+      criteria: "Deck de QBR gerado e salvo no Google Drive (ou SharePoint) na pasta do CSM responsavel, com link compartilhavel. Notificacao Slack para o CSM com link direto ao deck e ao brief original no ClickUp. Log de geracao no Supabase com conta, CSM…"
+      veto_condition: "Saída sem veredito do critic Verity; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Criar Pacote De Renovacao"
+    agent: pulse
+    task: criar-pacote-de-renovacao.md
+    trigger: "Acionado pelo Maestro apos todos os artefatos do Briefer/Scout/Slides estarem aprovados pelo Verity para uma conta; cron de monitoramento de tasks nao abertas a cada 6h; cron semanal para relatorio de cobertura de renovacoes (% de renovaco…"
+    checkpoint:
+      criteria: "Pacote de renovacao criado no ClickUp: task principal com todas as subtasks, campos preenchidos, checklists, prazos e prioridade. Link da task principal retornado ao Maestro. Notificacao Slack para o CSM com resumo de 3 linhas (conta, reno…"
+      veto_condition: "Saída sem veredito do critic Verity; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Arquivar Resultados QBR"
+    agent: memory
+    task: arquivar-resultados-qbr.md
+    trigger: "Acionado quando CSM fecha task de renovacao no ClickUp (status: Renovado/Churn/Negociado/Expandido); acionado quando CSM adiciona nota de QBR no CRM; cron semanal para relatorio de aprendizado; acionado quando deck editado pelo CSM e re-sa…"
+    checkpoint:
+      criteria: "Account Memory atualizado no Supabase por conta: historico de QBRs com outcomes, comprometimentos com status, expansoes tentadas e resultados, evolucao temporal de scores, feedback sobre qualidade dos briefs. Relatorio mensal de aprendizad…"
+      veto_condition: "Saída sem veredito do critic Verity; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: verity
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: maestro
+    checkpoint:
+      criteria: "Entregável consolidado: Por conta em janela de renovacao: (1) QBR Brief completo em markdown (max 600 palavras) com Resumo de Valor do Trimestre, Metricas de Adocao com comparativo, Marcos Entregues, Status de Comprometimen…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Proposta de expansao com valor acima de R$X (threshold configuravel por empresa) incluida no Renewal Package — Verity aprova o brief mas Pulse cria subtask de expansao com status 'Aguardando Aprovacao do CSM/Manager' antes de incluir a proposta no deck final para o cliente"
+  - level: HITL
+    condition: "Deck de QBR pronto para envio ao cliente — o Slides gera e o Pulse notifica o CSM, mas o envio do link do deck ao cliente requer revisao e envio manual pelo CSM (deck e gerado, nunca enviado automaticamente ao cliente)"
+  - level: HITL
+    condition: "Conta Enterprise com ARR > R$100k em janela de renovacao — brief aprovado mas task criada com flag de revisao obrigatoria pelo Head de CS antes do CSM iniciar qualquer contato de renovacao"
+  - level: HITL
+    condition: "Renewal Readiness Score com queda > 20 pontos em 48h — Verity bloqueia o ciclo, Maestro notifica analista de dados e CSM para validacao manual dos dados de entrada antes de reprocessar"
+  - level: HITL
+    condition: "Expansion Signal Report indicando oportunidade de cross-sell de produto diferente do contrato atual (nao e apenas upgrade de tier, e novo produto) — requer alinhamento com equipe comercial (AE ou CSM sênior) antes de abordar o cliente"
+  - level: HITL
+    condition: "Comprometimento pendente do fornecedor detectado pelo Memory como nao entregue no periodo anterior — brief inclui o item mas Pulse cria subtask de 'Resolucao de Compromisso Pendente' que requer confirmacao do CSM de que foi resolvido antes de marcar como pronto para QBR"
+  - level: HITL
+    condition: "Conta com Renewal Readiness Score CRITICO (< 50) e renovacao em < 30 dias — escalacao imediata para Head de CS e Account Executive senior com brief de situacao de emergencia; qualquer acao sobre conta fica subordinada a aprovacao do Head de CS"
+  - level: HITL
+    condition: "Feedback de Memory indicando que CSM fez edicao significativa no deck (> 30% do conteudo alterado) — Maestro abre HITL para CSM documentar o motivo da edicao e calibrar o Briefer para futuras geracoes"
+transitions:
+  - from: maestro
+    to: radar
+    condition: "Cron job 05h30 diario para batch completo; webhook de renovacao criada/alterada no CRM; webhook de evento de produto acima de threshold (usuarios ativos, feature usage); flag de renovacao em < 30 dia…"
+  - from: radar
+    to: compass
+    condition: "Acionado pelo Maestro para toda conta que o Radar colocar na fila diaria; acionado em modo urgente quando Radar detecta renovacao em < 30 dias sem score calculado nos ultimos 7 dias"
+  - from: compass
+    to: scout
+    condition: "Acionado pelo Maestro em paralelo ao Compass para toda conta com sinais de expansao detectados pelo Radar (score_expansao > 0); acionado sob demanda quando CSM solicita analise de expansao para conta…"
+  - from: scout
+    to: briefer
+    condition: "Acionado pelo Maestro para toda conta com Renewal Readiness Score calculado e renovacao em janela (< 90 dias) ou com Expansion Signal Report com oportunidade qualificada de alto valor; acionado sob d…"
+  - from: briefer
+    to: slides
+    condition: "Acionado pelo Maestro apos Briefer entregar o QBR Brief aprovado pelo Verity para conta com renovacao em janela <= 60 dias; acionado sob demanda quando CSM solicita deck via ClickUp para reuniao ad-h…"
+  - from: slides
+    to: pulse
+    condition: "Acionado pelo Maestro apos todos os artefatos do Briefer/Scout/Slides estarem aprovados pelo Verity para uma conta; cron de monitoramento de tasks nao abertas a cada 6h; cron semanal para relatorio d…"
+  - from: pulse
+    to: memory
+    condition: "Acionado quando CSM fecha task de renovacao no ClickUp (status: Renovado/Churn/Negociado/Expandido); acionado quando CSM adiciona nota de QBR no CRM; cron semanal para relatorio de aprendizado; acion…"
+  - from: memory
+    to: verity
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: verity
+    to: maestro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - scout

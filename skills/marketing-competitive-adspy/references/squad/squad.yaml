@@ -1,0 +1,47 @@
+name: marketing-competitive-adspy
+version: 0.1.0
+description: "Enquanto seus concorrentes testam ângulos, você já sabe quais funcionaram — inteligência competitiva continua que converte swipe files em vantagem de aquisição antes do mercado reagir."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: cia
+components:
+  agents:
+    - orion.md
+    - falcon.md
+    - cipher.md
+    - prism.md
+    - echo.md
+    - volta.md
+    - nexus.md
+    - sigma.md
+    - sigma-2.md
+  tasks:
+    - monitorar-anuncios-concorrentes.md
+    - classificar-angulos-narrativos.md
+    - monitorar-mudancas-concorrenciais.md
+    - curar-swipe-file.md
+    - sintetizar-tendencias-mercado.md
+    - gerar-briefings-acionaveis.md
+    - verificar-inteligencia-competitiva.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-competitive-adspy-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - inteligencia-de-mercado-icp-concorrencia
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M4 · TopSquad de Inteligência de Mercado, ICP & Concorrência"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

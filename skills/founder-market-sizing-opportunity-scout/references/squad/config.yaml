@@ -1,0 +1,58 @@
+pack:
+  name: founder-market-sizing-opportunity-scout
+  version: 0.1.0
+  short-title: "Market Sizing & Opportunity Scout"
+  description: "De hunch para tese fundamentada: TAM/SAM/SOM com fontes rastreáveis e oportunidades de expansão dimensionadas em menos de 45 minutos — sem consultoria, sem planilha manual, sem alucinação."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🛰️"
+  slashPrefix: marketSizingOpportunityScout
+name: founder-market-sizing-opportunity-scout
+version: 0.1.0
+description: "De hunch para tese fundamentada: TAM/SAM/SOM com fontes rastreáveis e oportunidades de expansão dimensionadas em menos de 45 minutos — sem consultoria, sem planilha manual, sem alucinação."
+entry_agent: atlas
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: founder-office
+  topsquad: "F3"
+  prioridade: "avançado"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - atlas
+  - cosmos
+  - praxis
+  - radar
+  - scout
+  - faro
+  - citadel
+  - axiom
+  - axiom-2
+tasks:
+  - analisar-dados-macro.md
+  - contar-unidades-economicas.md
+  - estimar-mercado-competitivo.md
+  - cacar-oportunidadesadjacentes.md
+  - mapear-barreiras-regulatorias.md
+  - classificar-credibilidade-fontes.md
+  - verificar-convergencia-e-sanity-check.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - founder-market-sizing-opportunity-scout-pipeline.yaml
+checklists:
+  - critic-axiom-2.md
+integrations:
+  - "Slack (intake de perguntas via canal #market-sizing + entrega de relatórios + alertas de Scout sobre oportunidades emergentes + notificações de gate HITL)"
+  - "Notion (Knowledge Base central — armazenamento permanente de Market Opportunity Reports, histórico de sizings, corpus de benchmarks e teses de expansão do cliente)"
+  - "ClickUp (criação automática de tasks de validação e follow-up após cada relatório — prova de trabalho rastreável, conectado a story de estratégia)"
+  - "Claude Agent SDK + LangGraph (orquestração stateful do grafo multi-agente — gerencia paralelismo dos workers e estado do pipeline de sizing)"
+  - "Langfuse (observabilidade OTEL — tracing de custo por worker/token, evals de qualidade por relatório, dashboard de KPIs do squad, alerta de desvio de convergência)"
+  - "Brave Search API / EXA API (web search dos workers — fonte primária de dados em tempo real para Cosmos, Praxis, Radar e Scout)"
+  - "Vector DB — Pinecone ou Qdrant (armazenamento semântico de benchmarks setoriais, sizings históricos, corpus de teses e relatórios de mercado do cliente)"
+  - "Google Trends API (Scout usa para sinais de demanda crescente e identificação de timing de oportunidades)"
+  - "Crunchbase / PitchBook API pública (Radar e Scout usam para proxy de revenue de concorrentes e sinais de funding por setor)"
+  - "SimilarWeb / SEMrush API (Radar usa para proxy de receita de concorrentes digitais via tráfego e keywords)"
+  - "IBGE API / Dados Abertos Receita Federal (Praxis usa para contagem de CNPJs por CNAE como base do bottom-up)"
+  - "MCP Servers (camada de integração universal — cada fonte de dados exposta como tool para os agents via protocolo MCP)"

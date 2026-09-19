@@ -1,0 +1,49 @@
+name: founder-due-diligence-ma-screening
+version: 0.1.0
+description: "Triagem de aquisições em 48h com inteligência de Opus — red flags, tese e memo prontos antes do primeiro call."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: ddm
+components:
+  agents:
+    - nexus.md
+    - argus.md
+    - fenix.md
+    - themis.md
+    - sigma.md
+    - atlas.md
+    - vox.md
+    - eco.md
+    - columbo.md
+    - columbo-2.md
+  tasks:
+    - coletar-dados-abertos.md
+    - analisar-metricas-financeiras.md
+    - analisar-processos-judiciais.md
+    - analisar-mercado-competitivo.md
+    - analisar-maturidade-tecnologica.md
+    - avaliar-cultura-organizacional.md
+    - reescrever-tese.md
+    - verificar-claims-fontes.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-due-diligence-ma-screening-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - investor-relations-fundraising-m-a
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F5 · TopSquad de Investor Relations, Fundraising & M&A"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

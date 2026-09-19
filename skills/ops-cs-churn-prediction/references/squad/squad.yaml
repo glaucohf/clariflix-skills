@@ -1,0 +1,47 @@
+name: ops-cs-churn-prediction
+version: 0.1.0
+description: "Detecta o cliente prestes a sair antes que ele decida — e coloca o CSM em movimento com a ação certa no momento certo."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: pep
+components:
+  agents:
+    - nexus.md
+    - vega.md
+    - prism.md
+    - mira.md
+    - spark.md
+    - iris.md
+    - lumen.md
+    - echo.md
+    - argus.md
+  tasks:
+    - monitorar-sinais-de-uso-e-sentimento.md
+    - calcular-health-score-composito.md
+    - gerar-brief-personalizado.md
+    - criar-task-retencao.md
+    - analisar-sentimento-cliente.md
+    - analisar-contexto-comercial.md
+    - monitorar-health-score.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-churn-prediction-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - customer-success-onboarding-retencao-expansao
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O3 · TopSquad de Customer Success: Onboarding, Retenção & Expansão"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

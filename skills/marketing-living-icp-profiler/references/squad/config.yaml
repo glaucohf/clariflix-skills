@@ -1,0 +1,54 @@
+pack:
+  name: marketing-living-icp-profiler
+  version: 0.1.0
+  short-title: "Living ICP Profiler"
+  description: "Seu ICP nunca mais vai envelhecer: perfil vivo, versionado e alimentado por 100+ fontes para o time sempre saber para quem vender."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🔭"
+  slashPrefix: livingIcpProfiler
+name: marketing-living-icp-profiler
+version: 0.1.0
+description: "Seu ICP nunca mais vai envelhecer: perfil vivo, versionado e alimentado por 100+ fontes para o time sempre saber para quem vender."
+entry_agent: maestro
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: marketing
+  topsquad: "M4"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - maestro
+  - atlas
+  - iris
+  - zara
+  - nox
+  - rex
+  - vera
+  - vera-2
+tasks:
+  - construir-personas-calibradas.md
+  - enriquecer-dados-lead.md
+  - monitorar-sinais-de-compra.md
+  - calibrar-icp-com-dados-de-mercado.md
+  - calcular-icp-score.md
+  - verificar-qualidade-de-dados.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - marketing-living-icp-profiler-pipeline.yaml
+checklists:
+  - critic-vera-2.md
+integrations:
+  - "HubSpot CRM — campo customizado ICP Fit Score por lead/empresa, propriedades de segmento e sinais, webhook de novo lead para trigger de enriquecimento"
+  - "Clay — waterfall enrichment primary engine, ICP custom tables, intent signals agregados de 100+ fontes"
+  - "Apollo.io — prospecting consolidado, enriquecimento de contatos, dados de seniority e titulo"
+  - "Cognism — enriquecimento complementar com foco em compliance GDPR para mercados internacionais"
+  - "ClickUp — prova de trabalho: task automática por ciclo de enriquecimento, dashboard de ICP Score médio da pipeline, alertas de desvio de ICP"
+  - "LinkedIn Sales Navigator — sinais de atividade de contatos, mudanças de emprego, company updates"
+  - "Bombora / 6sense — intent data B2B por tópico e segmento"
+  - "n8n — orquestração de workflows de enriquecimento e notificações (complemento no-code)"
+  - "Langfuse — observabilidade OTEL de todos os agents, quality gates (dev 70% / staging 85% / prod 95% task success)"
+  - "Slack / Email — alertas de Hot Accounts (intent score > 70) e notificações de nova versão de ICP publicada"

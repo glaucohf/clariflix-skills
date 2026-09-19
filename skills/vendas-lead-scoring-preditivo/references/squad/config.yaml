@@ -1,0 +1,55 @@
+pack:
+  name: vendas-lead-scoring-preditivo
+  version: 0.1.0
+  short-title: "Lead Scoring Preditivo e Priorização"
+  description: "Pare de adivinhar: o pipeline se reordena sozinho, colocando os deals mais quentes na frente do closer certo — antes que o concorrente ligue primeiro."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🗓️"
+  slashPrefix: leadScoringPreditivoEPriorizacao
+name: vendas-lead-scoring-preditivo
+version: 0.1.0
+description: "Pare de adivinhar: o pipeline se reordena sozinho, colocando os deals mais quentes na frente do closer certo — antes que o concorrente ligue primeiro."
+entry_agent: orion
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V3"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orion
+  - radar
+  - sherlock
+  - vega
+  - atlas
+  - nexus
+  - oracle
+  - argus
+tasks:
+  - capturar-sinais-de-intencao.md
+  - enriquecer-dados-firmograficos.md
+  - calcular-score-numerico.md
+  - priorizar-fila-de-contato.md
+  - cadenciar-leads-multi-canal.md
+  - detectar-risco-deal.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-lead-scoring-preditivo-pipeline.yaml
+checklists:
+  - critic-argus.md
+integrations:
+  - "CRM: HubSpot (MCP disponível) ou Pipedrive — source of truth para lead e deal data, destino de todos os score writes e activity logs"
+  - "WhatsApp Business API: Gupshup ou AiSensy — canal de outreach e recepção de sinais de engajamento (mensagem lida, respondida)"
+  - "Enriquecimento: Apollo.io (275M+ contatos) via API — firmográficos, contatos adicionais, tech stack"
+  - "Enriquecimento complementar: Clay — workflows de enriquecimento multi-fonte com waterfall"
+  - "Ads / Intent Signals: Facebook Lead Ads, Google Ads — webhooks de novos leads com UTMs completos"
+  - "Gestão de tarefas: ClickUp — Fila_do_Dia dos reps, proof-of-work por task, registro de artefatos verificáveis"
+  - "Comunicação interna: Slack — alertas de deals em risco, leads Hot sem contato, aprovações HITL"
+  - "Calendário: Google Calendar — disponibilidade dos reps para roteamento e agendamento"
+  - "Observabilidade: Langfuse (OTEL) — evals de qualidade dos agentes, quality gates por ambiente, traces de todas as chamadas LLM"
+  - "Orquestração: LangGraph + Claude Agent SDK — controle de estado do pipeline, workflows determinísticos"
+  - "Armazenamento de features: PostgreSQL/Supabase — Feature Store com histórico de scores e features por lead"

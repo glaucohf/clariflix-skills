@@ -1,0 +1,161 @@
+workflow_name: ops_cs_sla_health_monitor_pipeline
+description: "SLA breach nunca mais — o squad prevê a violação horas antes e escala antes do prazo explodir."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-sla-health-monitor
+area: "Operações & CS"
+topsquad: "O5 · Operações Técnicas: SRE, SLA & Data Pipelines"
+agent_sequence:
+  - sentinela-mor-persona-vitor-analista-senior-de-operacoes-com-obsessao-por-sla
+  - radar
+  - decifra
+  - cronos
+  - alarme
+  - histos
+  - ancora
+  - cetico-de-sla
+key_commands:
+  - "*coletar-tickets-sla"
+  - "*calcular-complexidade-tickets"
+  - "*calcular-probabilidade-de-breach"
+  - "*escalonar-tickets"
+  - "*analisar-dados-de-sla"
+  - "*registrar-prova-de-trabalho"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: sentinela-mor-persona-vitor-analista-senior-de-operacoes-com-obsessao-por-sla
+success_indicators:
+  - "% de breaches evitados: tickets que teriam breachado (Cronos detectou) mas foram resolvidos no prazo após escalonamento proativo do Alarme (target: >90%, baseline estimado 0% sem o squad — 100% reativo)"
+  - "Antecedência média do alerta: quantas horas antes do deadline o Alarme disparou o escalonamento (target: >2h para P1, >4h para P2; quanto mais cedo, mais tempo para agir)"
+  - "SLA compliance global: % de tickets fechados dentro do prazo contratual (target: >97%, baseline típico sem monitoramento preditivo: 65-80%)"
+  - "Taxa de falsos positivos: escalonamentos que o Alarme disparou mas o ticket seria resolvido no prazo sem intervenção (target: <15% — acima disso, supervisor perde confiança no squad)"
+  - "Taxa de falsos negativos: tickets que breacharam sem alerta do squad (target: <3% — este é o KPI mais crítico, medido pelo Cassandra)"
+  - "Acurácia do Cronos: correlação entre breach_probability previsto e resultado real (target: AUC >0.85, medido pelo Histos mensalmente)"
+  - "Tempo médio de resposta ao escalonamento: quanto tempo o supervisor leva para agir após notificação do Alarme (target: <30min para P1 — mede efetividade humana, não do squad)"
+  - "Multas contratuais evitadas por mês: valor financeiro de breaches que não ocorreram (calculado pelo Histos com base nos contratos — o KPI que mais vende o squad para o board)"
+  - "Custo por ciclo de monitoramento: tokens consumidos por ciclo de 15min × número de tickets ativos (target: <R$0,10 por ticket/ciclo para manter ROI positivo em qualquer volume)"
+deliverable:
+  description: "Artefato de prova de trabalho auditável e verificável no ClickUp: para cada ticket com SLA ativo, campo 'sla_monitor_log' com histórico de todos os ciclos de avaliação (timestamp, breach_probability_score, risk_status, ação_tomada). Para cada escalonamento proativo, sub-task vinculada ao ticket-pai com: escalation_timestamp (anterior ao sla_deadline), triggered_by (Cronos score que atingiu threshold), notified_parties (supervisor + canal), recommended_action, resolution_outcome (breach evitado: sim/não, preenchido ao fechar o ticket). Dashboard de SLA Health em tempo real no ClickUp mostrando: breach_rate_7d, avg_antecedencia_horas, sla_compliance_pct por tier de cliente, top-3 causas de risco esta semana. Relatório semanal do Histos com tendências e recomendações. Este artefato é o que o cliente apresenta ao seu board para provar que SLA está sendo gerenciado proativamente — não de forma reativa."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: sentinela-mor-persona-vitor-analista-senior-de-operacoes-com-obsessao-por-sla
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Coletar Tickets Sla"
+    agent: radar
+    task: coletar-tickets-sla.md
+    trigger: "Trigger automático a cada 15 minutos pelo Sentinela-Mor via scheduler interno. Re-trigger imediato quando novo ticket P1 é criado no ClickUp (webhook). Re-trigger manual por supervisor via comando no Slack ('!sla-scan-now')."
+    checkpoint:
+      criteria: "JSON list de tickets-ativos-com-SLA: [{ticket_id, titulo, tipo_intencao, tier_cliente, agente_responsavel, sla_deadline, tempo_restante_min, pct_sla_consumido, status_clock (RUNNING/PAUSED), ultimo_update_timestamp, canal_origem}]. Tickets…"
+      veto_condition: "Saída sem veredito do critic Cético de SLA; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Calcular Complexidade Tickets"
+    agent: decifra
+    task: calcular-complexidade-tickets.md
+    trigger: "Disparado pelo Sentinela-Mor em paralelo com Cálculo de Ritmo para cada ticket no manifesto do Radar. Re-executado quando agente responsável é trocado (reatribuição muda o velocity_score)."
+    checkpoint:
+      criteria: "JSON por ticket: {complexity_score (1-5), complexity_multiplier (0.5-3.0), complexity_breakdown: {reopening_rate, external_deps_flag, module_complexity, investigation_depth, agent_velocity_score}, adjusted_remaining_time_min (= tempo_resta…"
+      veto_condition: "Saída sem veredito do critic Cético de SLA; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Calcular Probabilidade De Breach"
+    agent: cronos
+    task: calcular-probabilidade-de-breach.md
+    trigger: "Disparado pelo Sentinela-Mor após receber outputs do Radar e do Decifra. É o gate que decide se Agente de Escalonamento será ativado: apenas tickets com breach_window_open=true e confidence_level != LOW são passados para escalonamento."
+    checkpoint:
+      criteria: "JSON por ticket: {breach_probability (0-1), risk_status (VERDE/AMARELO/VERMELHO), estimated_resolution_time_min, sla_deadline, breach_window_open (boolean: true se probabilidade >= threshold configurado), escalation_urgency (IMEDIATA/PROAT…"
+      veto_condition: "Saída sem veredito do critic Cético de SLA; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Escalonar Tickets"
+    agent: alarme
+    task: escalonar-tickets.md
+    trigger: "Disparado exclusivamente pelo Sentinela-Mor quando Cronos retorna breach_window_open=true e confidence_level HIGH ou MEDIUM. NUNCA disparado diretamente por outros agents. Requer aprovação humana (HITL L3) para: reatribuição de ticket, con…"
+    checkpoint:
+      criteria: "Evidências de escalonamento: (1) Sub-task criada no ClickUp com campos: escalation_timestamp, triggered_by (Cronos score), notified_parties, escalation_channel, recommended_action; (2) Mensagem Slack enviada com template padronizado inclui…"
+      veto_condition: "Saída sem veredito do critic Cético de SLA; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-6
+    name: "Analisar Dados De SLA"
+    agent: histos
+    task: analisar-dados-de-sla.md
+    trigger: "Trigger automático diário às 7h (resumo do dia anterior) e semanal às segunda-feira 8h (relatório da semana). Trigger imediato se breach rate nas últimas 24h ultrapassar threshold crítico (ex: 3 breaches em 1 dia quando baseline é <1/seman…"
+    checkpoint:
+      criteria: "Relatório semanal em Markdown no ClickUp: Top 5 causas raiz de breach (com exemplos), agentes ou filas que precisam de atenção, tickets breachados esta semana com análise de causa, tendências de complexidade por módulo, recomendações de aj…"
+      veto_condition: "Saída sem veredito do critic Cético de SLA; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Registrar Prova De Trabalho"
+    agent: ancora
+    task: registrar-prova-de-trabalho.md
+    trigger: "Disparado pelo Sentinela-Mor ao final de cada ciclo, após consolidar outputs de todos os workers. Também disparado ao fechar um ticket (resultado final para cálculo de KPIs). Trigger de dashboard refresh a cada 1h para métricas agregadas."
+    checkpoint:
+      criteria: "Por ticket monitorado: campo 'sla_monitor_log' atualizado no ClickUp com linha de log do ciclo atual (timestamp, breach_probability, status, ação_tomada). Por escalonamento: sub-task de evidência criada/atualizada com todos os campos audit…"
+      veto_condition: "Saída sem veredito do critic Cético de SLA; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: cetico-de-sla
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: sentinela-mor-persona-vitor-analista-senior-de-operacoes-com-obsessao-por-sla
+    checkpoint:
+      criteria: "Entregável consolidado: Artefato de prova de trabalho auditável e verificável no ClickUp: para cada ticket com SLA ativo, campo 'sla_monitor_log' com histórico de todos os ciclos de avaliação (timestamp, breach_probability_…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Escalonamento com reatribuição de ticket (Alarme quer mudar o agente responsável): L3 — supervisor confirma a reatribuição antes de executar. Reversibilidade baixa (interrompe o fluxo do agente atual)."
+  - level: HITL
+    condition: "Convocação de war-room P1 (breach_probability >90%): L3 — ops manager confirma abertura de canal de incidentes antes do Alarme notificar múltiplos stakeholders. Ação de alto impacto e irreversível em termos de alarme organizacional."
+  - level: HITL
+    condition: "Escalonamento para C-level ou cliente final (ticket de cliente enterprise em risco de breach contratual com multa): L3 — CS Manager aprova a comunicação antes do envio. Toda comunicação com cliente é revisada por humano."
+  - level: HITL
+    condition: "Cassandra bloqueia um escalonamento por inconsistência no score: humano (supervisor ou ops lead) revisa o caso manualmente antes de decidir se escala ou não. Ocorre quando dados são ambíguos ou incompletos."
+  - level: HITL
+    condition: "Novo tipo de ticket sem histórico suficiente para calibrar Cronos (confidence_level=LOW): Sentinela-Mor pausa a decisão automática e notifica supervisor para avaliação manual do risco de breach. Cronos não especula sem dados."
+  - level: HITL
+    condition: "Histos detecta breach rate semanal acima do threshold crítico: relatório é revisado por ops manager antes de publicação, que decide se aciona revisão de processo ou ajuste de SLAs contratuais."
+  - level: HITL
+    condition: "Recalibração mensal do modelo do Cronos (Histos gera novo dataset): pesos atualizados são revisados por ops lead antes de ir para produção. Mudança no modelo preditivo é sempre revisada por humano."
+transitions:
+  - from: sentinela-mor-persona-vitor-analista-senior-de-operacoes-com-obsessao-por-sla
+    to: radar
+    condition: "Trigger automático a cada 15 minutos pelo Sentinela-Mor via scheduler interno. Re-trigger imediato quando novo ticket P1 é criado no ClickUp (webhook). Re-trigger manual por supervisor via comando no…"
+  - from: radar
+    to: decifra
+    condition: "Disparado pelo Sentinela-Mor em paralelo com Cálculo de Ritmo para cada ticket no manifesto do Radar. Re-executado quando agente responsável é trocado (reatribuição muda o velocity_score)."
+  - from: decifra
+    to: cronos
+    condition: "Disparado pelo Sentinela-Mor após receber outputs do Radar e do Decifra. É o gate que decide se Agente de Escalonamento será ativado: apenas tickets com breach_window_open=true e confidence_level !=…"
+  - from: cronos
+    to: alarme
+    condition: "Disparado exclusivamente pelo Sentinela-Mor quando Cronos retorna breach_window_open=true e confidence_level HIGH ou MEDIUM. NUNCA disparado diretamente por outros agents. Requer aprovação humana (HI…"
+  - from: alarme
+    to: histos
+    condition: "Trigger automático diário às 7h (resumo do dia anterior) e semanal às segunda-feira 8h (relatório da semana). Trigger imediato se breach rate nas últimas 24h ultrapassar threshold crítico (ex: 3 brea…"
+  - from: histos
+    to: ancora
+    condition: "Disparado pelo Sentinela-Mor ao final de cada ciclo, após consolidar outputs de todos os workers. Também disparado ao fechar um ticket (resultado final para cálculo de KPIs). Trigger de dashboard ref…"
+  - from: ancora
+    to: cetico-de-sla
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: cetico-de-sla
+    to: sentinela-mor-persona-vitor-analista-senior-de-operacoes-com-obsessao-por-sla
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - decifra

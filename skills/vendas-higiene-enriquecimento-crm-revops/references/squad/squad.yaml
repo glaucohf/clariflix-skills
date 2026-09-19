@@ -1,0 +1,47 @@
+name: vendas-higiene-enriquecimento-crm-revops
+version: 0.1.0
+description: "Seu CRM e o solo onde toda venda cresce — se o solo é lixo, a colheita também é."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: hee
+components:
+  agents:
+    - nexus.md
+    - validador-de-entradas.md
+    - detector-de-duplicatas.md
+    - enriquecedor-de-conta-e-lead.md
+    - sincronizador-de-fontes.md
+    - pythia.md
+    - cassandra.md
+    - gerador-de-golden-record.md
+    - sentinel.md
+  tasks:
+    - validar-formato-de-entradas.md
+    - detectar-duplicatas.md
+    - consultar-fontes-confianca.md
+    - propagar-atualizacoes-fonte.md
+    - calcular-score-registro.md
+    - detectar-sinais-de-intencao.md
+    - gerar-golden-record.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-higiene-enriquecimento-crm-revops-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - revops-higiene-de-crm-forecast
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V6 · TopSquad de RevOps: Higiene de CRM & Forecast"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

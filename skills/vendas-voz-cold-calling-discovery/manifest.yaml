@@ -1,0 +1,29 @@
+row: vendas
+title: Voz para Cold Calling e Discovery
+title_netflix: VOZ PARA COLD CALLING E DISCOVERY
+subtitle: Preparar roteiros de cold calling e discovery, analisar transcrições e definir qualificação e próximos passos
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-voz-cold-calling-discovery para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orquestrador Comercial de Voz
+  - Dossie
+  - Vox (Worker de Voz
+  - Filtro
+  - Agenda
+  - Eco
+  - Radar
+  - Insight
+  - Filtro 2
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

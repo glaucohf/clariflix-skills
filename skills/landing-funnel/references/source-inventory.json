@@ -1,0 +1,436 @@
+{
+  "source": "maquina-de-receita/squads-gratuitos/landing-funnel",
+  "files": [
+    {
+      "path": "agents/ce-ab-architect.md",
+      "bytes": 18184,
+      "sha256": "75f8cd8ea0c3073269449f415529fa72f4d9fe31433fa2c99cd1fb2d1a83053e"
+    },
+    {
+      "path": "agents/ce-analytics-architect.md",
+      "bytes": 18518,
+      "sha256": "a6325411dcfc0b0ad2891347a5f473877013c1f9082d946cc97263ac94f5e48d"
+    },
+    {
+      "path": "agents/ce-backend-dev.md",
+      "bytes": 15603,
+      "sha256": "48865e55d366c6aec582957538aa13397504bb81908ea1a544088c7873c5d2bf"
+    },
+    {
+      "path": "agents/ce-copywriter.md",
+      "bytes": 16794,
+      "sha256": "3ef812685e9fd222a2659b3fa0e8b7226ad9d604d0840a85b246aafe4656dd7a"
+    },
+    {
+      "path": "agents/ce-design-architect.md",
+      "bytes": 16731,
+      "sha256": "dfd499f31ea59eac4b2fa5e4ba768e6895fb9caec10ccfd4fac7520f774ba0c2"
+    },
+    {
+      "path": "agents/ce-email-strategist.md",
+      "bytes": 18604,
+      "sha256": "0da5b87b86a48f82841dfbda32392907b0b13307dce150317062a39b5770adf7"
+    },
+    {
+      "path": "agents/ce-frontend-dev.md",
+      "bytes": 16034,
+      "sha256": "cd06e617a795987cbddd194519b836d1c9988efc4fa6a0dd4f7a8bf010bd32f8"
+    },
+    {
+      "path": "agents/ce-image-creator.md",
+      "bytes": 14623,
+      "sha256": "2784e182ef8fe4f4b68b2ff9a989f9b04b38aa023505eb2e8bcf142dbf627494"
+    },
+    {
+      "path": "agents/ce-integrator.md",
+      "bytes": 15835,
+      "sha256": "aeb4c62ef82c712ebf67aa0c782508ca583d8226d9f08856cd973d8b56bde5dd"
+    },
+    {
+      "path": "agents/ce-researcher.md",
+      "bytes": 15760,
+      "sha256": "e0bfc0b0c60dbd069390774d1982d99ee3c91fcd8a5f6b42a6e9291d930d19fd"
+    },
+    {
+      "path": "agents/ce-reviewer.md",
+      "bytes": 18680,
+      "sha256": "79fed9405b5b9ffe0d68da04d6118786d41fc35a6e4012eefcabce73a86e54f7"
+    },
+    {
+      "path": "agents/ce-social-proof.md",
+      "bytes": 17977,
+      "sha256": "086ff6fa5f0dc9b0d4452cf46ad11ae1a818e2b30526367093ceb292f444aec6"
+    },
+    {
+      "path": "agents/ce-strategist.md",
+      "bytes": 13444,
+      "sha256": "aeab6c3fef59315c15c0a3e4056c52f7a5ba066b8a932e2c2389c9b5928728df"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "bytes": 17078,
+      "sha256": "05a634b9bb1b0e338f6958741598750f7eb01af3529ee88c0c6c5be70c815cc9"
+    },
+    {
+      "path": "config/source-tree.md",
+      "bytes": 16400,
+      "sha256": "32fe4697dd2f4d96f6fe61a8f107997a83ac1140c60bda5c9cd9a7e026f260d8"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "bytes": 9199,
+      "sha256": "b196146d243c88d38116f8a23424d980039008ea5a6db34d5aa3fab0100fe098"
+    },
+    {
+      "path": "data/conversion-playbooks.md",
+      "bytes": 24716,
+      "sha256": "32f8bc28241015ae9fe41a86be4e80218ea77c8f46c521ccd14dd2ca26f6967f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 16605,
+      "sha256": "936003af46e8f7d40ac80883b01a7c84554c5ba2d1b41fa1aac9418050559a99"
+    },
+    {
+      "path": "squad.yaml",
+      "bytes": 7380,
+      "sha256": "cd3d5a888bfb1b7d7e2bd7d33521e1f02dcd747baa134dcce50f3b31dee1f51e"
+    },
+    {
+      "path": "tasks/ce-ab-analyze.md",
+      "bytes": 7722,
+      "sha256": "16bba055df7d671885513e68b4453e2a17897c5cb3119a07afaa81fc69cdca20"
+    },
+    {
+      "path": "tasks/ce-ab-design-variants.md",
+      "bytes": 7575,
+      "sha256": "30022edf262f701dd0c0f7b7c8a811aad0d805f19a9b67b6b37428544859b570"
+    },
+    {
+      "path": "tasks/ce-ab-hypothesis.md",
+      "bytes": 6930,
+      "sha256": "eea5ab01603aa4c17ff0acf53e5bdca5593be276fcdad1b2e2cad1c70e87bed9"
+    },
+    {
+      "path": "tasks/ce-ab-setup.md",
+      "bytes": 7977,
+      "sha256": "d40783e0c3ee75bdd72b2cd6bb9e89f1c70c4e5793b606b2d21991bc789de3d2"
+    },
+    {
+      "path": "tasks/ce-analytics-ga4-config.md",
+      "bytes": 7403,
+      "sha256": "690bde3927c69b7ee0500d85d043f0b741846159c11496ca78e137576a51c371"
+    },
+    {
+      "path": "tasks/ce-analytics-gtm-setup.md",
+      "bytes": 7559,
+      "sha256": "c578feda1d194ae77f189e4fb9f26591dca21b2f5cb469ecc0fe90c664d43115"
+    },
+    {
+      "path": "tasks/ce-analytics-heatmap.md",
+      "bytes": 6793,
+      "sha256": "e8e7516bb67a1c19a830bcc83a90fe16ff9717c8dd3172a0de3c6ba31f26fcd1"
+    },
+    {
+      "path": "tasks/ce-analytics-pixels.md",
+      "bytes": 7969,
+      "sha256": "070d438d1e1a45787a05ff1d344e7e3b02d2e53c96f8e198621e681197110c3a"
+    },
+    {
+      "path": "tasks/ce-backend-dev-admin.md",
+      "bytes": 8071,
+      "sha256": "3739a085bccb2af370a6865fa2dbcaa96406fb28b8f3b101063b3872ccaab6bf"
+    },
+    {
+      "path": "tasks/ce-backend-dev-events.md",
+      "bytes": 10378,
+      "sha256": "bc80ecdff9c2d9c64cf86ad7ed7e188327e7a8e465ffc48fbcf3b9799a2e35e4"
+    },
+    {
+      "path": "tasks/ce-backend-dev-leads.md",
+      "bytes": 8844,
+      "sha256": "53b938fe139665712dc730bbd8a81595a27666654c1953a3f1f748a065d2402d"
+    },
+    {
+      "path": "tasks/ce-backend-dev-setup.md",
+      "bytes": 7289,
+      "sha256": "68d1cbe6ec7326e3b441ebdd280ab2678c04fb25a282bb076067c0ba52f70bb1"
+    },
+    {
+      "path": "tasks/ce-copywriter-review-tone.md",
+      "bytes": 5872,
+      "sha256": "ffdef7476f4b54c0e821d5d29b34d4ea9caaaa351d125da0cc881842ac650932"
+    },
+    {
+      "path": "tasks/ce-copywriter-write-ab-variants.md",
+      "bytes": 5674,
+      "sha256": "3d7974db6e2aa32ef6addbfbf666e0652b910c5123fbf26e999e9f8fd217263c"
+    },
+    {
+      "path": "tasks/ce-copywriter-write-section.md",
+      "bytes": 5456,
+      "sha256": "4d8456413442fd00e771955803c9e300246d9f3e7f73358d1ec94859dbae0f91"
+    },
+    {
+      "path": "tasks/ce-copywriter-write-vsl.md",
+      "bytes": 6271,
+      "sha256": "5c3701f125a6e8c383799d173d9ba00ad52ac136756f6e088d7844f45ecb70d2"
+    },
+    {
+      "path": "tasks/ce-design-architect-components.md",
+      "bytes": 5897,
+      "sha256": "f7a2b84a32d29e023375efd9442421b5bd211b4a79c060a35d72268c4dc134d2"
+    },
+    {
+      "path": "tasks/ce-design-architect-cro-audit.md",
+      "bytes": 7086,
+      "sha256": "a89c6616cc8d2b8997313327e50c08fe90ff7bcd0bd4b1a6f07e9dbc879e9c81"
+    },
+    {
+      "path": "tasks/ce-design-architect-sections.md",
+      "bytes": 6054,
+      "sha256": "601819fe601a515a544d97da7116266ddc9f2e1f54e802ba17206191b2ef825e"
+    },
+    {
+      "path": "tasks/ce-design-architect-select-ds.md",
+      "bytes": 6317,
+      "sha256": "d95a2a2ccd90995d346cb1050444afb58dcfe4b419c2af824918d6882e91f891"
+    },
+    {
+      "path": "tasks/ce-design-architect-tokens.md",
+      "bytes": 6448,
+      "sha256": "700fb63cc0116e5db2f2f901bdf5fe7814a3c9541ce34d7dadc72096244c1234"
+    },
+    {
+      "path": "tasks/ce-email-automation.md",
+      "bytes": 7650,
+      "sha256": "c97328849c3fcdf680d037547cb9f55cdcf7af49974d28500979761210910dab"
+    },
+    {
+      "path": "tasks/ce-email-optimize.md",
+      "bytes": 6859,
+      "sha256": "d90ad44e9d6cf90c3cdedc9c4a4ec1e2596e0b076b03df91b546219ba21b5327"
+    },
+    {
+      "path": "tasks/ce-email-sequence-map.md",
+      "bytes": 7538,
+      "sha256": "342e3b83393b175c97a60a4a3c04bf1d6c60d9cedcb86be27f4a259f916fa773"
+    },
+    {
+      "path": "tasks/ce-email-write-series.md",
+      "bytes": 7088,
+      "sha256": "a0d2f98024783a45328d0a483b35eee5bdf93994b0c4518f9541d9e1b5c187e2"
+    },
+    {
+      "path": "tasks/ce-frontend-dev-assemble.md",
+      "bytes": 8182,
+      "sha256": "37454fdd9357b215fa1b6680691927c88158c483abdf80ab2e50c84a9ec59317"
+    },
+    {
+      "path": "tasks/ce-frontend-dev-build-section.md",
+      "bytes": 6668,
+      "sha256": "d963edc79b65627d76d9d6c0000a6afe4e452a382ecddd063210dd26ac3deca5"
+    },
+    {
+      "path": "tasks/ce-frontend-dev-design-system.md",
+      "bytes": 7041,
+      "sha256": "dba95312e06fbc55cd28ae9cb41d19d2c16f012a23bdc3cbc638d61f32c61009"
+    },
+    {
+      "path": "tasks/ce-frontend-dev-performance.md",
+      "bytes": 6986,
+      "sha256": "2c64f76dfb6216889569dc800f1cc5c454902cc566491b6cea3d4de899b5a4a9"
+    },
+    {
+      "path": "tasks/ce-frontend-dev-setup.md",
+      "bytes": 7565,
+      "sha256": "ac09c86563b59d3baab0c34b5e15b59c9877615c28118fa39114b279ca7c6f9d"
+    },
+    {
+      "path": "tasks/ce-image-creator-hero.md",
+      "bytes": 5576,
+      "sha256": "2b7cdd4ac3cbb074a23d62515378ff4e543b20f1d3a49ed77f5fe136a0cdfd36"
+    },
+    {
+      "path": "tasks/ce-image-creator-sections.md",
+      "bytes": 5436,
+      "sha256": "9942f25602b3b803a49f3c22a44ce0299b40f654154ba6f3561188f7ecedca08"
+    },
+    {
+      "path": "tasks/ce-image-creator-social-assets.md",
+      "bytes": 6829,
+      "sha256": "e06f62cad0c12afd0745353d54f7fbf401b5f23b33e2d7243c9239aeba567f97"
+    },
+    {
+      "path": "tasks/ce-integrator-connect.md",
+      "bytes": 9867,
+      "sha256": "cabd00d9a93e844328f3978d09808f1599adf56db3971d7900b7a86961b8ce1c"
+    },
+    {
+      "path": "tasks/ce-integrator-crm.md",
+      "bytes": 9408,
+      "sha256": "55d8ddd641354e78ca4a0c50363b978a843b1fe48ff7f2120b627d082bcf26c2"
+    },
+    {
+      "path": "tasks/ce-integrator-email.md",
+      "bytes": 7762,
+      "sha256": "1ea34d53a3b5aa7e4ed0fce229f6cb99a47012442293a869e8f9a9895b420b7b"
+    },
+    {
+      "path": "tasks/ce-integrator-payments.md",
+      "bytes": 7624,
+      "sha256": "5762461bf304ad70a3ec0e47729fc77eae7c0ef9e7bd1c98744b4c5d9237c3e9"
+    },
+    {
+      "path": "tasks/ce-integrator-whatsapp.md",
+      "bytes": 8062,
+      "sha256": "ae86cb863b4f20375382e426609ebed1304e15dc1fda1968c8640beef5be1328"
+    },
+    {
+      "path": "tasks/ce-researcher-audience.md",
+      "bytes": 5296,
+      "sha256": "04bb32075cce39f40f67b4d4743b49314fad76bbff281b39485dc991eabe09e5"
+    },
+    {
+      "path": "tasks/ce-researcher-competitors.md",
+      "bytes": 5059,
+      "sha256": "66989ce329f289ec44eeba1a4701e3e07c5b096c0aba9c14b7caa2950b814342"
+    },
+    {
+      "path": "tasks/ce-researcher-copy-formulas.md",
+      "bytes": 5459,
+      "sha256": "435fac0d79401a56ffd3397806abed8fef1f39ba25699e942ef6917712b46bc2"
+    },
+    {
+      "path": "tasks/ce-researcher-synthesize.md",
+      "bytes": 5400,
+      "sha256": "2affe87ac8953d70527d28810720d187b5fc06b1c43bf51a4d58453fb290f268"
+    },
+    {
+      "path": "tasks/ce-researcher-traffic-data.md",
+      "bytes": 5624,
+      "sha256": "509376b11efea6c2c781727f46ca4db9fde9a88791641187060b2fb51f3de4e4"
+    },
+    {
+      "path": "tasks/ce-reviewer-backend.md",
+      "bytes": 7012,
+      "sha256": "a44d71e50f5f0cd733f5d08bc82bf900ca9070267f2df63ed8232e47811f62f7"
+    },
+    {
+      "path": "tasks/ce-reviewer-conversion.md",
+      "bytes": 6896,
+      "sha256": "a9163a44fdb70475fbaa71149c40964a29d724ba8a1029c7d6f31026826b9e35"
+    },
+    {
+      "path": "tasks/ce-reviewer-copy.md",
+      "bytes": 6001,
+      "sha256": "9dda5f23d520b66d91bd82f5227f213615697793a5cef3b4b6ee6a6c530ab3f0"
+    },
+    {
+      "path": "tasks/ce-reviewer-design.md",
+      "bytes": 6161,
+      "sha256": "fae4ac98d140861760cf6062aedef0b12377cf5ca071270ce0a29d61aa679b74"
+    },
+    {
+      "path": "tasks/ce-reviewer-final-report.md",
+      "bytes": 7138,
+      "sha256": "5400639879b415950e20175042320f461f7450f0843bc236026669d482188850"
+    },
+    {
+      "path": "tasks/ce-reviewer-seo-a11y.md",
+      "bytes": 6592,
+      "sha256": "a773219454fabe9e6584f44702e1f088a68ff686611d160a9112b6290a566a8c"
+    },
+    {
+      "path": "tasks/ce-social-proof-audit.md",
+      "bytes": 6065,
+      "sha256": "1af1ed0ed01c1bb45adbc9437d6f4c4979681ca25feabe1aa264b0b214b2d2ca"
+    },
+    {
+      "path": "tasks/ce-social-proof-badges.md",
+      "bytes": 7270,
+      "sha256": "dac3677b94ab147e9c13acab773f487ae73eee4fe6509dadf4917c509584fcc9"
+    },
+    {
+      "path": "tasks/ce-social-proof-cases.md",
+      "bytes": 7179,
+      "sha256": "98ce27ea3f1ce1d05f6e5f880dec58528fc446dd3f04da59b4cdcd690f1dd349"
+    },
+    {
+      "path": "tasks/ce-social-proof-testimonials.md",
+      "bytes": 6685,
+      "sha256": "94b60806bf0e3e33a018afdfa60e32bb14b924f3d3a7f5b06622c4c6c6d525b4"
+    },
+    {
+      "path": "tasks/ce-strategist-discover.md",
+      "bytes": 4177,
+      "sha256": "3bff02c4b9d5cd121046b7b20ca3d7cd07b23fa755fe4858aa9752159a17365a"
+    },
+    {
+      "path": "tasks/ce-strategist-elicit.md",
+      "bytes": 5587,
+      "sha256": "ea72d7cfc8da98441a5ed8bcd3ca53985785af0c52157dbf7ee82a96edbf4536"
+    },
+    {
+      "path": "tasks/ce-strategist-funnel-map.md",
+      "bytes": 4569,
+      "sha256": "63242e2993a96a3050c0f42cd5a4bbf8102079ee082b71c9228fc96ed0933049"
+    },
+    {
+      "path": "tasks/ce-strategist-scope.md",
+      "bytes": 5492,
+      "sha256": "28cbaf8b09e225a880845c537abbb675a051b540f77861184938654d2bfff5ca"
+    },
+    {
+      "path": "workflows/ce-ab-design.yaml",
+      "bytes": 14366,
+      "sha256": "8f5e46b36aacf7b694e58477c9b3e279e3c2cb0b17b55ce0028f1fcf0a56ce23"
+    },
+    {
+      "path": "workflows/ce-build-parallel.yaml",
+      "bytes": 10594,
+      "sha256": "401e882915a8daab3f658b7a2ae5fc4257795a9b8d3d3477c3d8c6e1ba83c161"
+    },
+    {
+      "path": "workflows/ce-copy-design-parallel.yaml",
+      "bytes": 10006,
+      "sha256": "5b57605437845838c242a55020070110b37b271098c1ba2c43dee52c30ef5fb5"
+    },
+    {
+      "path": "workflows/ce-discovery-flow.yaml",
+      "bytes": 7351,
+      "sha256": "1923f8069f12089956a51bacebf0cdeca96ff8a5ef379cdaa8d3353d38f98019"
+    },
+    {
+      "path": "workflows/ce-full-pipeline.yaml",
+      "bytes": 13347,
+      "sha256": "0fd42247a5424dd27a92e20ce2fdc08d26c1a4d69ab0a601ef1abf593f8ac495"
+    },
+    {
+      "path": "workflows/ce-intelligence-flow.yaml",
+      "bytes": 9727,
+      "sha256": "1113396517aa68b8d1ed3470a1bd5e03b210a04030983cb088af79011a863fae"
+    },
+    {
+      "path": "workflows/ce-launch-prep.yaml",
+      "bytes": 11526,
+      "sha256": "bfbd73fe755cca7babd74c737d9651ff198230f23fd26191ac26fff6486938b0"
+    },
+    {
+      "path": "workflows/ce-post-launch.yaml",
+      "bytes": 10158,
+      "sha256": "644596ec5e033b9b927df781d53f2680ba9cb5636fba0c08bb380f9eb3d1e02c"
+    },
+    {
+      "path": "workflows/ce-qa-gate.yaml",
+      "bytes": 17596,
+      "sha256": "288b2d4bc68e68268b6742e359fb96bf9f229055ff9177892eef473bcc862384"
+    },
+    {
+      "path": "workflows/ce-section-pipeline.yaml",
+      "bytes": 13228,
+      "sha256": "02e209d126f5d68ce69ff3a8480cd48884e5f046eac9cb28be2fe0ab46077064"
+    }
+  ],
+  "provenance_readme_sha256": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83"
+}

@@ -1,0 +1,31 @@
+row: gestao
+title: Due Diligence / M&A Screening
+title_netflix: DUE DILIGENCE / M&A SCREENING
+subtitle: Organizar triagem de oportunidades de aquisição e due diligence, identificando evidências, riscos e lacunas para
+  revisão
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 10 papéis, 10 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-due-diligence-ma-screening para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Nexus
+  - Argus
+  - Fenix
+  - Themis
+  - Sigma
+  - Atlas
+  - Vox
+  - Eco
+  - Columbo
+  - Columbo 2
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

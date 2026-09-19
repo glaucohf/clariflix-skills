@@ -1,0 +1,164 @@
+workflow_name: ops_cs_qa_conversas_verifier_pipeline
+description: "Cada conversa auditada, nenhuma violação escapando — o QÁ que nunca dorme e revisa 100% sem custar 100% do seu time."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-qa-conversas-verifier
+area: "Operações & CS"
+topsquad: "O2 · Qualidade, Voz do Cliente & Knowledge Base"
+agent_sequence:
+  - kronos
+  - lexis
+  - aria
+  - veritas
+  - nexus
+  - herald
+  - calibra
+  - veritas-sentinel
+key_commands:
+  - "*scanner-de-dados-sensiveis"
+  - "*avaliar-qualidade-relacional"
+  - "*verificar-informacoes-tecnicas"
+  - "*avaliar-resolucao-problema"
+  - "*gerar-scorecard-completo"
+  - "*calibrar-rubrica"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: kronos
+success_indicators:
+  - "Taxa de cobertura de conversas auditadas: % do total de conversas encerradas que passaram pelo pipeline de QA — meta 100% para helpdesk integrado; > 95% contando erros de ingestão e retries"
+  - "Latência de auditoria: tempo do encerramento da conversa até scorecard disponível — meta P50 < 3 minutos, P95 < 10 minutos para o lote padrão; < 2 minutos para conversas de risco crítico (keywords de escalação)"
+  - "Precisão de detecção de violações (validada contra set anotado): taxa de verdadeiros positivos (violações reais detectadas) e taxa de falso positivo (alertas indevidos) — meta > 92% de precisão e < 8% de falso positivo em produção (quality gate Langfuse)"
+  - "Taxa de falso positivo contestado: % de scorecards VERMELHO que foram revertidos pelo SENTINEL ou contestados e aprovados pelo gestor — meta < 5%; acima disso dispara recalibragem da rubrica pelo CALIBRA"
+  - "Taxa de violação por eixo (semanal): % de conversas auditadas com pelo menos uma violação em compliance (LEXIS), tom (ARIA), precisão (VERITAS) e resolução (NEXUS) — linha de base medida nos primeiros 30 dias, meta de redução de 30-50% em 90 dias"
+  - "Taxa de conclusão de tasks de coaching no ClickUp: % de tasks abertas que foram concluídas dentro do prazo estabelecido — meta > 80% em 14 dias; mede se o QA está gerando ação real ou apenas relatório ignorado"
+  - "Score médio de qualidade por agente (trend semanal): evolução do score compósito médio por agente ao longo do tempo — meta: agentes com coaching mostram melhora mensurável de pelo menos 10 pontos em 4 semanas"
+  - "Custo por conversa auditada (tokens + infra): meta < R$0,05 por conversa para operações de até 1.000 conversas/dia; calculado automaticamente via Langfuse e reportado no dashboard mensal"
+  - "Redução de re-contato desnecessário (medida via NEXUS): % de conversas com flag de 're-contato provável' que efetivamente geraram um novo ticket em 48h — baseline nos primeiros 30 dias, meta redução de 20% em 90 dias após ativação do squad"
+deliverable:
+  description: "Scorecard de Qualidade por Conversa — artefato verificável entregue para 100% das conversas auditadas: score total de 0-100 + score por eixo (Compliance/Tom/Precisão/Resolução) + veredicto (VERDE/AMARELO/VERMELHO) + lista de violações com trecho exato citado + ação recomendada. Para conversas AMARELAS e VERMELHAS: task automática no ClickUp com evidência, responsável, prazo e prioridade — prova de trabalho rastreável do squad. Relatório consolidado semanal entregue ao gestor via Slack: distribuição de scores, top violações da semana, agentes que mais melhoraram e que mais precisam de atenção, evolução da taxa de violação por eixo vs semana anterior. Dashboard de qualidade em tempo real (ClickUp ou Supabase-backed) com métricas de produção do squad (volume auditado, taxa de cobertura, custo por auditoria) e métricas de impacto (taxa de violação trend, FCR, churn risk conversas)."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: kronos
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Scanner De Dados Sensiveis"
+    agent: lexis
+    task: scanner-de-dados-sensiveis.md
+    trigger: "Disparo pelo KRONOS para cada conversa na fila. Execução paralela com ARIA, VERITAS e NEXUS. SLA: resultado em < 20 segundos para conversas de até 50 mensagens; < 45 segundos para conversas longas (50+ mensagens). Prioridade máxima para co…"
+    checkpoint:
+      criteria: "Relatório de compliance com: score numérico de 0-100, lista de violações encontradas (cada uma com trecho citado + número da mensagem + tipo + severidade), flag de escalação imediata (true/false para violações CRÍTICAS), veredicto de eixo…"
+      veto_condition: "Saída sem veredito do critic VERITAS-SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Avaliar Qualidade Relacional"
+    agent: aria
+    task: avaliar-qualidade-relacional.md
+    trigger: "Disparo pelo KRONOS em paralelo com os outros workers. SLA: < 25 segundos para conversas até 50 mensagens. Prioridade elevada para conversas de clientes com score de saúde baixo no CS platform (ChurnZero/Custify) quando integração disponív…"
+    checkpoint:
+      criteria: "Relatório de tom com: score numérico 0-100 (média ponderada das 5 dimensões), pontuação por dimensão, trechos citados de boas práticas e oportunidades de melhoria, curva de sentimento do cliente ao longo da conversa (melhora/piora/estável)…"
+      veto_condition: "Saída sem veredito do critic VERITAS-SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Verificar Informações Técnicas"
+    agent: veritas
+    task: verificar-informacoes-tecnicas.md
+    trigger: "Disparo pelo KRONOS em paralelo. SLA: < 30 segundos para conversas até 50 mensagens (precisa de busca semântica na base de conhecimento). Prioridade máxima para conversas de agentes de IA onde alucinação é risco permanente. Reprocessamento…"
+    checkpoint:
+      criteria: "Relatorio de precisao com: score numerico 0-100, lista de afirmacoes verificadas (correto/parcialmente correto/incorreto), cada incorrecao com trecho citado + versao correta da informacao + fonte na base de conhecimento + severidade do err…"
+      veto_condition: "Saída sem veredito do critic VERITAS-SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Avaliar Resolução Problema"
+    agent: nexus
+    task: avaliar-resolucao-problema.md
+    trigger: "Disparo pelo KRONOS em paralelo. SLA: < 25 segundos. Prioridade elevada para conversas marcadas como 'fechadas/resolvidas' no helpdesk — são as que têm maior risco de falso fechamento."
+    checkpoint:
+      criteria: "Relatorio de resolucao com: score numerico 0-100, veredicto de resolucao (RESOLVIDO / RESOLVIDO PARCIALMENTE / NAO RESOLVIDO / FALSO FECHAMENTO), avaliacao de timing de escalonamento (ADEQUADO / TARDIO / PREMATURO / AUSENTE quando necessar…"
+      veto_condition: "Saída sem veredito do critic VERITAS-SENTINEL; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Gerar Scorecard Completo"
+    agent: herald
+    task: gerar-scorecard-completo.md
+    trigger: "Disparo pelo KRONOS apos receber todos os scores dos workers e o veredicto final. SLA: < 10 segundos para gerar scorecard e abrir task. Relatório consolidado gerado diariamente as 07h (ou no horário configurado pelo cliente) e semanalmente…"
+    checkpoint:
+      criteria: "Scorecard individual por conversa (PDF ou card no ClickUp com: score total + score por eixo + veredicto + trechos evidenciados + ação recomendada), task de coaching/correção no ClickUp (para conversas AMARELA/VERMELHA), alerta Slack para g…"
+      veto_condition: "Saída sem veredito do critic VERITAS-SENTINEL; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Calibrar Rubrica"
+    agent: calibra
+    task: calibrar-rubrica.md
+    trigger: "Ciclo mensal automático para relatório de saúde. Disparo imediato quando taxa de contestação de scorecards supera 5% das conversas auditadas em 30 dias (indica problema sistemático na rubrica). Disparo quando base de conhecimento do VERITA…"
+    checkpoint:
+      criteria: "Relatório mensal de saúde da rubrica (taxa de falso positivo por eixo, thresholds recomendados, exemplos de casos-borda), solicitação de ajuste de rubrica ao gestor para aprovação HITL, lista de conversas para reprocessamento quando base d…"
+      veto_condition: "Saída sem veredito do critic VERITAS-SENTINEL; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: veritas-sentinel
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: kronos
+    checkpoint:
+      criteria: "Entregável consolidado: Scorecard de Qualidade por Conversa — artefato verificável entregue para 100% das conversas auditadas: score total de 0-100 + score por eixo (Compliance/Tom/Precisão/Resolução) + veredicto (VERDE/AMA…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Criação de tasks de coaching ALTA prioridade no ClickUp para violações VERMELHAS: o VERITAS-SENTINEL revisa primeiro; após confirmação, HERALD cria a task — o gestor recebe o alerta e decide se escala para ação disciplinar ou coaching"
+  - level: L3
+    condition: "Envio de alertas externos (Slack, email) para gestores sobre violações críticas de compliance: sempre passa pelo VERITAS-SENTINEL antes do envio; nenhum alerta crítico é enviado sem revisão de falso positivo"
+  - level: L3
+    condition: "Qualquer modificação na rubrica de auditoria (thresholds, pesos por eixo, novos termos proibidos, atualização de política): CALIBRA prepara a proposta de mudança, gestor responsável aprova via ClickUp task antes de entrar em produção — nunca modificação autônoma da rubrica"
+  - level: L3
+    condition: "Ações que afetam o agente humano diretamente (notificação formal de violação, registro em prontuário de RH, bloqueio de acesso): o squad gera a evidência e a recomendação, mas a ação sobre pessoas exige aprovação humana obrigatória"
+  - level: L2
+    condition: "Conversas de clientes VIP (acima de threshold configurado de valor anual) ou conversas envolvendo processos juridicos ou ameacas: KRONOS pausa o pipeline automatico e notifica o gestor para revisar manualmente antes de qualquer acao do squad"
+  - level: L2
+    condition: "Contestação de scorecard pelo agente auditado: CALIBRA recebe a contestação, analisa e gera recomendação (confirmar ou reverter veredicto), mas a decisão final de reversão é do gestor que aprova via ClickUp — nunca reversão autônoma"
+  - level: L1
+    condition: "Calibragem inicial da rubrica no onboarding: os pesos dos eixos, os thresholds de VERDE/AMARELO/VERMELHO e a lista inicial de termos proibidos são definidos pelo cliente em workshop com o consultor Lendar[IA] antes da ativação do squad em produção"
+transitions:
+  - from: kronos
+    to: lexis
+    condition: "Disparo pelo KRONOS para cada conversa na fila. Execução paralela com ARIA, VERITAS e NEXUS. SLA: resultado em < 20 segundos para conversas de até 50 mensagens; < 45 segundos para conversas longas (5…"
+  - from: lexis
+    to: aria
+    condition: "Disparo pelo KRONOS em paralelo com os outros workers. SLA: < 25 segundos para conversas até 50 mensagens. Prioridade elevada para conversas de clientes com score de saúde baixo no CS platform (Churn…"
+  - from: aria
+    to: veritas
+    condition: "Disparo pelo KRONOS em paralelo. SLA: < 30 segundos para conversas até 50 mensagens (precisa de busca semântica na base de conhecimento). Prioridade máxima para conversas de agentes de IA onde alucin…"
+  - from: veritas
+    to: nexus
+    condition: "Disparo pelo KRONOS em paralelo. SLA: < 25 segundos. Prioridade elevada para conversas marcadas como 'fechadas/resolvidas' no helpdesk — são as que têm maior risco de falso fechamento."
+  - from: nexus
+    to: herald
+    condition: "Disparo pelo KRONOS apos receber todos os scores dos workers e o veredicto final. SLA: < 10 segundos para gerar scorecard e abrir task. Relatório consolidado gerado diariamente as 07h (ou no horário…"
+  - from: herald
+    to: calibra
+    condition: "Ciclo mensal automático para relatório de saúde. Disparo imediato quando taxa de contestação de scorecards supera 5% das conversas auditadas em 30 dias (indica problema sistemático na rubrica). Dispa…"
+  - from: calibra
+    to: veritas-sentinel
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: veritas-sentinel
+    to: kronos
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - lexis
+  - aria
+  - veritas
+  - nexus

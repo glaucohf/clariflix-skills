@@ -1,0 +1,58 @@
+name: flywheel-core
+version: 1.0.0
+description: "Super sistema de agentes autônomos baseado na metodologia Agent Flywheel — Reasoning, Tools, Memory, Feedback."
+author: "AIOX God Mode (inspired by Jeffrey Emanuel)"
+license: MIT
+slashPrefix: flywheel
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - flywheel-architect.md
+    - bead-manager.md
+    - swarm-coordinator.md
+    - hardening-specialist.md
+  tasks:
+    - generate-plan.md
+    - decompose-beads.md
+    - polish-beads.md
+    - sync-context.md
+    - bv-prioritize.md
+    - br-lock.md
+    - swarm-status.md
+    - blunder-hunt.md
+    - cross-review.md
+    - ubs-scan.md
+  workflows:
+    - flywheel-execution-cycle.yaml
+    - hardening-pipeline.yaml
+  checklists:
+    - hardening-quality-gate.md
+  templates:
+    - plan-space.template.md
+    - bead.template.md
+  tools: []
+  scripts:
+    - scripts/bv.js
+    - scripts/br.js
+    - scripts/ubs.js
+
+config:
+  extends: none
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+dependencies:
+  node: []
+  squads: []
+
+tags:
+  - agent-flywheel
+  - autonomous-agents
+  - reasoning
+  - memory-beads
+  - swarm-intelligence

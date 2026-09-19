@@ -1,0 +1,158 @@
+workflow_name: founder_kpi_okr_pulse_pipeline
+description: "Transforma métricas dispersas em diagnóstico de desvio com recomendação acionável toda segunda-feira — antes que o trimestre seja perdido."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-kpi-okr-pulse
+area: "Founder Office"
+topsquad: "F2 · Performance, KPIs & Calibração de Decisões"
+agent_sequence:
+  - atlas
+  - pulsar
+  - kalinda
+  - argo
+  - rex
+  - sigma
+  - vera
+  - vera-2
+key_commands:
+  - "*coletar-dados-kpi"
+  - "*calcular-trajetorias-okr"
+  - "*analisar-causa-raiz"
+  - "*gerar-recomendacoes-acionaveis"
+  - "*humanizar-relatorio"
+  - "*validar-dados-plausiveis"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: atlas
+success_indicators:
+  - "Latência de detecção de desvio: tempo entre ocorrência do desvio e notificação ao founder (target <48h vs. baseline 2-4 semanas)"
+  - "Taxa de KPIs consolidados automaticamente com dados OK por ciclo semanal (target >85% sem intervenção manual)"
+  - "Taxa de diagnósticos de causa-raiz com confiança Alta ou Média validados pela Véra (target >80%)"
+  - "Taxa de recomendações aceitas pelo founder (task criada no ClickUp sem modificação) (target >60%)"
+  - "Número de falsos alarmes por mês (desvios reportados que founder classifica como 'não-acionável') (target <2/mês)"
+  - "Tempo do founder gasto em coleta e análise manual de dados por semana (target <1h vs. baseline 6-10h)"
+  - "SLA de entrega do Pulse Report completo após início da coleta (target <90 min)"
+  - "Cobertura do catálogo de métricas: % dos OKRs do trimestre com pelo menos 1 KPI coletado automaticamente (target 100%)"
+  - "Custo por ciclo semanal em tokens (target <U$2 por Pulse semanal padrão)"
+  - "NPS do founder com o Pulse semanal após 90 dias (target >=9/10)"
+deliverable:
+  description: "Pulse Report Semanal — entregue toda segunda-feira via Slack (resumo em 5 bullets acionáveis) + Notion (relatório completo permanente) + ClickUp (tasks de recomendação já criadas). Estrutura do relatório completo: (1) Semáforo Geral do Portfólio de OKRs (Verde/Amarelo/Vermelho por OKR, % de progresso vs. trajetória esperada); (2) Desvios da Semana — para cada KR desviado: valor atual vs. esperado, desvio percentual, diagnóstico de causa-raiz com evidência numérica, categoria (Operacional/Mercado/Produto/Financeiro/Pessoas) e nível de confiança do diagnóstico; (3) Recomendações Acionáveis — 1-3 recomendações por KR desviado com lógica explícita, owner sugerido, prazo esperado de efeito e KPI de confirmação; (4) Quick Wins — top 3 ações de alto impacto e baixo esforço da semana; (5) Tendências de Médio Prazo — projeção de encerramento do trimestre em cenário base, otimista e pessimista; (6) Log de Dados — quais sistemas foram coletados, quais falharam, qualidade geral dos dados desta semana; (7) Pulse em 5 Bullets (Sigma) — versão ultra-condensada para consumo imediato. Audit trail completo (timestamp de cada etapa, custo de tokens, agentes acionados) armazenado no Langfuse."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: atlas
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Coletar Dados Kpi"
+    agent: pulsar
+    task: coletar-dados-kpi.md
+    trigger: "Disparado por Atlas no início de cada ciclo semanal (cron). Também ativado por Atlas em queries ad-hoc quando founder pede KPI específico. Re-disparado automaticamente se dado de uma fonte chegar com atraso (retry com backoff de 15 min, má…"
+    checkpoint:
+      criteria: "Snapshot estruturado: { kpi_name, current_value, period, source_system, extraction_timestamp, calculation_method, data_quality_flag (OK/PARTIAL/FAILED) }. Relatório de falhas de coleta por sistema. Tempo total de coleta por fonte."
+      veto_condition: "Saída sem veredito do critic Véra 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Calcular Trajetórias Okr"
+    agent: kalinda
+    task: calcular-trajetorias-okr.md
+    trigger: "Ativado por Atlas após Pulsar concluir coleta com sucesso (ou partial com flag). Também ativado quando founder cria ou atualiza OKR via comando '/update-okr'. Re-executa ao final do mês para projeção de encerramento do trimestre (cenário b…"
+    checkpoint:
+      criteria: "Painel de status de OKRs: { okr_name, kr_name, owner, target_value, current_value, expected_trajectory_value, deviation_pct, status (Verde/Amarelo/Vermelho), trend (Acelerando/Estável/Desacelerando), priority_score }. Lista de desvios acim…"
+      veto_condition: "Saída sem veredito do critic Véra 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Analisar Causa-Raiz"
+    agent: argo
+    task: analisar-causa-raiz.md
+    trigger: "Ativado por Atlas para cada KR com status Amarelo ou Vermelho na análise do Kalinda. Quantidade de KRs em análise simultânea limitada a 5 para controle de custo de tokens. KRs Vermelhos recebem prioridade absoluta. Também ativado por query…"
+    checkpoint:
+      criteria: "Diagnóstico de causa-raiz estruturado por KR: { kr_name, root_cause_hypothesis, cause_category, evidence_data (dados numéricos que suportam a hipótese), confidence_level (Alto/Médio/Baixo), contributing_factors (fatores secundários), anoma…"
+      veto_condition: "Saída sem veredito do critic Véra 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Gerar Recomendações Acionáveis"
+    agent: rex
+    task: gerar-recomendacoes-acionaveis.md
+    trigger: "Ativado por Atlas após Véra validar diagnóstico do Argo. Nunca ativado com diagnóstico não validado. Também ativado por query ad-hoc: '/recommend [KR_name]'. Re-executa ao final do mês para gerar plano de aceleração de encerramento de trim…"
+    checkpoint:
+      criteria: "Bloco de recomendações por KR desviado: { recommendation_title, logic_chain, owner, expected_lead_time, confirmation_kpi, effort_score (1-5), impact_score (1-5), urgency_score (1-5), priority_rank, clickup_task_id (criado automaticamente)…"
+      veto_condition: "Saída sem veredito do critic Véra 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Humanizar Relatório"
+    agent: sigma
+    task: humanizar-relatorio.md
+    trigger: "Ativado por Atlas como etapa final do pipeline semanal se Sigma estiver habilitado na config. Pode ser ativado ad-hoc: '/rewrite-pulse [formato]'. Desabilitado automaticamente em relatórios de alerta crítico (L3 HITL) — nesses casos o rela…"
+    checkpoint:
+      criteria: "Pulse Report no tom do founder. Seção 'Minha Leitura desta Semana' em primeira pessoa (2-3 parágrafos de reflexão estratégica no estilo do founder). Versão ultra-curta para WhatsApp/Telegram (5 bullets de impacto máximo). Versão completa p…"
+      veto_condition: "Saída sem veredito do critic Véra 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Validar Dados Plausíveis"
+    agent: vera
+    task: validar-dados-plausiveis.md
+    trigger: "Ativado automaticamente em dois momentos: (1) após Pulsar concluir coleta, antes de Kalinda calcular desvios; (2) após Argo gerar diagnósticos, antes de Rex gerar recomendações. Pode ser invocado ad-hoc: '/verify-data [kpi_name]' ou '/veri…"
+    checkpoint:
+      criteria: "Snapshot validado com flags de qualidade atualizadas. Diagnósticos auditados com anotação de confiança revisada. Relatório de validação: { total_kpis, data_quality_ok, data_quality_partial, data_quality_failed, diagnoses_reviewed, diagnose…"
+      veto_condition: "Saída sem veredito do critic Véra 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: vera-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: atlas
+    checkpoint:
+      criteria: "Entregável consolidado: Pulse Report Semanal — entregue toda segunda-feira via Slack (resumo em 5 bullets acionáveis) + Notion (relatório completo permanente) + ClickUp (tasks de recomendação já criadas). Estrutura do relat…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "DIAGNÓSTICO DE BAIXA CONFIANÇA (L3): Quando Véra classifica diagnóstico de causa-raiz como confiança Baixa e o KR associado tem peso estratégico Alto (ex: OKR de receita principal) — Argo retém a hipótese e Atlas notifica o founder: 'Detectei desvio em [KR] mas não tenho dados suficientes para confirmar a causa. Possível hipótese: [X]. Você pode me dar contexto adicional?' O founder responde e Argo reprocessa com o contexto fornecido."
+  - level: HITL
+    condition: "RECOMENDAÇÃO COM IMPACTO FINANCEIRO DIRETO (L3): Rex nunca cria task automática no ClickUp para recomendações classificadas como 'ação financeira' (ex: cancelar contrato, cortar budget de campanha, demitir fornecedor, alterar pricing) sem aprovação explícita do founder. Essas recomendações chegam como rascunho com flag APPROVAL_REQUIRED — founder aprova, rejeita ou modifica antes de qualquer task ser criada."
+  - level: HITL
+    condition: "ALERTA DE DADOS COMPROMETIDOS (L2→L3): Se Véra detectar que >30% dos KPIs de um OKR crítico vieram com data_quality_flag=FAILED (falha de integração, dado zerado, timeout), Atlas pausa o ciclo e envia alerta imediato: 'Pulse desta semana comprometido — [N] KPIs sem dados confiáveis de [sistema X]. Envio relatório parcial ou aguardo resolução?' Founder decide antes do relatório ser publicado."
+  - level: HITL
+    condition: "CLONE SIGMA PUBLICAÇÃO EXTERNA (L1→L3): Sigma pode gerar e entregar o Pulse no Slack e Notion de uso interno do founder sem aprovação. Se o founder solicitar versão do Pulse para compartilhar com time, board ou investidores — Sigma gera o draft mas entrega APENAS ao founder para revisão antes de qualquer distribuição externa."
+  - level: HITL
+    condition: "RECALIBRAÇÃO DE TARGET DE OKR (L2): Quando Kalinda detecta que um OKR está >120% da trajetória esperada por 2 semanas consecutivas (super-performance) ou que a tendência matemática torna o target inalcançável mesmo com ação corretiva — Atlas sinaliza ao founder para deliberar sobre recalibração de target. Nunca recalibra automaticamente. Founder decide em reunião de check-in mensal."
+  - level: HITL
+    condition: "ONBOARDING DE NOVO KPI/SISTEMA (L1): Ao adicionar nova fonte de dados ao catálogo, o primeiro ciclo de coleta opera em modo 'dry-run' — Pulsar coleta e Kalinda calcula desvios, mas Véra bloqueia entrega de diagnóstico e recomendação até que o founder confirme que os dados coletados fazem sentido. Isso evita que erro de mapeamento de campo gere falso alarme na primeira semana."
+transitions:
+  - from: atlas
+    to: pulsar
+    condition: "Disparado por Atlas no início de cada ciclo semanal (cron). Também ativado por Atlas em queries ad-hoc quando founder pede KPI específico. Re-disparado automaticamente se dado de uma fonte chegar com…"
+  - from: pulsar
+    to: kalinda
+    condition: "Ativado por Atlas após Pulsar concluir coleta com sucesso (ou partial com flag). Também ativado quando founder cria ou atualiza OKR via comando '/update-okr'. Re-executa ao final do mês para projeção…"
+  - from: kalinda
+    to: argo
+    condition: "Ativado por Atlas para cada KR com status Amarelo ou Vermelho na análise do Kalinda. Quantidade de KRs em análise simultânea limitada a 5 para controle de custo de tokens. KRs Vermelhos recebem prior…"
+  - from: argo
+    to: rex
+    condition: "Ativado por Atlas após Véra validar diagnóstico do Argo. Nunca ativado com diagnóstico não validado. Também ativado por query ad-hoc: '/recommend [KR_name]'. Re-executa ao final do mês para gerar pla…"
+  - from: rex
+    to: sigma
+    condition: "Ativado por Atlas como etapa final do pipeline semanal se Sigma estiver habilitado na config. Pode ser ativado ad-hoc: '/rewrite-pulse [formato]'. Desabilitado automaticamente em relatórios de alerta…"
+  - from: sigma
+    to: vera
+    condition: "Ativado automaticamente em dois momentos: (1) após Pulsar concluir coleta, antes de Kalinda calcular desvios; (2) após Argo gerar diagnósticos, antes de Rex gerar recomendações. Pode ser invocado ad-…"
+  - from: vera
+    to: vera-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: vera-2
+    to: atlas
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

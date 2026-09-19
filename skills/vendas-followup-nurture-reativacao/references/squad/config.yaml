@@ -1,0 +1,60 @@
+pack:
+  name: vendas-followup-nurture-reativacao
+  version: 0.1.0
+  short-title: "Follow-up, Nurture e Reativacao"
+  description: "Cada lead que voce abandona e dinheiro que o concorrente embolsa — nos nao deixamos nenhum esfriar."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🔥"
+  slashPrefix: followUpNurtureEReativacao
+name: vendas-followup-nurture-reativacao
+version: 0.1.0
+description: "Cada lead que voce abandona e dinheiro que o concorrente embolsa — nos nao deixamos nenhum esfriar."
+entry_agent: maestro
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V4"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - maestro
+  - radar
+  - cronos
+  - volta
+  - sherlock
+  - atlas
+  - agenda
+  - memento
+  - vigia
+  - vigia-2
+tasks:
+  - monitorar-eventos-de-reativacao.md
+  - sequenciar-toques-lead.md
+  - enviar-mensagem-personalizada.md
+  - enriquecer-dados-lead.md
+  - calcular-score-lead.md
+  - reagendar-reunioes.md
+  - recuperar-historico-de-interacoes.md
+  - verificar-mensagem.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-followup-nurture-reativacao-pipeline.yaml
+checklists:
+  - critic-vigia-2.md
+integrations:
+  - "CRM: HubSpot (MCP disponível) ou Pipedrive — fonte de verdade de leads, status de cadência, score, histórico"
+  - "WhatsApp Business API: Gupshup, AiSensy ou Evolution API (open-source) — canal principal de reativação no Brasil"
+  - "Email: SMTP/SendGrid/Amazon SES via HubSpot ou Instantly.ai para sequências frias"
+  - "Calendário: Google Calendar / Outlook Calendar / Calendly — re-agendamento e reminders do Agenda"
+  - "Enriquecimento: Clay (orquestrador de enriquecimento) + Apollo (base de contatos) — alimentam o Sherlock"
+  - "Voz: Vapi (<600ms latência) ou Retell AI + ElevenLabs TTS — para toques de voz em cadências de alto valor"
+  - "LinkedIn: LinkedIn Sales Navigator API ou PhantomBuster — outreach e sinal de mudança de cargo"
+  - "Conversation Intelligence: Gong ou Chorus (webhook de transcrição pós-call) — alimenta o Memento"
+  - "Gestão de tarefas / Prova de trabalho: ClickUp (cada ação do squad gera task verificável)"
+  - "Observabilidade: Langfuse (OTEL) — tracking de todas as execuções, quality gates, evals de mensagem"
+  - "Orquestração: LangGraph (controle fino do fluxo de cadências) + Claude Agent SDK (Maestro como orchestrator)"
+  - "Sinais de intenção: G2, Bombora ou Apollo Intent — triggeram reativação de leads que pesquisam a categoria"

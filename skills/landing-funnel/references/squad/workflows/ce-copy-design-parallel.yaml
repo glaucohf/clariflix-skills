@@ -1,0 +1,157 @@
+workflow_name: ce_copy_design_parallel
+description: >
+  Sub-workflow paralelo — ce-copywriter (Pulse), ce-design-architect (Canvas) e
+  ce-social-proof (Trust) executam simultaneamente após o intelligence report
+  ser aprovado. Cada agente trabalha de forma independente em seu domínio,
+  mas todos entregam para um merge gate comum antes de ce-image-creator (Flash)
+  poder iniciar. Reduz o tempo desta fase de 6-9h (sequencial) para 2-3h (paralelo).
+
+agent_sequence:
+  - ce-copywriter
+  - ce-design-architect
+  - ce-social-proof
+  - ce-image-creator
+
+estimated_duration: "2-3 horas"
+
+parallel_execution:
+  enabled: true
+  strategy: "fork-join"
+  fork_trigger: "Intelligence report aprovado com 3 briefings específicos disponíveis"
+  join_gate: "merge_gate_all_complete"
+  join_condition: "copy_complete AND design_complete AND social_proof_complete"
+  join_owner: ce-image-creator (Flash)
+
+phases:
+  - name: "Phase 1A — Copy Writing [PARALELO]"
+    agent: ce-copywriter (Pulse)
+    parallel_with: ["Phase 1B — Design System", "Phase 1C — Social Proof"]
+    tasks:
+      - Receber briefing específico de copy do intelligence report
+      - Escrever headline principal com 3 variações testáveis
+      - Escrever copy completa de cada seção seguindo sequência do escopo definido
+      - "Seções obrigatórias: navigation, hero, problem-agitation, solution-demo, pricing, final-cta"
+      - "Seções condicionais: benefits, features, faq, footer (conforme escopo)"
+      - Desenvolver script VSL (se aplicável) com estrutura: hook → problema → solução → oferta → CTA
+      - Redigir CTAs principais, secundários e micro-CTAs para cada seção
+      - Escrever microcopy: labels de formulário, mensagens de erro, confirmações
+      - Aplicar mecanismos de urgência e escassez compatíveis com a realidade do produto
+      - Entregar copy document estruturado por seção com notas de tom e intenção
+    checkpoints:
+      entry: "Briefing específico de copy recebido do intelligence report"
+      exit: >
+        Copy document completo com: headline + 3 variações, copy de todas as
+        seções do escopo, script VSL (se aplicável), CTAs, microcopy, urgência aplicada
+    veto_conditions:
+      - "Headline principal sem 3 variações testáveis → criar variações antes de entregar"
+      - "Seção obrigatória ausente no copy document → completar antes do merge gate"
+      - "Copy sem endereçamento das 5 objeções obrigatórias do intelligence report → revisar"
+      - "Linguagem inconsistente com o perfil de audiência (muito técnica, muito informal) → ajustar"
+      - "CTAs vagos ('Saiba mais', 'Clique aqui') sem benefício explícito → reescrever"
+      - "Urgência fabricada sem base real no produto → remover ou substituir por urgência legítima"
+
+  - name: "Phase 1B — Design System + CRO Layout [PARALELO]"
+    agent: ce-design-architect (Canvas)
+    parallel_with: ["Phase 1A — Copy Writing", "Phase 1C — Social Proof"]
+    tasks:
+      - Receber briefing específico de design do intelligence report (referências visuais competitivas)
+      - Definir paleta de cores: primária, secundária, accent, neutras, CTA color
+      - Definir tipografia: família, pesos, escalas (h1-h6, body, caption, cta)
+      - Definir sistema de espaçamento: grid, gutters, padding padrões
+      - Definir tokens de design: border-radius, shadows, transitions
+      - Mapear layout CRO de cada seção com wireframe textual (acima/abaixo do fold)
+      - Especificar hierarquia visual por seção: o que o olho deve ver primeiro
+      - Definir componentes reutilizáveis: botões, cards, badges, formulários
+      - Documentar padrões de CRO aplicados por seção com justificativa
+      - Criar design spec document com todos os tokens e especificações para ce-frontend-dev
+    checkpoints:
+      entry: "Briefing específico de design recebido do intelligence report"
+      exit: >
+        Design spec document completo com: paleta de cores, tipografia, espaçamento,
+        tokens, layout CRO por seção, componentes especificados, padrões documentados
+    veto_conditions:
+      - "Paleta de cores sem definição de CTA color específica → completar"
+      - "Design sem contraste mínimo WCAG AA (4.5:1 para texto) → corrigir antes de entregar"
+      - "Layout CRO sem justificativa de padrão aplicado → documentar razões"
+      - "Componentes especificados sem estados (hover, focus, disabled) → completar"
+      - "Design spec sem seção de tipografia responsiva (mobile/desktop) → adicionar"
+      - "CTA color igual ou muito próxima à cor de fundo → redesenhar para contraste"
+
+  - name: "Phase 1C — Social Proof Package [PARALELO]"
+    agent: ce-social-proof (Trust)
+    parallel_with: ["Phase 1A — Copy Writing", "Phase 1B — Design System"]
+    tasks:
+      - Receber briefing específico de social proof do intelligence report
+      - Coletar depoimentos do cliente: priorizar com dados mensuráveis (antes/depois)
+      - Classificar depoimentos por tipo: texto, vídeo, áudio, screenshot de conversa
+      - Selecionar mínimo de 5 depoimentos de alta credibilidade para seção principal
+      - Identificar e validar logos de empresas/clientes para social proof bar
+      - Pesquisar badges de autoridade: certificações, prêmios, menções na mídia
+      - Construir casos de sucesso estruturados: perfil do cliente → problema → resultado (com números)
+      - Criar social proof bar com logos + número de clientes/resultados
+      - Estruturar seção de resultados com dados quantitativos (se disponíveis)
+      - Documentar onde cada tipo de prova social deve aparecer na landing page
+    checkpoints:
+      entry: "Briefing específico de social proof recebido do intelligence report"
+      exit: >
+        Social proof package completo com: >= 5 depoimentos qualificados, logos
+        validados, badges documentados, casos de sucesso estruturados, mapa de
+        posicionamento de prova social por seção
+    veto_conditions:
+      - "Menos de 5 depoimentos coletados → solicitar mais ao cliente antes de entregar"
+      - "Depoimentos apenas com elogios genéricos sem resultados específicos → filtrar ou substituir"
+      - "Logos sem validação (empresa fictícia ou cliente que não autorizou) → remover"
+      - "Nenhum dado quantitativo disponível (%, $, dias, kg, etc.) → documentar como flag e buscar alternativa"
+      - "Social proof bar vazia ou com menos de 3 logos → complementar antes do merge gate"
+      - "Depoimentos de identidade anônima sem foto/nome → usar apenas se for o único disponível, com nota"
+
+  - name: "Phase 2 — Merge Gate (Validação de Completude)"
+    agent: ce-image-creator (Flash)
+    tasks:
+      - Confirmar recebimento do copy document de ce-copywriter
+      - Confirmar recebimento do design spec document de ce-design-architect
+      - Confirmar recebimento do social proof package de ce-social-proof
+      - Verificar completude mínima de cada entrega (checklist de 6 itens por agente)
+      - Registrar quaisquer gaps e retornar ao agente responsável para correção
+      - Declarar merge gate APPROVED quando os três outputs estão completos
+      - Criar brief consolidado para geração de imagens por seção
+    checkpoints:
+      entry: "Recebimento de outputs de ce-copywriter, ce-design-architect E ce-social-proof"
+      exit: "Merge gate APPROVED: todos os três outputs completos e validados"
+    veto_conditions:
+      - "Qualquer um dos três outputs ausente → aguardar, não prosseguir"
+      - "Copy document sem seções obrigatórias → retornar a ce-copywriter"
+      - "Design spec sem paleta de cores ou tipografia → retornar a ce-design-architect"
+      - "Social proof package sem depoimentos qualificados → retornar a ce-social-proof"
+      - "Inconsistência crítica entre copy e design (tone x visual incompatíveis) → alinhar antes de aprovar"
+
+success_indicators:
+  - "Três agentes executando em paralelo sem dependências entre si"
+  - "Copy document com headline + 3 variações + copy de todas as seções do escopo"
+  - "Design spec com paleta completa, tipografia, tokens e layout CRO por seção"
+  - "Social proof package com >= 5 depoimentos qualificados e dados mensuráveis"
+  - "Merge gate aprovado em no máximo 30 min após o último agente concluir"
+  - "Brief consolidado de imagens criado e entregue a ce-image-creator"
+  - "Nenhum bloqueio no merge gate (todos os outputs completos na primeira entrega)"
+
+failure_conditions:
+  - condition: "ce-copywriter bloqueado por falta de informações do produto"
+    recovery: >
+      ce-copywriter documenta o gap específico, aciona ce-strategist para
+      complementar o brief, outros agentes continuam em paralelo sem interrupção
+  - condition: "ce-design-architect sem referências visuais suficientes"
+    recovery: >
+      ce-design-architect usa benchmarks do competitive spy do intelligence report
+      e cria design baseado em padrões de conversão do nicho identificados
+  - condition: "ce-social-proof com material insuficiente fornecido pelo cliente"
+    recovery: >
+      ce-social-proof documenta o gap como flag crítico, usa o que está disponível
+      e cria plano de coleta de depoimentos pós-lançamento para inclusão futura
+  - condition: "Merge gate bloqueado por atraso de um agente"
+    recovery: >
+      ce-image-creator aguarda o agente atrasado; o agente atrasado recebe
+      prioridade máxima; os outros dois ficam em standby com seus outputs prontos
+  - condition: "Inconsistência entre tom de copy e direção visual"
+    recovery: >
+      ce-image-creator aciona uma sessão de alinhamento rápido (15 min) entre
+      ce-copywriter e ce-design-architect para resolver antes de aprovar o merge gate

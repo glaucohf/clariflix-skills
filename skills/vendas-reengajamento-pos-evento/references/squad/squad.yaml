@@ -1,0 +1,47 @@
+name: vendas-reengajamento-pos-evento
+version: 0.1.0
+description: "Transforma lista fria de evento em pipeline quente em 48 horas — antes que o concorrente perceba que você estava no mesmo stand."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: rpe
+components:
+  agents:
+    - claude-opus.md
+    - recon.md
+    - sherlock-evento.md
+    - alta-intencao.md
+    - engajamento-medio.md
+    - argos-evento.md
+    - eco-evento.md
+    - atlas-evento.md
+    - vigilia.md
+  tasks:
+    - processar-lista-de-participantes.md
+    - enriquecer-dossie-contato.md
+    - agendar-reuniao-demo.md
+    - enviar-mensagem-adicional.md
+    - conduzir-qualificacao-conversacional.md
+    - gerenciar-leads-baixo-engajamento.md
+    - agendar-reuniao-contextualizada.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-reengajamento-pos-evento-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - nurture-follow-up-reativacao
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V4 · TopSquad de Nurture, Follow-up & Reativação"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

@@ -1,0 +1,47 @@
+name: founder-board-investor-relations
+version: 0.1.0
+description: "Board packs source-grounded em horas, não dias — cada número rastreável a uma fonte, cada narrativa alinhada à tese."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: bir
+components:
+  agents:
+    - cassidy.md
+    - rex.md
+    - marlowe.md
+    - vera.md
+    - sage.md
+    - quincy.md
+    - cipher.md
+    - gate.md
+    - axiom.md
+  tasks:
+    - reconciliar-metricas.md
+    - sintetizar-contexto-mercado.md
+    - auditar-fontes-primarias.md
+    - alinhar-narrativa.md
+    - simular-perguntas-board.md
+    - manter-data-room-atualizado.md
+    - controlar-envio-externo.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-board-investor-relations-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - investor-relations-fundraising-m-a
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F5 · TopSquad de Investor Relations, Fundraising & M&A"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

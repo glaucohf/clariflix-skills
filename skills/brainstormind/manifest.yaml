@@ -1,0 +1,27 @@
+row: especialistas
+title: Ideias em duas rodadas
+title_netflix: BRAINSTORMIND
+subtitle: Divergência, seleção e design com confirmação humana
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 7 agentes, 7 tarefas, 2 fluxos
+  requer: Tópico, objetivo, profundidade e contexto; participação do usuário nos gates
+  como_usar: 'Diga: "Use Brainstormind para encontrar ideias para este problema e
+    desenvolver a escolhida"'
+  elenco:
+  - orchestrator
+  - theme-definer
+  - idea-generator
+  - filter-ranker
+  - synthesizer
+  - design-facilitator
+  - report-builder
+  generos:
+  - Criatividade
+  - Design de Soluções
+  esta_skill_e:
+  - Divergente
+  - Seletiva
+  - Interativa

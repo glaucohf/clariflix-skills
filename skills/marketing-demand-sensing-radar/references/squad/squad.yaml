@@ -1,0 +1,45 @@
+name: marketing-demand-sensing-radar
+version: 0.1.0
+description: "Seu time para de reagir e começa a antecipar: radar de sinais de mercado e intenção de compra que dispara playbooks antes dos concorrentes chegarem."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: dsr
+components:
+  agents:
+    - radar.md
+    - pulse.md
+    - vortex.md
+    - nexus.md
+    - sage.md
+    - bolt.md
+    - sigma.md
+    - sigma-2.md
+  tasks:
+    - monitorar-sinais-mercado.md
+    - analisar-sinais-de-demanda.md
+    - disparar-playbook-correto.md
+    - calcular-roi-sinal.md
+    - gerar-anuncio-especifico.md
+    - verificar-conformidade-e-qualidade.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-demand-sensing-radar-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - demand-gen-abm-orchestration
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M1 · TopSquad de Demand Gen & ABM Orchestration"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

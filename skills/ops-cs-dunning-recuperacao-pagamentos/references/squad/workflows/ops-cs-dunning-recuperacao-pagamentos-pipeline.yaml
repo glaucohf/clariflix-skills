@@ -1,0 +1,176 @@
+workflow_name: ops_cs_dunning_recuperacao_pagamentos_pipeline
+description: "Transforma falhas de pagamento em receita recuperada — sem depender de humano para perseguir cada inadimplente com a cadência e o tom certos."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-dunning-recuperacao-pagamentos
+area: "Operações & CS"
+topsquad: "O4 · Back-Office Financeiro & Cobrança"
+agent_sequence:
+  - cobalt
+  - dante
+  - iris
+  - zap
+  - flex
+  - pulse
+  - atlas
+  - vault
+  - sentinel
+key_commands:
+  - "*calcular-sequencia-de-cobranca"
+  - "*enviar-email-de-recuperacao"
+  - "*enviar-mensagens-personalizadas"
+  - "*classificar-respostas-cliente"
+  - "*enviar-sms-de-reforco"
+  - "*analisar-padroes-de-inadimplencia"
+  - "*atualizar-dados-de-pagamento"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: cobalt
+success_indicators:
+  - "Taxa de Recuperação de Receita: % do MRR em falha de pagamento que é recuperado dentro de 14 dias pelo squad vs baseline pre-implementação (meta: >= 55%, vs 15-25% manual)"
+  - "Reducao de Churn Involuntario: % de cancelamentos por falha de pagamento que sao prevenidos pelo squad vs baseline (meta: -40% a -60% de churn por inadimplencia)"
+  - "Dias Até Recuperação (MTTR): média de dias entre a falha de pagamento e o pagamento confirmado (meta: <= 5 dias, vs 15-30 dias manual)"
+  - "Taxa de Recuperação por Step da Sequência: distribuição de em qual step da sequência o pagamento é realizado (meta: >= 40% no step D0-D1 — quanto mais rápido, menor o custo e o risco de churn)"
+  - "Taxa de Prevenção por Cartão Expirado (Vault): % de falhas potenciais por cartão expirado evitadas pela comunicação proativa do Vault (meta: >= 60% dos cartões próximos de expiração atualizados antes da falha)"
+  - "Taxa de Aprovação do Critic Sentinel: % de mensagens aprovadas pelo Sentinel na primeira verificação sem bloqueio (meta: >= 95% — indica qualidade e compliance dos templates)"
+  - "Taxa de Resposta por Canal: % de clientes que respondem ou clicam no link de pagamento por canal (meta: WhatsApp >= 30%, Email >= 20%, SMS >= 10% — para calibração de prioridade de canal)"
+  - "Volume de HITL por Semana: numero de escalacoes para time humano por semana (meta: decrescente ao longo do tempo, com reducao de 30% em 60 dias por melhoria das regras de negociacao autonomas do Flex)"
+  - "MRR Recuperado por Real Investido: ROI do squad calculado mensalmente (meta: >= 5x — para cada R$1 investido no squad, R$5 em MRR recuperado)"
+  - "Taxa de Bad Debt: % do MRR que chega ao status IRRECUPERÁVEL após sequência completa (meta: monitorar tendência — redução indica que a segmentação de sequências está correta e o Flex está negociando bem antes do esgotamento)"
+deliverable:
+  description: "Por evento de falha de pagamento: (1) Task no ClickUp criada automaticamente no momento da falha com dados completos da cobrança — cliente, valor, categoria de falha, sequência selecionada, canal priorizado — como ponto de entrada rastreável de toda a sequência; (2) Log completo no Supabase de cada mensagem enviada (canal, template, timestamp, status de entrega, leitura e resposta) e de cada tentativa de débito (timestamp, resultado, decline_code) — prova de trabalho auditável e rastreável por cobrança; (3) Registro de outcome final da cobrança (RECUPERADO_AUTOMÁTICO / RECUPERADO_NEGOCIAÇÃO / RECUPERADO_HITL / BAD_DEBT / CANCELAMENTO) com atribuição ao step e ao canal que converteu — para calibração contínua do Atlas. Por semana: relatório executivo de recuperação entregue no Slack do Head Financeiro com MRR recuperado, MRR em bad debt, breakdown por causa de falha, top-5 segmentos com maior taxa de inadimplência, performance de cada canal e recomendações de ajuste do playbook para a próxima semana. Por mês: análise de cohort de inadimplentes com identificação de clientes com padrão recorrente e recomendação de ações preventivas (mudança de data de cobrança, troca de método de pagamento, contato proativo do CSM)."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: cobalt
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Calcular Sequência De Cobrança"
+    agent: dante
+    task: calcular-sequencia-de-cobranca.md
+    trigger: "Acionado pelo Cobalt no início de cada nova sequência; acionado via cron do LangGraph quando o horário do próximo step é atingido; acionado por evento de resposta do cliente (recalcular próximo step com base na resposta); acionado por even…"
+    checkpoint:
+      criteria: "Instrução de disparo estruturada para o Dispatcher correto: canal selecionado, template ID, horário agendado, contexto de personalização (nome, valor em atraso, link de pagamento, opções de negociação disponíveis neste step). Registro do s…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enviar Email De Recuperação"
+    agent: iris
+    task: enviar-email-de-recuperacao.md
+    trigger: "Acionado pelo Dante quando o step atual da sequência e canal email; acionado por webhook de evento de abandono de checkout (cliente clicou no link mas não finalizou o pagamento); acionado pelo Cobalt para envio de confirmação de pagamento…"
+    checkpoint:
+      criteria: "Email enviado com rastreamento ativo. Registro no Supabase: message_id, timestamp de envio, status (sent/delivered/opened/clicked/bounced/replied). Notificação ao Cobalt: se bounce (email inválido — trocar canal), se opened-sem-clique após…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Enviar Mensagens Personalizadas"
+    agent: zap
+    task: enviar-mensagens-personalizadas.md
+    trigger: "Acionado pelo Dante quando canal da instrução é WhatsApp; acionado por webhook de mensagem recebida do cliente via WhatsApp (qualquer resposta dispara o Flex); acionado pelo Cobalt para envio de confirmação de pagamento via WhatsApp após r…"
+    checkpoint:
+      criteria: "Mensagem WhatsApp enviada. Registro no Supabase: waba_message_id, status (sent/delivered/read), timestamp. Notificação ao Cobalt se: entrega falhou (número inválido — notificar CSM), mensagem lida-sem-resposta apos 30min (Dante considera f…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Classificar Respostas Cliente"
+    agent: flex
+    task: classificar-respostas-cliente.md
+    trigger: "Acionado quando qualquer Dispatcher (Iris, Zap, Pulse) recebe resposta de cliente; acionado pelo Cobalt quando a sequência esgota todos os steps sem recuperação (gerar relatório de inadimplente crônico para análise manual); acionado sob de…"
+    checkpoint:
+      criteria: "Para negociações autônomas executadas: novo link de pagamento gerado e enviado pelo Dispatcher correto, registro da negociação no Supabase e no CRM (tipo de acordo, valor, nova data), task no ClickUp como prova de trabalho. Para escalações…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Enviar SMS de Reforço"
+    agent: pulse
+    task: enviar-sms-de-reforco.md
+    trigger: "Acionado pelo Dante em steps especificos da sequencia onde SMS e o canal correto (step de ultima chance ou step de reforco quando email+WhatsApp nao geraram leitura confirmada); nunca acionado como primeiro contato exceto quando WA e email…"
+    checkpoint:
+      criteria: "SMS enviado. Registro no Supabase: sms_message_id, status (sent/delivered/failed), timestamp, custo unitário do envio. Notificação ao Cobalt se entrega falhou (número inválido ou fora de área). Notificação ao Cobalt se link de pagamento cl…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Analisar Padroes De Inadimplencia"
+    agent: atlas
+    task: analisar-padroes-de-inadimplencia.md
+    trigger: "Cron semanal (segunda-feira 07h) para relatório completo; cron diário (09h) para detecção de anomalias e spikes; acionado pelo Cobalt quando uma cobrança é marcada como bad debt (para atualizar cohort e modelo); acionado sob demanda pelo H…"
+    checkpoint:
+      criteria: "Relatório semanal de recuperação (markdown + tabelas): MRR recuperado vs em risco, taxa de recuperação por sequência e por canal, top-5 causas de falha de pagamento, cohort de inadimplentes por behavior, padrões de recorrência detectados,…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Atualizar Dados de Pagamento"
+    agent: vault
+    task: atualizar-dados-de-pagamento.md
+    trigger: "Cron diário (07h) para scan de cartões com expiração nos próximos 30 dias; webhook do gateway quando account updater retorna resultado de atualização automática; acionado pelo Cobalt quando a categoria de falha de uma cobrança nova é 'cart…"
+    checkpoint:
+      criteria: "Para account updater disponível: solicitação de atualização de token enviada para a rede da bandeira, registro no Supabase do status (updated/not_found/error). Para clientes sem account updater: email ou WhatsApp de serviço com link seguro…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: sentinel
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: cobalt
+    checkpoint:
+      criteria: "Entregável consolidado: Por evento de falha de pagamento: (1) Task no ClickUp criada automaticamente no momento da falha com dados completos da cobrança — cliente, valor, categoria de falha, sequência selecionada, canal pri…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Negociação financeira acima do threshold pre-aprovado (parcelamento em mais de 3x, desconto de multa acima de 50%, extensão acima de 15 dias ou para clientes com menos de 3 meses de casa) — Flex classifica e cria task HITL urgente no ClickUp para o time financeiro com histórico completo e valor em risco"
+  - level: HITL
+    condition: "Cliente contesta a cobranca (afirma nao dever ou que e erro de cobranca) — Flex bloqueia sequencia imediatamente, cria task para o time financeiro/CS verificar no gateway e no CRM, e responde ao cliente confirmando que um humano vai verificar em até X horas"
+  - level: HITL
+    condition: "Cliente solicita cancelamento durante o fluxo de cobrança — Cobalt interrompe sequência de dunning, aciona o Squad de Churn Prediction (se ativo) e cria task de retenção para o CSM com contexto completo: cliente já estava em inadimplência + agora solicitou cancelamento = risco crítico combinado"
+  - level: HITL
+    condition: "Cobrança de alto valor (MRR > R$5k ou fatura acima de R$10k) chegou ao step D7 sem recuperação — Cobalt interrompe sequência automática e cria task HITL urgente para o Head Financeiro e para o CSM responsável da conta, com sugestão de abordagem via chamada telefônica"
+  - level: HITL
+    condition: "Spíke de falhas de pagamento acima de 2 desvios padrão detectado pelo Atlas — alerta imediato ao time têcnico e ao Head Financeiro para verificar se é problema no gateway de pagamento, no processador ou na infraestrutura (não é inadimplência — é incidente têcnico)"
+  - level: HITL
+    condition: "Sentinel reprova uma mensagem por violação de compliance legal (CDC/LGPD) — bloqueia o disparo, notifica o Head Jurídico e o responsável de CS via Slack, e suspende o envio para todos os clientes no mesmo step até que o template seja revisado e re-aprovado"
+  - level: HITL
+    condition: "Cliente com histórico de chargeback ou de fraude identificado pelo gateway — Cobalt bloqueia a sequência de dunning automática e cria task manual para o time financeiro gerenciar o caso diretamente (cobrança de fraude tem tratamento jurídico diferente de inadimplência comum)"
+  - level: HITL
+    condition: "Bad debt confirmado (cobranca nao recuperada apos sequencia completa + tentativas manuais) — Cobalt fecha a sequencia como IRRECUPERAVEL, Atlas atualiza o cohort de bad debt, e cria task para o time juridico/financeiro avaliar encaminhamento para assessoria de cobranca ou baixa contabil"
+transitions:
+  - from: cobalt
+    to: dante
+    condition: "Acionado pelo Cobalt no início de cada nova sequência; acionado via cron do LangGraph quando o horário do próximo step é atingido; acionado por evento de resposta do cliente (recalcular próximo step…"
+  - from: dante
+    to: iris
+    condition: "Acionado pelo Dante quando o step atual da sequência e canal email; acionado por webhook de evento de abandono de checkout (cliente clicou no link mas não finalizou o pagamento); acionado pelo Cobalt…"
+  - from: iris
+    to: zap
+    condition: "Acionado pelo Dante quando canal da instrução é WhatsApp; acionado por webhook de mensagem recebida do cliente via WhatsApp (qualquer resposta dispara o Flex); acionado pelo Cobalt para envio de conf…"
+  - from: zap
+    to: flex
+    condition: "Acionado quando qualquer Dispatcher (Iris, Zap, Pulse) recebe resposta de cliente; acionado pelo Cobalt quando a sequência esgota todos os steps sem recuperação (gerar relatório de inadimplente crôni…"
+  - from: flex
+    to: pulse
+    condition: "Acionado pelo Dante em steps especificos da sequencia onde SMS e o canal correto (step de ultima chance ou step de reforco quando email+WhatsApp nao geraram leitura confirmada); nunca acionado como p…"
+  - from: pulse
+    to: atlas
+    condition: "Cron semanal (segunda-feira 07h) para relatório completo; cron diário (09h) para detecção de anomalias e spikes; acionado pelo Cobalt quando uma cobrança é marcada como bad debt (para atualizar cohor…"
+  - from: atlas
+    to: vault
+    condition: "Cron diário (07h) para scan de cartões com expiração nos próximos 30 dias; webhook do gateway quando account updater retorna resultado de atualização automática; acionado pelo Cobalt quando a categor…"
+  - from: vault
+    to: sentinel
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: sentinel
+    to: cobalt
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

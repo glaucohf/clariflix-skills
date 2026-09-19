@@ -1,0 +1,37 @@
+name: instagram-caption-writer
+version: 1.1.0
+description: "Crie legendas para Instagram com copy persuasivo para feed, reels e carrosséis. Receba 3 variações por post e 30 hashtags segmentadas por competitividade."
+category: marketing/social-media
+price: 4.99
+tags:
+  - instagram
+  - captions
+  - social-media
+  - hashtags
+  - reels
+  - copywriting
+  - engagement
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - instagram-caption-chief.md
+    - caption-strategist.md
+    - caption-writer.md
+    - hook-generator.md
+    - hashtag-researcher.md
+    - caption-ab-tester.md
+    - caption-repurposer.md
+  tasks:
+    - write-caption.md
+    - diagnose-caption.md
+    - generate-hooks-batch.md
+    - create-content-pillars.md
+  workflows:
+    - content-week-in-one-shot.md
+    - viral-post-anatomy.md
+  templates:
+    - caption-output.md

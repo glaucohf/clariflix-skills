@@ -1,0 +1,56 @@
+pack:
+  name: vendas-conversation-intelligence-coaching
+  version: 0.1.0
+  short-title: "Conversation Intelligence e Coaching"
+  description: "Cada call vira aula: o gestor para de ser bombeiro e o vendedor recebe coaching cirúrgico — automaticamente, antes da próxima ligação."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🎧"
+  slashPrefix: conversationIntelligenceECoaching
+name: vendas-conversation-intelligence-coaching
+version: 0.1.0
+description: "Cada call vira aula: o gestor para de ser bombeiro e o vendedor recebe coaching cirúrgico — automaticamente, antes da próxima ligação."
+entry_agent: maestro
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V5"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - maestro
+  - babel
+  - sherlock-da-call
+  - juiz
+  - sensei
+  - memoria-do-crm
+  - radar-do-time
+  - vigilante
+  - calibrador
+tasks:
+  - filtrar-ruidos-tecnicos.md
+  - analisar-transcricao.md
+  - calcular-percentil.md
+  - gerar-coaching-card.md
+  - sincronizar-dados-deal-crm.md
+  - analisar-objecoes-frequentes.md
+  - detectar-risco-deal.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-conversation-intelligence-coaching-pipeline.yaml
+checklists:
+  - critic-calibrador.md
+integrations:
+  - "Plataformas de voz/vídeo: Vapi (webhook pós-call com link de gravação), Retell AI, Zoom (webhook recording.completed), Google Meet (Drive API para gravações), Gupshup/AiSensy para calls gravadas via WhatsApp Business"
+  - "STT (Speech-to-Text): Deepgram (latência < 1min/hora de áudio, diarização de speakers, vocabulário customizado) ou AssemblyAI como fallback"
+  - "CRM: HubSpot (MCP disponível nativamente) ou Pipedrive — gravação de insights, sinais de risco, score de call, próximo passo como campos customizados no deal e na timeline"
+  - "Gestão de tarefas: ClickUp — Coaching Card como task atribuída ao vendedor com link para o trecho da call, proof-of-work verificável por task, Plano de Role-Play semanal como task coletiva"
+  - "Comunicação: WhatsApp Business API (Gupshup ou AiSensy) para entrega do coaching card ao vendedor e alertas de risco ao gestor; Slack para integração com times que usam Slack como hub"
+  - "Armazenamento de artefatos: Supabase (PostgreSQL) — Transcript Objects, Call Analysis Objects, Call Score Objects, histórico de coaching por vendedor, Feature Store de objeções"
+  - "Documentação de coaching: Notion — Coaching Cards formatados, Biblioteca de Counter-Scripts, Plano de Desenvolvimento Individual por vendedor, Briefing Semanal do Gestor"
+  - "Observabilidade/Evals: Langfuse (OTEL) — traces de todas as chamadas LLM (análise + coaching), quality gates por ambiente (dev 70% / staging 85% / prod 95%), evals de qualidade do coaching card (rastreabilidade, especificidade, tom)"
+  - "Orquestração: LangGraph + Claude Agent SDK — controle de estado do pipeline de análise, workflows determinísticos de sequenciamento (transcrição -> análise -> scoring -> coaching), re-tentativas automáticas em falha"
+  - "Armazenamento de áudio: AWS S3 ou Google Cloud Storage — arquivos de áudio/vídeo das calls com retenção configurável (90 dias default, 365 dias para deals fechados)"

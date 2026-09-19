@@ -1,0 +1,29 @@
+row: gestao
+title: Tech Radar & Build-vs-Buy Intelligence
+title_netflix: TECH RADAR & BUILD-VS-BUY INTELLIGENCE
+subtitle: Pesquisar tecnologias e comparar desenvolver ou contratar soluções, documentando custos, riscos e critérios de decisão
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-tech-radar-build-vs-buy para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Lens
+  - Nox
+  - Vera
+  - Kai
+  - Vox
+  - Aegis
+  - ARIA
+  - Gaia
+  - ARIA 2
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

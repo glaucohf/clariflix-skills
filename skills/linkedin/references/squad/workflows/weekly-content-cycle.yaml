@@ -1,0 +1,209 @@
+workflow_name: weekly_content_cycle
+description: "Ciclo semanal de criação de conteúdo para LinkedIn — da análise de tendências até o post pronto para publicação."
+agent_sequence:
+  - trend-scout
+  - linkedin-chief
+  - ghostwriter
+  - carousel-designer
+  - linkedin-chief
+success_indicators:
+  - "Post ou carrossel completo gerado no estilo do Sid"
+  - "Conteúdo revisado e aprovado pelo linkedin-chief"
+  - "Plano semanal entregue com tema, formato, horário e ações complementares"
+  - "Rascunho pronto para publicação com mínimas edições do usuário"
+
+workflow:
+  id: "weekly-content-cycle"
+  name: "Weekly Content Cycle"
+  workflow_name: weekly_content_cycle
+  description: "Ciclo semanal de criação de conteúdo para LinkedIn — da análise de tendências até o post pronto para publicação."
+  version: "1.0.0"
+  type: "sequential"
+  agent_sequence:
+    - trend-scout
+    - linkedin-chief
+    - ghostwriter
+    - carousel-designer
+    - linkedin-chief
+  success_indicators:
+    - "Post ou carrossel completo gerado no estilo do autor"
+    - "Conteúdo revisado e aprovado pelo linkedin-chief"
+    - "Plano semanal entregue com tema, formato, horário e ações complementares"
+    - "Rascunho pronto para publicação com mínimas edições do usuário"
+  sequence:
+    - id: "scan_trends"
+      name: "Scan de Tendências"
+      type: "task"
+      agent: "trend-scout"
+      action: "Scan trending topics in CyberSec and AI, prioritize and return top results"
+      command: "*trending"
+      description: "Identificar temas em alta em CyberSec e AI"
+      inputs:
+        domain: "cybersecurity,ai,automation"
+        timeframe: "última semana"
+        max_results: 10
+      outputs:
+        trending_topics: "Trending topics analisados e priorizados"
+      error_handling:
+        strategy: "continue"
+        fallback: "Usar backlog de temas evergreen"
+
+    - id: "select_topic"
+      name: "Selecionar Tema da Semana"
+      type: "agent"
+      agent: "linkedin-chief"
+      action: "Cross-reference trends with content pillars and select the week's topic and format"
+      command: "*plan"
+      description: "Cruzar trends com pilares e selecionar tema + formato"
+      depends_on:
+        - scan_trends
+      inputs:
+        trending_topics: "{{scan_trends.trending_topics}}"
+      outputs:
+        selected_topic: "Tema selecionado com ângulo e formato"
+      error_handling:
+        strategy: "fail"
+
+    - id: "generate_content"
+      name: "Gerar Conteúdo"
+      type: "task"
+      agent: "ghostwriter"
+      action: "Write full post draft in Sid's voice with hook, body, and hashtags"
+      command: "*write"
+      description: "Gerar rascunho do post no estilo do Sid"
+      depends_on:
+        - select_topic
+      inputs:
+        topic: "{{select_topic.selected_topic}}"
+        include_draft: "{{include_draft}}"
+      outputs:
+        draft_content: "Rascunho completo com hooks e hashtags"
+      conditions:
+        - "format_preference == 'post' OR format_preference == 'auto'"
+      error_handling:
+        strategy: "fail"
+
+    - id: "generate_carousel"
+      name: "Gerar Carrossel"
+      type: "task"
+      agent: "carousel-designer"
+      action: "Structure topic into carousel slides with accompanying post copy"
+      command: "*carousel"
+      description: "Gerar conteúdo de carrossel se formato selecionado"
+      depends_on:
+        - select_topic
+      inputs:
+        topic: "{{select_topic.selected_topic}}"
+      outputs:
+        carousel_content: "Slides estruturados + post de acompanhamento"
+      conditions:
+        - "format_preference == 'carousel' OR (format_preference == 'auto' AND selected_format == 'carousel')"
+      error_handling:
+        strategy: "skip"
+
+    - id: "quality_review"
+      name: "Revisão de Qualidade"
+      type: "agent"
+      agent: "linkedin-chief"
+      action: "Review draft against writing style guide and quality criteria, return approved version"
+      description: "Revisar conteúdo contra estilo de escrita e critérios de qualidade"
+      depends_on:
+        - generate_content
+        - generate_carousel
+      inputs:
+        content: "{{generate_content.draft_content}}"
+        style_guide: "data/writing-style.md"
+      outputs:
+        final_content: "Conteúdo revisado e aprovado"
+        review_notes: "Notas de revisão e sugestões"
+      error_handling:
+        strategy: "fail"
+
+    - id: "deliver_plan"
+      name: "Entregar Plano Semanal"
+      type: "agent"
+      agent: "linkedin-chief"
+      action: "Consolidate approved content, schedule, and action items into the final weekly plan"
+      description: "Consolidar plano final com conteúdo, calendário e ações"
+      depends_on:
+        - quality_review
+      outputs:
+        weekly_plan: "Plano semanal completo pronto para execução"
+
+  handoff_prompts:
+    trend-scout_to_linkedin-chief: "Trending topics analyzed and ranked — select the best fit for Sid's content pillars and decide on post format"
+    linkedin-chief_to_ghostwriter: "Topic and format confirmed — write the full post draft following Sid's writing style (data/writing-style.md)"
+    linkedin-chief_to_carousel-designer: "Topic and carousel format confirmed — structure the content into slides with a companion post"
+    ghostwriter_to_linkedin-chief: "Draft complete — review for hook quality, style alignment, no LinkedIn clichés, and natural CTA"
+    carousel-designer_to_linkedin-chief: "Carousel slides complete — review structure, messaging consistency, and slide count"
+
+metadata:
+  author: "Link (linkedin-chief)"
+  created_date: "2026-03-11"
+  tags:
+    - linkedin
+    - content-cycle
+    - weekly
+
+# ─────────────────────────────────────────────────────
+# Input Parameters
+# ─────────────────────────────────────────────────────
+inputs:
+  week_date:
+    type: "string"
+    description: "Data da semana alvo (YYYY-MM-DD)"
+    required: false
+    default: "próxima segunda-feira"
+
+  include_draft:
+    type: "boolean"
+    description: "Gerar rascunho completo do post"
+    required: false
+    default: true
+
+  format_preference:
+    type: "string"
+    description: "Formato preferido (post, carousel, auto)"
+    required: false
+    default: "auto"
+    validation: "post | carousel | auto"
+
+# ─────────────────────────────────────────────────────
+# Final Outputs
+# ─────────────────────────────────────────────────────
+outputs:
+  weekly_plan:
+    type: "string"
+    description: "Plano semanal com tema, rascunho, calendário e ações"
+    source: "deliver_plan.weekly_plan"
+
+  content_draft:
+    type: "string"
+    description: "Rascunho do post/carrossel pronto para revisão final"
+    source: "quality_review.final_content"
+
+# ─────────────────────────────────────────────────────
+# Error Handling Global
+# ─────────────────────────────────────────────────────
+global_error_handling:
+  on_error: "continue"
+  notification:
+    enabled: true
+    channels:
+      - console
+
+# ─────────────────────────────────────────────────────
+# Quality Gates
+# ─────────────────────────────────────────────────────
+quality_gates:
+  content_quality:
+    required:
+      - "Conteúdo alinhado com estilo de escrita (data/writing-style.md)"
+      - "Hook forte nas primeiras 2 linhas"
+      - "Sem clichês de LinkedIn"
+      - "CTA natural"
+    optional:
+      - "Hashtags otimizadas (3-5)"
+      - "Visual sugerido"
+    blocking: false
+    policy: "review-first"

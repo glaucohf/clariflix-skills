@@ -1,0 +1,45 @@
+name: ops-cs-qa-conversas-verifier
+version: 0.1.0
+description: "Cada conversa auditada, nenhuma violação escapando — o QÁ que nunca dorme e revisa 100% sem custar 100% do seu time."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: qdc
+components:
+  agents:
+    - kronos.md
+    - lexis.md
+    - aria.md
+    - veritas.md
+    - nexus.md
+    - herald.md
+    - calibra.md
+    - veritas-sentinel.md
+  tasks:
+    - scanner-de-dados-sensiveis.md
+    - avaliar-qualidade-relacional.md
+    - verificar-informacoes-tecnicas.md
+    - avaliar-resolucao-problema.md
+    - gerar-scorecard-completo.md
+    - calibrar-rubrica.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-qa-conversas-verifier-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - qualidade-voz-do-cliente-knowledge-base
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O2 · TopSquad de Qualidade, Voz do Cliente & Knowledge Base"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

@@ -1,0 +1,25 @@
+row: especialistas
+title: Contexto sem ruído
+title_netflix: APEX CONTEXT SUPREME
+subtitle: Arquitetura, enriquecimento e otimização de contexto
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 5 agentes, 4 tarefas, 1 fluxos
+  requer: Acesso aos arquivos do projeto e plataformas de destino definidas
+  como_usar: 'Diga: "Organize o contexto deste projeto para Codex com o Apex Context
+    Supreme"'
+  elenco:
+  - apex-orquestrista
+  - maven-arquiteta
+  - spark-alquimista
+  - trim-escultor
+  - vigil-validadora
+  generos:
+  - Context Engineering
+  - Agentes de IA
+  esta_skill_e:
+  - Estruturada
+  - Concisa
+  - Multiplataforma

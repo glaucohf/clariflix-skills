@@ -1,0 +1,180 @@
+workflow_name: ops_cs_voz_ia_telefonia_pipeline
+description: "Atende o telefone, entende o audio do WhatsApp e resolve — sem fila, sem espera, em portugues de verdade."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-voz-ia-telefonia
+area: "Operações & CS"
+topsquad: "O1 · Atendimento & Suporte Conversacional"
+agent_sequence:
+  - maestro
+  - sono
+  - vivo
+  - falco
+  - onda
+  - radar
+  - eco
+  - hertz
+  - eco-2
+key_commands:
+  - "*transcrever-e-normalizar-audio"
+  - "*coletar-dados-necessarios"
+  - "*resolver-intencoes-de-voz"
+  - "*escrever-acoes-transacionais"
+  - "*analisar-sentimento-e-risco"
+  - "*validar-qualidade-de-voz"
+  - "*gerenciar-transferencia-para-humanos"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro
+success_indicators:
+  - "Voice Deflection Rate: % de chamadas telefonicas resolvidas autonomamente sem transferencia para humano (meta: >= 50% em 90 dias)"
+  - "Audio Deflection Rate: % de voice notes do WhatsApp convertidos em resolucao automatica sem intervencao humana (meta: >= 65% em 90 dias)"
+  - "ASR Word Error Rate (WER): taxa de erro de transcricao medida em amostras mensais com ground truth (meta: < 8% para audio de boa qualidade, < 15% para audio com ruido)"
+  - "Latencia Fim-a-Fim: tempo entre recebimento do audio e inicio da resposta TTS (meta: < 2.5s para telefone, < 5s para WhatsApp audio)"
+  - "CSAT em Voz: pesquisa IVR pos-chamada de 1 pergunta ('0 a 5, como foi seu atendimento?') (meta: >= 4.0/5)"
+  - "Taxa de Abandono de Chamada: % de clientes que desligam antes de ser atendidos pelo sistema (meta: reducao de 60% vs baseline atual)"
+  - "Critic Rejection Rate: % de respostas rejeitadas pelo Eco antes do TTS (meta: < 10% — indica qualidade dos workers de voz)"
+  - "Taxa de Escalonamento Desnecessario: % de escalonamentos para humano que o agente poderia ter resolvido (meta: < 15%)"
+  - "Custo por Interacao de Voz: custo total (ASR + TTS + tokens LLM + infra) por interacao processada (meta: < R$0.40 por audio de WhatsApp, < R$1.20 por chamada de 3 min)"
+  - "Health Score Update Coverage: % de interacoes de voz que resultam em atualizacao de health score no CRM (meta: 100% das sessoes concluidas)"
+deliverable:
+  description: "Por cada interacao de voz processada, task no ClickUp com artefatos de prova de trabalho: (1) audio original recebido (referencia de URL segura, nao o arquivo), (2) transcricao ASR completa com confianca por segmento, (3) texto normalizado pos-processamento pelo Sono, (4) intencao classificada com confianca score e worker selecionado, (5) dados coletados (com turns de dialogo do Vivo se aplicavel), (6) sistemas consultados com IDs de referencia e latencias, (7) resposta gerada pre-Critic (texto), (8) score do Critic Eco por dimensao (naturalidade/brevidade/factualidade/compliance/empatia), (9) resposta final enviada (texto + ID do audio TTS), (10) resolucao: autonomo / escalado (motivo) / callback agendado, (11) sentimento detectado pelo Radar (score por turn + nivel de risco), (12) health score pos-interacao atualizado no CRM, (13) timestamp de cada step do pipeline para calculo de latencia. Dashboard Langfuse em tempo real: deflection rate por canal (telefone vs WhatsApp), WER mensal, distribuicao de intencoes de voz, latencia percentil 95, CSAT historico, critic rejection breakdown, volume de escalonamentos por motivo."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Transcrever E Normalizar Audio"
+    agent: sono
+    task: transcrever-e-normalizar-audio.md
+    trigger: "Webhook Aircall detecta chamada entrante no numero configurado; Webhook WhatsApp Business API detecta mensagem do tipo 'audio' ou 'voice' no numero da conta; Fim de turn do cliente na chamada (deteccao de silencio > 800ms ou end-of-utteran…"
+    checkpoint:
+      criteria: "Texto transcrito normalizado com: (1) transcricao raw completa, (2) texto normalizado sem disfluencias, (3) entidades extraidas (CPF, pedido, telefone, nome), (4) confianca media ASR, (5) segmentos de baixa confianca marcados para confirma…"
+      veto_condition: "Saída sem veredito do critic Eco 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Coletar Dados Necessários"
+    agent: vivo
+    task: coletar-dados-necessarios.md
+    trigger: "Maestro identifica confianca de intencao entre 0.55-0.75 (ambigua); dados obrigatorios ausentes para roteamento ao worker especializado; cliente respondeu de forma muito curta ou muito longa sem informar o dado solicitado; primeira turn de…"
+    checkpoint:
+      criteria: "Pacote de dados coletados e validados: {intencao_confirmada, numero_pedido, cpf_cliente, nome_confirmado, descricao_problema_em_1_frase}. Audio TTS da pergunta de coleta enviado ao cliente. Registro de cada turn de coleta no log de sessao.…"
+      veto_condition: "Saída sem veredito do critic Eco 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Resolver Intenções de Voz"
+    agent: falco
+    task: resolver-intencoes-de-voz.md
+    trigger: "Maestro roteia intencao com confianca >= 0.80 para dominios: 'status_pedido', 'rastreamento', 'prazo_entrega', 'info_conta', 'politica_troca', 'faq_produto', 'horario_funcionamento', 'como_cancelar'"
+    checkpoint:
+      criteria: "Resposta conversacional em texto (max 60 palavras para TTS) com: informacao factual verificada, linguagem natural PT-BR, proxima acao clara. Task no ClickUp com: intencao, dados consultados (IDs de sistema), resposta gerada, latencia de re…"
+      veto_condition: "Saída sem veredito do critic Eco 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Escrever Ações Transacionais"
+    agent: onda
+    task: escrever-acoes-transacionais.md
+    trigger: "Maestro roteia intencao de acao com verbos de escrita: 'abrir', 'cancelar', 'trocar', 'registrar', 'agendar', 'atualizar', 'solicitar'; Falco conclui consulta e cliente pede para executar acao na mesma sessao ('ja que e isso, pode abrir a…"
+    checkpoint:
+      criteria: "Confirmacao de acao executada com numero de protocolo, prazo de resolucao e proximo passo. Registro de consentimento verbal (timestamp + transcricao da confirmacao) como prova juridica. Task no ClickUp com: acao executada, sistema(s) afeta…"
+      veto_condition: "Saída sem veredito do critic Eco 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-6
+    name: "Analisar Sentimento E Risco"
+    agent: radar
+    task: analisar-sentimento-e-risco.md
+    trigger: "Ativo em toda sessao de voz em paralelo com Maestro/workers (nao bloqueia o fluxo principal). Dispara alerta ativo quando: sentimento cai para 'negativo' em 2 turns consecutivos; keyword de risco legal detectada; cliente menciona concorren…"
+    checkpoint:
+      criteria: "Score de sentimento por turn (positivo/neutro/negativo/toxico) + nivel de risco em tempo real (verde/amarelo/vermelho/critico). Em caso de threshold atingido: sinal de alerta injetado no Maestro com recomendacao (usar tom empatico / oferec…"
+      veto_condition: "Saída sem veredito do critic Eco 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Validar Qualidade De Voz"
+    agent: eco
+    task: validar-qualidade-de-voz.md
+    trigger: "saída aprovada da fase anterior"
+    checkpoint:
+      criteria: ""
+      veto_condition: "Saída sem veredito do critic Eco 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Gerenciar Transferência para Humanos"
+    agent: hertz
+    task: gerenciar-transferencia-para-humanos.md
+    trigger: "Critic Eco retorna score < 42 ou flag de risco; Maestro detecta confianca < 0.75 apos 2 turns de coleta; Radar injeta alerta de risco critico (nivel vermelho ou critico); Onda identifica acao acima do limite de autonomia; cliente solicita…"
+    checkpoint:
+      criteria: "Transferencia de chamada com briefing verbal ao agente humano (TTS de 15-20 segundos) OU confirmacao de callback agendado com data/hora OU ticket criado no helpdesk com prioridade e resumo em 5 bullets. Notificacao Slack para fila correta…"
+      veto_condition: "Saída sem veredito do critic Eco 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: eco-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: maestro
+    checkpoint:
+      criteria: "Entregável consolidado: Por cada interacao de voz processada, task no ClickUp com artefatos de prova de trabalho: (1) audio original recebido (referencia de URL segura, nao o arquivo), (2) transcricao ASR completa com confi…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Acao transacional acima do limite de autonomia: refund > R$200, cancelamento de contrato, alteracao de dados bancarios — Onda eleva para L3 e Hertz cria ticket prioritario antes de executar"
+  - level: HITL
+    condition: "Confianca ASR < 0.78 em dado critico (CPF, numero de pedido, valor) — Sono solicita confirmacao verbal ao cliente; se terceira tentativa falhar, Hertz escalona para humano"
+  - level: HITL
+    condition: "Radar detecta nivel de risco CRITICO: mencao de PROCON, advogado, processo judicial, Reclame Aqui, imprensa — pipeline bloqueia e Hertz transfere imediatamente para supervisor"
+  - level: HITL
+    condition: "Critic Eco retorna score total < 30 ou qualquer flag de risco legal, LGPD ou seguranca de dados — nenhuma resposta enviada ao cliente sem revisao humana"
+  - level: HITL
+    condition: "Terceira sessao sem resolucao do mesmo problema na semana — padrao de problema recorrente detectado pelo Radar, Hertz agenda callback prioritario com especialista"
+  - level: HITL
+    condition: "Cliente VIP, Enterprise ou MRR > R$5k: toda acao irreversivel (cancelamento, mudanca de plano, refund parcial) requer aprovacao do CSM responsavel antes da execucao"
+  - level: HITL
+    condition: "Audio com duracao > 3 minutos e confianca media ASR < 0.82 — transcricao marcada para revisao humana antes do processamento completo pelo Maestro"
+  - level: HITL
+    condition: "Intencao nao reconhecida apos 2 turns de coleta pelo Vivo (confianca < 0.55) — Hertz escalona com transcricao completa para o humano interpretar e resolver"
+  - level: HITL
+    condition: "Solicitacao de dados de terceiros, portabilidade de dados, ou qualquer direito LGPD em voz — Hertz bloqueia automacao e direciona para DPO/time juridico"
+transitions:
+  - from: maestro
+    to: sono
+    condition: "Webhook Aircall detecta chamada entrante no numero configurado; Webhook WhatsApp Business API detecta mensagem do tipo 'audio' ou 'voice' no numero da conta; Fim de turn do cliente na chamada (detecc…"
+  - from: sono
+    to: vivo
+    condition: "Maestro identifica confianca de intencao entre 0.55-0.75 (ambigua); dados obrigatorios ausentes para roteamento ao worker especializado; cliente respondeu de forma muito curta ou muito longa sem info…"
+  - from: vivo
+    to: falco
+    condition: "Maestro roteia intencao com confianca >= 0.80 para dominios: 'status_pedido', 'rastreamento', 'prazo_entrega', 'info_conta', 'politica_troca', 'faq_produto', 'horario_funcionamento', 'como_cancelar'"
+  - from: falco
+    to: onda
+    condition: "Maestro roteia intencao de acao com verbos de escrita: 'abrir', 'cancelar', 'trocar', 'registrar', 'agendar', 'atualizar', 'solicitar'; Falco conclui consulta e cliente pede para executar acao na mes…"
+  - from: onda
+    to: radar
+    condition: "Ativo em toda sessao de voz em paralelo com Maestro/workers (nao bloqueia o fluxo principal). Dispara alerta ativo quando: sentimento cai para 'negativo' em 2 turns consecutivos; keyword de risco leg…"
+  - from: radar
+    to: eco
+    condition: "saída da fase anterior aprovada"
+  - from: eco
+    to: hertz
+    condition: "Critic Eco retorna score < 42 ou flag de risco; Maestro detecta confianca < 0.75 apos 2 turns de coleta; Radar injeta alerta de risco critico (nivel vermelho ou critico); Onda identifica acao acima d…"
+  - from: hertz
+    to: eco-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: eco-2
+    to: maestro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - radar

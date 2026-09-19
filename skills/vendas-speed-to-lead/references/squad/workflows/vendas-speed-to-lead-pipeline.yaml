@@ -1,0 +1,176 @@
+workflow_name: vendas_speed_to_lead_pipeline
+description: "Todo lead inbound respondido em menos de 60 segundos, 24/7 — antes do concorrente atender o telefone."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-speed-to-lead
+area: "Vendas"
+topsquad: "V2 · Qualificação Conversacional & Speed-to-Lead"
+agent_sequence:
+  - claude-opus
+  - flash
+  - sherlock
+  - socrates
+  - atlas
+  - argos
+  - eco
+  - sdr-por-ligacao
+  - sentinel
+key_commands:
+  - "*enviar-primeira-resposta-ao-lead"
+  - "*enriquecer-dossie-lead"
+  - "*qualificar-lead-conversacionalmente"
+  - "*agendar-reuniao"
+  - "*priorizar-leads"
+  - "*gerenciar-cadencias-de-follow-up"
+  - "*realizar-ligacao-qualificadora"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: claude-opus
+success_indicators:
+  - "Speed-to-Lead: % de leads respondidos em < 60 segundos (meta: >95%)"
+  - "Taxa de conversao Lead -> SQL: benchmark atual vs. pos-squad (meta: +25% em 90 dias)"
+  - "Taxa de agendamento: % de SQLs que chegam a reuniao agendada (meta: >40%)"
+  - "Show rate: % de reunioes que efetivamente ocorrem (meta: >75% com lembretes do Atlas)"
+  - "Custo por Lead Qualificado (CPL-Q): reducao vs. baseline humano (meta: -50%)"
+  - "Cadencia de follow-up: % de leads que recebem ao menos 3 tentativas de contato (meta: 100%)"
+  - "Taxa de opt-out / reclamacao: indicador de saude da cadencia (meta: <0.5%)"
+  - "Task success rate no Langfuse: dev 70% / staging 85% / prod 95%"
+  - "Tempo medio de qualificacao (Flash->Socrates->SQL): meta < 15 minutos para leads responsivos"
+  - "Receita influenciada pelo squad: deals fechados onde o squad realizou o primeiro contato e qualificacao"
+deliverable:
+  description: "Dossie de Lead Completo por Contato: documento estruturado (JSON + nota no CRM) contendo timestamp de cada etapa (primeiro contato, enriquecimento, qualificacao, agendamento), scorecard BANT preenchido, score de ICP, transcricao/sumario das interacoes por canal, proximo passo recomendado e closer responsavel. Auditavel em tempo real no ClickUp com tasks vinculadas por lead. Dashboard de KPIs atualizado em tempo real com metricas de velocidade, volume e conversao."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: claude-opus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Enviar Primeira Resposta ao Lead"
+    agent: flash
+    task: enviar-primeira-resposta-ao-lead.md
+    trigger: "Novo lead criado no CRM; webhook de formulario recebido; nova mensagem em canal monitorado; chamada entrante identificada. SLA: acao em ate 60 segundos do evento."
+    checkpoint:
+      criteria: "Mensagem de boas-vindas enviada + confirmacao de entrega + registro de interacao no CRM (campo 'primeiro_contato_em', 'canal_primeiro_contato'). Artefato no ClickUp: task 'Primeiro Contato Realizado' com timestamp e print da mensagem."
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Dossiê Lead"
+    agent: sherlock
+    task: enriquecer-dossie-lead.md
+    trigger: "Acionado pelo Orchestrator imediatamente apos criacao do lead, em paralelo ao Flash. Re-acionado quando novo dado de contato e adicionado ao CRM."
+    checkpoint:
+      criteria: "Dossie estruturado (JSON) com: empresa (nome, setor, tamanho, receita estimada), cargo e seniority do lead, score de fit com ICP (0-100), sinais de intencao detectados, links de perfil LinkedIn/site, historico CRM. Registrado como nota enr…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Qualificar Lead Conversacionalmente"
+    agent: socrates
+    task: qualificar-lead-conversacionalmente.md
+    trigger: "Dossie de enriquecimento recebido + lead respondeu ao primeiro contato. Tambem acionado por re-engajamento de lead frio (trigger do Worker de Follow-up)."
+    checkpoint:
+      criteria: "Ficha de qualificacao preenchida (Budget confirmado/estimado, Authority confirmada, Need identificada, Timeline definida) + classificacao SQL/MQL/DQ + resumo de objecoes + proximo passo recomendado. Registrado no CRM como nota de qualifica…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Agendar Reunião"
+    agent: atlas
+    task: agendar-reuniao.md
+    trigger: "Lead classificado como SQL pelo Socrates. Tambem acionado por no-show detectado (reuniao nao ocorreu) para reagendamento automatico."
+    checkpoint:
+      criteria: "Evento criado no calendario (Google/Outlook) com link de videoconferencia; confirmacao enviada ao lead via canal preferido; lembrete configurado; registro no CRM (campo 'reuniao_agendada_em', 'status_reuniao'). Artefato ClickUp: task 'Reun…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Priorizar Leads"
+    agent: argos
+    task: priorizar-leads.md
+    trigger: "Evento de comportamento recebido (email aberto, link clicado, pagina de preco visitada, formulario de interesse preenchido pela segunda vez). Tambem executa em batch horario para re-ranking geral."
+    checkpoint:
+      criteria: "Score atualizado (0-100) por lead no CRM + lista ranqueada dos top-10 leads para acao imediata + alertas Slack/WhatsApp para o closer responsavel quando lead cruza threshold de 'quente' (score >= 75). Artefato ClickUp: task de alerta 'Lead…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Gerenciar Cadências De Follow-Up"
+    agent: eco
+    task: gerenciar-cadencias-de-follow-up.md
+    trigger: "Lead sem resposta por 24h apos primeiro contato do Flash. Lead classificado como MQL pelo Socrates. Gatilho de reativacao disparado pelo Argos (sinal de intencao em lead frio). Cancelamento de reuniao detectado."
+    checkpoint:
+      criteria: "Mensagens de follow-up enviadas com registro de entrega; deteccao de resposta e interrupcao de cadencia; leads reativados passados de volta ao Socrates para qualificacao. Artefato ClickUp: task por lead com log completo de cadencia (tentat…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Realizar Ligação Qualificadora"
+    agent: sdr-por-ligacao
+    task: realizar-ligacao-qualificadora.md
+    trigger: "Lead com score >= 60 sem resposta a texto em 48h. Acionado pelo Orchestrator com confirmacao de HITL para ligacoes fora do horario 9h-18h ou para contas com ticket > threshold definido pelo cliente."
+    checkpoint:
+      criteria: "Transcricao da call com sumario estruturado; atualizacao de qualificacao no CRM; reuniao agendada (se aplicavel) ou proximo passo registrado. Artefato ClickUp: task 'Call Realizada' com link para transcricao e recording. Alerta imediato ao…"
+      veto_condition: "Saída sem veredito do critic Sentinel; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: sentinel
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: claude-opus
+    checkpoint:
+      criteria: "Entregável consolidado: Dossie de Lead Completo por Contato: documento estruturado (JSON + nota no CRM) contendo timestamp de cada etapa (primeiro contato, enriquecimento, qualificacao, agendamento), scorecard BANT preenchi…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovacao de ligacao por voz (Vox) fora do horario comercial (18h-9h) — irreversivel, contato direto com lead"
+  - level: HITL
+    condition: "Aprovacao de ligacao por voz para contas com ticket acima do threshold definido pelo cliente (ex: >R$50k) — risco comercial alto"
+  - level: HITL
+    condition: "Mensagem bloqueada pelo Sentinel na 3a iteracao de correcao — exige revisao humana antes de envio"
+  - level: HITL
+    condition: "Lead classificado como conta estrategica (lista VIP do CRM) — qualquer acao requer aprovacao do closer responsavel"
+  - level: HITL
+    condition: "Desconto ou concessao comercial mencionada na conversa — Eco/Socrates escalam imediatamente para closer humano"
+  - level: HITL
+    condition: "Reagendamento apos segundo no-show — Atlas escala para closer decidir se continua ou descarta lead"
+  - level: HITL
+    condition: "Lead demonstra sinal negativo forte (reclamacao de contato excessivo, solicitacao de opt-out) — intervencao humana obrigatoria e imediata"
+transitions:
+  - from: claude-opus
+    to: flash
+    condition: "Novo lead criado no CRM; webhook de formulario recebido; nova mensagem em canal monitorado; chamada entrante identificada. SLA: acao em ate 60 segundos do evento."
+  - from: flash
+    to: sherlock
+    condition: "Acionado pelo Orchestrator imediatamente apos criacao do lead, em paralelo ao Flash. Re-acionado quando novo dado de contato e adicionado ao CRM."
+  - from: sherlock
+    to: socrates
+    condition: "Dossie de enriquecimento recebido + lead respondeu ao primeiro contato. Tambem acionado por re-engajamento de lead frio (trigger do Worker de Follow-up)."
+  - from: socrates
+    to: atlas
+    condition: "Lead classificado como SQL pelo Socrates. Tambem acionado por no-show detectado (reuniao nao ocorreu) para reagendamento automatico."
+  - from: atlas
+    to: argos
+    condition: "Evento de comportamento recebido (email aberto, link clicado, pagina de preco visitada, formulario de interesse preenchido pela segunda vez). Tambem executa em batch horario para re-ranking geral."
+  - from: argos
+    to: eco
+    condition: "Lead sem resposta por 24h apos primeiro contato do Flash. Lead classificado como MQL pelo Socrates. Gatilho de reativacao disparado pelo Argos (sinal de intencao em lead frio). Cancelamento de reunia…"
+  - from: eco
+    to: sdr-por-ligacao
+    condition: "Lead com score >= 60 sem resposta a texto em 48h. Acionado pelo Orchestrator com confirmacao de HITL para ligacoes fora do horario 9h-18h ou para contas com ticket > threshold definido pelo cliente."
+  - from: sdr-por-ligacao
+    to: sentinel
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: sentinel
+    to: claude-opus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - sherlock

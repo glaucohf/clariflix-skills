@@ -1,0 +1,24 @@
+row: especialistas
+title: Guardião dos dados
+title_netflix: DATA QUALITY GUARDIAN
+subtitle: Profiling, schema, anomalias e plano de correção
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 5 agentes, 6 tarefas, 2 fluxos
+  requer: Dataset acessível, schema esperado e baseline ou SLAs quando disponíveis
+  como_usar: 'Diga: "Audite a qualidade deste dataset com score e plano de remediação"'
+  elenco:
+  - data-profiler
+  - anomaly-detector
+  - schema-validator
+  - data-quality-reporter
+  - remediation-suggester
+  generos:
+  - Dados
+  - Qualidade
+  esta_skill_e:
+  - Mensurável
+  - Investigativa
+  - Rastreável

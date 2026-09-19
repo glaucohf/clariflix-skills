@@ -1,0 +1,174 @@
+workflow_name: vendas_voz_cold_calling_discovery_pipeline
+description: "Voz de IA sub-600ms que liga, qualifica e agenda — sem SDR humano no primeiro contato."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-voz-cold-calling-discovery
+area: "Vendas"
+topsquad: "V1 · Prospecção & Outbound Multicanal"
+agent_sequence:
+  - orquestrador-comercial-de-voz
+  - dossie
+  - vox-worker-de-voz
+  - filtro
+  - agenda
+  - eco
+  - radar
+  - insight
+  - filtro-2
+key_commands:
+  - "*enriquecer-dossie-contextual"
+  - "*realizar-ligacao-cold-call"
+  - "*analisar-transcricao-call"
+  - "*agendar-reuniao"
+  - "*reativar-interesse-frios"
+  - "*ranquear-leads"
+  - "*analisar-padroes-de-conversas"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orquestrador-comercial-de-voz
+success_indicators:
+  - "Taxa de Conexão: % de ligações atendidas por humano / total de discagens (benchmark: 8-15%)"
+  - "Taxa de Qualificacao: % de leads que passam pelo Filtro Agent como VALIDO / total de calls conectadas (meta: >35%)"
+  - "Taxa de Agendamento: % de leads qualificados que chegam à reunião agendada / total qualificados (meta: >55%)"
+  - "Taxa de Show: % de reuniões que efetivamente ocorrem / total agendadas (meta: >70%)"
+  - "Custo por Lead Qualificado: custo total do squad (API + plataformas) / leads qualificados entregues (meta: R$15-40/lead)"
+  - "Latência de Resposta do Vox Agent: tempo entre fala do prospect e início de resposta do agente (meta: <600ms P95)"
+  - "Score de Qualidade de Call: média do Filtro Agent nas calls da semana (meta: >75/100)"
+  - "Volume de Discagens por Dia: total de tentativas realizadas pelo Vox Agent (meta: 3-5x baseline humano)"
+  - "Taxa de Reativacao de Frios: % de leads nurturados pelo Eco Agent que retornam a fila ativa em 90 dias (meta: >12%)"
+  - "Task Success Rate no Quality Gate: Langfuse tracking — dev 70% / staging 85% / prod 95%"
+deliverable:
+  description: "Artefato principal por ciclo de operação: Relatório Diário de Discagem (JSON + dashboard) contendo — leads discados, taxa de conexão do dia, leads qualificados com campos BANT preenchidos, reuniões agendadas, calls com flag de HITL pendente, e score de qualidade médio. Artefatos secundários: Dossiês de Lead (pré-call), Transcrições e Gravações de Call (pós-call), Relatório Semanal de Conversation Intelligence, e Fila de Discagem Priorizada pelo Radar Agent. Todos os artefatos rastreados no ClickUp com link direto ao registro do CRM."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orquestrador-comercial-de-voz
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Enriquecer Dossie Contextual"
+    agent: dossie
+    task: enriquecer-dossie-contextual.md
+    trigger: "Novo lead entra na fila de discagem. Lead reativado após 30 dias de frio. Antes de cada ligação de discovery agendada."
+    checkpoint:
+      criteria: "Dossié JSON com: resumo da empresa (3-5 bullets), dores previstas por vertical, sinais de intenção detectados, score de enriquecimento (0-100), campos preenchidos no CRM (HubSpot/Pipedrive), contexto injetado no prompt do agente de voz."
+      veto_condition: "Saída sem veredito do critic Filtro 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Realizar Ligação Cold Call"
+    agent: vox-worker-de-voz
+    task: realizar-ligacao-cold-call.md
+    trigger: "Lead aprovado pelo Dossie Agent com score >= 60. Horário dentro da janela de discagem configurada. Tentativa de recontato conforme cadência definida."
+    checkpoint:
+      criteria: "Transcrição da call (STT), classificação do lead (Qualificado/Não Qualificado/Aguardar/Sem Resposta), campos BANT preenchidos (Budget, Authority, Need, Timeline), gravação de áudio armazenada, registro de call no CRM, próximo passo definid…"
+      veto_condition: "Saída sem veredito do critic Filtro 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Analisar Transcricao Call"
+    agent: filtro
+    task: analisar-transcricao-call.md
+    trigger: "Imediatamente após o encerramento de cada call pelo Vox Agent. Quando Vox sinaliza qualificação positiva antes de passar ao Worker de Agendamento."
+    checkpoint:
+      criteria: "Score de qualidade da call (0-100), veredicto de qualificação (VÁLIDO/SUSPEITO/INVÁLIDO), flags de compliance (se houver), lista de campos BANT que precisam de confirmação humana, recomendação de próximo passo."
+      veto_condition: "Saída sem veredito do critic Filtro 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Agendar Reunião"
+    agent: agenda
+    task: agendar-reuniao.md
+    trigger: "Filtro Agent emite veredicto VÁLIDO para lead qualificado. Leads que não compareceram à reunião anterior (reagendamento automático). Lembrete D-1 e H-1 da reunião."
+    checkpoint:
+      criteria: "Evento criado no calendário com todos os participantes, confirmação enviada por WhatsApp/SMS/email, registro de agendamento no CRM com link do evento, status atualizado para 'Reunião Agendada' no ClickUp."
+      veto_condition: "Saída sem veredito do critic Filtro 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Reativar Interesse Frios"
+    agent: eco
+    task: reativar-interesse-frios.md
+    trigger: "Lead marcado como Sem Resposta apos 3 tentativas. Lead classificado como Nao Qualificado Agora com data de retorno. Sinal de reengajamento detectado (abertura de email, clique, resposta). Trigger de calendari de reativacao (30/60/90 dias)."
+    checkpoint:
+      criteria: "Mensagens enviadas por canal com timestamp, score de engajamento atualizado, leads reativados re-inseridos na fila do Vox Agent, relatório de cadência semanal no ClickUp."
+      veto_condition: "Saída sem veredito do critic Filtro 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Ranquear Leads"
+    agent: radar
+    task: ranquear-leads.md
+    trigger: "Novo lead adicionado ao CRM. Sinal de intenção detectado para lead existente. Revisão periódica da fila (a cada 4 horas). Antes de cada sessão de discagem do Vox Agent."
+    checkpoint:
+      criteria: "Fila de discagem priorizada e ordenada por score (JSON), score individual de cada lead (0-100) com breakdown de fatores, leads marcados como Alta Prioridade notificados ao gestor comercial, relatório de distribuição de score semanal."
+      veto_condition: "Saída sem veredito do critic Filtro 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Analisar Padroes De Conversas"
+    agent: insight
+    task: analisar-padroes-de-conversas.md
+    trigger: "Encerramento da semana (trigger semanal automático). Quando taxa de conversão cai >15% em relação à média móvel de 4 semanas. Solicitação manual do gestor comercial."
+    checkpoint:
+      criteria: "Relatório semanal de Conversation Intelligence (PDF + dashboard): top 5 objeções da semana, frases com maior taxa de sucesso, momento médio de perda de interesse na call, score de aderência ao roteiro por ligação, sugestões de ajuste de ro…"
+      veto_condition: "Saída sem veredito do critic Filtro 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: filtro-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orquestrador-comercial-de-voz
+    checkpoint:
+      criteria: "Entregável consolidado: Artefato principal por ciclo de operação: Relatório Diário de Discagem (JSON + dashboard) contendo — leads discados, taxa de conexão do dia, leads qualificados com campos BANT preenchidos, reuniões a…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do Blueprint Técnico e roteiros de voz antes da ativação em produção (gate de onboarding — L3)."
+  - level: HITL
+    condition: "Revisão de leads marcados como SUSPEITO pelo Filtro Agent antes de agendar com closer (L3)."
+  - level: HITL
+    condition: "Aprovação de ajustes no roteiro sugeridos pelo Insight Agent quando impacto estimado > 20% na taxa de conversão (L3)."
+  - level: HITL
+    condition: "Autorização para discagem em contas estratégicas (ex: enterprise, parceiros atuais) — requer aprovação do gestor comercial (L3)."
+  - level: HITL
+    condition: "Revisão de leads com score de enriquecimento < 40 antes de entrar na fila de discagem (L2 -> L3 escalation)."
+  - level: HITL
+    condition: "Confirmação de reagendamento quando prospect cancela reunião pela segunda vez consecutiva (decisão humana sobre continuar ou desqualificar — L3)."
+  - level: HITL
+    condition: "Calibragem quinzenal de voz e persona do Vox Agent com gestor de vendas (revisão humana de amostras de áudio — L1)."
+transitions:
+  - from: orquestrador-comercial-de-voz
+    to: dossie
+    condition: "Novo lead entra na fila de discagem. Lead reativado após 30 dias de frio. Antes de cada ligação de discovery agendada."
+  - from: dossie
+    to: vox-worker-de-voz
+    condition: "Lead aprovado pelo Dossie Agent com score >= 60. Horário dentro da janela de discagem configurada. Tentativa de recontato conforme cadência definida."
+  - from: vox-worker-de-voz
+    to: filtro
+    condition: "Imediatamente após o encerramento de cada call pelo Vox Agent. Quando Vox sinaliza qualificação positiva antes de passar ao Worker de Agendamento."
+  - from: filtro
+    to: agenda
+    condition: "Filtro Agent emite veredicto VÁLIDO para lead qualificado. Leads que não compareceram à reunião anterior (reagendamento automático). Lembrete D-1 e H-1 da reunião."
+  - from: agenda
+    to: eco
+    condition: "Lead marcado como Sem Resposta apos 3 tentativas. Lead classificado como Nao Qualificado Agora com data de retorno. Sinal de reengajamento detectado (abertura de email, clique, resposta). Trigger de…"
+  - from: eco
+    to: radar
+    condition: "Novo lead adicionado ao CRM. Sinal de intenção detectado para lead existente. Revisão periódica da fila (a cada 4 horas). Antes de cada sessão de discagem do Vox Agent."
+  - from: radar
+    to: insight
+    condition: "Encerramento da semana (trigger semanal automático). Quando taxa de conversão cai >15% em relação à média móvel de 4 semanas. Solicitação manual do gestor comercial."
+  - from: insight
+    to: filtro-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: filtro-2
+    to: orquestrador-comercial-de-voz
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

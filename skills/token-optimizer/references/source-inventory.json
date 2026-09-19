@@ -1,0 +1,136 @@
+{
+  "source": "maquina-de-receita/squads-gratuitos/token-optimizer",
+  "files": [
+    {
+      "path": "agents/anti-pattern-detector.md",
+      "bytes": 2757,
+      "sha256": "400c9234e26b51377d6fc7c50c32f53419614af994c328dddc4efa00443c125d"
+    },
+    {
+      "path": "agents/optimization-executor.md",
+      "bytes": 2785,
+      "sha256": "8d0287fcf0afe26696883d552e72061f44e19b0bec6d6c810f46c645d3306383"
+    },
+    {
+      "path": "agents/optimization-planner.md",
+      "bytes": 2618,
+      "sha256": "cdd116233a65a3516994edd319dcaffeed26bd5808edfdc2232caeb6eb2e8d6b"
+    },
+    {
+      "path": "agents/quality-auditor.md",
+      "bytes": 2644,
+      "sha256": "ac77cc5393a718c1779c75d30f400ddc9f405a64385aa0f9a45245397186c3f8"
+    },
+    {
+      "path": "agents/squad-scanner.md",
+      "bytes": 2379,
+      "sha256": "a076a7feef4238de1ec4dc4ed29be5c0878f82c8b71affc2bcaf79bf49a95bc5"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "bytes": 1035,
+      "sha256": "05936bef73ec899cb52a917ee81e3bb28e70a9b35b5a462e7ddff11656579c5f"
+    },
+    {
+      "path": "config/source-tree.md",
+      "bytes": 1657,
+      "sha256": "61e5038ce00ca011554afb1eec95619c0909ad37a0f08b9236e57f509bd0257a"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "bytes": 830,
+      "sha256": "8066e73cfa3d567129b7d5dd6e2ac518a4308899d44092f080f40ce7efafc4c0"
+    },
+    {
+      "path": "context-manifest.json",
+      "bytes": 1526,
+      "sha256": "a25b28ca04df990bf5864d638818809a8bf5786def7f6e9be4a5f8ed17f700af"
+    },
+    {
+      "path": "IDEATION.md",
+      "bytes": 2299,
+      "sha256": "aa19c6d646fdb248bcf0ea28b3d24995dae68264a21178146c17977e720bfdb8"
+    },
+    {
+      "path": "README.ar.md",
+      "bytes": 8684,
+      "sha256": "2663627a033101d12c8e14a353bb8e0a67e8046cc4471b3f049ee4caef8d5c0d"
+    },
+    {
+      "path": "README.en.md",
+      "bytes": 6983,
+      "sha256": "c2d308e4f434045c72c26d93e31fd42987d4387c3275745d1808402b6086112e"
+    },
+    {
+      "path": "README.es.md",
+      "bytes": 7256,
+      "sha256": "b22da6f24731cd55161192524bc9176e42faea6c5316876fb89c0c6b5cd33f12"
+    },
+    {
+      "path": "README.hi.md",
+      "bytes": 13095,
+      "sha256": "366557987091424d6e6a0a715bac25b1b2c8544d09cb7e50bf59b5f9da24000b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7107,
+      "sha256": "99d707b84527cf397748150c8dbb166570fba4a888daf08af6b65eed940543ba"
+    },
+    {
+      "path": "README.zh.md",
+      "bytes": 6695,
+      "sha256": "aff817af84ce21a703e8a7731e33a3fbcef833a93f434c97abb6ca8f69349ba7"
+    },
+    {
+      "path": "run.md",
+      "bytes": 2951,
+      "sha256": "6206af83aa17c39d077e547689cf4c578eb3b394dbe05822af7388cc322ddc46"
+    },
+    {
+      "path": "squad.yaml",
+      "bytes": 1177,
+      "sha256": "e305a9b26fe3587775f6ca57914ec1ec927a12499ee0715cc86ab1864c9feee8"
+    },
+    {
+      "path": "start.md",
+      "bytes": 4699,
+      "sha256": "f96fded7d08ba548045e6fe6b78667d675110b2b7b9ab3d4cf67bd8236e5ca65"
+    },
+    {
+      "path": "tasks/audit-quality.md",
+      "bytes": 1682,
+      "sha256": "5900c40caf3095503fd6714c3fc8515486032eeeab8931c93d75c950326c4e45"
+    },
+    {
+      "path": "tasks/detect-anti-patterns.md",
+      "bytes": 1478,
+      "sha256": "c637b5b28dc866cd12d9450fd29a34d34212a28fef4fb7f1ee8ded4fce72e931"
+    },
+    {
+      "path": "tasks/execute-optimization.md",
+      "bytes": 1602,
+      "sha256": "60013f7a48987b37b4ddaec4317be3300742e6301ba45722139ce4f17ad7ad96"
+    },
+    {
+      "path": "tasks/plan-optimization.md",
+      "bytes": 1576,
+      "sha256": "7cdbae5a77df66a9211852b375177c3b0fd4f8dc10ee5c374a6f7eb3a5a9a614"
+    },
+    {
+      "path": "tasks/scan-squad.md",
+      "bytes": 1380,
+      "sha256": "9e48dea2f61898e1424918929714d80dc14b04bd5f48f4b8f27cae1c421fa7a2"
+    },
+    {
+      "path": "workflows/audit-only.yaml",
+      "bytes": 1173,
+      "sha256": "f7e2e90f611a634a8f8a5acc74ad6d06527d84ff8148eb0d85ff5e50354f8926"
+    },
+    {
+      "path": "workflows/optimization-pipeline.yaml",
+      "bytes": 1769,
+      "sha256": "d6dc8472601b96746f9760916d175c0f5168d6f543d8b2be61b02fa25a8df205"
+    }
+  ],
+  "provenance_readme_sha256": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83"
+}

@@ -1,0 +1,166 @@
+workflow_name: ce_post_launch
+description: >
+  Workflow exclusivo pós-lançamento — não existe nos squads concorrentes.
+  Cobre os primeiros 7 dias de operação após a landing page entrar ao ar com
+  tráfego pago ativo. Monitora comportamento real de usuários via heatmaps,
+  realiza first data review após volume mínimo, ativa sequência de email
+  pós-captura e gera os primeiros insights para o ciclo de A/B testing.
+  Transforma o lançamento de um evento único em um processo de melhoria contínua.
+
+agent_sequence:
+  - ce-analytics-architect
+  - ce-email-strategist
+  - ce-ab-architect
+
+estimated_duration: "7 dias de operação"
+
+parallel_execution:
+  description: >
+    Após o lançamento, ce-analytics-architect monitora continuamente enquanto
+    ce-email-strategist ativa a sequência de email. ce-ab-architect entra apenas
+    após o first data review com volume mínimo validado.
+  trigger_for_ab: "Mínimo 500 sessões e first data review concluído"
+
+trigger_conditions:
+  start: "Landing page ao ar com tráfego pago ativo (campanhas ligadas)"
+  minimum_traffic: "Mínimo 500 sessões antes de iniciar análise formal"
+  first_review: "72 horas após lançamento OU 500 sessões (o que vier primeiro)"
+
+phases:
+  - name: "Phase 1 — Heatmap Calibration (Primeiras 48h)"
+    agent: ce-analytics-architect (Lens)
+    trigger: "Imediato após lançamento com tráfego ativo"
+    tasks:
+      - Monitorar heatmaps de clique nas primeiras 24h de tráfego real
+      - Verificar scrollmaps: percentual de usuários chegando em cada seção
+      - Identificar elementos que recebem cliques não esperados (rage clicks, dead clicks)
+      - Monitorar session recordings: identificar padrões de comportamento e abandonos
+      - "Verificar taxa de bounce nas primeiras horas: alertar se > 80%"
+      - Acompanhar funil no GA4 em tempo real: identificar step com maior drop-off
+      - Verificar que eventos de analytics estão disparando com dados reais de usuários
+      - Monitorar velocidade de carregamento com usuários reais (RUM - Real User Monitoring)
+      - Documentar primeiras anomalias: seções sendo ignoradas, CTAs sem cliques
+      - Gerar relatório de observações das primeiras 24h
+    checkpoints:
+      entry: "Tráfego pago ativo com primeiras sessões registradas no GA4"
+      exit: >
+        Relatório de observações das primeiras 24-48h com: heatmaps iniciais,
+        scrollmap, primeiros padrões de comportamento, anomalias documentadas
+    veto_conditions:
+      - "Taxa de bounce > 80% nas primeiras 6h → acionar revisão de hero section urgente"
+      - "Nenhum clique no CTA principal após 100 sessões → acionar revisão emergencial de copy"
+      - "Heatmap tool sem dados após 24h → verificar snippet e reconectar antes de prosseguir"
+      - "Drop-off > 90% antes da seção de pricing → sinalizar como problema crítico imediatamente"
+      - "GA4 parando de receber dados → verificar integridade do GTM antes de prosseguir"
+
+  - name: "Phase 2 — First Data Review (72h ou 500 sessões)"
+    agent: ce-analytics-architect (Lens)
+    trigger: "72h após lançamento OU 500 sessões acumuladas (o que ocorrer primeiro)"
+    tasks:
+      - Compilar métricas primárias: sessões totais, taxa de conversão, custo por lead (se disponível)
+      - Calcular taxa de conversão por fonte de tráfego (Meta, Google, orgânico, direto)
+      - Analisar scrollmap: percentual de usuários atingindo cada seção
+      - Identificar a seção com maior drop-off no funil
+      - Analisar device breakdown: mobile vs. desktop e taxa de conversão por device
+      - Comparar tempo na página vs. benchmark do nicho
+      - Identificar páginas de saída (se houver subpáginas)
+      - Analisar horários de maior conversão (se dados suficientes)
+      - Comparar taxa de conversão atual vs. benchmark do nicho (do intelligence report)
+      - Gerar relatório estruturado: métricas → insights → hipóteses para A/B testing
+    checkpoints:
+      entry: "Mínimo 500 sessões registradas OU 72h de operação"
+      exit: >
+        First data review completo com: métricas primárias calculadas, seção
+        de maior drop-off identificada, hipóteses documentadas para A/B testing
+    veto_conditions:
+      - "Menos de 500 sessões → aguardar volume antes de gerar conclusões definitivas"
+      - "Taxa de conversão = 0% após 200 sessões → acionar revisão emergencial (não aguardar 500)"
+      - "Taxa de conversão < 0.5% após 500 sessões → acionar ciclo de A/B testing imediatamente"
+      - "Dados de fonte de tráfego ausentes no GA4 → verificar configuração de UTMs"
+      - "Device breakdown sem dados de mobile → investigar filtro no GA4"
+
+  - name: "Phase 3 — Email Sequence Activation (Dias 1-3)"
+    agent: ce-email-strategist (Thread)
+    trigger: "Imediato após primeiras conversões (primeiros leads capturados)"
+    tasks:
+      - Validar que os primeiros leads chegaram na plataforma de email corretamente
+      - Confirmar que email de boas-vindas (Email 0) foi enviado imediatamente após captura
+      - "Verificar taxa de entrega do Email 0 (meta: > 95% delivered)"
+      - "Verificar taxa de abertura do Email 0 nas primeiras 24h (benchmark: > 40%)"
+      - Ativar sequência de nurturing: Email 1 (dia 1), Email 2 (dia 3), Email 3 (dia 7)
+      - Verificar que links de cada email estão funcionando corretamente
+      - Monitorar cliques nos links da sequência (especialmente CTA de retorno à LP)
+      - Identificar leads que abriram mas não converteram para retargeting
+      - "Documentar taxa de descadastro: alertar se > 2% após Email 0"
+      - Gerar relatório de performance da sequência de email pós-captura
+    checkpoints:
+      entry: "Primeiras conversões confirmadas e leads chegando na plataforma de email"
+      exit: >
+        Sequência ativada: Email 0 enviado com taxa de entrega > 95%,
+        Emails 1-3 agendados, performance monitorada e documentada
+    veto_conditions:
+      - "Email 0 não sendo enviado após captura → investigar webhook imediatamente"
+      - "Taxa de entrega < 90% → verificar configuração de SPF/DKIM/DMARC"
+      - "Taxa de descadastro > 2% após Email 0 → revisar copy do email de boas-vindas"
+      - "Links do email com erro 404 → corrigir antes de ativar próximo email da sequência"
+      - "Taxa de abertura do Email 0 < 20% → revisar assunto do email e remetente"
+
+  - name: "Phase 4 — Initial Insights (Dias 5-7)"
+    agent: ce-ab-architect (Split)
+    trigger: "Após first data review aprovado com hipóteses documentadas"
+    tasks:
+      - Receber relatório do first data review de ce-analytics-architect
+      - Analisar hipóteses de A/B testing documentadas e priorizar por impacto estimado
+      - Identificar a oportunidade #1 de melhoria com maior potencial de uplift
+      - Calcular tamanho de amostra necessário para teste com poder estatístico adequado
+      - Estimar duração do teste baseado no volume diário de sessões atual
+      - Documentar backlog de hipóteses priorizadas por: impacto estimado × facilidade
+      - Preparar briefing para início do ce-ab-design.yaml (primeiro ciclo de A/B)
+      - Recomendar se o ciclo de A/B deve iniciar imediatamente ou aguardar mais volume
+    checkpoints:
+      entry: "First data review completo com hipóteses documentadas"
+      exit: >
+        Backlog de hipóteses priorizado, oportunidade #1 identificada,
+        tamanho de amostra calculado, decisão de início do A/B documentada
+    veto_conditions:
+      - "Menos de 500 sessões → não iniciar análise de A/B testing ainda"
+      - "Tamanho de amostra calculado > 10.000 sessões/variante → reavaliar prioridade do teste"
+      - "Hipóteses não priorizadas por impacto → priorizar antes de prosseguir"
+      - "Sem dados suficientes para calcular tamanho de amostra → aguardar mais volume"
+
+success_indicators:
+  - "Heatmaps com dados reais das primeiras 48h de tráfego"
+  - "First data review com sessões >= 500 e métricas calculadas"
+  - "Taxa de conversão calculada e comparada ao benchmark do nicho"
+  - "Sequência de email ativada com taxa de entrega > 95%"
+  - "Taxa de abertura do Email 0 > 40%"
+  - "Seção de maior drop-off identificada com dados"
+  - "Backlog de hipóteses de A/B testing priorizado"
+  - "Recomendação formal de início do ciclo de A/B testing emitida"
+  - "Relatório dos primeiros 7 dias documentado para o cliente"
+
+failure_conditions:
+  - condition: "Taxa de conversão = 0% após 200 sessões"
+    recovery: >
+      ce-analytics-architect aciona revisão emergencial: verifica se formulário
+      está funcionando, se pixel está disparando corretamente e se o tráfego
+      é realmente qualificado; aciona ce-copywriter para revisão de hero section
+  - condition: "Taxa de bounce maior que 80% persistente após 48h"
+    recovery: >
+      ce-analytics-architect e ce-ab-architect diagnosticam causa: mismatch de
+      oferta vs. anúncio, velocidade de carregamento, relevância do público;
+      propõem correção específica antes de continuar
+  - condition: "Emails com baixa taxa de entrega (< 90%)"
+    recovery: >
+      ce-email-strategist verifica configuração de domínio: SPF, DKIM, DMARC,
+      IP reputation; contata suporte da plataforma de email se necessário
+  - condition: "Volume de tráfego insuficiente para análise estatística"
+    recovery: >
+      ce-analytics-architect documenta o gap e recomenda ao cliente aumentar
+      budget de tráfego ou aguardar mais tempo antes de iniciar A/B testing;
+      ce-ab-architect mantém backlog de hipóteses preparado
+  - condition: "Dados de analytics inconsistentes (GA4 vs. plataforma de anúncios)"
+    recovery: >
+      ce-analytics-architect investiga discrepâncias de atribuição, documenta
+      a fonte de verdade primária (GA4 como referência) e ajusta funil de
+      análise para usar apenas dados internos

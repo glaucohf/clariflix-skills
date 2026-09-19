@@ -1,0 +1,153 @@
+workflow_name: vendas_forecast_deal_risk_pipeline
+description: "Seu pipeline para de mentir: detecta risco antes do silêncio virar perda."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-forecast-deal-risk
+area: "Vendas"
+topsquad: "V6 · RevOps: Higiene de CRM & Forecast"
+agent_sequence:
+  - cassandra
+  - argus
+  - oracle
+  - sibila
+  - hermes
+  - mnemosine
+  - cronos
+  - nemesis
+key_commands:
+  - "*monitorar-deals-ativos"
+  - "*calcular-score-risco-deal"
+  - "*gerar-forecast-pipeline"
+  - "*formatar-alertas-contextualizados"
+  - "*analisar-deals-fechados"
+  - "*sugerir-proximo-passo"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: cassandra
+success_indicators:
+  - "Forecast Accuracy (%): meta de 80%+ (baseline típico do cliente: 45-60%)"
+  - "Deal Risk Detection Rate (%): percentual de deals perdidos que tiveram alerta prévio com 7+ dias de antecedência — meta 70%+"
+  - "Mean Time to Alert (MTTA): tempo médio entre sinal de risco detectado e alerta enviado ao closer — meta <2h"
+  - "Intervenção Rate (%): percentual de deals em risco onde o closer tomou ação após alerta — meta 60%+"
+  - "Deal Recovery Rate (%): percentual de deals Vermelhos que voltaram a Verde após intervenção — meta 25%+"
+  - "Deals sem Próximo Passo (%): percentual do pipeline ativo sem próxima atividade definida — meta <10%"
+  - "Squad Accuracy Improvement (% ao mês): evolução da accuracy do modelo mês a mês pelo feedback loop da Mnemosine — meta +2-5pp/mês nos primeiros 3 meses"
+deliverable:
+  description: "Painel de Pipeline Intelligence (atualizado a cada 4h) com: (1) lista priorizada de deals em risco com score, categoria e ação recomendada; (2) forecast de 30/60/90 dias em três cenários com gap para meta; (3) alertas contextualizados por deal entregues no canal preferido do closer; (4) relatório mensal de aprendizado com accuracy do forecast e ROI das intervenções. Artefato verificável: JSON de estado do pipeline com timestamp, acessível via ClickUp e exportável para CRM."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: cassandra
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar Deals Ativos"
+    agent: argus
+    task: monitorar-deals-ativos.md
+    trigger: "Job agendado a cada 4h OU webhook de mudança no CRM OU comando manual do gestor via ClickUp"
+    checkpoint:
+      criteria: "Lista de eventos de risco padronizados (JSON): {deal_id, tipo_risco, severidade [1-5], último_contato, dias_estagnado, estágio_atual, owner, valor_deal, trigger_específico}"
+      veto_condition: "Saída sem veredito do critic Nemesis; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Calcular Score Risco Deal"
+    agent: oracle
+    task: calcular-score-risco-deal.md
+    trigger: "Evento de risco recebido da Cassandra + atualização diária do score de todos os deals ativos (job 06h00) + mudança manual de estágio no CRM"
+    checkpoint:
+      criteria: "Score de risco por deal (0-100), probabilidade de fechamento no período (%), categoria de risco (Verde/Amarelo/Vermelho/Morto), top-3 fatores de risco com peso, recomendação de ação (intervenção urgente / nurture / monitorar / arquivar)"
+      veto_condition: "Saída sem veredito do critic Nemesis; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Gerar Forecast Pipeline"
+    agent: sibila
+    task: gerar-forecast-pipeline.md
+    trigger: "Job semanal (toda segunda-feira 07h00) + job mensal (dia 1 de cada mês) + solicitação manual do gestor + 5 dias antes do fim do mês/trimestre"
+    checkpoint:
+      criteria: "Relatório de forecast em três cenarios (PDF + JSON para dashboard): {período, cenario_pessimista_R$, cenario_provável_R$, cenario_otimista_R$, meta_R$, gap_R$, accuracy_historica_%, deals_em_risco_top5, deals_saudáveis_top5, recomendação_d…"
+      veto_condition: "Saída sem veredito do critic Nemesis; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Formatar Alertas Contextualizados"
+    agent: hermes
+    task: formatar-alertas-contextualizados.md
+    trigger: "Aprovação do Critic (Nemesis) + deal classificado como Vermelho ou Morto pelo Oracle + ausência de intervenção em deal Amarelo por mais de 24h + solicitação manual de alerta"
+    checkpoint:
+      criteria: "Mensagens formatadas por canal (WhatsApp Business API, Slack webhook, email) prontas para envio, com contexto do deal, risco específico e ação recomendada. Artefato de log: {deal_id, alerta_enviado, canal, timestamp, ação_recomendada, stat…"
+      veto_condition: "Saída sem veredito do critic Nemesis; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-6
+    name: "Analisar Deals Fechados"
+    agent: mnemosine
+    task: analisar-deals-fechados.md
+    trigger: "Job mensal (dia 5 de cada mês, após fechamento do período anterior) + acumulação de 10+ deals fechados desde último ciclo de aprendizado + solicitação manual do gestor"
+    checkpoint:
+      criteria: "Relatorio mensal de aprendizado: {accuracy_do_forecast_%, falsos_negativos_top5 (deals que perdemos sem alerta), falsos_positivos_top5 (deals que alarmamos mas fecharam), padroes_novos_identificados, sugestoes_de_ajuste_nos_thresholds, ROI…"
+      veto_condition: "Saída sem veredito do critic Nemesis; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Sugerir Próximo Passo"
+    agent: cronos
+    task: sugerir-proximo-passo.md
+    trigger: "Deal ativo sem próxima atividade agendada por mais de 48h + atividade vencida sem reagendamento + novo deal entrado em estágio de Proposta ou Negociação sem follow-up definido"
+    checkpoint:
+      criteria: "Sugestão de próximo passo formatada por deal: {deal_id, próximo_passo_sugerido, data_sugerida, canal_sugerido, contexto_relevante, justificativa}, criação automática de tarefa no ClickUp após aprovação HITL"
+      veto_condition: "Saída sem veredito do critic Nemesis; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: nemesis
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: cassandra
+    checkpoint:
+      criteria: "Entregável consolidado: Painel de Pipeline Intelligence (atualizado a cada 4h) com: (1) lista priorizada de deals em risco com score, categoria e ação recomendada; (2) forecast de 30/60/90 dias em três cenários com gap para…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Envio de alerta de risco para contato externo (cliente/prospect): Nemesis valida, humano confirma antes do Hermes enviar qualquer mensagem que saia para fora da empresa"
+  - level: L3
+    condition: "Recomendação de arquivar deal (classificado como Morto): gestor deve confirmar antes de qualquer mudança de estágio no CRM"
+  - level: L2
+    condition: "Sugestão de próximo passo pelo Cronos: closer recebe sugestão no ClickUp/Slack e aprova ou edita antes de criação da tarefa"
+  - level: L2
+    condition: "Ajuste de thresholds de alerta proposto pela Mnemosine: gestor valida antes de aplicar ao modelo de scoring do Oracle"
+  - level: L1
+    condition: "Forecast de pipeline enviado para o board: gestor comercial revisa o relatório da Sibila antes do envio formal"
+transitions:
+  - from: cassandra
+    to: argus
+    condition: "Job agendado a cada 4h OU webhook de mudança no CRM OU comando manual do gestor via ClickUp"
+  - from: argus
+    to: oracle
+    condition: "Evento de risco recebido da Cassandra + atualização diária do score de todos os deals ativos (job 06h00) + mudança manual de estágio no CRM"
+  - from: oracle
+    to: sibila
+    condition: "Job semanal (toda segunda-feira 07h00) + job mensal (dia 1 de cada mês) + solicitação manual do gestor + 5 dias antes do fim do mês/trimestre"
+  - from: sibila
+    to: hermes
+    condition: "Aprovação do Critic (Nemesis) + deal classificado como Vermelho ou Morto pelo Oracle + ausência de intervenção em deal Amarelo por mais de 24h + solicitação manual de alerta"
+  - from: hermes
+    to: mnemosine
+    condition: "Job mensal (dia 5 de cada mês, após fechamento do período anterior) + acumulação de 10+ deals fechados desde último ciclo de aprendizado + solicitação manual do gestor"
+  - from: mnemosine
+    to: cronos
+    condition: "Deal ativo sem próxima atividade agendada por mais de 48h + atividade vencida sem reagendamento + novo deal entrado em estágio de Proposta ou Negociação sem follow-up definido"
+  - from: cronos
+    to: nemesis
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: nemesis
+    to: cassandra
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

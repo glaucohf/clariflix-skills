@@ -1,0 +1,45 @@
+name: founder-strategic-foresight-wargaming
+version: 0.1.0
+description: "Nenhuma aposta grande sai sem estressar premissas contra futuros plausíveis e adversários autônomos — o founder decide com o mapa completo, não com o feeling."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: sfw
+components:
+  agents:
+    - atlas.md
+    - cassandra.md
+    - brutus.md
+    - chisel.md
+    - pythia.md
+    - memo.md
+    - tripwire.md
+    - ajax.md
+  tasks:
+    - mapear-espaco-de-futuros.md
+    - simular-reacoes-adversarias.md
+    - destruir-premissas.md
+    - coletar-sinais-fracos.md
+    - sintetizar-wargaming-report.md
+    - monitorar-indicadores-de-alerta.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-strategic-foresight-wargaming-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - foresight-risco-research-estrategico
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F4 · TopSquad de Foresight, Risco & Research Estratégico"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

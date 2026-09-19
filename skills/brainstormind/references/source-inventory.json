@@ -1,0 +1,121 @@
+{
+  "source": "maquina-de-receita/squads-gratuitos/brainstormind",
+  "files": [
+    {
+      "path": "agents/design-facilitator.md",
+      "bytes": 3282,
+      "sha256": "ecf208b9fc57f853a85828fe07ab135ad5d3467b07d0d0639382e9c152db3fcb"
+    },
+    {
+      "path": "agents/filter-ranker.md",
+      "bytes": 3064,
+      "sha256": "2b688ed8db9dd05be7fc586f120f9fef36fb372559d82224f7a98c8b5d97bd82"
+    },
+    {
+      "path": "agents/idea-generator.md",
+      "bytes": 2778,
+      "sha256": "15a6ba82bacfd5f11ed5343d458449c8fd3092b875e184ec3cc5d7b113ead514"
+    },
+    {
+      "path": "agents/orchestrator.md",
+      "bytes": 1979,
+      "sha256": "030109dce47ea634c56ef3ffeade2a6532a70b1ba510d235e402cb54cf70053d"
+    },
+    {
+      "path": "agents/report-builder.md",
+      "bytes": 2299,
+      "sha256": "f1532f96d0bc253d0fdb01089921fcd08963ce9daa2df69bfcf7d0023673a248"
+    },
+    {
+      "path": "agents/synthesizer.md",
+      "bytes": 2411,
+      "sha256": "840c64d262702f83822ed908ca067c4aa58d1b2db38b99291abba9431d7b5c8e"
+    },
+    {
+      "path": "agents/theme-definer.md",
+      "bytes": 2491,
+      "sha256": "5307eac4964bca636e0b43d2a7e6634474c68c5670a0b2c495cbded1551b383b"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "bytes": 1246,
+      "sha256": "01e0de8150c0fb0c187afb6ece486f44ee2c3bf8dcd937f7c0282662cf562646"
+    },
+    {
+      "path": "config/source-tree.md",
+      "bytes": 2547,
+      "sha256": "de006d9d58bcd0abe364ecb6c1d1ea4fe058730f952baef0e01d5ad22ea3354f"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "bytes": 777,
+      "sha256": "a4533b0370a06d87e7f75e9289611aa2816c32ae7147168154efc12287fcd2e5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5763,
+      "sha256": "863c733d9a2499e0fc9a15a5ac1cea5b4e0434411b9ce40345666ad789d088ab"
+    },
+    {
+      "path": "shared/macros.md",
+      "bytes": 4052,
+      "sha256": "3cf81fa3a128e93ce0fba4a4e7d849a78b4e3309274460e2c137fff5f64b1341"
+    },
+    {
+      "path": "squad.yaml",
+      "bytes": 1282,
+      "sha256": "df582de259630b61920bcb64d3f8a5ba8c896f96b70732c724f0953b9afc1d11"
+    },
+    {
+      "path": "tasks/build-report.md",
+      "bytes": 1074,
+      "sha256": "c2d3d80d787d95c91292edf16539ab5e8c14b36546850fa35eb86157fdf69694"
+    },
+    {
+      "path": "tasks/define-themes.md",
+      "bytes": 934,
+      "sha256": "66b9b6bb9fff6265b65bfa0cfeeee3ddba2fedc9d00d99a7f46ac0db413934a2"
+    },
+    {
+      "path": "tasks/facilitate-design.md",
+      "bytes": 1561,
+      "sha256": "c1e74bfd8e33ddfabd777ba2f01bd8443e3195bc0b2e951165157be90389578b"
+    },
+    {
+      "path": "tasks/filter-and-rank.md",
+      "bytes": 1318,
+      "sha256": "6269907d19c64bfa886e5517cbae9167863201d36240664a5c4fa8bc1d67ff52"
+    },
+    {
+      "path": "tasks/generate-ideas.md",
+      "bytes": 1253,
+      "sha256": "7025773953c9ddd42b5decb16c7b36c49568d42bd93c831329ac250626fe1e08"
+    },
+    {
+      "path": "tasks/start.md",
+      "bytes": 5068,
+      "sha256": "0fce224c0203d357031b5e518ea36a76f77c25bf8b34fad9b867e13b88f24183"
+    },
+    {
+      "path": "tasks/synthesize-insights.md",
+      "bytes": 969,
+      "sha256": "58e045f5c5965d24360c84af8ff97f9eb741d67858e11c8efd6a7721c03993d5"
+    },
+    {
+      "path": "templates/schemas.md",
+      "bytes": 2433,
+      "sha256": "ce3bb2a022bc528e446a9a995a8a0dfea13633b8b8dcac16a4316917e823772c"
+    },
+    {
+      "path": "workflows/brain-pipeline.yaml",
+      "bytes": 3118,
+      "sha256": "509c4fcb300619a98567119f620f9a6bee86657902a47b28e35127f7ffe4cc45"
+    },
+    {
+      "path": "workflows/diverge-only.yaml",
+      "bytes": 2097,
+      "sha256": "6021c936087e95895b39409a283ed87535b0c50c49057128479e0f64a9ea9be5"
+    }
+  ],
+  "provenance_readme_sha256": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83"
+}

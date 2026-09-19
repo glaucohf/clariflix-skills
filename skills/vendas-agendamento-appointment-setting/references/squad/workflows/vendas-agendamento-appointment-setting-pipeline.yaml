@@ -1,0 +1,157 @@
+workflow_name: vendas_agendamento_appointment_setting_pipeline
+description: "Do lead ao calendário confirmado: zero atrito, zero no-show, zero slot perdido."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-agendamento-appointment-setting
+area: "Vendas"
+topsquad: "V3 · Scoring, Roteamento & Agendamento"
+agent_sequence:
+  - maestro
+  - radar
+  - slot
+  - vigil
+  - bounce
+  - intell
+  - pulse
+  - sentinela
+key_commands:
+  - "*qualificar-lead-conversacionalmente"
+  - "*criar-evento"
+  - "*enviar-lembretes-agendados"
+  - "*reagendar-oportunidades-perdidas"
+  - "*enriquecer-dossie-lead"
+  - "*priorizar-leads"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro
+success_indicators:
+  - "Lead-to-Booked Rate: % de leads qualificados que chegam ao agendamento confirmado (meta: >40%, benchmark atual típico: 15-25%)"
+  - "Time-to-Book: tempo médio do primeiro contato até o booking confirmado (meta: <4h, hoje tipicamente dias)"
+  - "No-Show Rate: % de reuniões agendadas que não acontecem (meta: <10%, benchmark: 25-40%)"
+  - "Reschedule Recovery Rate: % de no-shows recuperados via reagendamento automático (meta: >30%)"
+  - "Confirmation Rate: % de leads que confirmam presença antes da reunião (meta: >85%)"
+  - "Briefing Delivery Rate: % de reuniões confirmadas que o closer recebe briefing com >1h de antecedência (meta: 100%)"
+  - "Slot Utilization: % de slots de calendário do closer preenchidos por semana (meta: >80% da capacidade configurada)"
+  - "Task Success Rate por ambiente: dev 70% / staging 85% / prod 95% (quality gates Langfuse)"
+  - "Custo por reunião agendada: tokens + custo de API / número de reuniões realizadas (meta: <R$15/reunião)"
+deliverable:
+  description: "Booking Confirmation Package — artefato verificavel gerado para cada reuniao realizada, contendo: booking_confirmation.json (dados do evento), reminder_log.json (historico de lembretes enviados), pre_meeting_brief.md (dossie do lead para o closer), lead_priority_queue.json (snapshot do score no momento do agendamento), e validation_log.json do Sentinela (prova de que todas as mensagens passaram pelo critic). Disponivel no CRM e no ClickUp como task concluida com todos os artefatos anexados."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Qualificar Lead Conversacionalmente"
+    agent: radar
+    task: qualificar-lead-conversacionalmente.md
+    trigger: "Novo lead entra no CRM com status 'novo' ou 'a qualificar'. Formulário de landing page submetido. Lead reativado do nurture com engajamento detectado."
+    checkpoint:
+      criteria: "JSON com: qualification_score (0-100), bant_summary {budget, authority, need, timing}, lead_profile {cargo, empresa, dor_principal, urgência}, recommendation (BOOK_NOW | NURTURE | DISQUALIFY), suggested_slot_preference (período do dia, dia…"
+      veto_condition: "Saída sem veredito do critic Sentinela; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Criar Evento"
+    agent: slot
+    task: criar-evento.md
+    trigger: "Maestro roteia lead com status BOOK_NOW vindo do Radar. Lead responde positivamente a uma mensagem de outreach com intenção de agendar. HITL aprova agendamento em conta estratégica (L3 bypass)."
+    checkpoint:
+      criteria: "Evento criado no calendário com: título, participantes, link de vídeo, descrição com contexto do lead. CRM atualizado com deal stage = 'Reunião Agendada', campo meeting_date preenchido. Mensagem de confirmação enviada ao lead pelo canal pr…"
+      veto_condition: "Saída sem veredito do critic Sentinela; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Enviar Lembretes Agendados"
+    agent: vigil
+    task: enviar-lembretes-agendados.md
+    trigger: "Agendamento criado pelo Slot (disparo imediato). Scheduler interno: 24h antes, 2h antes, no horário. CRM webhook: reunião próxima sem confirmação."
+    checkpoint:
+      criteria: "Registro de cada lembrete enviado com timestamp, canal e status de entrega/leitura. CRM atualizado com confirmation_status (CONFIRMED | PENDING | AT_RISK). Alerta para Maestro se lead não confirmou até T-4h (alto risco de no-show). Artefat…"
+      veto_condition: "Saída sem veredito do critic Sentinela; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Reagendar Oportunidades Perdidas"
+    agent: bounce
+    task: reagendar-oportunidades-perdidas.md
+    trigger: "Webhook do calendário: evento marcado como no-show ou cancelado. Vigil envia alerta de AT_RISK sem confirmação T-4h. Maestro detecta lead em stall pós-agendamento."
+    checkpoint:
+      criteria: "Nova opcao de horarios enviada ao lead com mensagem personalizada (tom empatico, nao chato). CRM atualizado com noshow_reason (se capturado), reschedule_attempt_count. Se limite de tentativas atingido: lead movido para status NURTURE e not…"
+      veto_condition: "Saída sem veredito do critic Sentinela; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Enriquecer Dossiê Lead"
+    agent: intell
+    task: enriquecer-dossie-lead.md
+    trigger: "Agendamento confirmado (confirmation_status = CONFIRMED). Reunião em menos de 24h sem briefing gerado."
+    checkpoint:
+      criteria: "Briefing pré-reunião em markdown: perfil do decisor, contexto da empresa, possíveis dores/oportunidades identificadas, sugestão de abertura personalizada, histórico de interações anteriores com a empresa. Enviado ao closer via CRM + notifi…"
+      veto_condition: "Saída sem veredito do critic Sentinela; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Priorizar Leads"
+    agent: pulse
+    task: priorizar-leads.md
+    trigger: "Evento de engajamento detectado (email aberto, link clicado, mensagem respondida). Rotina diária de re-scoring (6h da manhã). Lead sem interação por X dias (re-score para baixo)."
+    checkpoint:
+      criteria: "Score atualizado por lead (0-100) com breakdown por dimensão (fit, intent, engagement). Fila priorizada de leads para ação imediata. Alertas de lead esquentando (score subiu 20+ pontos em 24h). CRM atualizado com campo lead_score e priorit…"
+      veto_condition: "Saída sem veredito do critic Sentinela; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: sentinela
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: maestro
+    checkpoint:
+      criteria: "Entregável consolidado: Booking Confirmation Package — artefato verificavel gerado para cada reuniao realizada, contendo: booking_confirmation.json (dados do evento), reminder_log.json (historico de lembretes enviados), pre…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Aprovação humana obrigatória antes de qualquer contato com conta estratégica (deal acima de threshold configurado, ex: R$50k+) para revisar abordagem e personalização antes do envio."
+  - level: L3
+    condition: "Autorização para oferecer desconto ou condição especial durante negociação de horário/formato da reunião (ex: lead pede reunião presencial fora da política padrão)."
+  - level: L3
+    condition: "Aprovação para reativar lead que foi marcado como LOST ou DISQUALIFIED pelo sistema — requer revisão humana do motivo original antes de nova tentativa."
+  - level: L2
+    condition: "Notificação ao closer/SDR quando lead muda de COLD para HOT (score sobe 30+ pontos em 24h) para decisão de abordar manualmente em vez de deixar o squad rodar sozinho."
+  - level: L2
+    condition: "Alerta ao gerente de vendas quando taxa de no-show da semana ultrapassar threshold configurado (ex: >20%) — indica problema sistêmico que requer revisão de ICP ou abordagem."
+  - level: L1
+    condition: "Revisão humana do briefing pre-reunião antes do envio ao closer, opcional mas recomendado nas primeiras 2 semanas de operação do squad para calibragem."
+transitions:
+  - from: maestro
+    to: radar
+    condition: "Novo lead entra no CRM com status 'novo' ou 'a qualificar'. Formulário de landing page submetido. Lead reativado do nurture com engajamento detectado."
+  - from: radar
+    to: slot
+    condition: "Maestro roteia lead com status BOOK_NOW vindo do Radar. Lead responde positivamente a uma mensagem de outreach com intenção de agendar. HITL aprova agendamento em conta estratégica (L3 bypass)."
+  - from: slot
+    to: vigil
+    condition: "Agendamento criado pelo Slot (disparo imediato). Scheduler interno: 24h antes, 2h antes, no horário. CRM webhook: reunião próxima sem confirmação."
+  - from: vigil
+    to: bounce
+    condition: "Webhook do calendário: evento marcado como no-show ou cancelado. Vigil envia alerta de AT_RISK sem confirmação T-4h. Maestro detecta lead em stall pós-agendamento."
+  - from: bounce
+    to: intell
+    condition: "Agendamento confirmado (confirmation_status = CONFIRMED). Reunião em menos de 24h sem briefing gerado."
+  - from: intell
+    to: pulse
+    condition: "Evento de engajamento detectado (email aberto, link clicado, mensagem respondida). Rotina diária de re-scoring (6h da manhã). Lead sem interação por X dias (re-score para baixo)."
+  - from: pulse
+    to: sentinela
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: sentinela
+    to: maestro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

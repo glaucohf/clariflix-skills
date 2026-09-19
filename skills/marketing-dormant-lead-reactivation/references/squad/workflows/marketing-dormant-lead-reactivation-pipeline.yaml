@@ -1,0 +1,162 @@
+workflow_name: marketing_dormant_lead_reactivation_pipeline
+description: "Cada lead dormente na sua base e CAC já pago esperando ser resgatado — o squad que transforma necromarketing em pipeline real sem gastar um centavo em nova aquisição."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-dormant-lead-reactivation
+area: "Marketing"
+topsquad: "M5 · Captura, Qualificação & Reativação de Leads"
+agent_sequence:
+  - lazaro
+  - arqueologa
+  - radar
+  - oraculo-scorer
+  - lazaro-writer
+  - charon-dispatcher
+  - echo-analyst
+  - atena
+key_commands:
+  - "*reconstruir-historico-lead"
+  - "*verificar-mudancas-em-leads"
+  - "*calcular-score-de-reativacao-lead"
+  - "*redigir-mensagens-de-reativacao"
+  - "*enviar-mensagens-reativacao"
+  - "*analisar-respostas-leads"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: lazaro
+success_indicators:
+  - "Taxa de reativação por rodada: percentual de leads dormentes que respondem positivamente (categoria RESSUSCITADO ou MORNO_NOVO) — baseline histórico de win-back B2B genérico e 1-3%, meta com squad personalizado e 8-15%"
+  - "Pipeline reaberto (R$/rodada): valor total de oportunidades criadas ou reativadas no CRM atribuídas a cada rodada de reativação — meta: ROI de 20x sobre o custo operacional da rodada em 90 dias"
+  - "Custo por lead reativado vs custo de novo lead (CAC): meta de reativação custa 5-15x menos que novo lead do mesmo segmento — KPI principal de justificativa econômica do squad"
+  - "Taxa de aprovacao do critic Atena no primeiro ciclo: meta > 65% — indica qualidade dos playbooks de reativacao e calibragem dos templates do Lazaro Writer"
+  - "Taxa de reativação por archetype de dormência: qual dos 5 archetypes (Nunca Respondeu, Engajou Sem Converter, Timing, Concorrente, Fantasma) tem maior taxa de sucesso — orienta priorização das próximas rodadas"
+  - "Taxa de reativação por trilha x canal: email vs WhatsApp vs LinkedIn por cluster — orienta alocação de canal por segmento nas próximas rodadas"
+  - "Tempo de ciclo da rodada: da ingestão da lista dormente ao primeiro draft aprovado enviado — meta menos de 4 horas para lotes de até 200 leads"
+  - "Taxa de task success por agente no Langfuse: gate de produção = 95% por agente — abaixo disto aciona alerta e revisão do agente com problema"
+  - "Taxa de opt-out por rodada: meta abaixo de 3% — acima disto indica problema de segmentação (enviando para leads que não deveriam estar na rodada) ou de qualidade de copy (ângulo muito agressivo para reativação)"
+  - "Percentual de leads reativados que progridem para oportunidade no CRM (30, 60, 90 dias): meta 15-25% dos RESSUSCITADOS viram oportunidade formal — valida a qualidade da reativação além do mero engajamento superficial"
+deliverable:
+  description: "Rodada de Reativacao Verificavel e Auditavel: (1) Mapa de Base Dormentes — segmentacao completa por archetype, cluster e prioridade (Arqueologa + Oraculo Scorer) exportado como planilha e salvo no ClickUp, linkado ao CRM; (2) Ficha de Sinais Novos por lead processado (Radar) com mudancas detectadas, fontes verificadas e angulo de reativacao — salva no ClickUp e dados atualizados no CRM; (3) Pack de Reativacao aprovado por lead: drafts A/B por toque da sequencia com checklist do critic Atena preenchido, score de qualidade e compliance confirmado — versionado no ClickUp; (4) Log de Envio imutavel (Charon Dispatcher): timestamp, canal, variacao A/B, status de cada mensagem com rastreamento de abertura e click — activity no CRM e ClickUp; (5) Analise de Resposta estruturada (Echo Analyst): categoria de reativacao, objecao detectada, coaching note para o vendedor, proximo passo recomendado — CRM atualizado, notificacao ao vendedor; (6) Relatorio Executivo de ROI da Rodada: leads processados, taxa de reativacao por trilha e archetype, pipeline reaberto em R$, custo por lead reativado vs CAC original, variacoes A/B vencedoras, recomendacoes para proxima rodada — entregue ao gestor via ClickUp e Slack/email. Todo o pipeline e auditavel por design: cada artefato tem agente responsavel, timestamp, veredicto do critic e rastro no Langfuse. O gestor ve o ROI completo de cada centavo do CAC que foi resgatado."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: lazaro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Reconstruir Histórico Lead"
+    agent: arqueologa
+    task: reconstruir-historico-lead.md
+    trigger: "Ativado pelo Lázaro no início de cada rodada de reativação para todos os leads do cluster selecionado. Re-trigger se o CRM for atualizado com nova informação sobre o lead enquanto a rodada está em andamento. Trigger de verificação batch se…"
+    checkpoint:
+      criteria: "Ficha de Arqueologia por lead em JSON estruturado: { lead_id, archetype_dormência (1-5), angulo_original_falhado (resumo da abordagem anterior), último_toque_canal (email/WhatsApp/chamada/nenhum), último_toque_data, engajamentos_históricos…"
+      veto_condition: "Saída sem veredito do critic Atena; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Verificar Mudanças Em Leads"
+    agent: radar
+    task: verificar-mudancas-em-leads.md
+    trigger: "Ativado pelo Lázaro imediatamente após Arqueologa entregar a ficha de cada lead. Prioridade de processamento: leads com flag de 'dado desatualizados' são processados primeiro para garantir validação antes do envio. Re-trigger se um lead na…"
+    checkpoint:
+      criteria: "Ficha de Sinais Novos por lead: { lead_id, email_atual_verificado (booleano + email), cargo_atual_confirmado, empresa_atual, mudancas_detectadas: [lista com tipo (mudanca_cargo / expansao_empresa / investimento / novo_decisor / sinal_inten…"
+      veto_condition: "Saída sem veredito do critic Atena; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Calcular Score De Reativacao Lead"
+    agent: oraculo-scorer
+    task: calcular-score-de-reativacao-lead.md
+    trigger: "Ativado automaticamente após Radar entregar a ficha de sinais de cada lead. Re-trigger se novo sinal de intent for detectado para lead já com score calculado (pixel do site, resposta a email anterior, mudança de cargo detectada pós-scoring…"
+    checkpoint:
+      criteria: "Score de reativacao (0-100) com breakdown por dimensao: Archetype Fit (0-25, archetype que historicamente reativa mais para este cliente tem peso maior), Signal Strength (0-30, forca dos sinais novos e o preditor mais poderoso), Data Quali…"
+      veto_condition: "Saída sem veredito do critic Atena; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Redigir Mensagens De Reativacao"
+    agent: lazaro-writer
+    task: redigir-mensagens-de-reativacao.md
+    trigger: "Ativado pelo Lazaro apos Oraculo Scorer classificar o lead como RESSURGIR ou QUENTE e o score de qualidade dos dados ser >= 70. Re-trigger (reescritura) se Atena reprovar — max 1 reescritura automatica com feedback especifico antes de esca…"
+    checkpoint:
+      criteria: "Pack de reativação completo por lead: 2 variações (A/B) para cada mensagem na sequência da trilha atribuída. Para sequência de 3 toques: 6 mensagens totais (3 x 2 variações). Cada mensagem inclui: subject line (email, max 50 chars — nunca…"
+      veto_condition: "Saída sem veredito do critic Atena; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Enviar Mensagens Reativação"
+    agent: charon-dispatcher
+    task: enviar-mensagens-reativacao.md
+    trigger: "Ativado pelo Lázaro imediatamente após Atena aprovar o draft. Follow-ups automáticos nos dias configurados pela trilha (exemplo trilha padrão: D0 / D4 / D9). Trigger de aceleramento: lead abre email ou clica em link = prioriza o próximo to…"
+    checkpoint:
+      criteria: "Log de envio verificável e imutável no ClickUp por cada mensagem: { reativação_id, lead_id, trilha, sequência_posição (toque 1/2/3/etc), canal, variação_ab, sent_at, status (sent / queued / blocked_gate_l3 / bounce_detectado), open_tracked…"
+      veto_condition: "Saída sem veredito do critic Atena; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Analisar Respostas Leads"
+    agent: echo-analyst
+    task: analisar-respostas-leads.md
+    trigger: "Webhook em tempo real para qualquer mensagem incoming. Processamento batch a cada 4 horas para respostas acumuladas de menor urgência. Trigger imediato se categoria = RESSUSCITADO (notificação urgente ao vendedor). Trigger semanal para rel…"
+    checkpoint:
+      criteria: "Analise de resposta estruturada por lead: { lead_id, resposta_categoria (RESSUSCITADO / MORNO_NOVO / OBJECAO_TRATAVEL / TIMING_NOVO / DEFINITIVAMENTE_NAO / WRONG_PERSON), sentimento (positivo/neutro/negativo), objecao_detectada (quando apl…"
+      veto_condition: "Saída sem veredito do critic Atena; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: atena
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: lazaro
+    checkpoint:
+      criteria: "Entregável consolidado: Rodada de Reativacao Verificavel e Auditavel: (1) Mapa de Base Dormentes — segmentacao completa por archetype, cluster e prioridade (Arqueologa + Oraculo Scorer) exportado como planilha e salvo no Cl…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Gate L3 no Charon Dispatcher: qualquer envio para leads classificados como RESSURGIR cujo deal estimado esteja acima do threshold configurado no onboarding (ex: deal > R$20k) bloqueia completamente e notifica o gestor com draft completo, ficha de arqueologia e sinais novos para aprovacao ou rejeicao com 1 clique — nenhum caracter e enviado antes da aprovacao."
+  - level: HITL
+    condition: "Dados de baixa confiança detectados pela Arqueologa ou Radar: email com mais de 12 meses sem verificação ou lead com indicativo de mudança de empresa = aprovação humana obrigatória antes de entrar em sequência — agente não envia para dado não verificado."
+  - level: HITL
+    condition: "Atena reprova draft duas vezes consecutivas: draft que falha no checklist e que a reescritura automatica do Lazaro Writer tambem nao corrigiu e escalado para o gestor de marketing com o feedback completo do critic para reescritura ou descisao de nao envio."
+  - level: HITL
+    condition: "Echo Analyst classifica resposta como RESSUSCITADO: notificação urgente e imediata ao vendedor humano com contexto completo (ficha do lead, histórico, o que disse, sugestão de próximo passo) — o squad paralisa qualquer automação para este lead e o vendedor assume o controle total da conversa."
+  - level: HITL
+    condition: "Lead responde com OBJEÇÃO_TRATÁVEL de alto valor: Echo Analyst gera sugestão de reply mas coloca o draft em fila de aprovação humana antes de enviar — objeções de alto valor merecem resposta humana ou pelo menos validação antes de resposta automática."
+  - level: HITL
+    condition: "Sinais de oportunidade detectados em lead que estava em ARQUIVO (score < 40): Radar detecta mudança significativa (investimento, mudança de decisor, sinal de intent forte) em lead que havia sido desprioritizado — alerta ao gestor para decisão de reintegrar o lead na fila ativa ou manter desprioritizado."
+  - level: HITL
+    condition: "Relatório semanal de performance: Echo Analyst gera relatório de taxa de reativação por trilha e archetype entregue ao gestor todo friday — ponto de HITL estruturado para revisão de qual trilha está funcionando e quais ajustes de playbook são necessários antes da próxima rodada."
+  - level: HITL
+    condition: "Opt-out recebido: processamento automático cancela a sequência e atualiza o CRM, mas a decisão de blacklist permanente (nunca mais contatar) é sempre humana — o agente sinaliza e aguarda confirmação do gestor antes de registrar blacklist definitiva."
+transitions:
+  - from: lazaro
+    to: arqueologa
+    condition: "Ativado pelo Lázaro no início de cada rodada de reativação para todos os leads do cluster selecionado. Re-trigger se o CRM for atualizado com nova informação sobre o lead enquanto a rodada está em an…"
+  - from: arqueologa
+    to: radar
+    condition: "Ativado pelo Lázaro imediatamente após Arqueologa entregar a ficha de cada lead. Prioridade de processamento: leads com flag de 'dado desatualizados' são processados primeiro para garantir validação…"
+  - from: radar
+    to: oraculo-scorer
+    condition: "Ativado automaticamente após Radar entregar a ficha de sinais de cada lead. Re-trigger se novo sinal de intent for detectado para lead já com score calculado (pixel do site, resposta a email anterior…"
+  - from: oraculo-scorer
+    to: lazaro-writer
+    condition: "Ativado pelo Lazaro apos Oraculo Scorer classificar o lead como RESSURGIR ou QUENTE e o score de qualidade dos dados ser >= 70. Re-trigger (reescritura) se Atena reprovar — max 1 reescritura automati…"
+  - from: lazaro-writer
+    to: charon-dispatcher
+    condition: "Ativado pelo Lázaro imediatamente após Atena aprovar o draft. Follow-ups automáticos nos dias configurados pela trilha (exemplo trilha padrão: D0 / D4 / D9). Trigger de aceleramento: lead abre email…"
+  - from: charon-dispatcher
+    to: echo-analyst
+    condition: "Webhook em tempo real para qualquer mensagem incoming. Processamento batch a cada 4 horas para respostas acumuladas de menor urgência. Trigger imediato se categoria = RESSUSCITADO (notificação urgent…"
+  - from: echo-analyst
+    to: atena
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: atena
+    to: lazaro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

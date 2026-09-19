@@ -1,0 +1,30 @@
+row: vendas
+title: Follow-up, Nurture e Reativacao
+title_netflix: FOLLOW-UP, NURTURE E REATIVACAO
+subtitle: Preparar follow-ups, cadências de nutrição e reativação de leads conforme estágio, contexto e histórico de contato
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 10 papéis, 10 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-followup-nurture-reativacao para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Maestro
+  - Radar
+  - Cronos
+  - Volta
+  - Sherlock
+  - Atlas
+  - Agenda
+  - Memento
+  - Vigia
+  - Vigia 2
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

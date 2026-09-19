@@ -1,0 +1,155 @@
+workflow_name: founder_agentic_analytics_pipeline
+description: "O founder faz a pergunta em português e recebe a resposta em 30 segundos — sem analista, sem fila, sem achismo."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-agentic-analytics
+area: "Founder Office"
+topsquad: "F2 · Performance, KPIs & Calibração de Decisões"
+agent_sequence:
+  - orquestrador-analitico
+  - text-to-sql-worker
+  - context-enricher
+  - anomaly-alert-detector
+  - strategic-query-analyst
+  - semantic-layer-guardian
+  - decision-logger
+  - sql-semantic-verifier
+key_commands:
+  - "*traduzir-pergunta-para-sql"
+  - "*enriquecer-resultado-com-contexto"
+  - "*detectar-anomalias-estatisticas"
+  - "*sintetizar-respostas-analiticas"
+  - "*registrar-gap-semantico"
+  - "*registrar-decisoes-baseadas-em-dados"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orquestrador-analitico
+success_indicators:
+  - "Tempo pergunta->resposta: baseline 24-72h, meta <2min (redução de 98%)"
+  - "% de queries respondidas sem intervenção humana: baseline 0%, meta >80% em 90 dias"
+  - "Acurácia das respostas (validada por amostragem semanal pelo founder): meta >92%"
+  - "Cobertura da camada semântica: número de métricas formalmente mapeadas (meta: 50 métricas em 30 dias, 100 em 90 dias)"
+  - "Taxa de rejeição do Themis (% de respostas rejeitadas antes de chegar ao founder): meta <15% (indica qualidade do pipeline)"
+  - "Queries por semana (adoção): meta de 30+ queries/semana pelo founder em 60 dias"
+  - "Número de decisões registradas no Clio com resultado confirmado: meta 10/mês"
+  - "Taxa de acerto das análises preditivas (Clio feedback loop): meta >70% de decisões com resultado dentro do esperado"
+  - "Gaps de cobertura resolvidos por mês (Ariadne): meta: top 10 gaps do mês anterior resolvidos no mês seguinte"
+deliverable:
+  description: "Resposta analítica source-grounded: número preciso + SQL transparente + interpretação contextualizada + nível de confiança + recomendação de ação — tudo rastreável à fonte de dados governada. Artefatos secundários: (1) Semantic Layer Glossary (documento vivo com todas as métricas definidas formalmente); (2) Daily Anomaly Digest (email/Slack diário com sinais relevantes ou confirmação de normalidade); (3) Decision Audit Trail no ClickUp (histórico de todas as decisões tomadas com dados); (4) Monthly Analytics Health Report (cobertura, acurácia, gaps, evolução de adoção)."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orquestrador-analitico
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Traduzir Pergunta Para Sql"
+    agent: text-to-sql-worker
+    task: traduzir-pergunta-para-sql.md
+    trigger: "Qualquer pergunta que referencie métricas numéricas, KPIs, comparações temporais ou segmentações. Disparado pelo Sigma após classificação de intenção como 'operacional' ou 'exploratória'."
+    checkpoint:
+      criteria: "SQL gerado + resultado da query (tabela/número) + interpretação da métrica consultada + flag de confiança (alta/média/baixa)"
+      veto_condition: "Saída sem veredito do critic SQL & Semantic Verifier; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Resultado Com Contexto"
+    agent: context-enricher
+    task: enriquecer-resultado-com-contexto.md
+    trigger: "Disparado automaticamente após Hermes retornar resultado. Sempre ativo exceto para queries de lookup simples (ex: 'qual o email do cliente X')."
+    checkpoint:
+      criteria: "Resultado contextualizado com comparações históricas + interpretação narrativa em linguagem natural + identificação de tendência (subindo/caindo/estável) + eventos explicativos se relevante"
+      veto_condition: "Saída sem veredito do critic SQL & Semantic Verifier; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Detectar Anomalias Estatísticas"
+    agent: anomaly-alert-detector
+    task: detectar-anomalias-estatisticas.md
+    trigger: "Job diario automatico (6h da manha) + disparo sob demanda quando founder pergunta sobre anomalias ou variações inesperadas. Alertas criticos geram notificacao imediata via Slack."
+    checkpoint:
+      criteria: "Digest diário de anomalias (zero se nada relevante) + alertas classificados por severidade + hipóteses de causa + queries sugeridas para investigar mais fundo"
+      veto_condition: "Saída sem veredito do critic SQL & Semantic Verifier; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Sintetizar Respostas Analíticas"
+    agent: strategic-query-analyst
+    task: sintetizar-respostas-analiticas.md
+    trigger: "Perguntas classificadas pelo Sigma como 'estrategicas' ou que contenham palavras-chave como 'por que', 'qual devo', 'melhor', 'projecao', 'impacto de', 'comparar'. Tambem disparado por solicitacao explicita do founder."
+    checkpoint:
+      criteria: "Análise estruturada com: decomposição da pergunta, dados de cada sub-query, síntese estratégica, nível de confiança, premissas assumidas, recomendação de ação com trade-offs"
+      veto_condition: "Saída sem veredito do critic SQL & Semantic Verifier; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Registrar Gap Semantico"
+    agent: semantic-layer-guardian
+    task: registrar-gap-semantico.md
+    trigger: "Falha do Hermes (métrica não encontrada) + confiança < 70% em 3 queries consecutivas sobre o mesmo tema + detecção de definições conflitantes entre métricas existentes + solicitação mensal de revisão do schema."
+    checkpoint:
+      criteria: "Proposta formal de nova métrica para aprovação humana + relatório de gaps recorrentes (top 10 perguntas sem cobertura) + alertas de inconsistência de definição + changelog atualizado após aprovacao"
+      veto_condition: "Saída sem veredito do critic SQL & Semantic Verifier; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Registrar Decisões Baseadas em Dados"
+    agent: decision-logger
+    task: registrar-decisoes-baseadas-em-dados.md
+    trigger: "Founder confirma ação após receber resposta analítica. Também disparado automaticamente na chegada da data de resultado de decisões registradas para coletar feedback."
+    checkpoint:
+      criteria: "Ticket no ClickUp com audit trail da decisão + notificação de follow-up na data de resultado + relatório mensal de 'decisões baseadas em dados: acertamos?' com taxa de acerto"
+      veto_condition: "Saída sem veredito do critic SQL & Semantic Verifier; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: sql-semantic-verifier
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: orquestrador-analitico
+    checkpoint:
+      criteria: "Entregável consolidado: Resposta analítica source-grounded: número preciso + SQL transparente + interpretação contextualizada + nível de confiança + recomendação de ação — tudo rastreável à fonte de dados governada. Artefat…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação de nova métrica na camada semântica (Ariadne propõe, founder ou data owner aprova antes de adicionar ao schema — L3, irreversível pois altera definições que afetam todas as queries futuras)"
+  - level: HITL
+    condition: "Resolução de conflito de definição entre métricas (quando duas métricas existentes têm definições inconsistentes, founder decide qual é a oficial — L3)"
+  - level: HITL
+    condition: "Configuração de thresholds de alerta para Cassandra (founder define o que é 'crítico' vs 'atenção' para cada métrica do seu negócio — L3 no setup inicial, L2 depois)"
+  - level: HITL
+    condition: "Confirmação de decisão tomada com base em dados para o Clío registrar (founder confirma que vai agir — não é automático para evitar log de decisões não tomadas)"
+  - level: HITL
+    condition: "Acesso a novas fontes de dados não mapeadas (conectar novo banco, nova planilha, nova API ao schema — L3 por impacto na governança)"
+transitions:
+  - from: orquestrador-analitico
+    to: text-to-sql-worker
+    condition: "Qualquer pergunta que referencie métricas numéricas, KPIs, comparações temporais ou segmentações. Disparado pelo Sigma após classificação de intenção como 'operacional' ou 'exploratória'."
+  - from: text-to-sql-worker
+    to: context-enricher
+    condition: "Disparado automaticamente após Hermes retornar resultado. Sempre ativo exceto para queries de lookup simples (ex: 'qual o email do cliente X')."
+  - from: context-enricher
+    to: anomaly-alert-detector
+    condition: "Job diario automatico (6h da manha) + disparo sob demanda quando founder pergunta sobre anomalias ou variações inesperadas. Alertas criticos geram notificacao imediata via Slack."
+  - from: anomaly-alert-detector
+    to: strategic-query-analyst
+    condition: "Perguntas classificadas pelo Sigma como 'estrategicas' ou que contenham palavras-chave como 'por que', 'qual devo', 'melhor', 'projecao', 'impacto de', 'comparar'. Tambem disparado por solicitacao ex…"
+  - from: strategic-query-analyst
+    to: semantic-layer-guardian
+    condition: "Falha do Hermes (métrica não encontrada) + confiança < 70% em 3 queries consecutivas sobre o mesmo tema + detecção de definições conflitantes entre métricas existentes + solicitação mensal de revisão…"
+  - from: semantic-layer-guardian
+    to: decision-logger
+    condition: "Founder confirma ação após receber resposta analítica. Também disparado automaticamente na chegada da data de resultado de decisões registradas para coletar feedback."
+  - from: decision-logger
+    to: sql-semantic-verifier
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: sql-semantic-verifier
+    to: orquestrador-analitico
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

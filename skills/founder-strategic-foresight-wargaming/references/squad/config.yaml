@@ -1,0 +1,56 @@
+pack:
+  name: founder-strategic-foresight-wargaming
+  version: 0.1.0
+  short-title: "Strategic Foresight & Wargaming"
+  description: "Nenhuma aposta grande sai sem estressar premissas contra futuros plausíveis e adversários autônomos — o founder decide com o mapa completo, não com o feeling."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "♟️"
+  slashPrefix: strategicForesightWargaming
+name: founder-strategic-foresight-wargaming
+version: 0.1.0
+description: "Nenhuma aposta grande sai sem estressar premissas contra futuros plausíveis e adversários autônomos — o founder decide com o mapa completo, não com o feeling."
+entry_agent: atlas
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: founder-office
+  topsquad: "F4"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - atlas
+  - cassandra
+  - brutus
+  - chisel
+  - pythia
+  - memo
+  - tripwire
+  - ajax
+tasks:
+  - mapear-espaco-de-futuros.md
+  - simular-reacoes-adversarias.md
+  - destruir-premissas.md
+  - coletar-sinais-fracos.md
+  - sintetizar-wargaming-report.md
+  - monitorar-indicadores-de-alerta.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - founder-strategic-foresight-wargaming-pipeline.yaml
+checklists:
+  - critic-ajax.md
+integrations:
+  - "Slack (intake de decisões via canal #founder-strategy + entrega do Wargaming Report + alertas urgentes do Tripwire + notificações de HITL gates)"
+  - "Notion (Knowledge Base central — armazenamento permanente de Wargaming Reports, Árvores de Premissas, Scenario Matrices, histórico de decisões com outcomes documentados)"
+  - "ClickUp (criação automática de tasks de tripwire e follow-up pós-decisão — prova de trabalho e rastreabilidade de cada aposta tomada)"
+  - "Claude Agent SDK + LangGraph (orquestração stateful do grafo multi-agente — gerencia paralelismo de Cassandra/Brutus/Chisel e estado do wargaming entre sessões)"
+  - "Langfuse (observabilidade OTEL — tracing de custo por agente/token, evals de qualidade de cenários, dashboard de KPIs do squad, latência por fase do pipeline)"
+  - "Brave Search API ou Perplexity API (web search de Pythia e Chisel — sinais de mercado, evidências contrárias a premissas, dados de concorrentes em tempo real)"
+  - "Vector DB — Pinecone ou Qdrant (armazenamento e busca semântica de wargamings históricos, perfis de concorrentes, premissas e seus outcomes, corpus do founder)"
+  - "LinkedIn Sales Navigator (Pythia usa para sinais de hiring e movimentos estratégicos de concorrentes)"
+  - "Crunchbase / PitchBook API pública (Brutus e Pythia usam para sinais de fundraising, aquisições e capacidades financeiras de adversários)"
+  - "Google Alerts / RSS Feeds setoriais (Pythia usa para monitoramento contínuo de sinais fracos do setor e de concorrentes específicos)"
+  - "MCP Servers (camada de integração universal — cada ferramenta exposta como tool para os agents via protocolo MCP)"
+  - "APIs financeiras e de métricas do cliente (Tripwire usa para monitoramento de indicadores de early-warning pós-decisão — integração com dashboards internos via MCP)"

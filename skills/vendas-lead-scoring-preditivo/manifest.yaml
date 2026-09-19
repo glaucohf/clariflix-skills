@@ -1,0 +1,28 @@
+row: vendas
+title: Lead Scoring Preditivo e Priorização
+title_netflix: LEAD SCORING PREDITIVO E PRIORIZAÇÃO
+subtitle: Analisar sinais e histórico de leads e preparar critérios de pontuação e priorização comercial verificáveis
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-lead-scoring-preditivo para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orion
+  - Radar
+  - Sherlock
+  - Vega
+  - Atlas
+  - Nexus
+  - Oracle
+  - Argus
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

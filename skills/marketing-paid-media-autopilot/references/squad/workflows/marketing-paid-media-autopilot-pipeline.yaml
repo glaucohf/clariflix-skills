@@ -1,0 +1,174 @@
+workflow_name: marketing_paid_media_autopilot_pipeline
+description: "Seu budget nunca mais vai dormir enquanto o concorrente escala — autonomia L2/L3 para bid, pacing e criativo em tempo real."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-paid-media-autopilot
+area: "Marketing"
+topsquad: "M2 · Performance: Paid Media, CRO & Attribution"
+agent_sequence:
+  - orion
+  - argos
+  - midas
+  - prism
+  - vox
+  - atlas
+  - sentinel
+  - aegis
+  - aegis-2
+key_commands:
+  - "*monitorar-performance-campanhas"
+  - "*ajustar-bid-e-realocar-budget"
+  - "*rotacionar-criativos"
+  - "*gerar-copy-para-ads"
+  - "*consolidar-dados-de-performance"
+  - "*monitorar-sinais-de-mercado"
+  - "*verificar-conformidade-compliance"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "ROAS médio das campanhas gerenciadas (target: melhoria >= 30% vs baseline pre-squad em 90 dias)"
+  - "CAC (Custo de Aquisição de Cliente) por canal (target: redução >= 25% vs baseline em 90 dias)"
+  - "Desvio de pacing diário (target: < 3% de desvio vs target de spend diário — vs ~15% média manual)"
+  - "Percentual de budget alocado em criativos com ROAS acima do threshold (target: > 70% do budget ativo)"
+  - "Frequência média de criativo no momento da rotação (target: rotação antes de atingir frequência crítica, reduzindo fadiga em >= 40%)"
+  - "Tempo médio de detecção-execução de anomalia (target: < 30 minutos vs 24-72h manual)"
+  - "Taxa de aprovação no gate do Aegis (target: > 85% de copy gerada aprovada sem revisão na primeira iteração)"
+  - "Número de variações de criativo testadas por mês (target: >= 20 variações ativas simultaneamente)"
+  - "Taxa de task success do squad no Langfuse (target: >= 95% em produção)"
+  - "Tempo de retorno sobre investimento no squad (target: payback < 60 dias para clientes com >= R$30k/mês em mídia)"
+deliverable:
+  description: "Paid Media Autopilot Report — relatório consolidado diário (gerado automaticamente às 08h) contendo: (1) Performance snapshot D-1 (ROAS, CAC, pacing, CPL por campanha/canal), (2) Ações autônomas executadas no período (rotações de criativo, ajustes de bid/budget com antes/depois), (3) Ações pendentes de aprovação L3 (aguardando OK humano), (4) Score de saúde do banco de criativos (quantos ativos, quantos fatigados, quantos em produção), (5) Alertas de oportunidade da semana (sinais do Sentinel), (6) Projeção de performance para próximos 7 dias com recomendações proativas. Formato: PDF executivo + JSON estruturado para integração + ClickUp board com todas as tasks auditáveis."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar Performance Campanhas"
+    agent: argos
+    task: monitorar-performance-campanhas.md
+    trigger: "Cron job a cada 15-30 minutos (configurável). Trigger imediato se spend/hora exceder 150% do target ou ROAS cair > 30% em relação à média das últimas 4h"
+    checkpoint:
+      criteria: "Relatório de anomalias estruturado (JSON): lista de ad sets/campanhas fora do threshold, tipo de anomalia (pacing_deviation / roas_drop / cpm_inflation / creative_fatigue), severidade (low/medium/high/critical), delta percentual vs baselin…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Ajustar Bid E Realocar Budget"
+    agent: midas
+    task: ajustar-bid-e-realocar-budget.md
+    trigger: "Acionado pelo orquestrador Orion após validação do relatório do Argos. Para ações L3: aguarda aprovação explícita do humano responsável via canal configurado (Slack/WhatsApp) antes de qualquer execução"
+    checkpoint:
+      criteria: "Confirmação de execução das ações (API response + timestamp), Log de mudanças (antes/depois por métrica), Artefato ClickUp task atualizado com prova de trabalho, Alerta Slack/WhatsApp para humano se ação for L3 (aguarda aprovação antes de…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-4
+    name: "Rotacionar Criativos"
+    agent: prism
+    task: rotacionar-criativos.md
+    trigger: "Acionado pelo relatório de fadiga do Argos (creative_fatigue anomalia). Também executa varredura proativa diária às 06h para identificar criativos com tendência de fadiga nas próximas 24-48h"
+    checkpoint:
+      criteria: "Plano de rotação executado (quais criativos foram pausados/ativados, motivo, timestamp), Score atualizado do banco de criativos, Solicitação estruturada de novos criativos para o Vox (brief com formato, ângulo de mensagem, audiência-alvo,…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Gerar Copy Para Ads"
+    agent: vox
+    task: gerar-copy-para-ads.md
+    trigger: "Acionado pelo Prism quando banco de criativos cai abaixo do threshold ou quando novo ciclo de testes é solicitado pelo orquestrador. Também acionado manualmente via ClickUp task pelo cliente ou gestor de mídia"
+    checkpoint:
+      criteria: "Pacote de copy estruturado (JSON): variacoes de headline (5-10), primary text (3-5 extensoes), CTA options (3-5), angulo de mensagem principal, segmento de audiencia alvo, justificativa de hook baseada em ICP, metadados para tracking de va…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Consolidar Dados De Performance"
+    agent: atlas
+    task: consolidar-dados-de-performance.md
+    trigger: "Relatório diário automático as 08h (D-1 completo). Relatório semanal toda segunda-feira as 07h (semana anterior). Trigger em tempo real quando o orquestrador solicita contexto de atribuição para decisão de realocação"
+    checkpoint:
+      criteria: "Dashboard de performance consolidado (CAC por canal, ROAS por campanha/ad set/criativo, % de budget em criativos performantes, desvio de pacing acumulado, CPL por etapa de funil), Relatório diário estruturado (PDF + JSON) para o orquestrad…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Monitorar Sinais De Mercado"
+    agent: sentinel
+    task: monitorar-sinais-de-mercado.md
+    trigger: "Varredura diária automática as 07h. Alertas em tempo real se variação de tendência > 20% em 24h para keywords prioritárias ou se concorrente direto lançar nova campanha detectada"
+    checkpoint:
+      criteria: "Relatório semanal de inteligência de mercado (tendências de demanda, movimentos de concorrentes, oportunidades de escala identificadas), Alertas de oportunidade (ex: concorrente pausou campanhas = janela de escala com menor CPC), Recomenda…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificar Conformidade Compliance"
+    agent: aegis
+    task: verificar-conformidade-compliance.md
+    trigger: "Acionado obrigatoriamente antes de qualquer upload de copy/criativo para plataforma (gate de qualidade pré-publicação). Também acionado antes de execução de ações L3 do Midas para segunda verificação de guardrails"
+    checkpoint:
+      criteria: "Verdict estruturado por item: APPROVED / NEEDS_REVISION / BLOCKED + Justificativa detalhada para cada item reprovado + Sugestões de correção específicas (não apenas o problema, mas a solução) + Score de conformidade (0-100) por dimensão (b…"
+      veto_condition: "Saída sem veredito do critic Aegis 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: aegis-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Paid Media Autopilot Report — relatório consolidado diário (gerado automaticamente às 08h) contendo: (1) Performance snapshot D-1 (ROAS, CAC, pacing, CPL por campanha/canal), (2) Ações autônomas exec…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação inicial de Guardrails Financeiros: cliente define e assina as bandas de autonomia (% máximo de realocação por ciclo, teto de CPA aceitável, floor de ROAS para escala, orçamento máximo em risco por ciclo) — sem essa aprovação o squad não opera"
+  - level: HITL
+    condition: "Gate L3 — Realocação acima da banda: qualquer realocação de budget ou mudança de bid strategy que exceda o threshold pre-aprovado (ex: mover > 20% do budget total ou pausar campanha inteira) requer aprovação explícita via Slack/WhatsApp antes de execução pelo Midas"
+  - level: HITL
+    condition: "Gate L3 — Lançamento de novos criativos: upload de novos anúncios para plataforma (não apenas rotação de ativos existentes, mas novos formatos ou novos ângulos de mensagem sem histórico) requer aprovação humana — irreversível em termos de impressão inicial"
+  - level: HITL
+    condition: "Aprovação semanal do relatório de inteligência do Sentinel: recomendações proativas de escala para próxima semana (aumento de orçamento semanal acima de threshold) requerem OK do gestor antes de ativação automática"
+  - level: HITL
+    condition: "Revisão mensal de thresholds e guardrails: reunião obrigatória de 30min para calibrar bandas com base em performance real do mês anterior — o squad opera com os guardrails mais recentes aprovados"
+  - level: HITL
+    condition: "Onboarding de nova plataforma ou canal: qualquer expansão para nova plataforma de mídia (ex: adicionar TikTok Ads, Pinterest Ads, CTV) requer aprovação e configuração supervisionada pelo humano responsável"
+  - level: HITL
+    condition: "Bloqueio por anomalia crítica: se Argos detectar anomalia CRITICAL (ex: ROAS caiu > 50% em 1h ou spend disparou 300% acima do target), o squad pausa todas as ações autônomas e aguarda instrução humana explícita antes de retomar"
+transitions:
+  - from: orion
+    to: argos
+    condition: "Cron job a cada 15-30 minutos (configurável). Trigger imediato se spend/hora exceder 150% do target ou ROAS cair > 30% em relação à média das últimas 4h"
+  - from: argos
+    to: midas
+    condition: "Acionado pelo orquestrador Orion após validação do relatório do Argos. Para ações L3: aguarda aprovação explícita do humano responsável via canal configurado (Slack/WhatsApp) antes de qualquer execuç…"
+  - from: midas
+    to: prism
+    condition: "Acionado pelo relatório de fadiga do Argos (creative_fatigue anomalia). Também executa varredura proativa diária às 06h para identificar criativos com tendência de fadiga nas próximas 24-48h"
+  - from: prism
+    to: vox
+    condition: "Acionado pelo Prism quando banco de criativos cai abaixo do threshold ou quando novo ciclo de testes é solicitado pelo orquestrador. Também acionado manualmente via ClickUp task pelo cliente ou gesto…"
+  - from: vox
+    to: atlas
+    condition: "Relatório diário automático as 08h (D-1 completo). Relatório semanal toda segunda-feira as 07h (semana anterior). Trigger em tempo real quando o orquestrador solicita contexto de atribuição para deci…"
+  - from: atlas
+    to: sentinel
+    condition: "Varredura diária automática as 07h. Alertas em tempo real se variação de tendência > 20% em 24h para keywords prioritárias ou se concorrente direto lançar nova campanha detectada"
+  - from: sentinel
+    to: aegis
+    condition: "Acionado obrigatoriamente antes de qualquer upload de copy/criativo para plataforma (gate de qualidade pré-publicação). Também acionado antes de execução de ações L3 do Midas para segunda verificação…"
+  - from: aegis
+    to: aegis-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: aegis-2
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

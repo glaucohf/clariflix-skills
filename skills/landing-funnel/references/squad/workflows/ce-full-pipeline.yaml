@@ -1,0 +1,260 @@
+workflow_name: ce_full_pipeline
+description: >
+  Pipeline master completo do squad Convert Engine — do briefing inicial ao ciclo
+  de A/B testing pós-lançamento. Orquestra todos os 13 agentes em sequência e
+  paralelo, cobrindo Discovery, Intelligence, Copy/Design/SocialProof, Images,
+  Build, Integrations, Analytics, Launch Prep, QA Gate e Post-Launch.
+  É o workflow raiz que referencia todos os sub-workflows do squad.
+
+agent_sequence:
+  - ce-strategist
+  - ce-researcher
+  - ce-copywriter
+  - ce-design-architect
+  - ce-social-proof
+  - ce-image-creator
+  - ce-frontend-dev
+  - ce-backend-dev
+  - ce-analytics-architect
+  - ce-integrator
+  - ce-reviewer
+  - ce-email-strategist
+  - ce-ab-architect
+
+estimated_duration: "8-12 horas (modo YOLO) ou 2-3 dias (modo QUALITY)"
+
+parallel_execution:
+  phase_copy_design_socialproof:
+    agents: [ce-copywriter, ce-design-architect, ce-social-proof]
+    merge_gate: "Todos os três outputs devem estar completos antes de ce-image-creator iniciar"
+  phase_build:
+    agents: [ce-frontend-dev, ce-backend-dev, ce-analytics-architect]
+    merge_gate: "Todos os três devem estar prontos antes de ce-integrator iniciar"
+
+phases:
+  - name: "Phase 1 — Discovery"
+    agent: ce-strategist (Vortex)
+    sub_workflow: ce-discovery-flow.yaml
+    tasks:
+      - Absorver produto: ler URL, materiais e briefing do cliente
+      - Mapear funil completo: topo → meio → fundo
+      - Conduzir questionário estruturado com o cliente
+      - Definir escopo da landing page e flags de risco
+      - Preencher todos os 12 campos do brief estruturado
+    checkpoints:
+      entry: "Brief inicial ou URL do produto disponível"
+      exit: "Brief estruturado com 12 campos preenchidos e aprovado pelo cliente"
+    veto_conditions:
+      - "Brief com menos de 8 campos preenchidos → retornar ao cliente para complementação"
+      - "Produto sem proposta de valor clara → bloquear até definição"
+      - "Escopo indefinido → bloquear fase seguinte"
+
+  - name: "Phase 2 — Intelligence"
+    agent: ce-researcher (Radar)
+    sub_workflow: ce-intelligence-flow.yaml
+    tasks:
+      - Spy competitivo em pelo menos 5 concorrentes diretos
+      - Audience profiling: dores, desejos, objeções, linguagem nativa
+      - Pesquisa de fórmulas de copy de alta conversão para o nicho
+      - Levantamento de dados de tráfego e comportamento do segmento
+      - Síntese em intelligence report estruturado
+    checkpoints:
+      entry: "Brief estruturado aprovado recebido de ce-strategist"
+      exit: "Intelligence report com mínimo 5 concorrentes, 3 personas, 10 ganchos e dados de tráfego"
+    veto_conditions:
+      - "Menos de 5 concorrentes analisados → repetir pesquisa antes de prosseguir"
+      - "Nenhuma dor primária identificada com evidência → bloquear"
+      - "Intelligence report sem dados de tráfego validados → complementar antes de prosseguir"
+
+  - name: "Phase 3 — Copy + Design + Social Proof (Paralelo)"
+    parallel_execution: true
+    sub_workflow: ce-copy-design-parallel.yaml
+    agents:
+      - agent: ce-copywriter (Pulse)
+        tasks:
+          - Escrever copy de todas as seções da landing page
+          - Desenvolver script VSL (se aplicável)
+          - Criar headline principal e variações
+          - Redigir CTAs, microcopy e urgência
+      - agent: ce-design-architect (Canvas)
+        tasks:
+          - Definir design system (cores, tipografia, espaçamento, tokens)
+          - Mapear CRO layout de cada seção
+          - Especificar componentes e hierarquia visual
+          - Documentar padrões de conversão aplicados
+      - agent: ce-social-proof (Trust)
+        tasks:
+          - Coletar e selecionar depoimentos de clientes reais
+          - Pesquisar e validar logos, badges e certificações
+          - Estruturar casos de sucesso com dados mensuráveis
+          - Criar social proof bar e seção de resultados
+    checkpoints:
+      entry: "Intelligence report aprovado recebido de ce-researcher"
+      exit: "Copy completa + Design system completo + Social proof package completo (merge gate)"
+    veto_conditions:
+      - "Copy sem headline testada em pelo menos 3 variações → revisar"
+      - "Design system sem especificação de cores de CTA → bloquear"
+      - "Depoimentos sem dados mensuráveis (apenas elogios genéricos) → substituir"
+      - "Merge gate incompleto: qualquer um dos três outputs faltando → bloquear ce-image-creator"
+
+  - name: "Phase 4 — Images"
+    agent: ce-image-creator (Flash)
+    tasks:
+      - Receber briefs de copy, design system e social proof
+      - Gerar hero image com diretrizes de conversão aplicadas
+      - Criar imagens de suporte para cada seção
+      - Produzir assets visuais para testimonials e social proof
+      - Otimizar todas as imagens para web (WebP, tamanho, alt text)
+    checkpoints:
+      entry: "Merge gate Phase 3 completo: copy + design + social proof aprovados"
+      exit: "Todos os assets de imagem gerados, nomeados por seção e otimizados para web"
+    veto_conditions:
+      - "Hero image sem alinhamento com headline principal → regerar"
+      - "Imagens sem alt text preenchido → bloquear build"
+      - "Assets não otimizados (> 200KB sem compressão) → otimizar antes de prosseguir"
+
+  - name: "Phase 5 — Build (Paralelo)"
+    parallel_execution: true
+    sub_workflow: ce-build-parallel.yaml
+    agents:
+      - agent: ce-frontend-dev (Turbo)
+        tasks:
+          - Setup do projeto (Next.js 14+, Tailwind, TypeScript)
+          - Build de cada seção seguindo ce-section-pipeline.yaml
+          - Implementar design system em componentes reutilizáveis
+          - Otimizar performance: LCP, CLS, FID, Core Web Vitals
+      - agent: ce-backend-dev (Vault)
+        tasks:
+          - Setup de API routes para captura de leads
+          - Implementar eventos de conversão server-side
+          - Configurar webhooks para CRM/email marketing
+          - Setup de rate limiting e proteção de formulários
+      - agent: ce-analytics-architect (Lens)
+        tasks:
+          - Configurar GTM com data layer estruturado
+          - Setup GA4 com eventos customizados de conversão
+          - Implementar pixels de rastreamento (Meta, Google Ads)
+          - Configurar heatmaps e session recording (Hotjar/Clarity)
+    checkpoints:
+      entry: "Todos os assets de imagem aprovados recebidos de ce-image-creator"
+      exit: "Frontend buildado + Backend funcional + Analytics configurado (integration gate)"
+    veto_conditions:
+      - "Frontend com erros de TypeScript não resolvidos → bloquear integração"
+      - "Backend sem testes de API passing → bloquear integração"
+      - "GTM sem evento de conversão principal disparando → bloquear integração"
+      - "Integration gate incompleto: qualquer um dos três não pronto → bloquear ce-integrator"
+
+  - name: "Phase 6 — Integrations"
+    agent: ce-integrator (Link)
+    tasks:
+      - Conectar frontend com APIs de backend
+      - Integrar formulários com CRM e plataforma de email
+      - Validar fluxo completo de lead: captura → CRM → email → confirmação
+      - Testar webhooks em produção
+      - Configurar redirects pós-conversão
+    checkpoints:
+      entry: "Integration gate Phase 5 completo: frontend + backend + analytics prontos"
+      exit: "Fluxo end-to-end validado com lead de teste real disparando todos os eventos"
+    veto_conditions:
+      - "Lead de teste não chegando no CRM → bloquear"
+      - "Evento de conversão não aparecendo no GA4 em tempo real → bloquear"
+      - "Email de boas-vindas não disparando após captura → bloquear"
+      - "Qualquer webhook com falha → corrigir antes de prosseguir"
+
+  - name: "Phase 7 — QA Gate"
+    agent: ce-reviewer (Audit)
+    sub_workflow: ce-qa-gate.yaml
+    tasks:
+      - Executar QA em 7 dimensões com score 0-100 cada
+      - Orquestrar correções com agentes responsáveis
+      - Emitir conversion score final consolidado
+      - Gerar relatório de aprovação ou bloqueio
+    checkpoints:
+      entry: "Integrações validadas e fluxo end-to-end funcionando"
+      exit: "Conversion score geral >= 75 e todas as dimensões >= 60"
+    veto_conditions:
+      - "Conversion score geral < 75 → BLOQUEAR lançamento, retornar para correções"
+      - "Qualquer dimensão com score < 60 → correção obrigatória antes de re-QA"
+      - "Erros críticos de acessibilidade (WCAG AA) → bloquear"
+      - "Formulário de captura com erro → bloquear imediatamente"
+
+  - name: "Phase 8 — Launch Prep"
+    sub_workflow: ce-launch-prep.yaml
+    agents: [ce-frontend-dev, ce-reviewer, ce-analytics-architect]
+    tasks:
+      - Audit de performance: PageSpeed Insights ≥ 90 mobile e desktop
+      - Validação final de SEO e acessibilidade
+      - Confirmação de analytics em tempo real
+      - Copy review final com checklist de conversão
+      - Sign-off formal do checklist de lançamento
+    checkpoints:
+      entry: "QA Gate aprovado com conversion score >= 75"
+      exit: "Checklist de lançamento 100% assinado com todos os vetos resolvidos"
+    veto_conditions:
+      - "PageSpeed mobile < 90 → BLOQUEAR lançamento (HARD VETO)"
+      - "GA4 sem dados de eventos em tempo real → BLOQUEAR lançamento (HARD VETO)"
+      - "Conversion score < 75 no QA Gate → BLOQUEAR lançamento (HARD VETO)"
+      - "Meta Pixel não disparando PageView → BLOQUEAR lançamento"
+
+  - name: "Phase 9 — Post-Launch (Dias 1-7)"
+    sub_workflow: ce-post-launch.yaml
+    agents: [ce-analytics-architect, ce-email-strategist, ce-ab-architect]
+    tasks:
+      - Monitoramento de heatmaps nas primeiras 48h
+      - First data review após 72h com mínimo 500 sessões
+      - Ativação da sequência de email pós-captura
+      - Levantamento de insights iniciais para A/B testing
+    checkpoints:
+      entry: "Landing page ao ar com tráfego ativo"
+      exit: "Mínimo 500 sessões registradas e insights iniciais documentados"
+    veto_conditions:
+      - "Menos de 500 sessões nos primeiros 7 dias → aguardar antes de iniciar análise"
+      - "Taxa de conversão < 0.5% após 1000 sessões → acionar revisão de copy urgente"
+      - "Bounce rate > 80% nas primeiras 48h → revisão de hero section prioritária"
+
+  - name: "Phase 10 — A/B Testing Cycle"
+    sub_workflow: ce-ab-design.yaml
+    agents: [ce-analytics-architect, ce-ab-architect, ce-copywriter, ce-design-architect, ce-frontend-dev]
+    tasks:
+      - Análise de dados e identificação de oportunidades
+      - Formação de hipóteses baseadas em dados
+      - Design de variantes com copy e design
+      - Setup e monitoramento do teste
+      - Análise estatística e decisão
+      - Implementação do vencedor
+    checkpoints:
+      entry: "Mínimo 500 sessões e insights iniciais aprovados"
+      exit: "Mínimo 100 conversões por variante e p-value <= 0.05 para declarar vencedor"
+    veto_conditions:
+      - "Menos de 100 conversões por variante → NÃO concluir análise (aguardar)"
+      - "p-value > 0.05 → continuar teste, não declarar vencedor prematuramente"
+      - "Teste com menos de 7 dias de duração → não concluir (sazonalidade)"
+
+success_indicators:
+  - "Brief com 12/12 campos preenchidos e aprovados pelo cliente"
+  - "Intelligence report com >= 5 concorrentes analisados"
+  - "Conversion score QA >= 75 em todas as 7 dimensões"
+  - "PageSpeed >= 90 em mobile e desktop"
+  - "GA4 recebendo eventos de conversão em tempo real"
+  - "Fluxo lead end-to-end validado: captura → CRM → email → confirmação"
+  - "Lançamento executado com checklist 100% assinado"
+  - "Primeiros 500 sessões monitoradas com insights documentados"
+  - "Ao menos 1 ciclo de A/B testing concluído com vencedor estatisticamente válido"
+
+failure_conditions:
+  - condition: "Cliente não responde questionário em 48h"
+    recovery: "ce-strategist envia formulário assíncrono e agenda call de 30 min"
+  - condition: "Menos de 5 concorrentes identificados"
+    recovery: "ce-researcher expande busca para mercado internacional e nichos adjacentes"
+  - condition: "Merge gate Phase 3 bloqueado por atraso de um agente"
+    recovery: "Agente atrasado recebe prioridade máxima; os outros aguardam em standby"
+  - condition: "Integration gate Phase 5 bloqueado"
+    recovery: "ce-integrator diagnostica o bloqueio e aciona o agente responsável com bug report"
+  - condition: "QA Gate reprovado (score < 75)"
+    recovery: "ce-reviewer emite relatório de correções prioritizadas; ce-strategist coordena sprint de correção"
+  - condition: "PageSpeed < 90 no Launch Prep"
+    recovery: "ce-frontend-dev executa otimização de performance em modo urgente antes de re-audit"
+  - condition: "Taxa de conversão < 0.5% após 1000 sessões"
+    recovery: "ce-ab-architect aciona ciclo de A/B testing emergencial na hero section"
+  - condition: "p-value nunca alcança 0.05 após 4 semanas"
+    recovery: "ce-ab-architect revisa hipótese e redesenha teste com variante mais distinta"

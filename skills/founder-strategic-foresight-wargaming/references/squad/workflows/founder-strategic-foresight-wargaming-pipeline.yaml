@@ -1,0 +1,162 @@
+workflow_name: founder_strategic_foresight_wargaming_pipeline
+description: "Nenhuma aposta grande sai sem estressar premissas contra futuros plausíveis e adversários autônomos — o founder decide com o mapa completo, não com o feeling."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-strategic-foresight-wargaming
+area: "Founder Office"
+topsquad: "F4 · Foresight, Risco & Research Estratégico"
+agent_sequence:
+  - atlas
+  - cassandra
+  - brutus
+  - chisel
+  - pythia
+  - memo
+  - tripwire
+  - ajax
+key_commands:
+  - "*mapear-espaco-de-futuros"
+  - "*simular-reacoes-adversarias"
+  - "*destruir-premissas"
+  - "*coletar-sinais-fracos"
+  - "*sintetizar-wargaming-report"
+  - "*monitorar-indicadores-de-alerta"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: atlas
+success_indicators:
+  - "Número de cenários plausíveis simulados por decisão (target >= 3, baseline 0)"
+  - "% de premissas críticas estressadas antes da alocação de capital (target 100%, baseline < 20%)"
+  - "Tempo de ciclo de wargaming completo — intake até Wargaming Report entregue (target < 4 horas vs. baseline 2 semanas com consultor)"
+  - "% de Pre-Mortems com caminho de falha identificado (proxy de qualidade do red-team — target >= 60% de wargamings encontram pelo menos 1 risco não-mapeado previamente)"
+  - "Taxa de premissas classificadas como Frágil ou Inválida que o founder não havia considerado (proxy de valor gerado — target >= 2 por decisão)"
+  - "Acurácia de cenários: % de cenários materializados dentro do range previsto após 6 meses (meta de calibração bayesiana — target >= 65% para cenário Base)"
+  - "Número de wargamings por mês (proxy de utilização e embedding no processo decisório — target >= 4/mês)"
+  - "Custo por wargaming em tokens (target < R$800 por rodada completa)"
+  - "NPS do founder com o Wargaming Report (pesquisa pós-entrega — target >= 9/10)"
+  - "Número de decisões com tripwires ativos em monitoramento (proxy de valor acumulado — meta: 80% das decisões estratégicas do founder com tripwire configurado)"
+deliverable:
+  description: "Wargaming Report Completo — documento estratégico entregue em Notion e Slack contendo: (1) Decision Brief com contexto, stakes, Árvore de Premissas completa e classificação de cada premissa (Sólida/Frágil/Inválida); (2) Scenario Matrix com 3+ cenários estruturados — narrativa, driving forces, early-warning indicators, probabilidades bayesianas e impacto quantificado por cenário; (3) Adversarial Playbook por concorrente — reações simuladas em 30/90/180 dias, probabilidades, vulnerabilidades exploradas e contra-jogadas do founder; (4) Pre-Mortem Report — narrativa causal da falha mais plausível em 12 meses com probabilidade estimada; (5) Decision Recommendation — GO/NO-GO/PIVOT com condições explícitas, premissas a monitorar e ações de mitigação para riscos identificados; (6) Tripwire Configuration — lista de early-warning indicators configurados para monitoramento pós-decisão com thresholds de alerta; (7) Audit Trail completo (qual worker gerou cada insight, fontes utilizadas, timestamp de cada fase, custo de tokens). Disponível em três formatos: Wargaming Report completo técnico (Atlas), Executive One-Pager para decisão rápida, e Board Memo formatado (Memo — após aprovação L3)."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: atlas
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Mapear Espaço De Futuros"
+    agent: cassandra
+    task: mapear-espaco-de-futuros.md
+    trigger: "Atlas roteia após aprovação do intake para execução paralela com Brutus e Chisel. Também ativado quando founder quer atualizar cenários após novo sinal de mercado (comando '/update-scenarios [novo sinal]'). Re-ativado por Atlas se Ajax ide…"
+    checkpoint:
+      criteria: "Scenario Matrix estruturada: { scenario_id, label (Otimista/Base/Pessimista/Wild-Card), narrative (300 palavras), driving_forces[], early_warning_indicators[], probability_estimate (%), impact_on_decision_metric, assumptions_invalidated[],…"
+      veto_condition: "Saída sem veredito do critic Ajax; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Simular Reações Adversárias"
+    agent: brutus
+    task: simular-reacoes-adversarias.md
+    trigger: "Atlas roteia em paralelo com Cassandra e Chisel após aprovação do intake. Também ativado de forma autônoma pelo cron de monitoramento quando Blade (se integrado com Deep Research Squad) detecta movimento de concorrente que altera o Adversa…"
+    checkpoint:
+      criteria: "Adversarial Playbook estruturado por concorrente: { competitor_name, competitor_model (incentivos, capacidades, restrições), reactions_by_timeframe: { 30d, 90d, 180d }, reaction_probability (%), impact_on_founder_position (Alto/Médio/Baixo…"
+      veto_condition: "Saída sem veredito do critic Ajax; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Destruir Premissas"
+    agent: chisel
+    task: destruir-premissas.md
+    trigger: "Atlas roteia em paralelo com Cassandra e Brutus. Ativado individualmente pelo founder via '/stress [premissa específica]' para análise pontual. Re-ativado por Atlas quando novo dado de mercado invalida uma premissa previamente classificada…"
+    checkpoint:
+      criteria: "Assumption Stress Report: { assumption_id, assumption_text, criticality_rank (1-10), breakeven_value, current_estimated_value, gap_to_breakeven (%), contrary_evidence[], supporting_evidence[], classification (Sólida/Frágil/Inválida), confi…"
+      veto_condition: "Saída sem veredito do critic Ajax; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Coletar Sinais Fracos"
+    agent: pythia
+    task: coletar-sinais-fracos.md
+    trigger: "Cron diário automático para monitoramento de sinais de concorrentes top-3. Cron semanal para sinais macro e regulatórios. Ativado on-demand por Atlas quando wargaming precisa de dados atualizados sobre adversário específico. Ativado pelo f…"
+    checkpoint:
+      criteria: "Signal Feed estruturado: { signal_id, signal_type (competitive/macro/regulatory/technology/customer), source_url, date, summary (100 palavras), relevance_score (1-10), urgency_flag (Rotina/Atenção/Urgente/Crítico), affected_scenarios[], af…"
+      veto_condition: "Saída sem veredito do critic Ajax; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Sintetizar Wargaming Report"
+    agent: memo
+    task: sintetizar-wargaming-report.md
+    trigger: "Ativado por Atlas após Wargaming Report aprovado pelo founder (ou após aprovação do HITL gate). Ativado diretamente pelo founder via '/draft-memo [audiência] [decisão]'. NUNCA ativado automaticamente para envio externo — sempre requer apro…"
+    checkpoint:
+      criteria: "Documento executivo formatado pronto para revisão: { document_type, target_audience, executive_summary (200 palavras), decision_framing, scenario_summary (3 bullets), risk_matrix (simplificada), recommendation, next_steps, appendix_referen…"
+      veto_condition: "Saída sem veredito do critic Ajax; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Monitorar Indicadores De Alerta"
+    agent: tripwire
+    task: monitorar-indicadores-de-alerta.md
+    trigger: "Configurado automaticamente por Atlas ao final de cada Wargaming concluído com decisão tomada. Cron configurável por tipo de indicador (diário para sinais de mercado, semanal para macro, mensal para regulatório). Disparado manualmente pelo…"
+    checkpoint:
+      criteria: "Dashboard de monitoramento de decisão: { decision_id, chosen_scenario, indicator_name, current_value, expected_range, status (On-Track/Diverging/Off-Track), last_updated }. Alertas escalonados: Informativo (sinal fora do range esperado), A…"
+      veto_condition: "Saída sem veredito do critic Ajax; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: ajax
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: atlas
+    checkpoint:
+      criteria: "Entregável consolidado: Wargaming Report Completo — documento estratégico entregue em Notion e Slack contendo: (1) Decision Brief com contexto, stakes, Árvore de Premissas completa e classificação de cada premissa (Sólida/F…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "INTAKE GATE — STAKES ALTO/CRÍTICO (L3): Antes de iniciar qualquer wargaming, Atlas apresenta o Protocolo de Intake ao founder (Árvore de Premissas, classificação de stakes, estimativa de custo de tokens). Para decisões classificadas como Alto (R$100k-500k) ou Crítico (R$500k+), aprovação explícita do founder é obrigatória antes de disparar workers. Inclui confirmação do escopo, dos concorrentes a simular e do nível de profundidade desejado."
+  - level: HITL
+    condition: "PREMISSA FRÁGIL OU INVÁLIDA (L3): Quando Chisel classifica qualquer premissa crítica (criticality_rank >= 7) como Frágil ou Inválida, o wargaming pausa e founder recebe notificação urgente com evidências contrárias. O founder deve decidir: (a) revisar a tese antes de prosseguir, (b) validar a premissa com dado adicional, ou (c) aceitar o risco explicitamente e autorizar o prosseguimento. Sem aprovação explícita, Atlas não gera recomendação de GO."
+  - level: HITL
+    condition: "PRE-MORTEM COM PROBABILIDADE DE FALHA > 30% (L3): Se Ajax identificar no Pre-Mortem um caminho de falha com probabilidade estimada acima de 30%, o squad bloqueia automaticamente a recomendação de GO e escalona para o founder. O relatório apresenta: narrativa do caminho de falha, premissas que o geram e opções de mitigação. O founder deve responder com ação concreta (mitigar, aceitar, desistir) antes de qualquer recomendação final."
+  - level: HITL
+    condition: "BOARD MEMO E ENVIO EXTERNO (L3): Memo nunca envia qualquer documento para audiência externa (board, investidores, parceiros) sem revisão e aprovação explícita do founder. Todo documento gerado vai primeiro para Notion como draft. Somente após founder marcar como aprovado o envio é permitido. Este gate é inviolável e não pode ser desabilitado."
+  - level: HITL
+    condition: "WARGAMING DE CONCORRENTE ESPECÍFICO (L2): Quando Brutus simula um concorrente específico com dados sensíveis (ex: informações não-públicas sobre capacidades financeiras ou decisões internas), o output é marcado como confidencial e apresentado ao founder antes de ser incluído em qualquer documento compartilhável. Dados de origem não-verificada são explicitamente rotulados."
+  - level: HITL
+    condition: "DECISÃO DE MONITORAMENTO CONTÍNUO (L2): Após wargaming concluído, Atlas apresenta lista de tripwires sugeridos para aprovação do founder antes de ativar Tripwire. O founder pode ajustar thresholds, remover indicadores ou adicionar novos. Apenas após aprovação o monitoramento é ativado para evitar notificações não-desejadas."
+transitions:
+  - from: atlas
+    to: cassandra
+    condition: "Atlas roteia após aprovação do intake para execução paralela com Brutus e Chisel. Também ativado quando founder quer atualizar cenários após novo sinal de mercado (comando '/update-scenarios [novo si…"
+  - from: cassandra
+    to: brutus
+    condition: "Atlas roteia em paralelo com Cassandra e Chisel após aprovação do intake. Também ativado de forma autônoma pelo cron de monitoramento quando Blade (se integrado com Deep Research Squad) detecta movim…"
+  - from: brutus
+    to: chisel
+    condition: "Atlas roteia em paralelo com Cassandra e Brutus. Ativado individualmente pelo founder via '/stress [premissa específica]' para análise pontual. Re-ativado por Atlas quando novo dado de mercado invali…"
+  - from: chisel
+    to: pythia
+    condition: "Cron diário automático para monitoramento de sinais de concorrentes top-3. Cron semanal para sinais macro e regulatórios. Ativado on-demand por Atlas quando wargaming precisa de dados atualizados sob…"
+  - from: pythia
+    to: memo
+    condition: "Ativado por Atlas após Wargaming Report aprovado pelo founder (ou após aprovação do HITL gate). Ativado diretamente pelo founder via '/draft-memo [audiência] [decisão]'. NUNCA ativado automaticamente…"
+  - from: memo
+    to: tripwire
+    condition: "Configurado automaticamente por Atlas ao final de cada Wargaming concluído com decisão tomada. Cron configurável por tipo de indicador (diário para sinais de mercado, semanal para macro, mensal para…"
+  - from: tripwire
+    to: ajax
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: ajax
+    to: atlas
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - cassandra
+  - brutus
+  - chisel

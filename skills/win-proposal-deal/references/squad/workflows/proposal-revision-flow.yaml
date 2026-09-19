@@ -1,0 +1,58 @@
+# Workflow: proposal_revision_flow (feedback loop pattern)
+# Fluxo de revisao de proposta existente com base em feedback do usuario ou do prospect
+
+workflow_name: proposal_revision_flow
+description: "Fluxo de revisao e ajuste de proposta existente — recebe feedback, identifica ajustes necessarios em escopo/pricing/copy e recompoe a proposta"
+
+agent_sequence:
+  - scope-architect
+  - pricing-strategist
+  - proposal-composer
+
+key_commands:
+  - "*revise-proposal"
+
+trigger_threshold: 1
+typical_duration: "3-7 minutes"
+
+success_indicators:
+  - "Proposta revisada com ajustes aplicados"
+  - "Win-rate recalculado apos ajustes"
+  - "Objection playbook atualizado se necessario"
+
+transitions:
+  feedback_received:
+    trigger: "user provides feedback on existing proposal"
+    confidence: 0.85
+    greeting_message: "Feedback recebido. Analisando ajustes necessarios."
+    next_steps:
+      - command: "*design-scope"
+        description: "Adjust scope based on feedback if needed"
+        priority: 1
+      - command: "*calculate-pricing"
+        description: "Recalculate pricing if scope changed"
+        priority: 2
+
+  scope_adjusted:
+    trigger: "scope revised based on feedback"
+    confidence: 0.85
+    greeting_message: "Escopo ajustado. Recalculando precificacao."
+    next_steps:
+      - command: "*calculate-pricing"
+        description: "Recalculate pricing for adjusted scope"
+        priority: 1
+
+  pricing_recalculated:
+    trigger: "pricing recalculated for revised scope"
+    confidence: 0.90
+    greeting_message: "Pricing recalculado. Recompondo proposta."
+    next_steps:
+      - command: "*compose-proposal"
+        description: "Recompose proposal with revisions applied"
+        priority: 1
+
+  revision_complete:
+    trigger: "revised proposal generated with all adjustments applied"
+    confidence: 0.95
+    greeting_message: "Proposta revisada e pronta para reenvio."
+    next_steps: []

@@ -1,0 +1,159 @@
+workflow_name: ops_cs_ai_sre_incident_pipeline
+description: "De tempestade de alertas a root cause em minutos: o SRE que nao dorme, nao esquece e documenta tudo."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-ai-sre-incident
+area: "Operações & CS"
+topsquad: "O5 · Operações Técnicas: SRE, SLA & Data Pipelines"
+agent_sequence:
+  - ic
+  - alert-correlator
+  - root-cause-investigator
+  - fix-proposer
+  - fix-executor
+  - incident-communicator
+  - post-mortem-writer
+  - fix-guardian
+key_commands:
+  - "*correlacionar-alertas"
+  - "*analisar-logs-incidente"
+  - "*gerar-propostas-de-fix"
+  - "*executar-acoes-l2"
+  - "*comunicar-incidentes"
+  - "*analisar-incidentes"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: ic
+success_indicators:
+  - "MTTR (Mean Time to Resolution): meta < 30 min para incidentes P1 correlacionados (baseline do cliente medido no Deep Dive)"
+  - "Alert Noise Ratio: percentual de alertas agrupados como sintomas vs root causes unicos — meta: reduzir ruido em 60-80% nas primeiras 4 semanas"
+  - "% Incidentes Triados Automaticamente: meta 70% dos incidentes P2/P3 sem intervencao humana na fase de triagem"
+  - "% Post-Mortems Completados em < 24h apos resolucao: meta 95% (vs media do mercado de 3-7 dias)"
+  - "% Fix Plans aprovados sem revisao pelo Aegis (proxy de qualidade do MacGyver): meta > 80% na maturidade"
+  - "False Positive Rate do Sherlock (root causes propostos incorretos): meta < 15% medido em revisao humana dos post-mortems"
+  - "Action Items de Post-Mortem com due date cumprido: meta 75% em 30 dias (prevencao de recorrencia)"
+  - "MTTA (Mean Time to Acknowledge): tempo entre alerta e declaracao de incidente pelo Orchestrator — meta < 2 min"
+  - "Recurring Incidents Rate: incidentes com mesmo root cause em 30 dias — meta reducao de 40% em 90 dias de operacao"
+deliverable:
+  description: "Incident Response Package — artefato completo por incidente, entregue automaticamente no ClickUp e Slack: (1) Incident Cluster Report com correlacao de alertas e noise score; (2) Root Cause Analysis com event timeline e evidencias; (3) Fix Plan executado com execution log e evidencias; (4) Post-Mortem blameless draft completo com action items criados no ClickUp; (5) Metricas do incidente (MTTA, MTTR, blast radius, servicos afetados). O conjunto destes artefatos e a 'prova de trabalho' verificavel que o squad gera — o cliente pode auditar cada incidente e ver exatamente o que o squad fez, em quanto tempo e qual foi o impacto."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: ic
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Correlacionar Alertas"
+    agent: alert-correlator
+    task: correlacionar-alertas.md
+    trigger: "Webhook de novo alerta recebido no pipeline de ingestion; chamada direta pelo Orchestrator ao declarar incidente; modo batch a cada 2 min durante incidente ativo para re-avaliar correlacoes com novos alertas chegando"
+    checkpoint:
+      criteria: "Incident Cluster Report: alertas agrupados por root cause hipotetico, Alert Noise Score (ex: '47 alertas -> 3 clusters'), ranking de prioridade dos clusters, lista de servicos afetados e servicos downstream suprimidos"
+      veto_condition: "Saída sem veredito do critic Fix Guardian; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Analisar Logs Incidente"
+    agent: root-cause-investigator
+    task: analisar-logs-incidente.md
+    trigger: "Chamado pelo Orchestrator apos Nexus entregar o Incident Cluster; pode ser re-chamado com novos dados durante incidente ativo se hipoteses iniciais nao confirmarem"
+    checkpoint:
+      criteria: "Root Cause Analysis Report com: (1) Event Timeline ordenado com evidencias; (2) Top 3 hipoteses de root cause com score de probabilidade e evidencias citadas; (3) Servicos e componentes impactados com blast radius estimado; (4) Anomalias d…"
+      veto_condition: "Saída sem veredito do critic Fix Guardian; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Gerar Propostas De Fix"
+    agent: fix-proposer
+    task: gerar-propostas-de-fix.md
+    trigger: "Chamado pelo Orchestrator apos Sherlock entregar o Root Cause Analysis com pelo menos uma hipotese de probabilidade > 60%; tambem chamado em modo 'mitigation-only' quando root cause ainda nao esta claro mas servico precisa ser estabilizado"
+    checkpoint:
+      criteria: "Fix Plan estruturado com: (1) Lista de acoes em sequencia com prioridade; (2) Para cada acao: comando exato / API call / steps, nivel de autonomia (L2 auto-execute / L3 requires approval), justificativa, reversibilidade e rollback procedur…"
+      veto_condition: "Saída sem veredito do critic Fix Guardian; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Executar Ações L2"
+    agent: fix-executor
+    task: executar-acoes-l2.md
+    trigger: "Chamado pelo Orchestrator somente apos Critic aprovar o Fix Plan; ativado apenas para acoes marcadas como L2 no plano; triggers tambem inclui 'mitigation mode' para acoes de estabilizacao enquanto root cause ainda e investigado"
+    checkpoint:
+      criteria: "Execution Log em tempo real com: (1) Acao executada com timestamp; (2) Comando exato executado; (3) Output/response capturado; (4) Status (success/failure/partial); (5) Metricas observadas antes e depois; (6) Status de resolucao por acao;…"
+      veto_condition: "Saída sem veredito do critic Fix Guardian; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Comunicar Incidentes"
+    agent: incident-communicator
+    task: comunicar-incidentes.md
+    trigger: "Inicio de incidente declarado pelo Orchestrator; atualizacoes de estado (nova hipotese confirmada, acao executada, mitigacao aplicada, incidente resolvido); intervalo de tempo (heartbeat de status durante incidente ativo); escalacao HITL;…"
+    checkpoint:
+      criteria: "Mensagens de Slack postadas no war room e canais de stakeholders; ticket ClickUp atualizado com timeline de comunicacao; status page entry (se integrado); rascunhos de comunicado externo para aprovacao do CS (L3 para envio externo); summar…"
+      veto_condition: "Saída sem veredito do critic Fix Guardian; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Analisar Incidentes"
+    agent: post-mortem-writer
+    task: analisar-incidentes.md
+    trigger: "Incidente marcado como 'resolved' pelo Orchestrator; tambem pode ser chamado em modo 'interim report' para incidentes de duracao > 4h para fornecer update parcial"
+    checkpoint:
+      criteria: "Post-Mortem draft completo em Markdown com: (1) Resumo executivo (impacto, duracao, servicos); (2) Timeline detalhada com evidencias; (3) Root Cause Analysis (5 Whys completo); (4) Contributing Factors; (5) O que funcionou bem; (6) O que p…"
+      veto_condition: "Saída sem veredito do critic Fix Guardian; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: fix-guardian
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: ic
+    checkpoint:
+      criteria: "Entregável consolidado: Incident Response Package — artefato completo por incidente, entregue automaticamente no ClickUp e Slack: (1) Incident Cluster Report com correlacao de alertas e noise score; (2) Root Cause Analysis…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Toda acao irreversivel ou de alto risco requer aprovacao explicita do SRE on-call antes de execucao pelo Forge: rollback de deploy em producao, failover de banco de dados primario, mudanca de configuracao de infraestrutura critica, escalonamento de recursos com impacto financeiro significativo, qualquer acao em banco de dados (DELETE, DROP, ALTER em producao)"
+  - level: L3
+    condition: "Publicacao do post-mortem final: o Chrono gera o draft, mas um humano revisa e aprova antes de publicar para o time ou para clientes"
+  - level: L3
+    condition: "Comunicacao externa para clientes afetados: o Herald gera o rascunho, o CS Manager aprova antes do envio"
+  - level: HITL
+    condition: "HITL emergencial — Se o Aegis retornar veredicto BLOCKED_ESCALATE em qualquer momento, o incidente entra em modo manual ate que um SRE sênior retome o controle via canal Slack do war room"
+  - level: HITL
+    condition: "HITL emergencial — Se o Forge encontrar falha em acao L2 ou resultado inesperado apos execucao, pausa automaticamente e notifica o SRE on-call antes de prosseguir"
+  - level: HITL
+    condition: "L2 confirmado — Declaracao de severidade P1 pelo Orchestrator notifica imediatamente o SRE on-call e o Engineering Lead via PagerDuty/Slack, mesmo sendo L2 (execucao autonoma), para que humanos possam assumir controle a qualquer momento"
+  - level: HITL
+    condition: "HITL de degradacao — Se MTTR ultrapassar 2x o ETR estimado sem resolucao, o Orchestrator automaticamente escala para modo assistido e solicita intervencao humana explicita"
+transitions:
+  - from: ic
+    to: alert-correlator
+    condition: "Webhook de novo alerta recebido no pipeline de ingestion; chamada direta pelo Orchestrator ao declarar incidente; modo batch a cada 2 min durante incidente ativo para re-avaliar correlacoes com novos…"
+  - from: alert-correlator
+    to: root-cause-investigator
+    condition: "Chamado pelo Orchestrator apos Nexus entregar o Incident Cluster; pode ser re-chamado com novos dados durante incidente ativo se hipoteses iniciais nao confirmarem"
+  - from: root-cause-investigator
+    to: fix-proposer
+    condition: "Chamado pelo Orchestrator apos Sherlock entregar o Root Cause Analysis com pelo menos uma hipotese de probabilidade > 60%; tambem chamado em modo 'mitigation-only' quando root cause ainda nao esta cl…"
+  - from: fix-proposer
+    to: fix-executor
+    condition: "Chamado pelo Orchestrator somente apos Critic aprovar o Fix Plan; ativado apenas para acoes marcadas como L2 no plano; triggers tambem inclui 'mitigation mode' para acoes de estabilizacao enquanto ro…"
+  - from: fix-executor
+    to: incident-communicator
+    condition: "Inicio de incidente declarado pelo Orchestrator; atualizacoes de estado (nova hipotese confirmada, acao executada, mitigacao aplicada, incidente resolvido); intervalo de tempo (heartbeat de status du…"
+  - from: incident-communicator
+    to: post-mortem-writer
+    condition: "Incidente marcado como 'resolved' pelo Orchestrator; tambem pode ser chamado em modo 'interim report' para incidentes de duracao > 4h para fornecer update parcial"
+  - from: post-mortem-writer
+    to: fix-guardian
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: fix-guardian
+    to: ic
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

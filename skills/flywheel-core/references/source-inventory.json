@@ -1,0 +1,131 @@
+{
+  "source": "maquina-de-receita/squads-gratuitos/flywheel-core",
+  "files": [
+    {
+      "path": "agents/bead-manager.md",
+      "bytes": 2936,
+      "sha256": "1c0e865d298a428b1c0bba1c69d5c182d1bc9327c07663b6b571fde2f19aab5d"
+    },
+    {
+      "path": "agents/flywheel-architect.md",
+      "bytes": 2998,
+      "sha256": "6219afd0109d20ecea41e0f00cf0a21c63571250aae9783e3d05cc4ddd315b0c"
+    },
+    {
+      "path": "agents/hardening-specialist.md",
+      "bytes": 3370,
+      "sha256": "9556c8d4c5dd85bfbdc26639ad110bf45b2eedf8fc80dd6cc2fb5fa6690fc5bb"
+    },
+    {
+      "path": "agents/swarm-coordinator.md",
+      "bytes": 3510,
+      "sha256": "23a3094e9c5ea40c6878135945dd7025aad63b04ba409fcbc521f55ccc5c1521"
+    },
+    {
+      "path": "checklists/hardening-quality-gate.md",
+      "bytes": 1098,
+      "sha256": "095c29cdfda0148e4c147129c955ea0a245b99853375b58117b6268bb5f47f96"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "bytes": 1080,
+      "sha256": "55337d893619cea69c705bec7182b1802ca32e6c277d26c44d5903c37a46e6b8"
+    },
+    {
+      "path": "config/source-tree.md",
+      "bytes": 1150,
+      "sha256": "b83a961466ef6dd0ed1e8a63ff86efbed1df0d485c85e6596530475b2f0e33c3"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "bytes": 1103,
+      "sha256": "3e1b27bf45da78ef896f24c1ba3706b8e7158035ce2f1d7567d06690a8060f17"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2138,
+      "sha256": "e52cf2e229884fdbc97b11cc9d9422242ac31d24fd40ab51a0ccf49d717779fd"
+    },
+    {
+      "path": "squad.yaml",
+      "bytes": 1268,
+      "sha256": "546fc3ab4c0b6a24c1dd7beb2506e0bf93898795ad0e0821351434f66cee6ceb"
+    },
+    {
+      "path": "tasks/blunder-hunt.md",
+      "bytes": 808,
+      "sha256": "acc9528ce8ca992a54e73e60758562483673eb0979a84b1615b83c38c6364c84"
+    },
+    {
+      "path": "tasks/br-lock.md",
+      "bytes": 841,
+      "sha256": "4ca420b136587657a190b470a8d417e0a03d82df514d917ee73f28d1773f6803"
+    },
+    {
+      "path": "tasks/bv-prioritize.md",
+      "bytes": 844,
+      "sha256": "04eb5f355b7401bef2d4d79e5d523d44ca108b6fad05e7fe6342f1b8e9ae0b1f"
+    },
+    {
+      "path": "tasks/cross-review.md",
+      "bytes": 791,
+      "sha256": "d480452cbd7f9e0fe7922517f8672ac1045e9bda9ad0cfa498012aee9873637f"
+    },
+    {
+      "path": "tasks/decompose-beads.md",
+      "bytes": 872,
+      "sha256": "1d374e16920ba4903875233fcb50f34b62ff20f598aa7817689a3bc149ff9c81"
+    },
+    {
+      "path": "tasks/generate-plan.md",
+      "bytes": 946,
+      "sha256": "d11a6d01de47180f80ffbd85a2188866a3c5b7ce7063423e6bd8a5ea2553b8d3"
+    },
+    {
+      "path": "tasks/polish-beads.md",
+      "bytes": 994,
+      "sha256": "492da141dc3b9be1ee6713f9afb0fedd70676d802ec5aa12455bf4496fd07101"
+    },
+    {
+      "path": "tasks/swarm-status.md",
+      "bytes": 722,
+      "sha256": "3859a504d11e11b0d83cab94ce1b64f074dac6bdce6f49a639fb9c7a5497ecb6"
+    },
+    {
+      "path": "tasks/sync-context.md",
+      "bytes": 719,
+      "sha256": "706ad952f690e9910ff53294327e77dea9abf4e3fc8e8019e9f360e20473eacb"
+    },
+    {
+      "path": "tasks/ubs-scan.md",
+      "bytes": 767,
+      "sha256": "b458b755569740d124151032b5d4b46edc0f34d10e7335d401a86691437fbb19"
+    },
+    {
+      "path": "templates/bead.template.md",
+      "bytes": 599,
+      "sha256": "4c1d35fc529f38228d5c2540fdce5dc318aeacc84769e338f0f0036f1275a169"
+    },
+    {
+      "path": "templates/plan-space.template.md",
+      "bytes": 798,
+      "sha256": "47445c5b61f6efa35e971374e950e5079df77ca7f39291549d1416c36359438b"
+    },
+    {
+      "path": "validation-report.md",
+      "bytes": 1612,
+      "sha256": "61b22874e0aaeaf97010a658ac8453ed5b5d42297cbfdb20d31f2d66fe7b5c8e"
+    },
+    {
+      "path": "workflows/flywheel-execution-cycle.yaml",
+      "bytes": 900,
+      "sha256": "6c5b7f10e8b5ddafa3d04afdb20b69431c9e5da3fea780d8210e98fc0a2e80bf"
+    },
+    {
+      "path": "workflows/hardening-pipeline.yaml",
+      "bytes": 735,
+      "sha256": "4e2ab02a17d5127e7bd41ffc3e7711fc7f010ee4a18b8786cdb6a8ae13f0cbae"
+    }
+  ],
+  "provenance_readme_sha256": "71c78d2a1675868857acc301d6a26ab6ae425d5efeb47bcc58e1a124aae05a83"
+}

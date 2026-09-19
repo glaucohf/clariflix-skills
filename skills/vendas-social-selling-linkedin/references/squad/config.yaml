@@ -1,0 +1,57 @@
+pack:
+  name: vendas-social-selling-linkedin
+  version: 0.1.0
+  short-title: "Social Selling e Inbound LinkedIn"
+  description: "Captura sinais de intenção no LinkedIn antes que o concorrente veja a oportunidade."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "📡"
+  slashPrefix: socialSellingEInboundLinkedin
+name: vendas-social-selling-linkedin
+version: 0.1.0
+description: "Captura sinais de intenção no LinkedIn antes que o concorrente veja a oportunidade."
+entry_agent: orion
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V1"
+  prioridade: "avançado"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orion
+  - scout
+  - sherlock
+  - cypher
+  - argus
+  - pulso
+  - radar
+  - nexus
+  - argus-2
+tasks:
+  - monitorar-sinais-de-intencao.md
+  - enriquecer-dados-firmograficos.md
+  - conectar-dor-implicita.md
+  - verificar-mensagem-antes-do-envio.md
+  - executar-cadencia-pulso.md
+  - classificar-intencao.md
+  - sincronizar-dados-crm.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-social-selling-linkedin-pipeline.yaml
+checklists:
+  - critic-argus-2.md
+integrations:
+  - "LinkedIn Sales Navigator — fonte primária de sinais e canal de outreach (via automação com limites de segurança para não violar ToS)"
+  - "Apollo.io — enriquecimento de contatos (email, cargo, empresa), alertas de mudança de cargo, base de 275M+ contatos"
+  - "Clay — enriquecimento avançado e workflows de pesquisa de conta (waterfall de provedores de dados)"
+  - "HubSpot CRM (MCP disponível) — CRM primário: criação de deals, atualização de contatos, registro de atividades, pipeline stages"
+  - "Pipedrive — alternativa de CRM para clientes que usam Pipedrive (mesmo contrato de integração)"
+  - "ClickUp — gestão de tarefas do squad, prova de trabalho verificável por lead, dashboard de KPIs, filas de aprovação HITL"
+  - "Gmail/Outlook — canal secundário de outreach quando email disponível (via Apollo enriquecimento)"
+  - "Slack/WhatsApp Business — notificações HITL em tempo real para SDRs e closers (alerts HOT, aprovações tier-1)"
+  - "Langfuse — observabilidade OTEL, quality gates (dev 70% / staging 85% / prod 95% task success), rastreamento de custo por lead"
+  - "n8n / Make — orquestracao de webhooks e automacoes de suporte (alternativa leve para integrações pontuais)"
+  - "Calendly / Google Calendar — agendamento automático quando lead classifica como HOT e aceita reunião"

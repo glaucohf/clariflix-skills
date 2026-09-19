@@ -1,0 +1,61 @@
+# Workflow: proposal_generation_pipeline (sequential pipeline pattern)
+# Pipeline completo de geracao de propostas comerciais — 4 fases desde analise do prospect ate proposta final
+
+workflow_name: proposal_generation_pipeline
+description: "Pipeline completo de geracao de propostas comerciais com win-rate preditivo — analisa prospect, desenha escopo, precifica estrategicamente e compoe proposta persuasiva"
+
+agent_sequence:
+  - prospect-analyzer
+  - scope-architect
+  - pricing-strategist
+  - proposal-composer
+
+key_commands:
+  - "*generate-proposal"
+  - "*analyze-prospect"
+
+trigger_threshold: 1
+typical_duration: "5-12 minutes"
+
+success_indicators:
+  - "Proposta comercial completa gerada com 10 secoes obrigatorias"
+  - "Win-rate preditivo calculado com intervalo de confianca"
+  - "3 versoes de escopo com pricing estrategico"
+  - "Objection playbook gerado com contra-argumentos prontos"
+
+transitions:
+  prospect_analyzed:
+    trigger: "prospect profile generated with scoring and prioritized pain points"
+    confidence: 0.90
+    greeting_message: "Prospect analisado. Iniciando design de escopo."
+    next_steps:
+      - command: "*design-scope"
+        description: "Design scope with deliverables, timeline and milestones"
+        priority: 1
+
+  scope_designed:
+    trigger: "3 scope versions created with deliverables, timeline and acceptance criteria"
+    confidence: 0.90
+    greeting_message: "Escopo desenhado em 3 versoes. Iniciando precificacao estrategica."
+    next_steps:
+      - command: "*calculate-pricing"
+        description: "Calculate strategic pricing with win-rate prediction"
+        priority: 1
+
+  pricing_calculated:
+    trigger: "pricing strategy defined with margins, win-rate and conditional discounts"
+    confidence: 0.90
+    greeting_message: "Precificacao calculada. Iniciando composicao da proposta."
+    next_steps:
+      - command: "*compose-proposal"
+        description: "Compose final commercial proposal with persuasive copy"
+        priority: 1
+
+  proposal_composed:
+    trigger: "final proposal generated with all 10 sections and objection playbook"
+    confidence: 0.95
+    greeting_message: "Proposta comercial completa. Pronta para envio ao prospect."
+    next_steps:
+      - command: "*revise-proposal"
+        description: "Revise proposal based on user feedback (optional)"
+        priority: 2

@@ -1,0 +1,30 @@
+row: operacoes
+title: Suporte Conversacional Multicanal
+title_netflix: SUPORTE CONVERSACIONAL MULTICANAL
+subtitle: Triar solicitações de suporte em múltiplos canais, preparar respostas e escalar casos fora do escopo de primeiro
+  nível
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-tier1-resolver-multicanal para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Nexus
+  - Prism
+  - Volta
+  - Flux
+  - Sage
+  - Vox
+  - Hermes
+  - Pulse
+  - Argus
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

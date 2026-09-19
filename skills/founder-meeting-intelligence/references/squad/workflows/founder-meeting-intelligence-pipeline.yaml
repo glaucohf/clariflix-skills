@@ -1,0 +1,177 @@
+workflow_name: founder_meeting_intelligence_pipeline
+description: "Toda reunião vira um ativo estratégico: decisões extraídas, ações no ClickUp e a KB institucional alimentada automaticamente — do áudio bruto ao artefato rastreável em menos de 10 minutos."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-meeting-intelligence
+area: "Founder Office"
+topsquad: "F1 · Chief of Staff & Clone do Founder"
+agent_sequence:
+  - maestro
+  - vox
+  - pulse
+  - quill
+  - vector
+  - hermes
+  - echo
+  - argos
+  - argos-2
+key_commands:
+  - "*transcrever-video"
+  - "*enriquecer-contexto-transcricao"
+  - "*extrair-decisoes"
+  - "*conectar-outputs-extracao"
+  - "*despachar-artefatos-sistemas-cliente"
+  - "*monitorar-action-items"
+  - "*verificar-completeness"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro
+success_indicators:
+  - "% de reuniões processadas com decisões e ações extraídas (target 100% das reuniões do founder com gravação disponível)"
+  - "Taxa de action items com owner E deadline presentes no output (target >= 95% — Argos bloqueia se < 85%)"
+  - "Taxa de ações capturadas que viram tasks rastreadas no ClickUp (target >= 90% vs. baseline ~20%)"
+  - "Tempo médio de processamento por reunião de 60 min (target < 10 min end-to-end)"
+  - "Taxa de tasks criadas pelo squad com status 'Concluída' no prazo (proxy de accountability real — target >= 75%)"
+  - "Número de contradições com KB histórica detectadas e resolvidas por mês (indicador de valor da memória institucional — meta crescente)"
+  - "Tempo poupado do founder em follow-up manual por semana (target >= 6h/semana — calculado por pesquisa quinzenal com o founder)"
+  - "NPS do founder com o Meeting Intelligence Report (pesquisa pós-entrega das primeiras 4 semanas — target >= 9/10)"
+  - "Taxa de reuniões recorrentes com Pre-Meeting Brief gerado e aprovado pelo founder (target >= 90%)"
+  - "Custo médio por reunião processada em tokens (target < U$1 para reuniões de até 60 min)"
+deliverable:
+  description: "Meeting Intelligence Report — documento estruturado gerado por reunião, salvo permanentemente na KB (Notion) e enviado ao founder via Slack. Contém: (1) Executive Summary com 5 bullets (decisões, ações, insights chave, próximos passos, riscos identificados); (2) Decision Log — tabela de todas as decisões formais com statement, owner, rationale, alternativas rejeitadas e link para contexto histórico na KB; (3) Action Items com formato pronto para ClickUp (título, assignee, deadline, prioridade, contexto executável) e link para task criada; (4) Strategic Insights — Knowledge Snippets para alimentar KB institucional com frameworks, hipóteses e conhecimento tácito extraído; (5) Consistency Report — lista de alinhamentos e contradições com decisões históricas; (6) Audit Trail completo (quais agentes processaram, timestamps, custo de tokens, versão do report); (7) Link permanente para transcrição original. Para reuniões classificadas como 'board' ou 'estratégica nível 1': Board Memo Draft adicional (executive one-pager para compartilhamento com stakeholders após aprovação do founder). Toda ação executada por Hermes é rastreada com ID de task no ClickUp como prova de trabalho auditável."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Transcrever Vídeo"
+    agent: vox
+    task: transcrever-video.md
+    trigger: "Ativado por Maestro imediatamente após intake de reunião classificado. Processo totalmente determinístico — sem geração de conteúdo, apenas conversão de mídia para texto estruturado. Reprocessado automaticamente se qualidade de transcrição…"
+    checkpoint:
+      criteria: "Transcrição estruturada em JSON: { speaker_id, speaker_name, timestamp_start, timestamp_end, text, energy_marker (normal/high/tense) }. Arquivo TXT legível para humanos com marcadores de tempo. Metadados: duração total, número de falantes,…"
+      veto_condition: "Saída sem veredito do critic Argos 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Contexto Transcrição"
+    agent: pulse
+    task: enriquecer-contexto-transcricao.md
+    trigger: "Ativado por Maestro após Vox concluir transcrição. Processo paralelo à análise inicial de Quill — Pulse entrega contexto enriquecido que Quill usa na segunda passagem de extração para garantir que decisões sejam contextualizadas historicam…"
+    checkpoint:
+      criteria: "Transcrição enriquecida com anotações de contexto inline: { prior_decision_refs: [{topic, decision_date, decision_summary, kb_link}], open_tasks_by_participant: [{participant, open_count, overdue_count}], recurring_themes: [{theme, frequen…"
+      veto_condition: "Saída sem veredito do critic Argos 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Extrair Decisões"
+    agent: quill
+    task: extrair-decisoes.md
+    trigger: "Ativado por Maestro após Pulse entregar contexto enriquecido. Executa extração em paralelo nas 4 dimensões para otimizar tempo. Reprocessado pelo Maestro se Argos retornar action items sem owner/deadline ou decisões sem contexto suficiente."
+    checkpoint:
+      criteria: "Structured Extraction Package: { decisions: [{ id, statement, owner, rationale, alternatives_rejected, confidence_level, timestamp_ref, speaker_ref }], action_items: [{ id, task_title, assignee, deadline, priority, context_brief, dependenc…"
+      veto_condition: "Saída sem veredito do critic Argos 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Conectar Outputs Extração"
+    agent: vector
+    task: conectar-outputs-extracao.md
+    trigger: "Ativado por Maestro após Quill concluir extração. Processo de enriquecimento e verificação antes da validação crítica de Argos. Também ativado proativamente quando founder faz pergunta direta sobre histórico de decisões — ex: '/quando deci…"
+    checkpoint:
+      criteria: "Enriched Extraction Package: cada decision e action_item recebe { kb_conflicts: [], kb_alignments: [], prior_meeting_refs: [], existing_clickup_task_id (se duplicata detectada), related_documents: [] }. Relatório de consistência: { new_dec…"
+      veto_condition: "Saída sem veredito do critic Argos 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Despachar Artefatos Sistemas Cliente"
+    agent: hermes
+    task: despachar-artefatos-sistemas-cliente.md
+    trigger: "Ativado por Maestro SOMENTE após Argos retornar GO explícito na validação. É o único agente com permissão de escrita em sistemas externos (ClickUp, Notion, Slack, HubSpot). Toda ação de Hermes requer confirmação de Argos como pré-condição…"
+    checkpoint:
+      criteria: "Dispatch Report: { clickup_tasks_created: [{ task_id, title, assignee, due_date, url }], slack_notifications_sent: [{ channel, recipient, message_preview }], kb_entries_created: [{ notion_page_id, title, type }], crm_updates: [{ deal_id, u…"
+      veto_condition: "Saída sem veredito do critic Argos 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Monitorar Action Items"
+    agent: echo
+    task: monitorar-action-items.md
+    trigger: "Ativado por cron diário (07h30 no fuso do cliente) para verificar status de tasks criadas. Ativado 48h antes de deadline de qualquer task criada pelo squad. Ativado automaticamente 2h antes de reuniões recorrentes identificadas no calendár…"
+    checkpoint:
+      criteria: "Alertas de deadline em risco (Slack DM para owner + notificação para founder se crítico). Weekly Commitment Report (quem cumpriu o quê, quem está em atraso, tendências). Pre-Meeting Brief para reuniões recorrentes (última reunião → o que f…"
+      veto_condition: "Saída sem veredito do critic Argos 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificar Completeness"
+    agent: argos
+    task: verificar-completeness.md
+    trigger: "Ativado automaticamente por Maestro após Vector concluir enriquecimento. Gate obrigatório antes de Hermes. Se retornar NO-GO, Maestro devolve para Quill com instruções específicas de correção (máximo 2 reprocessamentos antes de escalar par…"
+    checkpoint:
+      criteria: "Validation Report: { completeness_score (0-100), missing_owners: [], missing_deadlines: [], ambiguous_decisions: [], potential_implicit_actions: [], privacy_flags: [], historical_contradictions_unresolved: [], verdict: 'GO' | 'NO-GO' | 'GO…"
+      veto_condition: "Saída sem veredito do critic Argos 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: argos-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: maestro
+    checkpoint:
+      criteria: "Entregável consolidado: Meeting Intelligence Report — documento estruturado gerado por reunião, salvo permanentemente na KB (Notion) e enviado ao founder via Slack. Contém: (1) Executive Summary com 5 bullets (decisões, açõ…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "CONTRADIÇÃO COM HISTÓRICO (L2→L3): Quando Vector identifica que uma decisão da reunião contradiz explicitamente uma decisão anterior na KB — Maestro pausa o pipeline e notifica o founder com a contradição detalhada (decisão antiga vs. nova decisão). O founder confirma qual prevalece antes de Hermes atualizar a KB e criar tasks. Sem confirmação em 4h, o item fica em quarentena."
+  - level: HITL
+    condition: "ACTION ITEM SEM OWNER (L2→L3): Quando Argos identifica action items implícitos na transcrição sem owner claro — o sumário vai para o founder com os itens em destaque para atribuição manual antes de Hermes criar as tasks. Prazo de resposta: 2h (reuniões urgentes) ou 24h (demais)."
+  - level: HITL
+    condition: "DESPACHO PARA CRM EM DEALS ATIVOS (L3): Quando Hermes vai atualizar um deal no HubSpot que está em fase de negociação ativa (stage >= Proposal) — o founder deve aprovar as atualizações antes do envio. Qualquer mudança de stage ou valor estimado requer aprovação explícita via Slack (botão Aprovar/Rejeitar)."
+  - level: HITL
+    condition: "BOARD MEMO PARA ENVIO EXTERNO (L3): Hermes pode criar o draft do Board Memo no Notion automaticamente (L2), mas o envio para membros do board, investidores ou parceiros externos é sempre bloqueado até aprovação explícita do founder. Nenhum email ou comunicação sai sem revisão humana."
+  - level: HITL
+    condition: "INFORMAÇÃO SENSÍVEL FLAGUEADA (L3): Quando Argos detecta informações sensíveis na transcrição (valores de negociação, dados de saúde financeira, informações sobre demissões ou reestruturações, dados pessoais de terceiros) — o trecho é isolado e o founder decide: (a) incluir na KB com controle de acesso restrito, (b) incluir no sumário interno apenas, ou (c) excluir do registro. Sem decisão do founder, o trecho fica em quarentena."
+  - level: HITL
+    condition: "OVERDUE CRÍTICO COM ESCALADA (L2→HITL): Quando Echo identifica action item de reunião estratégica com mais de 7 dias de atraso e o assignee não respondeu a lembretes — Maestro escala para o founder com contexto completo (o que foi acordado, quando, por quem) para decisão de realocar, cancelar ou intervir diretamente."
+  - level: HITL
+    condition: "CUSTO DE PROCESSAMENTO ACIMA DE THRESHOLD (L3): Se estimativa de custo de tokens de uma reunião longa (> 3h) superar limite configurado (default: U$2 por reunião) — Maestro apresenta opções ao founder: processar completo, processar apenas segmentos marcados como críticos, ou processar com nível de detalhe reduzido."
+transitions:
+  - from: maestro
+    to: vox
+    condition: "Ativado por Maestro imediatamente após intake de reunião classificado. Processo totalmente determinístico — sem geração de conteúdo, apenas conversão de mídia para texto estruturado. Reprocessado aut…"
+  - from: vox
+    to: pulse
+    condition: "Ativado por Maestro após Vox concluir transcrição. Processo paralelo à análise inicial de Quill — Pulse entrega contexto enriquecido que Quill usa na segunda passagem de extração para garantir que de…"
+  - from: pulse
+    to: quill
+    condition: "Ativado por Maestro após Pulse entregar contexto enriquecido. Executa extração em paralelo nas 4 dimensões para otimizar tempo. Reprocessado pelo Maestro se Argos retornar action items sem owner/dead…"
+  - from: quill
+    to: vector
+    condition: "Ativado por Maestro após Quill concluir extração. Processo de enriquecimento e verificação antes da validação crítica de Argos. Também ativado proativamente quando founder faz pergunta direta sobre h…"
+  - from: vector
+    to: hermes
+    condition: "Ativado por Maestro SOMENTE após Argos retornar GO explícito na validação. É o único agente com permissão de escrita em sistemas externos (ClickUp, Notion, Slack, HubSpot). Toda ação de Hermes requer…"
+  - from: hermes
+    to: echo
+    condition: "Ativado por cron diário (07h30 no fuso do cliente) para verificar status de tasks criadas. Ativado 48h antes de deadline de qualquer task criada pelo squad. Ativado automaticamente 2h antes de reuniõ…"
+  - from: echo
+    to: argos
+    condition: "Ativado automaticamente por Maestro após Vector concluir enriquecimento. Gate obrigatório antes de Hermes. Se retornar NO-GO, Maestro devolve para Quill com instruções específicas de correção (máximo…"
+  - from: argos
+    to: argos-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: argos-2
+    to: maestro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - pulse
+  - quill

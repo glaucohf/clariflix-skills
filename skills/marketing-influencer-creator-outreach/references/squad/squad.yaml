@@ -1,0 +1,45 @@
+name: marketing-influencer-creator-outreach
+version: 0.1.0
+description: "De 10 creators ativados por mes no feeling para 80+ por trimestre por fit real de marca e performance — sem planilha, sem achismo, com ROAS rastreavel desde o primeiro post."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: ico
+components:
+  agents:
+    - curator.md
+    - radar-scout.md
+    - persona-fit-analyst.md
+    - contrato-maestro.md
+    - brief-architect.md
+    - content-guardian.md
+    - roas-tracker.md
+    - parceiro-certo.md
+  tasks:
+    - descobrir-creators-alinhados.md
+    - analisar-fit-creator.md
+    - negociar-contrato-de-colaboracao.md
+    - gerar-briefing-criativo-personalizado.md
+    - monitorar-publicacao-conteudo.md
+    - calcular-roas-real.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-influencer-creator-outreach-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - demand-gen-abm-orchestration
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M1 · TopSquad de Demand Gen & ABM Orchestration"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

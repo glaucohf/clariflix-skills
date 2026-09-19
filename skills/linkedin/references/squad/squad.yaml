@@ -1,0 +1,84 @@
+# ─────────────────────────────────────────────────────
+# LinkedIn Squad - Personal Branding & Content Strategy
+# ─────────────────────────────────────────────────────
+name: linkedin
+version: 1.0.0
+description: "Squad para gestão de presença no LinkedIn: análise de tendências, geração de conteúdo, otimização de perfil e estratégia de personal branding focado em Segurança Ofensiva e Automação com IA."
+author: "F0livora"
+license: MIT
+visibility: public
+
+slashPrefix: li
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+# ─────────────────────────────────────────────────────
+# Components
+# ─────────────────────────────────────────────────────
+components:
+  agents:
+    - carousel-designer.md
+    - ghostwriter.md
+    - linkedin-chief.md
+    - profile-analyst.md
+    - scriptwriter.md
+    - trend-scout.md
+
+  tasks:
+    - analyze-profile.md
+    - analyze-trending.md
+    - generate-carousel.md
+    - generate-post.md
+    - generate-script.md
+    - suggest-topics.md
+    - weekly-content-plan.md
+
+  workflows:
+    - weekly-content-cycle.yaml
+
+  templates:
+    - post-template.md
+    - carousel-template.md
+
+# ─────────────────────────────────────────────────────
+# Configuration
+# ─────────────────────────────────────────────────────
+config:
+  extends: extend
+  content-strategy:
+    frequency: "1x/week"
+    formats:
+      - text-post
+      - carousel
+      - storytelling
+    pillars:
+      - "Segurança Ofensiva (Pentesting, Red Team)"
+      - "Automação com IA (AI Agents, LLMs)"
+      - "Dia a dia em CyberSec"
+      - "Dicas para juniores em TI/Segurança"
+    tone: "formal-descontraído"
+    language: "pt-BR"
+    target_audience:
+      - "Profissionais de segurança"
+      - "Juniores da área de TI"
+
+# ─────────────────────────────────────────────────────
+# Dependencies
+# ─────────────────────────────────────────────────────
+dependencies:
+  node: []
+  python: []
+  squads: []
+
+# ─────────────────────────────────────────────────────
+# Tags
+# ─────────────────────────────────────────────────────
+tags:
+  - linkedin
+  - personal-branding
+  - content-strategy
+  - social-media
+  - cybersecurity
+  - ai-automation

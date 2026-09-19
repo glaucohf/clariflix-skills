@@ -1,0 +1,158 @@
+workflow_name: ops_cs_handoff_orchestrator_hitl_pipeline
+description: "Nenhuma ação irreversível sem aprovação humana — e nenhum humano sobrecarregado com trivialidades."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-handoff-orchestrator-hitl
+area: "Operações & CS"
+topsquad: "O1 · Atendimento & Suporte Conversacional"
+agent_sequence:
+  - hieronimus
+  - cassio
+  - beatriz
+  - renato
+  - selene
+  - dora
+  - fabio
+  - vitor
+key_commands:
+  - "*classificar-criticidade"
+  - "*empacotar-contexto"
+  - "*monitorar-handoffs-l3"
+  - "*analisar-falso-positivo"
+  - "*determinar-canal-enviado"
+  - "*registrar-decisao-humana"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: hieronimus
+success_indicators:
+  - "Taxa de ações irreversíveis sem aprovação L3: meta ZERO (tolerância zero, alerta P0 se >0)"
+  - "Taxa de handoffs desnecessários (falso positivo L3): meta <10% (baseline estimado: 35-50% nos sistemas atuais)"
+  - "Tempo médio de resolução de handoff L3: meta <8 minutos para urgentes, <2h para normais (baseline: 4h+)"
+  - "Taxa de acerto da classificação Cassio (validada pelo Vitor): meta >92% na auditoria semanal"
+  - "Cobertura de prova de trabalho no ClickUp: meta 100% das decisões L3 registradas como task com decisor e timestamp"
+  - "SLA compliance de notificação: meta 100% dos handoffs L3 notificados em <2 minutos após classificação"
+  - "Score de qualidade Vitor: meta >85/100 na auditoria quinzenal (abre plano de ação se <80)"
+  - "Volume de handoffs por tier (distribuição saudável): L0 >60%, L1 20-25%, L2 10-15%, L3 <8% do total de ações"
+deliverable:
+  description: "Artefato central — Decisão de Handoff Registrada: cada interação do squad gera uma task no ClickUp com: (1) action_id único, (2) tier atribuído com justificativa, (3) briefing de contexto empacotado, (4) quem recebeu o handoff e quando, (5) decisão tomada (aprovado/rejeitado/modificado) com timestamp, (6) tempo de resolução, (7) feedback de qualidade da classificação. Dashboard semanal: Relatório de Saúde da Matriz com distribuição de tiers, taxa de acerto, volume de handoffs por tipo, SLA compliance e proposta de recalibração."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: hieronimus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Classificar Criticidade"
+    agent: cassio
+    task: classificar-criticidade.md
+    trigger: "Toda e qualquer acao solicitada por qualquer agente do ecossistema antes de ser executada. Tambem dispara quando Hieronimus detecta acao de alto risco em fila de tickets."
+    checkpoint:
+      criteria: "JSON estruturado: {action_id, criticality_score, reversibility_class, autonomy_tier, risk_flags[], justification, confidence_pct, requires_human_review: bool}"
+      veto_condition: "Saída sem veredito do critic Vitor; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Empacotar Contexto"
+    agent: beatriz
+    task: empacotar-contexto.md
+    trigger: "Dispara imediatamente apos Cassio classificar acao como L3. Tambem dispara em re-escalonamentos quando o primeiro humano nao respondeu dentro do SLA."
+    checkpoint:
+      criteria: "Briefing de Decisão estruturado: {summary_2_lines, client_context, action_requested, options_with_impact[], agent_recommendation, urgency_level, sla_deadline, approval_link, rejection_link, escalation_link}. Entregue via Slack (canal #hitl…"
+      veto_condition: "Saída sem veredito do critic Vitor; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Monitorar Handoffs L3"
+    agent: renato
+    task: monitorar-handoffs-l3.md
+    trigger: "Cron a cada 5 minutos para verificar handoffs abertos. Disparo imediato quando novo handoff L3 é criado. Disparo por webhook quando decisão é registrada (para fechar o ticket de monitoramento)."
+    checkpoint:
+      criteria: "Alertas de lembrete via Slack/email, registros de auditoria no ClickUp (quem foi notificado, quando, qual decisão tomou), relatório diário de SLA compliance (% handoffs respondidos dentro do prazo por tier de urgência)"
+      veto_condition: "Saída sem veredito do critic Vitor; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Analisar Falso Positivo"
+    agent: selene
+    task: analisar-falso-positivo.md
+    trigger: "Cron semanal (domingo 22h). Disparo imediato quando taxa de falso-positivo ultrapassa 15% em qualquer categoria no período de 48h. Disparo manual via comando do supervisor CS."
+    checkpoint:
+      criteria: "Relatorio de Deriva da Matriz: {actions_to_downgrade[], actions_to_upgrade[], confidence_per_change, evidence_samples[], estimated_impact_on_handoff_volume, proposed_matrix_delta}. Salvo no ClickUp como task com checklist de aprovacao."
+      veto_condition: "Saída sem veredito do critic Vitor; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Determinar Canal Enviado"
+    agent: dora
+    task: determinar-canal-enviado.md
+    trigger: "Dispara imediatamente após Beatriz completar o Briefing de Decisão. Também dispara quando Renato identifica SLA expirado e precisa re-rotear para nível superior."
+    checkpoint:
+      criteria: "Rota de entrega: {primary_recipient, channel, backup_recipient, escalation_chain[], delivery_timestamp, notification_sent: bool}. Log registrado no ClickUp."
+      veto_condition: "Saída sem veredito do critic Vitor; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Registrar Decisão Humana"
+    agent: fabio
+    task: registrar-decisao-humana.md
+    trigger: "Webhook disparado pelo sistema de aprovação (Slack workflow, Zendesk trigger, ou interface customizada) imediatamente após decisão ser registrada."
+    checkpoint:
+      criteria: "Registro estruturado de feedback: {action_id, decision, decision_maker, time_to_decide_min, feedback_classification_correct, feedback_reason, modification_details}. Armazenado no Supabase/Postgres. Resumo semanal enviado para Selene."
+      veto_condition: "Saída sem veredito do critic Vitor; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: vitor
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: hieronimus
+    checkpoint:
+      criteria: "Entregável consolidado: Artefato central — Decisão de Handoff Registrada: cada interação do squad gera uma task no ClickUp com: (1) action_id único, (2) tier atribuído com justificativa, (3) briefing de contexto empacotado,…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "L3 obrigatório: toda ação com impacto financeiro acima do threshold configurado (ex: reembolso >R$500, crédito >R$200, desconto >20%) — humano aprova antes de qualquer execução, sem exceção."
+  - level: HITL
+    condition: "L3 obrigatório: toda ação irreversível independente de valor — cancelamento definitivo de conta, exclusão de dados, envio de contrato assinado, alteração de cláusula contratual, bloqueio/banimento de usuário."
+  - level: HITL
+    condition: "L3 obrigatório: toda ação com risco legal ou de compliance — compartilhamento de dados com terceiros, resposta a solicitação jurídica, qualquer comunicação que mencione termos legais ou rescisão."
+  - level: HITL
+    condition: "L3 obrigatório: toda ação de impacto reputacional alto — publicação de resposta pública em canal externo (redes sociais, review sites), comunicados de crise, respostas à imprensa."
+  - level: HITL
+    condition: "Aprovação humana para recalibração da matriz (output do Selene): nenhum threshold de autonomia é alterado sem validação do supervisor CS ou gerente de operações."
+  - level: HITL
+    condition: "Revisão humana quinzenal do Relatório de Auditoria do Vitor: supervisor CS assina o score de qualidade e valida as correções propostas."
+  - level: HITL
+    condition: "Gate humano na primeira semana pos-implantacao: humano revisa 100% das classificacoes (nao apenas L3) para construir confianca na matriz antes de operar em modo autonomo."
+transitions:
+  - from: hieronimus
+    to: cassio
+    condition: "Toda e qualquer acao solicitada por qualquer agente do ecossistema antes de ser executada. Tambem dispara quando Hieronimus detecta acao de alto risco em fila de tickets."
+  - from: cassio
+    to: beatriz
+    condition: "Dispara imediatamente apos Cassio classificar acao como L3. Tambem dispara em re-escalonamentos quando o primeiro humano nao respondeu dentro do SLA."
+  - from: beatriz
+    to: renato
+    condition: "Cron a cada 5 minutos para verificar handoffs abertos. Disparo imediato quando novo handoff L3 é criado. Disparo por webhook quando decisão é registrada (para fechar o ticket de monitoramento)."
+  - from: renato
+    to: selene
+    condition: "Cron semanal (domingo 22h). Disparo imediato quando taxa de falso-positivo ultrapassa 15% em qualquer categoria no período de 48h. Disparo manual via comando do supervisor CS."
+  - from: selene
+    to: dora
+    condition: "Dispara imediatamente após Beatriz completar o Briefing de Decisão. Também dispara quando Renato identifica SLA expirado e precisa re-rotear para nível superior."
+  - from: dora
+    to: fabio
+    condition: "Webhook disparado pelo sistema de aprovação (Slack workflow, Zendesk trigger, ou interface customizada) imediatamente após decisão ser registrada."
+  - from: fabio
+    to: vitor
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: vitor
+    to: hieronimus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

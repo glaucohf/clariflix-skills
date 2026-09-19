@@ -1,0 +1,47 @@
+name: founder-clone-digital-twin
+version: 0.1.0
+description: "Seu conhecimento tácito responde 24/7 — sem precisar de vócê."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: ced
+components:
+  agents:
+    - orion.md
+    - echo.md
+    - atlas.md
+    - chronicle.md
+    - strategos.md
+    - herald.md
+    - vigil.md
+    - gate.md
+    - sentinel.md
+  tasks:
+    - responder-perguntas.md
+    - conduzir-pesquisa-multi-fonte.md
+    - ingerir-fontes-de-conhecimento.md
+    - simular-cenarios-futuros.md
+    - gerar-drafts-de-board-packs.md
+    - monitorar-sinais-competitivos.md
+    - controlar-acoes-l3.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-clone-digital-twin-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - chief-of-staff-clone-do-founder
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F1 · TopSquad de Chief of Staff & Clone do Founder"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

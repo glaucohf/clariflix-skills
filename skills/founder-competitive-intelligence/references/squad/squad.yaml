@@ -1,0 +1,45 @@
+name: founder-competitive-intelligence
+version: 0.1.0
+description: "Enquanto seus concorrentes executam o próximo movimento, você já tem a contra-jogada pronta — monitoramento 24/7 com alertas preditivos que transformam inteligência em vantagem antes que a janela de reação feche."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: icc
+components:
+  agents:
+    - atlas.md
+    - hawk.md
+    - lynx.md
+    - ares.md
+    - hermes.md
+    - memo.md
+    - veritas.md
+    - veritas-2.md
+  tasks:
+    - coletar-sinais-competitivos.md
+    - classificar-movimentos-estrategicos.md
+    - simular-cenarios-estrategicos.md
+    - enviar-alertas-formatados.md
+    - sintetizar-inteligencia-competitiva.md
+    - verificar-qualidade-da-evidencia.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-competitive-intelligence-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - inteligencia-competitiva-de-mercado
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F3 · TopSquad de Inteligência Competitiva & de Mercado"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

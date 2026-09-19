@@ -1,0 +1,61 @@
+pack:
+  name: founder-board-investor-relations
+  version: 0.1.0
+  short-title: "Board & Investor Relations"
+  description: "Board packs source-grounded em horas, não dias — cada número rastreável a uma fonte, cada narrativa alinhada à tese."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🏦"
+  slashPrefix: boardInvestorRelations
+name: founder-board-investor-relations
+version: 0.1.0
+description: "Board packs source-grounded em horas, não dias — cada número rastreável a uma fonte, cada narrativa alinhada à tese."
+entry_agent: cassidy
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: founder-office
+  topsquad: "F5"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - cassidy
+  - rex
+  - marlowe
+  - vera
+  - sage
+  - quincy
+  - cipher
+  - gate
+  - axiom
+tasks:
+  - reconciliar-metricas.md
+  - sintetizar-contexto-mercado.md
+  - auditar-fontes-primarias.md
+  - alinhar-narrativa.md
+  - simular-perguntas-board.md
+  - manter-data-room-atualizado.md
+  - controlar-envio-externo.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - founder-board-investor-relations-pipeline.yaml
+checklists:
+  - critic-axiom.md
+integrations:
+  - "Stripe / QuickBooks / Conta Azul (receita, MRR/ARR, burn, runway — fonte primária para Rex)"
+  - "HubSpot / Salesforce CRM (pipeline, novos clientes, churn, expansão, CAC — fonte primária para Rex)"
+  - "Mixpanel / Amplitude / PostHog (métricas de produto, DAU/MAU, NPS, feature adoption)"
+  - "Gupy / Lever / Greenhouse (headcount, hiring, attrition — componente de board pack)"
+  - "Captable.io / Carta (cap table, ownership, opções — para seções de governance e rodada)"
+  - "Notion (data room estruturado, board packs arquivados, knowledge base do squad)"
+  - "Google Drive / Slides (geração e armazenamento de apresentações de board)"
+  - "Gmail / Outlook (envio controlado de investor updates via Gate Agent após aprovação HITL)"
+  - "Slack (entrega de drafts e alertas ao founder, interface conversacional com Cassidy)"
+  - "ClickUp (audit trail de ciclos, tasks de revisão, prova de trabalho do squad)"
+  - "WrenAI / Snowflake Cortex (camada semântica governada para text-to-SQL do Rex)"
+  - "EXA / Perplexity MCP (deep research externo para Marlowe — benchmarks e contexto de mercado)"
+  - "Langfuse (observabilidade OTEL — tracing de tokens, custo por agente, task success rate)"
+  - "Vector DB — Pinecone / Qdrant (corpus do founder para Sage, histórico de Source Manifests)"
+  - "Sembly / Fireflies (transcrições de board meetings e investor calls para alimentar Quincy e Sage)"

@@ -1,0 +1,28 @@
+row: gestao
+title: Strategic Foresight & Wargaming
+title_netflix: STRATEGIC FORESIGHT & WARGAMING
+subtitle: Explorar cenários estratégicos, simular respostas de concorrentes e testar decisões sob diferentes hipóteses
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-strategic-foresight-wargaming para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Atlas
+  - Cassandra
+  - Brutus
+  - Chisel
+  - Pythia
+  - Memo
+  - Tripwire
+  - Ajax
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

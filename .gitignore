@@ -1,1 +1,6 @@
 .wrangler/
+.venv/
+__pycache__/
+*.pyc
+dist/
+.verification/

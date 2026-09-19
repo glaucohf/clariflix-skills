@@ -1,0 +1,45 @@
+name: vendas-agendamento-appointment-setting
+version: 0.1.0
+description: "Do lead ao calendário confirmado: zero atrito, zero no-show, zero slot perdido."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: a
+components:
+  agents:
+    - maestro.md
+    - radar.md
+    - slot.md
+    - vigil.md
+    - bounce.md
+    - intell.md
+    - pulse.md
+    - sentinela.md
+  tasks:
+    - qualificar-lead-conversacionalmente.md
+    - criar-evento.md
+    - enviar-lembretes-agendados.md
+    - reagendar-oportunidades-perdidas.md
+    - enriquecer-dossie-lead.md
+    - priorizar-leads.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-agendamento-appointment-setting-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - scoring-roteamento-agendamento
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V3 · TopSquad de Scoring, Roteamento & Agendamento"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

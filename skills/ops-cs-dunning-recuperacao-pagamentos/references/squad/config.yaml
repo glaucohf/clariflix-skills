@@ -1,0 +1,57 @@
+pack:
+  name: ops-cs-dunning-recuperacao-pagamentos
+  version: 0.1.0
+  short-title: "Cobrança e Recuperação de Pagamentos"
+  description: "Transforma falhas de pagamento em receita recuperada — sem depender de humano para perseguir cada inadimplente com a cadência e o tom certos."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "💰"
+  slashPrefix: cobrancaERecuperacaoDePagamentos
+name: ops-cs-dunning-recuperacao-pagamentos
+version: 0.1.0
+description: "Transforma falhas de pagamento em receita recuperada — sem depender de humano para perseguir cada inadimplente com a cadência e o tom certos."
+entry_agent: cobalt
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: operacoes-cs
+  topsquad: "O4"
+  prioridade: "alta"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - cobalt
+  - dante
+  - iris
+  - zap
+  - flex
+  - pulse
+  - atlas
+  - vault
+  - sentinel
+tasks:
+  - calcular-sequencia-de-cobranca.md
+  - enviar-email-de-recuperacao.md
+  - enviar-mensagens-personalizadas.md
+  - classificar-respostas-cliente.md
+  - enviar-sms-de-reforco.md
+  - analisar-padroes-de-inadimplencia.md
+  - atualizar-dados-de-pagamento.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - ops-cs-dunning-recuperacao-pagamentos-pipeline.yaml
+checklists:
+  - critic-sentinel.md
+integrations:
+  - "Gateway de Pagamento: Stripe (Payment Intents, Customer Portal, Account Updater, webhooks de falha em tempo real), Asaas, Iugu, Vindi ou PagSeguro — fonte primária de eventos de falha e endpoint de retry de cobrança"
+  - "WhatsApp Business API: 360dialog, Twilio ou Meta Cloud API direta — canal #1 de recuperação no Brasil, com gestão de templates HSM aprovados e janela de conversação de 24h"
+  - "Email: SendGrid ou Amazon SES — canal de cobrança formal com rastreamento de abertura, clique e resposta"
+  - "SMS: Twilio, Zenvia ou Sinch — canal de reforço para steps críticos de última chance"
+  - "ClickUp (Brain2 / MCP server) — hub de tasks de cobranca, prova de trabalho, historico de sequencias, HITL queue e registro de outcomes, espelhando arquitetura AIOX"
+  - "CRM: HubSpot ou Salesforce — dados de conta (MRR, segmento, CSM responsável, tempo de casa, histórico de pagamentos, contatos autorizados)"
+  - "Supabase / Postgres — estado das sequências de dunning, log de mensagens enviadas, histórico de tentativas de cobrança, negociações registradas, cohorts de inadimplentes e bad debt"
+  - "Langfuse — observabilidade OTEL, tracing de cada sequência de dunning, evals de qualidade das mensagens geradas pelo Flex, quality gates dev/staging/prod, rastreamento de custo por cobrança recuperada"
+  - "Claude Agent SDK / LangGraph — orquestração do workflow de recuperação com estado persistido, retry logic e gerenciamento de eventos assíncronos (resposta de cliente pode chegar horas depois)"
+  - "Slack — notificações HITL urgentes para time financeiro (negociação acima do threshold), alertas de spike de falhas para time técnico, relatório semanal de recuperação para Head Financeiro"
+  - "Plataforma de CS (ChurnZero, Custify, Gainsight) — integração bidirecional: leitura de segmento e health score do cliente para personalizar a abordagem, escrita de eventos de dunning no timeline do cliente para o CSM ter contexto completo"

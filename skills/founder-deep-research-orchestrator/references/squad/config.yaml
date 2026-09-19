@@ -1,0 +1,59 @@
+pack:
+  name: founder-deep-research-orchestrator
+  version: 0.1.0
+  short-title: "Deep Research Estratégico"
+  description: "Transforma qualquer pergunta estratégica em um brief 100% citado em minutos — sem fragmentação, sem alucinação, com rastreabilidade total de fontes."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "♟️"
+  slashPrefix: deepResearchEstrategico
+name: founder-deep-research-orchestrator
+version: 0.1.0
+description: "Transforma qualquer pergunta estratégica em um brief 100% citado em minutos — sem fragmentação, sem alucinação, com rastreabilidade total de fontes."
+entry_agent: orion
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: founder-office
+  topsquad: "F4"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - orion
+  - nexus
+  - blade
+  - lex
+  - thesis
+  - prism
+  - parallax
+  - vera
+  - sage
+  - vera-2
+tasks:
+  - analisar-tendencias-setoriais.md
+  - monitorar-concorrentes.md
+  - analisar-riscos-regulatorios.md
+  - analisar-teses-investimento.md
+  - analisar-tecnologiasemergentes.md
+  - verificar-credibilidade-fonte.md
+  - verificar-contradicoes-claims.md
+  - humanizar-briefs.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - founder-deep-research-orchestrator-pipeline.yaml
+checklists:
+  - critic-vera-2.md
+integrations:
+  - "Slack (intake de perguntas via canal #founder-intel + entrega de briefs + alertas de Blade sobre movimentos competitivos)"
+  - "Notion (Knowledge Base central — armazenamento permanente de briefs, corpus do founder, histórico de pesquisas)"
+  - "ClickUp (criação automática de tasks de follow-up pelo Echo após cada brief — prova de trabalho e rastreabilidade)"
+  - "Claude Agent SDK + LangGraph (orquestração stateful do grafo multi-agente — gerencia paralelismo dos workers e estado da sessão)"
+  - "Langfuse (observabilidade OTEL — tracing de custo por agente/token, evals de qualidade por brief, dashboard de KPIs do squad)"
+  - "Brave Search API ou Perplexity API (web search dos workers — principal fonte de dados em tempo real)"
+  - "Vector DB — Pinecone ou Qdrant (armazenamento e busca semântica do corpus do founder, briefs históricos e base de conhecimento)"
+  - "Gmail (ingestão de newsletters, relatórios e sinais estratégicos para alimentar workers via Echo/Chief of Staff)"
+  - "LinkedIn Sales Navigator (Blade usa para sinais de hiring e movimentos de concorrentes)"
+  - "Crunchbase / PitchBook API pública (Thesis usa para sinais de fundraising e múltiplos)"
+  - "MCP Servers (camada de integração universal — cada ferramenta exposta como tool para os agents via protocolo MCP)"

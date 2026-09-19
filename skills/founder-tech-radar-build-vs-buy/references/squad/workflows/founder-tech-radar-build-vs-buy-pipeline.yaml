@@ -1,0 +1,175 @@
+workflow_name: founder_tech_radar_build_vs_buy_pipeline
+description: "Nunca mais pague lock-in com juros — cada decisao de tecnologia e vendor passa pelo crivo sistemico de maturidade, custo total e risco antes de chegar ao founder, transformando escolhas tecnicas em alavancagem estrategica mensuravel."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: founder-tech-radar-build-vs-buy
+area: "Founder Office"
+topsquad: "F3 · Inteligência Competitiva & de Mercado"
+agent_sequence:
+  - lens
+  - nox
+  - vera
+  - kai
+  - vox
+  - aegis
+  - aria
+  - gaia
+  - aria-2
+key_commands:
+  - "*manter-tech-radar-atualizado"
+  - "*monitorar-ecossistema-tecnico"
+  - "*analisar-decisoes-tecnologicas"
+  - "*responder-perguntas-tecnicas"
+  - "*avaliar-risco-vendor"
+  - "*avaliar-riscos-tecnologicos"
+  - "*registrar-decisao-tecnica"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: lens
+success_indicators:
+  - "Cobertura de decisoes tecnicas embasadas por radar: percentual de decisoes de tech e selecao de vendor de alto impacto no trimestre que tiveram BvB Analysis e/ou posicionamento no Tech Radar como input formal — meta 100% das decisoes Tier 1 versus baseline tipico abaixo de 20%"
+  - "Percentual de vendors Tier 1 com risco avaliado: percentual do Vendor Risk Register Tier 1 com Vendor Risk Assessment completo de Aegis e Lock-in Score atualizado nos ultimos 90 dias — meta 100% de Tier 1 e 80% de Tier 2"
+  - "Latencia de URGENT Alert: tempo entre Vera detectar CVE critico, EOL ou mudanca de preco acima de 30% em vendor Tier 1 e o alerta chegar ao founder via Slack — meta abaixo de 4h (SLA de deteccao e notificacao)"
+  - "Taxa de aprovacao de BvB Analyses sem revisao de ARIA: zero tolerancia — 100% das BvB Analyses de Tier 1 devem passar pelo gate de ARIA antes de entrega ao founder. KPI de processo nao de qualidade — qualquer analise entregue sem gate de ARIA e violacao do protocolo"
+  - "Qualidade de premissas de TCO: percentual de premissas de TCO de BvB Analyses historicas que se materializaram dentro de +/- 30% do estimado versus o que realmente aconteceu — revisado trimestralmente pelo ciclo de aprendizado de ARIA. Meta acima de 70% de premissas dentro da banda de 30%"
+  - "Tech Radar Freshness Score: percentual de componentes do Tech Radar com avaliacao atualizada nos ultimos 90 dias (pelo menos um sinal processado por Vera, mesmo que a posicao nao tenha mudado) — meta 100% de Tier 1, 80% de Tier 2"
+  - "Decisoes de lock-in evitadas: numero de componentes movidos para HOLD pelo Tech Radar com plano de migracao formalmente aprovado versus componentes que foram forcados a migrar de emergencia por problema de vendor (crise de lock-in nao antecipada) — meta de zero migracoes emergenciais nao antecipadas no trimestre"
+  - "Technology Decision Log completeness: percentual de decisoes tecnicas de Tier 1 implementadas nos ultimos 12 meses que tem ADR registrado no Technology Decision Log com todas as secoes obrigatorias preenchidas — meta 100%"
+  - "Tempo de BvB Analysis para decisoes prioritarias: tempo entre Lens triggar BvB Analysis urgente (decisao ad-hoc de alta urgencia) e entrega do Decision Package completo (Kai + Aegis + ARIA) ao founder — meta abaixo de 72h para decisoes prioritarias, 10 dias uteis para analises regulares"
+deliverable:
+  description: "Tech Radar Monthly Pack entregue na primeira segunda-feira de cada mes no ClickUp (task fechada por Lens com todos os artefatos anexados) e no canal Slack #tech-radar-decisions, contendo: (1) Tech Radar Diagram atualizado — versao SVG do mes com todos os movimentos de quadrante destacados versus versao anterior, exportavel e embed-ready para Notion/Confluence; (2) Tech Radar Changelog do mes — lista completa de movimentos de quadrante com item, quadrante anterior, quadrante novo, justificativa em 2-3 frases e link para artefatos de suporte; (3) Vendor Risk Register update — Lock-in Score e Vendor Health Score atualizados para todos os Tier 1, novos Vendor Risk Assessments de Aegis concluidos no mes, Red Flags identificados; (4) BvB Analyses concluidas no mes — lista de todas as analises finalizadas com recomendacao, veredicto de ARIA, status de aprovacao do founder e ADR criado por Gaia; (5) Ecosystem Signals Summary — top 10 sinais de Vera do mes por relevancia (CVEs criticos, EOLs, mudancas de preco, alternativas emergentes promissoras); (6) URGENT Alerts do mes — lista de todos os alertas criticos disparados, canal de entrega, tempo de resposta do founder e acao tomada; (7) Quality Metrics do mes — cobertura do radar, latencia media de alert, taxa de premissas de TCO validadas, custo por analise (via Langfuse). ADICIONAL TRIMESTRAL: Tech Strategy Quarterly com Technology Roadmap Recommendations e gate L3 do founder. SOB DEMANDA: BvB Analysis Report prioritario com Decision Package consolidado e gate HITL via Gaia. Artefato verificavel: task no ClickUp com numero sequencial, timestamp de entrega, assinatura digital de Lens e links para todos os documentos — rastreavel por mes, por componente e por tipo de decisao."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: lens
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Manter Tech Radar Atualizado"
+    agent: nox
+    task: manter-tech-radar-atualizado.md
+    trigger: "Stack Audit inicial no Discovery (setup completo); sinais de Vera indicando mudanca relevante no ecossistema de um componente monitorado (trigger de reavaliacao de quadrante); BvB Analysis de Kai concluida com recomendacao de substituicao…"
+    checkpoint:
+      criteria: "Tech Radar Diagram atualizado (formato visual com Adopt/Trial/Assess/Hold, exportavel como SVG e JSON para embed no Notion), Tech Radar Changelog (lista de todos os movimentos de quadrante com data, item, quadrante anterior, quadrante novo…"
+      veto_condition: "Saída sem veredito do critic ARIA 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Monitorar Ecossistema Tecnico"
+    agent: vera
+    task: monitorar-ecossistema-tecnico.md
+    trigger: "Cron diario automatico (changelogs e releases Tier 1 a cada 6h, newsletters e agregadores a cada 12h, Crunchbase e Product Hunt a cada 24h, Tier 2 e Tier 3 a cada 48h); webhook de deteccao de mudanca em paginas de preco de vendors monitora…"
+    checkpoint:
+      criteria: "Feed diario de sinais classificados (JSON estruturado por componente: tipo de sinal, fonte, timestamp, classificacao URGENT/RELEVANT/REFERENCE, resumo de 2-3 frases do que mudou e por que importa para o stack), Ecosystem Radar Digest seman…"
+      veto_condition: "Saída sem veredito do critic ARIA 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Analisar Decisoes Tecnologicas"
+    agent: kai
+    task: analisar-decisoes-tecnologicas.md
+    trigger: "Lens triggra BvB Analysis para: (a) nova necessidade tecnica identificada pelo founder/CTO acima do threshold de criticidade definido no Discovery; (b) componente Tier 1 ou Tier 2 que Nox moveu para quadrante HOLD ou ASSESS baseado em sina…"
+    checkpoint:
+      criteria: "BvB Analysis Report completo (estrutura padrao: Executive Summary com recomendacao e nivel de confianca, Tabela BvB-7 com pontuacao por dimensao e peso, TCO Comparison (build vs. buy, 24-36 meses), Risk Matrix (riscos de cada opcao com pro…"
+      veto_condition: "Saída sem veredito do critic ARIA 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Responder Perguntas Técnicas"
+    agent: vox
+    task: responder-perguntas-tecnicas.md
+    trigger: "Mensagem direta do founder para Vox via Slack ou interface configurada (Quick Consult, latencia maxima de 30min para Quick Answer); Lens identifica que decisao tecnica iminente se beneficiaria de Pre-Decision Brief antes de triggar BvB Ana…"
+    checkpoint:
+      criteria: "Quick Answer estruturada (para Quick Consult Mode: contexto da resposta no caso especifico + recomendacao + caveats + pre-condicoes para rever a resposta — sempre com nivel de confianca declarado e indicacao do que Vox nao sabe com certeza…"
+      veto_condition: "Saída sem veredito do critic ARIA 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Avaliar Risco Vendor"
+    agent: aegis
+    task: avaliar-risco-vendor.md
+    trigger: "Kai finaliza BvB Analysis com recomendacao de vendor especifico para Tier 1 ou Tier 2 (Aegis executa Vendor Risk Assessment antes de qualquer recomendacao final chegar ao founder — gate obrigatorio para Tier 1); Vera detecta mudanca em ToS…"
+    checkpoint:
+      criteria: "Vendor Risk Assessment Report (estrutura padrao: Risk Score agregado 0-10 por dimensao com breakdown, Red Flags listados (qualquer dimensao com score abaixo de 5 e automaticamente Red Flag), Blocking Issues (items que devem ser resolvidos…"
+      veto_condition: "Saída sem veredito do critic ARIA 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Avaliar Riscos Tecnológicos"
+    agent: aria
+    task: avaliar-riscos-tecnologicos.md
+    trigger: "SEMPRE antes de qualquer BvB Analysis Report de Kai ser entregue ao founder (gate obrigatorio para Tier 1 — sem excecao); sempre antes de qualquer recomendacao de movimento de quadrante de ASSESS para ADOPT ou de TRIAL para ADOPT que envol…"
+    checkpoint:
+      criteria: "Adversarial Review Report com veredicto APPROVED/NEEDS_REVISION/BLOCKED: lista de premissas questionadas com nivel de preocupacao (LOW/MEDIUM/HIGH) para cada uma, Worst-Case Scenario Matrix (melhor caso vs. caso esperado vs. pior caso para…"
+      veto_condition: "Saída sem veredito do critic ARIA 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Registrar Decisão Técnica"
+    agent: gaia
+    task: registrar-decisao-tecnica.md
+    trigger: "Lens triggra gate L3 para qualquer decisao de: (a) adocao de novo vendor Tier 1 (requer ARIA APPROVED + Aegis APPROVED + gate L3 do founder — triplo gate); (b) substituicao de componente Tier 1 existente; (c) decisao de Build para componen…"
+    checkpoint:
+      criteria: "Gate HITL criado no ClickUp (task de aprovacao com deadline, Decision Package anexado, link para todos os artefatos) e notificacao enviada ao founder/CTO via canal configurado, confirmacao de gate concluido (APPROVED/APPROVED_WITH_CONDITIO…"
+      veto_condition: "Saída sem veredito do critic ARIA 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: aria-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: lens
+    checkpoint:
+      criteria: "Entregável consolidado: Tech Radar Monthly Pack entregue na primeira segunda-feira de cada mes no ClickUp (task fechada por Lens com todos os artefatos anexados) e no canal Slack #tech-radar-decisions, contendo: (1) Tech Ra…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovacao do Stack Audit e criterios de threshold no Discovery (Semana 2) — founder e CTO validam o inventario completo de sistemas, as classificacoes de criticidade (Tier 1/2/3), e os criterios de threshold que trigam BvB Analysis automatica (custo minimo, nivel de impacto). Gate L3 obrigatorio — sem esta aprovacao o squad nao opera em producao. Define o escopo de toda a operacao"
+  - level: HITL
+    condition: "Aprovacao do Tech Radar v1.0 ao final do Deep Dive (Semana 4) — founder e/ou CTO revisam o posicionamento inicial de todos os componentes nos quadrantes Adopt/Trial/Assess/Hold, questionam posicionamentos que parecem incorretos com base em contexto interno nao capturado, e assinam o Vendor Risk Register inicial. Gate L3 — este documento se torna a linha de base de toda decisao futura"
+  - level: HITL
+    condition: "Gate triplo para adocao de novo vendor Tier 1 — Kai (BvB APPROVED) + Aegis (Vendor Risk APPROVED ou CONDITIONAL com clausulas) + ARIA (Adversarial Review APPROVED com condicoes) + Gaia envia Decision Package consolidado para aprovacao explicita do founder/CTO via ClickUp task. Irreversivel por natureza: contratos assinados, integracao implementada e dados migrados sao difficeis e caros de desfazer"
+  - level: HITL
+    condition: "Gate L3 para decisao de Build acima do threshold de TCO definido no Discovery — qualquer decisao de construir internamente componente com TCO estimado acima do threshold (ex: 3 meses de engenheiro ou R$50k) requer aprovacao explicita do founder com ARIA Worst-Case Scenarios documentados. Irreversivel: capacidade de engenheiro desviada nao pode ser recuperada"
+  - level: HITL
+    condition: "Aprovacao do Tech Strategy Quarterly — a cada trimestre, Lens apresenta o estado do Tech Radar, BvB Analyses concluidas, progresso em items HOLD e Technology Roadmap Recommendations para os proximos 2 trimestres. Gate L3: founder/CTO aprovam as recomendacoes antes de se tornarem diretriz tecnica do squad. Incluido no calendario de governanca do founder"
+  - level: HITL
+    condition: "Revisao de Vendor Risk Alerts gerados por Aegis para vendors Tier 1 ativos — quando Aegis detecta mudanca em ToS, DPA ou historico de incidente de seguranca em vendor Tier 1 ativo, Gaia cria gate L3 com prazo de 48h para o founder revisar e decidir: aceitar o risco com registro formal, iniciar due diligence adicional, ou triggar BvB Analysis de substituicao"
+  - level: HITL
+    condition: "Aprovacao de movimentos de quadrante com impacto em sistemas Tier 1 — quando Nox propoe mover componente Tier 1 para HOLD ou Tier 1/2 para ADOPT, gate L2 (CTO pode aprovar autonomamente) ou L3 (requer founder quando envolve custo ou risco acima de threshold) antes do movimento ser registrado como decisao oficial"
+  - level: HITL
+    condition: "Conditions Review Reminder de Gaia — quando as condicoes de revisao de um ADR sao atingidas (preco do vendor ultrapassou threshold, data de revisao chegou, Lock-in Score mudou apos renegociacao contratual), Gaia dispara gate L1 para o founder confirmar ciencia e decidir se aciona nova BvB Analysis ou mantem decisao anterior com registro atualizado"
+transitions:
+  - from: lens
+    to: nox
+    condition: "Stack Audit inicial no Discovery (setup completo); sinais de Vera indicando mudanca relevante no ecossistema de um componente monitorado (trigger de reavaliacao de quadrante); BvB Analysis de Kai con…"
+  - from: nox
+    to: vera
+    condition: "Cron diario automatico (changelogs e releases Tier 1 a cada 6h, newsletters e agregadores a cada 12h, Crunchbase e Product Hunt a cada 24h, Tier 2 e Tier 3 a cada 48h); webhook de deteccao de mudanca…"
+  - from: vera
+    to: kai
+    condition: "Lens triggra BvB Analysis para: (a) nova necessidade tecnica identificada pelo founder/CTO acima do threshold de criticidade definido no Discovery; (b) componente Tier 1 ou Tier 2 que Nox moveu para…"
+  - from: kai
+    to: vox
+    condition: "Mensagem direta do founder para Vox via Slack ou interface configurada (Quick Consult, latencia maxima de 30min para Quick Answer); Lens identifica que decisao tecnica iminente se beneficiaria de Pre…"
+  - from: vox
+    to: aegis
+    condition: "Kai finaliza BvB Analysis com recomendacao de vendor especifico para Tier 1 ou Tier 2 (Aegis executa Vendor Risk Assessment antes de qualquer recomendacao final chegar ao founder — gate obrigatorio p…"
+  - from: aegis
+    to: aria
+    condition: "SEMPRE antes de qualquer BvB Analysis Report de Kai ser entregue ao founder (gate obrigatorio para Tier 1 — sem excecao); sempre antes de qualquer recomendacao de movimento de quadrante de ASSESS par…"
+  - from: aria
+    to: gaia
+    condition: "Lens triggra gate L3 para qualquer decisao de: (a) adocao de novo vendor Tier 1 (requer ARIA APPROVED + Aegis APPROVED + gate L3 do founder — triplo gate); (b) substituicao de componente Tier 1 exist…"
+  - from: gaia
+    to: aria-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: aria-2
+    to: lens
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

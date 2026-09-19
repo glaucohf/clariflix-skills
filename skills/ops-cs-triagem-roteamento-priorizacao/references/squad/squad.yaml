@@ -1,0 +1,45 @@
+name: ops-cs-triagem-roteamento-priorizacao
+version: 0.1.0
+description: "Ticket certo, fila certa, no primeiro toque — zero reassignment, SLA intacto."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: tre
+components:
+  agents:
+    - triador-mor.md
+    - lara.md
+    - dante.md
+    - enzo.md
+    - bela.md
+    - rex.md
+    - faq-l0.md
+    - auditor-de-roteamento.md
+  tasks:
+    - classificar-intencao.md
+    - classificar-prioridade-ticket.md
+    - selecionar-fila-destino.md
+    - enriquecer-contexto-cliente.md
+    - detectar-e-agrupar-duplicatas.md
+    - autoresponder-consultas.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - ops-cs-triagem-roteamento-priorizacao-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - operacoes-cs
+  - atendimento-suporte-conversacional
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Operações & CS"
+  topsquad: "O1 · TopSquad de Atendimento & Suporte Conversacional"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

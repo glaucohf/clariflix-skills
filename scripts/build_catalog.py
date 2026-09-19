@@ -20,8 +20,13 @@ ROWS = {
     "sop": "Processos",
     "decisao": "Decisão & Clareza",
     "setores": "Por setor",
+    "vendas": "Vendas & Receita",
+    "marketing": "Marketing & Aquisição",
+    "operacoes": "Operações & Customer Success",
+    "gestao": "Gestão & Estratégia",
+    "especialistas": "Squads Especialistas",
 }
-ROW_ORDER = ["atendimento", "rotina", "conferencia", "sop", "decisao", "setores"]
+ROW_ORDER = list(ROWS)
 
 
 def parse_frontmatter(skill_md: Path) -> dict:
@@ -32,7 +37,9 @@ def parse_frontmatter(skill_md: Path) -> dict:
 
 
 def count_files(skill_dir: Path) -> int:
-    return sum(1 for p in skill_dir.rglob("*") if p.is_file() and p.name not in {"manifest.yaml"})
+    return sum(1 for p in skill_dir.rglob("*") if p.is_file()
+               and p.name != "manifest.yaml" and "__pycache__" not in p.parts
+               and p.suffix != ".pyc")
 
 
 def build(tag: str) -> dict:
@@ -47,10 +54,13 @@ def build(tag: str) -> dict:
         manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
         slug = fm["name"]
         version = fm.get("version", tag.lstrip("v"))
+        source_url = f"https://github.com/{REPO_SLUG}/tree/{tag}/skills/{slug}"
         install_url = f"https://raw.githubusercontent.com/{REPO_SLUG}/{tag}/skills/{slug}/SKILL.md"
         item = {
             "name": slug,
             "version": version,
+            "license": fm["license"],
+            "author": fm.get("author", ""),
             "path": f"skills/{slug}/SKILL.md",
             "description": cap200(fm["description"]),
             "row": manifest["row"],
@@ -62,20 +72,20 @@ def build(tag: str) -> dict:
             "files": count_files(skill_dir),
             "badge": manifest.get("badge", ""),
             "install_url": install_url,
-            "install_cmd": f"hermes skills install {install_url}",
+            "install_cmd": f"npx skills add {source_url} --skill {slug} -a hermes-agent -g",
             "chat_cmd": (
-                f"Inspecione e instale esta skill: {install_url}\n"
+                f"Inspecione e instale esta skill com todos os arquivos de apoio: {source_url}\n"
                 "Antes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. "
                 "Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá."
             ),
             "github_url": f"https://github.com/{REPO_SLUG}/blob/main/skills/{slug}/SKILL.md",
             "painel": manifest["painel"],
-            "runtime_only": slug in RUNTIME_ONLY,
+            "runtime_only": manifest.get("runtime_only", slug in RUNTIME_ONLY),
             "zip_url": f"https://github.com/{REPO_SLUG}/releases/download/{tag}/{slug}.zip",
             "prompt_url": f"{WELLKNOWN}/prompt/{slug}.md",
-            "npx_claude_code": f"npx skills add {WELLKNOWN} --skill {slug} -a claude-code -g",
-            "npx_codex": f"npx skills add {WELLKNOWN} --skill {slug} -a codex -g",
-            "npx_any": f"npx skills add {WELLKNOWN} --skill {slug} -g",
+            "npx_claude_code": f"npx skills add {source_url} --skill {slug} -a claude-code -g",
+            "npx_codex": f"npx skills add {source_url} --skill {slug} -a codex -g",
+            "npx_any": f"npx skills add {source_url} --skill {slug} -g",
         }
         image_path = f"images/skills/{slug}.webp"
         if (ROOT / "site" / image_path).is_file():
@@ -108,7 +118,9 @@ def build(tag: str) -> dict:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--tag", default="v0.1.0")
+    previous = ROOT / "catalog.json"
+    default_tag = "v" + json.loads(previous.read_text(encoding="utf-8"))["version"] if previous.exists() else "v0.1.0"
+    ap.add_argument("--tag", default=default_tag)
     args = ap.parse_args()
     catalog = build(args.tag)
     out = ROOT / "catalog.json"

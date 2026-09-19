@@ -1,0 +1,49 @@
+name: vendas-followup-nurture-reativacao
+version: 0.1.0
+description: "Cada lead que voce abandona e dinheiro que o concorrente embolsa — nos nao deixamos nenhum esfriar."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: fun
+components:
+  agents:
+    - maestro.md
+    - radar.md
+    - cronos.md
+    - volta.md
+    - sherlock.md
+    - atlas.md
+    - agenda.md
+    - memento.md
+    - vigia.md
+    - vigia-2.md
+  tasks:
+    - monitorar-eventos-de-reativacao.md
+    - sequenciar-toques-lead.md
+    - enviar-mensagem-personalizada.md
+    - enriquecer-dados-lead.md
+    - calcular-score-lead.md
+    - reagendar-reunioes.md
+    - recuperar-historico-de-interacoes.md
+    - verificar-mensagem.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-followup-nurture-reativacao-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - nurture-follow-up-reativacao
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V4 · TopSquad de Nurture, Follow-up & Reativação"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

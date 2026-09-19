@@ -1,0 +1,28 @@
+row: operacoes
+title: SLA & Health Monitoring Operacional
+title_netflix: SLA & HEALTH MONITORING OPERACIONAL
+subtitle: Analisar prazos de SLA e saúde operacional, priorizar riscos e preparar escalonamentos com contexto
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-sla-health-monitor para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - 'Sentinela-Mor (persona: Vítor, analista sênior de operações com obsessão por SLA'
+  - Radar
+  - Decifra
+  - Cronos
+  - Alarme
+  - Histos
+  - Âncora
+  - Cético de SLA
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

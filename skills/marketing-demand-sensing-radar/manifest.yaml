@@ -1,0 +1,28 @@
+row: marketing
+title: Demand Sensing Radar
+title_netflix: DEMAND SENSING RADAR
+subtitle: Pesquisar sinais de demanda e intenção de compra, priorizar oportunidades e propor ações de marketing
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use marketing-demand-sensing-radar para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Radar
+  - Pulse
+  - Vortex
+  - Nexus
+  - Sage
+  - Bolt
+  - Sigma
+  - Sigma 2
+  generos:
+  - Marketing
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

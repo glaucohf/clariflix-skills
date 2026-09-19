@@ -1,0 +1,45 @@
+name: marketing-dormant-lead-reactivation
+version: 0.1.0
+description: "Cada lead dormente na sua base e CAC já pago esperando ser resgatado — o squad que transforma necromarketing em pipeline real sem gastar um centavo em nova aquisição."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: dlr
+components:
+  agents:
+    - lazaro.md
+    - arqueologa.md
+    - radar.md
+    - oraculo-scorer.md
+    - lazaro-writer.md
+    - charon-dispatcher.md
+    - echo-analyst.md
+    - atena.md
+  tasks:
+    - reconstruir-historico-lead.md
+    - verificar-mudancas-em-leads.md
+    - calcular-score-de-reativacao-lead.md
+    - redigir-mensagens-de-reativacao.md
+    - enviar-mensagens-reativacao.md
+    - analisar-respostas-leads.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-dormant-lead-reactivation-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - captura-qualificacao-reativacao-de-leads
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M5 · TopSquad de Captura, Qualificação & Reativação de Leads"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

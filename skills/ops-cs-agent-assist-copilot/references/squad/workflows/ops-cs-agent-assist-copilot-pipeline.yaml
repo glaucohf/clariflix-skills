@@ -1,0 +1,179 @@
+workflow_name: ops_cs_agent_assist_copilot_pipeline
+description: "O atendente humano fala, o Copiloto já sabe a resposta — sugestão certa, no canal certo, em menos de 3 segundos."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-agent-assist-copilot
+area: "Operações & CS"
+topsquad: "O1 · Atendimento & Suporte Conversacional"
+agent_sequence:
+  - compass
+  - radar
+  - vault
+  - scribe
+  - memo
+  - lumen
+  - echo
+  - shield
+  - prism
+key_commands:
+  - "*classificar-intencao-do-cliente"
+  - "*recuperar-dados-de-conta"
+  - "*gerar-sugestao-de-resposta"
+  - "*gerar-resumo-executivo"
+  - "*sugerir-proximo-passo"
+  - "*analisar-sugestoes-atendente"
+  - "*monitorar-mensagens-atendente"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: compass
+success_indicators:
+  - "AHT (Average Handle Time): tempo médio de atendimento com copiloto vs. sem (meta: redução >= 35% em 90 dias)"
+  - "Suggestion Adoption Rate: % de sugestoes exibidas que o atendente aceita (integralmente ou editada) (meta: >= 55%)"
+  - "Suggestion Rejection Rate por Intencao: identifica intencoes onde o copiloto e fraco e precisa de melhoria de KB"
+  - "Edit Distance Ratio: quão diferente é a resposta editada em relação à sugestão original (meta: < 20% de edição = sugestão precisa)"
+  - "Critic Rejection Rate: % de sugestoes do Scribe rejeitadas pelo Prism antes de exibir (meta: < 10% — indica qualidade do gerador)"
+  - "Policy Violation Rate: % de rascunhos do atendente que o Shield detecta violação de política (meta: < 2%)"
+  - "Re-open Rate: % de tickets reabertos nos 7 dias seguintes à resolução com copiloto (benchmark: comparar vs. sem copiloto, meta redução 20%)"
+  - "Onboarding Time to Proficiency: dias até novo atendente atingir AHT médio da equipe (meta: redução de 3 semanas para 7 dias)"
+  - "Custo por Sugestao: custo de tokens + infra / numero de sugestoes exibidas (meta: < R$0.15 por sugestao)"
+  - "CSAT pos-atendimento com copiloto vs. sem: comparativo de satisfacao do cliente (meta: delta positivo >= 0.3 pontos em escala 1-5)"
+deliverable:
+  description: "Por atendimento concluido: Task no ClickUp com (1) ID do ticket e atendente responsavel, (2) intencoes detectadas na conversa com confianca scores, (3) numero de sugestoes exibidas vs. aceitas vs. rejeitadas vs. editadas, (4) resumo de resolucao gerado pelo Memo, (5) alertas do Shield disparados (se houver), (6) AHT do atendimento, (7) flags de next-step do Lumen acionadas, (8) timestamp de cada step do pipeline Compass. Dashboard Langfuse com: adoption rate em tempo real por atendente e por intencao, AHT trending semanal, critic rejection breakdown por dimensao, top macros aceitas e rejeitadas, mapa de heat das violacoes do Shield por tipo. Relatorio semanal do Echo no Slack com analise de qualidade das sugestoes e recomendacoes de melhoria."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: compass
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Classificar Intencao Do Cliente"
+    agent: radar
+    task: classificar-intencao-do-cliente.md
+    trigger: "Webhook de nova mensagem do cliente no helpdesk (Zendesk/Intercom event: 'ticket.updated' ou 'conversation.message.created' onde sender = customer)"
+    checkpoint:
+      criteria: "JSON estruturado com: {intenção_primária, intenção_secundária, confiança_score, entidades_extraídas, tom_emocional, nível_urgência, mudança_de_assunto_detectada, timestamp}. Latência target: < 300ms."
+      veto_condition: "Saída sem veredito do critic Prism; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Recuperar Dados De Conta"
+    agent: vault
+    task: recuperar-dados-de-conta.md
+    trigger: "Disparado pelo Orchestrator Compass imediatamente após classificação do Radar, em paralelo com outros workers"
+    checkpoint:
+      criteria: "JSON 'pacote_de_conta' com: {plano, mrr, renovação_em_dias, último_nps, últimos_5_tickets_resumidos, pedidos_recentes, uso_produto_30d, notas_csm, flags_especiais, data_cliente_desde}. Latência target: < 800ms (queries em paralelo)."
+      veto_condition: "Saída sem veredito do critic Prism; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Gerar Sugestão de Resposta"
+    agent: scribe
+    task: gerar-sugestao-de-resposta.md
+    trigger: "Orchestrator Compass chama apos ter o output do Radar (intenção) e do Vault (contexto), com latência combinada < 1.5s"
+    checkpoint:
+      criteria: "Array de 1-2 sugestões de resposta com: {texto_sugestão, variante (formal/conversacional), fonte (macro_id | kb_article_id | histórico), confiança, campos_personalizados_preenchidos, aviso_se_dado_ausente}. Formato pronto para 1-click inse…"
+      veto_condition: "Saída sem veredito do critic Prism; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Gerar Resumo Executivo"
+    agent: memo
+    task: gerar-resumo-executivo.md
+    trigger: "(A) Ticket aberto pelo atendente com > 10 mensagens históricas — Compass dispara automaticamente; (B) Atendente clica em 'Gerar Resumo' no overlay; (C) Ticket marcado como resolvido — resumo de resolução gerado automaticamente para o log"
+    checkpoint:
+      criteria: "Resumo estruturado em 2 formatos: {resumo_contexto: '5 bullets de contexto imediato para o atendente'} e {resumo_resolução: 'estrutura padrão: problema | causa | solução | followup'}. Pronto para copiar/colar no campo de nota interna ou re…"
+      veto_condition: "Saída sem veredito do critic Prism; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Sugerir Próximo Passo"
+    agent: lumen
+    task: sugerir-proximo-passo.md
+    trigger: "Disparado após Scribe concluir a sugestão de resposta; executa em paralelo ao Critic para não adicionar latência ao caminho crítico"
+    checkpoint:
+      criteria: "0-2 sugestões de próximo passo com: {tipo_acão (internal_ticket | retenção_offer | upsell_hint | sla_alert | escalate_csm | kb_gap), descrição_curta, justificativa_em_1_frase, urgência (info | warning | alert)}. Exibidas no overlay como ca…"
+      veto_condition: "Saída sem veredito do critic Prism; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Analisar Sugestões Atendente"
+    agent: echo
+    task: analisar-sugestoes-atendente.md
+    trigger: "Evento de feedback do overlay (atendente clica em aceitar/rejeitar/ignorar) via webhook; job semanal para relatório agregado (cron segunda-feira 8h)"
+    checkpoint:
+      criteria: "Log persistido no Supabase por sugestão. Dashboard Langfuse com: adoption_rate por intenção, rejection_rate por macro, top edições mais frequentes (indica lacunas), AHT antes e depois por atendente. Relatório semanal no Slack com: top 5 su…"
+      veto_condition: "Saída sem veredito do critic Prism; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Monitorar Mensagens Atendente"
+    agent: shield
+    task: monitorar-mensagens-atendente.md
+    trigger: "Hook em tempo real no campo de composição do helpdesk (debounce 800ms após última tecla digitada pelo atendente); acionado apenas para mensagens do atendente, nunca do cliente"
+    checkpoint:
+      criteria: "Alerta inline com: {tipo_risco (policy_violation | lgpd | linguagem | confidencial), severidade (info | warning | blocker), descrição_do_problema, sugestão_de_correção}. Severidade 'blocker' (violação de LGPD): adiciona pop-up de confirmaç…"
+      veto_condition: "Saída sem veredito do critic Prism; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: prism
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: compass
+    checkpoint:
+      criteria: "Entregável consolidado: Por atendimento concluido: Task no ClickUp com (1) ID do ticket e atendente responsavel, (2) intencoes detectadas na conversa com confianca scores, (3) numero de sugestoes exibidas vs. aceitas vs. re…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Shield detecta violação de LGPD no rascunho do atendente (severidade 'blocker'): pop-up de confirmação obrigatória antes do envio — atendente deve confirmar conscientemente ou corrigir"
+  - level: HITL
+    condition: "Confianca do Radar < 0.65 na classificacao de intencao: Compass nao exibe sugestao, exibe apenas o contexto da conta (Vault) com aviso 'intencao incerta — responda manualmente'"
+  - level: HITL
+    condition: "Scribe falha após 2 tentativas (Critic rejeita ambas): exibe aviso ao atendente que nenhuma sugestão adequada foi gerada para este caso específico"
+  - level: HITL
+    condition: "Ticket de cliente em tier VIP/Enterprise ou MRR > R$10k: Lumen dispara alerta 'cliente estratégico' e recomenda envolvimento do CSM antes de qualquer compromisso"
+  - level: HITL
+    condition: "Lumen detecta SLA em risco (< 20% do tempo restante): alerta visual urgente no overlay para o supervisor e para o atendente"
+  - level: HITL
+    condition: "Vault retorna flag 'cliente_em_risco_de_churn' (health score < 50): todas as sugestões do Scribe são marcadas com indicador visual e Lumen adiciona sugestão de escalonamento para CSM"
+  - level: HITL
+    condition: "Echo detecta que uma macro tem rejection_rate > 60% por 7 dias consecutivos: dispara alerta para gestor de CS no Slack pedindo revisão manual da macro antes de continuar exibindo"
+  - level: HITL
+    condition: "Shield detecta promessa de desconto ou benefício financeiro no rascunho do atendente: alerta de policy_violation com valor exato do limite autorizado e botão de consulta ao supervisor"
+transitions:
+  - from: compass
+    to: radar
+    condition: "Webhook de nova mensagem do cliente no helpdesk (Zendesk/Intercom event: 'ticket.updated' ou 'conversation.message.created' onde sender = customer)"
+  - from: radar
+    to: vault
+    condition: "Disparado pelo Orchestrator Compass imediatamente após classificação do Radar, em paralelo com outros workers"
+  - from: vault
+    to: scribe
+    condition: "Orchestrator Compass chama apos ter o output do Radar (intenção) e do Vault (contexto), com latência combinada < 1.5s"
+  - from: scribe
+    to: memo
+    condition: "(A) Ticket aberto pelo atendente com > 10 mensagens históricas — Compass dispara automaticamente; (B) Atendente clica em 'Gerar Resumo' no overlay; (C) Ticket marcado como resolvido — resumo de resol…"
+  - from: memo
+    to: lumen
+    condition: "Disparado após Scribe concluir a sugestão de resposta; executa em paralelo ao Critic para não adicionar latência ao caminho crítico"
+  - from: lumen
+    to: echo
+    condition: "Evento de feedback do overlay (atendente clica em aceitar/rejeitar/ignorar) via webhook; job semanal para relatório agregado (cron segunda-feira 8h)"
+  - from: echo
+    to: shield
+    condition: "Hook em tempo real no campo de composição do helpdesk (debounce 800ms após última tecla digitada pelo atendente); acionado apenas para mensagens do atendente, nunca do cliente"
+  - from: shield
+    to: prism
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: prism
+    to: compass
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - vault
+  - lumen

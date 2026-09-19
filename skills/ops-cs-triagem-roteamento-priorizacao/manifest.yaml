@@ -1,0 +1,28 @@
+row: operacoes
+title: Triagem, Roteamento e Priorização de Tickets
+title_netflix: TRIAGEM, ROTEAMENTO E PRIORIZAÇÃO DE TICKETS
+subtitle: Classificar tickets, definir prioridade e destino e preparar roteamento com justificativa e critérios de SLA
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-triagem-roteamento-priorizacao para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Triador-Mor
+  - Lara
+  - Dante
+  - Enzo
+  - Bela
+  - Rex
+  - FAQ/L0
+  - Auditor de Roteamento
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

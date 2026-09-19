@@ -1,0 +1,45 @@
+name: vendas-objection-handling-qa-tempo-real
+version: 0.1.0
+description: "Seu vendedor nunca mais trava numa objeção — a resposta certa chega antes do silêncio constrangedor."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: ohe
+components:
+  agents:
+    - maestro.md
+    - rebound.md
+    - tempo.md
+    - challenger.md
+    - tecnico.md
+    - closer.md
+    - arquivo.md
+    - argus.md
+  tasks:
+    - rebater-objecoes-de-preco.md
+    - rebater-objecoes-timing.md
+    - rebater-objecoes-concorrente.md
+    - responder-duvidas-tecnicas.md
+    - resolver-objecao-autoridade.md
+    - analisar-objecoes-frequentes.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-objection-handling-qa-tempo-real-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - sales-enablement-conversation-intelligence
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V5 · TopSquad de Sales Enablement & Conversation Intelligence"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

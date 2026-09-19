@@ -1,0 +1,45 @@
+name: founder-kpi-okr-pulse
+version: 0.1.0
+description: "Transforma métricas dispersas em diagnóstico de desvio com recomendação acionável toda segunda-feira — antes que o trimestre seja perdido."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: kop
+components:
+  agents:
+    - atlas.md
+    - pulsar.md
+    - kalinda.md
+    - argo.md
+    - rex.md
+    - sigma.md
+    - vera.md
+    - vera-2.md
+  tasks:
+    - coletar-dados-kpi.md
+    - calcular-trajetorias-okr.md
+    - analisar-causa-raiz.md
+    - gerar-recomendacoes-acionaveis.md
+    - humanizar-relatorio.md
+    - validar-dados-plausiveis.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-kpi-okr-pulse-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - performance-kpis-calibracao-de-decisoes
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F2 · TopSquad de Performance, KPIs & Calibração de Decisões"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

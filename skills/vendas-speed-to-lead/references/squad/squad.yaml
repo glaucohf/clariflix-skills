@@ -1,0 +1,47 @@
+name: vendas-speed-to-lead
+version: 0.1.0
+description: "Todo lead inbound respondido em menos de 60 segundos, 24/7 — antes do concorrente atender o telefone."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: stl
+components:
+  agents:
+    - claude-opus.md
+    - flash.md
+    - sherlock.md
+    - socrates.md
+    - atlas.md
+    - argos.md
+    - eco.md
+    - sdr-por-ligacao.md
+    - sentinel.md
+  tasks:
+    - enviar-primeira-resposta-ao-lead.md
+    - enriquecer-dossie-lead.md
+    - qualificar-lead-conversacionalmente.md
+    - agendar-reuniao.md
+    - priorizar-leads.md
+    - gerenciar-cadencias-de-follow-up.md
+    - realizar-ligacao-qualificadora.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - vendas-speed-to-lead-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - vendas
+  - qualificacao-conversacional-speed-to-lead
+  - must-have
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Vendas"
+  topsquad: "V2 · TopSquad de Qualificação Conversacional & Speed-to-Lead"
+  prioridade: "must‑have"
+  gerado_em: "2026-09-16"

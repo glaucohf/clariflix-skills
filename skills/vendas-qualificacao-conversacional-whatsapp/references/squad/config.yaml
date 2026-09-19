@@ -1,0 +1,57 @@
+pack:
+  name: vendas-qualificacao-conversacional-whatsapp
+  version: 0.1.0
+  short-title: "Qualificação Conversacional"
+  description: "Seu melhor SDR nunca dorme, nunca perde um lead e qualifica BANT/MEDDIC em 3 mensagens no WhatsApp."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "⚡"
+  slashPrefix: qualificacaoConversacional
+name: vendas-qualificacao-conversacional-whatsapp
+version: 0.1.0
+description: "Seu melhor SDR nunca dorme, nunca perde um lead e qualifica BANT/MEDDIC em 3 mensagens no WhatsApp."
+entry_agent: maestro-comercial
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V2"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - maestro-comercial
+  - investigador-de-lead
+  - sdr-conversacional
+  - juiz-de-fit
+  - agendador-de-reunioes
+  - reativador-de-pipeline
+  - guardiao-do-crm
+  - analista-de-conversas
+  - censor-comercial
+tasks:
+  - enriquecer-dossie-lead.md
+  - conduzir-conversa-estruturada.md
+  - priorizar-leads.md
+  - agendar-reuniao.md
+  - reativar-leads-frios.md
+  - auditar-saude-do-pipeline.md
+  - analisar-conversas-qualificadas.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-qualificacao-conversacional-whatsapp-pipeline.yaml
+checklists:
+  - critic-censor-comercial.md
+integrations:
+  - "WhatsApp Business API via Gupshup ou AiSensy (envio/recepção de mensagens, webhooks de status)"
+  - "HubSpot CRM via MCP HubSpot oficial (leitura e escrita de contatos, deals, propriedades customizadas, activities)"
+  - "Google Calendar ou Calendly API (disponibilidade de closers, criação de eventos, webhooks de cancelamento)"
+  - "Meta Ads Lead Ads (webhook de novo lead -> N8N -> Orchestrator)"
+  - "Apollo.io ou Clay (enriquecimento de dados B2B: empresa, cargo, contato)"
+  - "N8N como middleware de webhook (recebe sinais de múltiplas fontes e normaliza payload para o Orchestrator)"
+  - "ClickUp (artefatos verificáveis por task: scorecards, conversation logs, relatórios de higiene e intelligence)"
+  - "Langfuse OTEL (observabilidade de todas as chamadas LLM: latência, tokens, task success rate por agente, evals customizados)"
+  - "LangGraph (orquestração do grafo de agentes com estado persistente por lead_id)"
+  - "Claude API — Opus 4 para Orchestrator e Critic; Sonnet 4 para workers (balanço custo/performance)"
+  - "Píxel de site do cliente (sinais de reativação para o Lázaro via webhook de evento personalizado)"

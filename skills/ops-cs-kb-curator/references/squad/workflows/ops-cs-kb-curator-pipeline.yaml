@@ -1,0 +1,154 @@
+workflow_name: ops_cs_kb_curator_pipeline
+description: "Sua base de conhecimento nunca mais fica velha: o KB Curator detecta gaps, escreve artigos e resolve conflitos antes que o cliente perceba."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-kb-curator
+area: "Operações & CS"
+topsquad: "O2 · Qualidade, Voz do Cliente & Knowledge Base"
+agent_sequence:
+  - kael
+  - milo
+  - vera
+  - lex
+  - clio
+  - petra
+  - arco
+  - lex-2
+key_commands:
+  - "*extrair-intencoes-nao-cobertas"
+  - "*escrever-artigo-de-kb"
+  - "*validar-draft"
+  - "*verificar-consistencia-documental"
+  - "*monitorar-impacto-artigos"
+  - "*controlar-versao-artigo"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: kael
+success_indicators:
+  - "Cobertura da KB: % de intenções identificadas nos tickets com artigo correspondente (meta: 55% -> 90% em 6 meses)"
+  - "Taxa de resolução Tier-1 com fonte KB: % de tickets resolvidos pelo agente IA citando artigo da KB (meta: 55% -> 80%+)"
+  - "Redução de tickets escalonados por falta de documentação: tickets/mês sem fonte (meta: -50% em 90 dias)"
+  - "Taxa de artigos aprovados no primeiro ciclo HITL: % de artigos que passam em L3 sem revisão adicional (meta: > 75%)"
+  - "Tempo médio gap-to-published: horas entre detectar gap e artigo em produção (meta: < 48h para gaps críticos, < 7 dias para gaps normais)"
+  - "Resolução pós-publicação: % de tickets com intenção equivalente resolvidos na semana seguinte ao artigo (meta: > 70% por artigo)"
+  - "Taxa de conflitos detectados antes da publicação: % de contradições flagradas pelo Clio antes do HITL vs. descobertas pós-publicação (meta: > 90% pré-publicação)"
+  - "Score medio de qualidade Lex: media dos scores de aprovacao por dimensao (meta: > 8.0/10 em compliance e acionabilidade)"
+deliverable:
+  description: "Pacote de publicação por artigo (prova de trabalho): (1) artigo publicado na KB no formato padrão, (2) Gap Card vinculado — ticket(s) de evidência + intenção identificada + volume impactado, (3) Lex QA Report — scores por dimensão + veredicto, (4) Clio Conflict Badge — LIMPO ou CONFLITO_RESOLVIDO, (5) ClickUp task fechada com histórico completo do ciclo (agentes, timestamps, iterações), (6) baseline de resolução pré-publicação para comparação pelo Petra na semana seguinte."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: kael
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Extrair Intenções Nao Cobertas"
+    agent: milo
+    task: extrair-intencoes-nao-cobertas.md
+    trigger: "Cron diário (02h00) + webhook a cada 50 tickets novos fechados sem match KB + chamada manual do Kael."
+    checkpoint:
+      criteria: "Gap Priority Report (JSON rankeado: intenção, volume, criticidade, tickets de evidência, artigos parciais existentes, sugestão de fonte). Brief por gap (Markdown: contexto, público-alvo, tom, fontes primárias, conflitos detectados)."
+      veto_condition: "Saída sem veredito do critic Lex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Escrever Artigo De KB"
+    agent: vera
+    task: escrever-artigo-de-kb.md
+    trigger: "Recebe brief aprovado do Milo via Kael. Também dispara para atualizações quando Petra detecta artigo com queda de resolução > 20% na semana."
+    checkpoint:
+      criteria: "Draft de artigo completo (Markdown formatado conforme template), metadados preenchidos (categoria, tags, público, produto afetado, versão), diff linha a linha em relação ao artigo anterior (se for update)."
+      veto_condition: "Saída sem veredito do critic Lex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Validar Draft"
+    agent: lex
+    task: validar-draft.md
+    trigger: "Chamado pelo Kael imediatamente após Vera finalizar draft. Também chamado após cada reescrita da Vera."
+    checkpoint:
+      criteria: "Relatório de revisão (JSON: score por dimensão 0-10, lista de issues com severidade, sugestões de correção linha a linha). Veredicto: APROVADO / AJUSTE_MENOR / REESCREVER. Se AJUSTE_MENOR, retorna para Vera com anotações inline. Se REESCRE…"
+      veto_condition: "Saída sem veredito do critic Lex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Verificar Consistência Documental"
+    agent: clio
+    task: verificar-consistencia-documental.md
+    trigger: "Chamada pelo Kael após Lex aprovar o draft. Também roda semanalmente em modo varredura completa da KB."
+    checkpoint:
+      criteria: "Conflict Report (lista de pares de artigos conflitantes com: trecho A, trecho B, data de cada um, sugestao de resolucao). Lista de artigos orfaos para revisao ou deprecacao. Badge de consistencia no artigo novo (LIMPO / CONFLITO_DETECTADO…"
+      veto_condition: "Saída sem veredito do critic Lex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Monitorar Impacto Artigos"
+    agent: petra
+    task: monitorar-impacto-artigos.md
+    trigger: "Cron semanal (segunda 08h00) + webhook de feedback negativo do Tier-1 Resolver (quando agente marca 'KB_NÃO_RESOLVEU')."
+    checkpoint:
+      criteria: "Weekly Impact Report (por artigo: resolução%, volume de tickets cobertos, escalonamentos evitados estimados, status SAUDÁVEL/ALERTA/CRÍTICO). Fila de artigos para revisão urgente (resolução < 70%). Input para o cálculo de ROI mensal do squ…"
+      veto_condition: "Saída sem veredito do critic Lex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Controlar Versão Artigo"
+    agent: arco
+    task: controlar-versao-artigo.md
+    trigger: "Chamado pelo Kael como último passo antes de publicar (pos-HITL). Também chamado quando Petra dispara rollback por queda de performance."
+    checkpoint:
+      criteria: "Commit de versao na KB com metadata estruturada (JSON no frontmatter do artigo). Changelog mensal (Markdown: artigos novos, atualizados, deprecados, conflitos resolvidos). Endpoint de rollback: restaura versao anterior em < 30 segundos."
+      veto_condition: "Saída sem veredito do critic Lex 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: lex-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: kael
+    checkpoint:
+      criteria: "Entregável consolidado: Pacote de publicação por artigo (prova de trabalho): (1) artigo publicado na KB no formato padrão, (2) Gap Card vinculado — ticket(s) de evidência + intenção identificada + volume impactado, (3) Lex…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Publicação de artigo novo ou update em produção: Kael agrega o pacote (artigo + gap de origem + diff + scores do Lex + badge do Clio) e envia para aprovação humana via ClickUp task com preview. SLA de resposta: 24h. Se não aprovado em 24h, artigo fica em staging e Kael notifica no Slack."
+  - level: L3
+    condition: "Deprecação de artigo existente: Clio detecta artigo órfão ou conflitante que deve ser removido. Requer aprovação explícita do gestor de CS antes de despublicar."
+  - level: L3
+    condition: "Resolução de conflito entre artigos: quando Clio identifica contradição direta entre dois artigos e não consegue determinar automaticamente qual é a fonte de verdade (ex: ambos recentes, ambos com alto uso), escala para SME humano com Conflict Report estruturado."
+  - level: L2
+    condition: "Reescrita após 2 iterações Lex/Véra: se após dois ciclos de revisão o artigo não atingiu score mínimo (7/10 em compliance e acionabilidade), Kael escala para editor humano com histórico completo das iterações."
+  - level: L1
+    condition: "Validação do Gap Priority Report semanal: Milo gera o ranking de gaps, humano (CS lead) confirma ou reordena as prioridades antes do ciclo de produção começar. Não bloqueia execução, mas calibra o roadmap da KB."
+transitions:
+  - from: kael
+    to: milo
+    condition: "Cron diário (02h00) + webhook a cada 50 tickets novos fechados sem match KB + chamada manual do Kael."
+  - from: milo
+    to: vera
+    condition: "Recebe brief aprovado do Milo via Kael. Também dispara para atualizações quando Petra detecta artigo com queda de resolução > 20% na semana."
+  - from: vera
+    to: lex
+    condition: "Chamado pelo Kael imediatamente após Vera finalizar draft. Também chamado após cada reescrita da Vera."
+  - from: lex
+    to: clio
+    condition: "Chamada pelo Kael após Lex aprovar o draft. Também roda semanalmente em modo varredura completa da KB."
+  - from: clio
+    to: petra
+    condition: "Cron semanal (segunda 08h00) + webhook de feedback negativo do Tier-1 Resolver (quando agente marca 'KB_NÃO_RESOLVEU')."
+  - from: petra
+    to: arco
+    condition: "Chamado pelo Kael como último passo antes de publicar (pos-HITL). Também chamado quando Petra dispara rollback por queda de performance."
+  - from: arco
+    to: lex-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: lex-2
+    to: kael
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

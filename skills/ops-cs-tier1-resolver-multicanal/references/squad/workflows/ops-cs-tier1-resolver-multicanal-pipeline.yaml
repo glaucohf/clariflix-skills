@@ -1,0 +1,178 @@
+workflow_name: ops_cs_tier1_resolver_multicanal_pipeline
+description: "Resolve 70% dos tickets de suporte sem toque humano — em menos de 90 segundos, em qualquer canal."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-tier1-resolver-multicanal
+area: "Operações & CS"
+topsquad: "O1 · Atendimento & Suporte Conversacional"
+agent_sequence:
+  - nexus
+  - prism
+  - volta
+  - flux
+  - sage
+  - vox
+  - hermes
+  - pulse
+  - argus
+key_commands:
+  - "*consultar-status-de-pedido"
+  - "*processar-troca-e-devolucao"
+  - "*processar-refund-e-cobranca"
+  - "*responder-perguntas-frequentes"
+  - "*processar-audio-voz"
+  - "*gerenciar-escalonamento"
+  - "*monitorar-sinais-de-churn"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: nexus
+success_indicators:
+  - "Deflection Rate: % de tickets Tier-1 resolvidos autonomamente sem toque humano (meta: >= 65%)"
+  - "CSAT pós-resolução automática: pesquisa de 1 pergunta pós-chat (meta: >= 4.2 / 5.0)"
+  - "Tempo de Primeira Resposta (FRT): tempo entre abertura e primeira resposta do sistema (meta: < 90 segundos em 95% dos casos)"
+  - "SLA Compliance Rate: % de tickets respondidos dentro do SLA contratado (meta: > 95%)"
+  - "Taxa de Escalonamento Desnecessária: % de tickets escalados que o humano resolveu igual ao que o agente teria feito (meta: < 10%)"
+  - "Custo por Ticket Automatizado: custo total de tokens + infra / numero de tickets resolvidos (meta: < R$0.80 por ticket)"
+  - "Critic Rejection Rate: % de respostas rejeitadas pelo Argus antes do envio (meta: < 8% — indica qualidade dos workers)"
+  - "Churn Prevented Rate: % de clientes com health score < 60 que não churnam após intervenção do Pulse (meta: > 40%)"
+  - "Containment Rate por Intencao: deflection separado por categoria (status/refund/troca/faq) para identificar gaps"
+  - "Hallucination Rate no Critic: % de respostas com flag de alucinação detectada (meta: < 2%)"
+deliverable:
+  description: "Por ticket resolvido: Task no ClickUp com (1) transcrição completa da interação, (2) intenção classificada com confiança score, (3) worker utilizado, (4) ações de sistema executadas com IDs de referência, (5) score do Critic por dimensão, (6) status de resolução (autônomo / escalado / pendente), (7) timestamp de cada step do pipeline. Dashboard Langfuse com: deflection rate em tempo real, CSAT agregado, distribuição de intenções, critic rejection breakdown, SLA heatmap por canal e por intenção."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: nexus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Consultar Status De Pedido"
+    agent: prism
+    task: consultar-status-de-pedido.md
+    trigger: "Orchestrator Nexus roteia intenção 'status' | 'onde_está' | 'pedido' | 'entrega' | 'rastreio'"
+    checkpoint:
+      criteria: "Mensagem formatada para o canal com status atual, previsão atualizada e opções proativas. Task no ClickUp com: intenção, pedido consultado, resposta gerada, timestamp."
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Processar Troca E Devolucao"
+    agent: volta
+    task: processar-troca-e-devolucao.md
+    trigger: "Orchestrator Nexus roteia intenção 'troca' | 'devolver' | 'não_gostei' | 'produto_errado' | 'defeito'"
+    checkpoint:
+      criteria: "Confirmação de abertura de solicitação de troca com número de protocolo, instruções de devolução (etiqueta PDF ou link) e prazo estimado. Task no ClickUp com elegibilidade verificada, regra aplicada, protocolo gerado."
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-4
+    name: "Processar Refund E Cobranca"
+    agent: flux
+    task: processar-refund-e-cobranca.md
+    trigger: "Orchestrator Nexus roteia intenção 'reembolso' | 'estorno' | 'cobrança' | 'cobrado_errado' | 'chargeback'"
+    checkpoint:
+      criteria: "Confirmação de refund submetido com prazo por modalidade de pagamento (cartão 5-10 dias, PIX 1-2 dias, boleto 10-15 dias) OU escalação para humano com contexto completo. Task no ClickUp com: valor, gateway, status da submissão, prazo comun…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-5
+    name: "Responder Perguntas Frequentes"
+    agent: sage
+    task: responder-perguntas-frequentes.md
+    trigger: "Orchestrator Nexus roteia intenção de baixa complexidade sem necessidade de ação de sistema; ou quando outros workers não reconhecem intenção específica"
+    checkpoint:
+      criteria: "Resposta contextualizada com fonte citada do KB + link para artigo completo se relevante. Se gap detectado: task no ClickUp para KB Curator com a pergunta e contexto. Task de prova de trabalho com: pergunta, artigo-base usado, confiança do…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Processar Audio Voz"
+    agent: vox
+    task: processar-audio-voz.md
+    trigger: "Webhook do WhatsApp Business API detecta mensagem de tipo 'áudio'; webhook do Aircall detecta chamada entrante"
+    checkpoint:
+      criteria: "Texto transcrito normalizado para o Orchestrator + (na resposta) áudio sintetizado TTS em PT-BR. Log de qualidade de transcrição (confiança ASR) no Langfuse."
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Gerenciar Escalonamento"
+    agent: hermes
+    task: gerenciar-escalonamento.md
+    trigger: "Critic retorna 'ESCALATE'; confianca do classifier < 0.72; valor financeiro > limite de autonomia; palavras-chave de risco legal detectadas; cliente em tier VIP/Enterprise; terceira tentativa sem resolucao na mesma sessao"
+    checkpoint:
+      criteria: "Ticket criado no Zendesk/Intercom com prioridade, tags e resumo executivo em 5 bullets. Notificação Slack para fila correta. Task no ClickUp com motivo de escalonamento e contexto. Mensagem ao cliente confirmando transferência com ETA huma…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Monitorar Sinais De Churn"
+    agent: pulse
+    task: monitorar-sinais-de-churn.md
+    trigger: "Toda interação de suporte concluída (independente de resolução); queda > 15 pontos no health score; detecção de keyword de churn na transcrição; cliente com > 3 tickets nos últimos 7 dias"
+    checkpoint:
+      criteria: "Health score atualizado no CRM (0-100). Alert no Slack do time de CS se score < 60. Brief de retenção com: sinais detectados, risco percentual de churn em 30 dias, next-best-action sugerida. Task no ClickUp com evidências."
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: argus
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: nexus
+    checkpoint:
+      criteria: "Entregável consolidado: Por ticket resolvido: Task no ClickUp com (1) transcrição completa da interação, (2) intenção classificada com confiança score, (3) worker utilizado, (4) ações de sistema executadas com IDs de referê…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Refund acima de R$500 ou qualquer caso de chargeback/contestação bancária – Flux eleva para L3 e Hermes cria ticket prioritário"
+  - level: HITL
+    condition: "Confiança do classificador de intenção < 0.72 – Nexus não roteia, Hermes escala com contexto completo"
+  - level: HITL
+    condition: "Crític Argus retorna score total < 30 ou flag de risco jurídico, LGPD ou segurança de dados"
+  - level: HITL
+    condition: "Terceira interação na mesma sessão sem resolução confirmada pelo cliente"
+  - level: HITL
+    condition: "Cliente em tier VIP, Enterprise ou com MRR > R$5k – toda ação irreversível requer aprovação"
+  - level: HITL
+    condition: "Menção de palavras-chave de risco: 'advogado', 'PROCON', 'Reclame Aqui', 'processo', 'imprensa', 'TV'"
+  - level: HITL
+    condition: "Solicitacao de troca/devolucao fora do prazo de politica ou em categoria inelegivel — Volta escalona para decisao humana com contexto"
+  - level: HITL
+    condition: "Health score do cliente cai abaixo de 45 durante a interação — Pulse dispara alerta para CSM responsável"
+  - level: HITL
+    condition: "Áudio com qualidade ASR < 0.80 de confiança — Vox marca para revisão humana antes de processar"
+transitions:
+  - from: nexus
+    to: prism
+    condition: "Orchestrator Nexus roteia intenção 'status' | 'onde_está' | 'pedido' | 'entrega' | 'rastreio'"
+  - from: prism
+    to: volta
+    condition: "Orchestrator Nexus roteia intenção 'troca' | 'devolver' | 'não_gostei' | 'produto_errado' | 'defeito'"
+  - from: volta
+    to: flux
+    condition: "Orchestrator Nexus roteia intenção 'reembolso' | 'estorno' | 'cobrança' | 'cobrado_errado' | 'chargeback'"
+  - from: flux
+    to: sage
+    condition: "Orchestrator Nexus roteia intenção de baixa complexidade sem necessidade de ação de sistema; ou quando outros workers não reconhecem intenção específica"
+  - from: sage
+    to: vox
+    condition: "Webhook do WhatsApp Business API detecta mensagem de tipo 'áudio'; webhook do Aircall detecta chamada entrante"
+  - from: vox
+    to: hermes
+    condition: "Critic retorna 'ESCALATE'; confianca do classifier < 0.72; valor financeiro > limite de autonomia; palavras-chave de risco legal detectadas; cliente em tier VIP/Enterprise; terceira tentativa sem res…"
+  - from: hermes
+    to: pulse
+    condition: "Toda interação de suporte concluída (independente de resolução); queda > 15 pontos no health score; detecção de keyword de churn na transcrição; cliente com > 3 tickets nos últimos 7 dias"
+  - from: pulse
+    to: argus
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: argus
+    to: nexus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

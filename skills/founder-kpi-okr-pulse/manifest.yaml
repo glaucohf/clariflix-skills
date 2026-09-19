@@ -1,0 +1,28 @@
+row: gestao
+title: KPI/OKR Pulse
+title_netflix: KPI/OKR PULSE
+subtitle: Consolidar KPIs e OKRs, identificar desvios e preparar acompanhamento executivo com responsáveis e próximos passos
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-kpi-okr-pulse para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Atlas
+  - Pulsar
+  - Kalinda
+  - Argo
+  - Rex
+  - Sigma
+  - Véra
+  - Véra 2
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

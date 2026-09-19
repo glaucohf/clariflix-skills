@@ -1,0 +1,28 @@
+row: operacoes
+title: AI SRE
+title_netflix: AI SRE
+subtitle: Investigar incidentes a partir de logs e evidências, propor diagnóstico e plano de resposta com gates de aprovação
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-ai-sre-incident para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - IC
+  - Alert Correlator
+  - Root Cause Investigator
+  - Fix Proposer
+  - Fix Executor
+  - Incident Communicator
+  - Post-Mortem Writer
+  - Fix Guardian
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

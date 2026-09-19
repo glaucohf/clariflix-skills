@@ -1,0 +1,45 @@
+name: founder-risk-scenario-sentinel
+version: 0.1.0
+description: "Enquanto seu concorrente lê o jornal de ontem, o Sentinel já mapeou os três futuros regulatórios que vão remodelar seu mercado amanhã — e o founder recebe o alerta antes do mercado precificar."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: rss
+components:
+  agents:
+    - nexus.md
+    - lexis.md
+    - gaia.md
+    - chronos.md
+    - vela.md
+    - oraculo.md
+    - cipher.md
+    - argos.md
+  tasks:
+    - monitorar-risco-regulatorio.md
+    - estimar-impacto-financeiro.md
+    - analisar-riscos-estrategicos.md
+    - monitorar-indicadores-tripwire.md
+    - interpretar-riscos-estrategicos.md
+    - redigir-risk-briefs-executivos.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-risk-scenario-sentinel-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - foresight-risco-research-estrategico
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F4 · TopSquad de Foresight, Risco & Research Estratégico"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

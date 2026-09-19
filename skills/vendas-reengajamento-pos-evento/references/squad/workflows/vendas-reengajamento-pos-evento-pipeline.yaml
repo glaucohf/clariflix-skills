@@ -1,0 +1,177 @@
+workflow_name: vendas_reengajamento_pos_evento_pipeline
+description: "Transforma lista fria de evento em pipeline quente em 48 horas — antes que o concorrente perceba que você estava no mesmo stand."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-reengajamento-pos-evento
+area: "Vendas"
+topsquad: "V4 · Nurture, Follow-up & Reativação"
+agent_sequence:
+  - claude-opus
+  - recon
+  - sherlock-evento
+  - alta-intencao
+  - engajamento-medio
+  - argos-evento
+  - eco-evento
+  - atlas-evento
+  - vigilia
+key_commands:
+  - "*processar-lista-de-participantes"
+  - "*enriquecer-dossie-contato"
+  - "*agendar-reuniao-demo"
+  - "*enviar-mensagem-adicional"
+  - "*conduzir-qualificacao-conversacional"
+  - "*gerenciar-leads-baixo-engajamento"
+  - "*agendar-reuniao-contextualizada"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: claude-opus
+success_indicators:
+  - "Cobertura de lista: % de participantes do evento contactados em até 48h (meta: 100% em 48h vs. <30% manual)"
+  - "Taxa de conversão lista->SQL: benchmark atual vs. pós-squad (meta: 15-25% vs. 2-5% manual — multiplicador 4-5x)"
+  - "Tempo de primeiro contato pós-evento: meta < 2h para Score A, < 6h para Score B, < 24h para Score C"
+  - "Taxa de resposta por score: Score A meta >35%, Score B meta >15%, Score C meta >5%"
+  - "Taxa de agendamento de reunião: % de SQLs que chegam a reunião confirmada (meta: >50% dos SQLs)"
+  - "Show rate: % de reuniões que efetivamente ocorrem (meta: >80% com lembretes contextualizados do Atlas Evento)"
+  - "Taxa de reativação de nurture: % de leads Score C/B-inativo que se reativam na sequência de 4-8 semanas (meta: >8%)"
+  - "ROI por evento: pipeline gerado (R$) / investimento total no evento incluindo squad (meta: ROI >3x em 90 dias)"
+  - "Task success rate no Langfuse: dev 70% / staging 85% / prod 95%"
+  - "Taxa de compliance Vigília: % de mensagens aprovadas sem intervenção HITL (meta: >90% aprovação automática)"
+  - "Custo por SQL gerado de evento: total do squad / SQLs gerados por evento (meta: redução de 60% vs. SDR manual)"
+deliverable:
+  description: "Relatório de ROI Por Evento: documento estruturado (PDF exportável do ClickUp + nota no CRM) gerado automaticamente 30 dias após cada evento, contendo: total de participantes processados, breakdown por score (A/B/C), taxa de contato em 48h, taxa de resposta por canal e score, SQLs gerados com ficha de qualificação, reuniões agendadas e realizadas, oportunidades abertas no CRM com valor estimado, pipeline influenciado pelo evento, custo por SQL e ROI calculado. Auditável em tempo real no ClickUp com tasks vinculadas por lead e por evento. Dashboard de KPIs comparativo entre eventos para identificar melhores canais e temas de evento por ROI."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: claude-opus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Processar Lista De Participantes"
+    agent: recon
+    task: processar-lista-de-participantes.md
+    trigger: "Upload de planilha de participantes pelo cliente; webhook recebido de plataforma de webinar (Zoom, Hotmart, Sympla) indicando fim do evento; chamada manual do Orchestrator Radar para iniciar processamento pós-evento."
+    checkpoint:
+      criteria: "Lista segmentada e normalizada (JSON estruturado) com: contatos deduplicados, score de engajamento (A/B/C) com justificativa, flag de lead novo vs. existente vs. cliente, campos enriquecidos com metadados do evento (nome do evento, data, t…"
+      veto_condition: "Saída sem veredito do critic Vigilia; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Dossiê Contato"
+    agent: sherlock-evento
+    task: enriquecer-dossie-contato.md
+    trigger: "Lista segmentada recebida do Recon. Re-acionado para leads já existentes quando mudança de cargo/empresa e detectada durante processamento."
+    checkpoint:
+      criteria: "Dossie estruturado (JSON) por contato: empresa (nome, setor, porte, receita estimada, cidade), cargo e seniority do participante, score de fit com ICP (0-100), sinais de intencao recentes (job postings, noticias, mudancas de lideranca), st…"
+      veto_condition: "Saída sem veredito do critic Vigilia; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Agendar Reuniao Demo"
+    agent: alta-intencao
+    task: agendar-reuniao-demo.md
+    trigger: "Lista Score A recebida do Recon e processada. SLA: primeiro envio em até 2h pós-recebimento da lista. Acionado pelo Orchestrator Radar com confirmação de que o Critic Vigília aprovou os templates."
+    checkpoint:
+      criteria: "Mensagens enviadas por canal (WhatsApp, email, LinkedIn) com confirmação de entrega; registro de cada interação no CRM com timestamp e canal; leads responsivos passados ao Argos para qualificação; leads sem resposta após cadência A passado…"
+      veto_condition: "Saída sem veredito do critic Vigilia; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-5
+    name: "Enviar Mensagem Adicional"
+    agent: engajamento-medio
+    task: enviar-mensagem-adicional.md
+    trigger: "Lista Score B recebida do Recon. SLA: primeiro envio em ate 6h pos-recebimento da lista. Re-acionado quando lead Score B abre email repetidamente sem responder (sinal de interesse latente — escala para Score A approach)."
+    checkpoint:
+      criteria: "Mensagens enviadas com confirmação de entrega e registro no CRM; leads responsivos passados ao Argos para qualificação; leads sem resposta após cadência B passados ao Worker de Nurture Pos-Evento para sequência de longo prazo. Artefato Cli…"
+      veto_condition: "Saída sem veredito do critic Vigilia; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Conduzir Qualificação Conversacional"
+    agent: argos-evento
+    task: conduzir-qualificacao-conversacional.md
+    trigger: "Lead Score A ou B respondeu ao outreach do Cypher ou Nova. Tambem acionado quando lead Score C (baixo engajamento) responde espontaneamente a qualquer mensagem da cadencia."
+    checkpoint:
+      criteria: "Ficha de qualificação preenchida (Budget confirmado/estimado, Authority confirmada, Need identificada com referência ao tópico do evento, Timeline definida) + classificação SQL/MQL/DQ + resumo de objeções identificadas + próximo passo reco…"
+      veto_condition: "Saída sem veredito do critic Vigilia; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Gerenciar Leads Baixo Engajamento"
+    agent: eco-evento
+    task: gerenciar-leads-baixo-engajamento.md
+    trigger: "Leads Score C recebidos do Recon (SLA: primeiro conteúdo em até 24h pós-evento). Leads Score B sem resposta após 96h da cadência Score B. Sinal de reativação detectado em lead inativo (abertura de email 3x em 7 dias, clique em link de preç…"
+    checkpoint:
+      criteria: "Conteúdos de nurture enviados com registro de entrega e taxa de abertura/clique no CRM; leads reativados (sinal de comportamento detectado) passados de volta ao Argos Evento para qualificação; leads que solicitam descadastro imediatamente…"
+      veto_condition: "Saída sem veredito do critic Vigilia; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Agendar Reunião Contextualizada"
+    agent: atlas-evento
+    task: agendar-reuniao-contextualizada.md
+    trigger: "Lead classificado como SQL pelo Argos Evento. Também acionado por no-show detectado (para reagendamento automático com mensagem contextualizada no evento)."
+    checkpoint:
+      criteria: "Evento criado no calendário com link de videoconferência e pauta personalizada baseada na qualificação (budget discutido, need identificada, próximo passo esperado); confirmação enviada ao lead via canal preferido com referência ao evento;…"
+      veto_condition: "Saída sem veredito do critic Vigilia; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: vigilia
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: claude-opus
+    checkpoint:
+      criteria: "Entregável consolidado: Relatório de ROI Por Evento: documento estruturado (PDF exportável do ClickUp + nota no CRM) gerado automaticamente 30 dias após cada evento, contendo: total de participantes processados, breakdown p…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Contas estratégicas detectadas na lista (já clientes ativos, prospects em negociação avançada no CRM, contas VIP definidas pelo cliente) — qualquer ação requer aprovação do closer responsável antes do primeiro envio"
+  - level: HITL
+    condition: "Mensagem bloqueada pelo Vigília na 3ª iteração de correção — exige revisão humana antes do envio, com log do problema para treinamento"
+  - level: HITL
+    condition: "Lead Score A com ticket estimado acima do threshold definido pelo cliente (ex: >R$100k) — escala direto para closer sem cadência automática"
+  - level: HITL
+    condition: "Participante do evento que é funcionário de concorrente identificado — qualquer abordagem requer decisão estratégica humana"
+  - level: HITL
+    condition: "Solicitação de proposta comercial ou orçamento mencionada na resposta do lead — Argos Evento escala imediatamente para closer com ficha de qualificação"
+  - level: HITL
+    condition: "Lead que solicita opt-out ou demonstra irritação com o contato — intervenção humana obrigatória, registro de opt-out e revisão da cadência"
+  - level: HITL
+    condition: "Inconsistência crítica detectada entre dados do evento e CRM (ex: lead do evento e cliente com contrato ativo cancelado) — revisão humana antes de qualquer contato"
+  - level: HITL
+    condition: "Volume de lista acima de 1.000 contatos em evento único — revisão humana da segmentação antes do disparo em massa"
+transitions:
+  - from: claude-opus
+    to: recon
+    condition: "Upload de planilha de participantes pelo cliente; webhook recebido de plataforma de webinar (Zoom, Hotmart, Sympla) indicando fim do evento; chamada manual do Orchestrator Radar para iniciar processa…"
+  - from: recon
+    to: sherlock-evento
+    condition: "Lista segmentada recebida do Recon. Re-acionado para leads já existentes quando mudança de cargo/empresa e detectada durante processamento."
+  - from: sherlock-evento
+    to: alta-intencao
+    condition: "Lista Score A recebida do Recon e processada. SLA: primeiro envio em até 2h pós-recebimento da lista. Acionado pelo Orchestrator Radar com confirmação de que o Critic Vigília aprovou os templates."
+  - from: alta-intencao
+    to: engajamento-medio
+    condition: "Lista Score B recebida do Recon. SLA: primeiro envio em ate 6h pos-recebimento da lista. Re-acionado quando lead Score B abre email repetidamente sem responder (sinal de interesse latente — escala pa…"
+  - from: engajamento-medio
+    to: argos-evento
+    condition: "Lead Score A ou B respondeu ao outreach do Cypher ou Nova. Tambem acionado quando lead Score C (baixo engajamento) responde espontaneamente a qualquer mensagem da cadencia."
+  - from: argos-evento
+    to: eco-evento
+    condition: "Leads Score C recebidos do Recon (SLA: primeiro conteúdo em até 24h pós-evento). Leads Score B sem resposta após 96h da cadência Score B. Sinal de reativação detectado em lead inativo (abertura de em…"
+  - from: eco-evento
+    to: atlas-evento
+    condition: "Lead classificado como SQL pelo Argos Evento. Também acionado por no-show detectado (para reagendamento automático com mensagem contextualizada no evento)."
+  - from: atlas-evento
+    to: vigilia
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: vigilia
+    to: claude-opus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

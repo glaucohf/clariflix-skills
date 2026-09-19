@@ -1,0 +1,175 @@
+workflow_name: ops_cs_back_office_financeiro_reconciliacao_pipeline
+description: "Planilha de reconciliacao e auditoria de confiabilidade zero: o squad faz o matching de transacoes, classifica exceptions e prepara os lancamentos — o humano so aprova o que o agente nao consegue resolver sozinho."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-back-office-financeiro-reconciliacao
+area: "Operações & CS"
+topsquad: "O4 · Back-Office Financeiro & Cobrança"
+agent_sequence:
+  - maestro-caixa
+  - fluxo
+  - nexus
+  - iris
+  - solano
+  - ledger
+  - aurum
+  - dunna
+  - aurum-2
+key_commands:
+  - "*extrair-e-normalizar-transacoes"
+  - "*cruzar-transacoes"
+  - "*classificar-exceptions"
+  - "*investigar-exceptions-automaticamente"
+  - "*preparar-closing-package"
+  - "*verificar-qualidade-financeira"
+  - "*gerar-aging-analysis-automatica"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro-caixa
+success_indicators:
+  - "Taxa de auto-reconciliacao: % de transacoes do periodo reconciliadas automaticamente sem intervencao humana (meta: 85-92% em 90 dias; baseline tipico do cliente: 0% — tudo manual)"
+  - "Tempo de fechamento: dias uteis entre fim do periodo e Closing Package aprovado (meta: 1-2 dias uteis; baseline tipico: 5-10 dias uteis)"
+  - "Exceptions resolvidas automaticamente: % de exceptions classificadas pelo Iris que foram resolvidas pelo Solano sem HITL (meta: 60-75% das exceptions por volume; exceptions de alto valor sempre HITL)"
+  - "Precisao do matching: % de matches automaticos confirmados como corretos pelo Controller na revisao do Closing Package (meta: > 99.5% para exact match; > 97% para fuzzy match; > 92% para probabilistic match)"
+  - "Falsos positivos de exceptions: % de transacoes erroneamente classificadas como exception quando eram match valido (meta: < 1%)"
+  - "Valor em exceptions residuais: R$ total em exceptions abertas (nao resolvidas) ao fechar o periodo, como % do volume total do periodo (meta: < 0.5% do valor total)"
+  - "SLA de aprovacao HITL: % de tasks HITL L3 respondidas dentro do SLA configurado (meta: > 90% de aprovacoes em < 4h uteis; pagamentos urgentes em < 1h uteis)"
+  - "Reducao de divergencias nao detectadas: numero de lancamentos incorretos identificados na auditoria externa ou no proximo ciclo que escaparam do squad (meta: zero divergencias acima de R$100 nao detectadas pelo Aurum)"
+  - "Custo por transacao reconciliada: custo total do squad (infra + tokens) dividido pelo numero de transacoes processadas (meta: < R$0,50/transacao em volumes de 2.000+/mes)"
+deliverable:
+  description: "Closing Package no ClickUp como prova de trabalho verificavel por ciclo de fechamento: (1) Reconciliation Statement por conta bancaria (saldo extrato vs. saldo ERP + itens conciliantes + saldo ajustado — formato auditavel), (2) Journal Entry Batch no formato do ERP do cliente (pronto para importacao click-to-approve), (3) Exception Log completo (cada exception com tipo, valor, investigacao do Solano, resolucao aplicada ou pendente, audit trail), (4) Closing Readiness Score com breakdown por dimensao, (5) Verification Report do Aurum (veredicto e flags), (6) AP-AR Status Report da Dunna (pagamentos pendentes de aprovacao, cobrancas enviadas na semana, titulos em risco). Cada lancamento rastreavel de volta a transacao de origem via audit trail imutavel. Task no ClickUp por exception HITL L3 com dossie de investigacao completo e botao de aprovacao integrado ao ERP."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro-caixa
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Extrair E Normalizar Transacoes"
+    agent: fluxo
+    task: extrair-e-normalizar-transacoes.md
+    trigger: "Cron no inicio de cada ciclo de fechamento (configuravel: D+1 do fechamento do periodo, tipicamente dia 1 do mes para fechamento mensal) + chamado manual pelo Maestro Caixa para reprocessar uma fonte especifica + modo continuo: cron diario…"
+    checkpoint:
+      criteria: "Canonical Transaction Set (JSON array: cada transacao com transaction_id, source_system, source_id, date, value_cents, currency, counterparty_id, counterparty_name_normalized, description_normalized, status, metadata_raw). Ingestion Report…"
+      veto_condition: "Saída sem veredito do critic Aurum 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Cruzar Transações"
+    agent: nexus
+    task: cruzar-transacoes.md
+    trigger: "saída aprovada da fase anterior"
+    checkpoint:
+      criteria: "Matching Report (JSON: matched_transactions [lista de pares com match_type, confidence_score, match_evidence], unmatched_transactions [lista de transacoes sem par, por fonte], low_confidence_matches [matched mas score 0.70-0.85, flagged pa…"
+      veto_condition: "Saída sem veredito do critic Aurum 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Classificar Exceptions"
+    agent: iris
+    task: classificar-exceptions.md
+    trigger: "Chamado pelo Maestro Caixa imediatamente apos o Matching Report do Nexus. Para modo continuo: chamado a cada ciclo diario para classificar novas exceptions. Tambem pode ser chamado manualmente pelo analista para re-classificar uma exceptio…"
+    checkpoint:
+      criteria: "Exception Queue (JSON array: cada exception com exception_id, exception_type, financial_impact_cents, urgency_score [0-10], recommended_action, action_confidence [0-1], auto_resolvable [true/false — se o Solano pode investigar e resolver s…"
+      veto_condition: "Saída sem veredito do critic Aurum 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Investigar Exceptions Automáticamente"
+    agent: solano
+    task: investigar-exceptions-automaticamente.md
+    trigger: "Chamado pelo Maestro Caixa apos a Exception Queue do Iris, para o subset de exceptions auto_resolvable=true. Opera de forma assíncrona (investiga exceptions em paralelo, reporta cada uma conforme conclui). SLA interno: exceptions de alta u…"
+    checkpoint:
+      criteria: "Findings Report por exception (JSON: exception_id, investigation_steps [lista de verificacoes realizadas com evidencias], root_cause [explicacao em linguagem natural], recommended_resolution [acao especifica: registrar como tarifa bancaria…"
+      veto_condition: "Saída sem veredito do critic Aurum 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Preparar Closing Package"
+    agent: ledger
+    task: preparar-closing-package.md
+    trigger: "Chamado pelo Maestro Caixa apos todos os Findings Reports do Solano serem entregues (ou timeout de SLA atingido para exceptions nao concluidas). Tambem pode ser chamado manualmente para gerar um Closing Package parcial com status em tempo…"
+    checkpoint:
+      criteria: "Closing Package (documento estruturado): (1) Reconciliation Statement por conta bancaria (saldo extrato vs. saldo ERP + itens conciliantes + saldo ajustado), (2) Journal Entry Batch (arquivo de lancamentos no formato do ERP — pronto para i…"
+      veto_condition: "Saída sem veredito do critic Aurum 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Verificar Qualidade Financeira"
+    agent: aurum
+    task: verificar-qualidade-financeira.md
+    trigger: "Chamado pelo Maestro Caixa SEMPRE apos o Closing Package ser gerado pelo Ledger. Nao ha bypass — todo Closing Package passa pelo Aurum. Tambem chamado de forma continua para validar cada lancamento individual gerado pelo Solano antes de se…"
+    checkpoint:
+      criteria: "Verification Report (JSON: verdict [APPROVED | APPROVED_WITH_FLAGS | BLOCKED], checks_passed [lista de dimensoes aprovadas com evidencias], checks_failed [lista de problemas com severidade e descricao], flags [itens de atencao em APPROVED_…"
+      veto_condition: "Saída sem veredito do critic Aurum 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Gerar Aging Analysis Automática"
+    agent: dunna
+    task: gerar-aging-analysis-automatica.md
+    trigger: "Cron diario (07h00) para geracao das filas AP e AR do dia + chamado pelo Maestro Caixa ao inicio de cada ciclo de fechamento para incluir o status de AP-AR no Closing Package + alerta imediato para titulos vencendo em menos de 24h que aind…"
+    checkpoint:
+      criteria: "AP Action Queue (JSON: pagamentos vencendo em 5 dias com status de aprovacao, pagamentos bloqueados por aprovacao pendente, oportunidades de early payment discount com ROI calculado, duplicidades detectadas na fila de pagamento). AR Action…"
+      veto_condition: "Saída sem veredito do critic Aurum 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: aurum-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: maestro-caixa
+    checkpoint:
+      criteria: "Entregável consolidado: Closing Package no ClickUp como prova de trabalho verificavel por ciclo de fechamento: (1) Reconciliation Statement por conta bancaria (saldo extrato vs. saldo ERP + itens conciliantes + saldo ajusta…"
+      human_review: true
+hitl_gates:
+  - level: L3
+    condition: "Lancamentos contabeis acima do threshold de aprovacao autonoma: qualquer lancamento (de reconciliacao automatica ou de resolucao de exception) acima do valor configurado (ex: R$10.000 por lancamento, configuravel por cliente) requer aprovacao explicita do Controller via task no ClickUp. O Ledger gera o lancamento formatado e o Aurum escala para HITL com contexto completo (origem, evidencia, impact no resultado)."
+  - level: L3
+    condition: "Exceptions classificadas como DISPUTED_CHARGE ou BILLING_DISCREPANCY de alto valor: qualquer disputa formal com fornecedor/cliente ou divergencia de billing acima do threshold configurado requer decisao humana. O Solano prepara o dossie de investigacao completo (evidencias, historico, opcoes de resolucao com pros/contras) para o Controller tomar a decisao."
+  - level: L3
+    condition: "Closing Package com veredicto BLOCKED do Aurum: quando o Aurum bloqueia o Closing Package (inconsistencia matematica, violacao de compliance, exceptions acima do threshold de fechamento), o Maestro Caixa cria task urgente no ClickUp com lista priorizada de problemas e acoes corretivas. Nenhum fechamento ocorre sem resolucao dos blocking issues."
+  - level: L3
+    condition: "Pagamentos (AP): a Dunna gera a fila de pagamentos aprovados e o dossie de cada pagamento, mas a execucao NUNCA e automatica. Todo pagamento requer aprovacao humana explicita (Controller ou Financeiro, conforme alçada configurada) via task no ClickUp com o botao de aprovacao integrado ao ERP."
+  - level: L2
+    condition: "Matches de baixa confianca (score 0.70-0.85): o Aurum sinaliza esses matches no Verification Report para confirmacao do analista antes do Closing Package ser finalizado. Nao bloqueia o processo, mas exige confirmacao explicita de cada match de baixa confianca acima de R$500 (configuravel)."
+  - level: L2
+    condition: "Comunicacoes de cobranca (AR): a Dunna prepara os templates de cobranca mas a aprovacao depende do tier: para clientes estrategicos (acima de determinado ARR ou marcados como VIP no CRM), toda comunicacao requer aprovacao humana antes do envio. Para clientes standard, a sequencia pode ser aprovada em batch semanalmente."
+  - level: L1
+    condition: "Revisao do Exception Playbook trimestral: analista financeiro revisa as regras de classificacao e os thresholds de tolerancia calibrados pelo squad, podendo ajustar parametros. Nao bloqueia operacao continua, mas garante que o playbook evolui com as mudancas no negocio do cliente."
+transitions:
+  - from: maestro-caixa
+    to: fluxo
+    condition: "Cron no inicio de cada ciclo de fechamento (configuravel: D+1 do fechamento do periodo, tipicamente dia 1 do mes para fechamento mensal) + chamado manual pelo Maestro Caixa para reprocessar uma fonte…"
+  - from: fluxo
+    to: nexus
+    condition: "saída da fase anterior aprovada"
+  - from: nexus
+    to: iris
+    condition: "Chamado pelo Maestro Caixa imediatamente apos o Matching Report do Nexus. Para modo continuo: chamado a cada ciclo diario para classificar novas exceptions. Tambem pode ser chamado manualmente pelo a…"
+  - from: iris
+    to: solano
+    condition: "Chamado pelo Maestro Caixa apos a Exception Queue do Iris, para o subset de exceptions auto_resolvable=true. Opera de forma assíncrona (investiga exceptions em paralelo, reporta cada uma conforme con…"
+  - from: solano
+    to: ledger
+    condition: "Chamado pelo Maestro Caixa apos todos os Findings Reports do Solano serem entregues (ou timeout de SLA atingido para exceptions nao concluidas). Tambem pode ser chamado manualmente para gerar um Clos…"
+  - from: ledger
+    to: aurum
+    condition: "Chamado pelo Maestro Caixa SEMPRE apos o Closing Package ser gerado pelo Ledger. Nao ha bypass — todo Closing Package passa pelo Aurum. Tambem chamado de forma continua para validar cada lancamento i…"
+  - from: aurum
+    to: dunna
+    condition: "Cron diario (07h00) para geracao das filas AP e AR do dia + chamado pelo Maestro Caixa ao inicio de cada ciclo de fechamento para incluir o status de AP-AR no Closing Package + alerta imediato para t…"
+  - from: dunna
+    to: aurum-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: aurum-2
+    to: maestro-caixa
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - solano

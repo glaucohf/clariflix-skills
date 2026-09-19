@@ -1,0 +1,158 @@
+workflow_name: marketing_demand_sensing_radar_pipeline
+description: "Seu time para de reagir e começa a antecipar: radar de sinais de mercado e intenção de compra que dispara playbooks antes dos concorrentes chegarem."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-demand-sensing-radar
+area: "Marketing"
+topsquad: "M1 · Demand Gen & ABM Orchestration"
+agent_sequence:
+  - radar
+  - pulse
+  - vortex
+  - nexus
+  - sage
+  - bolt
+  - sigma
+  - sigma-2
+key_commands:
+  - "*monitorar-sinais-mercado"
+  - "*analisar-sinais-de-demanda"
+  - "*disparar-playbook-correto"
+  - "*calcular-roi-sinal"
+  - "*gerar-anuncio-especifico"
+  - "*verificar-conformidade-e-qualidade"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: radar
+success_indicators:
+  - "Lead-time de antecipação médio: meta > 14 dias antes do momento de compra ativo (medido como distância entre data do sinal e data de abertura de oportunidade no CRM)"
+  - "Win-rate em contas sinalizadas: meta > 35% em contas abordadas com pelo menos 1 sinal Hot vs. baseline histórico sem sinal (~15-20%)"
+  - "Sinais acionados por semana: volume de Hot Accounts identificadas (meta de 10-30/semana dependendo do tamanho do TAM do cliente)"
+  - "Precisão do sinal (Signal Precision Rate): % de contas Hot que viraram oportunidade real em 45 dias — meta > 40% (filtra falsos positivos)"
+  - "Tempo de resposta ao sinal: média de < 24h entre detecção de sinal Hot e primeiro toque (Nexus + Sigma + SDR)"
+  - "Pipeline atribuído ao radar: R$ de pipeline gerado por oportunidades originadas em contas sinalizadas — meta de cobertura de 3x o custo mensal do squad em 90 dias"
+  - "Quality Score médio de Sigma: média >= 8/10 nas avaliações de copy e playbooks (garante que velocidade não sacrifica qualidade)"
+  - "Taxa de recalibração de sinal: número de vezes que baseline de categoria de sinal precisa ser ajustado por mês — meta < 2 (indica que o squad está aprendendo e estabilizando)"
+deliverable:
+  description: "Demand Intelligence Report semanal entregue no ClickUp contendo: (1) Hot Accounts da semana com Signal Score, breakdown de sinais detectados e Context Card por conta, (2) Playbooks disparados com status (aprovados, enviados, respostas obtidas), (3) Dashboard de lead-time de antecipação e win-rate em contas sinalizadas, (4) Macro-Trend Report com 3-5 tendências setoriais e janela de oportunidade estimada, (5) ROI por categoria de sinal (qual tipo de sinal está gerando mais pipeline), (6) Pipeline atribuído ao radar no período, (7) Alertas de recalibração de threshold com recomendação de ajuste para aprovação do CMO."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: radar
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar Sinais Mercado"
+    agent: pulse
+    task: monitorar-sinais-mercado.md
+    trigger: "Job de scan automático a cada 6h (cron); webhook de funding round detectado (Crunchbase API); alerta de job posting crítico detectado; Radar solicita scan emergencial para conta específica; revisão semanal de calibração de baseline"
+    checkpoint:
+      criteria: "Signal Feed diário (JSON estruturado com todas as contas acima do threshold mínimo), Signal Score por conta (0-100 com breakdown por categoria), lista de Hot Accounts (score > 70) com evidence trail de quais sinais dispararam, trending sec…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Analisar Sinais De Demanda"
+    agent: vortex
+    task: analisar-sinais-de-demanda.md
+    trigger: "Ciclo semanal automático de Macro-Trend Research; conta atinge status Hot no Pulse (gera Context Card em 2h); Radar solicita análise retroativa de ICP para calibrar fingerprint; novo segmento de mercado identificado com anomalia de sinal"
+    checkpoint:
+      criteria: "Buy Signal Fingerprint (perfil de quais combinações de sinais precederam compras históricas), Macro-Trend Report semanal (3-5 tendências com janela de oportunidade estimada em semanas), Competitor Signal Analysis (em que eventos de mercado…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Disparar Playbook Correto"
+    agent: nexus
+    task: disparar-playbook-correto.md
+    trigger: "Radar confirma conta como Hot Account (score > 70 com pelo menos 2 categorias de sinal); Pulse detecta sinal urgente de categoria crítica (competitive review = janela de 72h); Radar solicita revisão de playbook para conta reaquecida (era H…"
+    checkpoint:
+      criteria: "Playbook selecionado com justificativa (por que este playbook para este sinal), rascunho de mensagem de abertura personalizada com o sinal como contexto (para aprovação de Sigma), sequência de toques planejada (canal + timing + mensagem po…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-5
+    name: "Calcular ROI Sinal"
+    agent: sage
+    task: calcular-roi-sinal.md
+    trigger: "Ciclo semanal automático de consolidação; deal fechado no CRM com origem em conta sinalizada (trigger de atribuição); anomalia detectada em métrica de funil; Radar solicita análise de performance de categoria específica; revisão mensal de…"
+    checkpoint:
+      criteria: "Dashboard semanal de Demand Sensing (lead-time médio, win-rate por tipo de sinal, pipeline atribuído ao radar), ROI Report por categoria de sinal (qual converte mais, qual tem melhor CAC), Anomaly Alert quando métrica crítica desvia > 20%…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Gerar Anúncio Específico"
+    agent: bolt
+    task: gerar-anuncio-especifico.md
+    trigger: "Nexus dispara Demand Surge Playbook ou Competitive Review Playbook (urgência alta = 2h SLA); Radar solicita conteúdo para campanha de retargeting de segmento aquecido; ciclo semanal de conteúdo baseado em Macro-Trend Report de Vortex; HITL…"
+    checkpoint:
+      criteria: "Copy de ad (headline + body + CTA) para aprovação, script de email de outreach personalizado com sinal como abertura, rascunho de post de LinkedIn com ângulo do macro-trend detectado por Vortex, variantes de criativo para teste A/B (mínimo…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Verificar Conformidade E Qualidade"
+    agent: sigma
+    task: verificar-conformidade-e-qualidade.md
+    trigger: "SEMPRE antes de qualquer envio de outreach externo (gate obrigatório — Nexus não envia sem aprovação de Sigma), antes de publicação de campanha paga (gate L3), antes de escalar abordagem de conta de Warm para ação de tier 1, quando Bolt en…"
+    checkpoint:
+      criteria: "Veredicto APPROVED/NEEDS_REVISION/BLOCKED com justificativa específica, lista de ajustes necessários se NEEDS_REVISION (com sugestões concretas, não apenas críticas), flag de risco LGPD se o uso do sinal como contexto é problemático, Quali…"
+      veto_condition: "Saída sem veredito do critic Sigma 2; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: sigma-2
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: radar
+    checkpoint:
+      criteria: "Entregável consolidado: Demand Intelligence Report semanal entregue no ClickUp contendo: (1) Hot Accounts da semana com Signal Score, breakdown de sinais detectados e Context Card por conta, (2) Playbooks disparados com sta…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Aprovação do Signal Taxonomy Canvas no Discovery (Semana 2) — CMO e Head de Vendas validam quais categorias de sinal são relevantes para o ICP e definem thresholds de urgência antes de qualquer monitoramento ir ao ar (L3, gate obrigatório)"
+  - level: HITL
+    condition: "Validação manual das primeiras 10 contas Hot identificadas no Deep Dive — time de vendas confirma se o sinal detectado faz sentido para cada conta antes do squad ser colocado em produção (L3, calibração crítica)"
+  - level: HITL
+    condition: "Aprovação de campanha paga (ads) gerada por Bolt — qualquer investimento de budget requer aprovação humana antes de subir para Google/Meta (L3, irreversível e financeiro)"
+  - level: HITL
+    condition: "Abordagem direta de contas tier 1 estratégicas — quando o playbook envolve contato direto com C-level de conta de alto valor, o AE ou CEO deve revisar e aprovar a mensagem antes do envio (L3)"
+  - level: HITL
+    condition: "Calibração mensal de thresholds de sinal — Head de Vendas e CMO revisam com Sage os thresholds de Hot/Warm/Cold e ajustam conforme aprendizados de conversão (L1, ciclo recorrente)"
+  - level: HITL
+    condition: "Ativação de novo tipo de sinal ou integração de nova fonte de dados que implica custo adicional — aprovação financeira antes de habilitar (L3)"
+  - level: HITL
+    condition: "Quando Sigma retorna BLOCKED em gate de compliance LGPD — revisão jurídica humana obrigatória antes de reprocessar (L3, risco legal)"
+transitions:
+  - from: radar
+    to: pulse
+    condition: "Job de scan automático a cada 6h (cron); webhook de funding round detectado (Crunchbase API); alerta de job posting crítico detectado; Radar solicita scan emergencial para conta específica; revisão s…"
+  - from: pulse
+    to: vortex
+    condition: "Ciclo semanal automático de Macro-Trend Research; conta atinge status Hot no Pulse (gera Context Card em 2h); Radar solicita análise retroativa de ICP para calibrar fingerprint; novo segmento de merc…"
+  - from: vortex
+    to: nexus
+    condition: "Radar confirma conta como Hot Account (score > 70 com pelo menos 2 categorias de sinal); Pulse detecta sinal urgente de categoria crítica (competitive review = janela de 72h); Radar solicita revisão…"
+  - from: nexus
+    to: sage
+    condition: "Ciclo semanal automático de consolidação; deal fechado no CRM com origem em conta sinalizada (trigger de atribuição); anomalia detectada em métrica de funil; Radar solicita análise de performance de…"
+  - from: sage
+    to: bolt
+    condition: "Nexus dispara Demand Surge Playbook ou Competitive Review Playbook (urgência alta = 2h SLA); Radar solicita conteúdo para campanha de retargeting de segmento aquecido; ciclo semanal de conteúdo basea…"
+  - from: bolt
+    to: sigma
+    condition: "SEMPRE antes de qualquer envio de outreach externo (gate obrigatório — Nexus não envia sem aprovação de Sigma), antes de publicação de campanha paga (gate L3), antes de escalar abordagem de conta de…"
+  - from: sigma
+    to: sigma-2
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: sigma-2
+    to: radar
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

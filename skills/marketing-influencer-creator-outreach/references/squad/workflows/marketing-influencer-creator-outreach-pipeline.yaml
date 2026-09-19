@@ -1,0 +1,164 @@
+workflow_name: marketing_influencer_creator_outreach_pipeline
+description: "De 10 creators ativados por mes no feeling para 80+ por trimestre por fit real de marca e performance — sem planilha, sem achismo, com ROAS rastreavel desde o primeiro post."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: marketing-influencer-creator-outreach
+area: "Marketing"
+topsquad: "M1 · Demand Gen & ABM Orchestration"
+agent_sequence:
+  - curator
+  - radar-scout
+  - persona-fit-analyst
+  - contrato-maestro
+  - brief-architect
+  - content-guardian
+  - roas-tracker
+  - parceiro-certo
+key_commands:
+  - "*descobrir-creators-alinhados"
+  - "*analisar-fit-creator"
+  - "*negociar-contrato-de-colaboracao"
+  - "*gerar-briefing-criativo-personalizado"
+  - "*monitorar-publicacao-conteudo"
+  - "*calcular-roas-real"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: curator
+success_indicators:
+  - "Creators ativados por mes: meta de 25-40/mes vs baseline de 3-8 manual (5-10x de alavancagem de volume) — medido mensalmente por campanha"
+  - "Custo por colaboracao vs benchmark de mercado: meta de reducao de 20-35% frente ao custo historico pre-implantacao — medido por tier e nicho de creator"
+  - "ROAS medio do canal de creator: meta >= 2.5x no primeiro trimestre, >= 3.5x apos 6 meses com calibragem do modelo de scoring — medido por cohort de campanha"
+  - "Taxa de Audience-ICP Overlap medio dos creators ativados: meta > 35% (ao menos 35% da audiencia do creator e ICP do cliente) — indica qualidade do matching vs volume"
+  - "Taxa de aprovacao do Parceiro Certo na primeira verificacao: meta > 75% — indica calibragem dos criterios de pre-filtro do Radar Scout e Persona Fit Analyst"
+  - "Tempo de ciclo do pipeline: da descoberta do creator ate publicacao do primeiro post: meta <= 21 dias vs tipico manual de 45-90 dias"
+  - "Taxa de entrega no prazo de creators ativados: meta >= 85% dos entregaveis publicados na data acordada sem necessidade de extensao"
+  - "Volume de UGC arquivado e reutilizavel: meta de 50+ pecas de UGC aprovadas por trimestre para uso em ads pagos — cada peca reutilizada em ads reduz custo de producao de criativo"
+  - "CTR de ads com UGC de creator vs criativo produzido pela agencia: meta de UGC com CTR 25-45% maior — valida o ROI do canal alem da conversao direta"
+  - "Taxa de renovacao de parceria com creators de ROAS >= 2x: meta >= 70% de renovacao dos top performers — indica saude do relacionamento e retencao de creators de alta performance"
+  - "Taxa de task success por agente no Langfuse: gate de producao = 95% (abaixo aciona alerta automatico de revisao do agente)"
+  - "Creators descobertos organicamente (mencao sem parceria) como percentual do total ativado: meta >= 20% — indica construcao de comunidade autentica de brand advocates"
+deliverable:
+  description: "Pacote de campanha de creator verificado, rastreavel e com ROAS mensuravel por criativo: (1) Creator Score Card por creator ativado (Persona Fit Analyst) com breakdown por 5 dimensoes, flag de audiencia fake e tier de prioridade — salvo no ClickUp e linkado ao lead no CRM; (2) Dossiê de brand safety verificado (Parceiro Certo Camada 1) com validacao de historico de polêmica, compliance com CONAR e alinhamento de valores — artefato obrigatorio antes de qualquer contrato; (3) Proposta comercial e contrato assinado digitalmente (Contrato Maestro) com escopo, remuneracao, clausulas de uso de imagem para ads e rastreabilidade — versionado no ClickUp; (4) Briefing criativo personalizado aprovado pelo Parceiro Certo (Brief Architect) com UTM unico, codigo de desconto exclusivo e checklist de conformidade — enviado ao creator e arquivado; (5) Log de publicacao verificado (Content Guardian) com URL do post, data/hora, resultado da verificacao de 7 pontos e status de arquivo no banco de UGC; (6) Dashboard de ROAS por creator (ROAS Tracker) com metricas em D+1, D+7, D+14 e D+30, atribuicao cruzada de UTM + codigo de desconto e recomendacao de renovacao ou encerramento de parceria — relatorio executivo mensal com mix recomendado para proxima campanha. Todo o pipeline e auditavel por design: cada artefato tem agente responsavel, timestamp, veredicto do Parceiro Certo e rastro no Langfuse. O gestor de marketing opera os gates L3 e ve o contexto completo de cada creator e campanha em um unico painel no ClickUp."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: curator
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Descobrir Creators Alinhados"
+    agent: radar-scout
+    task: descobrir-creators-alinhados.md
+    trigger: "Trigger automatico diario para descoberta de novos creators por hashtag e categoria configurada. Trigger em tempo real para mencoes organicas da marca detectadas via social listening (fast-track imediato). Trigger manual pelo time de marke…"
+    checkpoint:
+      criteria: "Dossiê bruto de creator por perfil descoberto com 5 secoes: (1) Identificacao — handle/URL por plataforma, nome real quando disponivel, nicho principal e secundario, regiao, idioma; (2) Metricas Brutas — seguidores por plataforma, taxa de…"
+      veto_condition: "Saída sem veredito do critic Parceiro Certo; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Analisar Fit Creator"
+    agent: persona-fit-analyst
+    task: analisar-fit-creator.md
+    trigger: "Automaticamente apos Radar Scout entregar dossiê com completude >= 60. Re-trigger trimestral para re-avaliar creators MATCH MODERADO ja na base — scores mudam com o crescimento do creator. Trigger manual pelo Curator para re-avaliacao de c…"
+    checkpoint:
+      criteria: "Creator Score estruturado (0-100) com breakdown por 5 dimensoes: Audience-ICP Overlap (0-30 — peso maior, mais preditivo de conversao), Content Relevance (0-25 — nicho, linguagem, valores), Performance Score (0-20 — engajamento real vs fak…"
+      veto_condition: "Saída sem veredito do critic Parceiro Certo; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Negociar Contrato De Colaboração"
+    agent: contrato-maestro
+    task: negociar-contrato-de-colaboracao.md
+    trigger: "Ativado pelo Curator para creators com tag MATCH PERFEITO ou MATCH FORTE apos aprovacao pelo Parceiro Certo. Trigger de oportunidade: creator com mencao organica da marca detectado pelo Radar Scout com score >= 70 recebe abordagem priorita…"
+    checkpoint:
+      criteria: "Para cada creator ativado: (1) Log de abordagem — canal usado, mensagem enviada, data, status de resposta; (2) Proposta comercial estruturada — escopo de entregaveis (quantidade, formato, prazo, plataforma), modelo de remuneracao com valor…"
+      veto_condition: "Saída sem veredito do critic Parceiro Certo; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-5
+    name: "Gerar Briefing Criativo Personalizado"
+    agent: brief-architect
+    task: gerar-briefing-criativo-personalizado.md
+    trigger: "Ativado pelo Curator imediatamente apos confirmacao de contrato assinado e codigo de desconto/UTM gerado. Re-trigger se creator solicitar ajuste no briefing (max 1 revisao autonoma pelo Brief Architect antes de escalar para time de marketi…"
+    checkpoint:
+      criteria: "Briefing criativo estruturado em 7 secoes adaptado ao creator: (1) Contexto da Parceria — porque o creator foi escolhido (dados de fit especificos, mencao ao que o brand admira no conteudo dele), tom de parceria real nao corporativo; (2) O…"
+      veto_condition: "Saída sem veredito do critic Parceiro Certo; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Monitorar Publicação Conteúdo"
+    agent: content-guardian
+    task: monitorar-publicacao-conteudo.md
+    trigger: "Ativado automaticamente quando creator envia rascunho de conteudo via plataforma (webhook ou verificacao diaria de submissions). Alerta em D-3 do deadline se rascunho nao foi submetido: notificacao ao creator (via mensagem na plataforma) e…"
+    checkpoint:
+      criteria: "Para cada entregavel: (1) Resultado da verificacao de conformidade em 7 pontos: mensagens-chave presentes (sim/nao), #publi/publicidade visivel (sim/nao/incorreto), codigo de desconto e UTM corretos (sim/nao), CTA presente e correto (sim/n…"
+      veto_condition: "Saída sem veredito do critic Parceiro Certo; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Calcular Roas Real"
+    agent: roas-tracker
+    task: calcular-roas-real.md
+    trigger: "Ativado automaticamente 24h apos confirmacao de publicacao pelo Content Guardian. Coleta de dados em D+1, D+7, D+14 e D+30 para cada post publicado. Trigger de alerta: ROAS abaixo de 0.5x em D+7 = notificacao ao gestor de marketing para de…"
+    checkpoint:
+      criteria: "Dashboard de performance por creator (atualizado em 24h, 7 dias e 30 dias apos publicacao): { creator_handle, plataforma, campanha, data_publicacao, alcance_estimado, engajamento_total (likes+comentarios+saves+shares), taxa_engajamento_rea…"
+      veto_condition: "Saída sem veredito do critic Parceiro Certo; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: parceiro-certo
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: curator
+    checkpoint:
+      criteria: "Entregável consolidado: Pacote de campanha de creator verificado, rastreavel e com ROAS mensuravel por criativo: (1) Creator Score Card por creator ativado (Persona Fit Analyst) com breakdown por 5 dimensoes, flag de audien…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Gate L3 no Contrato Maestro: qualquer proposta comercial acima do threshold configurado no onboarding (ex: colaboracoes acima de R$3.000 ou R$5.000 dependendo do budget do cliente) bloqueia e notifica o gestor de marketing com proposta completa, score do creator e benchmarking de mercado para aprovacao antes de qualquer envio."
+  - level: HITL
+    condition: "Parceiro Certo retorna veredicto SINALIZAR em Camada 1: flag de risco reputacional ou de valores apresentado ao gestor de marketing com evidencias coletadas para decisao humana de vetamento ou aprovacao com risco consciente — nunca o squad decide sozinho sobre risco de reputacao da marca."
+  - level: HITL
+    condition: "Content Guardian veredicto BLOQUEAR_HITL: conteudo submetido pelo creator contem elemento de brand safety, compliance legal (ausencia de #publi) ou representacao incorreta do produto que requer revisao do time juridico ou de marketing antes de qualquer resposta ao creator."
+  - level: HITL
+    condition: "ROAS Tracker detecta ROAS >= 5x em D+7: alerta de oportunidade imediato ao gestor de marketing e ao time de performance para decisao de amplificacao via ads pagos do post do creator — decisao de investimento adicional e sempre humana."
+  - level: HITL
+    condition: "ROAS Tracker detecta ROAS < 0.5x em D+14: alerta ao gestor de marketing para revisao da estrategia de creator daquele nicho ou campanha — pode indicar desalinhamento de ICP ou problema de produto que nao deve ser escondido por mais investimento."
+  - level: HITL
+    condition: "Creator solicita ajuste contratual apos assinatura (exclusividade, prazo, valor, direitos de imagem ampliados): qualquer renegociacao apos contrato assinado e bloqueada para o Contrato Maestro e escalada diretamente ao gestor de marketing e juridico."
+  - level: HITL
+    condition: "Content Guardian nao recebe rascunho em D-1 do deadline: escalacao urgente ao time de marketing para decisao sobre extensao de prazo ou substituicao do creator — o squad nao toma essa decisao sozinho pois impacta o calendario da campanha."
+  - level: HITL
+    condition: "Persona Fit Analyst detecta queda >= 25% no score medio de ROAS por categoria de creator em 2 ciclos consecutivos de campanha: alerta estrategico ao gestor de marketing indicando possivel desalinhamento do ICP ou saturacao de audiencia naquele nicho — revisao da Creator Persona Matrix com time humano."
+transitions:
+  - from: curator
+    to: radar-scout
+    condition: "Trigger automatico diario para descoberta de novos creators por hashtag e categoria configurada. Trigger em tempo real para mencoes organicas da marca detectadas via social listening (fast-track imed…"
+  - from: radar-scout
+    to: persona-fit-analyst
+    condition: "Automaticamente apos Radar Scout entregar dossiê com completude >= 60. Re-trigger trimestral para re-avaliar creators MATCH MODERADO ja na base — scores mudam com o crescimento do creator. Trigger ma…"
+  - from: persona-fit-analyst
+    to: contrato-maestro
+    condition: "Ativado pelo Curator para creators com tag MATCH PERFEITO ou MATCH FORTE apos aprovacao pelo Parceiro Certo. Trigger de oportunidade: creator com mencao organica da marca detectado pelo Radar Scout c…"
+  - from: contrato-maestro
+    to: brief-architect
+    condition: "Ativado pelo Curator imediatamente apos confirmacao de contrato assinado e codigo de desconto/UTM gerado. Re-trigger se creator solicitar ajuste no briefing (max 1 revisao autonoma pelo Brief Archite…"
+  - from: brief-architect
+    to: content-guardian
+    condition: "Ativado automaticamente quando creator envia rascunho de conteudo via plataforma (webhook ou verificacao diaria de submissions). Alerta em D-3 do deadline se rascunho nao foi submetido: notificacao a…"
+  - from: content-guardian
+    to: roas-tracker
+    condition: "Ativado automaticamente 24h apos confirmacao de publicacao pelo Content Guardian. Coleta de dados em D+1, D+7, D+14 e D+30 para cada post publicado. Trigger de alerta: ROAS abaixo de 0.5x em D+7 = no…"
+  - from: roas-tracker
+    to: parceiro-certo
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: parceiro-certo
+    to: curator
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

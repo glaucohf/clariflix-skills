@@ -1,0 +1,195 @@
+workflow_name: ce_launch_prep
+description: >
+  Workflow exclusivo pré-lançamento — não existe nos squads concorrentes.
+  Checklist final rigoroso executado ANTES de qualquer tráfego pago ser ativado.
+  Cobre performance (PageSpeed), SEO, acessibilidade, analytics em tempo real,
+  copy final e sign-off formal. Qualquer hard veto bloqueia o lançamento até
+  resolução, sem exceções. Elimina o risco de pagar por tráfego em página
+  com problemas técnicos ou de conversão.
+
+agent_sequence:
+  - ce-frontend-dev
+  - ce-reviewer
+  - ce-analytics-architect
+
+estimated_duration: "1-2 horas"
+
+parallel_execution: false
+
+hard_vetos:
+  - "PageSpeed mobile < 90 → BLOQUEAR lançamento — sem exceção"
+  - "PageSpeed desktop < 90 → BLOQUEAR lançamento — sem exceção"
+  - "GA4 sem dados de eventos em tempo real → BLOQUEAR lançamento — sem exceção"
+  - "Conversion score do QA Gate < 75 → BLOQUEAR lançamento — sem exceção"
+  - "Meta Pixel não disparando PageView → BLOQUEAR lançamento — sem exceção"
+  - "Formulário de captura com erro de submissão → BLOQUEAR lançamento — sem exceção"
+  - "Lead de teste não chegando no CRM → BLOQUEAR lançamento — sem exceção"
+
+phases:
+  - name: "Phase 1 — Performance Audit"
+    agent: ce-frontend-dev (Turbo)
+    tasks:
+      - Executar PageSpeed Insights na URL de produção (não localhost)
+      - Registrar scores de mobile e desktop separadamente
+      - Analisar Core Web Vitals: LCP, CLS, INP (ou FID) com valores exatos
+      - Identificar e corrigir os top 3 issues de performance do relatório
+      - Verificar compressão de imagens: todas em WebP, nenhuma acima de 200KB
+      - Validar lazy loading de imagens (exceto hero com priority flag)
+      - "Verificar `next/image` em 100% das imagens do projeto"
+      - Executar análise de bundle size: eliminar imports desnecessários
+      - "Verificar se fonts estão sendo carregadas com `font-display: swap`"
+      - "Re-executar PageSpeed após correções até atingir >= 90 em mobile e desktop"
+      - Documentar scores finais com screenshot do relatório PageSpeed
+    checkpoints:
+      entry: "QA Gate aprovado com conversion score >= 75"
+      exit: >
+        PageSpeed >= 90 em mobile E desktop, documentado com screenshot.
+        Core Web Vitals: LCP < 2.5s, CLS < 0.1, INP < 200ms
+    veto_conditions:
+      - "PageSpeed mobile < 90 após primeira otimização → identificar causa raiz e corrigir antes de re-testar"
+      - "PageSpeed desktop < 90 → identificar causa raiz e corrigir antes de re-testar"
+      - "LCP > 2.5s após otimização → otimizar hero image e critical path CSS"
+      - "CLS > 0.1 → verificar dimensões de imagens e skeleton de fontes"
+      - "Imagem acima de 200KB → comprimir e re-testar antes de prosseguir"
+      - "HARD VETO: PageSpeed < 90 após 2 rodadas de otimização → escalar para revisão de arquitetura"
+
+  - name: "Phase 2 — SEO + Acessibilidade Final"
+    agent: ce-reviewer (Audit)
+    tasks:
+      - Validar meta title: <= 60 caracteres, contém keyword principal e nome da marca
+      - Validar meta description: <= 155 caracteres, contém proposta de valor e CTA
+      - Verificar Open Graph tags: og:title, og:description, og:image (1200x630px)
+      - Verificar Twitter Card tags completas
+      - Validar schema markup JSON-LD: Product, Review ou FAQPage (conforme seções presentes)
+      - Executar teste de acessibilidade WCAG AA: contraste, aria-labels, tab order
+      - Verificar heading hierarchy: H1 único, H2-H6 em ordem lógica
+      - Validar alt text em 100% das imagens
+      - Verificar canonical URL configurada corretamente
+      - Testar navegação por teclado: Tab, Shift+Tab, Enter, Escape
+      - "Executar Lighthouse Accessibility score: meta >= 90"
+      - Documentar todos os issues encontrados com severidade: CRITICAL / HIGH / MEDIUM
+    checkpoints:
+      entry: "Performance audit aprovado (PageSpeed >= 90 mobile e desktop)"
+      exit: >
+        SEO validado: meta tags completas, schema markup ativo.
+        Acessibilidade: WCAG AA sem erros críticos, Lighthouse Accessibility >= 90
+    veto_conditions:
+      - "H1 ausente ou múltiplos H1 → corrigir imediatamente"
+      - "Imagem sem alt text → adicionar antes de prosseguir"
+      - "Meta title ou description ausente → criar antes de prosseguir"
+      - "og:image não configurada → configurar (impacta preview em redes sociais ao compartilhar)"
+      - "Erros WCAG de nível A (mais críticos) → bloquear e corrigir com ce-frontend-dev"
+      - "Schema markup com erros de validação (Rich Results Test) → corrigir"
+      - "Canonical URL apontando para URL incorreta → corrigir"
+
+  - name: "Phase 3 — Analytics Validation"
+    agent: ce-analytics-architect (Lens)
+    tasks:
+      - Abrir GA4 DebugView e navegar pela landing page em aba separada
+      - Confirmar que evento page_view dispara imediatamente ao carregar
+      - Confirmar que evento form_start dispara ao clicar no formulário
+      - Confirmar que evento form_submit dispara após submissão bem-sucedida
+      - Confirmar que evento de conversão principal (leadCapture) dispara e aparece em GA4
+      - Abrir Meta Events Manager e validar PageView em tempo real
+      - Confirmar que evento Lead do Meta Pixel dispara após conversão
+      - Testar Google Ads conversion tracking (se aplicável): verificar no Tag Assistant
+      - Abrir Hotjar/Clarity e confirmar que sessão de gravação inicia
+      - Verificar que funil de conversão no GA4 está configurado e recebendo dados
+      - Executar lead de teste completo e confirmar todos os eventos na cadeia
+      - Documentar resultados de cada validação com screenshot
+    checkpoints:
+      entry: "SEO e acessibilidade aprovados — Phase 2 concluída"
+      exit: >
+        Analytics totalmente validado: GA4 recebendo pageViews e conversões em
+        tempo real, Meta Pixel disparando PageView e Lead, heatmaps ativos,
+        funil configurado e recebendo dados
+    veto_conditions:
+      - "GA4 sem evento page_view → HARD VETO — bloquear lançamento"
+      - "Evento de conversão ausente no GA4 → HARD VETO — bloquear lançamento"
+      - "Meta Pixel sem PageView → HARD VETO — bloquear lançamento"
+      - "Evento Lead do Meta Pixel não disparando → HARD VETO — bloquear lançamento"
+      - "Heatmap tool sem nenhuma sessão gravada após teste → investigar snippet e re-validar"
+      - "Funil no GA4 sem etapas configuradas → configurar antes de prosseguir"
+      - "Tag Manager com erros no Preview Mode → resolver antes de declarar validado"
+
+  - name: "Phase 4 — Copy Final Review"
+    agent: ce-reviewer (Audit)
+    tasks:
+      - Revisar copy de todas as seções implementadas vs. copy document original
+      - Validar que nenhum copy foi alterado durante a implementação sem aprovação
+      - Verificar ortografia e gramática em todo o conteúdo textual
+      - Validar consistência de tom e voz entre seções
+      - Verificar que todas as 5 objeções obrigatórias do intelligence report foram endereçadas
+      - Validar que os CTAs são específicos e contêm benefício explícito
+      - Checar que urgência e escassez são legítimas (não fabricadas)
+      - Verificar que garantia é clara e está visualmente próxima ao CTA de pricing
+      - Validar microcopy: mensagens de erro, confirmação, labels de formulário
+      - Conferir links: todos os links funcionando, nenhum 404
+    checkpoints:
+      entry: "Analytics validado — Phase 3 concluída"
+      exit: >
+        Copy implementado idêntico ao aprovado, sem erros ortográficos,
+        todos os links funcionando, todas as 5 objeções endereçadas
+    veto_conditions:
+      - "Copy alterado sem aprovação → reverter para versão aprovada e re-testar"
+      - "Erro ortográfico em headline ou CTA → corrigir imediatamente"
+      - "Link 404 em qualquer seção → corrigir antes de prosseguir"
+      - "CTA genérico ('Clique aqui') sem benefício → substituir pela versão aprovada"
+      - "Urgência fabricada detectada → remover ou substituir por urgência legítima"
+      - "Garantia ausente ou não visível próxima ao CTA de pricing → corrigir"
+
+  - name: "Phase 5 — Launch Checklist Sign-Off"
+    agent: ce-reviewer (Audit)
+    tasks:
+      - Compilar resultados de todas as 4 phases em relatório de Launch Readiness
+      - "Confirmar: PageSpeed >= 90 mobile E desktop (com screenshot)"
+      - Confirmar: SEO validado (meta tags, schema, canonical)
+      - Confirmar: Acessibilidade WCAG AA sem erros críticos
+      - Confirmar: GA4 recebendo eventos em tempo real (com screenshot do DebugView)
+      - Confirmar: Meta Pixel validado (com screenshot do Events Manager)
+      - Confirmar: Fluxo end-to-end funcional (lead teste → CRM → email)
+      - Confirmar: Copy final aprovado sem alterações não autorizadas
+      - Confirmar: Todos os links funcionando (zero 404)
+      - Confirmar: Nenhum hard veto ativo
+      - Emitir LAUNCH APPROVED ou LAUNCH BLOCKED com lista de itens pendentes
+    checkpoints:
+      entry: "Copy final aprovado — Phase 4 concluída"
+      exit: "LAUNCH APPROVED emitido com relatório de Launch Readiness assinado"
+    veto_conditions:
+      - "Qualquer hard veto ativo → LAUNCH BLOCKED — não emitir aprovação"
+      - "Qualquer item do checklist não confirmado → LAUNCH BLOCKED"
+      - "Screenshots de validação ausentes → solicitar antes de emitir aprovação"
+      - "Relatório sem todos os 10 itens de confirmação → completar antes de emitir"
+
+success_indicators:
+  - "PageSpeed >= 90 em mobile e desktop documentado com screenshot"
+  - "GA4 DebugView mostrando eventos de conversão em tempo real"
+  - "Meta Pixel Events Manager confirmando PageView e Lead"
+  - "Zero links 404 na landing page"
+  - "Zero erros WCAG AA críticos"
+  - "Copy implementado identicamente ao aprovado"
+  - "Checklist de lançamento 100% assinado (10/10 itens)"
+  - "Relatório de Launch Readiness emitido com LAUNCH APPROVED"
+  - "Nenhum hard veto ativo no momento do sign-off"
+
+failure_conditions:
+  - condition: "PageSpeed < 90 após 3 rodadas de otimização"
+    recovery: >
+      ce-frontend-dev e ce-reviewer escalam para análise de arquitetura;
+      ce-strategist comunica atraso de lançamento ao cliente com estimativa
+      de resolução; lançamento adiado até aprovação
+  - condition: "GA4 com problemas de configuração que não resolvem em 1h"
+    recovery: >
+      ce-analytics-architect revisa configuração do GTM do zero em modo urgente;
+      se não resolver, aciona fallback com GA4 snippet direto no código
+      (sem GTM) e reconverte eventos no GA4
+  - condition: "CRM com API down no dia do lançamento"
+    recovery: >
+      ce-backend-dev ativa fallback: leads capturados em banco de dados local
+      e exportados manualmente para o CRM; lançamento pode prosseguir com
+      este contingenciamento documentado e comunicado ao cliente
+  - condition: "Copy com alterações não autorizadas de difícil rastreamento"
+    recovery: >
+      ce-reviewer usa git diff para identificar todas as alterações;
+      ce-frontend-dev reverte para versão do copy document original;
+      re-executa Phase 4 após reversão

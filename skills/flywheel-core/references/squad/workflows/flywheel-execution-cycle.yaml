@@ -1,0 +1,33 @@
+workflow_name: flywheel_execution_cycle
+version: 1.0.0
+description: "Pipeline completo do Agent Flywheel: Plan -> Beads -> Polishing -> Coordinated Execution -> Hardening."
+success_indicators:
+  - "PLAN_SPACE.md gerado com sucesso"
+  - "BEADS.md refinado e convergido"
+  - "Review multi-modelo aprovado"
+
+agent_sequence:
+  - id: flywheel-architect
+    tasks:
+      - generatePlan()
+      - decomposeBeads()
+  - id: bead-manager
+    tasks:
+      - polishBeads()
+      - syncContext()
+  - id: swarm-coordinator
+    tasks:
+      - bvPrioritize()
+      - brLock()
+      - swarmStatus()
+  - id: hardening-specialist
+    tasks:
+      - blunderHunt()
+      - crossReview()
+      - ubsScan()
+
+# Metadados de Execução
+execution_strategy:
+  loop_on_beads: true
+  quality_gate: hardening-quality-gate.md
+  recovery: "SwarmCoordinator resets the agent and re-assigns the Bead"

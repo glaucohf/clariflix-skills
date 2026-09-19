@@ -1,0 +1,29 @@
+row: vendas
+title: Conversation Intelligence e Coaching
+title_netflix: CONVERSATION INTELLIGENCE E COACHING
+subtitle: Analisar conversas comerciais e preparar feedback de coaching com evidências, pontos de melhoria e ações práticas
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-conversation-intelligence-coaching para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Maestro
+  - Babel
+  - Sherlock da Call
+  - Juiz
+  - Sensei
+  - Memória do CRM
+  - Radar do Time
+  - Vigilante
+  - Calibrador
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

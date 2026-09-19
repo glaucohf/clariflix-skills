@@ -1,0 +1,158 @@
+workflow_name: vendas_lead_scoring_preditivo_pipeline
+description: "Pare de adivinhar: o pipeline se reordena sozinho, colocando os deals mais quentes na frente do closer certo — antes que o concorrente ligue primeiro."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-lead-scoring-preditivo
+area: "Vendas"
+topsquad: "V3 · Scoring, Roteamento & Agendamento"
+agent_sequence:
+  - orion
+  - radar
+  - sherlock
+  - vega
+  - atlas
+  - nexus
+  - oracle
+  - argus
+key_commands:
+  - "*capturar-sinais-de-intencao"
+  - "*enriquecer-dados-firmograficos"
+  - "*calcular-score-numerico"
+  - "*priorizar-fila-de-contato"
+  - "*cadenciar-leads-multi-canal"
+  - "*detectar-risco-deal"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: orion
+success_indicators:
+  - "Taxa de conversão SQL->Oportunidade: baseline vs pos-deploy (meta: +25% em 90 dias)"
+  - "Velocidade do pipeline: tempo médio de Lead->Oportunidade (meta: -30%)"
+  - "Acurácia de forecast: MAPE do forecast semanal vs fechamento real (meta: < 15%)"
+  - "Score de qualidade de mensagens Argus: media >= 8.0/10 sem degradacao"
+  - "Taxa de resposta a cadências automatizadas: benchmark por canal (email > 8%, WhatsApp > 25%)"
+  - "Lead rot prevention: % de Hot leads contactados dentro do SLA de 2h (meta: > 95%)"
+  - "Aproveitamento de pipeline: receita fechada / receita total em pipeline (meta: +15% vs baseline)"
+  - "Data completeness média dos leads: meta > 80% após enriquecimento"
+  - "Task success rate por ambiente: dev > 70%, staging > 85%, prod > 95% (Langfuse quality gates)"
+  - "ROI do squad: receita incremental atribuída / custo total do squad (meta: > 10x em 6 meses)"
+deliverable:
+  description: "Pipeline Scorecard em tempo real (dashboard ClickUp + CRM): rank dos leads por probabilidade de fechamento, fila do dia por rep, alertas de risco de deal, forecast semanal com intervalo de confiança. Artefato verificável por task: cada lead processado gera um Score Object rastreável no Langfuse com trace completo (features usadas, peso de cada feature, score anterior vs atual, ação recomendada, canal selecionado). Briefing de Lead para cada Hot lead gerado pelo Nexus e aprovado via HITL."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: orion
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Capturar Sinais De Intencao"
+    agent: radar
+    task: capturar-sinais-de-intencao.md
+    trigger: "Webhook POST de qualquer fonte de aquisição configurada. Também roda em batch diário às 06h para re-normalizar leads com dados atualizados de enriquecimento."
+    checkpoint:
+      criteria: "Lead Object normalizado em JSON: {lead_id, source_channel, ica_score_raw, firmographics{setor, porte_estimado, cargo}, behavioral_signals[], intent_signals[], data_completeness_pct, created_at}. Publicado no event bus para o Orquestrador."
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Enriquecer Dados Firmográficos"
+    agent: sherlock
+    task: enriquecer-dados-firmograficos.md
+    trigger: "Evento lead_normalized do Scout com completude < 70%. Também: evento account_trigger_detected (ex: monitoramento de LinkedIn/news de conta em pipeline ativo)."
+    checkpoint:
+      criteria: "Lead Object enriquecido: +CNPJ validado, +LinkedIn URL da empresa e do contato, +headcount estimado, +receita anual estimada, +tech stack detectado (via BuiltWith/Apollo), +trigger_events[] (ex: rodada Série A anunciada, nova filial aberta…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Calcular Score Numerico"
+    agent: vega
+    task: calcular-score-numerico.md
+    trigger: "Evento lead_enriched do Sherlock. Evento engagement_detected (email aberto, link clicado, WhatsApp respondido, page view). Job diário de re-scoring de toda base ativa as 07h. Evento stage_changed no CRM."
+    checkpoint:
+      criteria: "Score Object: {lead_id, score_atual: 0-100, categoria: Hot|Warm|Cold|Disqualified, score_anterior, delta, top_3_features_explicativas[], probabilidade_conversão_pct, next_best_action, recomendação_canal, urgência_nível: 1-5, score_timestam…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Priorizar Fila De Contato"
+    agent: atlas
+    task: priorizar-fila-de-contato.md
+    trigger: "Job diário as 08h após ciclo de re-scoring. Evento score_updated para Hot leads (rebalanceia fila imediatamente). Evento lead_uncontacted_48h. Solicitação manual do gestor via comando no Slack/WhatsApp."
+    checkpoint:
+      criteria: "Fila_do_Dia por rep em formato ClickUp Task List: ordenada por (score * urgência * dias_sem_contato). Cada item contém: lead_id, nome, empresa, score, categoria, next_best_action, canal_recomendado, contexto_resumido (3 bullets do Sherlock…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Cadenciar Leads Multi Canal"
+    agent: nexus
+    task: cadenciar-leads-multi-canal.md
+    trigger: "Fila_do_Dia gerada pelo Atlas. Evento score_category_changed para Cold->Warm ou Warm->Hot. Evento lead_unresponded após 3 tentativas (escala para gestor). Timer de cadência (D+1, D+3, D+7, D+14 configurável)."
+    checkpoint:
+      criteria: "Para Cold/Warm: rascunho de mensagem personalizada (email/WhatsApp) passado pelo Critic antes do envio. Sequência de follow-up agendada no CRM. Para Hot: Briefing do Lead em PDF/Notion (empresa, cargo, trigger events, histórico de interaçõ…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-7
+    name: "Detectar Risco Deal"
+    agent: oracle
+    task: detectar-risco-deal.md
+    trigger: "Job semanal Sexta 17h. Evento score_delta_high (queda > 15 pontos). Evento deal_silence_detected (sem atividade em deal avançado por X dias). Solicitação manual do gestor."
+    checkpoint:
+      criteria: "Deal Risk Report semanal (Sexta 17h): lista de deals com risco ALTO/MEDIO/BAIXO com justificativa. Alerta imediato via Slack/WhatsApp para o gestor quando deal score cai >15 pontos em 48h ou quando há silêncio >5 dias em deal Hot. Forecast…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Verificação do critic"
+    agent: argus
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-9
+    name: "Gates humanos e entrega"
+    agent: orion
+    checkpoint:
+      criteria: "Entregável consolidado: Pipeline Scorecard em tempo real (dashboard ClickUp + CRM): rank dos leads por probabilidade de fechamento, fila do dia por rep, alertas de risco de deal, forecast semanal com intervalo de confiança.…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "HITL-1 (L3): Envio de qualquer mensagem para lead categorizado como Hot — SDR humano deve revisar e aprovar o briefing e a mensagem antes do disparo. SLA de aprovação: 2h."
+  - level: HITL
+    condition: "HITL-2 (L3): Qualquer ação de outreach em conta estratégica (deal acima de threshold de valor configurável, ex R$50k) — requer aprovação do Closer ou Gerente Comercial."
+  - level: HITL
+    condition: "HITL-3 (L3): Re-scoring que resulta em Disqualificado — humano confirma antes de arquivar o lead no CRM para evitar falsos negativos."
+  - level: HITL
+    condition: "HITL-4 (L3): Alerta de deal em risco alto — gestor recebe notificação e deve confirmar qual ação tomar (intervir diretamente, escalar para diretor, ajustar proposta) antes de qualquer comunicação automatizada."
+  - level: HITL
+    condition: "HITL-5 (L2): Ajuste manual de score por SDR — SDR pode adicionar nota qualitativa (ex: 'falei com o CEO, orçamento confirmado') que sobe o score manualmente, com registro no log de auditoria."
+  - level: HITL
+    condition: "HITL-6 (L1): Calibração mensal do modelo de scoring — analista de RevOps revisa os feature weights sugeridos pelo sistema e aprova ou ajusta antes do re-treino."
+transitions:
+  - from: orion
+    to: radar
+    condition: "Webhook POST de qualquer fonte de aquisição configurada. Também roda em batch diário às 06h para re-normalizar leads com dados atualizados de enriquecimento."
+  - from: radar
+    to: sherlock
+    condition: "Evento lead_normalized do Scout com completude < 70%. Também: evento account_trigger_detected (ex: monitoramento de LinkedIn/news de conta em pipeline ativo)."
+  - from: sherlock
+    to: vega
+    condition: "Evento lead_enriched do Sherlock. Evento engagement_detected (email aberto, link clicado, WhatsApp respondido, page view). Job diário de re-scoring de toda base ativa as 07h. Evento stage_changed no…"
+  - from: vega
+    to: atlas
+    condition: "Job diário as 08h após ciclo de re-scoring. Evento score_updated para Hot leads (rebalanceia fila imediatamente). Evento lead_uncontacted_48h. Solicitação manual do gestor via comando no Slack/WhatsA…"
+  - from: atlas
+    to: nexus
+    condition: "Fila_do_Dia gerada pelo Atlas. Evento score_category_changed para Cold->Warm ou Warm->Hot. Evento lead_unresponded após 3 tentativas (escala para gestor). Timer de cadência (D+1, D+3, D+7, D+14 confi…"
+  - from: nexus
+    to: oracle
+    condition: "Job semanal Sexta 17h. Evento score_delta_high (queda > 15 pontos). Evento deal_silence_detected (sem atividade em deal avançado por X dias). Solicitação manual do gestor."
+  - from: oracle
+    to: argus
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: argus
+    to: orion
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

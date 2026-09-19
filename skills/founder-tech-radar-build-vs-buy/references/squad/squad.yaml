@@ -1,0 +1,47 @@
+name: founder-tech-radar-build-vs-buy
+version: 0.1.0
+description: "Nunca mais pague lock-in com juros — cada decisao de tecnologia e vendor passa pelo crivo sistemico de maturidade, custo total e risco antes de chegar ao founder, transformando escolhas tecnicas em alavancagem estrategica mensuravel."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: trb
+components:
+  agents:
+    - lens.md
+    - nox.md
+    - vera.md
+    - kai.md
+    - vox.md
+    - aegis.md
+    - aria.md
+    - gaia.md
+    - aria-2.md
+  tasks:
+    - manter-tech-radar-atualizado.md
+    - monitorar-ecossistema-tecnico.md
+    - analisar-decisoes-tecnologicas.md
+    - responder-perguntas-tecnicas.md
+    - avaliar-risco-vendor.md
+    - avaliar-riscos-tecnologicos.md
+    - registrar-decisao-tecnica.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - founder-tech-radar-build-vs-buy-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - founder-office
+  - inteligencia-competitiva-de-mercado
+  - avançado
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Founder Office"
+  topsquad: "F3 · TopSquad de Inteligência Competitiva & de Mercado"
+  prioridade: "avançado"
+  gerado_em: "2026-09-16"

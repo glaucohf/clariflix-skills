@@ -1,0 +1,29 @@
+row: gestao
+title: AI Chief of Staff
+title_netflix: AI CHIEF OF STAFF
+subtitle: Organizar prioridades, decisões e acompanhamento executivo com um roteiro de Chief of Staff para o founder
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use founder-ai-chief-of-staff para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Orion
+  - Briefing
+  - Kira
+  - Vance
+  - Sage
+  - Intel
+  - Atlas
+  - Memo
+  - Skeptic
+  generos:
+  - Founder Office
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

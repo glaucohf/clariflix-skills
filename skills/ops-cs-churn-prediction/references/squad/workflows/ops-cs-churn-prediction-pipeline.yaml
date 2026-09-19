@@ -1,0 +1,176 @@
+workflow_name: ops_cs_churn_prediction_pipeline
+description: "Detecta o cliente prestes a sair antes que ele decida — e coloca o CSM em movimento com a ação certa no momento certo."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: ops-cs-churn-prediction
+area: "Operações & CS"
+topsquad: "O3 · Customer Success: Onboarding, Retenção & Expansão"
+agent_sequence:
+  - nexus
+  - vega
+  - prism
+  - mira
+  - spark
+  - iris
+  - lumen
+  - echo
+  - argus
+key_commands:
+  - "*monitorar-sinais-de-uso-e-sentimento"
+  - "*calcular-health-score-composito"
+  - "*gerar-brief-personalizado"
+  - "*criar-task-retencao"
+  - "*analisar-sentimento-cliente"
+  - "*analisar-contexto-comercial"
+  - "*monitorar-health-score"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: nexus
+success_indicators:
+  - "Churn Rate na Base Monitorada: redução percentual de churn nas contas cobertas pelo squad vs baseline dos 90 dias anteriores (meta: -25% a -40%)"
+  - "Lead Time de Alerta: média de dias entre o primeiro alerta gerado pelo squad e o evento de cancelamento (meta: >= 21 dias de antecedência)"
+  - "Taxa de Save pós-Alerta: % de contas com alerta CRÍTICO/ALTO que não churnam após intervenção do CSM dentro de 30 dias (meta: >= 35%)"
+  - "MRR Protegido por Mês: soma do MRR de contas salvas atribuível às intervenções disparadas pelo squad (meta: > 5x o custo mensal do squad)"
+  - "Tempo do CSM em Triagem Manual: horas/semana que o CSM gasta identificando contas em risco sem suporte do squad (meta: < 2h/semana, redução de 60%)"
+  - "Acurácia do Health Score: correlação entre score CRÍTICO e churn real em 30 dias (meta: precision >= 70%, recall >= 60%)"
+  - "Cobertura de Alertas: % de churns reais que foram antecipados pelo squad com alerta >= 14 dias antes (meta: >= 75%)"
+  - "CSAT de Contas Monitoradas: variação do NPS/CSAT médio das contas que receberam intervenção proativa vs grupo controle (meta: +12 pontos NPS em 6 meses)"
+  - "Taxa de Ativação de Tasks: % de tasks criadas no ClickUp que o CSM inicia dentro do prazo (meta: >= 85% — indica qualidade e urgência percebida das tasks)"
+  - "Critic Approval Rate: % de briefs aprovados pelo Argus na primeira iteração sem necessidade de reprocessamento (meta: >= 80% — indica qualidade do Mira)"
+deliverable:
+  description: "Por ciclo diario: (1) Dashboard Langfuse atualizado com health scores de toda a base, distribuicao por faixa de risco, trending de deterioracao e mapa de calor por CSM/segmento; (2) Tasks no ClickUp para cada conta em risco CRITICO e ALTO com brief completo, sinais que compoem o score com valores concretos, next-best-action prioritaria com taxa de sucesso historica, acoes alternativas rankeadas e script de abertura sugerido; (3) Registro no Supabase de cada score calculado com breakdown por dimensao, sinais de entrada utilizados, timestamp e versao do modelo — prova de trabalho auditavel e rastreavel. Por semana: relatorio de saude da base (distribuicao de scores, saves confirmados, MRR protegido, padroes sistemicos detectados) entregue no Slack do Head de CS. Por save confirmado: medicao de impacto (variacao do health score pre/pos-intervencao, MRR protegido) registrada no CRM."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: nexus
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Monitorar Sinais De Uso E Sentimento"
+    agent: vega
+    task: monitorar-sinais-de-uso-e-sentimento.md
+    trigger: "Cron job 06h00 diário para batch completo; webhook de evento crítico (NPS Detrator submetido, ticket com keyword de cancelamento, primeiro login após 21 dias de inatividade, MRR contraction detectada no CRM)"
+    checkpoint:
+      criteria: "JSON estruturado por conta com todos os sinais normalizados e métricas derivadas persistido no Supabase (tabela: churn_signals_daily). Alertas em tempo real via webhook interno para o Orchestrator Nexus quando evento crítico é detectado."
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Calcular Health Score Compósito"
+    agent: prism
+    task: calcular-health-score-composito.md
+    trigger: "Acionado pelo Orchestrator Nexus após Vega concluir ingestão diária; acionado em tempo real quando Vega dispara alerta de evento crítico para conta específica"
+    checkpoint:
+      criteria: "Health score (0-100) por conta com breakdown das 4 dimensoes, velocity de deterioracao, classificacao de risco (CRITICO/ALTO/MEDIO/BAIXO), e ranking priorizado de contas em risco — persistido no Supabase (tabela: account_health_scores). Hi…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Gerar Brief Personalizado"
+    agent: mira
+    task: gerar-brief-personalizado.md
+    trigger: "Acionado pelo Orchestrator Nexus para toda conta com score CRÍTICO (automático) ou ALTO risco com velocity de queda > 10 pontos/semana; acionado sob demanda pelo CSM via comando ClickUp"
+    checkpoint:
+      criteria: "Brief de retenção estruturado em markdown (max 400 palavras) com score atual, breakdown de sinais, next-best-action prioritária, ações alternativas rankeadas e script de abertura. Pronto para ser anexado como task no ClickUp."
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Criar Task Retenção"
+    agent: spark
+    task: criar-task-retencao.md
+    trigger: "Acionado pelo Orchestrator Nexus após Critic Argus aprovar o brief; acionado diariamente para batch de contas em risco; webhook de monitoramento de tarefas não iniciadas a cada 6h"
+    checkpoint:
+      criteria: "Task criada no ClickUp com todos os campos preenchidos e link retornado. Notificação Slack enviada ao CSM com resumo executivo de 2 linhas e link direto para a task. Se task não aberta em 24h (CRÍTICO) ou 48h (ALTO): alerta de escalação cr…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Analisar Sentimento Cliente"
+    agent: iris
+    task: analisar-sentimento-cliente.md
+    trigger: "Acionado diariamente pelo Orchestrator apos Vega concluir ingestao (processa novos verbatims das ultimas 24h); acionado em tempo real quando Vega detecta keyword de risco em texto de ticket ou email"
+    checkpoint:
+      criteria: "Sentiment score normalizado (0-10) por conta com tendência (melhora/piora/estável vs período anterior), top-3 temas de insatisfação com exemplos de verbatim, flag de menção a concorrente (sim/não + concorrente citado), flag de intenção de…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Analisar Contexto Comercial"
+    agent: lumen
+    task: analisar-contexto-comercial.md
+    trigger: "Acionado pelo Orchestrator Nexus para toda conta classificada como CRÍTICO ou ALTO risco antes da geração do brief pelo Mira; acionado sob demanda quando CSM solicita contexto expandido via ClickUp"
+    checkpoint:
+      criteria: "Perfil de churn provável da conta (DESVALOR / PROBLEMA_NÃO_RESOLVIDO / BUDGET_CUT / SUBSTITUIÇÃO / INATIVIDADE) com confiança percentual, contexto comercial resumido em 5 bullets, executive sponsor status (ativo/inativo/mudou), flags de ri…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Monitorar Health Score"
+    agent: echo
+    task: monitorar-health-score.md
+    trigger: "Cron semanal (segunda-feira 07h) para relatório completo; cron diário (08h) para detecção de padrões sistêmicos; evento de save confirmado (CSM fecha task como 'Salvo') para cálculo de impacto da intervenção"
+    checkpoint:
+      criteria: "Relatório semanal de saúde da base (markdown + gráficos exportados): distribuição de scores, contas em deterioração acelerada, correlações sistêmicas detectadas, taxa de save das intervenções da semana, ROI de retenção calculado (MRR salvo…"
+      veto_condition: "Saída sem veredito do critic Argus; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: argus
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: nexus
+    checkpoint:
+      criteria: "Entregável consolidado: Por ciclo diario: (1) Dashboard Langfuse atualizado com health scores de toda a base, distribuicao por faixa de risco, trending de deterioracao e mapa de calor por CSM/segmento; (2) Tasks no ClickUp…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "Ações de retenção com desconto financeiro (qualquer percentual de desconto em contrato ou crédito) — Mira gera a recomendação mas Spark cria task como 'Aguardando Aprovação' antes de ativar o CSM com essa ação específica"
+  - level: HITL
+    condition: "Conta Enterprise com MRR > R$15k em risco CRITICO — brief aprovado pelo Critic mas task criada com flag de revisao obrigatoria pelo Head de CS antes de qualquer contato"
+  - level: HITL
+    condition: "Health score com queda > 25 pontos em 24h sem evento crítico documentado — Argus bloqueia o disparo, solicita validação manual dos dados de entrada pelo analista de dados"
+  - level: HITL
+    condition: "Detecção de intenção explícita de cancelamento (via Iris) — task criada com prioridade URGENTE e notificação imediata para CSM e manager, sem esperar o ciclo batch"
+  - level: HITL
+    condition: "Ação de retenção que envolve reunião com Executive Sponsor ou C-level do cliente — requer aprovação do Head de CS antes do CSM agendar"
+  - level: HITL
+    condition: "Brief com conflito entre next-best-action do Mira e comprometimento prévio do CSM registrado no CRM — Argus detecta e eleva para revisão humana antes de criar task"
+  - level: HITL
+    condition: "Primeiro alerta de churn em conta que nunca teve nenhuma ação de CS registrada (conta 'orphan') — escalona para Head de CS para atribuição e onboarding de relacionamento antes de qualquer ação automática"
+  - level: HITL
+    condition: "Critic Argus reprova brief por evidência insuficiente (score < 36/40) após 2 iterações de melhoria — escalona para analista humano revisar os dados de entrada antes de reprocessar"
+transitions:
+  - from: nexus
+    to: vega
+    condition: "Cron job 06h00 diário para batch completo; webhook de evento crítico (NPS Detrator submetido, ticket com keyword de cancelamento, primeiro login após 21 dias de inatividade, MRR contraction detectada…"
+  - from: vega
+    to: prism
+    condition: "Acionado pelo Orchestrator Nexus após Vega concluir ingestão diária; acionado em tempo real quando Vega dispara alerta de evento crítico para conta específica"
+  - from: prism
+    to: mira
+    condition: "Acionado pelo Orchestrator Nexus para toda conta com score CRÍTICO (automático) ou ALTO risco com velocity de queda > 10 pontos/semana; acionado sob demanda pelo CSM via comando ClickUp"
+  - from: mira
+    to: spark
+    condition: "Acionado pelo Orchestrator Nexus após Critic Argus aprovar o brief; acionado diariamente para batch de contas em risco; webhook de monitoramento de tarefas não iniciadas a cada 6h"
+  - from: spark
+    to: iris
+    condition: "Acionado diariamente pelo Orchestrator apos Vega concluir ingestao (processa novos verbatims das ultimas 24h); acionado em tempo real quando Vega detecta keyword de risco em texto de ticket ou email"
+  - from: iris
+    to: lumen
+    condition: "Acionado pelo Orchestrator Nexus para toda conta classificada como CRÍTICO ou ALTO risco antes da geração do brief pelo Mira; acionado sob demanda quando CSM solicita contexto expandido via ClickUp"
+  - from: lumen
+    to: echo
+    condition: "Cron semanal (segunda-feira 07h) para relatório completo; cron diário (08h) para detecção de padrões sistêmicos; evento de save confirmado (CSM fecha task como 'Salvo') para cálculo de impacto da int…"
+  - from: echo
+    to: argus
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: argus
+    to: nexus
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"

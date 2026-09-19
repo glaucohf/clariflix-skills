@@ -1,0 +1,45 @@
+name: marketing-lead-scoring-router
+version: 0.1.0
+description: "Nenhum lead quente espera fila: score em tempo real, roteamento inteligente e o lead certo na mão certa em menos de 5 minutos."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: lsr
+components:
+  agents:
+    - orion.md
+    - scout.md
+    - apex.md
+    - iris.md
+    - vector.md
+    - pulse.md
+    - critique.md
+    - critique-2.md
+  tasks:
+    - monitorar-e-normalizar-leads.md
+    - calcular-score-lead.md
+    - enriquecer-dados-lead.md
+    - rotear-lead-para-destino-correto.md
+    - monitorar-pipeline-de-scoring.md
+    - calibrar-modelo-scoring.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-lead-scoring-router-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - captura-qualificacao-reativacao-de-leads
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M5 · TopSquad de Captura, Qualificação & Reativação de Leads"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

@@ -1,0 +1,45 @@
+name: marketing-funnel-analytics-attribution
+version: 0.1.0
+description: "Pare de adivinhar o que gera receita: atribuição cross-channel precisa, anomalias detectadas em minutos, forecast de pipeline com intervalo de confiança real."
+author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+license: Proprietary
+aios:
+  minVersion: 1.0.0
+  type: squad
+slashPrefix: faa
+components:
+  agents:
+    - atlas.md
+    - nexus.md
+    - hermes.md
+    - argus.md
+    - cassandra.md
+    - lumen.md
+    - oracle.md
+    - skeptic.md
+  tasks:
+    - coletar-etl-dados.md
+    - calcular-atribuicao-multi-modelo.md
+    - detectar-anomalias-kpis.md
+    - gerar-forecast-pipeline.md
+    - auditar-qualidade-de-tracking.md
+    - gerar-relatorios-executivos.md
+    - verificar-saidas.md
+    - orquestrar-pipeline.md
+  workflows:
+    - marketing-funnel-analytics-attribution-pipeline.yaml
+config:
+  - tech-stack.md
+  - source-tree.md
+  - coding-standards.md
+tags:
+  - marketing
+  - performance-paid-media-cro-attribution
+  - alta
+  - marcondes-squads
+origem:
+  pagina: "Máquina de Receita · Organograma da Máquina (Gabriel Marcondes)"
+  area: "Marketing"
+  topsquad: "M2 · TopSquad de Performance: Paid Media, CRO & Attribution"
+  prioridade: "alta"
+  gerado_em: "2026-09-16"

@@ -238,9 +238,11 @@ a{color:inherit}
 
   function renderPanel(s){
     var panel = document.getElementById("panel");
+    var availableAgents = AGENTS.filter(function(a){ return !(s.runtime_only && a.id === "colavel"); });
     var lastAgent = localStorage.getItem("clariflix_agent") || "hermes";
+    if(!availableAgents.some(function(a){ return a.id === lastAgent; })) lastAgent = availableAgents[0].id;
     function tabsHtml(){
-      return AGENTS.map(function(a){
+      return availableAgents.map(function(a){
         return '<button class="agent-tab' + (a.id===lastAgent?' on':'') + '" data-agent="' + a.id + '">' + a.label + '</button>';
       }).join("");
     }
@@ -252,6 +254,7 @@ a{color:inherit}
       skillImage(s, "panel-image", "eager") +
       '<div class="panel-meta"><span>' + s.painel.ano + '</span><span>' + s.painel.tamanho + '</span><span>Requer: ' + s.painel.requer + '</span></div>' +
       '<div class="panel-block"><h4>Sinopse</h4><p>' + s.description + '</p></div>' +
+      (s.license ? '<div class="panel-block"><h4>Licença</h4><p>' + s.license + ' · Consulte os termos incluídos no pacote.</p></div>' : '') +
       '<div class="panel-block"><h4>Como usar</h4><p>' + s.painel.como_usar + '</p></div>' +
       '<div class="panel-block"><h4>Elenco</h4><div class="tag-row">' + s.painel.elenco.map(function(e){return '<span class="tag">'+e+'</span>';}).join("") + '</div></div>' +
       '<div class="panel-block"><h4>Gêneros</h4><div class="tag-row">' + s.painel.generos.map(function(e){return '<span class="tag">'+e+'</span>';}).join("") + '</div></div>' +
@@ -263,7 +266,7 @@ a{color:inherit}
       '</div>';
 
     function paintCmd(agentId){
-      var agent = AGENTS.filter(function(a){return a.id===agentId;})[0] || AGENTS[0];
+      var agent = availableAgents.filter(function(a){return a.id===agentId;})[0] || availableAgents[0];
       document.getElementById("cmdBox").textContent = agent.cmd(s);
       panel.querySelectorAll(".agent-tab").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-agent")===agent.id); });
       localStorage.setItem("clariflix_agent", agent.id);

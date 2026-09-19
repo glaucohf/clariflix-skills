@@ -1,0 +1,47 @@
+name: genius-athena-strange
+version: 1.0.0
+description: |-
+  Squad de análise de risco, antifragilidade e tomada de decisão sob incerteza radical. Emula os frameworks de Nassim Nicholas Taleb — Cisne Negro, Antifragilidade, Estratégia Barbell, Via Negativa e Opcionalidade — para avaliar sistemas, projetos e decisões.
+author: marciobisognin
+license: MIT
+slashPrefix: gas
+aios:
+  minVersion: 2.1.0
+  type: squad
+  compatibility: full
+components:
+  agents:
+  - cygnus-vidente.md
+  - hydra-arquiteta.md
+  - seneca-estrategista.md
+  - medusa-auditora.md
+  - hermes-orquestrador.md
+  tasks:
+  - mapear-cisnes-negros.md
+  - projetar-antifragilidade.md
+  - aplicar-barbell.md
+  - auditar-fragilidade.md
+  - sintetizar-relatorio.md
+  workflows:
+  - taleb-pipeline.yaml
+  checklists:
+  - fragility-gate.md
+  templates:
+  - barbell-template.md
+config:
+  extends: none
+  language: pt-BR
+  naming: kebab-case
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+tags:
+- risk-analysis
+- antifragility
+- black-swan
+- decision-making
+- uncertainty
+- taleb
+- barbell-strategy
+- via-negativa
+- optionality

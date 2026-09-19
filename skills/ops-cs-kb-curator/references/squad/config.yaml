@@ -1,0 +1,52 @@
+pack:
+  name: ops-cs-kb-curator
+  version: 0.1.0
+  short-title: "KB Curator Squad"
+  description: "Sua base de conhecimento nunca mais fica velha: o KB Curator detecta gaps, escreve artigos e resolve conflitos antes que o cliente perceba."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "🔍"
+  slashPrefix: kbCuratorSquad
+name: ops-cs-kb-curator
+version: 0.1.0
+description: "Sua base de conhecimento nunca mais fica velha: o KB Curator detecta gaps, escreve artigos e resolve conflitos antes que o cliente perceba."
+entry_agent: kael
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: operacoes-cs
+  topsquad: "O2"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - kael
+  - milo
+  - vera
+  - lex
+  - clio
+  - petra
+  - arco
+  - lex-2
+tasks:
+  - extrair-intencoes-nao-cobertas.md
+  - escrever-artigo-de-kb.md
+  - validar-draft.md
+  - verificar-consistencia-documental.md
+  - monitorar-impacto-artigos.md
+  - controlar-versao-artigo.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - ops-cs-kb-curator-pipeline.yaml
+checklists:
+  - critic-lex-2.md
+integrations:
+  - "Zendesk / Intercom — fonte primária de tickets sem match KB, webhooks de feedback de resolução do Tier-1, tags de intenção"
+  - "ClickUp — task por artigo (prova de trabalho), status do pipeline (Gap Identified -> Draft -> QA -> HITL -> Published -> Monitored), integracao com AIOX"
+  - "Confluence / Notion / GitBook / Freshdesk KB — destino de publicação dos artigos (configurável por cliente), API de CRUD de artigos"
+  - "Supabase / Postgres — estado do pipeline (gap_id, artigo_id, versão, scores, status), vetorização da KB (pgvector), log de aprovações HITL"
+  - "Slack — notificações de HITL pendente, alertas de artigo em estado CRÍTICO (Petra), resumo semanal do Impact Report para canal #kb-updates"
+  - "OpenAI Embeddings / Anthropic Claude — geração de embeddings da KB para similarity search, geração de drafts (Vera), fact-check (Lex)"
+  - "Langfuse — tracing de cada ciclo de produção (gap -> draft -> revisões -> publicação), evals automatizados por dimensão, quality gates (dev 70% / staging 85% / prod 95% task success)"
+  - "Tier-1 Resolver (squad interno) — recebe atualizações da KB via webhook pós-publicação, envia sinal KB_NÃO_RESOLVEU para Petra"

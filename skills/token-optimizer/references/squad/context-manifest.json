@@ -1,0 +1,43 @@
+{
+  "squad": "token-optimizer",
+  "objective": "Squad que analisa a estrutura de qualquer squad existente e cria um projeto completo de otimizacao, com foco primario em aumentar a qualidade superior dos outputs e em segundo plano otimizar velocidade e gasto de tokens.",
+  "context": "Analisa squads no formato AIOS usando TOKEN-OPTIMIZATION-GUIDE.md como base de conhecimento. Puramente baseado em analise de arquivos e raciocinio. Claude Code Agent Teams com roteamento Haiku/Sonnet/Opus.",
+  "agents": [
+    "squad-scanner",
+    "anti-pattern-detector",
+    "optimization-planner",
+    "optimization-executor",
+    "quality-auditor"
+  ],
+  "tasks": [
+    "scanSquad()",
+    "detectAntiPatterns()",
+    "planOptimization()",
+    "executeOptimization()",
+    "auditQuality()"
+  ],
+  "workflows": [
+    "squad_optimization_pipeline",
+    "squad_audit_only"
+  ],
+  "tech_context": {
+    "_verified": true,
+    "_verified_at": "2026-03-06T12:00:00Z",
+    "_verification_notes": [
+      "No external APIs, npm packages, webhooks or services used",
+      "Purely file-based analysis using TOKEN-OPTIMIZATION-GUIDE.md as knowledge base",
+      "All operations are filesystem reads and agent reasoning"
+    ],
+    "external_apis": [],
+    "npm_packages": [],
+    "webhooks": [],
+    "services": []
+  },
+  "decomposition": {
+    "total_agents": 5,
+    "total_tasks": 5,
+    "total_workflows": 2,
+    "complexity": "high",
+    "pattern": "Sequential Pipeline with audit-only shortcut"
+  }
+}

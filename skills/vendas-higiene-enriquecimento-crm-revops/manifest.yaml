@@ -1,0 +1,29 @@
+row: vendas
+title: Higiene e Enriquecimento de CRM
+title_netflix: HIGIENE E ENRIQUECIMENTO DE CRM
+subtitle: Diagnosticar qualidade dos dados do CRM e preparar correções, deduplicação e enriquecimento para revisão
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use vendas-higiene-enriquecimento-crm-revops para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Nexus
+  - Validador de Entradas
+  - Detector de Duplicatas
+  - Enriquecedor de Conta e Lead
+  - Sincronizador de Fontes
+  - Pythia
+  - Cassandra
+  - Gerador de Golden Record
+  - Sentinel
+  generos:
+  - Vendas
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

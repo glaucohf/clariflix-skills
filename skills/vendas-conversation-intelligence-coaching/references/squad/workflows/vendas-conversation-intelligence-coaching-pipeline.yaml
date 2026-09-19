@@ -1,0 +1,175 @@
+workflow_name: vendas_conversation_intelligence_coaching_pipeline
+description: "Cada call vira aula: o gestor para de ser bombeiro e o vendedor recebe coaching cirúrgico — automaticamente, antes da próxima ligação."
+pattern: Orchestrator-Workers-Critic-HITL
+squad: vendas-conversation-intelligence-coaching
+area: "Vendas"
+topsquad: "V5 · Sales Enablement & Conversation Intelligence"
+agent_sequence:
+  - maestro
+  - babel
+  - sherlock-da-call
+  - juiz
+  - sensei
+  - memoria-do-crm
+  - radar-do-time
+  - vigilante
+  - calibrador
+key_commands:
+  - "*filtrar-ruidos-tecnicos"
+  - "*analisar-transcricao"
+  - "*calcular-percentil"
+  - "*gerar-coaching-card"
+  - "*sincronizar-dados-deal-crm"
+  - "*analisar-objecoes-frequentes"
+  - "*detectar-risco-deal"
+  - "*verificar-saidas"
+  - "*orquestrar-pipeline"
+trigger_threshold: 1
+entry_agent: maestro
+success_indicators:
+  - "Taxa de cobertura de calls: % de calls de vendas analisadas automaticamente vs total de calls realizadas (meta: > 90% em 30 dias de operação)"
+  - "Tempo médio de entrega do coaching card: do encerramento da call até o card no WhatsApp do vendedor (meta: < 30 minutos)"
+  - "Taxa de objeções tratadas adequadamente: % de objeções detectadas que receberam counter-script adequado (meta: aumento de 30% em 60 dias vs baseline do Blueprint)"
+  - "Talk-ratio médio do time: % de fala do vendedor nas calls (meta: aproximar do benchmark de 43% vendedor / 57% prospect — modelo Gong Research)"
+  - "Score médio de call do time: evolução semanal do score médio nas 12 dimensões (meta: +10 pontos em 90 dias vs baseline inicial)"
+  - "Taxa de conversao de proposals impactadas: comparar taxa de fechamento de deals onde o vendedor recebeu coaching card vs deals sem coaching aplicado (meta: +20% de conversao em deals com coaching)"
+  - "Redução de deals perdidos por risco não detectado: % de deals com Deal Risk Alert ALTO que foram salvos por intervenção do gestor (meta: > 40% de saves apos alerta)"
+  - "Engajamento do vendedor com coaching: % de coaching cards lidos e marcados como revisados pelo vendedor (meta: > 80% de abertura, > 60% de confirmação de leitura)"
+  - "Qualidade do coaching card (Calibrador): score médio nas 6 dimensões de validação (meta: > 8.5/10 consistentemente)"
+  - "Task success rate por ambiente: dev > 70%, staging > 85%, prod > 95% (Langfuse quality gates para cada agente do pipeline)"
+  - "ROI mensal: receita incremental atribuída a deals com coaching aplicado / custo total do squad incluindo APIs de STT e LLM (meta: > 8x em 6 meses)"
+deliverable:
+  description: "Conversation Intelligence Dashboard (ClickUp + Notion + CRM): (1) Coaching Card por call — entregue direto ao vendedor via WhatsApp/Notion em até 30 minutos após a call, com transcript, score, top 3 insights acionáveis e counter-scripts específicos; (2) Briefing Semanal do Gestor — 1 página com score médio do time, top objeções da semana, ranking de vendedores, deals em risco e clip da semana; (3) Deal Risk Alerts em tempo real — alerta no WhatsApp do gestor quando call detecta risco alto, com diagnóstico e ação recomendada; (4) Biblioteca de Counter-Scripts viva — atualizada automaticamente com novos padrões detectados nas calls, validados pelo gestor via HITL-2; (5) Plano de Role-Play semanal — roteiro de simulação gerado a partir das objeções mais frequentes da semana. Artefato verificável por task no ClickUp: cada call processada gera um Coaching Card rastreável no Langfuse com trace completo do pipeline (Babel -> Sherlock -> Juiz -> Sensei -> Calibrador) e score de qualidade do Calibrador."
+phases:
+  - id: PHASE-1
+    name: "Intake e decomposição"
+    agent: maestro
+    task: orquestrar-pipeline.md
+    checkpoint:
+      criteria: "Sinal de entrada validado e subtarefas decompostas na ordem do workflow"
+      human_review: false
+  - id: PHASE-2
+    name: "Filtrar Ruídos técnicos"
+    agent: babel
+    task: filtrar-ruidos-tecnicos.md
+    trigger: "Webhook POST de plataforma de voz/vídeo indicando call encerrada com gravação disponível. Evento call_recorded no event bus. Upload manual de arquivo de áudio via interface do gestor. Job de verificação diário às 06h para calls das últimas…"
+    checkpoint:
+      criteria: "Transcript Object estruturado em JSON: {call_id, deal_id, vendedor_id, prospect_id, duracao_total_seg, turnos_de_fala: [{speaker: 'vendedor'|'prospect', inicio_seg, fim_seg, texto, confianca_pct}], silencias_relevantes: [{inicio_seg, durac…"
+      veto_condition: "Saída sem veredito do critic Calibrador; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-3
+    name: "Analisar Transcricao"
+    agent: sherlock-da-call
+    task: analisar-transcricao.md
+    trigger: "Evento transcript_ready publicado pela Babel. Processamento sequencial obrigatório (não pode rodar sem Transcript Object completo). SLA de processamento: máximo 5 minutos após transcrição disponível."
+    checkpoint:
+      criteria: "Call Analysis Object: {call_id, objeções_detectadas: [{texto_exato, tipo: 'preço'|'timing'|'concorrente'|'autoridade'|'necessidade', momento_seg, foi_tratada: bool, qualidade_tratamento: 0-5}], sinais_de_compra: [{texto_exato, tipo, moment…"
+      veto_condition: "Saída sem veredito do critic Calibrador; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-4
+    name: "Calcular Percentil"
+    agent: juiz
+    task: calcular-percentil.md
+    trigger: "Evento call_analyzed publicado pelo Sherlock da Call. Roda em sequência após análise. SLA: máximo 2 minutos."
+    checkpoint:
+      criteria: "Call Score Object: {call_id, vendedor_id, score_geral: 0-100, scores_por_dimensao: {abertura: 0-10, descoberta_de_dor: 0-10, qualificação_bant: 0-10, apresentação_solução: 0-10, tratamento_objeções: 0-10, negociação: 0-10, fechamento: 0-10…"
+      veto_condition: "Saída sem veredito do critic Calibrador; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-5
+    name: "Gerar Coaching Card"
+    agent: sensei
+    task: gerar-coaching-card.md
+    trigger: "Evento call_scored publicado pelo Juiz. Roda em sequencia apos scoring. SLA de entrega do coaching card: maximo 30 minutos apos encerramento da call. Tambem roda em modo batch semanal para consolidar coaching da semana em Plano de Desenvol…"
+    checkpoint:
+      criteria: "Coaching Card (Markdown + JSON): {call_id, vendedor_id, data, score_geral, resumo_executivo: '3 frases sobre a call', pontos_positivos: [{momento_exato, texto_vendedor, por_quê_funcionou}], áreas_de_melhoria: [{prioridade: 1|2|3, dimensão,…"
+      veto_condition: "Saída sem veredito do critic Calibrador; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-6
+    name: "Sincronizar Dados Deal CRM"
+    agent: memoria-do-crm
+    task: sincronizar-dados-deal-crm.md
+    trigger: "Evento coaching_card_generated publicado pelo Sensei. Roda em paralelo com a entrega do coaching. SLA: máximo 10 minutos para CRM atualizado. Alerta de risco alto: imediato, sem esperar o coaching card."
+    checkpoint:
+      criteria: "Deal atualizado no CRM com: nota de call (resumo de 5 bullets), objeções como propriedades customizadas (Objecão_Preço, Objecão_Timing, Objecão_Autoridade com texto exato), Score_Ultima_Call, Sinais_de_Compra_Detectados, Próximo_Passo_Conf…"
+      veto_condition: "Saída sem veredito do critic Calibrador; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-7
+    name: "Analisar Objeções Frequentes"
+    agent: radar-do-time
+    task: analisar-objecoes-frequentes.md
+    trigger: "Job semanal toda Sexta às 17h. Também disparado manualmente pelo gestor via comando. Também gera alerta imediato quando objeção nova aparece em 3+ calls na mesma semana (possível mudança de mercado)."
+    checkpoint:
+      criteria: "Briefing Semanal do Gestor (PDF/Notion): {semana, n_calls_analisadas, score_médio_time, tendência_vs_semana_anterior, top_3_objeções_semana_com_frequência_e_taxa_de_tratamento, ranking_vendedores_por_score_com_delta, vendedor_da_semana, ár…"
+      veto_condition: "Saída sem veredito do critic Calibrador; ou condição de gate L3 pendente"
+      human_review: false
+  - id: PHASE-8
+    name: "Detectar Risco Deal"
+    agent: vigilante
+    task: detectar-risco-deal.md
+    trigger: "Ao final de cada Call Analysis quando sinais_de_risco contiver pelo menos 1 item de severidade ALTO. Job de varredura semanal Segunda 08h em todos os deals ativos em estagio Proposta/Negociacao. Evento deal_silence (nenhuma call gravada no…"
+    checkpoint:
+      criteria: "Deal Risk Alert quando risco_deal = ALTO ou CRÍTICO: {deal_id, vendedor_id, nível_risco: 'médio'|'alto'|'crítico', evidências: [{sinal, call_id, momento_exato, texto_exato, interpretação}], diagnóstico: 'o que provavelmente está acontecend…"
+      veto_condition: "Saída sem veredito do critic Calibrador; ou condição de gate L3 pendente"
+      human_review: true
+  - id: PHASE-9
+    name: "Verificação do critic"
+    agent: calibrador
+    task: verificar-saidas.md
+    checkpoint:
+      criteria: "Veredito registrado no validation_log com evidência por item"
+      human_review: false
+  - id: PHASE-10
+    name: "Gates humanos e entrega"
+    agent: maestro
+    checkpoint:
+      criteria: "Entregável consolidado: Conversation Intelligence Dashboard (ClickUp + Notion + CRM): (1) Coaching Card por call — entregue direto ao vendedor via WhatsApp/Notion em até 30 minutos após a call, com transcript, score, top 3…"
+      human_review: true
+hitl_gates:
+  - level: HITL
+    condition: "HITL-1 (L3): Deal Risk Alert de nível ALTO ou CRÍTICO gerado pelo Vigilante — gestor recebe alerta no WhatsApp e deve confirmar qual ação tomar (ligar agora, escalar para diretor, ajustar proposta, aceitar perda) antes de qualquer comunicação automatizada com o prospect. SLA de resposta: 4h em dias úteis."
+  - level: HITL
+    condition: "HITL-2 (L3): Objeção de tipo não mapeado detectada pela primeira vez — o Analisador sinaliza objeção nova fora da biblioteca existente. Humano (gestor ou especialista de produto) deve validar a classificação e criar o counter-script antes que o sistema use-o em coachings futuros. Evita ensinar o time a responder errado."
+  - level: HITL
+    condition: "HITL-3 (L2): Score da call abaixo de 40/100 (call catastrófica) — além do coaching card automático, o Orchestrator notifica o gestor para que ele decida se faz uma sessão 1:1 urgente com o vendedor ou se o deal precisar de intervenção direta do gestor. Vendedor não é notificado do score crítico sem acompanhamento humano."
+  - level: HITL
+    condition: "HITL-4 (L2): Transcrição com qualidade de áudio abaixo de 75% de confiança — a Babel sinaliza e o gestor decide se envia para transcrição manual, descarta a call da análise ou aceita os resultados com baixa confiança. Garante que coaching baseado em transcrição ruim não chegue ao vendedor."
+  - level: HITL
+    condition: "HITL-5 (L2): Calibração quinzenal da Rubrica de Avaliação — o gestor revisa um sample de 5 calls para verificar se os scores do Juiz estão alinhados com sua percepção. Ajusta pesos de dimensões se necessário. Previne drift do modelo de scoring ao longo do tempo."
+  - level: HITL
+    condition: "HITL-6 (L1): Aprovação do Plano de Role-Play semanal gerado pelo Radar do Time — gestor revisa as objeções priorizadas e o script de simulação antes de compartilhar com o time no próximo standup de vendas. Garante que o treinamento coletivo seja relevante para o contexto atual do mercado."
+transitions:
+  - from: maestro
+    to: babel
+    condition: "Webhook POST de plataforma de voz/vídeo indicando call encerrada com gravação disponível. Evento call_recorded no event bus. Upload manual de arquivo de áudio via interface do gestor. Job de verifica…"
+  - from: babel
+    to: sherlock-da-call
+    condition: "Evento transcript_ready publicado pela Babel. Processamento sequencial obrigatório (não pode rodar sem Transcript Object completo). SLA de processamento: máximo 5 minutos após transcrição disponível."
+  - from: sherlock-da-call
+    to: juiz
+    condition: "Evento call_analyzed publicado pelo Sherlock da Call. Roda em sequência após análise. SLA: máximo 2 minutos."
+  - from: juiz
+    to: sensei
+    condition: "Evento call_scored publicado pelo Juiz. Roda em sequencia apos scoring. SLA de entrega do coaching card: maximo 30 minutos apos encerramento da call. Tambem roda em modo batch semanal para consolidar…"
+  - from: sensei
+    to: memoria-do-crm
+    condition: "Evento coaching_card_generated publicado pelo Sensei. Roda em paralelo com a entrega do coaching. SLA: máximo 10 minutos para CRM atualizado. Alerta de risco alto: imediato, sem esperar o coaching ca…"
+  - from: memoria-do-crm
+    to: radar-do-time
+    condition: "Job semanal toda Sexta às 17h. Também disparado manualmente pelo gestor via comando. Também gera alerta imediato quando objeção nova aparece em 3+ calls na mesma semana (possível mudança de mercado)."
+  - from: radar-do-time
+    to: vigilante
+    condition: "Ao final de cada Call Analysis quando sinais_de_risco contiver pelo menos 1 item de severidade ALTO. Job de varredura semanal Segunda 08h em todos os deals ativos em estagio Proposta/Negociacao. Even…"
+  - from: vigilante
+    to: calibrador
+    condition: "Toda saída de worker que antecede entrega externa ou ação irreversível."
+  - from: calibrador
+    to: maestro
+    condition: "Veredito emitido (aprovado ou reprovado com feedback)"
+error_handling:
+  on_phase_failure: [log_error, notify_orchestrator, halt_workflow]
+  on_checkpoint_failure: [log_failure_reason, return_to_critic_feedback, max_retries: 2]
+completion_signal: "<promise>COMPLETE</promise>"
+blocked_signal: "<promise>BLOCKED:HITL</promise>"
+typical_duration: "por evento; os SLAs estão nos gatilhos de cada fase"
+parallel_capable:
+  - memoria-do-crm

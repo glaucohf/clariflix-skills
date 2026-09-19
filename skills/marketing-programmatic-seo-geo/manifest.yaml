@@ -1,0 +1,28 @@
+row: marketing
+title: Programmatic SEO + GEO/AEO
+title_netflix: PROGRAMMATIC SEO + GEO/AEO
+subtitle: Planejar conteúdo e arquitetura para SEO programático e descoberta em mecanismos de busca e respostas de IA
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use marketing-programmatic-seo-geo para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Argo
+  - Lexus
+  - Orion
+  - Scribe
+  - Beacon
+  - Atlas
+  - Sonar
+  - Lumen
+  generos:
+  - Marketing
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

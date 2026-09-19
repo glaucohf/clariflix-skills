@@ -1,0 +1,9 @@
+* text=auto eol=lf
+# Keep imported snapshots byte-for-byte so provenance hashes survive Git checkout.
+skills/**/references/squad/** -text
+skills/proposta-comercial/assets/** -text
+skills/proposta-comercial/references/** -text
+skills/proposta-comercial/scripts/** -text
+*.png -text
+*.webp -text
+*.jpg -text

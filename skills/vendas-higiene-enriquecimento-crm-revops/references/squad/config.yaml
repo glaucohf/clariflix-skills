@@ -1,0 +1,56 @@
+pack:
+  name: vendas-higiene-enriquecimento-crm-revops
+  version: 0.1.0
+  short-title: "Higiene e Enriquecimento de CRM"
+  description: "Seu CRM e o solo onde toda venda cresce — se o solo é lixo, a colheita também é."
+  author: "Gerado da especificação de Gabriel Marcondes (Máquina de Receita · A Máquina) pela Academia Lendária"
+  icon: "📊"
+  slashPrefix: higieneEEnriquecimentoDeCrm
+name: vendas-higiene-enriquecimento-crm-revops
+version: 0.1.0
+description: "Seu CRM e o solo onde toda venda cresce — se o solo é lixo, a colheita também é."
+entry_agent: nexus
+workspace_integration:
+  level: none
+  note: "sem integração com workspace de negócio; executa sobre CRM/ClickUp/canais do cliente conforme integrations"
+metadata:
+  status: draft
+  domain: vendas
+  topsquad: "V6"
+  prioridade: "must‑have"
+  origem: "especificação da página Máquina de Receita; gerado em 2026-09-16"
+agents:
+  - nexus
+  - validador-de-entradas
+  - detector-de-duplicatas
+  - enriquecedor-de-conta-e-lead
+  - sincronizador-de-fontes
+  - pythia
+  - cassandra
+  - gerador-de-golden-record
+  - sentinel
+tasks:
+  - validar-formato-de-entradas.md
+  - detectar-duplicatas.md
+  - consultar-fontes-confianca.md
+  - propagar-atualizacoes-fonte.md
+  - calcular-score-registro.md
+  - detectar-sinais-de-intencao.md
+  - gerar-golden-record.md
+  - verificar-saidas.md
+  - orquestrar-pipeline.md
+workflows:
+  - vendas-higiene-enriquecimento-crm-revops-pipeline.yaml
+checklists:
+  - critic-sentinel.md
+integrations:
+  - "CRM: HubSpot (MCP disponível), Pipedrive, Salesforce — source of truth de contatos e companies"
+  - "Enriquecimento: Apollo.io (275M+ contatos B2B), Clay (waterfall multi-source), Clearbit (dados de empresa)"
+  - "Email validation: ZeroBounce ou NeverBounce (verificação de MX record e caixa ativa)"
+  - "WhatsApp Business API: sync de numero validado e opt-in status"
+  - "Plataforma de email (ActiveCampaign / Mailchimp / RD Station): sync de contatos e status de bounce"
+  - "ClickUp: artefatos verificáveis por task, fila HITL, dashboard de qualidade de CRM"
+  - "Langfuse (OTEL): observabilidade de cada agente, quality gates dev 70% / staging 85% / prod 95%"
+  - "Slack: alertas de anomalia, fila HITL para aprovação de merges"
+  - "LangGraph: orquestração do pipeline com estado persistente entre etapas"
+  - "N8N (opcional): webhook receiver para fontes de entrada não-nativas (ex: formulário do site, planilha do SDR)"

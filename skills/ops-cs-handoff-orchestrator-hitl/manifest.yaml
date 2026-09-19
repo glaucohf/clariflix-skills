@@ -1,0 +1,28 @@
+row: operacoes
+title: Handoff Orchestrator HITL
+title_netflix: HANDOFF ORCHESTRATOR HITL
+subtitle: Definir quando escalar casos para humanos e preparar handoffs com contexto, evidências e critérios de retomada
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 8 papéis, 8 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-handoff-orchestrator-hitl para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Hieronimus
+  - Cassio
+  - Beatriz
+  - Renato
+  - Selene
+  - Dora
+  - Fabio
+  - Vitor
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana

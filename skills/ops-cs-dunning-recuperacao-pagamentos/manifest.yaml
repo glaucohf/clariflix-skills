@@ -1,0 +1,29 @@
+row: operacoes
+title: Cobrança e Recuperação de Pagamentos
+title_netflix: COBRANÇA E RECUPERAÇÃO DE PAGAMENTOS
+subtitle: Analisar inadimplência e preparar cadências de cobrança e recuperação de pagamentos para revisão humana
+genre: procedural
+badge: Nova
+painel:
+  ano: 2026
+  tamanho: 9 papéis, 9 tarefas, 1 workflow, 1 checklist
+  requer: Contexto e dados do negócio; integrações opcionais exigem configuração e autorização
+  como_usar: 'Diga: "use ops-cs-dunning-recuperacao-pagamentos para [objetivo]" e forneça o contexto e os dados disponíveis'
+  elenco:
+  - Cobalt
+  - Dante
+  - Iris
+  - Zap
+  - Flex
+  - Pulse
+  - Atlas
+  - Vault
+  - Sentinel
+  generos:
+  - Operações & CS
+  - Squads
+  - Máquina de Receita
+  esta_skill_e:
+  - Especializada
+  - Rastreável
+  - Com revisão humana
