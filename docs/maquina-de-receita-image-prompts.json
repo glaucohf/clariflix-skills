@@ -1,0 +1,459 @@
+{
+  "generator": "Built-in image_gen",
+  "date": "2026-09-19",
+  "base_prompt": "Use case: stylized-concept. Asset type: individual landscape cover illustration for a skill in ClariFlix, a business AI skills catalog. Create ONE polished cinematic 3D editorial illustration, landscape 1536x1024. Consistent collection style: warm charcoal background, emerald and sage green objects, ivory paper, small brass accents, soft studio light, tactile matte materials, subtle grain, refined realistic miniature still-life, visually clear at thumbnail size. Central composition with ample breathing room, all important subjects within central 80%. No text, letters, numbers, logos, watermarks, borders, collage or multiple panels. Subject: ",
+  "images": [
+    {
+      "skill": "apex-context-supreme",
+      "file": "site/images/skills/apex-context-supreme.webp",
+      "subject": "A precise emerald architectural frame holds an organized stack of ivory context cards; loose paper fragments enter on one side and emerge as a few clearly aligned green rule tiles, with brass dividers. Convey organizing and compressing project context while retaining structure."
+    },
+    {
+      "skill": "athenaeum-squad",
+      "file": "site/images/skills/athenaeum-squad.webp",
+      "subject": "A miniature circular strategy room with an emerald round table, seven ivory sculptural seats, brass linking lines and a central translucent green branching decision tree. Convey multiple perspectives converging into organizational strategy, with no people."
+    },
+    {
+      "skill": "brainstormind",
+      "file": "site/images/skills/brainstormind.webp",
+      "subject": "A graceful cloud of small ivory idea spheres narrows through two emerald selection rings into three brass-rimmed concepts; one selected concept unfolds into a refined miniature model on a drafting sheet. Convey divergent ideation followed by convergence."
+    },
+    {
+      "skill": "data-quality-guardian",
+      "file": "site/images/skills/data-quality-guardian.webp",
+      "subject": "An emerald magnifying lens examines a neatly aligned grid of ivory data cubes; a single misplaced brass cube is isolated beside a small green shield and validated cubes. Convey data profiling, anomaly discovery and quality assurance."
+    },
+    {
+      "skill": "flywheel-core",
+      "file": "site/images/skills/flywheel-core.webp",
+      "subject": "A substantial emerald flywheel with brass spokes connects four small ivory task stations in a continuous circular track. Tactile task blocks progress around the wheel toward a brass quality gate. Convey iterative coordinated agent work."
+    },
+    {
+      "skill": "founder-agentic-analytics",
+      "file": "site/images/skills/founder-agentic-analytics.webp",
+      "subject": "An elegant miniature executive analytics desk with sculptural emerald bar columns and translucent green trend ribbons rising from ivory data sheets; a brass magnifier highlights one unexpected change. Convey investigating business indicators."
+    },
+    {
+      "skill": "founder-ai-chief-of-staff",
+      "file": "site/images/skills/founder-ai-chief-of-staff.webp",
+      "subject": "A refined emerald executive desk organizer assembles several ivory task cards, a blank weekly planner and a brass compass into one prioritized stack. Convey an organized chief of staff aligning priorities and follow-through."
+    },
+    {
+      "skill": "founder-board-investor-relations",
+      "file": "site/images/skills/founder-board-investor-relations.webp",
+      "subject": "A miniature emerald boardroom table surrounded by ivory chairs with neatly arranged executive report folders and a brass bridge joining an investor token to the company model. Convey clear board and investor communication."
+    },
+    {
+      "skill": "founder-clone-digital-twin",
+      "file": "site/images/skills/founder-clone-digital-twin.webp",
+      "subject": "Two matching abstract ivory sculptural head busts face each other across a translucent emerald mirrored pane; a few brass decision nodes connect matching points. Convey a strategic digital twin of decision patterns, not a real person's likeness."
+    },
+    {
+      "skill": "founder-competitive-intelligence",
+      "file": "site/images/skills/founder-competitive-intelligence.webp",
+      "subject": "A brass observation telescope on an emerald stand overlooks three different miniature ivory business buildings; small green signal markers identify changes around them. Convey continuous competitive intelligence."
+    },
+    {
+      "skill": "founder-decision-journal-postmortem",
+      "file": "site/images/skills/founder-decision-journal-postmortem.webp",
+      "subject": "An open ivory decision journal beside an emerald fountain pen, with a branching brass path passing through past decision tokens and returning to a single green learning tile. Convey recording decisions and reviewing outcomes.",
+      "revision_prompt": "Edit only the open notebook in this cover illustration. Remove EVERY readable word, letter, heading, numeral and handwritten phrase from BOTH pages. Replace all writing with a few short, thick, abstract sage-green horizontal rectangular bars, simple blank checkbox outlines and tiny neutral circles. They must clearly be geometric marks, never glyphs or writing. Preserve the notebook, paper texture, perspective, the emerald pen, branching brass path, mountain miniature, leaf tile, lighting, composition and every other object exactly. Keep 1536x1024 landscape. No text anywhere."
+    },
+    {
+      "skill": "founder-deep-research-orchestrator",
+      "file": "site/images/skills/founder-deep-research-orchestrator.webp",
+      "subject": "Several open ivory research books and source cards surround a central emerald prism; brass threads connect evidence points into one coherent green insight model. Convey orchestrated deep strategic research."
+    },
+    {
+      "skill": "founder-due-diligence-ma-screening",
+      "file": "site/images/skills/founder-due-diligence-ma-screening.webp",
+      "subject": "Two miniature ivory companies stand on separate emerald plinths while a brass magnifying glass examines an open due-diligence folder between them; a balanced set of green and brass evidence tokens sits nearby. Convey acquisition screening and careful investigation."
+    },
+    {
+      "skill": "founder-fundraising-ops",
+      "file": "site/images/skills/founder-fundraising-ops.webp",
+      "subject": "A miniature emerald company model sits at the end of a carefully organized sequence of ivory investor folders and brass capital tokens, connected by a subtle green pipeline. Convey structured fundraising operations and investor follow-through."
+    },
+    {
+      "skill": "founder-knowledge-base-institucional",
+      "file": "site/images/skills/founder-knowledge-base-institucional.webp",
+      "subject": "A beautifully crafted emerald institutional archive with ivory books and indexed blank cards; brass threads link a central company emblem shaped as a simple building to preserved knowledge shelves. Convey organized institutional memory."
+    },
+    {
+      "skill": "founder-kpi-okr-pulse",
+      "file": "site/images/skills/founder-kpi-okr-pulse.webp",
+      "subject": "Three emerald target pillars with brass concentric rings sit beside a translucent green pulse ribbon crossing ivory milestone cards. Convey tracking goals and key business indicators without numerical labels."
+    },
+    {
+      "skill": "founder-market-sizing-opportunity-scout",
+      "file": "site/images/skills/founder-market-sizing-opportunity-scout.webp",
+      "subject": "Nested translucent emerald market spheres hover above an ivory map on a charcoal desk; a small brass compass points to a promising green territory. Convey estimating market sizes and scouting opportunities.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "founder-meeting-intelligence",
+      "file": "site/images/skills/founder-meeting-intelligence.webp",
+      "subject": "An ivory miniature conference table holds an emerald audio waveform sculpture that resolves into three orderly blank decision cards and a brass action checklist. Convey turning meeting recordings into decisions and accountable actions.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "founder-risk-scenario-sentinel",
+      "file": "site/images/skills/founder-risk-scenario-sentinel.webp",
+      "subject": "A refined emerald lookout tower watches several ivory branching paths crossing a miniature landscape; brass warning beacons mark a few uncertain routes while a green shield protects the central business model. Convey risk monitoring and scenario planning.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "founder-strategic-foresight-wargaming",
+      "file": "site/images/skills/founder-strategic-foresight-wargaming.webp",
+      "subject": "A sculptural strategy board on a charcoal desk with emerald and ivory abstract chess-like pieces, branching brass paths and three translucent future scenario arches. Convey strategic foresight and testing competitive responses.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "founder-tech-radar-build-vs-buy",
+      "file": "site/images/skills/founder-tech-radar-build-vs-buy.webp",
+      "subject": "A brass radar dish scans two emerald platforms: one supports modular ivory building blocks, the other a complete elegant device in a fitted case. An ivory comparison sheet connects them. Convey deciding whether to build technology or buy it.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "genius-athena-strange",
+      "file": "site/images/skills/genius-athena-strange.webp",
+      "subject": "An elegant black swan sculpture with subtle emerald reflections stands beside a brass barbell balanced between a solid ivory block and several small green optionality tokens. Convey thoughtful decisions under uncertainty and antifragility.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "incident-response-squad",
+      "file": "site/images/skills/incident-response-squad.webp",
+      "subject": "A small emerald operations console with a restrained brass alert beacon sits beside an ivory incident timeline and an open runbook; a magnifier connects a broken green signal to its source. Convey diagnosing an incident and preparing a response.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "instagram-caption-writer",
+      "file": "site/images/skills/instagram-caption-writer.webp",
+      "subject": "A portrait-oriented emerald content frame displays a blank ivory post card, surrounded by three small sculptural speech bubbles, a brass fountain-pen nib and green hook-shaped ribbons. Convey crafting multiple engaging social captions; no platform logos.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "landing-funnel",
+      "file": "site/images/skills/landing-funnel.webp",
+      "subject": "An elegant transparent emerald funnel guides ivory visitor tokens through a miniature web-page frame into a brass-rimmed lead tray, with a tiny connected green envelope and a checked form tile. Convey an end-to-end landing-page conversion funnel.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "linkedin",
+      "file": "site/images/skills/linkedin.webp",
+      "subject": "A refined ivory professional profile card stands on an emerald desk with a small network of brass connections, a carousel of blank green content cards and an editorial pen. Convey thoughtful professional presence and content, no platform logos.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-abm-signal-orchestrator",
+      "file": "site/images/skills/marketing-abm-signal-orchestrator.webp",
+      "subject": "Three miniature ivory target-company buildings sit on an emerald account map; brass signal rings select one account and connect it to coordinated message, event and content tokens. Convey account-based marketing driven by intent signals.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-ai-sdr-outbound",
+      "file": "site/images/skills/marketing-ai-sdr-outbound.webp",
+      "subject": "An emerald outreach planning console connects a stack of ivory prospect cards to carefully sequenced brass envelope tokens and a green qualification gate. Convey researched outbound prospecting with a planned contact sequence.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-competitive-adspy",
+      "file": "site/images/skills/marketing-competitive-adspy.webp",
+      "subject": "A brass magnifying glass studies a gallery of miniature ivory advertising frames on emerald stands; contrasting abstract visual layouts and green observation pins reveal patterns. Convey competitive advertising research without readable copy.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-creative-ugc-factory",
+      "file": "site/images/skills/marketing-creative-ugc-factory.webp",
+      "subject": "A miniature emerald content studio with a brass camera, an ivory phone-shaped frame, a small softbox and a neat row of varied green storyboard cards. Convey producing and testing authentic-looking creative concepts.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-cro-landing-agentico",
+      "file": "site/images/skills/marketing-cro-landing-agentico.webp",
+      "subject": "Two ivory miniature landing-page panels on emerald bases feed a branching brass test track; one clear green call-to-action block guides more visitor tokens through a narrow conversion doorway. Convey conversion diagnosis and page experiments.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-demand-sensing-radar",
+      "file": "site/images/skills/marketing-demand-sensing-radar.webp",
+      "subject": "A broad emerald radar dish emits delicate brass rings over a miniature ivory marketplace; small green demand beacons brighten selectively. Convey detecting early customer demand signals.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-dormant-lead-reactivation",
+      "file": "site/images/skills/marketing-dormant-lead-reactivation.webp",
+      "subject": "A row of quiet ivory prospect cards rests under a translucent charcoal veil; a warm emerald light and a brass message token awaken selected cards into upright green-lit positions. Convey thoughtfully reactivating dormant leads.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-funnel-analytics-attribution",
+      "file": "site/images/skills/marketing-funnel-analytics-attribution.webp",
+      "subject": "Three brass channel streams flow through tiered translucent emerald funnel stages, their ivory tokens remaining traceable by separate paths toward one outcome tray. Convey funnel analytics and attribution across channels.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-influencer-creator-outreach",
+      "file": "site/images/skills/marketing-influencer-creator-outreach.webp",
+      "subject": "A cluster of miniature ivory creator portrait silhouettes in emerald frames is connected by brass threads to a single collaboration brief and a small camera. Convey researching creators and preparing tailored partnerships.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-intelligent-timing",
+      "file": "site/images/skills/marketing-intelligent-timing.webp",
+      "subject": "An elegant brass clock without numbers is surrounded by emerald orbital tracks carrying ivory envelope and speech-bubble tokens, each placed in a separate well-spaced timing slot. Convey coordinated timing and contact cadence.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-lead-scoring-router",
+      "file": "site/images/skills/marketing-lead-scoring-router.webp",
+      "subject": "Ivory lead tokens pass over an emerald assessment scale before brass tracks route them into three distinct green destination trays. Convey explicit lead scoring and routing rules.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-living-icp-profiler",
+      "file": "site/images/skills/marketing-living-icp-profiler.webp",
+      "subject": "A central sculptural ivory customer profile is assembled from several emerald layers; brass research pins connect real account cards around it, with one layer being carefully updated. Convey an evolving evidence-based ideal customer profile.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-paid-media-autopilot",
+      "file": "site/images/skills/marketing-paid-media-autopilot.webp",
+      "subject": "A miniature emerald media control board holds three ivory campaign tiles, brass budget sliders and a separate green approval token before a launch lever. Convey managing paid-media campaigns with deliberate budget control.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-pmf-deep-research",
+      "file": "site/images/skills/marketing-pmf-deep-research.webp",
+      "subject": "An emerald product-shaped puzzle piece is tested against several ivory customer-need silhouettes; one aligns cleanly beside a stack of research cards and a brass magnifier. Convey evidence-based product-market fit research.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-programmatic-seo-geo",
+      "file": "site/images/skills/marketing-programmatic-seo-geo.webp",
+      "subject": "A branching miniature ivory library of webpage tiles emerges from an emerald seed structure; a brass search lens and luminous green answer prism connect relevant pages. Convey scalable search content and discoverability in AI answers.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "marketing-whatsapp-qualifier",
+      "file": "site/images/skills/marketing-whatsapp-qualifier.webp",
+      "subject": "An emerald chat-bubble sculpture guides several ivory lead cards through a short sequence of question tiles toward a small brass human-handoff bridge. Convey conversational lead qualification, no messaging platform logo.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-agent-assist-copilot",
+      "file": "site/images/skills/ops-cs-agent-assist-copilot.webp",
+      "subject": "A pair of ivory and emerald desktop support seats shares a floating green answer card; a brass knowledge-library rail delivers useful references to the human-side workspace. Convey an AI copilot assisting a support agent.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-ai-sre-incident",
+      "file": "site/images/skills/ops-cs-ai-sre-incident.webp",
+      "subject": "A miniature emerald server rack contains one softly glowing brass fault marker; ivory log strips feed a magnifying lens and a clearly organized green response path. Convey investigation and recovery planning for service incidents.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-back-office-financeiro-reconciliacao",
+      "file": "site/images/skills/ops-cs-back-office-financeiro-reconciliacao.webp",
+      "subject": "Two open ivory ledgers align across a brass reconciliation bridge; emerald transaction tokens match neatly while one unmatched brass token waits in an exception tray. Convey reconciling financial records.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-churn-prediction",
+      "file": "site/images/skills/ops-cs-churn-prediction.webp",
+      "subject": "A small circle of ivory customer figures stands on an emerald platform; one figure approaches the edge while subtle brass signal lines guide a green retention bridge back toward the center. Convey detecting churn risk and planning retention.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-dunning-recuperacao-pagamentos",
+      "file": "site/images/skills/ops-cs-dunning-recuperacao-pagamentos.webp",
+      "subject": "A neat sequence of ivory invoice cards, emerald reminder envelopes and a brass calendar leads toward a recovered payment token in a green tray. Convey respectful structured payment recovery without aggressive imagery.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-handoff-orchestrator-hitl",
+      "file": "site/images/skills/ops-cs-handoff-orchestrator-hitl.webp",
+      "subject": "An emerald robotic gripper and an abstract ivory human hand pass a brass context capsule across a small bridge, with a clear green approval gate between them. Convey a human-in-the-loop handoff with context preserved.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-kb-curator",
+      "file": "site/images/skills/ops-cs-kb-curator.webp",
+      "subject": "An emerald library cabinet holds carefully ordered ivory knowledge cards; a brass pruning tool and a small green update card illustrate removing stale material and adding verified answers. Convey support knowledge-base curation.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-onboarding-psa-agentica",
+      "file": "site/images/skills/ops-cs-onboarding-psa-agentica.webp",
+      "subject": "A miniature emerald welcome arch opens onto an ivory stepped path with clearly spaced milestones, a small brass guide compass and an organized implementation kit. Convey structured customer onboarding and implementation.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-qa-conversas-verifier",
+      "file": "site/images/skills/ops-cs-qa-conversas-verifier.webp",
+      "subject": "Several ivory conversation ribbons pass under an emerald inspection lens; brass quality markers point to specific exchanges and a green checklist stands beside the reviewed transcript. Convey evidence-based quality auditing of support conversations.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-renovacao-expansao-qbr",
+      "file": "site/images/skills/ops-cs-renovacao-expansao-qbr.webp",
+      "subject": "An emerald customer account tree grows from an ivory quarterly-review folder; a brass circular renewal loop encircles its base while one new green branch expands outward. Convey customer business reviews, renewal and expansion.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-self-healing-etl",
+      "file": "site/images/skills/ops-cs-self-healing-etl.webp",
+      "subject": "A transparent emerald data pipeline carries ivory cubes between small platforms; a broken segment is carefully repaired by a brass articulated tool while a green validation gate checks restored flow. Convey ETL diagnosis and recovery.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-sla-health-monitor",
+      "file": "site/images/skills/ops-cs-sla-health-monitor.webp",
+      "subject": "A refined emerald service-health console holds a brass clock without numbers, a green pulse ribbon and three ivory ticket stacks aligned by urgency. Convey monitoring service deadlines and operational health.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-tier1-resolver-multicanal",
+      "file": "site/images/skills/ops-cs-tier1-resolver-multicanal.webp",
+      "subject": "Ivory envelope, chat-bubble and phone tokens converge on a welcoming emerald support desk; simple cases leave through a green resolution gate while one brass case follows a handoff path. Convey first-line multichannel support.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-triagem-roteamento-priorizacao",
+      "file": "site/images/skills/ops-cs-triagem-roteamento-priorizacao.webp",
+      "subject": "Ivory support-ticket cards enter an emerald sorting mechanism and emerge into three stepped brass-rimmed priority trays, each with a distinct path to a small team token. Convey triage, routing and prioritization.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-voz-do-cliente-sentimento",
+      "file": "site/images/skills/ops-cs-voz-do-cliente-sentimento.webp",
+      "subject": "A bouquet of ivory speech bubbles of different sizes forms a subtle soundwave above an emerald listening dish; brass pins connect recurring themes to green insight cards. Convey listening to customer feedback and analyzing sentiment.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "ops-cs-voz-ia-telefonia",
+      "file": "site/images/skills/ops-cs-voz-ia-telefonia.webp",
+      "subject": "A sculptural emerald telephone handset and brass microphone frame a translucent ivory waveform that resolves into green support steps and a small human-handoff token. Convey AI-assisted voice support and escalation.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "proposta-comercial",
+      "file": "site/images/skills/proposta-comercial.webp",
+      "subject": "A premium open emerald presentation folio on a charcoal desk, with three ivory landscape proposal slides rising gently from it in an elegant fan: one with abstract brand swatches, one with ordered service modules, one with a restrained brass value diagram. A refined emerald fountain pen and small brass approval seal beside the folio. Convey turning a commercial brief into a polished branded proposal deck. Keep the rendering realistic and sophisticated, with warm studio shadows and tangible paper texture."
+    },
+    {
+      "skill": "skeptic-protocol",
+      "file": "site/images/skills/skeptic-protocol.webp",
+      "subject": "A brass magnifying lens inspects a miniature emerald code-module structure; one ivory test tile reveals a tiny fracture while a repaired green module waits behind a separate quality gate. Convey skeptical testing and adversarial engineering review.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "token-optimizer",
+      "file": "site/images/skills/token-optimizer.webp",
+      "subject": "A tall loose stack of ivory instruction cards is compressed by a refined emerald press into a smaller precise stack while a brass balance holds an unchanged green capability gem. Convey fewer tokens without losing function.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-agendamento-appointment-setting",
+      "file": "site/images/skills/vendas-agendamento-appointment-setting.webp",
+      "subject": "A miniature emerald appointment desk holds an ivory calendar with a single brass-rimmed slot receiving a green booking block, beside a confirmation envelope and a small empty chair. Convey frictionless sales appointment setting.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-ai-sdr-outbound-signal-based",
+      "file": "site/images/skills/vendas-ai-sdr-outbound-signal-based.webp",
+      "subject": "A brass signal antenna detects one glowing emerald prospect marker among ivory company models; a carefully personalized ivory message card follows a green path to that account. Convey signal-based outbound sales research.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-conversation-intelligence-coaching",
+      "file": "site/images/skills/vendas-conversation-intelligence-coaching.webp",
+      "subject": "An emerald headset rests beside an ivory conversation transcript; a brass lens isolates one section of a sculptural green audio waveform and connects it to a coaching notebook. Convey evidence-based sales conversation coaching.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-followup-nurture-reativacao",
+      "file": "site/images/skills/vendas-followup-nurture-reativacao.webp",
+      "subject": "A miniature emerald growth path passes three ivory envelope stations; a small brass watering can nurtures green relationship sprouts along the sequence, ending at a reopened prospect folder. Convey follow-up, nurturing and reactivation.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-forecast-deal-risk",
+      "file": "site/images/skills/vendas-forecast-deal-risk.webp",
+      "subject": "An ivory sales pipeline model crosses a charcoal desk toward emerald revenue columns; translucent green forecast paths diverge around a brass risk marker. Convey examining deal risk and forecasting with explicit uncertainty.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-higiene-enriquecimento-crm-revops",
+      "file": "site/images/skills/vendas-higiene-enriquecimento-crm-revops.webp",
+      "subject": "An emerald customer-record cabinet has duplicate ivory cards carefully merged by a brass joining tool; incomplete records gain small matching green data blocks. Convey CRM deduplication, hygiene and enrichment.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-inteligencia-conta-battlecards",
+      "file": "site/images/skills/vendas-inteligencia-conta-battlecards.webp",
+      "subject": "An open emerald account dossier displays a miniature ivory company model, with three neatly arranged brass-rimmed comparison cards and a green strategic compass. Convey researched account intelligence and sales battlecards.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-lead-scoring-preditivo",
+      "file": "site/images/skills/vendas-lead-scoring-preditivo.webp",
+      "subject": "An elegant emerald staircase holds ivory prospect tokens on different steps; a brass analytical lens observes small green evidence beads attached to each, emphasizing justified prioritization. Convey predictive sales lead scoring.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-objection-handling-qa-tempo-real",
+      "file": "site/images/skills/vendas-objection-handling-qa-tempo-real.webp",
+      "subject": "Two facing ivory speech bubbles form a calm conversation; a brass knot representing an objection is gently untangled into an emerald answer card backed by a small evidence book. Convey clear evidence-based objection handling.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-qualificacao-conversacional-whatsapp",
+      "file": "site/images/skills/vendas-qualificacao-conversacional-whatsapp.webp",
+      "subject": "An upright emerald chat window sculpture contains blank ivory message tiles arranged as a short dialogue; a brass qualification key unlocks a green next-stage gate. Convey commercial qualification through conversation without platform branding.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-recuperacao-oportunidades-estagnadas",
+      "file": "site/images/skills/vendas-recuperacao-oportunidades-estagnadas.webp",
+      "subject": "An ivory opportunity token sits on a stalled emerald track; a brass diagnostic compass reveals a new short bridge that reconnects it to a moving green pipeline. Convey diagnosing and recovering stalled sales opportunities.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-reengajamento-pos-evento",
+      "file": "site/images/skills/vendas-reengajamento-pos-evento.webp",
+      "subject": "A miniature ivory event badge and an emerald auditorium model lead into carefully grouped follow-up cards and brass envelope tokens. Convey relevant personalized re-engagement after events and webinars.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-roteamento-inteligente-leads",
+      "file": "site/images/skills/vendas-roteamento-inteligente-leads.webp",
+      "subject": "An emerald rail junction routes distinct ivory lead tokens toward three small brass-rimmed sales desks, with a central green rule tile guiding the assignment. Convey intelligent lead distribution to the right owner.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-social-selling-linkedin",
+      "file": "site/images/skills/vendas-social-selling-linkedin.webp",
+      "subject": "An elegant emerald professional network tree connects ivory profile cards; a brass fountain pen creates one thoughtful green content card that opens a new relationship bridge. Convey research-led social selling without platform logos.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-speed-to-lead",
+      "file": "site/images/skills/vendas-speed-to-lead.webp",
+      "subject": "A small brass stopwatch without numbers sits beside a swift emerald light path connecting a fresh ivory lead card to a ready green response envelope. Convey fast thoughtful first response and qualification.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "vendas-voz-cold-calling-discovery",
+      "file": "site/images/skills/vendas-voz-cold-calling-discovery.webp",
+      "subject": "An emerald vintage-inspired handset and a brass microphone sit beside an open ivory discovery notebook, with a green waveform turning into a few carefully arranged question tokens. Convey purposeful sales calls and discovery.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    },
+    {
+      "skill": "win-proposal-deal",
+      "file": "site/images/skills/win-proposal-deal.webp",
+      "subject": "Three distinct ivory proposal folios stand on emerald plinths of different heights; a brass balance compares value tokens while a green fountain pen selects the most suitable offer. Convey three scoped and priced commercial options.",
+      "prompt_suffix": " All paper, books, charts and cards must use blank geometric bars or shapes only; no readable writing anywhere."
+    }
+  ]
+}
