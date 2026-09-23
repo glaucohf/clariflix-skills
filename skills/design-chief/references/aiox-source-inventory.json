@@ -1,0 +1,12 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/skills/design-chief",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "79d6b1cfcaf7dfa628ef42f1cc60e0ad61eaaa51f05e3a0c1f88f7411f7f0244"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+row: gestao
+title: Pesquisa bem roteada
+title_netflix: RESEARCH CHIEF
+subtitle: Orquestra pesquisa técnica, competitiva e de marketing
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 1 arquivo(s) de origem
+  requer: Pergunta, contexto e profundidade desejada
+  como_usar: 'Instale a skill e siga os pré-requisitos declarados pela fonte'
+  elenco: [Escopo, Fontes, Síntese]
+  generos: [Pesquisa, Estratégia, Inteligência]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]
