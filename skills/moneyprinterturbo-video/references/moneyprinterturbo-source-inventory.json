@@ -1,0 +1,16 @@
+{
+  "source_url": "https://github.com/harry0703/MoneyPrinterTurbo/tree/3d5f4e421927d61f3eac729cf4b711ac0b69d688/docs/skill",
+  "source_repository": "https://github.com/harry0703/MoneyPrinterTurbo",
+  "source_commit": "3d5f4e421927d61f3eac729cf4b711ac0b69d688",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "mpt_agent.py",
+      "sha256": "a147d9b7ff7e0fa59e31d34e67a207d6a4a6a8bb9b7d284135d96f7b4a59e60f"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "dffb69536e0b704663bc87176e4ac25a039fea5a01f47a99deb4646d54f7e9b7"
+    }
+  ]
+}
