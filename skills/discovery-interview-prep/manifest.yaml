@@ -1,0 +1,15 @@
+row: gestao
+title: Entrevistas que descobrem
+title_netflix: INTERVIEW PREP
+subtitle: Prepara entrevistas de descoberta orientadas por evidências, sem perguntas hipotéticas
+genre: procedural
+badge: Nova
+runtime_only: false
+painel:
+  ano: 2026
+  tamanho: 1 arquivo(s) de origem
+  requer: Objetivo de pesquisa e acesso a clientes
+  como_usar: 'Instale a skill e forneça o contexto solicitado pela fonte'
+  elenco: [Objetivo, Perguntas, Vieses]
+  generos: [Produto, Discovery, Entrevistas]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

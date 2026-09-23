@@ -1,0 +1,24 @@
+{
+  "source_url": "https://github.com/deanpeters/product-manager-skills/tree/1b5a524ebb95e9497fa3f25002d8b8ec528d4444/skills/discovery-process",
+  "source_commit": "1b5a524ebb95e9497fa3f25002d8b8ec528d4444",
+  "source_repository": "https://github.com/deanpeters/product-manager-skills",
+  "license": "CC BY-NC-SA 4.0",
+  "files": [
+    {
+      "path": "examples/sample-lifesciences.md",
+      "sha256": "4bf1c3098a673559458302670131c178164e6058af029d5edd06de62ad088218"
+    },
+    {
+      "path": "examples/sample.md",
+      "sha256": "b752a516045c68a6a2bbe2ee6251b6199f55d1b1d1d62bca4f867c1e48473e00"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "259ff492dfa5a5fa3c2d546d5c119e7a9147598ab8330833d538f2365e8e173b"
+    },
+    {
+      "path": "template.md",
+      "sha256": "f5e3bab0a967d3dae3779eb8157b35f4a4204d9b563074e1ddc486e11839252a"
+    }
+  ]
+}

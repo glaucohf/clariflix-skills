@@ -1,0 +1,15 @@
+row: operacoes
+title: Automação que fecha o ciclo
+title_netflix: N8N WORKFLOW
+subtitle: Desenha, valida, testa e versiona workflows n8n
+genre: procedural
+badge: Nova
+runtime_only: false
+painel:
+  ano: 2026
+  tamanho: 7 arquivo(s) de origem
+  requer: Objetivo do fluxo e integrações
+  como_usar: 'Instale a skill e forneça o contexto solicitado pela fonte'
+  elenco: [Desenho, Validação, Publicação]
+  generos: [Automação, n8n, Operações]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

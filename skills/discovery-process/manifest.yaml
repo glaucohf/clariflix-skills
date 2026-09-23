@@ -1,0 +1,15 @@
+row: gestao
+title: Discovery antes do build
+title_netflix: DISCOVERY PROCESS
+subtitle: Conduz um ciclo de discovery de hipótese a experimento e decisão
+genre: procedural
+badge: Nova
+runtime_only: false
+painel:
+  ano: 2026
+  tamanho: 4 arquivo(s) de origem
+  requer: Hipótese, evidências e contexto
+  como_usar: 'Instale a skill e forneça o contexto solicitado pela fonte'
+  elenco: [Hipótese, Pesquisa, Experimentos]
+  generos: [Produto, Discovery, Estratégia]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

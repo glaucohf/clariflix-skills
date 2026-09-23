@@ -1,0 +1,56 @@
+{
+  "source_url": "https://github.com/wondelai/skills/tree/c172996495bed0fcd26896a9416b2093fd7073f0/lean-startup",
+  "source_commit": "c172996495bed0fcd26896a9416b2093fd7073f0",
+  "source_repository": "https://github.com/wondelai/skills",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "references/applications.md",
+      "sha256": "c9e1c4cc5ee2b49f0e08397dc5e417a52d2eb5ea7893b6610a9a473c589f58f4"
+    },
+    {
+      "path": "references/assumptions.md",
+      "sha256": "9399b6d6046d94fecebe247c9ad8db70be052dc9ef7fbeb301959b7aefc2d047"
+    },
+    {
+      "path": "references/build-measure-learn.md",
+      "sha256": "c57d77747ab89c3fcee38eb690291b9b93f95fa4e4b43b6cd568c0e6ae3e474e"
+    },
+    {
+      "path": "references/case-studies.md",
+      "sha256": "8855582c2434e3259a080f8a797f73e5cd99f3dcf10b15a9e25fa23b8017a460"
+    },
+    {
+      "path": "references/five-whys.md",
+      "sha256": "00901a8b8bfeb43318fa893f4819e59b48cfc3116decddbe04e40ccb709ffcb2"
+    },
+    {
+      "path": "references/growth-engines.md",
+      "sha256": "52a90afa7c727534a4dd73e6d4ef3879711fbcfddab17796f26e3fc25394d018"
+    },
+    {
+      "path": "references/innovation-accounting.md",
+      "sha256": "45050846c4871d27f6703d4a2b725548257fd2e341c4d6844ee1daddeee20c79"
+    },
+    {
+      "path": "references/metrics.md",
+      "sha256": "531915baab47e75608b78f080019d0d43301cf8eae532f20d6b53c62704fb333"
+    },
+    {
+      "path": "references/mvp-design.md",
+      "sha256": "6604fd8b1b9b1d1aa47ff30ca2442a7427659981f72369b2fd2905bd14d3be64"
+    },
+    {
+      "path": "references/pivots.md",
+      "sha256": "ab64f155eb069a40dcd7b59de2a3050777056d77b619e23c8d98fb57ae78b33d"
+    },
+    {
+      "path": "references/small-batches.md",
+      "sha256": "2510c3be78785d97acb059178a484ec1eea78481dded81c9ea876da30408efb7"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "a5c5eda57b52d2732786da75e8a00baef40ee6429b6f7e36ce24b5a6f456006a"
+    }
+  ]
+}

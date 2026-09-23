@@ -1,0 +1,15 @@
+row: gestao
+title: Conversa em PRD
+title_netflix: TO PRD
+subtitle: Transforma o contexto da conversa em um PRD com escopo e decisões
+genre: procedural
+badge: Nova
+runtime_only: false
+painel:
+  ano: 2026
+  tamanho: 1 arquivo(s) de origem
+  requer: Contexto de produto e repositório
+  como_usar: 'Instale a skill e forneça o contexto solicitado pela fonte'
+  elenco: [Problema, Escopo, Critérios]
+  generos: [Produto, PRD, Planejamento]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

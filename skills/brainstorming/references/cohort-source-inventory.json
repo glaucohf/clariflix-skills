@@ -1,0 +1,40 @@
+{
+  "source_url": "https://github.com/obra/superpowers/tree/5bf4e78011075bcfc0dc295f0724994cd123ee71/skills/brainstorming",
+  "source_commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+  "source_repository": "https://github.com/obra/superpowers",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "scripts/frame-template.html",
+      "sha256": "7b9418e9939dded0cf8e6a5549a18162b7c7e5495deeefa83a12f3394b81395d"
+    },
+    {
+      "path": "scripts/helper.js",
+      "sha256": "43c6d69954a46ec34a2a262bcc62a9a7e83e839c739f199cb72646d397c686e3"
+    },
+    {
+      "path": "scripts/server.cjs",
+      "sha256": "ee89af11506ac4933324c89a2cfb36b391fe611f82efb9eeb3b814e40825145f"
+    },
+    {
+      "path": "scripts/start-server.sh",
+      "sha256": "a4e5ae84275bcaacd2f84345afeabe59cf7b00ba080e123da7cc1fb226f12847"
+    },
+    {
+      "path": "scripts/stop-server.sh",
+      "sha256": "0b5ccbbd57f62d3ed88993f7940b5ee0e5c0fc9b21c550c623da4f6292e47daf"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "a32d2255354775aa124855aa7100cf276bea096fff4ebb3a0edf57be216e6c72"
+    },
+    {
+      "path": "spec-document-reviewer-prompt.md",
+      "sha256": "95a0a195de9d984be2fffa95bab16fc8c563bc296a9cfc5e9c29cb3ece0d7457"
+    },
+    {
+      "path": "visual-companion.md",
+      "sha256": "6ffcb038b53254bd31debaa15e12dcd4ff24bd63d690e0b644ac6396701cf2e2"
+    }
+  ]
+}

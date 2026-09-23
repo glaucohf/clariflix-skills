@@ -1,0 +1,15 @@
+row: marketing
+title: Copy que fala como o cliente
+title_netflix: COPYWRITING
+subtitle: Produz copy orientada por pesquisa para landing, proposta e mensagens
+genre: procedural
+badge: Nova
+runtime_only: false
+painel:
+  ano: 2026
+  tamanho: 4 arquivo(s) de origem
+  requer: Público, oferta e evidências
+  como_usar: 'Instale a skill e forneça o contexto solicitado pela fonte'
+  elenco: [Público, Mensagem, CTA]
+  generos: [Marketing, Copy, Conversão]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

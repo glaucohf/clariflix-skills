@@ -1,0 +1,24 @@
+{
+  "source_url": "https://github.com/coreyhaines31/marketingskills/tree/5b2c0007766c6a1cf1d53fd8fc73e979e0821022/skills/copywriting",
+  "source_commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022",
+  "source_repository": "https://github.com/coreyhaines31/marketingskills",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "evals/evals.json",
+      "sha256": "379a9cef1215939226706eddc326ed4f36a48ce0a049c1efb4d1ba3f59a03550"
+    },
+    {
+      "path": "references/copy-frameworks.md",
+      "sha256": "966fa12b78223866cc58552cf287634e801e3ff0bf0de853064084685f18c86d"
+    },
+    {
+      "path": "references/natural-transitions.md",
+      "sha256": "f738e7933906576a54008aa97f2e279afe029989e4d471454112bf847e11ecc3"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "4451b6fe3789484467a37ddb71dd6c7fd531196ad282abd6ada2ca4fb3ee196f"
+    }
+  ]
+}
