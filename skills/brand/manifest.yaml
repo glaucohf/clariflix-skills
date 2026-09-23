@@ -1,0 +1,15 @@
+row: marketing
+title: Marca com direção
+title_netflix: BRAND
+subtitle: Organiza naming, identidade e go-to-market da marca
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 68 arquivo(s) de origem
+  requer: Negócio, público e posicionamento
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Nome, Identidade, Mensagem]
+  generos: [Marca, Marketing, Estratégia]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

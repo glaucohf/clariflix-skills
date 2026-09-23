@@ -1,0 +1,53 @@
+id: wf-weekly-revenue-optimization
+name: "Weekly Revenue Optimization"
+version: "1.0.0"
+orchestrator: cro-oracle-guardian
+description: "Ciclo semanal para manter melhoria continua de receita."
+
+phases:
+  - id: PHASE-0
+    name: "CRO Weekly Governance"
+    agent: cro-oracle-guardian
+    tasks:
+      - cro-oracle-control-weekly-metrics
+
+  - id: PHASE-1
+    name: "KPI Review"
+    agent: revops-automation-engineer
+    depends_on:
+      - PHASE-0
+    tasks:
+      - revops-automation-engineer-build-revenue-dashboard
+
+  - id: PHASE-2
+    name: "Bottleneck Prioritization"
+    agent: revenue-chief
+    depends_on:
+      - PHASE-1
+    tasks:
+      - revenue-chief-diagnose-revenue-gaps
+
+  - id: PHASE-3
+    name: "Experiment Planning"
+    agent: experimentation-analyst
+    depends_on:
+      - PHASE-2
+    tasks:
+      - experimentation-analyst-run-growth-experiments
+
+  - id: PHASE-4
+    name: "Execution Alignment"
+    agent: demand-gen-architect
+    depends_on:
+      - PHASE-3
+    tasks:
+      - demand-gen-architect-create-campaign-briefs
+      - sales-system-operator-automate-follow-up
+
+  - id: PHASE-5
+    name: "Commit Next Week"
+    agent: cro-oracle-guardian
+    depends_on:
+      - PHASE-4
+    tasks:
+      - cro-oracle-run-monthly-planning-cycle

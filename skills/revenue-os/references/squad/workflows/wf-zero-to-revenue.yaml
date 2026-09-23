@@ -1,0 +1,78 @@
+id: wf-zero-to-revenue
+name: "Zero to Revenue"
+version: "1.0.0"
+orchestrator: cro-oracle-guardian
+description: "Transforma produto pronto em maquina comercial inicial operando."
+
+phases:
+  - id: PHASE-0
+    name: "Executive Intake and Macro Plan"
+    agent: cro-oracle-guardian
+    tasks:
+      - cro-oracle-intake-and-route
+      - cro-oracle-build-macro-revenue-plan
+
+  - id: PHASE-1
+    name: "Revenue Diagnosis"
+    agent: revenue-chief
+    depends_on:
+      - PHASE-0
+    tasks:
+      - revenue-chief-diagnose-revenue-gaps
+
+  - id: PHASE-2
+    name: "Offer and Pricing"
+    agent: monetization-strategist
+    depends_on:
+      - PHASE-1
+    tasks:
+      - monetization-strategist-design-offer-architecture
+      - monetization-strategist-define-pricing-and-packaging
+    checkpoint:
+      human_review: true
+      criteria:
+        - "Oferta principal definida"
+        - "Pricing aprovado"
+
+  - id: PHASE-3
+    name: "Acquisition Planning"
+    agent: demand-gen-architect
+    depends_on:
+      - PHASE-2
+    tasks:
+      - demand-gen-architect-build-acquisition-plan
+      - demand-gen-architect-create-campaign-briefs
+
+  - id: PHASE-4
+    name: "Funnel and Sales Setup"
+    agent: funnel-conversion-engineer
+    depends_on:
+      - PHASE-3
+    tasks:
+      - funnel-conversion-engineer-design-funnel-journey
+      - sales-system-operator-setup-sales-playbook
+      - sales-system-operator-automate-follow-up
+
+  - id: PHASE-5
+    name: "Telemetry and Dashboard"
+    agent: revops-automation-engineer
+    depends_on:
+      - PHASE-4
+    tasks:
+      - revops-automation-engineer-setup-revenue-telemetry
+      - revops-automation-engineer-build-revenue-dashboard
+
+  - id: PHASE-6
+    name: "Go Live Readiness"
+    agent: revenue-chief
+    depends_on:
+      - PHASE-5
+    tasks:
+      - revenue-chief-go-live-readiness
+    checkpoint:
+      human_review: true
+      criteria:
+        - "QG-REV-001 PASS"
+        - "QG-REV-002 PASS"
+        - "QG-REV-003 PASS"
+        - "QG-REV-005 PASS"

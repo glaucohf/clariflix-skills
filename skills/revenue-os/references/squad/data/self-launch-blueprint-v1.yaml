@@ -1,0 +1,91 @@
+name: revenue-os-self-launch-v1
+version: "1.0"
+owner: "Rodrigo"
+
+offer:
+  name: "Revenue OS"
+  icp: "Builders e founders que ja criaram produto com AIOS, mas nao tem maquina de monetizacao"
+  problem_statement: "Produto existe, receita ainda imprevisivel"
+  promise: "Ativar stack comercial completa em ate 14 dias"
+  pricing:
+    starter_setup_brl: 3500
+    growth_mrr_brl: 1500
+    scale_mrr_brl: 3000
+  target_mrr_30d_brl: 3000
+
+landing_page:
+  hero_message: "Seu produto ja existe. Agora transforme isso em receita previsivel."
+  cta_primary: "Quero ativar meu Revenue OS"
+  sections:
+    - problema
+    - metodo
+    - stack-comercial
+    - prova
+    - faq
+
+checkout:
+  provider: stripe
+  mode:
+    - one_time
+    - subscription
+  products:
+    - price_revenue_starter_one_time
+    - price_revenue_growth_monthly
+    - price_revenue_scale_monthly
+  webhook_events:
+    - checkout.session.completed
+    - invoice.paid
+    - invoice.payment_failed
+    - customer.subscription.updated
+    - customer.subscription.deleted
+
+dashboard:
+  cadence: weekly
+  kpis:
+    - qualified_visitors
+    - leads
+    - lead_to_call_rate
+    - call_to_close_rate
+    - mrr
+    - churn
+    - weekly_revenue
+  alerts:
+    - "lead_to_call drop > 20% for 3 days"
+    - "payment_failure_rate > 8% in week"
+
+activation:
+  channels:
+    - linkedin
+    - instagram
+    - youtube_shorts
+  creative_sprint:
+    linkedin_posts: 6
+    instagram_carousels: 4
+    shorts_scripts: 4
+  email_sequences:
+    warmup: 3
+    proof: 3
+    closing: 2
+    onboarding: 4
+
+sales_ops:
+  crm_stages:
+    - new_lead
+    - qualified
+    - strategy_call
+    - proposal
+    - won
+    - lost
+  sla_first_response_minutes: 30
+  follow_up_rules:
+    - d_plus_1
+    - d_plus_3
+    - d_plus_7
+
+go_live_criteria:
+  - lp_published
+  - checkout_working
+  - webhooks_working
+  - dashboard_live
+  - campaign_active
+  - email_sequences_active

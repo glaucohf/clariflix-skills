@@ -1,0 +1,88 @@
+workflow:
+  id: wf-fidelity-score
+  name: Fidelity Score
+  version: "1.0.0"
+  description: >
+    Calculate clone fidelity score using 8 layers x 5 checkpoints (40 total).
+    95% deterministic via worker script. MANDATORY PREFLIGHT: Run worker script FIRST.
+  type: orchestration
+  command: "*fidelity-score {clone_path}"
+  state_machine:
+    states: [init, identify-and-preflight, execute-layers, calculate-and-report, complete, failed]
+    transitions:
+      - trigger: start
+        source: init
+        dest: identify-and-preflight
+      - trigger: identify_complete
+        source: identify-and-preflight
+        dest: execute-layers
+      - trigger: identify_failed
+        source: identify-and-preflight
+        dest: failed
+      - trigger: execute_layers_complete
+        source: execute-layers
+        dest: calculate-and-report
+      - trigger: execute_layers_failed
+        source: execute-layers
+        dest: failed
+      - trigger: calculate_complete
+        source: calculate-and-report
+        dest: complete
+      - trigger: calculate_failed
+        source: calculate-and-report
+        dest: failed
+      - trigger: fail
+        source: "*"
+        dest: failed
+  sequence:
+    - step: identify-and-preflight
+      id: identify-and-preflight
+      phase: 1
+      phase_name: IDENTIFY & PREFLIGHT
+      agent: oalanicolas
+      task_ref: tasks/an-fidelity-score-identify.md
+      action: execute_identify_clone_files_and_run_script
+      description: Identify clone files and run worker script for preflight scores
+      inputs:
+        - clone_path
+      outputs:
+        - clone_files
+        - preflight_scores
+      next: execute-layers
+    - step: execute-layers
+      id: execute-layers
+      phase: 2
+      phase_name: EXECUTE 8 LAYER CHECKLISTS
+      agent: oalanicolas
+      task_ref: tasks/an-fidelity-score-layers.md
+      action: execute_8_layer_checklists
+      description: Execute 8 layer checklists with 5 checkpoints each
+      inputs:
+        - clone_files
+        - preflight_scores
+      outputs:
+        - layer_scores
+      next: calculate-and-report
+    - step: calculate-and-report
+      id: calculate-and-report
+      phase: 3
+      phase_name: CALCULATE & REPORT
+      agent: oalanicolas
+      task_ref: tasks/an-fidelity-score-calculate.md
+      action: execute_calculate_score_classify_report
+      description: Calculate final score, classify tier, and generate report
+      inputs:
+        - layer_scores
+      outputs:
+        - fidelity_report
+    - workflow_end:
+        id: complete
+        action: workflow_complete
+  inputs:
+    required:
+      - name: clone_path
+        type: string
+        description: Path to the clone agent file
+  outputs:
+    primary:
+      - fidelity_report

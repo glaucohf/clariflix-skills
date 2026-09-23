@@ -1,0 +1,164 @@
+name: revenue-os
+version: 1.0.0
+short-title: Revenue OS
+description: >-
+  Squad de monetizacao de ponta a ponta para produtos e solucoes criadas com AIOS.
+  Opera como departamento integrado de Marketing + Comercial + RevOps, transformando
+  produto pronto em receita previsivel com funil, operacao de vendas, automacoes e
+  ciclos semanais de otimização.
+author: AIOS Team
+slashPrefix: revenue
+entry_agent: cro-oracle-guardian
+
+mission: >-
+  Eliminar o gap entre "construir o produto" e "faturar com consistencia".
+
+positioning:
+  category: revenue-operations-system
+  focus: product-to-revenue
+  differentiator: >-
+    Diferente de um framework unico de oferta, este squad executa o sistema comercial
+    completo (go-to-market, acquisicao, funil, sales process, telemetry e iteracao).
+
+tiers:
+  oracle:
+    - cro-oracle-guardian
+  executive_directors:
+    - cco-commercial-director
+    - cmo-marketing-director
+    - cgo-growth-director
+  senior_managers:
+    - commercial-senior-manager
+    - marketing-senior-manager
+    - growth-senior-manager
+  senior_analysts:
+    - commercial-senior-analyst
+    - marketing-senior-analyst
+    - growth-senior-analyst
+  specialist_orchestration:
+    - revenue-chief
+    - monetization-strategist
+    - demand-gen-architect
+    - funnel-conversion-engineer
+    - sales-system-operator
+    - revops-automation-engineer
+    - experimentation-analyst
+
+quality_gates:
+  - id: QG-REV-001
+    name: Oferta e ICP validados
+    type: blocking
+    criteria:
+      - icp_documented
+      - pains_and_jobs_defined
+      - offer_stack_defined
+
+  - id: QG-REV-002
+    name: Funil implementado e instrumentado
+    type: blocking
+    criteria:
+      - funnel_stages_defined
+      - events_tracking_active
+      - attribution_minimum_ready
+
+  - id: QG-REV-003
+    name: Operacao comercial operacional
+    type: blocking
+    criteria:
+      - crm_pipeline_active
+      - follow_up_automations_active
+      - sla_response_defined
+
+  - id: QG-REV-004
+    name: Ciclo de otimizacao em execucao
+    type: blocking
+    criteria:
+      - weekly_revenue_review_running
+      - experiment_backlog_prioritized
+      - kpis_with_owner
+
+  - id: QG-REV-005
+    name: Stack comercial completa ativa
+    type: blocking
+    criteria:
+      - sales_lp_live
+      - checkout_and_billing_live
+      - revenue_dashboard_live
+      - creative_and_email_engine_live
+
+keywords:
+  - monetizacao
+  - vendas
+  - marketing
+  - comercial
+  - revops
+  - cro
+  - cco
+  - cmo
+  - cgo
+  - go-to-market
+  - acquisition
+  - conversion
+  - crm
+  - revenue
+
+use_cases:
+  - id: UC-000
+    name: Demanda executiva com cadeia corporativa completa
+    agents: [cro-oracle-guardian, cco-commercial-director, cmo-marketing-director, cgo-growth-director]
+
+  - id: UC-001
+    name: Produto pronto sem receita previsivel
+    agents: [cro-oracle-guardian, revenue-chief, monetization-strategist, demand-gen-architect]
+
+  - id: UC-002
+    name: Trafego existe mas conversao baixa
+    agents: [funnel-conversion-engineer, experimentation-analyst]
+
+  - id: UC-003
+    name: Leads chegam mas nao viram vendas
+    agents: [sales-system-operator, revops-automation-engineer]
+
+  - id: UC-004
+    name: Escalar sem perder margem
+    agents: [cro-oracle-guardian, revenue-chief, experimentation-analyst, revops-automation-engineer]
+
+  - id: UC-005
+    name: Ativar LP, checkout, dashboard e machine comercial
+    agents: [cro-oracle-guardian, revenue-chief, funnel-conversion-engineer, revops-automation-engineer, sales-system-operator]
+
+  - id: UC-006
+    name: "Dogfooding: vender o proprio Revenue OS"
+    agents: [cro-oracle-guardian, revenue-chief, monetization-strategist, demand-gen-architect, revops-automation-engineer]
+
+  - id: UC-007
+    name: Kickoff operacional intensivo de 7 dias
+    agents: [cro-oracle-guardian, cco-commercial-director, cmo-marketing-director, cgo-growth-director, revenue-chief]
+
+workflows:
+  - wf-kickoff-7-days.yaml
+  - wf-cro-command-chain.yaml
+  - wf-zero-to-revenue.yaml
+  - wf-demand-to-close-loop.yaml
+  - wf-weekly-revenue-optimization.yaml
+  - wf-commercial-stack-activation.yaml
+  - wf-revenue-os-self-launch.yaml
+
+ecosystem_handoffs:
+  design_stack:
+    - design
+    - brandcraft
+  automation_stack:
+    - n8n-builder
+  content_stack:
+    - content-os
+    - content-engine
+  operations_stack:
+    - project-management-clickup
+
+config:
+  coding_standards: config/coding-standards.md
+  tech_stack: config/tech-stack.md
+  source_tree: config/source-tree.md
+
+status: active

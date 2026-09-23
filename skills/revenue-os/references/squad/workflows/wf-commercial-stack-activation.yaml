@@ -1,0 +1,88 @@
+id: wf-commercial-stack-activation
+name: "Commercial Stack Activation"
+version: "1.0.0"
+orchestrator: cro-oracle-guardian
+description: "Ativa stack comercial completa com LP, checkout, dashboard, criativos e email."
+
+phases:
+  - id: PHASE-0
+    name: "Executive Stack Activation Brief"
+    agent: cro-oracle-guardian
+    tasks:
+      - cro-oracle-intake-and-route
+      - cro-oracle-build-macro-revenue-plan
+
+  - id: PHASE-1
+    name: "Offer and Messaging Lock"
+    agent: monetization-strategist
+    depends_on:
+      - PHASE-0
+    tasks:
+      - monetization-strategist-design-offer-architecture
+      - monetization-strategist-define-pricing-and-packaging
+
+  - id: PHASE-2
+    name: "LP and Checkout Specification"
+    agent: funnel-conversion-engineer
+    depends_on:
+      - PHASE-1
+    tasks:
+      - funnel-conversion-engineer-spec-sales-lp-and-checkout-flow
+    checkpoint:
+      human_review: true
+      criteria:
+        - "LP spec aprovada"
+        - "Checkout flow aprovado"
+
+  - id: PHASE-3
+    name: "Design and Build Handoffs"
+    agent: revenue-chief
+    depends_on:
+      - PHASE-2
+    tasks:
+      - revenue-chief-orchestrate-commercial-stack
+
+  - id: PHASE-4
+    name: "Billing and Revenue Analytics"
+    agent: revops-automation-engineer
+    depends_on:
+      - PHASE-3
+    tasks:
+      - revops-automation-engineer-setup-checkout-and-billing
+      - revops-automation-engineer-setup-revenue-telemetry
+      - revops-automation-engineer-setup-subscription-analytics
+      - revops-automation-engineer-build-revenue-dashboard
+
+  - id: PHASE-5
+    name: "Creative and Email Engine"
+    agent: demand-gen-architect
+    depends_on:
+      - PHASE-4
+    tasks:
+      - demand-gen-architect-plan-creative-and-email-engine
+      - demand-gen-architect-create-campaign-briefs
+
+  - id: PHASE-6
+    name: "Sales Closing Machine"
+    agent: sales-system-operator
+    depends_on:
+      - PHASE-5
+    tasks:
+      - sales-system-operator-setup-sales-playbook
+      - sales-system-operator-setup-inbound-closing-machine
+      - sales-system-operator-automate-follow-up
+
+  - id: PHASE-7
+    name: "Go Live and First 7 Days"
+    agent: revenue-chief
+    depends_on:
+      - PHASE-6
+    tasks:
+      - revenue-chief-go-live-readiness
+    checkpoint:
+      human_review: true
+      criteria:
+        - "Checkout live"
+        - "Dashboard live"
+        - "Campanhas e emails ativos"
+        - "QG-REV-005 PASS"

@@ -1,0 +1,74 @@
+workflow:
+  id: wf-assess-sources
+  name: Assess Sources Pipeline
+  version: "1.0.0"
+  description: Canonical atomic pipeline for source assessment across collection, deterministic scoring, prioritization and output generation.
+  type: orchestration
+  state_machine:
+    states: [init, collect, score, prioritize, output, complete, failed]
+    transitions:
+      - trigger: start
+        source: init
+        dest: collect
+      - trigger: collect_complete
+        source: collect
+        dest: score
+      - trigger: collect_failed
+        source: collect
+        dest: failed
+      - trigger: score_complete
+        source: score
+        dest: prioritize
+      - trigger: score_failed
+        source: score
+        dest: failed
+      - trigger: prioritize_complete
+        source: prioritize
+        dest: output
+      - trigger: prioritize_failed
+        source: prioritize
+        dest: failed
+      - trigger: output_complete
+        source: output
+        dest: complete
+      - trigger: output_failed
+        source: output
+        dest: failed
+      - trigger: fail
+        source: "*"
+        dest: failed
+  sequence:
+    - step: collect
+      id: collect
+      phase: 1
+      phase_name: Collect Sources
+      agent: aiox-master
+      action: execute_an_assess_sources_collect
+      task_ref: tasks/an-assess-sources-collect.md
+      next: score
+    - step: score
+      id: score
+      phase: 2
+      phase_name: Score 25 Checkpoints
+      agent: aiox-master
+      action: execute_an_assess_sources_score
+      task_ref: tasks/an-assess-sources-score.md
+      next: prioritize
+    - step: prioritize
+      id: prioritize
+      phase: 3
+      phase_name: Calculate Tier and Prioritize
+      agent: aiox-master
+      action: execute_an_assess_sources_prioritize
+      task_ref: tasks/an-assess-sources-prioritize.md
+      next: output
+    - step: output
+      id: output
+      phase: 4
+      phase_name: Generate Source Map
+      agent: aiox-master
+      action: execute_an_assess_sources_output
+      task_ref: tasks/an-assess-sources-output.md
+    - workflow_end:
+        id: complete
+        action: workflow_complete

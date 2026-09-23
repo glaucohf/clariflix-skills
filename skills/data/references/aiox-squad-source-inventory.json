@@ -1,0 +1,276 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/data",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/avinash-kaushik.md",
+      "sha256": "e3e0e92b50fbcbb9624787d0763f80114125236227100d62dcc9c78fb1be184b"
+    },
+    {
+      "path": "agents/data-chief.md",
+      "sha256": "32e6237cb2a604f940da6a1c477bb9e3078d507fd4c994497df092b55943c5f4"
+    },
+    {
+      "path": "agents/david-spinks.md",
+      "sha256": "a582f9735d0ac6731560c7e50f687ef11ece1f84864f53fb5d245ac9996d5a42"
+    },
+    {
+      "path": "agents/nick-mehta.md",
+      "sha256": "8cf193ae3c8c9b0e0a99a27c22b31bae1dce297ce711c8117949e7d35f79913e"
+    },
+    {
+      "path": "agents/peter-fader.md",
+      "sha256": "f4f7a725755b79abb2d2408580e6ec3a4162cdd0a4b147d4142d9f71a664e94a"
+    },
+    {
+      "path": "agents/sean-ellis.md",
+      "sha256": "64503cef4ee2657199004b8bc7e484495adcf4a0efc39095c7e57704f698e3c9"
+    },
+    {
+      "path": "agents/wes-kao.md",
+      "sha256": "0c23c33c0336e74a4d2b81bb6887b5b475e51570bb06328e149f128759519deb"
+    },
+    {
+      "path": "checklists/cbc-readiness-checklist.md",
+      "sha256": "1ade9edeada9f51a911b9fb3bc4465b64946978b25c6fd33d28cb2ebf50d33f3"
+    },
+    {
+      "path": "checklists/community-health-checklist.md",
+      "sha256": "25f2cef97010c556aec7fe95223163879aeec6b8d11017dd46bbfa8bb974fdeb"
+    },
+    {
+      "path": "checklists/customer-360-checklist.md",
+      "sha256": "565d221ccd98109100fc276b1d7d81a1d7d5907fdf61cdf599dc74c785f84bb2"
+    },
+    {
+      "path": "checklists/customer-centricity-checklist.md",
+      "sha256": "78ae62caa3078025d82b3cbebd9665275ed28005ce54b475846f29c255bd8849"
+    },
+    {
+      "path": "checklists/health-score-checklist.md",
+      "sha256": "0cc4bc1cdc12bb19149443d4d1410d21e0e9b9067bedf604de3a16325b47d8f9"
+    },
+    {
+      "path": "checklists/pre-implementation-checklist.md",
+      "sha256": "cc979d817a0b1eeded390ef5f823445330452bb6beb77f22e29a5de5f91da07d"
+    },
+    {
+      "path": "checklists/so-what-checklist.md",
+      "sha256": "2fc70bb5fca3ba40b5ab3e41c901f255cc6eccb4308e3fefaaf94d5581558399"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "de0c74d82c036e5eb93a1402a5ca805ed8944ccad318f9f27d067fdb7359b8d4"
+    },
+    {
+      "path": "docs/framework/01_arquitetura_geral.md",
+      "sha256": "430dc445908dcd67fa8081183593568225ce4b634de3cd715d929ff44717df9b"
+    },
+    {
+      "path": "docs/framework/02_tier0_fundacao.md",
+      "sha256": "22fa9660bcab6e2fbc7a67e3086208c792ff7af3c03a4ca3b96947d5f9a28bcd"
+    },
+    {
+      "path": "docs/framework/03_tier0_fundamentadores.md",
+      "sha256": "5c1ab63456313ffad3dd6c70a71a64e72dd7afd0387b32142e02c56df936731b"
+    },
+    {
+      "path": "docs/framework/04_tier1_operacionalizadores.md",
+      "sha256": "762dc81be013d6a8c4ebc9b1c9c771e3a4a5dbc7a45d1ce6f2f524f857955437"
+    },
+    {
+      "path": "docs/framework/05_tier2_comunicadores.md",
+      "sha256": "e8bbe011f35acb47f895ee22cb431912ec20e1be98fcbde7ac6b68697767049f"
+    },
+    {
+      "path": "docs/framework/06_matriz_decisao.md",
+      "sha256": "a8ecc960573cfc250ace869c53df891241e76945081c9332af686e9bf5bad718"
+    },
+    {
+      "path": "docs/framework/07_workflows.md",
+      "sha256": "b93e931186de0ba54a72936fe72fedba80403126a613b6a09e809c29d5b051d6"
+    },
+    {
+      "path": "docs/framework/08_cheatsheet.md",
+      "sha256": "e4586c608bd0b3d585617f5f8b58d15f1d1a41360cbf4c9042f9ea6b29ab2289"
+    },
+    {
+      "path": "examples/cohorts-diagnostic-sample-output.yaml",
+      "sha256": "cbf91e8173d29ee71228a9a8a4f531d1698272913a284be9eeca5133aea2c007"
+    },
+    {
+      "path": "HEADLINE.md",
+      "sha256": "399badf6648b395bada25c6970e97969a46ab9f5ef56560bd06f213487326ca9"
+    },
+    {
+      "path": "outputs/workspace-hardening-summary.md",
+      "sha256": "40db599cfde8837e786b5515b1e53447ecc1ab8e1c1347f85783b26707b4d6d3"
+    },
+    {
+      "path": "projects/data-v1-setup/prd.json",
+      "sha256": "af2a087511b27cbbbc1a13e190618c4436f521e106793b84744576448186190c"
+    },
+    {
+      "path": "projects/data-v1-setup/prompt.md",
+      "sha256": "d7837e0c8a94641820a4cc7995c3a0a599ef380185e264814e917543bc34fbd1"
+    },
+    {
+      "path": "README.md",
+      "sha256": "0f9d66d3c4bc1938348c81cad8497f347a2514581e780eb81a77dff1dc11389a"
+    },
+    {
+      "path": "squad.yaml",
+      "sha256": "de0c74d82c036e5eb93a1402a5ca805ed8944ccad318f9f27d067fdb7359b8d4"
+    },
+    {
+      "path": "tasks/analyze-cohort.md",
+      "sha256": "9459b35ec3cc6310096f8138993c26525745805f4f840630e9d9ba86d7d9ef1e"
+    },
+    {
+      "path": "tasks/build-attribution.md",
+      "sha256": "056e705700db27dd688f08c9680483a0b26fcbb1dc17994a48f0c69520e5d042"
+    },
+    {
+      "path": "tasks/calculate-clv.md",
+      "sha256": "f19fdfcd6fa4cd936e0432a1020ee253b4dc042bd907a4df8946763014b997fd"
+    },
+    {
+      "path": "tasks/create-dashboard.md",
+      "sha256": "077643de24aca8806911cc8116c2b63f1a956aa44101091fa6077cd1a5f59532"
+    },
+    {
+      "path": "tasks/define-north-star.md",
+      "sha256": "a8450bc7a945911226c6b0ef0008dc53f2cd8eb0ac198e7a593719e8a4ca9ff8"
+    },
+    {
+      "path": "tasks/design-health-score.md",
+      "sha256": "58fc4c0460a257186441e19fa0c17337a761625f138fb52138e6b2c4f15aeb47"
+    },
+    {
+      "path": "tasks/design-learning-outcomes.md",
+      "sha256": "41279f6d61b00ca5a18a39febce692f5cd81a22157d6cea573872a1afadab41e"
+    },
+    {
+      "path": "tasks/load-workspace-context.md",
+      "sha256": "4c6624ec8419c022cbc448be982377a98f1098d3c6ee7399f1ebf0b90afa739a"
+    },
+    {
+      "path": "tasks/measure-community.md",
+      "sha256": "45a00d2d88ca557aa9f315d427c918e76ad7d770992f61aad253ea5a630041bb"
+    },
+    {
+      "path": "tasks/predict-churn.md",
+      "sha256": "1ce46116cf85277e45a25363cbc999812d58556c85d34e09bf081f4aa169ec05"
+    },
+    {
+      "path": "tasks/run-growth-experiment.md",
+      "sha256": "ca56b0e4df7ac5e7b3ee27a19c82d5a8612e629cfc4b4bb64e9f1f729bca9945"
+    },
+    {
+      "path": "tasks/run-pmf-test.md",
+      "sha256": "65e7d06497e231f8f04c0cd36649e111188d3926d12b4bae3855ee20f0577e6b"
+    },
+    {
+      "path": "tasks/segment-rfm.md",
+      "sha256": "072380d43bb8fc1f9e8b57a18ddc39005f3d5962239e0c37bcb6f4218aa486c2"
+    },
+    {
+      "path": "templates/attribution-report-tmpl.yaml",
+      "sha256": "df8da8a60dbf4ad770ac157aaf0cb53edb689638bc938103f46573bfc53631c8"
+    },
+    {
+      "path": "templates/churn-alert-tmpl.yaml",
+      "sha256": "4fa4b8c398db51267ee8408b7b0bb7b1fc2a2bc50dc4730692fc8221d6dfff64"
+    },
+    {
+      "path": "templates/clv-report-tmpl.yaml",
+      "sha256": "25e9d6b400f2e034187a566f08461ffc5bc6d024820c6d3b691d1fb17a60ac9b"
+    },
+    {
+      "path": "templates/cohort-analysis-tmpl.yaml",
+      "sha256": "794b7b302209e0821e22c7b53eaa69ff2085b1cd40ff42471ee26793bed3a703"
+    },
+    {
+      "path": "templates/cohorts/community-health-cohort-tmpl.yaml",
+      "sha256": "f100dd419c8bcb83101c06260c8382e9ed30f3793d52e06f1b23629dbb2467cc"
+    },
+    {
+      "path": "templates/cohorts/executive-summary-tmpl.yaml",
+      "sha256": "faa9951b26b0e7e30700b49e4c4dd0145f6e86abc305fee08fae467f57608bf1"
+    },
+    {
+      "path": "templates/cohorts/icp-deep-analysis-tmpl.yaml",
+      "sha256": "eb58dd55503ab1f75ef98b34afb48856e37e286d06bd914afd549c2a3b767207"
+    },
+    {
+      "path": "templates/cohorts/learning-journey-tmpl.yaml",
+      "sha256": "3edd78dd1f1be3439b11ed4d590089d16d01da409849967f0a00e00aa0439cb3"
+    },
+    {
+      "path": "templates/cohorts/segmentation-rfm-tmpl.yaml",
+      "sha256": "108d3f0a30f1d5ec36daf027134351dfc8d9c260e4de8e4cfd8c1ed4a476709b"
+    },
+    {
+      "path": "templates/cohorts/student-health-score-tmpl.yaml",
+      "sha256": "0a6ffa4d99cc816c43014f7b3fe4c770c2d65f95ed50b3cb1e0d2ec52e6e5504"
+    },
+    {
+      "path": "templates/community-health-tmpl.yaml",
+      "sha256": "8cd185709f32359e64c9268d38698341e2b55ca6560f8ecde646091b7219f50f"
+    },
+    {
+      "path": "templates/customer-360-tmpl.yaml",
+      "sha256": "caff898dea27d77bd822403ee7b5b3a9c21b033e28af49c38d1a9ff3f753864b"
+    },
+    {
+      "path": "templates/dmmm-tmpl.yaml",
+      "sha256": "48248acdbe473bace08e06d99659108de04ae6daf155a9fb50fe8048d0bb4e1f"
+    },
+    {
+      "path": "templates/executive-report-tmpl.yaml",
+      "sha256": "2f59805f88ef6e094c2013e7048cf0bb3e11d54be5f632440c14b37dfcdc82b5"
+    },
+    {
+      "path": "templates/health-score-report-tmpl.yaml",
+      "sha256": "97906892b184188873231007c3466410daa71dbef48c6da2747b09e10229bac6"
+    },
+    {
+      "path": "templates/learning-outcomes-tmpl.yaml",
+      "sha256": "36849e9bdb6c5f3d6cf70ceb3d9fdd7cd36a13fdd9820bdf2e061c6602f111b1"
+    },
+    {
+      "path": "workflows/cohort-analysis-workflow.md",
+      "sha256": "7802a9620e51d42e9de5ff67b8c1dadab6aa58da91a7856991327a25081d0e04"
+    },
+    {
+      "path": "workflows/cohorts-diagnostic.md",
+      "sha256": "ca56636594bf9294cf592a43034e88635e5e0073e1c3c8bbe908199aea19f505"
+    },
+    {
+      "path": "workflows/create-churn-system.md",
+      "sha256": "d9a0d14ed31b78d33895ba63a4ac7301ed22fdab7983f453eff66c349b1ac970"
+    },
+    {
+      "path": "workflows/fix-completion-rate.md",
+      "sha256": "f44c45b13648b3964604b38d94451d385afb60bbf3fe4370e9c39b451a95890f"
+    },
+    {
+      "path": "workflows/implement-attribution.md",
+      "sha256": "dbc962b744801a5d41e2a8f8a22ba12cc2d6633c8423b10ecde67c4262cb2f46"
+    },
+    {
+      "path": "workflows/implement-customer-360.md",
+      "sha256": "6db7cda9c60ba101273ac25933dde47ae94f29b8d8d0d2d1beafc8f967f1f124"
+    },
+    {
+      "path": "workflows/optimize-community-workflow.md",
+      "sha256": "c62b1a0d15499128ff565cd967926c0f3080f60a760bc556d73d127988b6f11c"
+    },
+    {
+      "path": "workspace-hardening-state.json",
+      "sha256": "1159185369ee194ba1ee93fdec655998d1138ef2ce4ff315517d8fa61bc1fddd"
+    }
+  ]
+}

@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="pt-BR" class="theme-dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>revenue-os — Visual Brandbook Summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;700&display=swap"/>
+<style>
+:root{
+  --bb-dark:#050505; --bb-surface:#0f0f11; --bb-surface-alt:#1c1e19;
+  --bb-surface-panel:#111113; --bb-surface-console:#12130f; --bb-surface-deep:#0a0a0c;
+  --bb-cream:#f4f4e8; --bb-dim:#f5f4e766; --bb-muted:#bcbcbc; --bb-meta:#9c9c9c;
+  --bb-lime:#d1ff00; --lime-glow:#d1ff0040; --lime-glow-soft:#d1ff001a; --lime-dim:#d1ff0026;
+  --bb-flare:#ed4609; --bb-blue:#09f;
+  --bb-border:#9c9c9c26; --bb-border-soft:#9c9c9c1a; --bb-border-strong:#9c9c9c40;
+  --bb-border-lime:#d1ff0033;
+  --font-sans:"Geist","Inter",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",monospace;
+  --font-display:"Geist","Inter",system-ui,sans-serif;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:30px; --space-7:40px; --space-8:60px; --space-9:80px; --space-10:100px;
+  --dur-fast:.2s; --dur-med:.4s; --dur-slow:.7s;
+  --ease-decel:cubic-bezier(0,0,.2,1);
+  --ease-smooth:cubic-bezier(.25,.1,.25,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bb-dark);color:var(--bb-cream);font-family:var(--font-sans);
+  -webkit-font-smoothing:antialiased;line-height:1.5}
+::selection{background:var(--bb-dark);color:var(--bb-lime)}
+a{color:inherit;text-decoration:none}
+
+/* ======== Top nav ======== */
+.bb-nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+  background:rgba(5,5,5,.85);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--bb-border);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+}
+.bb-nav__brand{display:flex;align-items:center;gap:10px}
+.bb-nav__dot{width:8px;height:8px;background:var(--bb-lime);border-radius:50%;
+  box-shadow:0 0 10px var(--lime-glow)}
+.bb-nav__brand strong{font-weight:600;letter-spacing:.14em}
+.bb-nav__meta{display:flex;gap:18px;color:var(--bb-meta)}
+.bb-nav__meta span{display:flex;align-items:center;gap:8px}
+.bb-nav__sep{color:var(--bb-border-strong)}
+
+/* ======== Grid shell ======== */
+.bb-shell{max-width:1400px;margin:0 auto;padding:48px 28px 120px}
+.bb-bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.bb-span-12{grid-column:span 12}
+.bb-span-8{grid-column:span 8}
+.bb-span-6{grid-column:span 6}
+.bb-span-5{grid-column:span 5}
+.bb-span-4{grid-column:span 4}
+.bb-span-3{grid-column:span 3}
+.bb-span-7{grid-column:span 7}
+@media (max-width:1100px){
+  .bb-span-8,.bb-span-7{grid-column:span 12}
+  .bb-span-6,.bb-span-5{grid-column:span 12}
+  .bb-span-4,.bb-span-3{grid-column:span 6}
+}
+@media (max-width:640px){
+  .bb-bento{gap:12px}
+  .bb-span-4,.bb-span-3{grid-column:span 12}
+  .bb-shell{padding:28px 16px 80px}
+}
+
+/* ======== Panel system ======== */
+.panel{
+  position:relative;
+  background:var(--bb-surface-panel);
+  border:1px solid var(--bb-border);
+  border-radius:6px;
+  overflow:hidden;
+  transition:border-color var(--dur-med) var(--ease-smooth),transform var(--dur-med) var(--ease-smooth);
+}
+.panel:hover{border-color:var(--bb-border-strong)}
+.panel--console{background:var(--bb-surface-console)}
+.panel--deep{background:var(--bb-surface-deep)}
+.panel--lime{border-color:var(--bb-border-lime)}
+.panel__head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px;
+  border-bottom:1px solid var(--bb-border-soft);
+  font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--bb-meta);
+}
+.panel__head strong{color:var(--bb-cream);font-weight:600}
+.panel__body{padding:22px 24px}
+.panel__foot{
+  padding:8px 16px;border-top:1px solid var(--bb-border-soft);
+  font-family:var(--font-mono);font-size:10px;color:var(--bb-meta);
+  text-transform:uppercase;letter-spacing:.12em;display:flex;justify-content:space-between;
+}
+
+/* ======== Hero ======== */
+.hero{
+  background:
+    radial-gradient(ellipse at 90% 0%, var(--lime-glow-soft) 0%, transparent 60%),
+    radial-gradient(ellipse at 0% 100%, rgba(255,102,41,.05) 0%, transparent 55%),
+    var(--bb-surface-deep);
+}
+.hero__body{padding:56px 48px 48px}
+.hero__eyebrow{
+  font-family:var(--font-mono);font-size:11px;color:var(--bb-lime);
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero__eyebrow::before{content:"";width:18px;height:1px;background:var(--bb-lime)}
+.hero h1{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(42px,6vw,88px);line-height:.98;letter-spacing:-.04em;
+  margin-bottom:22px;color:var(--bb-cream);
+}
+.hero h1 em{font-style:normal;color:var(--bb-lime)}
+.hero__tag{font-size:18px;color:var(--bb-muted);max-width:720px;line-height:1.55}
+.hero__rail{
+  display:flex;gap:24px;margin-top:34px;flex-wrap:wrap;
+  padding-top:24px;border-top:1px solid var(--bb-border-soft);
+}
+.hero__rail > div{min-width:140px}
+.hero__rail label{
+  font-family:var(--font-mono);font-size:10px;color:var(--bb-meta);
+  text-transform:uppercase;letter-spacing:.14em;display:block;margin-bottom:6px;
+}
+.hero__rail strong{font-size:15px;color:var(--bb-cream);font-weight:500}
+
+/* ======== Stats ======== */
+.stat{padding:22px 20px;text-align:left}
+.stat__num{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(44px,5vw,64px);line-height:1;
+  color:var(--bb-cream);letter-spacing:-.03em;
+}
+.stat__num.lime{color:var(--bb-lime)}
+.stat__label{
+  margin-top:8px;font-family:var(--font-mono);font-size:10px;
+  color:var(--bb-meta);text-transform:uppercase;letter-spacing:.14em;
+}
+
+/* ======== Tier cards (agent hierarchy) ======== */
+.tier{padding:22px 22px 24px}
+.tier__mark{
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  font-family:var(--font-mono);font-size:10px;color:var(--bb-lime);
+  text-transform:uppercase;letter-spacing:.16em;
+}
+.tier__mark span{width:24px;height:1px;background:var(--bb-lime)}
+.tier h3{font-size:18px;font-weight:600;color:var(--bb-cream);margin-bottom:6px;letter-spacing:-.01em}
+.tier p{font-size:13px;color:var(--bb-muted);margin-bottom:14px;line-height:1.55}
+.chip-row{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 10px;border-radius:3px;
+  background:rgba(209,255,0,.05);border:1px solid var(--bb-border-lime);
+  font-family:var(--font-mono);font-size:10.5px;color:var(--bb-cream);
+  letter-spacing:.04em;
+}
+.chip--neutral{background:rgba(255,255,255,.02);border-color:var(--bb-border);color:var(--bb-muted)}
+.chip::before{content:"@";color:var(--bb-lime);font-weight:600}
+.chip--neutral::before{color:var(--bb-meta)}
+
+/* ======== Flow step list (Como funciona) ======== */
+.flow{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+@media (max-width:900px){.flow{grid-template-columns:repeat(2,1fr)}}
+.flow__step{
+  padding:16px 14px;background:var(--bb-surface-deep);
+  border:1px solid var(--bb-border-soft);border-radius:4px;
+  transition:border-color var(--dur-fast) var(--ease-smooth),transform var(--dur-fast) var(--ease-smooth);
+}
+.flow__step:hover{border-color:var(--bb-border-lime);transform:translateY(-1px)}
+.flow__num{
+  font-family:var(--font-mono);font-size:10px;color:var(--bb-lime);
+  letter-spacing:.14em;margin-bottom:8px;
+}
+.flow__txt{font-size:12.5px;color:var(--bb-cream);line-height:1.45}
+
+/* ======== Command cards ======== */
+.cmd{
+  padding:16px 18px;background:var(--bb-surface-console);
+  border:1px solid var(--bb-border-soft);border-radius:4px;
+  transition:border-color var(--dur-fast) var(--ease-smooth),background var(--dur-fast);
+}
+.cmd:hover{border-color:var(--bb-border-lime);background:#111411}
+.cmd__code{
+  font-family:var(--font-mono);font-size:12.5px;color:var(--bb-lime);
+  display:block;margin-bottom:8px;word-break:break-all;
+}
+.cmd__code .at{color:var(--bb-cream)}
+.cmd__code .star{color:var(--bb-flare)}
+.cmd__desc{font-size:12.5px;color:var(--bb-muted);line-height:1.55}
+
+/* ======== When-to-use table ======== */
+.table{width:100%;border-collapse:collapse;font-size:13px}
+.table th,.table td{
+  text-align:left;padding:12px 14px;
+  border-bottom:1px solid var(--bb-border-soft);
+  vertical-align:top;
+}
+.table th{
+  font-family:var(--font-mono);font-size:10px;color:var(--bb-meta);
+  text-transform:uppercase;letter-spacing:.14em;font-weight:500;
+  border-bottom:1px solid var(--bb-border);
+}
+.table td:first-child{color:var(--bb-cream);font-weight:500;width:34%}
+.table td:nth-child(2){color:var(--bb-muted)}
+.table td code{
+  font-family:var(--font-mono);color:var(--bb-lime);font-size:12px;
+  background:rgba(209,255,0,.05);padding:2px 6px;border-radius:3px;
+  border:1px solid var(--bb-border-lime);
+}
+
+/* ======== Workflow list ======== */
+.wflist{display:flex;flex-direction:column;gap:8px}
+.wfitem{
+  display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;
+  padding:12px 14px;
+  background:var(--bb-surface-deep);border:1px solid var(--bb-border-soft);border-radius:4px;
+}
+.wfitem code{font-family:var(--font-mono);color:var(--bb-lime);font-size:12px}
+.wfitem span{font-size:12px;color:var(--bb-muted)}
+
+/* ======== Stack list ======== */
+.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:900px){.stack{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.stack{grid-template-columns:1fr}}
+.stackitem{
+  padding:16px 16px;background:var(--bb-surface-deep);
+  border:1px solid var(--bb-border-soft);border-radius:4px;
+  transition:border-color var(--dur-fast) var(--ease-smooth);
+}
+.stackitem:hover{border-color:var(--bb-border-lime)}
+.stackitem__num{
+  font-family:var(--font-mono);font-size:11px;color:var(--bb-lime);
+  letter-spacing:.14em;margin-bottom:6px;
+}
+.stackitem h4{font-size:14px;font-weight:600;color:var(--bb-cream);margin-bottom:6px}
+.stackitem p{font-size:12px;color:var(--bb-muted);line-height:1.5}
+
+/* ======== CTA ======== */
+.cta{padding:40px 40px;text-align:center;
+  background:
+    radial-gradient(ellipse at 50% 0%, var(--lime-glow-soft) 0%, transparent 60%),
+    var(--bb-surface-deep);
+}
+.cta h2{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(28px,3vw,44px);letter-spacing:-.02em;margin-bottom:12px;
+}
+.cta h2 em{color:var(--bb-lime);font-style:normal}
+.cta p{color:var(--bb-muted);max-width:640px;margin:0 auto 24px;font-size:15px}
+.cta__row{display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn{
+  padding:12px 20px;border-radius:3px;font-family:var(--font-mono);
+  font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-weight:600;
+  border:1px solid var(--bb-border-strong);background:transparent;color:var(--bb-cream);
+  cursor:pointer;transition:all var(--dur-fast) var(--ease-smooth);
+}
+.btn:hover{border-color:var(--bb-lime);color:var(--bb-lime)}
+.btn--primary{background:var(--bb-lime);color:var(--bb-dark);border-color:var(--bb-lime)}
+.btn--primary:hover{background:transparent;color:var(--bb-lime)}
+
+/* ======== Divider label ======== */
+.section-label{
+  display:flex;align-items:center;gap:14px;
+  grid-column:span 12;
+  padding:6px 0;margin-top:10px;
+  font-family:var(--font-mono);font-size:10.5px;color:var(--bb-meta);
+  text-transform:uppercase;letter-spacing:.18em;
+}
+.section-label::before,.section-label::after{
+  content:"";flex:1;height:1px;background:var(--bb-border-soft);
+}
+.section-label strong{color:var(--bb-cream);font-weight:500;padding:0 4px}
+
+/* ======== Footer ======== */
+.bb-foot{
+  margin-top:60px;padding:20px 28px;border-top:1px solid var(--bb-border);
+  font-family:var(--font-mono);font-size:10px;color:var(--bb-meta);
+  text-transform:uppercase;letter-spacing:.14em;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+
+/* Reveal */
+@keyframes reveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel,.hero,.flow__step,.cmd,.stackitem{animation:reveal var(--dur-slow) var(--ease-decel) both}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="bb-nav">
+  <div class="bb-nav__brand">
+    <span class="bb-nav__dot"></span>
+    <strong>REVENUE-OS</strong>
+    <span class="bb-nav__sep">//</span>
+    <span>Visual Summary</span>
+  </div>
+  <div class="bb-nav__meta">
+    <span>v1.0.0</span>
+    <span class="bb-nav__sep">/</span>
+    <span>17 AGENTS</span>
+    <span class="bb-nav__sep">/</span>
+    <span>39 TASKS</span>
+    <span class="bb-nav__sep">/</span>
+    <span>7 WORKFLOWS</span>
+  </div>
+</nav>
+
+<main class="bb-shell">
+<div class="bb-bento">
+
+  <!-- ============ HERO ============ -->
+  <section class="panel panel--lime hero bb-span-12">
+    <div class="panel__head">
+      <span>§ 00 / IDENTITY RAIL</span>
+      <strong>/squad/revenue-os</strong>
+    </div>
+    <div class="hero__body">
+      <div class="hero__eyebrow">Sistema operacional de monetização</div>
+      <h1>Transforma produto pronto em <em>receita previsível.</em></h1>
+      <p class="hero__tag">
+        Marketing + Comercial + RevOps em um único squad AIOS, com cadeia de comando executiva
+        (CRO → C-level → managers → analysts) e célula especialista de execução operacional.
+        Fecha o gap entre "produto construído" e "receita recorrente".
+      </p>
+      <div class="hero__rail">
+        <div><label>Autor</label><strong>Rodrigo Feldman</strong></div>
+        <div><label>Tipo</label><strong>Pipeline</strong></div>
+        <div><label>Entry Agent</label><strong>@cro-oracle-guardian</strong></div>
+        <div><label>Score</label><strong>8.2 / 10 · PASS</strong></div>
+        <div><label>Status</label><strong>Active · v1.0.0</strong></div>
+      </div>
+    </div>
+    <div class="panel__foot">
+      <span>CREATED 2026-02-25</span>
+      <span>UPDATED 2026-04-23</span>
+    </div>
+  </section>
+
+  <!-- ============ STATS STRIP ============ -->
+  <section class="panel bb-span-3">
+    <div class="panel__head"><span>§ 01.a</span><strong>AGENTS</strong></div>
+    <div class="stat"><div class="stat__num lime">17</div><div class="stat__label">Executores · 5 tiers</div></div>
+  </section>
+  <section class="panel bb-span-3">
+    <div class="panel__head"><span>§ 01.b</span><strong>TASKS</strong></div>
+    <div class="stat"><div class="stat__num">39</div><div class="stat__label">Task Anatomy completa</div></div>
+  </section>
+  <section class="panel bb-span-3">
+    <div class="panel__head"><span>§ 01.c</span><strong>WORKFLOWS</strong></div>
+    <div class="stat"><div class="stat__num">07</div><div class="stat__label">Pipelines orquestrados</div></div>
+  </section>
+  <section class="panel bb-span-3">
+    <div class="panel__head"><span>§ 01.d</span><strong>QUALITY GATES</strong></div>
+    <div class="stat"><div class="stat__num">05</div><div class="stat__label">QG-REV-001..005</div></div>
+  </section>
+
+  <!-- ============ PROBLEMA ============ -->
+  <div class="section-label"><strong>§ 02 · PROBLEMA QUE RESOLVE</strong></div>
+
+  <section class="panel bb-span-7">
+    <div class="panel__head"><span>§ 02.1</span><strong>O GARGALO MUDOU</strong></div>
+    <div class="panel__body">
+      <p style="font-size:20px;line-height:1.45;color:var(--bb-cream);letter-spacing:-.01em">
+        Com AIOS e agentes, <strong style="color:var(--bb-lime)">não é mais construir</strong> — é
+        monetizar com previsibilidade.
+      </p>
+      <p style="margin-top:14px;color:var(--bb-muted);font-size:14px;line-height:1.6">
+        Squads AIOS resolvem construção. O <strong style="color:var(--bb-cream)">revenue-os</strong>
+        resolve o que vem depois: LP, checkout, dashboard, criativos, email, operação comercial
+        — tudo com governança corporativa.
+      </p>
+    </div>
+    <div class="panel__foot"><span>INSIGHT FUNDADOR</span><span>DOGFOODING READY</span></div>
+  </section>
+
+  <section class="panel panel--console bb-span-5">
+    <div class="panel__head"><span>§ 02.2</span><strong>REVENUE-OS vs HORMOZI</strong></div>
+    <div class="panel__body">
+      <table class="table">
+        <thead><tr><th>@hormozi</th><th>@revenue-os</th></tr></thead>
+        <tbody>
+          <tr><td>Framework-first</td><td>Operating-system-first</td></tr>
+          <tr><td>Escola Hormozi (oferta/copy)</td><td>Empresa comercial completa</td></tr>
+          <tr><td>Profundidade metodológica</td><td>Cadeia de comando corporativa</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:14px;font-size:12.5px;color:var(--bb-muted);line-height:1.55">
+        <strong style="color:var(--bb-lime)">Use juntos:</strong> hormozi para engenharia
+        de oferta/mensagem; revenue-os para operar e escalar receita no dia a dia.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ GOVERNANÇA - TIERS ============ -->
+  <div class="section-label"><strong>§ 03 · CADEIA DE COMANDO · 17 AGENTES EM 5 TIERS</strong></div>
+
+  <section class="panel panel--lime bb-span-12">
+    <div class="panel__head"><span>§ 03.0</span><strong>TIER 1 · COMANDANTE PRINCIPAL</strong></div>
+    <div class="tier">
+      <div class="tier__mark"><span></span>NÍVEL EXECUTIVO MÁXIMO</div>
+      <h3>CRO Oracle Guardian</h3>
+      <p>Recebe a demanda do usuário, define plano macro e metas, direciona CCO/CMO/CGO e aciona
+      criação de novos squads quando houver gap de capacidade. É o ponto de entrada do squad.</p>
+      <div class="chip-row">
+        <span class="chip">cro-oracle-guardian</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel bb-span-4">
+    <div class="panel__head"><span>§ 03.1</span><strong>TIER 2 · DIRETORES</strong></div>
+    <div class="tier">
+      <div class="tier__mark"><span></span>C-LEVEL · ESTRATÉGIA POR ÁREA</div>
+      <h3>Diretores Executivos</h3>
+      <p>Desenham estratégia comercial, de marketing e growth a partir da meta macro do CRO.</p>
+      <div class="chip-row">
+        <span class="chip">cco-commercial-director</span>
+        <span class="chip">cmo-marketing-director</span>
+        <span class="chip">cgo-growth-director</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel bb-span-4">
+    <div class="panel__head"><span>§ 03.2</span><strong>TIER 3 · GERENTES SENIOR</strong></div>
+    <div class="tier">
+      <div class="tier__mark"><span></span>OPERAÇÃO · ESTRATÉGIA → ROTINA</div>
+      <h3>Senior Managers</h3>
+      <p>Transformam estratégia em operação supervisionada, definindo cadência, rituais e KPIs
+      por área.</p>
+      <div class="chip-row">
+        <span class="chip">commercial-senior-manager</span>
+        <span class="chip">marketing-senior-manager</span>
+        <span class="chip">growth-senior-manager</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel bb-span-4">
+    <div class="panel__head"><span>§ 03.3</span><strong>TIER 4 · ANALISTAS SENIOR</strong></div>
+    <div class="tier">
+      <div class="tier__mark"><span></span>EXECUÇÃO · DIA A DIA</div>
+      <h3>Senior Analysts</h3>
+      <p>Executam a rotina supervisionada pelos managers: relatórios, ajustes táticos e execução
+      operacional.</p>
+      <div class="chip-row">
+        <span class="chip">commercial-senior-analyst</span>
+        <span class="chip">marketing-senior-analyst</span>
+        <span class="chip">growth-senior-analyst</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel bb-span-12">
+    <div class="panel__head"><span>§ 03.4</span><strong>TIER 5 · CÉLULA ESPECIALISTA REVENUE OS</strong></div>
+    <div class="tier">
+      <div class="tier__mark"><span></span>STACK COMERCIAL · 7 ESPECIALISTAS</div>
+      <h3>Execução operacional da stack comercial final</h3>
+      <p>Entrega concreta: monetização, demanda, funil, vendas, automação RevOps e experimentação.
+      É a "mão na massa" que materializa a estratégia desenhada pelos tiers superiores.</p>
+      <div class="chip-row">
+        <span class="chip">revenue-chief</span>
+        <span class="chip">monetization-strategist</span>
+        <span class="chip">demand-gen-architect</span>
+        <span class="chip">funnel-conversion-engineer</span>
+        <span class="chip">sales-system-operator</span>
+        <span class="chip">revops-automation-engineer</span>
+        <span class="chip">experimentation-analyst</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA ============ -->
+  <div class="section-label"><strong>§ 04 · COMO FUNCIONA · CASCATA OPERACIONAL</strong></div>
+
+  <section class="panel bb-span-12">
+    <div class="panel__head"><span>§ 04.0</span><strong>FLUXO DE DECISÃO · 7 PASSOS</strong></div>
+    <div class="panel__body">
+      <div class="flow">
+        <div class="flow__step"><div class="flow__num">01 · CRO</div><div class="flow__txt">Recebe demanda e define meta macro</div></div>
+        <div class="flow__step"><div class="flow__num">02 · DIR</div><div class="flow__txt">Diretores desenham estratégia por área</div></div>
+        <div class="flow__step"><div class="flow__num">03 · MGR</div><div class="flow__txt">Gerentes transformam em operação</div></div>
+        <div class="flow__step"><div class="flow__num">04 · ANA</div><div class="flow__txt">Analistas executam rotina supervisionada</div></div>
+        <div class="flow__step"><div class="flow__num">05 · SPEC</div><div class="flow__txt">Célula especialista entrega stack comercial</div></div>
+        <div class="flow__step"><div class="flow__num">06 · LOOP</div><div class="flow__txt">CRO controla métricas semanais</div></div>
+        <div class="flow__step"><div class="flow__num">07 · SCALE</div><div class="flow__txt">Escalar com novos squads se faltar capacidade</div></div>
+      </div>
+    </div>
+    <div class="panel__foot"><span>CASCATA EXECUTIVA</span><span>LOOP SEMANAL</span></div>
+  </section>
+
+  <!-- ============ COMANDOS NUCLEARES ============ -->
+  <div class="section-label"><strong>§ 05 · COMANDOS NUCLEARES · QUANDO USAR CADA UM</strong></div>
+
+  <section class="panel bb-span-6">
+    <div class="panel__head"><span>§ 05.1</span><strong>ENTRADA · PLANEJAMENTO</strong></div>
+    <div class="panel__body" style="display:flex;flex-direction:column;gap:10px">
+      <div class="cmd">
+        <span class="cmd__code"><span class="at">@cro-oracle-guardian</span> <span class="star">*</span>intake-and-route</span>
+        <div class="cmd__desc">Ponto de entrada. Use quando chegar uma demanda nova: o CRO classifica, prioriza e direciona para o tier/agente certo.</div>
+      </div>
+      <div class="cmd">
+        <span class="cmd__code"><span class="at">@cro-oracle-guardian</span> <span class="star">*</span>build-macro-revenue-plan</span>
+        <div class="cmd__desc">Construir o plano macro de receita (meta, alavancas, marcos). Use antes de qualquer execução para alinhar direção.</div>
+      </div>
+      <div class="cmd">
+        <span class="cmd__code"><span class="at">@cro-oracle-guardian</span> <span class="star">*</span>capability-gap-and-squad-scaling</span>
+        <div class="cmd__desc">Quando faltar capacidade no squad atual. Identifica gap e aciona criação/integração de novos squads.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel bb-span-6">
+    <div class="panel__head"><span>§ 05.2</span><strong>EXECUÇÃO · OPERAÇÃO</strong></div>
+    <div class="panel__body" style="display:flex;flex-direction:column;gap:10px">
+      <div class="cmd">
+        <span class="cmd__code"><span class="at">@cro-oracle-guardian</span> <span class="star">*</span>run-7-day-kickoff</span>
+        <div class="cmd__desc">Kickoff intensivo de 7 dias. Use quando precisar de arrancada operacional rápida num produto/oferta novo.</div>
+      </div>
+      <div class="cmd">
+        <span class="cmd__code"><span class="at">@revenue-chief</span> <span class="star">*</span>orchestrate-commercial-stack</span>
+        <div class="cmd__desc">Orquestra a stack comercial completa (LP + checkout + dashboard + criativos + email + CRM). O "liga tudo".</div>
+      </div>
+      <div class="cmd">
+        <span class="cmd__code"><span class="at">@revenue-chief</span> <span class="star">*</span>run-self-launch</span>
+        <div class="cmd__desc">Dogfooding: usar o revenue-os para vender o próprio revenue-os. Caso-piloto e exemplo replicável.</div>
+      </div>
+      <div class="cmd">
+        <span class="cmd__code"><span class="at">@revops-automation-engineer</span> <span class="star">*</span>setup-checkout-and-billing</span>
+        <div class="cmd__desc">Setup técnico de checkout e billing (Stripe ou equivalente) com webhooks de sucesso/falha/assinatura.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUANDO USAR QUAL AGENTE ============ -->
+  <section class="panel bb-span-12">
+    <div class="panel__head"><span>§ 06</span><strong>QUANDO USAR QUAL AGENTE · GUIA RÁPIDO</strong></div>
+    <div class="panel__body">
+      <table class="table">
+        <thead><tr><th>Situação</th><th>Agente</th><th>Comando inicial</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Chegou uma demanda nova, ainda sem direção</td>
+            <td>CRO Oracle Guardian</td>
+            <td><code>*intake-and-route</code></td>
+          </tr>
+          <tr>
+            <td>Precisa definir meta macro e alavancas de receita</td>
+            <td>CRO Oracle Guardian</td>
+            <td><code>*build-macro-revenue-plan</code></td>
+          </tr>
+          <tr>
+            <td>Produto pronto, quer arrancada operacional em 7 dias</td>
+            <td>CRO Oracle Guardian</td>
+            <td><code>*run-7-day-kickoff</code></td>
+          </tr>
+          <tr>
+            <td>Construir toda a stack comercial (LP + checkout + CRM + email)</td>
+            <td>Revenue Chief</td>
+            <td><code>*orchestrate-commercial-stack</code></td>
+          </tr>
+          <tr>
+            <td>Lançar/vender o próprio revenue-os (dogfooding)</td>
+            <td>Revenue Chief</td>
+            <td><code>*run-self-launch</code></td>
+          </tr>
+          <tr>
+            <td>Implementar checkout, billing e webhooks</td>
+            <td>RevOps Automation Engineer</td>
+            <td><code>*setup-checkout-and-billing</code></td>
+          </tr>
+          <tr>
+            <td>Falta capacidade no squad — escalar com novos squads</td>
+            <td>CRO Oracle Guardian</td>
+            <td><code>*capability-gap-and-squad-scaling</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel__foot"><span>ENTRY POINT DEFAULT: @cro-oracle-guardian</span><span>07 COMANDOS NUCLEARES</span></div>
+  </section>
+
+  <!-- ============ WORKFLOWS ============ -->
+  <div class="section-label"><strong>§ 07 · WORKFLOWS · PIPELINES ORQUESTRADOS</strong></div>
+
+  <section class="panel bb-span-7">
+    <div class="panel__head"><span>§ 07.1</span><strong>WORKFLOWS PRINCIPAIS</strong></div>
+    <div class="panel__body">
+      <div class="wflist">
+        <div class="wfitem"><code>wf-kickoff-7-days.yaml</code><span>Kickoff operacional intensivo</span></div>
+        <div class="wfitem"><code>wf-cro-command-chain.yaml</code><span>Governança corporativa completa</span></div>
+        <div class="wfitem"><code>wf-zero-to-revenue.yaml</code><span>Do zero à primeira receita</span></div>
+        <div class="wfitem"><code>wf-demand-to-close-loop.yaml</code><span>Loop demanda → fechamento</span></div>
+        <div class="wfitem"><code>wf-commercial-stack-activation.yaml</code><span>Ativação da stack comercial</span></div>
+        <div class="wfitem"><code>wf-weekly-revenue-optimization.yaml</code><span>Cadência semanal de otimização</span></div>
+        <div class="wfitem"><code>wf-revenue-os-self-launch.yaml</code><span>Dogfooding do próprio squad</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--console bb-span-5">
+    <div class="panel__head"><span>§ 07.2</span><strong>MODELO REPLICÁVEL · 4 PASSOS</strong></div>
+    <div class="panel__body">
+      <div class="flow__step" style="margin-bottom:8px">
+        <div class="flow__num">01</div>
+        <div class="flow__txt">Definir oferta + ICP</div>
+      </div>
+      <div class="flow__step" style="margin-bottom:8px">
+        <div class="flow__num">02</div>
+        <div class="flow__txt">Rodar <code style="font-family:var(--font-mono);color:var(--bb-lime)">wf-cro-command-chain.yaml</code></div>
+      </div>
+      <div class="flow__step" style="margin-bottom:8px">
+        <div class="flow__num">03</div>
+        <div class="flow__txt">Rodar <code style="font-family:var(--font-mono);color:var(--bb-lime)">wf-commercial-stack-activation.yaml</code></div>
+      </div>
+      <div class="flow__step">
+        <div class="flow__num">04</div>
+        <div class="flow__txt">Entrar em cadência com <code style="font-family:var(--font-mono);color:var(--bb-lime)">wf-weekly-revenue-optimization.yaml</code></div>
+      </div>
+    </div>
+    <div class="panel__foot"><span>GAME PLAN PADRÃO</span><span>USE EM QUALQUER IDEIA</span></div>
+  </section>
+
+  <!-- ============ STACK COMERCIAL ============ -->
+  <div class="section-label"><strong>§ 08 · STACK COMERCIAL FINAL · 6 PILARES</strong></div>
+
+  <section class="panel bb-span-12">
+    <div class="panel__head"><span>§ 08</span><strong>O QUE O REVENUE-OS ENTREGA</strong></div>
+    <div class="panel__body">
+      <div class="stack">
+        <div class="stackitem">
+          <div class="stackitem__num">01 / LP</div>
+          <h4>LP de vendas</h4>
+          <p>Especificação funcional da landing + fluxo de checkout. Handoff para <code>design</code>/<code>brandcraft</code>.</p>
+        </div>
+        <div class="stackitem">
+          <div class="stackitem__num">02 / PAY</div>
+          <h4>Pagamento online</h4>
+          <p>Setup de checkout, billing e webhooks (Stripe ou equivalente). Handoff técnico para <code>n8n-builder</code>.</p>
+        </div>
+        <div class="stackitem">
+          <div class="stackitem__num">03 / DATA</div>
+          <h4>Dashboard de receita</h4>
+          <p>KPIs de MRR, churn, conversão, CAC. Dono por indicador e alertas operacionais.</p>
+        </div>
+        <div class="stackitem">
+          <div class="stackitem__num">04 / MKT</div>
+          <h4>Criativos e distribuição</h4>
+          <p>Plano de criativos por canal. Handoff para <code>content-os</code>/<code>content-engine</code>.</p>
+        </div>
+        <div class="stackitem">
+          <div class="stackitem__num">05 / EMAIL</div>
+          <h4>Email marketing</h4>
+          <p>Sequências por etapa do funil: aquecimento, conversão, follow-up.</p>
+        </div>
+        <div class="stackitem">
+          <div class="stackitem__num">06 / OPS</div>
+          <h4>Operação comercial</h4>
+          <p>Pipeline CRM, scripts de fechamento e automação de follow-up por estágio.</p>
+        </div>
+      </div>
+    </div>
+    <div class="panel__foot"><span>ENTREGÁVEIS OBRIGATÓRIOS</span><span>COBERTURA END-TO-END</span></div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="panel panel--lime bb-span-12">
+    <div class="cta">
+      <h2>Comece por <em>@cro-oracle-guardian *intake-and-route</em></h2>
+      <p>O CRO é o ponto de entrada. A partir dele, todo o squad se organiza em torno da sua meta de
+      receita — do plano macro à execução operacional da stack comercial.</p>
+      <div class="cta__row">
+        <button class="btn btn--primary">@cro-oracle-guardian *run-7-day-kickoff</button>
+        <button class="btn">@revenue-chief *orchestrate-commercial-stack</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="bb-foot">
+  <span>REVENUE-OS · VISUAL SUMMARY</span>
+  <span>AUTOR: RODRIGO FELDMAN</span>
+  <span>v1.0.0 · SCORE 8.2/10 PASS</span>
+  <span>GENERATED 2026-04-23</span>
+</footer>
+
+</main>
+</body>
+</html>

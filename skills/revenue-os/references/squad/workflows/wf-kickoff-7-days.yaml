@@ -1,0 +1,89 @@
+id: wf-kickoff-7-days
+name: "Revenue OS 7-Day Kickoff"
+version: "1.0.0"
+orchestrator: cro-oracle-guardian
+description: "Kickoff de 7 dias para sair de plano para operacao comercial rodando."
+
+phases:
+  - id: DAY-1
+    name: "Executive Direction and Macro Targets"
+    agent: cro-oracle-guardian
+    tasks:
+      - cro-oracle-intake-and-route
+      - cro-oracle-build-macro-revenue-plan
+      - cro-oracle-run-7-day-kickoff
+
+  - id: DAY-2
+    name: "Directors Planning"
+    agent: cco-commercial-director
+    depends_on:
+      - DAY-1
+    tasks:
+      - cco-commercial-director-design-commercial-strategy
+      - cmo-marketing-director-design-marketing-masterplan
+      - cgo-growth-director-design-growth-system
+
+  - id: DAY-3
+    name: "Offer, LP Spec and Checkout Plan"
+    agent: revenue-chief
+    depends_on:
+      - DAY-2
+    tasks:
+      - monetization-strategist-design-offer-architecture
+      - monetization-strategist-define-pricing-and-packaging
+      - funnel-conversion-engineer-spec-sales-lp-and-checkout-flow
+      - revops-automation-engineer-setup-checkout-and-billing
+
+  - id: DAY-4
+    name: "Campaign and Sales Machine Setup"
+    agent: demand-gen-architect
+    depends_on:
+      - DAY-3
+    tasks:
+      - demand-gen-architect-build-acquisition-plan
+      - demand-gen-architect-plan-creative-and-email-engine
+      - sales-system-operator-setup-sales-playbook
+      - sales-system-operator-setup-inbound-closing-machine
+
+  - id: DAY-5
+    name: "Telemetry, Dashboard and Automations"
+    agent: revops-automation-engineer
+    depends_on:
+      - DAY-4
+    tasks:
+      - revops-automation-engineer-setup-revenue-telemetry
+      - revops-automation-engineer-setup-subscription-analytics
+      - revops-automation-engineer-build-revenue-dashboard
+      - sales-system-operator-automate-follow-up
+
+  - id: DAY-6
+    name: "Controlled Go-Live"
+    agent: revenue-chief
+    depends_on:
+      - DAY-5
+    tasks:
+      - revenue-chief-go-live-readiness
+      - revenue-chief-orchestrate-commercial-stack
+    checkpoint:
+      human_review: true
+      criteria:
+        - "LP e checkout ativos"
+        - "Dashboard e CRM ativos"
+        - "Campanhas e email ativos"
+
+  - id: DAY-7
+    name: "First Metrics and Next Cycle"
+    agent: cro-oracle-guardian
+    depends_on:
+      - DAY-6
+    tasks:
+      - cro-oracle-control-weekly-metrics
+      - revenue-chief-run-self-launch
+      - cro-oracle-run-monthly-planning-cycle
+      - cro-oracle-capability-gap-and-squad-scaling
+    checkpoint:
+      human_review: true
+      criteria:
+        - "Primeiros sinais de receita"
+        - "Backlog da semana 2 definido"
+        - "Gaps e plano de escalabilidade definidos"

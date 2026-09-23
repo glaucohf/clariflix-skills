@@ -1,0 +1,45 @@
+id: wf-demand-to-close-loop
+name: "Demand to Close Loop"
+version: "1.0.0"
+orchestrator: cro-oracle-guardian
+description: "Alinha marketing e comercial em um loop unico de receita."
+
+phases:
+  - id: PHASE-0
+    name: "CRO Executive Routing"
+    agent: cro-oracle-guardian
+    tasks:
+      - cro-oracle-intake-and-route
+      - cro-oracle-build-macro-revenue-plan
+
+  - id: PHASE-1
+    name: "Lead Quality Definition"
+    agent: demand-gen-architect
+    depends_on:
+      - PHASE-0
+    tasks:
+      - demand-gen-architect-build-acquisition-plan
+
+  - id: PHASE-2
+    name: "Pipeline Rules"
+    agent: sales-system-operator
+    depends_on:
+      - PHASE-1
+    tasks:
+      - sales-system-operator-setup-sales-playbook
+
+  - id: PHASE-3
+    name: "Tracking and Attribution"
+    agent: revops-automation-engineer
+    depends_on:
+      - PHASE-2
+    tasks:
+      - revops-automation-engineer-setup-revenue-telemetry
+
+  - id: PHASE-4
+    name: "Weekly Loop"
+    agent: experimentation-analyst
+    depends_on:
+      - PHASE-3
+    tasks:
+      - experimentation-analyst-run-growth-experiments

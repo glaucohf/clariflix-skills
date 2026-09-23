@@ -1,0 +1,172 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/hub-manager",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/hub-chief.md",
+      "sha256": "4c6ca9e10ae228c2cc986397e9ab393342d022460712834edc44bf3579e32d65"
+    },
+    {
+      "path": "agents/hub-content.md",
+      "sha256": "a90a08d884d0a23a1d18c0594ec5226139f5ac647c6465edb5de3db89a619b88"
+    },
+    {
+      "path": "agents/hub-events.md",
+      "sha256": "e4e4f88eb101e743066a22498050a4c029ac4c86573fa53d28efbdbb30840efd"
+    },
+    {
+      "path": "agents/hub-members.md",
+      "sha256": "52d71991f00c0dc2420444450751d579eeefdfd7238f98766332a4f1dfa1bb49"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "b3f7099e7009e0f06b795b07170109550e27476fe666657ec9fd7ac7b6fc92bd"
+    },
+    {
+      "path": "checklists/event-readiness-checklist.md",
+      "sha256": "0690ade9d9d4d54a31ed4e0a724c5b2715c8938ec2570ff167a2e508c49d3514"
+    },
+    {
+      "path": "checklists/weekly-ops-checklist.md",
+      "sha256": "085840d1e57bd15a084b83b796dc15d61ec653b06764368c63160f9572035d34"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "93e5752a1b5885a558d3da00b4b771b41133c1417795c07b93411c09e2ef656f"
+    },
+    {
+      "path": "data/content-angles.md",
+      "sha256": "93038a7abfb173ad38e34c680287bb5e84ae928962c0b4bfdf33827c193eff4b"
+    },
+    {
+      "path": "data/event-ritual-patterns.md",
+      "sha256": "b825d792c09cc4bfa789a7b27fe260cd8725b5fda54a6ac8bf83463e4961d874"
+    },
+    {
+      "path": "data/hub-moment-signals.yaml",
+      "sha256": "876a54afec8f3cb164e00cc21dff82cbcafb854c8f8401aa0fb29c66401da0c0"
+    },
+    {
+      "path": "data/hub-operating-principles.md",
+      "sha256": "1a0667f757e03788ec832704fe3e99092888e9de063510fdf8d76b0da4877ee9"
+    },
+    {
+      "path": "data/sources-of-truth.yaml",
+      "sha256": "ceaffe6428b6e0f575f214cc324b5bdc3e0f6dc46150d0895f04dc0d86ba4fd3"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "ddac825b3e5c6ad6ce161fdff3f1e4528087b36155d4b037d072fe220a02a51b"
+    },
+    {
+      "path": "docs/FAQ.md",
+      "sha256": "c3dd35d0c77f329591276b7e70856b6225655e31498ee059fa99f08c6ced72c0"
+    },
+    {
+      "path": "docs/QUICK-START.md",
+      "sha256": "a4c3d33f7fefe6e4745fff9eaa3ab6be289a3f0d33ff2473ab854a90f12ae0ae"
+    },
+    {
+      "path": "docs/TROUBLESHOOTING.md",
+      "sha256": "dc4122046b31be9edf707addc7d00461725233cc8062a747a48dc947f5dc40de"
+    },
+    {
+      "path": "docs/USE-CASES.md",
+      "sha256": "f7cdd54d67402746c5d67f8d61d8980f6c321857926f8356077d8f4fb4a2203a"
+    },
+    {
+      "path": "guide.html",
+      "sha256": "9cc3418e5aea25e387629d382d0fc01fb08eb407ac78bf9dc1b5f319122ca26b"
+    },
+    {
+      "path": "HEADLINE.md",
+      "sha256": "2cbb2568b8756f2e0038adc4d10d6d992838a249960dcee8387465926e115f85"
+    },
+    {
+      "path": "README.md",
+      "sha256": "72f52782f309a6d9360464233caeadea71bfe303443bb7cb0e0cea8aef782d5e"
+    },
+    {
+      "path": "tasks/analyze-event-results.md",
+      "sha256": "1cbf1c8d4da8118b9f98b169ce7ff058138dda14e03ecb057f4872cd1e20bf20"
+    },
+    {
+      "path": "tasks/create-event-plan.md",
+      "sha256": "5d3180c113626601655d11a96a70c799b8717ae3d6a2415d7b8b0b40cc49995e"
+    },
+    {
+      "path": "tasks/create-hub-post.md",
+      "sha256": "7b21d1d1d436822ac45628ef702a8bfccb7d76503724e61abbd329b283886b3e"
+    },
+    {
+      "path": "tasks/diagnose-hub-health.md",
+      "sha256": "d66fb6d996766acf36f4b247ce1deac4c425354f828f3c0ca7c0d8101de810d1"
+    },
+    {
+      "path": "tasks/onboard-hub-member.md",
+      "sha256": "f08c43771f18e862261955ee8788e2027c829c441b6b03093476a51ee006d6fb"
+    },
+    {
+      "path": "tasks/plan-monthly-calendar.md",
+      "sha256": "8b9dca03e8a61e42c27e03186150e7aa3f299ec4056c2efa4974a732c628181c"
+    },
+    {
+      "path": "tasks/plan-weekly-hub.md",
+      "sha256": "3444b9c80f13cc0b2d1621ba14daa4d7cfeb5fa1449b67c526043e266c901971"
+    },
+    {
+      "path": "tasks/reactivate-members.md",
+      "sha256": "ec61858f2f2e08161ed6b4f92b8e88efb9122d403aea298d29bc9bc611ec9336"
+    },
+    {
+      "path": "tasks/validate-onboard-ambassador.md",
+      "sha256": "5ee53ca7ccecfaa2c3552b087cbb601630458867361c23a191808b08e37c6639"
+    },
+    {
+      "path": "templates/ambassador-approval-message-tmpl.md",
+      "sha256": "a1a76b33d6eb9fd06be856eeaf95285d4cbb00721caf9421d40ec8b1e57519c4"
+    },
+    {
+      "path": "templates/diagnosis-report-tmpl.md",
+      "sha256": "3c2b69d4a64c94f9385eefb3c9142d0c7c8f4fdf77c2931912dfec4faeaca528"
+    },
+    {
+      "path": "templates/event-plan-tmpl.md",
+      "sha256": "5774391e2c858655ad08773cc98be046b2ac82e3185acc0044db273a183148b4"
+    },
+    {
+      "path": "templates/onboarding-message-tmpl.md",
+      "sha256": "d6e3768372662e42f4083d76ed6c5ba22b7836ebe9aa3ddbd343d47acfa420b2"
+    },
+    {
+      "path": "templates/reactivation-message-tmpl.md",
+      "sha256": "65f235b1237fe462eb38f5d7a6ec55963b83150d87c5646f811160e6df24f578"
+    },
+    {
+      "path": "templates/weekly-plan-tmpl.md",
+      "sha256": "2f06370125d340c155a080ab17d67f7d200e5635b84780057c96d1f51e826672"
+    },
+    {
+      "path": "workflows/ambassador-onboarding-cycle.yaml",
+      "sha256": "bfb076ef529fe15d65e353f96ca8bf3238d8d6cef323b98191681e33e3e4875a"
+    },
+    {
+      "path": "workflows/event-launch-cycle.yaml",
+      "sha256": "cf2459a14deec6889f328985a6784315ee05121094bdb2858920526563edd8f0"
+    },
+    {
+      "path": "workflows/hub-diagnostic-cycle.yaml",
+      "sha256": "9e1d405d4abef656a7a78efbe0867fa18ff0ff0a7894c68c8ecab941191e91f1"
+    },
+    {
+      "path": "workflows/member-reactivation-cycle.yaml",
+      "sha256": "3eb2202951f59f10c9043458262d546f6d2b876e2abe0c8a4ea3b6b154eae145"
+    },
+    {
+      "path": "workflows/weekly-operating-cycle.yaml",
+      "sha256": "107aadea45eff1eae1f7f8aa4b329c5c3bf4b5fdbef10fe24f916fbf9ef62806"
+    }
+  ]
+}

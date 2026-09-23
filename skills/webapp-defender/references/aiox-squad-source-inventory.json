@@ -1,0 +1,312 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/webapp-defender",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/auth-inspector.md",
+      "sha256": "e79b06598db50970b7b8a8d2a93f3520d1c35d1d5abca24cc563db3d1c8d7d4a"
+    },
+    {
+      "path": "agents/code-guardian.md",
+      "sha256": "0b660d7c5acf297c2a24b8eb0b099dd8f8f9c0b611fbb22e03bf09b9dfe42ce6"
+    },
+    {
+      "path": "agents/compliance-advisor.md",
+      "sha256": "afc2f9bf7385f1ae8c77891c077f258649b7038bed011a6eeb9e952709f421dd"
+    },
+    {
+      "path": "agents/config-sentinel.md",
+      "sha256": "428a73b1d9861b3335afd2b518cd7368104929dc80202f2dbf4556dd13ecd09b"
+    },
+    {
+      "path": "agents/fix-generator.md",
+      "sha256": "492dc4b0936d70903cd254bf5d18074e4312c2d653492e22e1ed5c40f2bd6f2c"
+    },
+    {
+      "path": "agents/header-analyzer.md",
+      "sha256": "e16c5c73545e2c4376fad4344e13dba6905e7e28cec3424b78bb2e343a275785"
+    },
+    {
+      "path": "agents/owasp-a01-access-warden.md",
+      "sha256": "f1317eca7ecad86dcfada1267d10ecfeb1d36a9914922155520896e1f9988e57"
+    },
+    {
+      "path": "agents/owasp-a02-crypto-auditor.md",
+      "sha256": "2c8aa87b51f3ef4cd675e8e8b5d24feb83b10adaaa51a248edcbd4a5d48018bd"
+    },
+    {
+      "path": "agents/owasp-a03-injection-scanner.md",
+      "sha256": "ea0065f9ee0291524397f73ae6d1d6e2cb9a2558e5fcd6f8bcf75a9e4adc35ac"
+    },
+    {
+      "path": "agents/owasp-a04-design-reviewer.md",
+      "sha256": "bc183f1095ecfa5c62de323be42753222bf920dc72bbfad03da6322eb8d621f1"
+    },
+    {
+      "path": "agents/owasp-a05-misconfig-hunter.md",
+      "sha256": "f127cdb8ff4ed10321a14d0f265dc5bb32405500a24c06e52d6f63c75383b730"
+    },
+    {
+      "path": "agents/owasp-a06-dependency-tracker.md",
+      "sha256": "367eb3423e30c1c6f3da0feeb96d464de038dcb7ae8ea81e0dfc39a69cb7af71"
+    },
+    {
+      "path": "agents/owasp-a07-identity-auditor.md",
+      "sha256": "0317c039eb2f74719ecdfbf89768813956cddf8d31cfdf52c29d3dbe1d6866a2"
+    },
+    {
+      "path": "agents/owasp-a08-integrity-checker.md",
+      "sha256": "000f291669e422db4d8dde8015fd276cf51f2373cf49c0041b004be3b3c94d56"
+    },
+    {
+      "path": "agents/owasp-a09-log-auditor.md",
+      "sha256": "4748a7751dad30f522f66c8b3d650fbeabd47a5d689c00cafb027be6409252e6"
+    },
+    {
+      "path": "agents/owasp-a10-ssrf-detective.md",
+      "sha256": "3a64072614bcc556bb2a772037868de9d451df2c4290bed57d96cb1c1cc969fb"
+    },
+    {
+      "path": "agents/policy-validator.md",
+      "sha256": "080a6d80fb9869dbb7269b779848ff7bfaeafad7ab201e36781000a2f0ca0876"
+    },
+    {
+      "path": "agents/rls-guardian.md",
+      "sha256": "418a0c139a43d2fda4f53a6ea30f188e6fd37227bbee77939673367343aa9a2b"
+    },
+    {
+      "path": "agents/schema-reviewer.md",
+      "sha256": "d3138b9a595799bdee9c9cfabb38e0bcec5a0a8c2ea7a91e46acecc73de37eec"
+    },
+    {
+      "path": "agents/sentinel.md",
+      "sha256": "7085a3a71b1cd41b582fdbd14dd5250ddfed226237a710ff98b2af2ee999df0e"
+    },
+    {
+      "path": "agents/shield.md",
+      "sha256": "0cb5c382e505e9eb4a3110c74a9f270504e41587f4e910edebccba0dc93f367d"
+    },
+    {
+      "path": "agents/watchdog.md",
+      "sha256": "45cf0d933f53ebe4158e30c39f0778563df0cc76c395fc47269873191bff163b"
+    },
+    {
+      "path": "checklists/lgpd-compliance.md",
+      "sha256": "7056d2ca989e4b4bda118fd3c1fc3a3613ce72a8523b1d215503efef6d5c3cd0"
+    },
+    {
+      "path": "checklists/pre-deploy-security.md",
+      "sha256": "20dd99e1b8a66a80ebd6b989bbda3fabc2e9e0995a95c76c41479e9de3b08a66"
+    },
+    {
+      "path": "checklists/security-baseline.md",
+      "sha256": "09514605bc343bd73862fdea3d3d63e7fe01986247aaf405038ee74ada0a5e4d"
+    },
+    {
+      "path": "checklists/supabase-security-baseline.md",
+      "sha256": "3804bd7197351cb1a6f2078e2fdba96b1669218d6bda3cf454c989a58abde280"
+    },
+    {
+      "path": "checklists/vercel-security-config.md",
+      "sha256": "0f030c3f6ac19eccbfa8715ffc255a7ca248b60fb8c3ea31b2bca5b9ff05c539"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "sha256": "d62885492dd1613857bbcf475a11701ef2b703d3b7e586dd71f645ce5fecbd57"
+    },
+    {
+      "path": "config/source-tree.md",
+      "sha256": "f1e0299d9faf1f5cd34da673f5aa606756b53c1435aba47b141f1aacab44c4a4"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "sha256": "a90e36469c31293178d90ffc5cfea97c47cb6ed57fc82ad0125ea80095ceddbd"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "1c35ed95611314b890f29127fec7e95b9eb36951c6a409d0a6c644a2b54f3da1"
+    },
+    {
+      "path": "data/vulnerability-patterns.yaml",
+      "sha256": "56f339e3eb12d70d5f53fabc10ad5c8fb4cf8ee97f847803e4a1e0c7af1d54be"
+    },
+    {
+      "path": "README.md",
+      "sha256": "af1cc37f5c943458e644f4c685e154680b9710fa4838796163bdcf0bad364897"
+    },
+    {
+      "path": "tasks/auth-inspector-check-password-policy.md",
+      "sha256": "5e3b43d2a4e814bd0db348b03a21978d7015477b11b6f9a72892b31be3d829e1"
+    },
+    {
+      "path": "tasks/auth-inspector-check-rate-limiting.md",
+      "sha256": "69eafcf9072462e601a7b7bea0a9c3b94368a205073a5c4d974a6df009ec060e"
+    },
+    {
+      "path": "tasks/auth-inspector-check-signup-config.md",
+      "sha256": "988845cf41305a9c95eba93f1db85b705050497a023c6b04ea5156b7561eed64"
+    },
+    {
+      "path": "tasks/auth-inspector-review-auth-flow.md",
+      "sha256": "be27fde5e26f79171b84e199c97367400c85838ec5579e7d60f9f66cc8e1b605"
+    },
+    {
+      "path": "tasks/auth-inspector-review-jwt-config.md",
+      "sha256": "b46eec394ccd042b25a2869961156dc8b3e5b78e5db0b3fb8939c47ae5ab617d"
+    },
+    {
+      "path": "tasks/code-security-review.md",
+      "sha256": "12870ebf42eb11987647d6c70ddbb56abdf55e93d445fff92bc8dbe42100c911"
+    },
+    {
+      "path": "tasks/compliance-advisor-check-consent.md",
+      "sha256": "2b5a1afada3143e638cbe3da1283e1c45bd559df83f66134bc543bcbac269744"
+    },
+    {
+      "path": "tasks/compliance-advisor-check-lgpd.md",
+      "sha256": "4669a110b2e3f76edd6b0fe0d3e2ceb778cbe330d72f2c5574dea727f4a7cf70"
+    },
+    {
+      "path": "tasks/compliance-advisor-generate-anpd-report.md",
+      "sha256": "6d0bd5f009a1855e88e33e41a74f65fc2dc991b9b7b95bb864121a5211a27c27"
+    },
+    {
+      "path": "tasks/compliance-advisor-scan-pii-exposure.md",
+      "sha256": "3d5d468ef69d2c6cf388c129de06e164ca6608a3db2f6cdb2e681fd06f4786ac"
+    },
+    {
+      "path": "tasks/config-sentinel-audit-cors.md",
+      "sha256": "53d83eab6f057d2784d80cc78f26f103f566cc56c9257d088c809ff88ff5cd04"
+    },
+    {
+      "path": "tasks/config-sentinel-audit-openapi-exposure.md",
+      "sha256": "1608f6bf2af44d4f8df9e1224a2923bdb0e21f0765c1def71c1e7f2e6366c32b"
+    },
+    {
+      "path": "tasks/config-sentinel-audit-postgrest-hints.md",
+      "sha256": "3db796c77d09f9cafdaecb4b6bbb8e9ad2da91bb63097e88cfd1a375135c66f3"
+    },
+    {
+      "path": "tasks/config-sentinel-audit-security-headers.md",
+      "sha256": "98ad8f799ce44136e2d8a1ae6198cb1047ea1fbc1b33c90df6e68e044e743bc5"
+    },
+    {
+      "path": "tasks/dependency-audit.md",
+      "sha256": "0b49dd436be8b0ef720daee5df1f1d50a4b1b32ee7c2f207d41ae95398fa061f"
+    },
+    {
+      "path": "tasks/fix-generator-cors.md",
+      "sha256": "8c9f60ee30bc2193fc9789ad4137d4e67dd334cae9a21dbbb704133beb893fd7"
+    },
+    {
+      "path": "tasks/fix-generator-sql.md",
+      "sha256": "ce39b4a356b6cbe1841931a299d0e64462445767733356355e07234acd5e3a4d"
+    },
+    {
+      "path": "tasks/fix-generator-supabase-config.md",
+      "sha256": "2d7540558fb8985524cd82371a69ff7db245016fe31ee941607af24b49694698"
+    },
+    {
+      "path": "tasks/fix-generator-vercel-config.md",
+      "sha256": "b01a8f42af8a2b0ab348f927d01c7ac56a8119441765cdd2923ffc621c603385"
+    },
+    {
+      "path": "tasks/hardening-assessment.md",
+      "sha256": "339d0e7f731572a7b03e8d195877beb9f76b9863b654220696210d7d0e06c523"
+    },
+    {
+      "path": "tasks/header-analyzer-analyze.md",
+      "sha256": "5d1565b96b6602896deaa47b9476a38f93a819b9eb792236422cc51c838bc091"
+    },
+    {
+      "path": "tasks/header-analyzer-compare-baseline.md",
+      "sha256": "698521b86c14591c8849fda81275fd9f5a5c99db14ef5b229de3a097323f5958"
+    },
+    {
+      "path": "tasks/header-analyzer-generate-fix.md",
+      "sha256": "a4e2575014c79f752ddca61f66f556a9b0efd577355ce5190b7149f9ec9b175a"
+    },
+    {
+      "path": "tasks/log-analysis.md",
+      "sha256": "e649b9ff05c0d1581e45e6abd86ceeceec0a833a67213f735d26146271216e41"
+    },
+    {
+      "path": "tasks/policy-validator-check-coverage.md",
+      "sha256": "2159fca3501c965c5bc89a472ef626f51f0bf10eff4eec8511dd55bdcad5e539"
+    },
+    {
+      "path": "tasks/policy-validator-detect-gaps.md",
+      "sha256": "e63ef633accd2adcb0653ad1b7575aaedf2e88026539b443ec2df0d9dce2df30"
+    },
+    {
+      "path": "tasks/policy-validator-validate-rls.md",
+      "sha256": "994e4a4b30110ba756ddeade1cfcd0c70984142d26ff4bac1467bb5f785baf47"
+    },
+    {
+      "path": "tasks/rls-guardian-audit-policies.md",
+      "sha256": "18dbd080ebb067eaa3ee6e60af2b4f379a092e18e372933a2d21013a1b50f19a"
+    },
+    {
+      "path": "tasks/rls-guardian-check-table-exposure.md",
+      "sha256": "735122d8d2288b26e6e9ebb7e5c4fe0f1d099d690b5181aedb0d58bbfa8e2be9"
+    },
+    {
+      "path": "tasks/rls-guardian-generate-fix.md",
+      "sha256": "8e261467560d5b0b9abf0696954ced61aee7ed014d83e65adb6dd99dbb574748"
+    },
+    {
+      "path": "tasks/rls-guardian-validate-rpc-auth.md",
+      "sha256": "fbf2712ef8ae53d04e5b8bd52ab8820a8707bba4cc4cd6eef20a102e9cbac9fa"
+    },
+    {
+      "path": "tasks/schema-reviewer-analyze-openapi.md",
+      "sha256": "2fec48f23c1d2b362973e8384237b31eae4216b5ee4b7adc94491fd90203ca9d"
+    },
+    {
+      "path": "tasks/schema-reviewer-check-exposure.md",
+      "sha256": "582cad674f43ba73e35f6aa9411420281531ab2eb4c7a8636a6bafe4602cb283"
+    },
+    {
+      "path": "tasks/schema-reviewer-generate-fix.md",
+      "sha256": "8d9cc428d364b3e0155027367244e5622b6ca715a95d808d41ebf946d1271898"
+    },
+    {
+      "path": "tasks/security-posture-check.md",
+      "sha256": "01cbc80de38ee3f3a1f7738ed7e84d512cfd09a4d7d247fa535a48a506a033aa"
+    },
+    {
+      "path": "tasks/shield-audit-report.md",
+      "sha256": "a5578b9e0caa8df5a6e70fe08a50963ed28d306835faeea27e13ff003e1c5019"
+    },
+    {
+      "path": "tasks/shield-generate-roadmap.md",
+      "sha256": "87b15095bb1327378e8f5ed9c12bd42fb6186933927e07f491d882543f3aa83f"
+    },
+    {
+      "path": "tasks/shield-triage-findings.md",
+      "sha256": "fb3a071ed0173b5bddce95323f24138105f81a139e926cce7cb7acd039869710"
+    },
+    {
+      "path": "templates/audit-report-template.md",
+      "sha256": "afcf1b1141360d60a4727d057b2c1bad51ffd29c751aec06af4dc663705dbce6"
+    },
+    {
+      "path": "workflows/full-audit-workflow.yaml",
+      "sha256": "dc1ba150326c934ecdf624e33b6a7ee5cbe5a4e6008c565dedf7833841dd4913"
+    },
+    {
+      "path": "workflows/owasp-full-recon-workflow.yaml",
+      "sha256": "793c2a251cb558c5d9eb616956e20923541d1d43cb302d0c18bbbbd689c7601b"
+    },
+    {
+      "path": "workflows/quick-check-workflow.yaml",
+      "sha256": "182855f0214254427858f12ede32b040107ef4644f1da13de904bea188ca1318"
+    },
+    {
+      "path": "workflows/rls-audit-workflow.yaml",
+      "sha256": "2554bc8afc3cad3b1e905bcb06acefd93167457c7c35ab6d114f63417887fd59"
+    }
+  ]
+}

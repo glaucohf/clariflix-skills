@@ -1,0 +1,15 @@
+row: vendas
+title: Vendas com método
+title_netflix: SALES FRAN
+subtitle: Estrutura processo comercial, conversa e fechamento de vendas
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 25 arquivo(s) de origem
+  requer: Oferta, lead e etapa comercial
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Qualificação, Conversa, Fechamento]
+  generos: [Vendas, Comercial, Negociação]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

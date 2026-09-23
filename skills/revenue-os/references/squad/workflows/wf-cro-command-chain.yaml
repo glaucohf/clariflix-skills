@@ -1,0 +1,60 @@
+id: wf-cro-command-chain
+name: "CRO Command Chain"
+version: "1.0.0"
+orchestrator: cro-oracle-guardian
+description: "Cadeia de comando corporativa: CRO -> Diretores -> Gerentes Senior -> Analistas Senior"
+
+phases:
+  - id: PHASE-1
+    name: "Executive Intake"
+    agent: cro-oracle-guardian
+    tasks:
+      - cro-oracle-intake-and-route
+      - cro-oracle-build-macro-revenue-plan
+
+  - id: PHASE-2
+    name: "Directors Strategy"
+    agent: cco-commercial-director
+    depends_on:
+      - PHASE-1
+    tasks:
+      - cco-commercial-director-design-commercial-strategy
+      - cco-commercial-director-decompose-sales-targets
+      - cmo-marketing-director-design-marketing-masterplan
+      - cmo-marketing-director-define-channel-portfolio
+      - cgo-growth-director-design-growth-system
+      - cgo-growth-director-prioritize-growth-bets
+    checkpoint:
+      human_review: true
+      criteria:
+        - "Planos executivos aprovados"
+
+  - id: PHASE-3
+    name: "Senior Managers Operation"
+    agent: commercial-senior-manager
+    depends_on:
+      - PHASE-2
+    tasks:
+      - commercial-senior-manager-run-pipeline-operations
+      - marketing-senior-manager-run-campaign-operations
+      - growth-senior-manager-run-growth-operations
+
+  - id: PHASE-4
+    name: "Senior Analysts Execution"
+    agent: commercial-senior-analyst
+    depends_on:
+      - PHASE-3
+    tasks:
+      - commercial-senior-analyst-execute-sales-routine
+      - marketing-senior-analyst-execute-content-email-creative
+      - growth-senior-analyst-execute-experiment-backlog
+
+  - id: PHASE-5
+    name: "CRO Weekly and Monthly Governance"
+    agent: cro-oracle-guardian
+    depends_on:
+      - PHASE-4
+    tasks:
+      - cro-oracle-control-weekly-metrics
+      - cro-oracle-run-monthly-planning-cycle
+      - cro-oracle-capability-gap-and-squad-scaling

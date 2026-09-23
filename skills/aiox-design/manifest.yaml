@@ -1,0 +1,15 @@
+row: operacoes
+title: Design que escala
+title_netflix: AIOX DESIGN
+subtitle: Constrói e governa sistemas de design, tokens e componentes
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 429 arquivo(s) de origem
+  requer: Produto, design system e objetivo
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Tokens, Componentes, Acessibilidade]
+  generos: [Design, UI, Operações]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

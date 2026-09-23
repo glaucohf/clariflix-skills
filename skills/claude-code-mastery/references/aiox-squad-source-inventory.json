@@ -1,0 +1,336 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/claude-code-mastery",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/claude-mastery-chief.md",
+      "sha256": "b63740ff8b49d58623b3568b3aa49950b826f2ac837ff45e83024120f94792e2"
+    },
+    {
+      "path": "agents/config-engineer.md",
+      "sha256": "1205b3968a47cdda9d99a220280873801e9b1f1d9f1bb5fbb500a06eaa0b51e1"
+    },
+    {
+      "path": "agents/hooks-architect.md",
+      "sha256": "9fbc6d2f04ead27238b90fd9f3c1555558117430a5a98c062c23ac67e1603019"
+    },
+    {
+      "path": "agents/mcp-integrator.md",
+      "sha256": "6d29470ca6518524d1eea2b4842eca226c392e3196f6c7c61ed6d571d0822741"
+    },
+    {
+      "path": "agents/project-integrator.md",
+      "sha256": "f9352ec75dafd00264469f18c316382c66dd943726ba3a2c95b38fec117d8d9f"
+    },
+    {
+      "path": "agents/roadmap-sentinel.md",
+      "sha256": "e225b9edb2a7531276dfe10dae17abd00e1f3d2bc318b0af7f07b63a7b4741b6"
+    },
+    {
+      "path": "agents/skill-craftsman.md",
+      "sha256": "db7b977fb98481cd925e963ea638a2c7a64af078a366a5afc64aa0380537b6fe"
+    },
+    {
+      "path": "agents/swarm-orchestrator.md",
+      "sha256": "1fe85a4907f6ba34c3dbfe832f5492eef88fe61677913f7c1765b6fa0b191529"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "sha256": "9efbbe2db4c252828212c5e911ca5917f1c292f4ac7b818953aca9f9f2f7b2fe"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "14970df7319227e6150377eaeaea90a2112980b45389ae01e0629e1fcf7185ab"
+    },
+    {
+      "path": "checklists/agent-team-readiness-checklist.md",
+      "sha256": "3e75baad284de85894b839c18f2a16e452d71be0fc9d9f11971322a31f0a7236"
+    },
+    {
+      "path": "checklists/brownfield-readiness-checklist.md",
+      "sha256": "49d6ddc78a39860e7e283be2fd5b6d6c9cab6c531a953b75612fbaf5a9c9d4c1"
+    },
+    {
+      "path": "checklists/change-checklist.md",
+      "sha256": "07b77600c5f1cc053be8490ab725485a7e30a9b9b8abb6021927cd0aa105d85c"
+    },
+    {
+      "path": "checklists/context-rot-checklist.md",
+      "sha256": "f7ccbb429649064eb3192503319644d344a6214cb107148d5ee8189e98a65df0"
+    },
+    {
+      "path": "checklists/integration-audit-checklist.md",
+      "sha256": "55993a0603eb0c93bcc3cb4a4c7531602429b333a01010940c9cf0a4a4e05371"
+    },
+    {
+      "path": "checklists/multi-agent-review-checklist.md",
+      "sha256": "0a53289e0d8f24ee92cbdffe3e7ef358a0676a5504fa343b426431c2eab14897"
+    },
+    {
+      "path": "checklists/pre-push-checklist.md",
+      "sha256": "ad8749813ec1e3592312a19fae9c6236d019a3a4bf20a64baa5d84840b936679"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "698ade8c2c8d22b928630072f86f60792d3771537f9b420b3ff1e4e8fa7ce8f9"
+    },
+    {
+      "path": "data/cc-architecture-map.yaml",
+      "sha256": "56e2d8cd8060b95c2a35938b4c7137286969bbbdbc1976366538c642635d4fcd"
+    },
+    {
+      "path": "data/cc-permission-rules.yaml",
+      "sha256": "bcc272d9374eaf5be179e0460ff67ead6ebb520144217806ef800e9bbac59fbf"
+    },
+    {
+      "path": "data/ci-cd-patterns.yaml",
+      "sha256": "f44fe6128861794a1a66b9e551a17bdffc75087d746e7f4f800998da5b7c58e4"
+    },
+    {
+      "path": "data/claude-code-quick-ref.yaml",
+      "sha256": "976125fa545b4249871fab126048b0e6f9fcf4c9491fa19b32cf5da9e136bf71"
+    },
+    {
+      "path": "data/frontmatter-schemas.yaml",
+      "sha256": "e1a02a2823f76d10ad288a2572ee1f1030e18b137a0aba32140fff4b8b0ccedb"
+    },
+    {
+      "path": "data/hook-patterns.yaml",
+      "sha256": "78d3170e607f4f56605452d008a654f0bc961943f5d18a955782fc02b048d58f"
+    },
+    {
+      "path": "data/infrastructure-map.yaml",
+      "sha256": "6c32bd56a2d8a0e84cd840a14cccb1bcf3a2501dd8ef2b7251ce728716f769f6"
+    },
+    {
+      "path": "data/journey-log-events.yaml",
+      "sha256": "deef1268fca9fd31ab1e1a5513556c0dffecc0730631c69e4688b85c40b25f54"
+    },
+    {
+      "path": "data/mcp-integration-catalog.yaml",
+      "sha256": "578245b7157537d737757cb4657e62995bbb3ad6555c9343be41a13c7203dd2f"
+    },
+    {
+      "path": "data/project-type-signatures.yaml",
+      "sha256": "a0a096bac9ebda936c19b5cb32263497552a60eda74fffdc2ba6a101f951e052"
+    },
+    {
+      "path": "data/quality-gates.yaml",
+      "sha256": "d6307bf2315518e67aa262c6924b0e123b04b6c75e22939050937114fd5b30f0"
+    },
+    {
+      "path": "data/swarm-agent-schema.yaml",
+      "sha256": "ed92c91b9f0a76cbac0f1d9a5fa0abd7d2ff9276a5000eaba85850d759a24b6c"
+    },
+    {
+      "path": "data/token-registry.yaml",
+      "sha256": "d94e982a7989333c4da58818a9337a498dc58291733850c90ea09892145b60be"
+    },
+    {
+      "path": "README.md",
+      "sha256": "0271a00f66dc61e89b2eddd3a4fc324c442b85cf7dd830c93e2192dbf5c2e595"
+    },
+    {
+      "path": "squad-io.yaml",
+      "sha256": "f9343d631e002b4759f6ab86558f05827df8990ec1a530a67e9a968d988e0380"
+    },
+    {
+      "path": "tasks/align-memory-context.md",
+      "sha256": "62dd8f0174910c7162f39caa3feef7d036ffe54b9b578f00726db9523fa9843b"
+    },
+    {
+      "path": "tasks/audit-integration.md",
+      "sha256": "3c8fc85af518cf24457486bff4b52e01ade1bdad8e88bc34dc224d0eb93908c0"
+    },
+    {
+      "path": "tasks/audit-settings.md",
+      "sha256": "0e5e65a527e46adcdcec4384264a0e77f34250de79ff90eace9703a4dfe1b998"
+    },
+    {
+      "path": "tasks/audit-setup.md",
+      "sha256": "70bf1fc80131fac7ea732cb9cdea51a7e12085941f7f460da4ddd438a53fd7af"
+    },
+    {
+      "path": "tasks/brownfield-setup.md",
+      "sha256": "cfda49a2c303ba1da7b937b016c6382c52b84108ddb1669232981bf4a187297f"
+    },
+    {
+      "path": "tasks/ci-cd-setup.md",
+      "sha256": "cc09faeaad5d23d96c32cfd6b70651fc2a576c48f53056836cd65f06003c9516"
+    },
+    {
+      "path": "tasks/claude-md-engineer.md",
+      "sha256": "b143d32dd886a5bdb035466d68426b8c1d9f6a6348f18ed2cd448acf70b83c55"
+    },
+    {
+      "path": "tasks/claude-md-engineer.md.bak.2026-04-05",
+      "sha256": "68e8e9d148cc985a1882f19813d25cc2eaa495ab5d7faf1cea1cd9beda8e4b11"
+    },
+    {
+      "path": "tasks/configure-claude-code.md",
+      "sha256": "2185704f3194c080d8cc89aa55f1629e4e614f51d51df2e9fddd12ae65cad8ca"
+    },
+    {
+      "path": "tasks/context-rot-audit.md",
+      "sha256": "ae7939f949b9786ad6f9f1349cba2f46e224386baab002c2afefd9aa9fc754dc"
+    },
+    {
+      "path": "tasks/create-agent-definition.md",
+      "sha256": "647f300277d8c80ff9b021ad45f5244777c2313fd60c52bb32bb88a5ae14e357"
+    },
+    {
+      "path": "tasks/create-rules.md",
+      "sha256": "f27b00cac30754e7a440dea67ced4566ee05d7d328a25167a54ca33bce59db8a"
+    },
+    {
+      "path": "tasks/create-team-topology.md",
+      "sha256": "2c749c99d2f81339cf5416902ff3d716192032d58421b11fbd14e6bcfcb5282e"
+    },
+    {
+      "path": "tasks/delete-claude-code-mastery.md",
+      "sha256": "072f0f30dd0c26161e6893fb585c7cf4e22032f1fa9857d533494cf647d6bad3"
+    },
+    {
+      "path": "tasks/diagnose.md",
+      "sha256": "a3cbdb7d2c5fa3d9e5bad0e6c1c3fb5b3b44570757fa97cf0f9fbd1f580f8960"
+    },
+    {
+      "path": "tasks/enterprise-config.md",
+      "sha256": "60895151582b8ea6f8b06998ab1007e2828ae11c5ae7c28e9ab202c2fd7c7eae"
+    },
+    {
+      "path": "tasks/hook-designer.md",
+      "sha256": "2beada7650c5ef6f5e9d7a4ce18b81ce5dea7260ccccb2a725adb2f9855252ec"
+    },
+    {
+      "path": "tasks/integrate-project.md",
+      "sha256": "9a3591317bcffb28f627f97e280c8c26c5410ee2ac43e15d4945168684d8a9e7"
+    },
+    {
+      "path": "tasks/mcp-integration-plan.md",
+      "sha256": "a8a45224e72628f01f0d83ba59b3d4057862935dbea6dc7434394aa7ee5db74e"
+    },
+    {
+      "path": "tasks/mcp-workflow.md",
+      "sha256": "277e79b75ceb188905c84a6f99e5b1a0d2bec830ff7246a4f3caf19a716ea3c9"
+    },
+    {
+      "path": "tasks/multi-project-setup.md",
+      "sha256": "6a1482f6ee3b8d98de5f4151c32186f2f587de2a900976ddbed2febb8de1ee8e"
+    },
+    {
+      "path": "tasks/optimize-context.md",
+      "sha256": "103c51f14347bdee7022c34239a62bd007bb149fb734e34ef5373916348151f1"
+    },
+    {
+      "path": "tasks/optimize-workflow.md",
+      "sha256": "e33cd3ec20da4814b1c97f55dc59bab4170bea0ec19a76959a9c07c6c812e8dd"
+    },
+    {
+      "path": "tasks/parallel-decomposition.md",
+      "sha256": "6757e8af5f27ad2a1e25fb9a2a3fce34d1e46564cfd7a999190767d923f6704e"
+    },
+    {
+      "path": "tasks/permission-strategy.md",
+      "sha256": "8a0152e6852911ec3c46d0768a8fe95863c5685bd5aeb369070ce74000f6fe5f"
+    },
+    {
+      "path": "tasks/rebuild-runtime-validator.md",
+      "sha256": "dad7d072b8882cf7f59909e6a770e838b991129a24ddb0948217a0a33ae02ad0"
+    },
+    {
+      "path": "tasks/refresh-runtime-contract.md",
+      "sha256": "1c589a46510042b1264341bbbc73d2663b5660b6c31ad190ebe2fd2100fad519"
+    },
+    {
+      "path": "tasks/sandbox-setup.md",
+      "sha256": "6bfe387128272a4c9ac8443b6befc3b9beb01f04eead5177cfc76280d80d3c59"
+    },
+    {
+      "path": "tasks/setup-repository.md",
+      "sha256": "d02f2253d002ce4ef88e32f4b2ce48b0f1680d5506a20f026b303eb401d9bd15"
+    },
+    {
+      "path": "tasks/setup-wizard.md",
+      "sha256": "be0e9704a2539db4a7352876223f2402c99b8586b7968c93de51c23632181426"
+    },
+    {
+      "path": "tasks/update-claude-code-mastery.md",
+      "sha256": "f013604aa56386a33f96277cf637ab49f5e80c7d0fd9dff02c090eadca221f08"
+    },
+    {
+      "path": "tasks/worktree-strategy.md",
+      "sha256": "63c82fb4901be38d8ca0c6979692cb2681d1eb4a30ebfbbf87130ce49f46eb8b"
+    },
+    {
+      "path": "templates/baseline-kpis-tmpl.yaml",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "templates/claude-md-fullstack.md",
+      "sha256": "db9ddd906018836790d51549c4d0f2df6eaf63f77dd4d08e4bdbfacdb07c33e6"
+    },
+    {
+      "path": "templates/claude-md-library.md",
+      "sha256": "5c1d4ebd57c0a71c1803b7a3160ed8cc361415547bf1f4a098968116dc65b768"
+    },
+    {
+      "path": "templates/claude-md-microservices.md",
+      "sha256": "302125f3da678259dd897dce1fb9d94c4d6ce2f404cbabe815aac899cf74301c"
+    },
+    {
+      "path": "templates/claude-md-mobile.md",
+      "sha256": "860d623312ac3cd323e0e930a45cf04504f73143e74edbb7064b163871b2c982"
+    },
+    {
+      "path": "templates/claude-md-monorepo.md",
+      "sha256": "7db917500576d645dc00dea761e75863f6066fe67db6014d8aee9390feaea439"
+    },
+    {
+      "path": "templates/concept-mapping-tmpl.yaml",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "templates/cross-domain-handoff-tmpl.yaml",
+      "sha256": "8b272f56446e1fa59429a51913cabf97b63d6fc5538610e3928d17c44b8076b9"
+    },
+    {
+      "path": "templates/github-actions-claude-ci.yml",
+      "sha256": "78bb30a9e5911f7581b4112d714d8194dfb4dfe82d76fde2a96e9b93c1b8eaf2"
+    },
+    {
+      "path": "templates/github-actions-claude-review.yml",
+      "sha256": "79cde9305a1b1855877a0e799eb98a9a3a79fdcd58151e7bf38d8afc4551ad90"
+    },
+    {
+      "path": "templates/hook-implementation-tmpl.md",
+      "sha256": "b704080c24dac5e41c10443f41a0f66c10447f7bcbf6171211fa8af7b492ef21"
+    },
+    {
+      "path": "templates/mcp-config-tmpl.yaml",
+      "sha256": "5a518bce7d6cdee58634ad65bb4407929804334ca9160ab59c737625b7fd6c8c"
+    },
+    {
+      "path": "templates/session-usage-report-tmpl.yaml",
+      "sha256": "42693c37d86ee2121c101b034c5d8b1172ce838f2792bd9a2925537f0b70a355"
+    },
+    {
+      "path": "templates/skill-definition-tmpl.md",
+      "sha256": "854eb2450b1147f50085e74964eb13bc99ac5ff9363a74b152d296d8ab99ed1b"
+    },
+    {
+      "path": "workflows/wf-audit-complete.yaml",
+      "sha256": "ddfb6a6825b2c063e748f5c10414de8aa95e336f8ac9d2af3c880ad1ca2d5cfe"
+    },
+    {
+      "path": "workflows/wf-knowledge-update.yaml",
+      "sha256": "69078c5bf9d31a1b1a76b04fb8e5d37c888cccc420231d24f24542cce442d106"
+    },
+    {
+      "path": "workflows/wf-project-setup.yaml",
+      "sha256": "8230585003354de01b0151d1a8cf4d7c60f39aed26f3d819307c3ae6ebb8d4cf"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/etl-ops",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/etl-chief.md",
+      "sha256": "4b8ec8403c31a16ea76fb923a5225bd3844228cd82f195a3b905a4597eeec86d"
+    },
+    {
+      "path": "agents/etl-extractor.md",
+      "sha256": "c9052db39dd45e34175206bd9a8460fd53728a1705b10a6b482656e105ded260"
+    },
+    {
+      "path": "agents/etl-transformer.md",
+      "sha256": "e22339685b2b8901f39b16a9c91c74a078e9408d8f14723b498ffae63b989a95"
+    },
+    {
+      "path": "checklists/README.md",
+      "sha256": "e9083b42e1bb4eec904a0f875d22a7a322bdf3f16e11138aeb97889008ff67bf"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "3294bdbe9a83172d119fbf798b59df781b1bca730a29ed5681a035ee4518ec62"
+    },
+    {
+      "path": "data/checkpoints.yaml",
+      "sha256": "0bf8a566dd8443e7dd204cdff36b44b4507a5a3234a7b4c18af12bd0ca9d0850"
+    },
+    {
+      "path": "data/enriched-transcript.schema.json",
+      "sha256": "04d3b4c1108b19c04c45db22913843c92df70b235d102fa966721de0eb4e947a"
+    },
+    {
+      "path": "data/infrastructure-map.yaml",
+      "sha256": "a1f154414d35d563600b629ba8e0b18937bcb37353745f5d3add6ba58f32eedd"
+    },
+    {
+      "path": "data/output-contract.yaml",
+      "sha256": "dba50f54ab7a2ac296f1cf0f083f0fb9105a5ec40d3bcdc9422994c4797626bf"
+    },
+    {
+      "path": "data/process.schema.json",
+      "sha256": "1beaae687f1cd375ebdf44065f7cb310d3913717fba0dffb4b89d75d0292f932"
+    },
+    {
+      "path": "data/quality-gates.yaml",
+      "sha256": "94445c68246492b4cc8897e43a5c39f2901a96c3482fe1521871bd5b532d6269"
+    },
+    {
+      "path": "data/routing-profiles.yaml",
+      "sha256": "9f6d0c5f0972cb78f87eba3e1e6dbb76a57e30ab00032b738a8f301a053ed8a2"
+    },
+    {
+      "path": "data/service-catalog.yaml",
+      "sha256": "037b67023828e2f31db28f8a256faa2220079d12a1e7837e1b0c9213f9b5f9c1"
+    },
+    {
+      "path": "data/token-registry.yaml",
+      "sha256": "f5b0bb08ffd63ac6f547195cd839553e9ed5b643e9f415cbe43ad418cd7495ee"
+    },
+    {
+      "path": "HEADLINE.md",
+      "sha256": "4d3eb9b782a3941069c1618b45939be99b4347c063102e9c448a0743d6ee5dc3"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8c6fabe57c23441ea5b777f6788beaf78c56b7d5631faf79e7b1c775eae283e8"
+    },
+    {
+      "path": "squad-io.yaml",
+      "sha256": "f8822b63bbc6cbdcab3e12700b1e17f0b2477178056390cc4b76e51de5505f05"
+    },
+    {
+      "path": "tasks/compile.md",
+      "sha256": "b35ce66881d04455bd46072d4b4211a954d987a9a6f83fe3bbba0160e79d5c7b"
+    },
+    {
+      "path": "tasks/enrich.md",
+      "sha256": "95fb113f7babd7bdb69fa3393e76b9df1fe02b352894fcb1246c322c290c351b"
+    },
+    {
+      "path": "tasks/etl-env-bootstrap.md",
+      "sha256": "7a3ac69820ccf94a0f5cfd7ca35233e8af295c0dfb453b0e5bb75cae0faa96aa"
+    },
+    {
+      "path": "tasks/extract-keyframes.md",
+      "sha256": "228f45de937aa0fe973d22f62d68c1b9d57e137d8381f4fe8421df32e586ba4f"
+    },
+    {
+      "path": "tasks/extract-podcast.md",
+      "sha256": "f274f62fd681a302f0d23a9f43dda7fc85a6e3c737b68d9d7a73b44cfbaecce1"
+    },
+    {
+      "path": "tasks/load-workspace-context.md",
+      "sha256": "00032e5f8889d5c49624201cd0adaf9479f4a8736c781d4cad872ce0267f1814"
+    },
+    {
+      "path": "tasks/process.md",
+      "sha256": "f1921c50be3b2fe446b9ead9c3db96429dcf4114ab63acc1827368c13552f2c5"
+    },
+    {
+      "path": "tasks/summarize-book.md",
+      "sha256": "3d519021e83e773a55baf8dadca0f26313cf1651321058aa297aee6f3ad89d95"
+    },
+    {
+      "path": "templates/cross-domain-handoff-tmpl.yaml",
+      "sha256": "dbd5a31802d629c7c70d0531a325d0df7163799361563ad22d41e8faf0b2a6d4"
+    },
+    {
+      "path": "workflows/etl-pipeline.yaml",
+      "sha256": "109de54bb8a078527da6962339541e063dc1caaf293490d4f23772e023554bb1"
+    },
+    {
+      "path": "workflows/etl-thresholds.yaml",
+      "sha256": "f0384079ac79945bd799117ed30cb0dd26749d32e0c106721830754773f73019"
+    }
+  ]
+}

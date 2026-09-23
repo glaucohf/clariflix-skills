@@ -1,0 +1,15 @@
+row: especialistas
+title: Squads sob medida
+title_netflix: SQUAD CREATOR
+subtitle: Cria e estrutura squads para objetivos definidos
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 341 arquivo(s) de origem
+  requer: Objetivo, domínio e entregáveis
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Papéis, Tarefas, Workflow]
+  generos: [Agentes, Squads, Operações]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

@@ -1,0 +1,596 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/slides-creator",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/content-architect.md",
+      "sha256": "9a952b923928e2db6bdcd2c266c3c82a0ef4f24c231ec18868b327d73da813c2"
+    },
+    {
+      "path": "agents/design-planner.md",
+      "sha256": "830e90dfbce88c9b1743d6a637cb68a240993ce777f7094f1bc38b84c4be7e7d"
+    },
+    {
+      "path": "agents/design-renderer.md",
+      "sha256": "12791fd452d1e6945c1acc6af840801a0a0b70731cf20c7445e8acbf3e4825d8"
+    },
+    {
+      "path": "agents/qa-inspector.md",
+      "sha256": "b597986d3af6cc3fc10d718654800fd9793c20095fc7bbd8d9805d676c35020a"
+    },
+    {
+      "path": "agents/slide-chief.md",
+      "sha256": "a82e076174f5a6f973f55cf44e5c8c6dc5a6e7ac0ab5e5e0f6dc623a1ec60f57"
+    },
+    {
+      "path": "agents/template-curator.md",
+      "sha256": "848432a1f9544ed144cffa48bc12969739acfef7cc32875c6a946aea5fb7f838"
+    },
+    {
+      "path": "agents/visual-scout.md",
+      "sha256": "356a62d75c9c2df4079e190bb2d9bfd8f2f5ba7015cba1e9f9d5e71c2f66c3cc"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "sha256": "08c8142cb2ff9920085b52457d379d8a44ba1fcf17394496ed0e12baa37b1194"
+    },
+    {
+      "path": "archive/anti-pattern-gate-tasks/gate-d01-analysis-approval.md",
+      "sha256": "9218985c0e885ab81f419b867806ca75ce2e3805ed783948cca97bcb51da0b41"
+    },
+    {
+      "path": "archive/anti-pattern-gate-tasks/gate-d02-structure-approval.md",
+      "sha256": "a0d51836ee70828406be8f2a396c863f36a8fec8b8c12ef5f463017a6598fc46"
+    },
+    {
+      "path": "archive/anti-pattern-gate-tasks/gate-d03-design-approval.md",
+      "sha256": "b28c7074ee1702ae0a5ba4c8c253924a9986089d1fdf36be83eabe3a76f0fbaf"
+    },
+    {
+      "path": "archive/orphan-sops/SOP-SLIDES-001.yaml",
+      "sha256": "27009516ce411e36159ce5365d923ae85f9a034df6808973265b406978cacd3f"
+    },
+    {
+      "path": "archive/orphan-sops/SOP-SLIDES-003.yaml",
+      "sha256": "c93aa1c0ea7602848f8fe07025542cd9e37364aa7bdf0285a3782f54cc924cea"
+    },
+    {
+      "path": "archive/orphan-tests/e2e-visual-andragogic.yaml",
+      "sha256": "8dfdc7f13d5146553eeb977b1ee56413cb7a883e936b8cac43d010edd03eaf74"
+    },
+    {
+      "path": "archive/orphan-tests/e2e-youtube-pipeline.yaml",
+      "sha256": "2259b2f4bc1b4d9fb5f086f287b1e3846efa4b88d0d26f701ffc3bbdc2d8da8b"
+    },
+    {
+      "path": "archive/orphan-tests/performance-benchmarks.yaml",
+      "sha256": "44dad6a5a2e0f2bda39c1d2df887f03b925c84260890c3e190062338b7155b66"
+    },
+    {
+      "path": "archive/orphan-tests/regression-v1-compat.yaml",
+      "sha256": "ce720b7069d4b099c41ec137ab88ef4a7bcf3abf37fcdbebccbae8c88a59397c"
+    },
+    {
+      "path": "archive/v2-prototypes/environment-setup-v2.md",
+      "sha256": "aaa760cd32a97961237ed1025ebe763ae207243860e9605f8d8768b9f05952fa"
+    },
+    {
+      "path": "archive/v2-prototypes/requirements-v2.txt",
+      "sha256": "866ee207bf56d93512a5474a50b732ece74b74f9d42c32b7e0793a3be163274a"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "0a3eed0a6bf25ec5fae4a969fee1a5eb4c2b8b9116ada52256085f1c6b3fc8a6"
+    },
+    {
+      "path": "checklists/presentation-readiness-checklist.md",
+      "sha256": "0653a658f2a9bd938a7dede5bd802497593b926bf2ded381198d0b224636c04c"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "fdbfe4e3f5695a9333c285297ca7b4b1f06b07142525f13d75eafcb067f18882"
+    },
+    {
+      "path": "data/ai-slop-blacklist-2026.md",
+      "sha256": "a7d35d4a91d8c66f417aba9d6e753d72ce169827e03f7bc4fc18e281ac7e3f68"
+    },
+    {
+      "path": "data/andragogic-rules.yaml",
+      "sha256": "e3516e261cf066eb4915823198605c157e5b72ab90f6e0fcf4d0bb8a2f5a6097"
+    },
+    {
+      "path": "data/asset-resolution.yaml",
+      "sha256": "b3baa83c56c95059caef5535d1d69dff47cd28d2f4bf344288dbed0a8e727305"
+    },
+    {
+      "path": "data/cache-config.yaml",
+      "sha256": "aaeefa0de9c78f52a5eb60e01228800863564442a75d7b75ad4e9d631bf40567"
+    },
+    {
+      "path": "data/chart-selection-matrix.yaml",
+      "sha256": "bb6c5e124a17375e807c6097c2f5d2881e9dfce7cef27e4c6445d7096aa15107"
+    },
+    {
+      "path": "data/checkpoint-schema.yaml",
+      "sha256": "b4bf8de4d5463a7b13480f7e3fe489ccdf4909631484652033d1045a7efce8db"
+    },
+    {
+      "path": "data/context-adaptations.yaml",
+      "sha256": "26fe9ad128923d5e9d7d209078544cccd4096f1b041e64d1da72fd1efa71be53"
+    },
+    {
+      "path": "data/cost-tracking.yaml",
+      "sha256": "aab1f34b5b19dd69d144a9aa9fecb6ac961b4cac26a24bc297a68a790e612bf7"
+    },
+    {
+      "path": "data/design-direction.schema.yaml",
+      "sha256": "9903b616ad062fa2b9864ad1bd5ce2c931240e44c0f2b3cfbfaff16f6bbb4f05"
+    },
+    {
+      "path": "data/design-philosophies.md",
+      "sha256": "24e4584181029c451881475ec2da950769948c64fd6de8dd8429f3977d01e49f"
+    },
+    {
+      "path": "data/edge-case-decisions.yaml",
+      "sha256": "34c9fc0e1da1a07f2de415862f4cc4c939e38149a5af74f776edea34629d01fd"
+    },
+    {
+      "path": "data/editable-vs-image-pptx-decision.md",
+      "sha256": "dcd761b1bf5be45efd22a4c1337df3093df32b6829fe960b8582854243f470c0"
+    },
+    {
+      "path": "data/kb-loading-matrix.yaml",
+      "sha256": "857a0b65f5aae9473bca7579f2dcbaab0f2aca34de47e9ac1baba37dd2adff88"
+    },
+    {
+      "path": "data/kbs/KB_01_storytelling_frameworks.md",
+      "sha256": "18fb6b6aa09480f89f63390a87870814de3037338f1c022ecfc872f410117af2"
+    },
+    {
+      "path": "data/kbs/KB_02_frameworks_mckinsey.md",
+      "sha256": "e8281607e8d4705292026c33ce7dc112a6c1053e9bc46f0c0d6432288413b96a"
+    },
+    {
+      "path": "data/kbs/KB_03_frameworks_bcg.md",
+      "sha256": "6ed00ba01e8491d7d5e8089101c88e4511f4e4d3024acdc71d144ba057cb1083"
+    },
+    {
+      "path": "data/kbs/KB_04_frameworks_bain.md",
+      "sha256": "26a8353c45fb9d7b1f996bcf4d4ac8d8a3d4a47b99b7797e1ff5941381b0e956"
+    },
+    {
+      "path": "data/kbs/KB_05_frameworks_tier2.md",
+      "sha256": "c1fda6128860a9e08e5ccb847cf7e01028d6f954932e16faf5690dd0b8f27180"
+    },
+    {
+      "path": "data/kbs/KB_06_data_visualization.md",
+      "sha256": "dc82772bf66817c6e8415f9e05fab00ed6d026a095140242f3425f557f66e5c0"
+    },
+    {
+      "path": "data/kbs/KB_07_design_fundamentals.md",
+      "sha256": "2e89a1d6dda2599ae1583f686cd97fbf5a28d43e9c187f5b12a2ff4a195c26ca"
+    },
+    {
+      "path": "data/kbs/KB_08_ai_generation.md",
+      "sha256": "55cf7e54d011c70c8a8c5c43ad39e0aa911d1f4ea1bd138435a30c6a011e8819"
+    },
+    {
+      "path": "data/kbs/KB_09_financial_services.md",
+      "sha256": "59a40dc9d0a451126468346a2fcb221e093594bca3805449a8fa3529bebb32db"
+    },
+    {
+      "path": "data/kbs/KB_10_technology_saas.md",
+      "sha256": "3718996dbed0ba33195323f6ca9550292ad6ebae9882974ec731db272c177c3a"
+    },
+    {
+      "path": "data/kbs/KB_11_healthcare_pharma.md",
+      "sha256": "3d157cff2b97205c6d7cd93f878c3efb9a72d5ef9f71ff8592be3eea1972ec04"
+    },
+    {
+      "path": "data/kbs/KB_12_retail_consumer.md",
+      "sha256": "d716f4dcfe32c6fe80467fe0d432be87417bb929c264133f58ff2213890b7f7e"
+    },
+    {
+      "path": "data/kbs/KB_13_manufacturing_industrial.md",
+      "sha256": "91fe4df389f047a5a85545cad3c19c2bfbc493f6f012dfb558f7fc3097ddd54b"
+    },
+    {
+      "path": "data/kbs/KB_14_energy_utilities.md",
+      "sha256": "60c5aa0ce350ab56a45aa8aa1fc9ea665d313807dc2555268d27d9654802996e"
+    },
+    {
+      "path": "data/kbs/KB_15_professional_services.md",
+      "sha256": "fe3d9c38df354259ccad8cd2f1d624f66c3532f9d44edcfdeb99352dc3197a2c"
+    },
+    {
+      "path": "data/modern-css-arsenal.md",
+      "sha256": "94e651db93a1b8a02496ae6e45a3eb2ac7aa2d1e49c0a396ad0441ecce3bd65a"
+    },
+    {
+      "path": "data/narrative-pacing.md",
+      "sha256": "83ad3a54c17adb9a2ccb1f6d276a19fa74035554e50404468cbb2f08f8bc4c03"
+    },
+    {
+      "path": "data/palette-registry.yaml",
+      "sha256": "a7e49fb26e2dc268142a9fe1a59b95e0e1365a06b03e7c65234863513abec1ac"
+    },
+    {
+      "path": "data/pipeline-execution-log.yaml",
+      "sha256": "9a3f3411a8ff6f48dfc608ec5e874cf2fd29a0f66a32a018f9a50bfd3e7aa70c"
+    },
+    {
+      "path": "data/planning-reflection.schema.json",
+      "sha256": "a773a8712e687c8119849fac2b38779404565fc36a5b0a5ee561e11be4434c39"
+    },
+    {
+      "path": "data/principios-invioláveis.md",
+      "sha256": "444ccfb203635dd792d8ead4024d80b381552eb892df6ba57e93b1e6a9f36b52"
+    },
+    {
+      "path": "data/qa-routing-table.yaml",
+      "sha256": "5817174a8d9d18e657d9411650113e9126dd56517b8590dfa1cba5800ec85c4f"
+    },
+    {
+      "path": "data/qa-rubric.yaml",
+      "sha256": "2af3a76bf7436d3a39859c3e0fc990d735a46aaf2ad4c8779ce0b688b5cf42be"
+    },
+    {
+      "path": "data/render-modes.yaml",
+      "sha256": "27a2c019e86126993937e730e89a20090e4b4d41eecfc7cb8eb61ffe9bf0430e"
+    },
+    {
+      "path": "data/scale-standards.yaml",
+      "sha256": "4e033e3ca907bd164c2e5d4fb6d056e9f7c31ed3492f70d2d450b58af6b8096a"
+    },
+    {
+      "path": "data/semantic-classification.yaml",
+      "sha256": "2992149c1a21905486926aec816021187ef59e427ea3da6bb2e3a76355351559"
+    },
+    {
+      "path": "data/shadow-dom-pdf-troubleshooting.md",
+      "sha256": "aebf0255192fdaac832219f50b8359f75de7e0dbd28feeecdc0feaa6b640a8ee"
+    },
+    {
+      "path": "data/slide-component-vocabulary.yaml",
+      "sha256": "f832b1b5e1f0d553c49c9a287e19665216e75668370ac7026f36f6120e0383f5"
+    },
+    {
+      "path": "data/slide-function-map.schema.yaml",
+      "sha256": "27599ac26bcaf294e74082ffb42a5ff7c7974706f66205117665746fbfa6ba96"
+    },
+    {
+      "path": "data/slide-layout-patterns.yaml",
+      "sha256": "53abfd8267513076925705aa5eeb96482e3ec5cf5d5ddd925e85f7e338149fb3"
+    },
+    {
+      "path": "data/slide-spec-schema.yaml",
+      "sha256": "1ba61f4fdeb54aebf13cb746a47af5a47e3a415cb9ef07b166bea746fda67d02"
+    },
+    {
+      "path": "data/SOP-SLIDES-001.md",
+      "sha256": "e4ba83c25eee048b139bd1e4103aba8823dd34c6e68f11fa29b912390a58bcba"
+    },
+    {
+      "path": "data/SOP-SLIDES-003.md",
+      "sha256": "17450ff2f08a5bc296f74570dab2b2c3abfe4d423bbd7715f6e8ba45fa44e8cd"
+    },
+    {
+      "path": "data/story-arc.schema.yaml",
+      "sha256": "694996f76f2bdf67ec80411c8adbceaa135f4e092cca9b01732952d62f37adab"
+    },
+    {
+      "path": "data/template-registry.yaml",
+      "sha256": "fac68d1771022fdcc0bb254bd78d83be3aee5c1119e53a610b51f58f5507b178"
+    },
+    {
+      "path": "data/token-registry.yaml",
+      "sha256": "db9f073e251834ccd9df44c0b2ddbc8c1b110ea7c6ae0deb0793ceb575e4259f"
+    },
+    {
+      "path": "data/token-transformer.yaml",
+      "sha256": "2270157a7439ac36b911084cb46266636c144b89f46d32d3c697a7251a613686"
+    },
+    {
+      "path": "data/visual-engines.yaml",
+      "sha256": "dbfd560150ac55d0334ea09c6a869545af5922698dabb293919e43e1894bce95"
+    },
+    {
+      "path": "data/visual-generation-report.yaml",
+      "sha256": "115cf773345d919d164a4be6ea71c69cbf6da0d9a6837154016c4950c3aea8af"
+    },
+    {
+      "path": "docs/mckinsey-architect-mental-model.md",
+      "sha256": "9fdcf0a882e1c98545f21ad2b20f3bb7cceec1bfbca096de9c96e3f4ae412eb9"
+    },
+    {
+      "path": "examples/gold-standard-slide-spec.md",
+      "sha256": "d12ad5e57d2bc44a36ca250f6585387fa5b472ceff52688cade18c70128add9e"
+    },
+    {
+      "path": "README.md",
+      "sha256": "08db9895157622e43d790a2a761ec767c73a66a5347a924638e4e9b260f196da"
+    },
+    {
+      "path": "tasks/apply-design-revision.md",
+      "sha256": "ff2342c48a391db5a2051322226d10cbe33f7e19f9e4e82d75e4cc74a7b1b29b"
+    },
+    {
+      "path": "tasks/apply-scqa.md",
+      "sha256": "f99e55aae0c7d5b4645d12d0679a39438f26c898b83b3d7cdc5d4cb677790dda"
+    },
+    {
+      "path": "tasks/build-pyramid.md",
+      "sha256": "0dc0ff0f82fc0719d25e59d71868ccce599908ce98f18ddeba6e0181565b7821"
+    },
+    {
+      "path": "tasks/catalog-sources-apa.md",
+      "sha256": "efa43807f428a2a49148ef1903e229e745cb83d295b5b384080a336569b88bac"
+    },
+    {
+      "path": "tasks/classify-slide-type.md",
+      "sha256": "67f7f0bca6fec278edecf16443f19ff8fd69b18bed149c3cec9d71b9a294a9ed"
+    },
+    {
+      "path": "tasks/compose-grid-layout.md",
+      "sha256": "211173822afd58da9927c7cb8cfd3e4c69682fd00ceeb659fc489a3011749bba"
+    },
+    {
+      "path": "tasks/compress-outline-to-slide-functions.md",
+      "sha256": "4eebe3e955146f18c920e6c6258e9bc84a8eeb7b82811df701fbb52711479007"
+    },
+    {
+      "path": "tasks/confirm-delivery-format.md",
+      "sha256": "e8793e31d400185ac1b82206179e036f72a07b978ea742f91f85066fd32887ce"
+    },
+    {
+      "path": "tasks/create-presentation.md",
+      "sha256": "70bdfdb78f3db278ef7868192c79719088f2fc3159558c58f577187aadb3e951"
+    },
+    {
+      "path": "tasks/decide-slide-architecture.md",
+      "sha256": "cb62dc4cbb8935c6ff7727e79c89b0af009de4c0ece7e21cbcd1d4196eabfec4"
+    },
+    {
+      "path": "tasks/define-design-direction.md",
+      "sha256": "6a24db77e97541fe4b365ed665e45606b29dc286f19133ea6990ad8bff0f4416"
+    },
+    {
+      "path": "tasks/delete-slides-creator.md",
+      "sha256": "0bbf3a311a4037a73bb4bba21249a876108936f5ef737cfdb2ddfbca866e3951"
+    },
+    {
+      "path": "tasks/detect-brand-override.md",
+      "sha256": "8cfe96fb799448e0ef6a874afe162f3ce656db9be00f0b5856edf255f5914587"
+    },
+    {
+      "path": "tasks/distill-governing-thought.md",
+      "sha256": "857f2df906f0203c60078e90d5964e065065f515579b409a493f8e862ea4593b"
+    },
+    {
+      "path": "tasks/emit-deck-spec.md",
+      "sha256": "7283cce699a254204f9d096edbbaffde5aa359408f20c9c7bbbe6fc7ed8e8600"
+    },
+    {
+      "path": "tasks/export-editable-pptx.md",
+      "sha256": "5fd2de4a24e7f9c51f4d67a5acbefd2213ceb56b86c0db042b0253217e700fc5"
+    },
+    {
+      "path": "tasks/handoff-render-request.md",
+      "sha256": "eeac0359c37ba5121d7ee63355a7e2a99e13cc38c1bed73e52f34d133dbe1622"
+    },
+    {
+      "path": "tasks/load-kb-bundle.md",
+      "sha256": "c25d9e1b2eb58b52ba342bb0afb6b95b452d600ffc63c6b81310f7576ae26b9b"
+    },
+    {
+      "path": "tasks/normalize-briefing.md",
+      "sha256": "591a59a10f8980d7f86c4325a6ffeb2e0b9ab7d770125794b65d7eb128cd55f9"
+    },
+    {
+      "path": "tasks/p1-fidelity-sampling.md",
+      "sha256": "f5adb48854a1e79c6ad3d6153fb2146aa020707339e36265f2eb3468f0586d1d"
+    },
+    {
+      "path": "tasks/prepare-ds-presenter.md",
+      "sha256": "6d02bbaf5f092352dfd14a70bd966832039fc8ce83e8287785e9f4345bf6bb12"
+    },
+    {
+      "path": "tasks/register-palette-override.md",
+      "sha256": "7d5eff6afbcee346624cf1e8f86756f4efe7de6195d2b3513fc0bfc750c0ba80"
+    },
+    {
+      "path": "tasks/resolve-active-palette.md",
+      "sha256": "1687ea2eef8249f90dd13e221c9019e41a049e92a15ad8d98e73d2226a0b6de6"
+    },
+    {
+      "path": "tasks/review-presentation.md",
+      "sha256": "044fe9cdb13b727fe3aa0ad64f4d7b8c9868ff4a9301ea9f26e124c33aaa4585"
+    },
+    {
+      "path": "tasks/run-design-critique.md",
+      "sha256": "4cd6b906e7ed4a33bb71e20a03262afdcef811da67cadefd0cc86b6e40ef39af"
+    },
+    {
+      "path": "tasks/run-vertical-test.md",
+      "sha256": "3c2b99bf40692853c60315449fbabddc0f955746004bc1fafeaba7a3728c0ef7"
+    },
+    {
+      "path": "tasks/select-chart-type.md",
+      "sha256": "43250e0c1bc456ef79471119041e36a0c43eb3c6dc6d20c86ab57562c0d5f561"
+    },
+    {
+      "path": "tasks/update-slides-creator.md",
+      "sha256": "c09945a204f5b87f0781e198bf1e62978f577f1e961e214d85c4adc22d688a1a"
+    },
+    {
+      "path": "tasks/validate-action-title-rhetoric.md",
+      "sha256": "e2d304745f95b4fcbb44a83f864b32f01880acd2bb0a7a209c5743884da2985e"
+    },
+    {
+      "path": "tasks/validate-action-title.md",
+      "sha256": "0beab20edb36661f1e35688cfd58459f561012c774da00c49b9193ad30d00a92"
+    },
+    {
+      "path": "tasks/validate-contrast.md",
+      "sha256": "12c05cd9e29cd30731afe083a8bd0904cb2ae11ef9c911cfec5dd326c4be0742"
+    },
+    {
+      "path": "tasks/validate-density.md",
+      "sha256": "fc325843e0aeef2de1cb469f78c4719374fb2c71fdd19e49dba6be961f395494"
+    },
+    {
+      "path": "tasks/validate-enumeration-universal.md",
+      "sha256": "a2934da70954415aa96d1cde8dd5381570cdb6b9a2e697e0d5d4f3c1108bb337"
+    },
+    {
+      "path": "tasks/validate-fontes-apa.md",
+      "sha256": "04163f3fe2c52e789cfc1f8923f7bbe22f5e843f30ecd879d7fd4b5f51cda623"
+    },
+    {
+      "path": "tasks/validate-governing-thought-strength.md",
+      "sha256": "402e2dce8500dd69fa8af1bf7e5f67d19e01367143cf3c40986f578db40b91b2"
+    },
+    {
+      "path": "tasks/validate-hierarchy.md",
+      "sha256": "cb3e87c7947f590209a0c77b18072e4d02bc0212dd90ecec98ee538ae9d35fc2"
+    },
+    {
+      "path": "tasks/validate-pyramid.md",
+      "sha256": "c16fcabfd255f13b03d1cb937344aafcc0fd2b73a0fa3e8d96659ad5f670fbbd"
+    },
+    {
+      "path": "tasks/validate-readability.md",
+      "sha256": "fb8f78cd699ac3db1c497a831e4e8ea28ca631c5eabfce68f0d96966ec4f8575"
+    },
+    {
+      "path": "tasks/validate-scqa-depth.md",
+      "sha256": "6c861577c83b0afe0297f6dc186fcbac90d8228e2e87d04672d25b15982fa331"
+    },
+    {
+      "path": "tasks/validate-slide-function-map.md",
+      "sha256": "263c6fb60eeb31240545736d9cf584e09367a2d8e8af417ffe38c820d123cdb0"
+    },
+    {
+      "path": "tasks/validate-story-arc.md",
+      "sha256": "d945ada7c16d9523d9533aa1018432faa323147c14930f2f8cdc441ce083c3ed"
+    },
+    {
+      "path": "tasks/validate-vertical-flow.md",
+      "sha256": "5e50853a4f4fa88820da0006151ed348d767a2465c8f946846d207d7956489cd"
+    },
+    {
+      "path": "tasks/validate-visual-coherence.md",
+      "sha256": "901c002956bb5eb4ff585f1f9070197c0728765a8e1fd389b2869f8eea09ec71"
+    },
+    {
+      "path": "tasks/write-action-titles.md",
+      "sha256": "ddf0ab6316071e83a39e259a6a6c5f2745bdc2f3dbf1e1bdc41426d2e67436c3"
+    },
+    {
+      "path": "tasks/youtube-to-briefing.md",
+      "sha256": "91b5445fef83a9b70539ea4174f9cfab2d1c5a04c7af92277441fc42cc4d3f3f"
+    },
+    {
+      "path": "templates/analise-material.template.md",
+      "sha256": "482eaa1abda9bc2a457f54e0824ff9d5474bef7ed3d14ecf8281ba934fd6f837"
+    },
+    {
+      "path": "templates/briefing.normalized.json",
+      "sha256": "02cbdbe6f6604f33526e9938378bf1e11eb1af7dcaa1bb63ad0a5b01728881b7"
+    },
+    {
+      "path": "templates/deck/executive-pitch.yaml",
+      "sha256": "f87f64a9a3bca5c47a303f7cf7f85611844a1173016664c6c8b763a5cfb96b9e"
+    },
+    {
+      "path": "templates/deck/webinar-sales-perfect-webinar.yaml",
+      "sha256": "94f36eac76e4d47d3b363926fa14aadbb6be69fa2cf311addc8c07e86b0f5bb6"
+    },
+    {
+      "path": "templates/deck-manifest.json",
+      "sha256": "c775bd6515095080fc8f044e2ec6a90c81f44ecd941d21af9181bb43e9a15737"
+    },
+    {
+      "path": "templates/index.yaml",
+      "sha256": "e81cf9bbed4cfa0b753f9e9feb4620726a65b3c592163dcd8e0c42c0f0f52b92"
+    },
+    {
+      "path": "templates/planning-reflection.tmpl.jsonl",
+      "sha256": "d4f9fa1998f421ef4efe8a58a62357dec501d9b7e15c37ee33c890c381600306"
+    },
+    {
+      "path": "templates/qa-report.json",
+      "sha256": "b2399a11af468ceefd1c761de97aa6b640e5d89da961841232ac0e146323a787"
+    },
+    {
+      "path": "templates/README.md",
+      "sha256": "256b922bbc7805093a34d32e884a7800aaa2485ff34cbc0777f5bf0c24a92296"
+    },
+    {
+      "path": "templates/schemas/deck-template.schema.yaml",
+      "sha256": "873944f98690bd4fe3bbf0b33c6b80494c8a6234a2100e004cf6f323fe9af2ec"
+    },
+    {
+      "path": "templates/schemas/slide-template.schema.yaml",
+      "sha256": "6959544611647b3faf2ce0d68b910a7d9500202ab4be66284ad802573c96d8ce"
+    },
+    {
+      "path": "templates/schemas/visual-template.schema.yaml",
+      "sha256": "2b3cc1427852933a2f454cee38371276d8e79d5b64f55bd25b5433f6818833dc"
+    },
+    {
+      "path": "templates/slide/cta-concrete.yaml",
+      "sha256": "c92e278ee6a122c97e149641a94597117ec180b3fc0ad742662cfac0ff3d3b91"
+    },
+    {
+      "path": "templates/slide/hook-opening.yaml",
+      "sha256": "cabb9a2577385ed38b47c8a3da56ea525448178b4c09ad81687f60817c1defb5"
+    },
+    {
+      "path": "templates/slide/proof-stack.yaml",
+      "sha256": "8b43b5d07f2845bae71290b012c6ab70c0b0d130d39e612a4bffb47f170269dd"
+    },
+    {
+      "path": "templates/slide-archetypes/appendix.md",
+      "sha256": "e10813da404aadc8cdf7e9d60e02acfa9a1295db31bdf94288994f80f4b6a60f"
+    },
+    {
+      "path": "templates/slide-archetypes/data.md",
+      "sha256": "4ccb0d57d7f054b3b56bd21028c4e9874a5f84014a54c0dd605410e4a73188af"
+    },
+    {
+      "path": "templates/slide-archetypes/executive-summary.md",
+      "sha256": "19b93ce8145f8b83895186cce2e82095ff8912354df36f5450435c46edd0367d"
+    },
+    {
+      "path": "templates/slide-archetypes/financial.md",
+      "sha256": "3fba9357b14d3ffc93f31adda0faf316bdb87852a338f6efa9dd8f24c76f88ad"
+    },
+    {
+      "path": "templates/slide-archetypes/framework.md",
+      "sha256": "8b09a02f0fae5d3f4c803aa24635a3b2b4a1bb17380a8f51c1cddb27f81b2ecf"
+    },
+    {
+      "path": "templates/slide-archetypes/timeline-roadmap.md",
+      "sha256": "92d1da2c3123463c21ceeab3660e581335ce040d177c550476960a267cd80b3e"
+    },
+    {
+      "path": "templates/slide-archetypes/title.md",
+      "sha256": "23b024f03e2a382390f6a8cde807bf7ce9aaf91743cf47fcb904562e4ea15611"
+    },
+    {
+      "path": "templates/slide-component.tsx.hbs",
+      "sha256": "e3af54663d872b0848025200f7e025d74da6db0630a7c276d180ca5580095bcd"
+    },
+    {
+      "path": "templates/theme/editorial-pentagram.yaml",
+      "sha256": "876e207d0533c73ff6badaa39b10b317d5ee32971ed505a343e1ab8be9baa2b4"
+    },
+    {
+      "path": "workflows/generate-presentation.yaml",
+      "sha256": "34356003ef83320f24d6089cfcab2020b23be2f7a5fe3147c50a6ea44b12d8bf"
+    }
+  ]
+}

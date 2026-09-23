@@ -1,0 +1,104 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/n8n-white-ops",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/n8n-auditor.md",
+      "sha256": "a4e5ccf1fc50e26844f6b21a72c7aac9ba1abae830abc2843d21a4cc0bf5124b"
+    },
+    {
+      "path": "agents/n8n-builder.md",
+      "sha256": "5c5f255b27dac4befa719ff00005bea480bb10d2865aaa4ddd0ae27fb9416a75"
+    },
+    {
+      "path": "agents/n8n-chief.md",
+      "sha256": "968a93b6da2442740b40751e01b013a6239bc2790086e63c2146471f850b20f2"
+    },
+    {
+      "path": "agents/n8n-compliance.md",
+      "sha256": "b32ccb34af1e102ba6f7411b24a4c060b9bfb064751da9ce84e4695ec86523f3"
+    },
+    {
+      "path": "agents/n8n-documenter.md",
+      "sha256": "6c12fbca1d46992e2c3318a106222a761d9484a3932652ec37afe4e55b832971"
+    },
+    {
+      "path": "agents/n8n-ideator.md",
+      "sha256": "621adb4646eb19e14c16a7730eda7676596ee88d9d5c0716002c2ee0c1bf09ea"
+    },
+    {
+      "path": "agents/n8n-security.md",
+      "sha256": "f9a3539665c532c9ddd616cb8610d8d226009e7ef9cdf1b6eab22d3a53a1fd5e"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "sha256": "38db86c7c7f307c467b09b458bc20ade1dcba8db0ce999102b070a39b4326ace"
+    },
+    {
+      "path": "config/instance.yaml",
+      "sha256": "c5af8edb1c327549578583b67653a4c63b934081864eddf219d8863a6c7be7fc"
+    },
+    {
+      "path": "config/source-tree.md",
+      "sha256": "ed84690a02c7e5d7093fe058a15576c17e10565c92faf84bdc4a26318499fa33"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "sha256": "213f61a01aee3941c38d2a3ca5c51b51a8779420fbb50fba7363c764d001384c"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "839878f8bc6694a474790e09f8409fdc5dac25f78ef0d7c6bbd6f6aa86fed32f"
+    },
+    {
+      "path": "data/n8n-api.yaml",
+      "sha256": "b5553382649f47fd1b311a105155e7133d1522d6e5a68b99b58309606804e199"
+    },
+    {
+      "path": "data/n8n-node-types-reference.json",
+      "sha256": "5f4f8b39b33585d8d3cb4c464f4100cbb219c5a7366dbffdd5eeecd175ca77b1"
+    },
+    {
+      "path": "README.md",
+      "sha256": "dc7a2becf6a60139813b4424d681231536b90a482a72fe58213f91e54a300e03"
+    },
+    {
+      "path": "squad.yaml",
+      "sha256": "d852307f1b830952e691f98c35b5aa0d422409b4cbf23ed38d23750770223dee"
+    },
+    {
+      "path": "tasks/audit-workflow.md",
+      "sha256": "47067031c83280d4370dc9caac35978e5ede32d397a47e549a4b08b9e941f3c9"
+    },
+    {
+      "path": "tasks/batch-document.md",
+      "sha256": "fc0251653531485ca8b2c10ef0a2c250a60fca0e39394afa19ab8ca281095ad0"
+    },
+    {
+      "path": "tasks/build-workflow.md",
+      "sha256": "eb19f83b0eb3dd64e039f252483f9302fbfa86ef17e5ef2261d32e0b9c46c067"
+    },
+    {
+      "path": "tasks/check-compliance.md",
+      "sha256": "2216d1bdd0e26867eaf0f7c765b83b9d3d9a5695c51fb2ed2470fff608fc7db0"
+    },
+    {
+      "path": "tasks/document-workflow.md",
+      "sha256": "7af52086f927390abc371fbe5505e992a2d96097351cdf08464f2a04869720ff"
+    },
+    {
+      "path": "tasks/inventory-report.md",
+      "sha256": "75f1483dd2e84421c73882864b421f86bef090de2c47ca9291966dc976ea247e"
+    },
+    {
+      "path": "tasks/security-scan.md",
+      "sha256": "80074b28106dd4a3805de407746efa77123878f06a1783c938a82a397113935c"
+    },
+    {
+      "path": "tasks/suggest-improvements.md",
+      "sha256": "b43a9ed077f2bbcc9f4d3adaf8966a6a09dd97c29154b0551903d58e97e6cadf"
+    }
+  ]
+}

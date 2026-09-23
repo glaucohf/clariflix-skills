@@ -1,0 +1,100 @@
+name: hub-manager
+version: "0.1.0"
+title: Hub Manager Squad
+short-title: Hub Manager
+description: >-
+  Squad operacional para embaixadores aprovados da Academia Lendaria gerenciarem hubs locais com baixo atrito.
+  Ajuda com planejamento semanal, conteudo, onboarding, reativacao, encontros e diagnostico simples.
+author: Codex
+entry_agent: hub-chief
+slashPrefix: hub
+domain: community_operations
+icon: "🎯"
+type: specialist
+independence: true
+independence_details: |
+  Este squad foi desenhado para ser util mesmo sem integracoes externas:
+  - Nao depende de Circle, CRM ou dashboard para operar
+  - Funciona com contexto parcial fornecido pelo embaixador
+  - Usa artefatos locais do proprio squad como base
+
+metadata:
+  version: "0.1.0"
+  score: 8.8
+  keywords:
+    - hub-management
+    - community-operations
+    - onboarding
+    - member-reactivation
+    - local-events
+    - ambassador
+    - weekly-planning
+
+tier_system:
+  tier_0_orchestrator:
+    description: Entry point para triagem, planejamento e diagnostico
+    agents:
+      - hub-chief
+  tier_1_specialists:
+    description: Especialistas operacionais para conteudo, membros e eventos
+    agents:
+      - hub-content
+      - hub-members
+      - hub-events
+
+agents:
+  - hub-chief
+  - hub-content
+  - hub-members
+  - hub-events
+
+data:
+  - hub-operating-principles.md
+  - hub-moment-signals.yaml
+  - content-angles.md
+  - event-ritual-patterns.md
+  - sources-of-truth.yaml
+
+tasks:
+  - plan-weekly-hub.md
+  - create-hub-post.md
+  - create-event-plan.md
+  - onboard-hub-member.md
+  - validate-onboard-ambassador.md
+  - reactivate-members.md
+  - diagnose-hub-health.md
+  - plan-monthly-calendar.md
+  - analyze-event-results.md
+
+workflows:
+  - weekly-operating-cycle.yaml
+  - event-launch-cycle.yaml
+  - ambassador-onboarding-cycle.yaml
+  - member-reactivation-cycle.yaml
+  - hub-diagnostic-cycle.yaml
+
+templates:
+  - weekly-plan-tmpl.md
+  - event-plan-tmpl.md
+  - onboarding-message-tmpl.md
+  - ambassador-approval-message-tmpl.md
+  - reactivation-message-tmpl.md
+  - diagnosis-report-tmpl.md
+
+docs:
+  - ambassador-onboarding-flow.html
+
+checklists:
+  - weekly-ops-checklist.md
+  - event-readiness-checklist.md
+
+activation:
+  command: "@hub-chief"
+  description: "Ativa o orquestrador principal do Hub Manager"
+  examples:
+    - "@hub-chief planejar a semana do meu hub"
+    - "@hub-chief diagnosticar meu hub"
+    - "@hub-chief iniciar validacao e onboarding de embaixador"
+    - "@hub-content criar um post para o encontro de quinta"
+    - "@hub-members me ajuda a receber novos membros"
+    - "@hub-events planejar um encontro local sobre IA na pratica"

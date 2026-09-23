@@ -1,0 +1,15 @@
+row: operacoes
+title: n8n com controle
+title_netflix: N8N WHITE OPS
+subtitle: Audita e organiza automações n8n com segurança operacional
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 24 arquivo(s) de origem
+  requer: Workflow, integrações e objetivo
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Auditoria, Workflow, Segurança]
+  generos: [Automação, n8n, Operações]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

@@ -1,0 +1,15 @@
+row: operacoes
+title: Pipelines que fluem
+title_netflix: ETL OPS
+subtitle: Opera pipelines de extração, transformação e carga de dados
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 28 arquivo(s) de origem
+  requer: Fonte de dados, destino e transformação
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Extração, Transformação, Carga]
+  generos: [ETL, Dados, Operações]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

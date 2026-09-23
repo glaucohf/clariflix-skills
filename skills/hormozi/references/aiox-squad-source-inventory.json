@@ -1,0 +1,1048 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/hormozi",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/hormozi-ads.md",
+      "sha256": "896f22fe7e46b8a1ef954fba33d56f59d6ea559b1482b1376475fb45060b7fea"
+    },
+    {
+      "path": "agents/hormozi-advisor.md",
+      "sha256": "fbaf5faf039276f58f3c34d1fa718d14a430c72213bc3a1b1c2aa8b3b92c274f"
+    },
+    {
+      "path": "agents/hormozi-audit.md",
+      "sha256": "d88d0e3c7d96f43c12c6991c6a6ebb595579b46b05c6473ebe0fef0bdfb357ef"
+    },
+    {
+      "path": "agents/hormozi-chief.md",
+      "sha256": "77fbc1a7d0a5b3c835b0b6590287275f277ea88ce77b8d74bc8d09a8f2b38fad"
+    },
+    {
+      "path": "agents/hormozi-closer.md",
+      "sha256": "3fbc5301ae5996bb140a270c17c8d28bc1ed70a4506bcf5a5672be3013795eb9"
+    },
+    {
+      "path": "agents/hormozi-content.md",
+      "sha256": "31ea3bda807859bdb0d453ae579c9b20d4c237ea7af494a917244bd32925f183"
+    },
+    {
+      "path": "agents/hormozi-copy.md",
+      "sha256": "d2fe874d231d8d1de4122b5974305140d3ebc370e8545ea6210febd4130beeb0"
+    },
+    {
+      "path": "agents/hormozi-hooks.md",
+      "sha256": "f1e5fe65baeaba8e7d99ff7401a88f30b818ce309e876cf3866880a3c10277f2"
+    },
+    {
+      "path": "agents/hormozi-launch.md",
+      "sha256": "a11486a26087644980d036ee8a6a7f34fc755f885ccb313f4ca718f6fce33be8"
+    },
+    {
+      "path": "agents/hormozi-leads.md",
+      "sha256": "18f4d92e1befbdf45a00b14356ce955c06886ec37bfb4aff60d4dbab01589ccd"
+    },
+    {
+      "path": "agents/hormozi-models.md",
+      "sha256": "c049d80e0b634bedece8679a25cfe2a78bc620d46ab3824c886cadb35d7f8766"
+    },
+    {
+      "path": "agents/hormozi-offers.md",
+      "sha256": "40e2495d2ef392981c6a8afca3508f28f302373ab6a803422f6bd74d92c5d0d9"
+    },
+    {
+      "path": "agents/hormozi-pricing.md",
+      "sha256": "e12ccba8d2e70fdec066263d047ecf724288ef88941cfe36910472328fe935f7"
+    },
+    {
+      "path": "agents/hormozi-retention.md",
+      "sha256": "e6de98bc01690ede1853d6825cf10b973635ed677b41dddf1a46e0e67ad9d631"
+    },
+    {
+      "path": "agents/hormozi-scale.md",
+      "sha256": "0e9763365b98630f8c494c745ab076b76cafe707d8f0541dd319217ad7ac4b39"
+    },
+    {
+      "path": "agents/hormozi-workshop.md",
+      "sha256": "6bad9af3839aefe423ccafa6499e4f77d586c024b592457f6c1bc8e7e0455524"
+    },
+    {
+      "path": "checklists/5-horsemen-checklist.md",
+      "sha256": "1fdb6bb558a3efbe2aa386b55f09fad0cb9e438ba1ef5228a2523fb806bab30b"
+    },
+    {
+      "path": "checklists/activation-point-checklist.md",
+      "sha256": "0f8ca684ccf4ec1edbb4f0b92579a5a00175df795103a9f282c9ee9ad28d3c3b"
+    },
+    {
+      "path": "checklists/ad-angles-checklist.md",
+      "sha256": "4b72def98bc130ddf570e5afecbd139a1d233d9a95cbbb6a367eeb2233d08481"
+    },
+    {
+      "path": "checklists/affiliates-referrals-checklist.md",
+      "sha256": "f1c1f9d29936203739fef55f7faf3f0609fa8c922b397e89e969b37991e7664a"
+    },
+    {
+      "path": "checklists/antipattern-screening.md",
+      "sha256": "df30f6b78bf361e6f32d86483c572cbb1b2893eb002dafacdd3832a5bc8b75c8"
+    },
+    {
+      "path": "checklists/bonuses-checklist.md",
+      "sha256": "7ecafbb7b3b0f326e76b6d084e7e6fa3726629922e490239c48b8a2820b62040"
+    },
+    {
+      "path": "checklists/branding-checklist.md",
+      "sha256": "1206cffa391a5dc3cdde9017b23f081bc79036c05be7d9873d09a2aee4dece0b"
+    },
+    {
+      "path": "checklists/churn-diagnosis-checklist.md",
+      "sha256": "c7ac3fed000bf39a77489761f8cde475000fd20112a305d889c54f7279edd7d1"
+    },
+    {
+      "path": "checklists/content-creation-checklist.md",
+      "sha256": "b552294df137a3f84c993d1a62dd5db00e376a57d9790d53b09a2c1017ea4ca3"
+    },
+    {
+      "path": "checklists/core-four-checklist.md",
+      "sha256": "3e425b5fac4c5b7d49e4469baf2fc626a903d7770feb1e92b6a27c7d8ca2a521"
+    },
+    {
+      "path": "checklists/customer-journey-checklist.md",
+      "sha256": "8a76e25774bc1579b51e54be3d2b4f47c4724cf70f0956d1e9c9e0d025515acb"
+    },
+    {
+      "path": "checklists/downsell-strategy-checklist.md",
+      "sha256": "811bcab17a20159b14ffc1ef87cd649a3327103d31963a62f98621f62eb5917a"
+    },
+    {
+      "path": "checklists/email-campaign-checklist.md",
+      "sha256": "0f181589146b8fc121725450a294e13cd491117ff2b9b784340b57be16fe966e"
+    },
+    {
+      "path": "checklists/engagement-scoring-checklist.md",
+      "sha256": "8e534be086faa097422696133adeeb45f01cb5d972553a5d55291638af5b13d2"
+    },
+    {
+      "path": "checklists/exit-interview-checklist.md",
+      "sha256": "fce99af5ce4509964b6992b44569a92839a6f08c84afec467f62706b5eaa683b"
+    },
+    {
+      "path": "checklists/fast-cash-checklist.md",
+      "sha256": "7fc757a28ec7e0acf1508b9823cd5677b410350d44fd48496df8b9c854168110"
+    },
+    {
+      "path": "checklists/goated-ads-checklist.md",
+      "sha256": "a59c682d8a39f7c8a9e6fa8a535db91d80521ca722d06c3ded0e5da4604432ca"
+    },
+    {
+      "path": "checklists/golden-ratios-veto.md",
+      "sha256": "9cc3ef43b990ba6390f1f649c9680a1919498d613305cea6b9121784f9a87ef4"
+    },
+    {
+      "path": "checklists/guarantees-checklist.md",
+      "sha256": "51b5fa17165d68e83543e3adb973b9b2acc80fe30c124ffd3ab79eee1f0bc907"
+    },
+    {
+      "path": "checklists/hooks-checklist.md",
+      "sha256": "7279c1bc740c1c0ab2e5c38aa2976e6cec309d3f35a023d37bb5e8736bd5da1b"
+    },
+    {
+      "path": "checklists/landing-page-checklist.md",
+      "sha256": "3e7b761ccaf7e6464d2382f4237711a710bfaa7b3eb9ef61d159485f82b50776"
+    },
+    {
+      "path": "checklists/launch-checklist.md",
+      "sha256": "176fbc07bd250b03c941e2b7d9b87dad3ec71def123c2cf25937c04cccc33b82"
+    },
+    {
+      "path": "checklists/lead-magnet-checklist.md",
+      "sha256": "116a3e05ae28b83f7868ff255e343d003b19019e68d63bc26eb88d214f5b593b"
+    },
+    {
+      "path": "checklists/lead-nurture-checklist.md",
+      "sha256": "335bd002762c3be8121d7b153ee27c450ec257c2bfc6d8f9bb2e7de984a317fc"
+    },
+    {
+      "path": "checklists/ltv-checklist.md",
+      "sha256": "f12510f150a3660a8e657cf0800aca1cea216278a610442144cb51bd9854db7f"
+    },
+    {
+      "path": "checklists/market-validation-veto.md",
+      "sha256": "5f5582e1ea66eae9524ebd19cc5b36184b83dcc4020dfdde770d88031323feb9"
+    },
+    {
+      "path": "checklists/marketing-machine-checklist.md",
+      "sha256": "9e107a267eb54d0b191e474bb3d6efb5004f8925c503543093241cd956e37525"
+    },
+    {
+      "path": "checklists/money-model-checklist.md",
+      "sha256": "19dec670751bef13a67bb5b2a330fab03e6434705c26eb1103f5ba0c27ace548"
+    },
+    {
+      "path": "checklists/naming-framework-checklist.md",
+      "sha256": "545af8b5eb3e29794a2096891e279e22b9084a51a807730cb587164197a4a762"
+    },
+    {
+      "path": "checklists/offer-architecture-checklist.md",
+      "sha256": "ece0490ca5dad546a3f9adf140d27c44186de0d0bc1f38ced04e406887e5c778"
+    },
+    {
+      "path": "checklists/onboarding-30-day-checklist.md",
+      "sha256": "976461be44874d0aad029dd608e21d41652b98691e26c6c1066130ed3b8c0a9c"
+    },
+    {
+      "path": "checklists/price-raise-checklist.md",
+      "sha256": "86b74cfddef5deb5e843f45a77b09ef6592a14ec483e67df00ab9b6e85bc8ff6"
+    },
+    {
+      "path": "checklists/pricing-checklist.md",
+      "sha256": "3bb2956a1bfe17ad0151ef4f9125d037d83f344f913e266485f0c760200e77c0"
+    },
+    {
+      "path": "checklists/pricing-framework-checklist.md",
+      "sha256": "25a2e3cadce935cb33f1922f46257a11a77062e4b46e809031ef33a6fd5728ef"
+    },
+    {
+      "path": "checklists/registration-page-checklist.md",
+      "sha256": "a3926f6416d8a7135e97052718f9b9a029a398dcee63e0501052e6efe39454e0"
+    },
+    {
+      "path": "checklists/retention-checklist.md",
+      "sha256": "b956947348e891d656ba36c32d89bbd613aa57237d0a7a3825e66a237c136a26"
+    },
+    {
+      "path": "checklists/sales-page-checklist.md",
+      "sha256": "410a4795423e6fca95c964c23a98f6dfbbf45da8125e52d8135dfea84b0002b6"
+    },
+    {
+      "path": "checklists/scarcity-urgency-checklist.md",
+      "sha256": "468c5b0dd07b33fa50339656932b67b7e4b92d91c501772e23aec3b606559557"
+    },
+    {
+      "path": "checklists/subscription-model-checklist.md",
+      "sha256": "5bbd60eabc34e213ffcdab7d6c8a86c6e147780fce2a5fef5e0b39257fe4cc5d"
+    },
+    {
+      "path": "checklists/upsell-page-checklist.md",
+      "sha256": "7f7ebd367f371249c752a10acd4a8f2b00a7e896fb6a8c18975577d4066be65e"
+    },
+    {
+      "path": "checklists/upsell-sequence-checklist.md",
+      "sha256": "06c80fe7681cd0cd3f794f2e2792af529c3a4ffc73f4fdc8ad82b41b2790ab6d"
+    },
+    {
+      "path": "checklists/upsell-strategy-checklist.md",
+      "sha256": "c834031734528a6e6eaa5316f55d87bfde880cb69e24a0e4ad836b07609c8c36"
+    },
+    {
+      "path": "checklists/value-equation-checklist.md",
+      "sha256": "22172ee037fd053e8ac54df4f5abeb3f571bf4f9c59efc9f1a60a4cf34110f9b"
+    },
+    {
+      "path": "checklists/vsl-script-checklist.md",
+      "sha256": "5ba3d1eb47f7a158a3c204f7564a3be7099d9d81ffc87692abf9b4bf6e211e69"
+    },
+    {
+      "path": "checklists/workshop-launch-checklist.md",
+      "sha256": "d51855975096d8d023daf1268717049af48e3ff0de35308958a7c649c7bb3e54"
+    },
+    {
+      "path": "config/veto-conditions.yaml",
+      "sha256": "ce845641fc112759e479b0062a07aaf9cb69275f7148e4732d676d0fe8910277"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "6efda699b18a81520fa8d93ea949f99625ca279c7859499b4a05f55cc04fdcc5"
+    },
+    {
+      "path": "data/antipatterns-database.yaml",
+      "sha256": "7d3e04d56ac54ee8f2329a85ba2adaf88129ee4c9d92c82e866c273f7939cc09"
+    },
+    {
+      "path": "data/hormozi-case-library.yaml",
+      "sha256": "3665e650edc7afd235497177ae18fb577d0b6bd135dc45d82c0e84d274b83b38"
+    },
+    {
+      "path": "data/minds/hormozi-ads_dna.yaml",
+      "sha256": "c382ba0280aac675e2a4c0e2543b0a1bc9266328122281f4b07eb2f18820eb7c"
+    },
+    {
+      "path": "data/minds/hormozi-advisor_dna.yaml",
+      "sha256": "07b8114bc5fefaf1967ca0d6c9b385eb68acbc5e89c9c312c5d8ca2e22ec26bb"
+    },
+    {
+      "path": "data/minds/hormozi-audit_dna.yaml",
+      "sha256": "e430c1d8ab30f4d6c977d31250908c63147bff869c11c3083302ce8d0cd8f948"
+    },
+    {
+      "path": "data/minds/hormozi-closer_dna.yaml",
+      "sha256": "14024256691b038248907127078c4ef8b294dadf54b2a72f6a51dbae37bc1ae5"
+    },
+    {
+      "path": "data/minds/hormozi-content_dna.yaml",
+      "sha256": "bb418914bf6cebf3afe5802099960808e30fb06ecb259dead3f285a8311dea70"
+    },
+    {
+      "path": "data/minds/hormozi-copy_dna.yaml",
+      "sha256": "4b94f3e1e160d8f5850b70f5b0baa2b615cf14f02d77a6a7da5619d95e4a6cea"
+    },
+    {
+      "path": "data/minds/hormozi-hooks_dna.yaml",
+      "sha256": "2a53f89ca8bc63f4fdc7818a85e9ad3df42f350f630f320773ca8e2ea2ce31fa"
+    },
+    {
+      "path": "data/minds/hormozi-launch_dna.yaml",
+      "sha256": "3af320dfd6b37747e04d621774f995bdb96df90a2a1eb9f11f0646466a37caef"
+    },
+    {
+      "path": "data/minds/hormozi-leads_dna.yaml",
+      "sha256": "8fa6ae1e5c0d3b20368f6bb8e64641d832cffd0207a05b1111ff1413e50e10c7"
+    },
+    {
+      "path": "data/minds/hormozi-models_dna.yaml",
+      "sha256": "30604534111664880536a50f7e76199ea322dae4273e036d6545eed20f6187d6"
+    },
+    {
+      "path": "data/minds/hormozi-offers_dna.yaml",
+      "sha256": "f0802735caf7a58476652426405f747f11adc20b732a1572047fc09fbd1d2937"
+    },
+    {
+      "path": "data/minds/hormozi-pricing_dna.yaml",
+      "sha256": "350b97afb1cf69abe93f9ba4591e8e5e344cab1be688bc2e06005c05a6555c5a"
+    },
+    {
+      "path": "data/minds/hormozi-retention_dna.yaml",
+      "sha256": "2260f6da0c9b23e8f360b461cc45ef3dca1823b02f3a779e2dee7ca4ed3a01de"
+    },
+    {
+      "path": "data/minds/hormozi-scale_dna.yaml",
+      "sha256": "f3c4aa78b49d5c377ccbb456e0aac2e4c79289eb85e3fd692feb5d2db3fd2095"
+    },
+    {
+      "path": "data/minds/hormozi-thinking-dna.yaml",
+      "sha256": "aa8306120ce26474d15e1ff7227ddb34afa4c2b3f8184013ce6e0478e0b0bdd2"
+    },
+    {
+      "path": "data/minds/hormozi-voice-dna.yaml",
+      "sha256": "c8125812f305f544f4865db4fe907d973071978c6cccc5ceaa1eb45f7942288d"
+    },
+    {
+      "path": "data/minds/hormozi-workshop_dna.yaml",
+      "sha256": "bd4fda7f787a516440960af95284a71803524bb56a73a138b1071bc3fe79f900"
+    },
+    {
+      "path": "data/scaling-by-business-type.yaml",
+      "sha256": "2f3058dd531af4febc05f285ecf15ddd49b1e18dd89d906ec59e803b13fc2f30"
+    },
+    {
+      "path": "data/source-index.yaml",
+      "sha256": "afefc985d10369692bf3270153aa5934713e234ff70c0b8832ee9a11583768d2"
+    },
+    {
+      "path": "data/swipefiles/ads-swipefile.yaml",
+      "sha256": "c4c7eae76566eab1c50f8287d1cf4fa2b2804d589f78da2b19effed7cc387b80"
+    },
+    {
+      "path": "data/swipefiles/blueprint-swipefile.yaml",
+      "sha256": "995574ab319b9eb120be1bb0485e90d5528e017a13cb9e1a013466bf7404bdb7"
+    },
+    {
+      "path": "data/swipefiles/branding-swipefile.yaml",
+      "sha256": "565c963ae7fae21f59dc600809af2ee0108432efa68489b86ba0dc9f2c059987"
+    },
+    {
+      "path": "data/swipefiles/closing-swipefile.yaml",
+      "sha256": "b0c02454f82e53ce88514a1bd089f53a62ef0dfe75982ab5acda5d3510f85590"
+    },
+    {
+      "path": "data/swipefiles/content-swipefile.yaml",
+      "sha256": "7837c097d87b21f5a24ba1b89f6c1c150b9e74736b811c7203abf44dc1a60148"
+    },
+    {
+      "path": "data/swipefiles/copy-sales-swipefile.yaml",
+      "sha256": "8deb3b338d70a5ec2463b56db3135541d87c1621d7fc5a7ae158268c88dca4a2"
+    },
+    {
+      "path": "data/swipefiles/fast-cash-swipefile.yaml",
+      "sha256": "49a6f26d0d12bbd1c7d39b3b25c53df95c60730fda4ec5dab570f9bc319a343a"
+    },
+    {
+      "path": "data/swipefiles/goated-ads-swipefile.yaml",
+      "sha256": "f97697369fd788a28cf03e152c6a6a50f7f1c1d671dad729965dc3d60a8d311f"
+    },
+    {
+      "path": "data/swipefiles/hooks-swipefile.yaml",
+      "sha256": "68917e624cfce1d6715fc053d911ee46f07629713a026bda87d8fcc8fdb502bf"
+    },
+    {
+      "path": "data/swipefiles/lead-nurture-swipefile.yaml",
+      "sha256": "799890bb90f34ac4b005a54e5dd18cad593ddefea372d415ae6ee95cb53cd7b7"
+    },
+    {
+      "path": "data/swipefiles/ltv-swipefile.yaml",
+      "sha256": "9fa815b33039a1edd4afe7ef2664b126800ddfbfe2c82ec5b88b76354b69a21e"
+    },
+    {
+      "path": "data/swipefiles/marketing-machine-swipefile.yaml",
+      "sha256": "60ad847e14a4e066da38d6b40e8e7294d5ef782f36300f54342d07c29749220f"
+    },
+    {
+      "path": "data/swipefiles/naming-swipefile-brasil.yaml",
+      "sha256": "231b22b72ea6bce31b9c64002acb38c9a5cd6359af83802128c27c48146d00d5"
+    },
+    {
+      "path": "data/swipefiles/naming-swipefile-global.yaml",
+      "sha256": "131ea1ff6fe911b856bc64e9453881bf83349f15b513e700aef17e3c0733e636"
+    },
+    {
+      "path": "data/swipefiles/price-raise-swipefile.yaml",
+      "sha256": "864e355f0e0689df8572f055e11f0bb9e3838eced5560c2c5687ccb952aa0cc3"
+    },
+    {
+      "path": "data/swipefiles/pricing-swipefile.yaml",
+      "sha256": "f6cce00999c0c52165fe8174ee7612b984cbd8e3f936550c31fe9c24bdf8c509"
+    },
+    {
+      "path": "data/swipefiles/proof-swipefile.yaml",
+      "sha256": "eda51b7646a54f0e5ab1b5de64f022200fcbf8445c9961cd20fec45f748e67e0"
+    },
+    {
+      "path": "data/swipefiles/retention-swipefile.yaml",
+      "sha256": "7beb4efe2e0279523b7fa9cfb9dae74163ce6222fdaa2c575d0d876aaefe53d4"
+    },
+    {
+      "path": "data/swipefiles/scaling-roadmap-swipefile.yaml",
+      "sha256": "2040189ee8c7db4fb54e71055bf26f009804a734e34fc5e7154415edfe10ea3b"
+    },
+    {
+      "path": "data/swipefiles/workshop-launch-swipefile.yaml",
+      "sha256": "d061e80195ba4aad48f44e49ef4f89b0eb1b3741e511cd245116b425a026f2db"
+    },
+    {
+      "path": "docs/frameworks/100m-offers-framework.md",
+      "sha256": "63fb55ef38353f28c28f82b4e2c47ec967e5c3213691d792611193ff373483d7"
+    },
+    {
+      "path": "docs/frameworks/attraction-offers-framework.md",
+      "sha256": "0eef438b5d41548161c8759ca714b79e53d631fd3a46c6419687f3194215fd98"
+    },
+    {
+      "path": "docs/frameworks/bonuses-framework.md",
+      "sha256": "140bfe29c378408d71be4ea6d2613e54b001a0d480753c54b0e7284411df634e"
+    },
+    {
+      "path": "docs/frameworks/core-four-framework.md",
+      "sha256": "a45b3c23b853a7b16de590c76625dc297cdb35c346cf0f0f4aedb1180ac44666"
+    },
+    {
+      "path": "docs/frameworks/goated-ads-framework.md",
+      "sha256": "611fbd96fdc4b7de31d59c3e6e24861ac45bf424e05bf6a369c3041280a3f7ba"
+    },
+    {
+      "path": "docs/frameworks/guarantees-framework.md",
+      "sha256": "5b875f44fd4c61741231e49b8d9bb52c1ff75b5d476ca8b5269569290e61c295"
+    },
+    {
+      "path": "docs/frameworks/hooks-framework.md",
+      "sha256": "451699fb9ecefc3056a3178d4212a62cb1031e94f8044add3115d475b32cc5a5"
+    },
+    {
+      "path": "docs/frameworks/lead-magnet-framework.md",
+      "sha256": "358cffe9501b1fa731899c1873d0851841cc89d692ce656297d6a16567e52851"
+    },
+    {
+      "path": "docs/frameworks/money-models-framework.md",
+      "sha256": "ba2bb4c2d5d65c32b8d474241c2c3c99132766c7d6837d2b650de605b696089a"
+    },
+    {
+      "path": "docs/frameworks/scarcity-framework.md",
+      "sha256": "d4c2892306714d20917d5e4f70ff024be3d25f0decf738b9f9879abc01b6b165"
+    },
+    {
+      "path": "docs/frameworks/urgency-framework.md",
+      "sha256": "5327cf25c3a54b8a814db2a9df39d846d15512c74acd2cce9dfb0d487688dfe9"
+    },
+    {
+      "path": "docs/frameworks/value-equation-framework.md",
+      "sha256": "f3e29c43294c1585d9efd18b558a6dc3eab95118d5269a7b97ace7877bd670b4"
+    },
+    {
+      "path": "docs/frameworks/workshop-framework.md",
+      "sha256": "db029a248f64e9512e57160b4d062b7e3ea3ca2f4839be9ae709f2151e213e94"
+    },
+    {
+      "path": "docs/MIGRATION-PLAN-AGENT-CONFORMITY.md",
+      "sha256": "3b6e144c871c1b306fc73e441cb4a9c91c6c8f3efe9c7fb80e964d76177e0bc8"
+    },
+    {
+      "path": "docs/sops/.parallel-execution-plan-batch2.md",
+      "sha256": "9332acbcf13a366000429bbd8f83f9ae1f02d3d70581364706ffe227f4dc2b64"
+    },
+    {
+      "path": "docs/sops/.parallel-execution-plan-batch3.md",
+      "sha256": "f44847742163f73ae3a0257eed9d38fc8052b183cd9fbf4e0c44aaba150a0f6f"
+    },
+    {
+      "path": "docs/sops/.parallel-execution-plan.md",
+      "sha256": "856e2617043aeb3bdaa55802afeed031f379c674fcf7efce005af28d49a6dab5"
+    },
+    {
+      "path": "docs/sops/ad-angles-sop.md",
+      "sha256": "d67402320e1ce25255302420890734e31d9b4ca5622437e1dd6de387b3b8ebb3"
+    },
+    {
+      "path": "docs/sops/ad-angles-squad-blueprint.yaml",
+      "sha256": "90245f051f9c816f52b0f1a6ee99ee86f319a09b3528a8c0b5cdadee2e43684b"
+    },
+    {
+      "path": "docs/sops/affiliates-referrals-sop.md",
+      "sha256": "ffd9462b74c68449322983529490ba3e7f1066fa1d50cc59de4cfd6287d8c4f3"
+    },
+    {
+      "path": "docs/sops/affiliates-referrals-squad-blueprint.yaml",
+      "sha256": "d3d2876b6ab6b29d5d9e54890a2fed9ef33d11d4a3724753abe43c9e792fa072"
+    },
+    {
+      "path": "docs/sops/bonuses-sop.md",
+      "sha256": "ba594cd8d0d73cb56ba5512691d7f5017cb3a4f5a54e6acc9a8660c2fc37913e"
+    },
+    {
+      "path": "docs/sops/bonuses-squad-blueprint.yaml",
+      "sha256": "fc9b354b68549761c77407a46bae2155f94169ef57159616cc1f2eaa8ba96ce7"
+    },
+    {
+      "path": "docs/sops/branding-sop.md",
+      "sha256": "575ccc0057d29a3cc328c4cb71a4d43f813d3440ca5b1fb6e6011b389336eaa8"
+    },
+    {
+      "path": "docs/sops/branding-squad-blueprint.yaml",
+      "sha256": "b53e298e67340a45dabb85d3b08d8857c680862571b222a9ae21f7c3e5b728a7"
+    },
+    {
+      "path": "docs/sops/content-creation-sop.md",
+      "sha256": "103d4a5e4b07da5631b4477f488ceece7637e626447956f45426677bdec23be7"
+    },
+    {
+      "path": "docs/sops/content-creation-squad-blueprint.yaml",
+      "sha256": "b80a32c923f489abf089fa973b185dc9e4d5e9a5e03d21f436e73aba2fed2cd5"
+    },
+    {
+      "path": "docs/sops/core-four-sop.md",
+      "sha256": "667c3a1042bcf43b73789c94c28c54a52169d34e3769e5c6fdbf7bfd7978274e"
+    },
+    {
+      "path": "docs/sops/core-four-squad-blueprint.yaml",
+      "sha256": "c6ea257bc0a6eb8e6fbc1b8db99e2b151b049b40b9593952a92036510f3005fa"
+    },
+    {
+      "path": "docs/sops/downsell-strategy-sop.md",
+      "sha256": "66a449262cd6f206313182ad5486b762c79a0b103ead6191965898288bb535c2"
+    },
+    {
+      "path": "docs/sops/downsell-strategy-squad-blueprint.yaml",
+      "sha256": "8d20b72b425f159f59d29f5a6d217bc28c95a39e9028871db3805249f4c8b857"
+    },
+    {
+      "path": "docs/sops/email-campaign-sop.md",
+      "sha256": "1c893e27acc27ef89082c5347080da37822e849eb55760251fa67f166c4e3acc"
+    },
+    {
+      "path": "docs/sops/email-campaign-squad-blueprint.yaml",
+      "sha256": "046b684e59bb9a134d0739518ef43f865909a650e1f0d63fe17db1fa99a728a4"
+    },
+    {
+      "path": "docs/sops/fast-cash-sop.md",
+      "sha256": "f02528be493f44aec53f2277d3934ca7138301863b4b5f38d7fd90b58b7583cd"
+    },
+    {
+      "path": "docs/sops/fast-cash-squad-blueprint.yaml",
+      "sha256": "3a0b35bbde941c13330eee69c0799348ea19c1e2b9e2cef32e6e9b370b33e5b3"
+    },
+    {
+      "path": "docs/sops/goated-ads-sop.md",
+      "sha256": "3333da786297b7ab8946dc6b1abb557ea487273aa207e05e9a519cc72f937eb8"
+    },
+    {
+      "path": "docs/sops/goated-ads-squad-blueprint.yaml",
+      "sha256": "6c7d2f63c2be78954164605b51c8418ae8b69f6a8690b03d01c87bba0145ee73"
+    },
+    {
+      "path": "docs/sops/guarantees-sop.md",
+      "sha256": "151991cfb81f0179b3f176102200abeca44792ff02a978fed120c8d4f96a6172"
+    },
+    {
+      "path": "docs/sops/guarantees-squad-blueprint.yaml",
+      "sha256": "1fe5a00deea24cd901c0067d43643af2520b74c6e363aa265c7a81f5127af3d8"
+    },
+    {
+      "path": "docs/sops/hooks-sop.md",
+      "sha256": "beaa6d4c36a969619471083cfcfb95f61cf0c3f1134db0ecf982ff121fee1a9a"
+    },
+    {
+      "path": "docs/sops/hooks-squad-blueprint.yaml",
+      "sha256": "ecce65dd9a0a95a14bfffffb792484bc637ced38604bb3c808ca0fe964022dee"
+    },
+    {
+      "path": "docs/sops/landing-page-sop.md",
+      "sha256": "3c368b4c77a79d56177da0217cad4c6253342b9bc0c2a213b217a4f9e8cee9e2"
+    },
+    {
+      "path": "docs/sops/landing-page-squad-blueprint.yaml",
+      "sha256": "b0f7e2e72cba71daf27d4619ac72bbb1ce426229a276ba8f8b9851d75c7918de"
+    },
+    {
+      "path": "docs/sops/launch-sop.md",
+      "sha256": "5b74a26a11bf45c1372a8a1f1cc97daeaa574ffd0f1e158a9c8e203efb1ffc87"
+    },
+    {
+      "path": "docs/sops/launch-squad-blueprint.yaml",
+      "sha256": "963e4856307cb9c11e88c41fa61aaafd155ce067f7264a80b531d6864d894bdb"
+    },
+    {
+      "path": "docs/sops/lead-magnet-sop.md",
+      "sha256": "a840009536064e271d7fef8e67e7eeb92d44f4d621b0db306aef0ca1fc32a071"
+    },
+    {
+      "path": "docs/sops/lead-magnet-squad-blueprint.yaml",
+      "sha256": "a59a8f4e90215361c18a487c2a7dcb3252f1898c4bb2c44a31e0975f31db3beb"
+    },
+    {
+      "path": "docs/sops/lead-nurture-sop.md",
+      "sha256": "5a0fef50005248ce46d9385a2f8c3a65fb645ebfc0810ec556eaafdeca4a7af7"
+    },
+    {
+      "path": "docs/sops/lead-nurture-squad-blueprint.yaml",
+      "sha256": "6cc3f97f435f21f02c6d609f3d64633c9c607379ce1cf8df5ddd4a1e46ea9579"
+    },
+    {
+      "path": "docs/sops/ltv-sop.md",
+      "sha256": "8f981f37bfb986c832befef46f0a21603fe488c997bca21fe54d2ef08cf4f546"
+    },
+    {
+      "path": "docs/sops/ltv-squad-blueprint.yaml",
+      "sha256": "5601c1c8d1fdb0c71d37c736c144a61a30b86e451b9dcadf89447b89e58ae6c7"
+    },
+    {
+      "path": "docs/sops/marketing-machine-sop.md",
+      "sha256": "c4c41bfc8af187c55e697186a5e9e428c4356128b9dce264b5140fe166c738e8"
+    },
+    {
+      "path": "docs/sops/marketing-machine-squad-blueprint.yaml",
+      "sha256": "766c3ca75989bebcafb0e9bb4b69210d280301ccf1a56b72627dc2b7cca2ae8b"
+    },
+    {
+      "path": "docs/sops/naming-framework-sop.md",
+      "sha256": "43a20516f8626d0e4b1ac94318055868466abd69d4a5e80d9c55c2198a3ac71c"
+    },
+    {
+      "path": "docs/sops/naming-framework-squad-blueprint.yaml",
+      "sha256": "bdbf4abdcaa958833d2572f143d936005c66d33fc58487627129115ced38695d"
+    },
+    {
+      "path": "docs/sops/offer-architecture-sop.md",
+      "sha256": "5025b7c65cbc0cf8648412174f5b33d41351dac325a097e7a6fa1385835322b3"
+    },
+    {
+      "path": "docs/sops/offer-architecture-squad-blueprint.yaml",
+      "sha256": "60c501c86b619f9f5f869b72d989d016954e0f8c88c2ad044446c667045ff7ca"
+    },
+    {
+      "path": "docs/sops/price-raise-sop.md",
+      "sha256": "1180219c7a0fc310a7f037aad3dfbac0f0807c32183d0723f3b308a5ebbf50ee"
+    },
+    {
+      "path": "docs/sops/price-raise-squad-blueprint.yaml",
+      "sha256": "7d79038ab20eb9930773e9097f8c258678aea717dcc8bd0031bd018201638330"
+    },
+    {
+      "path": "docs/sops/pricing-framework-sop.md",
+      "sha256": "cd451887293211af42629be1e6f4b6d1460a53c3b8c53f39d7a6bd3f53041920"
+    },
+    {
+      "path": "docs/sops/pricing-squad-blueprint.yaml",
+      "sha256": "3e6b18e62ad89b6e3747c209ebbf3bcbdec3f59a3ede1d333ed6c706073a3c60"
+    },
+    {
+      "path": "docs/sops/registration-page-sop.md",
+      "sha256": "64e1f3093fd045857f94ef4b978949d4e2b44567607a2753bbc0dd219a39ce4f"
+    },
+    {
+      "path": "docs/sops/registration-page-squad-blueprint.yaml",
+      "sha256": "299246f702486086a54f151d863b405d9b58411a60ea3ef26577e9a0f1d9c890"
+    },
+    {
+      "path": "docs/sops/retention-sop.md",
+      "sha256": "b46429d9b29aa3184718998d53e52535ddc58b43ece4d9a2967fea2fae05d4e0"
+    },
+    {
+      "path": "docs/sops/retention-squad-blueprint.yaml",
+      "sha256": "26b6b9b117111f39753114d2c26b2f0f5bf4bc2799687d8f9697ebd2e69929b5"
+    },
+    {
+      "path": "docs/sops/sales-page-sop.md",
+      "sha256": "0cacc90994153d2d2092670171c5e6f2b97e95759906d6b1e68a62226ab2c483"
+    },
+    {
+      "path": "docs/sops/sales-page-squad-blueprint.yaml",
+      "sha256": "122842a700cd10510d50df197a4787326d1e4b345ed573f295b1eaa391c63415"
+    },
+    {
+      "path": "docs/sops/scarcity-urgency-sop.md",
+      "sha256": "2c381f0528245aa18df93c77cd75320f7f79c9bbd90156df586647f2a569ea31"
+    },
+    {
+      "path": "docs/sops/scarcity-urgency-squad-blueprint.yaml",
+      "sha256": "840ba64b5bb7bd44b53e52415f46ca1316b1b53ba8da051c0f97f0da89a87e4f"
+    },
+    {
+      "path": "docs/sops/subscription-model-sop.md",
+      "sha256": "f20cd01bf03bba50fbb42a87634521bccb97d0cffb5b739b06e8984903889b57"
+    },
+    {
+      "path": "docs/sops/subscription-model-squad-blueprint.yaml",
+      "sha256": "86d7c4115e495e669f009d8d43d486dd8428bd2a83fdcf7ed3c7b7d0a08b341d"
+    },
+    {
+      "path": "docs/sops/upsell-page-sop.md",
+      "sha256": "4bd78b80f8086d4f4a425c8a4d09f0afaad0c57865010bfcc3cac07224a19f91"
+    },
+    {
+      "path": "docs/sops/upsell-page-squad-blueprint.yaml",
+      "sha256": "2f234853b4c6a0364f776204833824626595aeb8c49f09d45c15430acb32130e"
+    },
+    {
+      "path": "docs/sops/upsell-strategy-sop.md",
+      "sha256": "990f41270fcca9867165702983f3712a1622ff8266a4f6c00ba591be0618266c"
+    },
+    {
+      "path": "docs/sops/upsell-strategy-squad-blueprint.yaml",
+      "sha256": "5c6f170bf0dc63e159e1de1d8b779c6c8100c2ebdb1166a2af350192d705df62"
+    },
+    {
+      "path": "docs/sops/value-equation-sop.md",
+      "sha256": "102bc12ffd75f874dc4ba6ce388d16be905ce6ec8bc8dce37155ef4e53ec3f58"
+    },
+    {
+      "path": "docs/sops/value-equation-squad-blueprint.yaml",
+      "sha256": "e6a62cc45157f048c09221a125991d2507e9deeb5a8b2d1226170aee3a2bd65e"
+    },
+    {
+      "path": "docs/sops/vsl-script-sop.md",
+      "sha256": "ccd28ebebc0ea81dfdb0ef044fd4e07f7d7c258a8cdf888d957cd5ce7c7ac176"
+    },
+    {
+      "path": "docs/sops/vsl-script-squad-blueprint.yaml",
+      "sha256": "4f2bed3774325c3f3bfefb3d63081dc688cbc066db777323f9a9cceccad9749d"
+    },
+    {
+      "path": "docs/sops/workshop-launch-sop.md",
+      "sha256": "eb19c0c11ba540731c1afc9c5fcb01f8780f89d3b9b69f5cb8c3fdc2cb2adfb3"
+    },
+    {
+      "path": "docs/sops/workshop-launch-squad-blueprint.yaml",
+      "sha256": "b4ad7d91c649a97592d774cef111b9f64b73b024ac041f0e499eacab3c2d544c"
+    },
+    {
+      "path": "docs/validation-report-2026-02-10.md",
+      "sha256": "ff2fdee8aa61b2cda8ace7fb8762c0844538068027fc2d5b376076b1d2e30c08"
+    },
+    {
+      "path": "HEADLINE.md",
+      "sha256": "187cdf3ebcddcbfda1f47fbbf2c1d2b39951f3aaac60d767ecefcd10549ad979"
+    },
+    {
+      "path": "README.md",
+      "sha256": "d4682d2b5f81a34f188ba905abe21c7e0ad709046fe71d1a3cabd4588a10a73c"
+    },
+    {
+      "path": "sops/pricing-squad-blueprint.yaml",
+      "sha256": "c29508a99e298e508692b50ee2d6e2aaec0448ca0d94f3ddd3e4831642167ce9"
+    },
+    {
+      "path": "squad.yaml",
+      "sha256": "0c04e4853aa866aae85be6ce5c5d91cd1a5ad76b0f1742f9923a0f0e8e0cf8b4"
+    },
+    {
+      "path": "tasks/architect-offer-stack.md",
+      "sha256": "08de1fade1c624dbae133cac7b20b9b4af4c4e7b56ab5dc8c973f650ad0a4fcf"
+    },
+    {
+      "path": "tasks/build-marketing-machine.md",
+      "sha256": "6b5f9573a00aea06614f2e305c32a754618357c120b3ca8d3a3e5cd04b2a7ec7"
+    },
+    {
+      "path": "tasks/build-scaling-team.md",
+      "sha256": "4dc4b3c86329d542f05de7936bd2314e5b9c6e87e22286d637eb8ca2ff9a9a98"
+    },
+    {
+      "path": "tasks/calculate-30-day-profit.md",
+      "sha256": "ecc0b87ed0b7c1f5961359ebe0c3865570683755eb381de436edcec4dcc6dbfb"
+    },
+    {
+      "path": "tasks/calculate-ppd.md",
+      "sha256": "f725a7e0df07160080db5bdf1659abc83b250436a2583544eade98c19a2da006"
+    },
+    {
+      "path": "tasks/create-ad-angles.md",
+      "sha256": "6358be2ba81db70d037d8fe67012c2e04c045d5523a5ea33f677b5fd33a777b6"
+    },
+    {
+      "path": "tasks/create-ad-campaign.md",
+      "sha256": "276f4956ef4801cc181f25a26d45e04aa026a6c89b282d3f8b7ce06d001632bc"
+    },
+    {
+      "path": "tasks/create-bonus-stack.md",
+      "sha256": "12f5f8d8971e9646cf324b758e4e1d82643b7b5e5dba2b3982dae61518146fac"
+    },
+    {
+      "path": "tasks/create-closer-script.md",
+      "sha256": "66d4faf34112375049fa29a523706b3c1056c187c99e604a0a13c4c829c23afc"
+    },
+    {
+      "path": "tasks/create-content-unit.md",
+      "sha256": "ac118ca54c34d5f719f32dd63a78609352a8f2940107d9d8ffb2e600d1640f74"
+    },
+    {
+      "path": "tasks/create-contingency-plan.md",
+      "sha256": "32af303082c725b0e2afdd7f17dd1c69acd88a5c654a96a0cc7c9572b05b638a"
+    },
+    {
+      "path": "tasks/create-downsell-sequence.md",
+      "sha256": "189142c6fc0ff88cfcafd814b5a4581cf7ec65f03681888081c890bd82a67aad"
+    },
+    {
+      "path": "tasks/create-email-sequence.md",
+      "sha256": "48ee2d2be198f18e662cedd09c30caa04a4c2217cbf861c8f85b6c90130c4111"
+    },
+    {
+      "path": "tasks/create-engagement-scoring.md",
+      "sha256": "67cff37a100e83b1cf37ddbfd3e93f6a014b9dd33d6a633e71e050b98d1fe2c5"
+    },
+    {
+      "path": "tasks/create-exit-interview-system.md",
+      "sha256": "9e1864e02cfb55ea97eec0745ab44d28a64b928d23dacfa0adf141c3da1efd7a"
+    },
+    {
+      "path": "tasks/create-grand-slam-offer.md",
+      "sha256": "717470df781bd4b8d76d4e9db8968e2e8c8cef5f891c1aa4b1e0e4d253af375d"
+    },
+    {
+      "path": "tasks/create-guarantee-stack.md",
+      "sha256": "58ae356c0d602c1988b48eef1c89e94310e2ca683fb3475c89994b16ff8c0cf5"
+    },
+    {
+      "path": "tasks/create-hook-set.md",
+      "sha256": "d4171cd241876b097e5562d1c7fc13b23cd00144c9d6d9514499c4c3d591027e"
+    },
+    {
+      "path": "tasks/create-landing-page.md",
+      "sha256": "9ceff658d42052faf717c9ba08e1ada1315884715134a55f42a82d193b097c77"
+    },
+    {
+      "path": "tasks/create-launch-narrative.md",
+      "sha256": "c5904d05fa565a771815b2bd4cdcb369d6a889f1149702b24818c579a56dd180"
+    },
+    {
+      "path": "tasks/create-launch-timeline.md",
+      "sha256": "16bb48eaeec3533e4016555e1431336463e3e57f4773d25129c08c856c182a8f"
+    },
+    {
+      "path": "tasks/create-lead-magnet.md",
+      "sha256": "fecc1c6770473f05e541b15ee1002083767e6f5d8052d6f5b27170461f727521"
+    },
+    {
+      "path": "tasks/create-nurture-sequence.md",
+      "sha256": "9fd11e5a88c81da61c2fb2529b8104f059a1f7d209d60e3f5ed81d484459d94f"
+    },
+    {
+      "path": "tasks/create-offer-name.md",
+      "sha256": "4668c77abfe6b5cfc95c87d6ba64d7a8fde5efbc58f01dea69225b4f51d82088"
+    },
+    {
+      "path": "tasks/create-pricing-strategy.md",
+      "sha256": "47d93db4602278291e6ce1b93f76312628b969391e447478cdb8c0026ed8811e"
+    },
+    {
+      "path": "tasks/create-registration-page.md",
+      "sha256": "b232674f07ac75655606b736c9c40a73b0c395c1446960b1110983e90780ce45"
+    },
+    {
+      "path": "tasks/create-sales-page.md",
+      "sha256": "ddd5b8b5b84897fb75ccb6efc6a28c07971e68d817e9dc4f6dd5f7ef08d1579e"
+    },
+    {
+      "path": "tasks/create-upsell-page.md",
+      "sha256": "567744760284534b69f7f6286e85362c9260b2584c5f9a2a69c15e85c3eaecef"
+    },
+    {
+      "path": "tasks/create-upsell-sequence.md",
+      "sha256": "fbca9ed21bf917081770d2f90e0256d663b074d071b210ee313216e62c56ac21"
+    },
+    {
+      "path": "tasks/create-vsl-script.md",
+      "sha256": "8fb2fc9f5137c3b377769ae666a7b8051c57c3b09151685f158727cb5101b250"
+    },
+    {
+      "path": "tasks/design-brand-identity.md",
+      "sha256": "62c316e1e91d3283afdbd7fba31951526924c6b86367e71af6484179b9333705"
+    },
+    {
+      "path": "tasks/design-continuity-offer.md",
+      "sha256": "ee75d9abbc3170e32b1d2f5bd437509d79beb6827d1b66de6510720d23acbaf1"
+    },
+    {
+      "path": "tasks/design-core-four-strategy.md",
+      "sha256": "202fdba1acab925ca862f4cfafc916ee0dcfccf36e945e826ea489dc6abafce5"
+    },
+    {
+      "path": "tasks/design-customer-journey.md",
+      "sha256": "5f1570873960c8473c04d339310a1dd992cf0cb52abc4fdfb6258167b93832fb"
+    },
+    {
+      "path": "tasks/design-launch-value-stack.md",
+      "sha256": "3463e9e40e6961e0d33ba3011f34b5760911241ca7e14393cf42f0ff7d39231f"
+    },
+    {
+      "path": "tasks/design-money-model.md",
+      "sha256": "a15c8b0f229218f8a09ade73ae1d5d5d318e4d0451c976af939ec48e82d75084"
+    },
+    {
+      "path": "tasks/design-onboarding-sequence.md",
+      "sha256": "844d777da82a933a82b00da074b062aecc3120ee4e80d8df960fc3bdbcafaa2d"
+    },
+    {
+      "path": "tasks/design-scarcity-urgency.md",
+      "sha256": "36986563ae7bae77c1cf8851c330b02aa064e7dd055af86ab3a03bd18acda428"
+    },
+    {
+      "path": "tasks/design-subscription-model.md",
+      "sha256": "c7a3ee8155fd5066935eca4c6a97e801be949d4613e7511569966ac41f77dde5"
+    },
+    {
+      "path": "tasks/design-systems-automation.md",
+      "sha256": "ebc551429fc3372771dc2388e9184fba07cbe50490439d6037cdc8921a9b599d"
+    },
+    {
+      "path": "tasks/design-workshop.md",
+      "sha256": "fe00dcf1993d7a0b89dc0d442ec5c5503bfc5c48f414cd7db2110c14dfd727ae"
+    },
+    {
+      "path": "tasks/diagnose-business-stage.md",
+      "sha256": "600f8d4a7d3f2c3e1fce228ed4d7b8f41f228d852a30483f1bbd0160e414d53c"
+    },
+    {
+      "path": "tasks/diagnose-cfa-level.md",
+      "sha256": "bdfd49965258c4650a22be11c68fbd577443f18bbc6486ded51b8a8fd938c02a"
+    },
+    {
+      "path": "tasks/diagnose-churn-rate.md",
+      "sha256": "d65cb00fbb48b2a54f6f8ad6012920ac5ba380fa740b7cee64c7d12fd5a688d6"
+    },
+    {
+      "path": "tasks/diagnose-scaling-constraint.md",
+      "sha256": "5c01cedfcafddf294b0efee8e706d703c7507e4569d7114d00aa3bba621e297e"
+    },
+    {
+      "path": "tasks/diagnose-value-equation.md",
+      "sha256": "33334e45aa36c9ba91503d8e966a24046700df8b8a8d3021d278bffb785cafd0"
+    },
+    {
+      "path": "tasks/discover-activation-points.md",
+      "sha256": "34374f72e329b3f12ada71dfc789fd1106b3b3a2bdd4ed96898a7ce22834c341"
+    },
+    {
+      "path": "tasks/execute-price-raise.md",
+      "sha256": "476772e349ea024d24bcbfb1136c10b4bb3d8cadb3a6fc0dd28ab2e3d90edba3"
+    },
+    {
+      "path": "tasks/execute-rule-of-100.md",
+      "sha256": "4c4720664318848f7e604d2c92f378c41a1f4620eb35e2568c835c39446361ce"
+    },
+    {
+      "path": "tasks/generate-fast-cash.md",
+      "sha256": "f9691fe27be4217dbae08a425c1f3e508c7f4e4f2f374f3a80d1497345c22353"
+    },
+    {
+      "path": "tasks/implement-5-horsemen.md",
+      "sha256": "1a07e5b587a51ed7811d2858898cb9c7a52a3211eb42d2e2ab8ecee1c39bdc81"
+    },
+    {
+      "path": "tasks/optimize-ltv-cac-ratio.md",
+      "sha256": "fa12ec57987bd2375565a3a4762f0488e7540a25dd007a05f68dfe25157d9c29"
+    },
+    {
+      "path": "tasks/plan-launch-evento.md",
+      "sha256": "0975d8ea243b70e4ddb4ada0b3fa8b13ed16f9c98b3f56f9893aff9401b7a866"
+    },
+    {
+      "path": "tasks/run-launch-post-mortem.md",
+      "sha256": "cb99bfb6a09283a6bd3351dd1f8a029c34d1aa2698294d0c863b1a82f1df466e"
+    },
+    {
+      "path": "tasks/setup-affiliate-program.md",
+      "sha256": "f8a5244a9df8335d428fc69daca5178ad89aaa73250a63b8eb33cc3c8e582928"
+    },
+    {
+      "path": "tasks/setup-war-room.md",
+      "sha256": "6b0e6ff81977d19d2b931a02a13b62446b7b1b126e3ee77e4d5656b353c02853"
+    },
+    {
+      "path": "tasks/validate-market-selection.md",
+      "sha256": "51529a6cb5f52561a81ee2dcae2c123520d4d4488fafcf4377db671d0f7c980e"
+    },
+    {
+      "path": "templates/capacity-planning-worksheet.yaml",
+      "sha256": "f7566610568c27c2d59a6170a3cfd5d1ced59b7d3428e473aac33d4d73581283"
+    },
+    {
+      "path": "templates/grand-slam-offer-output.yaml",
+      "sha256": "8df6903b2a7ae287768e90947ae7bc95383d6153c5ef5a95cf8aa414a8799ed7"
+    },
+    {
+      "path": "templates/handoff-context-tmpl.yaml",
+      "sha256": "a124e6527f02ebfada5ce1e820370d30fa6dbcaeced41ffaf26c03da0fc6a7ba"
+    },
+    {
+      "path": "templates/value-equation-scorecard.md",
+      "sha256": "032745c5b0be1c8481b55e9e3c4a6210831a5806a131c8187da3fab6c3dd9752"
+    },
+    {
+      "path": "workflows/wf-context-diagnosis.yaml",
+      "sha256": "2cead4c107ff0d1f1f1b0adfa81c196d8036b8244698ee8a941bed214e896c18"
+    },
+    {
+      "path": "workflows/wf-full-launch-sequence.yaml",
+      "sha256": "5ec2ac82bb01e0d45a5dc9e1286d3da018d419b4b66ad738ed903a4464a7e238"
+    },
+    {
+      "path": "workflows/wf-grand-slam-offer.yaml",
+      "sha256": "68bca81ce047e5e1302d6c9f82590487c8dcfe8d47ddcdb61682a5567510fd24"
+    },
+    {
+      "path": "workflows/wf-growth-decision.yaml",
+      "sha256": "b507130fae2ea6b406a36d4a293f8cabc30da5ee7beb45d19437f015c9561053"
+    },
+    {
+      "path": "workflows/wf-lead-magnet-pipeline.yaml",
+      "sha256": "adda193683c99e3f1ca4057cab1fe4b4984b5265e03b9ac0135e66695de5f8c1"
+    },
+    {
+      "path": "workflows/wf-money-model-design.yaml",
+      "sha256": "8770bc5cd1f81a78550fc5fd586c14a0f3460d3e72378791f95e75bb13392b6f"
+    },
+    {
+      "path": "workflows/wf-opportunity-screening.yaml",
+      "sha256": "4bbfa551b3fc5e263adb032ed875a33f853c42eeec12b87432ee229474bc4dd2"
+    },
+    {
+      "path": "workflows/wf-paid-ads-campaign.yaml",
+      "sha256": "3043f70df7b5162f12c300cb1f6a1e402a24e9d578322c7a4c999da49a529ee5"
+    },
+    {
+      "path": "workflows/wf-scaling-diagnostic.yaml",
+      "sha256": "4512cf4c2b53a592a7ae311d836e27f2212651466461ddf5d479188312f4f349"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+id: hub-diagnostic-cycle
+name: Hub Diagnostic Cycle
+description: Leitura do momento do hub com top 3 acoes e proxima revisao.
+trigger: manual
+checkpoints:
+  - "Estado do hub classificado"
+  - "Top 3 acoes priorizadas"
+  - "Proxima revisao sugerida"
+veto_conditions:
+  - "Diagnostico sem classificacao do estado"
+  - "Acoes vagas ou sem prioridade"
+  - "Sem recomendacao de revisao"
+steps:
+  - id: collect-signals
+    agent: hub-chief
+    task: diagnose-hub-health
+    purpose: Ler sinais basicos e classificar o estado do hub.
+  - id: define-next-actions
+    agent: hub-chief
+    task: plan-weekly-hub
+    optional: true
+    purpose: Traduzir diagnostico em ordem de execucao.
+outputs:
+  - diagnostico resumido
+  - top 3 acoes
+  - checkpoint recomendado

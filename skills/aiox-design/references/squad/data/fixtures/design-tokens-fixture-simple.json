@@ -1,0 +1,37 @@
+{
+  "$schema": "design-tokens-v1",
+  "metadata": {
+    "source_url": "https://example.com",
+    "extraction_date": "2026-03-24T14:30:00.000Z",
+    "extractor_version": "1.0.0",
+    "coverage": {
+      "elements_analyzed": 45,
+      "elements_total": 120,
+      "stylesheets_accessed": 2,
+      "stylesheets_blocked": 0
+    }
+  },
+  "colors": {
+    "palette": {
+      "white": {
+        "value": "#FFFFFF",
+        "confidence": "ALTA",
+        "hsl": "0 0% 100%",
+        "usage": "text color, background"
+      },
+      "dark-bg": {
+        "value": "#1a1a2e",
+        "confidence": "ALTA",
+        "hsl": "240 27% 14%",
+        "usage": "body background"
+      },
+      "accent": {
+        "value": "#e94560",
+        "confidence": "ALTA",
+        "hsl": "350 80% 59%",
+        "usage": "buttons, links"
+      }
+    },
+    "confidence": "ALTA"
+  }
+}

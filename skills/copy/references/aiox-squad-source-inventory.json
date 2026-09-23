@@ -1,0 +1,3932 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/copy",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/alex-hormozi.md",
+      "sha256": "ef841701e798f7dd81185e15faf91ff57ea8ee939952523752ee44aaa5076faf"
+    },
+    {
+      "path": "agents/andre-chaperon.md",
+      "sha256": "22235d682f2f636aaeb82eb780ad8bc29a3c169e7754236c698980f2bd011221"
+    },
+    {
+      "path": "agents/ben-settle.md",
+      "sha256": "a468917a5462b1143a6d7b014860366e5f14012eceb9050f18748e1dc4db7ef1"
+    },
+    {
+      "path": "agents/claude-hopkins.md",
+      "sha256": "8e3de47dec0681608e6b97dbab33b65cc667ee5cbde8fd9310e1e166fa2d5bca"
+    },
+    {
+      "path": "agents/clayton-makepeace.md",
+      "sha256": "af5793e802cd9b491cfb9c75e6096b32db4b2083aec7c52534819975a8ad3666"
+    },
+    {
+      "path": "agents/copy-chief.md",
+      "sha256": "10e2c8a3543bd1a76dafca7043d08fed2d85dacecfbd8fdfb15c78c1c10ea167"
+    },
+    {
+      "path": "agents/copy-ops-worker.md",
+      "sha256": "73c4343941de99c8dda51481083698f530ae71697270d27b678ad83974e38938"
+    },
+    {
+      "path": "agents/dan-kennedy.md",
+      "sha256": "76164c6ce8d0c8f9c83feb349531a7824f457afb56056bad6880368e7d811482"
+    },
+    {
+      "path": "agents/dan-koe.md",
+      "sha256": "79b5f82ec8af9f091126961a52197de7c947d56dc4899894a7d8e22a157294a1"
+    },
+    {
+      "path": "agents/david-deutsch.md",
+      "sha256": "e1fb7426bbe328cb47333c73eb5e6afd468b4b93c822c2c52265bdd61959dd59"
+    },
+    {
+      "path": "agents/david-ogilvy.md",
+      "sha256": "bdf47a6b0b7188fc714f185bd11b86e415ec4a0454f30580ddf7f58cbbb849bd"
+    },
+    {
+      "path": "agents/eugene-schwartz.md",
+      "sha256": "581a2160cb1040e8a442dd7957f45edade20992400dcfdf54436be151b56ef51"
+    },
+    {
+      "path": "agents/frank-kern.md",
+      "sha256": "432c9c64596d5a799b358f23df0c611779975bd075a41bed2b3fa51ba893224e"
+    },
+    {
+      "path": "agents/gary-bencivenga.md",
+      "sha256": "1e6b8282765a26e14682d55b5bd3d2cbfe14b672696e9cf9175392ead4ec6c00"
+    },
+    {
+      "path": "agents/gary-halbert.md",
+      "sha256": "5a9163991f861e1578ec5f6fe85ff73fb3add3281da54fc425361a0a574af36a"
+    },
+    {
+      "path": "agents/icaro-de-carvalho.md",
+      "sha256": "577557c2718abb46d7cc0e98a7149d67565732dad9d46d1dfe51f450c9383129"
+    },
+    {
+      "path": "agents/jeff-walker.md",
+      "sha256": "e1ddce604f35a9a3a493ead811ab641f1369299c11f3e41701ada41ad5a3bd23"
+    },
+    {
+      "path": "agents/jim-rutz.md",
+      "sha256": "5531777f8dda3d1777f8427b3bdf4885df91c97c14c8c9b0a87556ebe4f38625"
+    },
+    {
+      "path": "agents/joe-sugarman.md",
+      "sha256": "b9f04b36cae9acf8d3b74384155b8c4fa375470b11798a651201eaf57511bf95"
+    },
+    {
+      "path": "agents/john-carlton.md",
+      "sha256": "6c5549b13d45bc16ec38cf5a1276c1bf0537787395b55f50222f1fb8fbd71575"
+    },
+    {
+      "path": "agents/jon-benson.md",
+      "sha256": "8d132420d473f01160939c82ea3f95ed92161db55f8653ffeb56b24d8644c5e0"
+    },
+    {
+      "path": "agents/launch-owner.md",
+      "sha256": "5321a070b5ae8aa2989210fe742cffcffdce9d7237ecee44964218897077c060"
+    },
+    {
+      "path": "agents/leandro-ladeira.md",
+      "sha256": "880b0c58fed821e867bc58c81d1db4e229f78e9b83a8301fedc413c3c4bca99c"
+    },
+    {
+      "path": "agents/parris-lampropoulos.md",
+      "sha256": "34aed7e5da2099f88561c59bd690b7cc1413fbb942d6ef01e7a09c1a78ed06a5"
+    },
+    {
+      "path": "agents/robert-collier.md",
+      "sha256": "1d857cf27dc8d7dcc379106b89432c43f37ac2dab8f6eae6ea361daaef072508"
+    },
+    {
+      "path": "agents/russell-brunson.md",
+      "sha256": "5e8ac922151b2e8b9924c75c03b082e8aec2a0c0cb259a380994eaebdef9d851"
+    },
+    {
+      "path": "agents/ry-schwartz.md",
+      "sha256": "ce74a1f2a51228cb40bda717634c02b57d86ca38cd1b46661434b081007fa473"
+    },
+    {
+      "path": "agents/stefan-georgi.md",
+      "sha256": "f2393b01113ebf4c5268d264650802de0a1eb07ecbee5e7b82fdd92086d38a68"
+    },
+    {
+      "path": "agents/todd-brown.md",
+      "sha256": "098fa9aecaf1a4e4b9161825af17566b4a841789b7f00600c4433f0b72d1d0c1"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "sha256": "34a05c8456f3e56011681e2a7a989e14df47f4ae4cfe3bbb45a85bf7f4d63cd2"
+    },
+    {
+      "path": "archive/agents/ramit-sethi.md",
+      "sha256": "1ca259da0d949ef244d9ce204729975f4b37c8e7d21c9ccfd2d7454c81ce0994"
+    },
+    {
+      "path": "archive/README.md",
+      "sha256": "65500aaa4238b49d471cd77852e7702c3fa93c76ba6bc0eb089947e15066f846"
+    },
+    {
+      "path": "authority/bencivenga.yaml",
+      "sha256": "932636ee7cbd86fb47b4d4a7e5f73a83a24107a7863a218f245d10531f16e5ed"
+    },
+    {
+      "path": "authority/halbert.yaml",
+      "sha256": "eb4f7154034beefdf033179034ad5fd024c74b2c54959b6c7f37e83503a4b20d"
+    },
+    {
+      "path": "authority/kennedy.yaml",
+      "sha256": "30991f6936655bee473628894e6694eec9c38a7261d7beee96d9e234fbf42344"
+    },
+    {
+      "path": "authority/makepeace.yaml",
+      "sha256": "4b58dc0d154357829e62cc33d4796a96ed1d258149e13e819406bc1ff827e70e"
+    },
+    {
+      "path": "authority/schwartz.yaml",
+      "sha256": "329b48d2adc1e9c2ec1230be38c8645604110c23aa511437fa0803e77b51e952"
+    },
+    {
+      "path": "authority/sugarman.yaml",
+      "sha256": "433f0643c0b0206af3b3be3aa8fb271e48070812ddd581d0250ff5a76e4fc7ee"
+    },
+    {
+      "path": "checklists/ad-copy-quality.md",
+      "sha256": "6bf85670a61615f43a4e9bbe9167af2d9619b75c4c3268aa3a5667e1a6a0b22c"
+    },
+    {
+      "path": "checklists/avatar-research-checklist.md",
+      "sha256": "13170ea50489df347b394a4d5dc1712a7c32e53d717658ab0dc540d45390187e"
+    },
+    {
+      "path": "checklists/brunson/book-funnel-completeness.md",
+      "sha256": "00bd07a0a02818dd1ce1ef16b5dcd8184114fe582f0a2803f5074d5641002f3a"
+    },
+    {
+      "path": "checklists/bullet-quality-checklist.md",
+      "sha256": "6d58a6fdb53689e50ac5c09d998941f7db43b2ccd9487b1604a417416c21ec19"
+    },
+    {
+      "path": "checklists/call-script-quality.md",
+      "sha256": "9979b62dabb67655fd7365c321594160c46539adac229959133161ad99ee5308"
+    },
+    {
+      "path": "checklists/carlton-simplicity-checklist.md",
+      "sha256": "cee1bb6d22470d2c05012aa723d29c5ec08f0a0117f33e7d3af00ab83b0ba575"
+    },
+    {
+      "path": "checklists/close-script-quality.md",
+      "sha256": "9a8fe93f378416807f657cc782a9cd5b1a3eab3538f109b7a771b3582d7c0f8c"
+    },
+    {
+      "path": "checklists/cold-email-quality.md",
+      "sha256": "5cefb249a490aa7fff52202a3d67edea5ea121f18a45831a3b1998b5f7896b53"
+    },
+    {
+      "path": "checklists/cold-vs-warm-webinar-checklist.md",
+      "sha256": "8fd7870f63b2a662825f0ae0c685abae35b933f9c2d4a98f216c50a0e3b26620"
+    },
+    {
+      "path": "checklists/collier-letter-checklist.md",
+      "sha256": "f42c25289f7ca33cc31806f67e7b164571e4a66917f19ff33e3785a071158106"
+    },
+    {
+      "path": "checklists/copy-quality-checklist.md",
+      "sha256": "0d54d07d497b97d466ae7f8b4b47d8e8114cb1596d2830bb37ef0d5b2e6048ff"
+    },
+    {
+      "path": "checklists/copysearch-checklist.md",
+      "sha256": "a15ecd0fedb093314b01959c5223f5d089ec355bbc7802bb3c4fe69ef66de32c"
+    },
+    {
+      "path": "checklists/copywriter-agent-creation-checklist.md",
+      "sha256": "ad560084b4c0fba235c830379e52258bc9cdc2b0d95671354b381d249950dcf7"
+    },
+    {
+      "path": "checklists/copywriter-quality-checklist.md",
+      "sha256": "e21e1ecd87568db390cee29addd721b989da3e97babe41f11de0c6cd358f515f"
+    },
+    {
+      "path": "checklists/daily-email-quality.md",
+      "sha256": "01a89fe12918118d04aff1df7c85946e24f00253885c7b45e69f4fbac5ad4a8b"
+    },
+    {
+      "path": "checklists/decision-matrix-quality.md",
+      "sha256": "e0cbcadc8c62606841dcf89b7b5ed4ca219da395bb5da98a16bc4c3b90a7471c"
+    },
+    {
+      "path": "checklists/email-infotainment-checklist.md",
+      "sha256": "631069f778c0709819dd4194ce0efb4d908860edb79ad533a25c7304196bc7e9"
+    },
+    {
+      "path": "checklists/email-quality-checklist.md",
+      "sha256": "db058634b0bd7fc41ef0efc65ca54e789c00f3ae7635b1ca7c8d9982000f6bd1"
+    },
+    {
+      "path": "checklists/final-copy-readiness.md",
+      "sha256": "cecba403b60564cc08963e233c9c96587b1889194476b43e2d3cca0d2961e1da"
+    },
+    {
+      "path": "checklists/headline-quality-checklist.md",
+      "sha256": "8e9b4f8d93eae94a5ce49444e4e7da2b5abd7939b904071568e343a0511fc4fa"
+    },
+    {
+      "path": "checklists/hopkins-audit-checklist.md",
+      "sha256": "41beba3d00c806b10c022fe652ac6d3f4981b839479678fb5a476d3965d231f0"
+    },
+    {
+      "path": "checklists/landing-page-quality.md",
+      "sha256": "5d4234d30f2a76242cb30706d4e658ff0a72b8d9df20dfd668a707e20552b2c3"
+    },
+    {
+      "path": "checklists/magalog-checklist.md",
+      "sha256": "26237c9492097a94fee07a963ba96f471feaf2e84a7bf4217d02e889fee4c986"
+    },
+    {
+      "path": "checklists/magalog-quality.md",
+      "sha256": "75e40b5585eb51788f60e285e700b3a9573645730731335c9affc87e176eaa1b"
+    },
+    {
+      "path": "checklists/offer-quality-checklist.md",
+      "sha256": "27e7259c1ef85a6caafb8ed9fd6dfec8924ea84923d90c94e630ea699e4e85d3"
+    },
+    {
+      "path": "checklists/plf/cpl-evaluation-execution-checklist.md",
+      "sha256": "23d7f7d2cbfcfb6216e1db07c0af0cb237e6098fcaf073bca6da5bce782a13a6"
+    },
+    {
+      "path": "checklists/plf/cpl1-opportunity-checklist.md",
+      "sha256": "e6daa82011a96bb2a45d679b02489da5cce22cc4559a4f69ddf441193151b428"
+    },
+    {
+      "path": "checklists/plf/cpl2-transformation-checklist.md",
+      "sha256": "480220db945d0fe1bfc851831eb21dda8cabef084291b75d043173148888481e"
+    },
+    {
+      "path": "checklists/plf/cpl3-ownership-checklist.md",
+      "sha256": "0770b779920e5ff86b3eb70385c96d1aa20a287a244490a173208acfb1e62392"
+    },
+    {
+      "path": "checklists/plf/cpl4-enrollment-checklist.md",
+      "sha256": "d944901fa90fd0a28ab7d79b4789e1b89afd18760627d40518d5832e7a7fd103"
+    },
+    {
+      "path": "checklists/plf/evergreen-setup.md",
+      "sha256": "5003c7a670095c9ef1d9094572a774d2b56bcea78ff04cf96335a4d7cb9e397e"
+    },
+    {
+      "path": "checklists/plf/jv-launch-partner.md",
+      "sha256": "2db9efca3b78a4397b53ef46341b5c33b6d5ac8fbb1be7ad27934012666546ef"
+    },
+    {
+      "path": "checklists/plf/launch-day-execution.md",
+      "sha256": "e4bedebbc8c5f404f6d673fd91e75901e1f421fd8bfea8f47b3b4524ad9fbcec"
+    },
+    {
+      "path": "checklists/plf/launch-stack-completeness.md",
+      "sha256": "d2516bceec29165574b612670c553e3f0dec8919b59e4f2c4a368dfc20aa53ab"
+    },
+    {
+      "path": "checklists/plf/live-launch-readiness.md",
+      "sha256": "85f0c447ae0800b391af2fb3b565e9f77987c95d8595180e305934c5d3823672"
+    },
+    {
+      "path": "checklists/plf/mental-triggers-activation.md",
+      "sha256": "9da181a73047cd236e665024957d150c2f9f1d9fb68e8ffa61f58a150059cedf"
+    },
+    {
+      "path": "checklists/plf/open-cart-sequence.md",
+      "sha256": "667edbcb2389ebf53c23356953509008cd3b9648b6fe2f4602e5ccf7259fb4c1"
+    },
+    {
+      "path": "checklists/plf/plc-quality.md",
+      "sha256": "4f96e6ef4ae19effffe9004b8dd800a3e955f5755f9b0dadf0a8712ed45b67ab"
+    },
+    {
+      "path": "checklists/plf/plc1-complete-production-aid.md",
+      "sha256": "b974eb0aaf1813f923b5c1b1a09f4521146fa24bd4a85f3075c23fa30388aefe"
+    },
+    {
+      "path": "checklists/plf/plc2-complete-production-aid.md",
+      "sha256": "1880a73229d560a516ff038a3f70be431dc7cd1af1dcaae3e6fbd68fafb174c0"
+    },
+    {
+      "path": "checklists/plf/plc3-complete-production-aid.md",
+      "sha256": "e58b924200eb5c7a92dfb7bfd064ae8c9f2bcd17b731423a965fbdd0716344d7"
+    },
+    {
+      "path": "checklists/plf/post-launch-analysis.md",
+      "sha256": "e2a016e3017b0b38412e00b0494bd9fe6762b0a7bdaedb62f5252ec4d7a3c6b6"
+    },
+    {
+      "path": "checklists/plf/preprelaunch-readiness.md",
+      "sha256": "e778a7a1f349ba8b0f07b07df093d281567d38665bbd566ad6cc41a659625c7e"
+    },
+    {
+      "path": "checklists/plf/sales-page-plf.md",
+      "sha256": "772c78900963b75f5a9cb3989e2b65f685425dcb40d1f7157ae35e31d81dfba0"
+    },
+    {
+      "path": "checklists/plf/sales-video-complete-production-aid.md",
+      "sha256": "9f96e9b1a19e84476347f8062dcc2390fdadd3495a66ee283e0978b5ec24700f"
+    },
+    {
+      "path": "checklists/plf/seed-launch-checklist.md",
+      "sha256": "524e40956844a2228b0089bf5be7909085d53d9a0fff525c9f9482d6cc297ecd"
+    },
+    {
+      "path": "checklists/plf/social-media-launch.md",
+      "sha256": "f1f8aced92fa36edf8ff5dcf7889f9918c78f47445c8a4d2e8fc7554064937e5"
+    },
+    {
+      "path": "checklists/plf/video-production-complete-checklist.md",
+      "sha256": "44395dee83c08f0f858ccefd0b8a60b04ff62ef2cd56fb51e708347a0fa15c32"
+    },
+    {
+      "path": "checklists/pre-call-email-validation.md",
+      "sha256": "7bd126b7e806cba1195f3120c2285f78ddcad3cb8efeee470d6fc1b2dd39afa2"
+    },
+    {
+      "path": "checklists/proof-stack-quality.md",
+      "sha256": "eff3a2560fbc2c04729b8a50c42beda2c7a5564cf93a891c31ffb3d54a0451d8"
+    },
+    {
+      "path": "checklists/rmbc-checklist.md",
+      "sha256": "1ae5829ba022ad3f536bc9e19765f1fb2939fc3db07bf7f1808161bf2f6a3b86"
+    },
+    {
+      "path": "checklists/schwartz-diagnosis-checklist.md",
+      "sha256": "ce3f36cdde7893eba6709b0a72b4b71dce5de4180a22aa7a2a0d9ffc776d7091"
+    },
+    {
+      "path": "checklists/soap-opera-checklist.md",
+      "sha256": "4becc55740a6a16b6e66e32d8f910bf23a534827f5c52f0b6359279907490221"
+    },
+    {
+      "path": "checklists/soap-opera-quality.md",
+      "sha256": "52874cddde755529cdc3df7800f5f44b72897c54f6510b329c41ef246e88aa17"
+    },
+    {
+      "path": "checklists/sugarman-30-triggers.md",
+      "sha256": "62afbf528f4c23b84972ef1d8529bae58fd3db57a9b76304ef84dab8f9bf832b"
+    },
+    {
+      "path": "checklists/visceral-copy-quality.md",
+      "sha256": "8660bc8bbbc54c91f6818901f82847876423c5bfc5f56ce0df227b04d54ba90e"
+    },
+    {
+      "path": "checklists/vsl-quality-checklist.md",
+      "sha256": "885d852317ac2ad4593d3244ba25a9d6122aec28bf09de099aba27f527f96012"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "69c576d215da2678ac692d49830cf567756cb5b744c1006baa39472c6ae7b905"
+    },
+    {
+      "path": "data/artifact-capability-map.yaml",
+      "sha256": "03436c01aa02412bb29bdfaa33d3a6f6b41949065f44f7f2c8a347fcfcc484ce"
+    },
+    {
+      "path": "data/boron-letters-collier-dna.yaml",
+      "sha256": "1479fb6352becb0887721b15f394fbad26b37b80eb5a8a7422497036e6bfec72"
+    },
+    {
+      "path": "data/builder-delivery-guidelines.md",
+      "sha256": "22c0e36eda4d131ca3010fe0c0a2ef67925ea35e8af5bba82fe2829ce7345397"
+    },
+    {
+      "path": "data/copy-brief-protocol.md",
+      "sha256": "316b9bdebc7f890958f0a1a51f01383f1daf3a5dfed5903a67251d2513003f54"
+    },
+    {
+      "path": "data/copy-craft-rules.md",
+      "sha256": "4688d8d02f8bb4de1adf39869cca43bbbc96690adfa5e7aaaef130d4eaeeee13"
+    },
+    {
+      "path": "data/copy-governance.yaml",
+      "sha256": "60cd04938d5a07083d4d452614b30b210897bb031da41683192867d34846c4df"
+    },
+    {
+      "path": "data/copy-information-architecture.yaml",
+      "sha256": "4d403961be9a5e24558cec5c5385d2a4a8fdbc5f10fe04d53a7cbc44b680241a"
+    },
+    {
+      "path": "data/copy-mappings.yaml",
+      "sha256": "e9110264e578fd608360b693bd0d6263ef178d79b470038ccd62065a36fb94ab"
+    },
+    {
+      "path": "data/copy-material-inventory.yaml",
+      "sha256": "13bce724ab81db6d0e28b49f72d499c2b4821da82de9b81b5b225f57fa46b8f8"
+    },
+    {
+      "path": "data/copy-operating-model.md",
+      "sha256": "864336c765db0096aaae86d2cd641a1d67015331c2c5930b097fef316ed1c019"
+    },
+    {
+      "path": "data/copy-request-routing.md",
+      "sha256": "ea8d3d7fb5c6caef74adecbf83609854c1f56e36151388a25baa4da1d36ffec2"
+    },
+    {
+      "path": "data/copywriting-kb.md",
+      "sha256": "25f783669b0f1a161a7eb610cca86e521638e0f7ad949759ad07ec2a57a18f38"
+    },
+    {
+      "path": "data/etl-material-map.yaml",
+      "sha256": "c83ea0b708e845a57a67498c63be9161465e3d700863b84721490b6c7bc1f5b7"
+    },
+    {
+      "path": "data/expert-clone-mapping.yaml",
+      "sha256": "f8e79b05c10c6d8856358eedbd4d4b9892b4c07075129701420442d793d8878a"
+    },
+    {
+      "path": "data/future-regret-close-technique.md",
+      "sha256": "8ff428a3483910aab8cdaa56da8c652cf67bcfa439f419252f7ae6428fc1f359"
+    },
+    {
+      "path": "data/high-ticket-ads-framework.md",
+      "sha256": "96b03f5e1fef285ad58d916394d15140f03b29fd53aece00685260c08b709bb1"
+    },
+    {
+      "path": "data/jeff-walker-plf-extraction.md",
+      "sha256": "e112af0c2f048ef68497981d72f327ba466449599713aa6e3dab065b45cacf62"
+    },
+    {
+      "path": "data/mental-trigger-reference.md",
+      "sha256": "b53034749ce2956f46c79bc8e14658731a4a0bea4aedc793c134464a4b07a75a"
+    },
+    {
+      "path": "data/minds/andre-chaperon/7d-extraction-raw.md",
+      "sha256": "2646eb3295a91ee63db5ae768395744ff753b1d7c0be0fd837fef97c2f1a09e2"
+    },
+    {
+      "path": "data/minds/andre-chaperon/source-text/andre-chaperon-web-content.md",
+      "sha256": "8cfa9abeb20b15d83dbda84db2f33517a6aeefe9a90812577b75ad48ba1134f5"
+    },
+    {
+      "path": "data/minds/andre-chaperon/state/etl-7d-state.json",
+      "sha256": "947e952000db4ecae78551fe33f6f7fa42e3c27e1cd323d99edd60a514fbe456"
+    },
+    {
+      "path": "data/minds/andre-chaperon/state/etl-7d-state.json.bak",
+      "sha256": "fc334a52132d2d4718556db8616993e26b6ba69209485ef85ed6f9746f442cb8"
+    },
+    {
+      "path": "data/minds/andre-chaperon/state/extraction-state.yaml",
+      "sha256": "5f6e2a638c9d345dd6d6cfbb843f42087746c55e1e2a407b489bfe7715c95a89"
+    },
+    {
+      "path": "data/minds/andre-chaperon/state/progress.txt",
+      "sha256": "7c0af25861b5b1a4e0afc30a1be5c6135646dfa0d83fb9fc710b3c906a174c42"
+    },
+    {
+      "path": "data/minds/andre-chaperon/thinking_dna.yaml",
+      "sha256": "872a2d45292338a77b3305f3a61e812571bb7fa6364df4904aa75e650cb948d8"
+    },
+    {
+      "path": "data/minds/andre-chaperon/voice_dna.yaml",
+      "sha256": "2f165182f49f75d8948d7ccac5717ccc467c0d39c04d5b3b6e88ed5b39cc6c0d"
+    },
+    {
+      "path": "data/minds/ben-settle/7d-extraction-raw.md",
+      "sha256": "d54a5a94f65b7475d0eb36326e36debaa96da463698a203c052d4829383f0ebb"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/0rmieKZ4nTo.txt",
+      "sha256": "22d8cb11721e918c27902226794f1cbea3481934cac227390b3d30514dcca59b"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/1xx8qU6BfC0.txt",
+      "sha256": "0b5a6dae10d17689281c3050f446bd7973088e11203879fa84a3f1708ac4e7d2"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/Af3v93kttYI.txt",
+      "sha256": "ac4e3b9505bcd63e969928a5ca2b13861e589bdfda4a1767a85c70ff98f83fb0"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/ben-settle-youtube-transcripts.md",
+      "sha256": "8d918eb44437f619dd8d2cd58c8ad9313c4cac2a2fbdd7d17072c6799d046fc6"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/fbw7LIWwztE.txt",
+      "sha256": "fbb3d6cdd02855c86169ddf54c6a060bf0048796839f77830df383b66aeddf22"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/fkRb3klEzrM.txt",
+      "sha256": "99560ed114c280cb5724f80ea46f866c51433a3cabc6c087503ffb578a60ab90"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/j7AEg58eCfE.txt",
+      "sha256": "385ad7c4d90f204f8c1db4c9caf6d56fe4cf79282411964d75fda74270107fe7"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/O8TLRDDE8lw.txt",
+      "sha256": "f737e7236c1e4a31d068d5b6a893bbccec3b3eef4fd786b32f7724822be84871"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/Persuasion_Secrets_Villains.md",
+      "sha256": "e11c63001ac31b65c4801bcd6d55c95443358c01cd5830514907aaf76fa21bed"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/v4IVHQCX5g4.txt",
+      "sha256": "aa543ca8ee3c63d30e92669547575d5f27e14b9c3b64ffce865820745909c054"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/YfczLJoHOpg.txt",
+      "sha256": "fcdef475fceaccf47ecc99133a4873194336d4881dec7f417f5ab8b18b81745b"
+    },
+    {
+      "path": "data/minds/ben-settle/source-text/z2BsilIGmuE.txt",
+      "sha256": "ff09a1a59bee27c51f6eb85d906fb64f0d9a44afda32d41cd5f85b9d6f40ac67"
+    },
+    {
+      "path": "data/minds/ben-settle/state/etl-7d-state.json",
+      "sha256": "ca3962b3fa787a00c981c303057473d8932d711d3995406b2edea2c2d836f5bd"
+    },
+    {
+      "path": "data/minds/ben-settle/state/extraction-state.yaml",
+      "sha256": "5b37d6579560a351793675b95b972abed3a7c2c2ca38db1ca01f0c28f59fd4e3"
+    },
+    {
+      "path": "data/minds/ben-settle/state/progress.txt",
+      "sha256": "48c0d66796a42588cb748839d8cdc8c606f2be01e1c9321e207f094c0a9484b6"
+    },
+    {
+      "path": "data/minds/ben-settle/thinking_dna.yaml",
+      "sha256": "217cdd1e8d173739e3f58eb3273dfa52a3d61aaac50ea97235b186d771b1a74d"
+    },
+    {
+      "path": "data/minds/ben-settle/voice_dna.yaml",
+      "sha256": "787aeed7bb2850e15e13d15b7cdd223ff153be37051c2544d8eff208e1755513"
+    },
+    {
+      "path": "data/minds/claude-hopkins/7d-extraction-raw.md",
+      "sha256": "080907468773d7c2bece650a9103ba56c104651d038bc0795570b76a2a10b883"
+    },
+    {
+      "path": "data/minds/claude-hopkins/source-text/My_Life_in_Advertising.md",
+      "sha256": "227a3676f196739ae0551e169a0c7880fe3ab7f1c78a25c03bc859bd1f0df8ef"
+    },
+    {
+      "path": "data/minds/claude-hopkins/source-text/Scientific_Advertising.md",
+      "sha256": "aac4cf0be48c879c77f9d37b77f6af0ce0c3b75ff85985770ad5c311811f5ce3"
+    },
+    {
+      "path": "data/minds/claude-hopkins/state/etl-7d-state.json",
+      "sha256": "2eef8a42e91629aeb0e2bf4bd998b9ae7c32ad68808d1fc5b4fc883f39f14cf6"
+    },
+    {
+      "path": "data/minds/claude-hopkins/state/etl-7d-state.json.bak",
+      "sha256": "ca860cd0aa4ab20b6a44ee0ea536d07c90315ab688ca5b7aeeb4e3c1a4433f3b"
+    },
+    {
+      "path": "data/minds/claude-hopkins/state/extraction-state.yaml",
+      "sha256": "b72e649cd62763ef9c0927330ea58ff9e8369ee279c0e64b614a58d923621951"
+    },
+    {
+      "path": "data/minds/claude-hopkins/state/progress.txt",
+      "sha256": "97c8270337859cafebe602bd8b0bfd2c9992ba115e7263e7457b3ebc8be2ac5b"
+    },
+    {
+      "path": "data/minds/claude-hopkins/thinking_dna.yaml",
+      "sha256": "b3cb8b70390e3379ae9d3a9595e69eba1bf0b10b9adf41af60f008d24e4457aa"
+    },
+    {
+      "path": "data/minds/claude-hopkins/voice_dna.yaml",
+      "sha256": "b3a9369c90cfdd9de56a2a7108e0790af347e834f6c8f9a818a528b069b2b5cb"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/7d-extraction-raw.md",
+      "sha256": "febafffd8879fef21bae00dfd2e8efcc567fb3d477649f58e3dbfabd5ce5ce73"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/source-text/makepeace-outline-checklists.txt",
+      "sha256": "f8308cbf952201d4454f0347d2285b8663b7ab69b7969332b7dfe298f45a99e3"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/source-text/quickstart-copywriting-system.txt",
+      "sha256": "33e5a1a1df2b8849b66e3d92268ab8e0c1a1ffe4e148a2084da82ca9bb68540d"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/source-text/quickstart-course-pt1.txt",
+      "sha256": "81a03f219173d76b4e37bfad5f8ee539366addb5c5d903c3692cc28fa3967914"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/source-text/quickstart-course-pt1b.txt",
+      "sha256": "54fc26103cb4a9074c02d309f1279d83a822686257beff5b6ff5fb37d1bf0607"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/source-text/quickstart-course-pt2.txt",
+      "sha256": "6f72c3e3ed462e3e1963e2521813b34aba17e0aaa7b2d27ea50bb5f7c5436ad6"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/source-text/scottmartin-makepeace-posts.txt",
+      "sha256": "db2f887d1646e4cee6359f306a66d90cdcf4b621157708af536e82560f403345"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/state/etl-7d-state.json",
+      "sha256": "7650ffe97cabaec50eff2a309be72260dee5d76ad4c86f62b3b1f7db7d500d78"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/state/etl-7d-state.json.bak",
+      "sha256": "b09c047d7dc2b7a9d53c5829a752d5b6d398e39e2807aba7b53e0d5eb7f01155"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/state/extraction-state.yaml",
+      "sha256": "46390573daa68d6414c8ac7be29a95540ae339ab98539b06373adf0760a6b192"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/state/progress.txt",
+      "sha256": "2619cbcab63cf627cb6181af02e2b8804abf42e86d4523aac1b55262da4cd7a2"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/thinking_dna.yaml",
+      "sha256": "b1a64e1deba2316906dce8748ff1ed2f25050e97dddea072bdd14df45999a1c2"
+    },
+    {
+      "path": "data/minds/clayton-makepeace/voice_dna.yaml",
+      "sha256": "c927b3b94247af59df9915e91f186bac97bd529abe40a74c67154769378a6580"
+    },
+    {
+      "path": "data/minds/dan-kennedy/7d-extraction-raw.md",
+      "sha256": "c29a5253fa798919792c480f7dc22cd647b4bc359ec2ef58f67b0c4e808d2876"
+    },
+    {
+      "path": "data/minds/dan-kennedy/source-text/Magnetic_Marketing.md",
+      "sha256": "e916c17133adcc27153101f7f293c1aad32fe80bee3774dca7e9e97f2525709c"
+    },
+    {
+      "path": "data/minds/dan-kennedy/source-text/No_BS_Direct_Marketing.md",
+      "sha256": "2a06acab1dfd4118977c82ed0b59bc3c7285669a3c40e9e3e02db3ab946a9713"
+    },
+    {
+      "path": "data/minds/dan-kennedy/source-text/Ultimate_Sales_Letter.md",
+      "sha256": "6e242c9dbfe35a559cf94b3ca588f87900c27b8ffe05438b75b311dffd6a3966"
+    },
+    {
+      "path": "data/minds/dan-kennedy/state/etl-7d-state.json",
+      "sha256": "45ef12253c07c5606d30ee871173af52c45d4c79051e92cdb82cf370dd5965bd"
+    },
+    {
+      "path": "data/minds/dan-kennedy/state/extraction-state.yaml",
+      "sha256": "a4988432f4d996dd433dfc1b8f228dd24fac3f904a88dab0706ea7c06422f8cc"
+    },
+    {
+      "path": "data/minds/dan-kennedy/state/progress.txt",
+      "sha256": "bdf186c7209dbcb2bee4c14bfa9c86dfdf9ac39ed6ac5ff0b87a9f2ed28b97bc"
+    },
+    {
+      "path": "data/minds/dan-kennedy/thinking_dna.yaml",
+      "sha256": "49ff79e07aa5fff03c39ef2e14142464421c8ceeb5eab7c655e9e064df7ff189"
+    },
+    {
+      "path": "data/minds/dan-kennedy/voice_dna.yaml",
+      "sha256": "9418a985c7f656828f4c6432e29df0aab3342bc5bc7c043c178f66ee95c696a0"
+    },
+    {
+      "path": "data/minds/dan-koe/7d-extraction-raw.md",
+      "sha256": "807e656cade7c34b8b9745ecffedae68035a387e90ca41bb28b8cf7088ce24ec"
+    },
+    {
+      "path": "data/minds/dan-koe/source-text/Art_of_Focus.txt",
+      "sha256": "151b506fcaebfa0b61cb12eeedb73c0b0142f2a332a4b8f8366ebe1b9430ed55"
+    },
+    {
+      "path": "data/minds/dan-koe/state/etl-7d-state.json",
+      "sha256": "440a4912d0a5ba7ceb5576cacf851e9832a12ac0bdd3f83c99b40dc2959d847a"
+    },
+    {
+      "path": "data/minds/dan-koe/state/extraction-state.yaml",
+      "sha256": "335cb810c5cab6a3e7c461e2d31d72249f4fdccf3745d12eb272f384c344fd2c"
+    },
+    {
+      "path": "data/minds/dan-koe/state/progress.txt",
+      "sha256": "837ad2df77e95b80c181bfcb5d68283380184a3fac6d5abe66fe187b96466889"
+    },
+    {
+      "path": "data/minds/dan-koe/thinking_dna.yaml",
+      "sha256": "8cf81dd6a266b4f4293b883df9593445138379a4b7c47340b7b8a734e2e1de94"
+    },
+    {
+      "path": "data/minds/dan-koe/voice_dna.yaml",
+      "sha256": "e1612f862c1f1fdcde6fe990fab7e2974848af5245ef5a69df3a0154030d26fe"
+    },
+    {
+      "path": "data/minds/david-deutsch/7d-extraction-raw.md",
+      "sha256": "3f26e5ef5d25a96091b49b65f4c1d34d380277938530ad4191d0e3fd64c8c688"
+    },
+    {
+      "path": "data/minds/david-deutsch/source-text/ben-settle-interview.txt",
+      "sha256": "c69301b0e842dbe0b4c84250e0b4b2e1ff9ca4c7fdf65fec7c1a95bd86de9618"
+    },
+    {
+      "path": "data/minds/david-deutsch/source-text/breakthrough-best-of-interviews.txt",
+      "sha256": "d95f2efd05a476388cedda4493f6ec46a15a77dd906fed6a6c189df2b4c88d7f"
+    },
+    {
+      "path": "data/minds/david-deutsch/source-text/breakthrough-interview.txt",
+      "sha256": "83071cad4322c0a29491180ad6e562b291b18505cf01e8ab54c038bb633f5629"
+    },
+    {
+      "path": "data/minds/david-deutsch/source-text/copychief-ep57-problem-solution.txt",
+      "sha256": "c0712454dc423320aa18fa630161f844be425ebeea9a4a991cab6a67a90ed240"
+    },
+    {
+      "path": "data/minds/david-deutsch/source-text/deutsch-on-jim-rutz.txt",
+      "sha256": "5ab151361be7d0e713e8011cf37ebec3f6b2291a692525b23c32ce5dde1a4095"
+    },
+    {
+      "path": "data/minds/david-deutsch/source-text/tcc-415-copythinking.txt",
+      "sha256": "8b1a48ce3bcb0e061615a64fd3b84154cfebdb1201e17128818d955db2c7e587"
+    },
+    {
+      "path": "data/minds/david-deutsch/source-text/verygoodcopy-microinterview.txt",
+      "sha256": "3e44fc8f3298f0c9dce37a27f26c4f3eaad14ecfbfb8b2cf94549cdd21284832"
+    },
+    {
+      "path": "data/minds/david-deutsch/state/etl-7d-state.json",
+      "sha256": "7a56914b13b6583038e464b0db6333529292c1bf13d9836a06f555d77d03c0c4"
+    },
+    {
+      "path": "data/minds/david-deutsch/state/etl-7d-state.json.bak",
+      "sha256": "8919b9b6ed1d78b3520a9fea60556d827fa10e9440d382912e3bdc5b00e07e0f"
+    },
+    {
+      "path": "data/minds/david-deutsch/state/extraction-state.yaml",
+      "sha256": "453051eaae2256c8a337f040587be529b29e39e226d71d995f886dfd33dd37de"
+    },
+    {
+      "path": "data/minds/david-deutsch/state/progress.txt",
+      "sha256": "1c86f2f1596824bb73750ad72965aff7ce1f829c448894379e3721e37eba1e61"
+    },
+    {
+      "path": "data/minds/david-deutsch/thinking_dna.yaml",
+      "sha256": "b69307f9e8708fa7f928bc5c619062dd67f3039d6359d3e6893913a6cbafa3d4"
+    },
+    {
+      "path": "data/minds/david-deutsch/voice_dna.yaml",
+      "sha256": "ca66a1001909f333e55d56b5e8abbbfdb4a861a38ab32719d08e9588401af32b"
+    },
+    {
+      "path": "data/minds/david-ogilvy/7d-extraction-raw.md",
+      "sha256": "36015e1a722a0dba9b20a1c9f3fc2ca63bfdf99800ffb76ed8d5cd7bcd36bfdc"
+    },
+    {
+      "path": "data/minds/david-ogilvy/source-text/Confessions_Advertising_Man.md",
+      "sha256": "cd2d3cfaed9a9ea154f30b249962cb0d34f3ecd82ad49f3a46c5979d0228b03e"
+    },
+    {
+      "path": "data/minds/david-ogilvy/source-text/Confessions_of_an_Advertising_Man_resume.md",
+      "sha256": "8ca603e4bf4c0ad4fd373e543401f5b133329b30a4ba49d675c38dbff1f70d26"
+    },
+    {
+      "path": "data/minds/david-ogilvy/source-text/Ogilvy_on_Advertising.md",
+      "sha256": "743110ec4ef2ad4a3cc2514e8a8e1a14b53fb4050f565db7c91e9ffa2abfa916"
+    },
+    {
+      "path": "data/minds/david-ogilvy/state/etl-7d-state.json",
+      "sha256": "dd18f166b0cfb9b86b4c23e6aa7ac14244815e367e039e6d1a29931da616fdcd"
+    },
+    {
+      "path": "data/minds/david-ogilvy/state/etl-7d-state.json.bak",
+      "sha256": "923c3401ea4f79d91331ac696f13f4874adda0cad378d8a190c7f462ea948b94"
+    },
+    {
+      "path": "data/minds/david-ogilvy/state/extraction-state.yaml",
+      "sha256": "20d68c1fbdeaca66ac91c35920833a02c679077f2ffc871ebea7eba3110220a6"
+    },
+    {
+      "path": "data/minds/david-ogilvy/state/progress.txt",
+      "sha256": "4e4458669d44909ea8dab3d5b6a52fa73b829c3f631440c6ea0c376cf5c0367b"
+    },
+    {
+      "path": "data/minds/david-ogilvy/thinking_dna.yaml",
+      "sha256": "f77077e44e0941b5fff209c1bab439e6c048797ff7e404efd1bfd0d30f84a000"
+    },
+    {
+      "path": "data/minds/david-ogilvy/voice_dna.yaml",
+      "sha256": "11abadfc6ba6179bf750b7c46a8757d50e54190d9b1bb264c2859d25c9a887bc"
+    },
+    {
+      "path": "data/minds/eugene-schwartz/7d-extraction-raw.md",
+      "sha256": "63589cdd7349a1715519b185ad763860857fe620b89756e5aa202297bdd199ff"
+    },
+    {
+      "path": "data/minds/eugene-schwartz/source-text/Breakthrough_Advertising.md",
+      "sha256": "c756ae6e2c91cab6977a55c79e3390553396f953d99582b8ab95c21ccf332f7f"
+    },
+    {
+      "path": "data/minds/eugene-schwartz/source-text/BREAKTHROUGH_ADVERTISING_PTBR.md",
+      "sha256": "457fff6c0b6adab418c6b401684c2f40713090b3dec21362bfaa26ae5078ca94"
+    },
+    {
+      "path": "data/minds/eugene-schwartz/source-text/Brilliance_Breakthrough.md",
+      "sha256": "88c4f61e0c0d230e6ff8417f30ba52924adfc484d02f6c299ad5246fbd0fa2b2"
+    },
+    {
+      "path": "data/minds/eugene-schwartz/state/etl-7d-state.json",
+      "sha256": "47fbbce2a35ace323084c490f9f3f6004985eeb520a453031261e2227e94daf6"
+    },
+    {
+      "path": "data/minds/eugene-schwartz/state/etl-7d-state.json.bak",
+      "sha256": "3f1b9a8ebdcbbf787310e20ab14c93674220eb247a807ad2faaf2ecf26f4bb88"
+    },
+    {
+      "path": "data/minds/eugene-schwartz/state/extraction-state.yaml",
+      "sha256": "48e2f12282dc42ce224d3601462b655f018d8ba2d00fc4ee4e78adcc54e199e8"
+    },
+    {
+      "path": "data/minds/eugene-schwartz/state/progress.txt",
+      "sha256": "afe1559b713c35fa572b3761e941aaf4fbb71771e12e4b889339150f341b3c4e"
+    },
+    {
+      "path": "data/minds/eugene-schwartz/thinking_dna.yaml",
+      "sha256": "24203430a2322e423554413407affae5c52f0d1cf9c09ea0424d18c5501fd7f5"
+    },
+    {
+      "path": "data/minds/eugene-schwartz/voice_dna.yaml",
+      "sha256": "db6d8d1c2a3a915abb823bf5586708eaac86539d293d4458ec0a6b057a707c79"
+    },
+    {
+      "path": "data/minds/frank-kern/7d-extraction-raw.md",
+      "sha256": "04478fe91dad7c2f0e7188d596141ce9455eec27d80d2edcb8851e3d2c96547c"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/-scVdG9HYqM.txt",
+      "sha256": "8fd536bc02c81e3c346525ca4aea380345df2cbeb9281b39cfc70c1fef5d0a6f"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/1zjGwXGaoIs.txt",
+      "sha256": "e787499423df62e4289767f31bfad5fad43cece45e3df465cc0cb1a11a60bf1a"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/7ooqFD54Yo8.txt",
+      "sha256": "3b159df09e7c7b1e12deaaf341e631da82518f7af75e70d3d1fec7e4fd1cf02f"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/DyCjLESKDl0.txt",
+      "sha256": "226cd32f990ad8638aeb545a7857aca3c7ecc491748b87648ae84b7180efba38"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/frank-kern-youtube-transcripts.md",
+      "sha256": "48fcc61f30070402cb2bd5b63e880ab081fb08654e284d94221839bdf2de8367"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/fYCFNr2XO38.txt",
+      "sha256": "28ec5be0bad73dc8eb8d6623fa13794e5ffee876e4e0e2e9d11e57b65c15354f"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/GlyBJrSJi2o.txt",
+      "sha256": "8b51827892fad54888c7a79da233a8a4f4c1fc236944da617f9564ec253d6a13"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/GxOkykvi7w0.txt",
+      "sha256": "4677a1261c498e80d3cd504db912a9d59881856f8b321eaec6a56d1e7e8d33f4"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/H-Kvco8coxo.txt",
+      "sha256": "3131bfd7c722d2cfad6ae90fe26d35a37c4f7e8880c4321863741b560c74d8fb"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/K1viCizA1yc.txt",
+      "sha256": "7f93f1296927388d601732402cfa16e586595b77d6cfd76b65af8c7c2e9abd22"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/K_rIS8wAjww.txt",
+      "sha256": "d1c55194224f4c1689a66ba1a13311e839f2754ec9761935eb67ffff6c7acfaf"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/lxfOI0QCkKU.txt",
+      "sha256": "a9d21cfcd33ea147f44a02c1b26bd4c35b25ef8d6a1156d38d4145b184690229"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/mPDHYKeSpw4.txt",
+      "sha256": "63789679db566fd4a3c4404b4d80f223adb5792c35abe5e6dcdd05ed0a5896a7"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/MW86viZnFec.txt",
+      "sha256": "23e5883a398ef6d00254ee0f9aa98fc233da960d60188c5d7943c36a9443bc0a"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/oyYTmiB5bOM.txt",
+      "sha256": "9969cfda7ab254d1b8c06b8ee93bf0aa983d823754337018b7ab600438cb808e"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/sZWjCm-eUf4.txt",
+      "sha256": "8a4d9e7589f379978b698e583d4aaea6ccb72ceadbe64cd051d33d2a76084b77"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/TVmVaHtU-_Y.txt",
+      "sha256": "184d6913559b118558397558e15499f42610a09d12d436f2ce55020a9eaced3c"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/UZ-xXq95uY8.txt",
+      "sha256": "08ebad79fc84b51a428dd879983300c1a5ff420732340dfe08a3cce8081c236c"
+    },
+    {
+      "path": "data/minds/frank-kern/source-text/XopuZw9d0Bg.txt",
+      "sha256": "0a48c6ea51deb64d4f22a8239443ac422b8ad129fd29ff72ac43d885e71cbffe"
+    },
+    {
+      "path": "data/minds/frank-kern/state/etl-7d-state.json",
+      "sha256": "f7a871f67a6e1b5d4c1661a0379015c566865f0154b89a489ac9233b60b4d9f0"
+    },
+    {
+      "path": "data/minds/frank-kern/state/extraction-state.yaml",
+      "sha256": "c3f90f3a32adcc5c31894612cbb1432181110df1bb26cd4770ae4ee72b2142c0"
+    },
+    {
+      "path": "data/minds/frank-kern/state/progress.txt",
+      "sha256": "0a9a3bc41c10e057cb3d20a78ad3cb16933d8ed8eee8d01b5746249d0b7cb58d"
+    },
+    {
+      "path": "data/minds/frank-kern/thinking_dna.yaml",
+      "sha256": "b84d6252055b6e6e6db89edfcc14b4957b7d3fdff47d063e7cd49c23f30f97c2"
+    },
+    {
+      "path": "data/minds/frank-kern/voice_dna.yaml",
+      "sha256": "2bbf9635a4baf5043fc80af78fb366153859ee1ff2fc2bc56dbc80c8eb320d71"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/7d-extraction-raw.md",
+      "sha256": "d5e4d77e558269a11ada8ae02779ae12f7d93c591e1a372cc4f08a7d2fd716e9"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/bencivenga-makepeace-interview.txt",
+      "sha256": "8a098040be2bbb5b4a36764251c3959f3338616a5fef9c7a2206c3e7eca6b5ea"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/Marketing_Bullets.md",
+      "sha256": "9b776e1b25d6e875d5fe001e7054d83838bbd21e46153b68c51b731abb5c242b"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-01.txt",
+      "sha256": "5e017d5346b298deabf2d93f1f0d1696d91af953925cb0cb9812be6873fdf8f6"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-02.txt",
+      "sha256": "5c91a7add47e206641c0bf6244c888b12007aa5b7105bfd59cf613b977a010b5"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-03.txt",
+      "sha256": "c30198738ca936ecfa6aaf6ed0d484408d5cf33c6599a974d75c000ecd8052c9"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-04.txt",
+      "sha256": "0c28a1b61055bb7343b0bd476fe8dbe05dd970a5f8bf48f587c91963831bb51a"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-05.txt",
+      "sha256": "e7fa5dac3095bce9f373bfd46e5cee560c09c128cd56a27d91e4a7ad38badc68"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-06.txt",
+      "sha256": "6309e42e62853803f497841db1129331f0e988b22271f1e6c670c819ccd9dae3"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-07.txt",
+      "sha256": "a1c581a1f85553980e77d4b30df27cb5e9ac1f754f2228d944ddb87c26ed9729"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-08.txt",
+      "sha256": "7abba5d164b7c455e743f37b5967cb78796c7a0b4a01c15e58eb408aad2847eb"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-09.txt",
+      "sha256": "7b4c797b879cc02667e94b517338fd4ef58720081d520fea02c005bdb989805c"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-10.txt",
+      "sha256": "13ff44fcb090cbe89d49c983294512b94837d319cdd5db6d10ac79083ecde33c"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-11.txt",
+      "sha256": "8625911725a2ab51cc6e7974e55427961986990c72d04d8947580625193d58ed"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-12.txt",
+      "sha256": "c77af9c986b555a2ee4915f810c42462d228a0c9826d0b81e02f922fc36b3768"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-13.txt",
+      "sha256": "d9b627dbb7d7e3dfcbb659402de642858d93467618ea072e0e5d2b046cffd077"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-14.txt",
+      "sha256": "658a3e5ecdba940959b6ff2c181af072c2f0471d4a0620d71b2c17bc66153674"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-15.txt",
+      "sha256": "e3f089f53c271495382dcd5ff8223f26f0d9735084b0c7ce536bf9700c331bc1"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-16.txt",
+      "sha256": "1b8de221fd7c6f9f7b489b731e16a7a9950b1b7c0f26afd3c7f41631a028b0b9"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/source-text/maxim-holiday.txt",
+      "sha256": "16f84c104792793f671f399bac7915ae53719de02106f62f1f455c02c114bfe8"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/state/etl-7d-state.json",
+      "sha256": "7388346aa53d2d2f583060cd2861ad3f2b2994ad5e786804a9cc6d9c08ac97ac"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/state/etl-7d-state.json.bak",
+      "sha256": "5b5e8a2bfb3f21ce982db64172ba405929703249820755723764e0489a2ea53a"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/state/extraction-state.yaml",
+      "sha256": "af9c8f1c91d1451b19338cdb9327f4bd98f1b7ea1bc21610acac1bc9ba5e4919"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/state/progress.txt",
+      "sha256": "88273d40fd07ad011bc7c4a8b070e6494f65b5516f9bb9ffebbe5b6e79a53b2e"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/thinking_dna.yaml",
+      "sha256": "24e489524f4fa6fb3ad624f841b3bf31f326859bbbca4122b9e536d56378020d"
+    },
+    {
+      "path": "data/minds/gary-bencivenga/voice_dna.yaml",
+      "sha256": "418cc5dfe82e324b04be7cea5792deda90af029f37303ddd2cc55e0a425e87e6"
+    },
+    {
+      "path": "data/minds/gary-halbert/7d-extraction-raw.md",
+      "sha256": "c16290637a37face3b6d3575eb0fb478d59d1cc46e505c16f77f1df601cb8fc8"
+    },
+    {
+      "path": "data/minds/gary-halbert/extraction-newsletters-batch1.md",
+      "sha256": "9282c5c9260e93b58bef3b71d591b5ed03b4335831dd59d10e37e4f6f66c2add"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/11_30_04teleseminar.txt",
+      "sha256": "d98e30bafbf48f67a53d04fbfce6c7e320ad146dfd0518ae5dc6d484cde81223"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/12-monthmillionaireocalaonly.txt",
+      "sha256": "82c12da61ad4dcde0f88fef311a72d318557c9fc942852800c77dfd9c5472fd1"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_07-13-05.txt",
+      "sha256": "70792034823e2020a6abba8e1a16355dc87184c4be43449b2ff8947b71290c4b"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_07-26-05.txt",
+      "sha256": "b9fe099f3e9c28ac378e88e556c046b4a7d8860687b3c898cae7ef13bef51f5f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_07-27-05.txt",
+      "sha256": "5ed277d95556cfdefb22fc3580eaf9343d28dcce8c3da1f300c6dbc52646097f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_07-29-05.txt",
+      "sha256": "90b2e7ea26c3b26f5913ad74d0f31f3b45d86fceb6f4cdd77b9630d78636711e"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_08-15-05.txt",
+      "sha256": "9fdd95ec2fe0fab88ce1a0a2788574956e08a7a601edba026cc7f7049a849981"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_09-01-05.txt",
+      "sha256": "d27b1e6bc3d27989149eacc87832f502a406d3e9b280e9bd05ceec0da7e0ff66"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_09-02-05.txt",
+      "sha256": "16cf3d7fee48517c8cab20815496d6702ac48900e73bb6bb7bce7a83723e1e10"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_09-03-05.txt",
+      "sha256": "c7718b1ce1c88b265501e16182b03255da053a0d3b4a0e5b6041374a7e835feb"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_09-12-05.txt",
+      "sha256": "d6195a42b13f058dab2463abc7be48987330ff97c8c87d14c9022b72b4d533b4"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_09-15-05.txt",
+      "sha256": "9b7aec861a02e02a0bf9dcb175c8785a2b161385f5297b7fb8450aafc43f9d93"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_09-27-05.txt",
+      "sha256": "c074d37ee6e3a6615388b9e18afbe4b2e28b4c1f2bc41d3c88ea7a8a81db1dad"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_09-28-05.txt",
+      "sha256": "c5ce158d10068bb3e6753aeaa09996e5f87f2fc628b4431f2f69cf7071a51b14"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_10-25-05.txt",
+      "sha256": "5953064e861ff664ab0f0616892219c221d6604465053b1d2696d6704cdedbb1"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_10-27-05.txt",
+      "sha256": "46b9e70f4009349fbdde5d0be8cbcab4b369fce5ee96f22323df5479d0045d9b"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_11-09-05.txt",
+      "sha256": "d2f695ea50b074e68d8b4ee58f2bd2bcceb67fc0fc305d752f710e37607c9bb8"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_11-21-05reveal1.txt",
+      "sha256": "b2d7a48672dfc684f50df083b0f32faaf1cfc608f64f0a0f11ae324bd53de65b"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_11-23-05.txt",
+      "sha256": "d38b492c94854ae64920bf2cd8a8e7af0ec83cf40665828529118509d32805ae"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_12-12-05.txt",
+      "sha256": "eefc4ffd0f7c66b5329855b15cb3622fe08733435ed76741610fff8c27cccfc6"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_12-14-05.txt",
+      "sha256": "0ae79411dae010d240babcb6434b9625dcc663be2083aeb9d7cbbd558d7957ea"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2005_enlightening-timesensitive.txt",
+      "sha256": "ccc28b765cb53ddba972ca33752e64a346193cddf8ad62845d73b5a9966c2555"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2006_go_ask_alice.txt",
+      "sha256": "e5ad851201bb74558c88350d7a994f75be7e62e7bd49d4059220385fb3fda1ba"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2006_jam_packed.txt",
+      "sha256": "36eb38665144a2d763c732593ce35d87d7391f4d31a80bfb069ca8d441b17706"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2006_marketing_from_space.txt",
+      "sha256": "672b84d8b2b29a1f3030b85582399e54667cd3d99cbb8e8492f0c33efc091834"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2006_modesty_personified.txt",
+      "sha256": "f7847e0eb3b4426b260d0d96e5583bb098e3614be50fbba5af0eb5c1d380bf58"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2006_rolls_royce_letter.txt",
+      "sha256": "ce0e65f9a7c2fbe23ca5ec7c1d6f6cbddf8296e5fdb1a416e2454e1f6e5f6d4f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2006_spiritual_newsletter.txt",
+      "sha256": "39a2ca2dfe03602489191e0bcfcecfd21c2e3195a2cc3409a6ed2d4cb36eb495"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2006_the_700_million_dollar_man.txt",
+      "sha256": "e8dc4e79b13aff97f70f83495e840293cf44cddf1c949535d3baba85d73c83b7"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2006_the_answer_to_the_rolls_royce_letter.txt",
+      "sha256": "968a84f0944866b978ff9f9ddc74077ec15ddcffd2d5f3d483a12f04bd23d5d1"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2007_october_2007_good_news.txt",
+      "sha256": "b81938dbabbc29d2ff3e7cb686a1c9c4d99f060396c1af6a0cd43884368606f9"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2007_october_2007_newsletter.txt",
+      "sha256": "599781dc99d69d75d6cec84aeb17bd20c1dc51ce2ffd642077335b1669599d49"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2008_howtowritebettercopyfaster.txt",
+      "sha256": "f8079e2a7b7cec8a0d27b82fb694076edd9e6fb0f8a38316b47880490cc2d713"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2008_mindset.txt",
+      "sha256": "ea701c4933c14ac85bc21ae0c0b3acd3196beefba1dacadba10c1a4049330c7d"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2009_bigannouncement.txt",
+      "sha256": "626a69923ef612a49a681bf4675ab5851b68ea80cea8758a4b0641a5bdc196b3"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2009_channeling_the_head_shitweasel.txt",
+      "sha256": "027aacde8164cca8ec40adf7518fd59ae360ea8731f962d18cdf3400a6967121"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2009_gary_halbert_personal_ad.txt",
+      "sha256": "6383d0446e0c2fb43bd3ff63f2e54f73a49a5379db59d8061b3c81fddf4071fa"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2009_perry_marshall.txt",
+      "sha256": "735019328b8cb67c7e3430618ea3d61b93aa552a69a9428ac2feb10de07ce330"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2009_whitemail.txt",
+      "sha256": "d0a2051080ce9ede4a4685cf50883ea981c53783a063453650a4ee30e4c437b4"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2009_whitemail2.txt",
+      "sha256": "1a714245953300b785743cfec1cf9e3fbbbf17fd7a7910da9a5155f7a1a1068c"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2011_aspecialtreat.txt",
+      "sha256": "66212a47d9dfae4a94435265f385a075d6ed22c9e752ee989e8a52256c17b843"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2011_garyhalbertsbirthday2011.txt",
+      "sha256": "7439edc329ec61015a20ab345c39e900a920f186b4b37a9ab0b252baf8708a95"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2011_hiringcopywriters.txt",
+      "sha256": "58c96368543d6f06628f69880eb30d28952f8aff5e9ce4071a44c2ae84754494"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2013_halbert_seal_of_approval.txt",
+      "sha256": "655e1e79ee49604495b0186de9ca01fe3c42c07a5546b515b73cbbaf0f11f8a5"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/2013_nancy-jones.txt",
+      "sha256": "d6270fa1712035c6ed33d945a86d7c2780b9929d23de7d15697d28bcab267063"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/20ClicksUpdate9-07.md",
+      "sha256": "c9d3b34f583602745beef04ab7aa6a8e0af0ebdef691e1f99fab41d7bb0118bb"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/a_yellow_pages.txt",
+      "sha256": "2f1d8056db944ae473801d35e938491993e9804f7135a4d9e13951dfa1b51972"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/aakh_improve_response.txt",
+      "sha256": "116f2456ad453279790c3626b6d6a7d7e31049d0982f04529967d91825d625e7"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/aakj_veritable_orgy.txt",
+      "sha256": "3c8513d7c82f241c5b45505445a9167bcd01514c7c9fe32281d5932486f6c5f4"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/aakk_you_cant_know.txt",
+      "sha256": "79ab04029d3c7712a0dc2889cfe6b43c258712a32a3978321217e6cd30e51728"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/aazz_about_nothing.txt",
+      "sha256": "109cf4fc96cef6a6cc8f623196e42c4dcb8095ddb44549ef871421814c30616d"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/ac_an_apology.txt",
+      "sha256": "cc2af46b698c8e126c9060af2802a359ecc91d7b6ff75b4b3fbc748ae29c6eec"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/ac_easyway.txt",
+      "sha256": "f4a91b610dc282125f78537b78d4d4a8d9a14e96a04a4872d44a3086446f6d58"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/ac_interesting_facts.txt",
+      "sha256": "e8daba9602235a8ffa1b4eb1fd8c786bd64b4879153afa6002c8f286fef64eb4"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/ac_money.txt",
+      "sha256": "4244a6c4f8d0dbfe657106f95a9f030b324c5bcc048ef693d1d1a4f953168f98"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/ac_plasticsurgery.txt",
+      "sha256": "6bb7034813bfda121210b3fa277eecc5305be400377473ccc987b4f29c40585a"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/ac_tape_pitch.txt",
+      "sha256": "7d669bd1e4ac9d9a83da24814ef93be00bbd49863309f2d14379ad7210f08f35"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/an_insane_idea.txt",
+      "sha256": "b3aeaf813f02d653ad95a1a8657d889018f7348a891741bc448a48bf18c3a9ce"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/askh_fighter_pilot_attitude.txt",
+      "sha256": "a60b52a28efaf65cd8ae0edb7ffb5f1900e617faa4f70422ea3e594286f04fb7"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/askj_product_to_sell.txt",
+      "sha256": "091a62f693d4c1e8b112ee10f1769796ba4dfe45dc03b810e8c478c51e87ef7c"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/askk_vanity_radio.txt",
+      "sha256": "840df06a0cfb66509b127020a822c2aeebcd12a1d67ef1e842f5b059b250b554"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/aslk_start_every_day.txt",
+      "sha256": "27b5e48cb1fbe856cc570d0803c6606cf8d9e398bae4a57e4fd72b8690cdaac5"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/aslz_winners_losers.txt",
+      "sha256": "b6295ee46f24780b028f30712e6415be4be20c96c6d636d5e3b4ce5fd35880f8"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/asza_another_issue.txt",
+      "sha256": "82e43d7d3a45dd1a45372425b98381d9478c894a563577492b32a964c0707078"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/azdedislei_specialreport.txt",
+      "sha256": "ed9df4073a0a969993d9a1b15052205bd6c1e9267d361e0264cf47a5f2e438de"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/azdx_internetsecrets.txt",
+      "sha256": "994bb0cbe23722353055fb43a4f4ef0f49dac97315023942ff447b8bae50c59c"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/azkj_catalog_mailer.txt",
+      "sha256": "04d2aa8b55e5a4c132f0e99f1a579f2e382fc8d317044caa70d310fb5fc5bc9d"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/azkk_two_secrets.txt",
+      "sha256": "9c56967ae21d4c2f8eed320153c854f3b4e6181f8e31a53864052cde5eaba568"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/azlk_make_god_laugh.txt",
+      "sha256": "ca98944102de651c0b2549fec2c2f4943d018102372622474c0cca446137718f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/azll_positive_difference.txt",
+      "sha256": "45f42e8c8505908720ca1cd7472dab42d1abb4bb85be7e017a46adb75c5ff18d"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/Boron_Letters.md",
+      "sha256": "08012d4fa21942f58483fad1f50d86796281e0d93c93babef3d9e0d100c156b5"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/castration.txt",
+      "sha256": "0789fd8d65e986129040d4c893bb15a8fb4a94e1e3b3e32d03998d0a02386af6"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-01.txt",
+      "sha256": "46de945599c2d336f74a13a8591ea8120eebb1275f35c7a0b452d57950fa182a"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-02.txt",
+      "sha256": "b34c6a4d2a388e89edf886a1cc760571d1574bf9662e39b585e0f2c321527406"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-03.txt",
+      "sha256": "8516464d6707e1e7b5803aac825d474cf8d1a8a974f4831e6d663efaaebf0896"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-04.txt",
+      "sha256": "eeb0058311c99fcd8d22716e99b898ffd76db45c4595560efc9f81bebf134c33"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-05.txt",
+      "sha256": "753b54c8eaaf769d2594fc69991012b07f00577c1b73b17a3d45fe0f9ad6712c"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-06.txt",
+      "sha256": "f900fc9062068231f48cfa5623621ec1e6e5b8bb44ea454a6002ffe4ee450b56"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-07.txt",
+      "sha256": "67999f6d46a6af080437e98b9e6d72db0a948eb2f7d76a6b212ddcff08d01d22"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-08.txt",
+      "sha256": "1753ef50e4ec5b5c901379c2bcc944605e18b2dfdf4decfb18f169c75b04ef56"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-09.txt",
+      "sha256": "9b463014fa3210648f0d8eb32ed83db0230d75ab8ee6f83f1285a706c52c194d"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-10.txt",
+      "sha256": "e9e0689eff25cae2710bdbc11e03e08cbaed4054bddf91e917db90603f97b089"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-11.txt",
+      "sha256": "072ed85bf06f94d6a13c27cd35105b6b3d84f9cef256ff1f7c49d80abc2f5be6"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-12.txt",
+      "sha256": "41bf20a080e4b217c0ee13abdb248c0a258d26878c20da050574f5f497fc0803"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-13.txt",
+      "sha256": "839f797e933c008a5747e483df3253477ccbe5ae1d72d4846abee2f3662f87af"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-14.txt",
+      "sha256": "954fd1ba9aab0cbe4a0d6d50ef54c362a98630b15ea631d78cdee003248823bf"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-15.txt",
+      "sha256": "7a466ef9b075c20e54ec53bb512766c39f67c304de59c39e1ae7dd568771365e"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-16.txt",
+      "sha256": "ff61ce4dae94b3ec7f7f884e553674c74284d4bcb2c56dae7e11f692e1e16426"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-17.txt",
+      "sha256": "e29bedb3b8457239651b7ce02f3143e7199fb8a69fcd0765f34f2f82d2574a53"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-18.txt",
+      "sha256": "01447b4bed14959502a9a03fc7e1db43ee6ea003222680be3c0e241fed7f947a"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-19.txt",
+      "sha256": "e8f6a97265901f8a52c0fec20c2970f2a0fc5da403237d92fca43d400aa18fe3"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-20.txt",
+      "sha256": "56f142bd7e1d561b0b35c9b7d56e6a9faab49395960e22258cc0d586876e4cc2"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-21.txt",
+      "sha256": "97a7730a35f9de91ef3180be46069f82f19ee5720f879c6949ee4fd12c265406"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-22.txt",
+      "sha256": "8313e218256fc24a891ed964602f3b2be2b1643444b556b9a93c403d133bce67"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-23.txt",
+      "sha256": "62a12a5404bda1b98f9112fd2ec5ccb049c493f4fbea09ec999a07e0d53574fe"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-24.txt",
+      "sha256": "df55fc79835cf6668ace1372e8619b08ff1e803e22c1c7279332c82c06aa24ce"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter-25.txt",
+      "sha256": "0be28104b474d730380f4c72a65b1c65c39b6446ee58e447867b06013cfeea30"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/chapter12.txt",
+      "sha256": "d009080854b5a457f9e00f20c581bd35014768fd8cb395ddea8df4153465ddfb"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/dark-side.txt",
+      "sha256": "f0e3078e7f1fd5c15eb1ed3925891baa313041bb0fc06cbb897685c9263ff52b"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/dec_04.txt",
+      "sha256": "cdea9767e8b087de88baf6dee4660dc9e782ee0b1bb5b1ecb03baae29c457343"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/direct_response.txt",
+      "sha256": "0681daf1ee163e7af3f850cfd8344be26b36e327c407b466d34207bf70d6e168"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/does_size_matter.txt",
+      "sha256": "ab859df0d2b5fe3e6badb520a119b53007c677a3996692bb873bc9c4d2b969c2"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/FairMaidenWriting.md",
+      "sha256": "d83dde793de1d142bcd242412264705defc3c1b9bbd632b77e03ccf6922783db"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/feb04.txt",
+      "sha256": "b2f72b19b841efd58045a5d29c31e3d7fe57d8063fe1013a81b72933c07a2546"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/feb05seminar.txt",
+      "sha256": "c052417444e44390a5bce026fae5522c050cb4bfceb16bc91818cf203987a8b9"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/freeteleseminar.txt",
+      "sha256": "d8a3bd74413fa5a9015e99a53c80fadf42d52dee033ffe919390ac967e55fcbf"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/gary_girlfriend_in_motion.txt",
+      "sha256": "867838f63f17a331c058afcac7678388a7e1867434757317d5e354d9faa57837"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/gloomy_sunday.txt",
+      "sha256": "17697612d74b6f3bd26ef2068ef27093e17bd74e6d324bf3145fb718ad9c10b9"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/goodbye_04-05-05.txt",
+      "sha256": "1cc15b3a9b547ade4553c3bf04d1ba61f28f0a97cc76375cc0ccef50fcec418a"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/goodbye_04-06-05.txt",
+      "sha256": "90402ccc702aeb52f675866dadf3fd99352938ac432b7bad2ea7dd1961d0e74b"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/halbert-direct-mail-bootcamp-transcript.txt",
+      "sha256": "171a35c38560179a178b856621ef4dbd01df18a5cef8b0a051e3df22cfea9558"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/halbert-direct-marketing-secrets-seminar.transcript.txt",
+      "sha256": "339e5ae97af918d0b93dd4ba31e1a715687215f809b41a8efab7eb547b7839cf"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/hurricane.txt",
+      "sha256": "9aa276f49e42b04155c3bd9a2df52219b882be2bd06a867b4912dcc43d263ff3"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/iraqisecret.txt",
+      "sha256": "10ec479bd19247eee74712a17d90132c319b266478c6d4a2d51b3f708200210f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/jasonjcox.txt",
+      "sha256": "349c16a27e5bc783c4efc4791164cf6b56a4b9bfd76f6a88b2609f0768896122"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/littlebill.txt",
+      "sha256": "0c3d16e8db8e24f61e0d214793adf7b7cfe2e38353c0a3fda37b072d3fdd581a"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/mentoring.txt",
+      "sha256": "eb6d22ffe9e0c3de208f94722c6e53a5c144f3ad809a035b7a128b48041a3269"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/message_from_julie.txt",
+      "sha256": "dd4fb697c807045162ecfea628b3090850650bc5fb82ff178ce84224c92d40b8"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/moneymakingsecrets.txt",
+      "sha256": "fa732cbf8bd078eb9f473c3cb8146b97509b1e04f5a8f3b8db8e1c98a592a216"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/monsterwebsiteprofits.txt",
+      "sha256": "09b5db738b9db5a1015514e57eea6f67b3e90748ef22488efcb08e896d2336a3"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/motherlode.txt",
+      "sha256": "aab6f03a9fbed0390473f7d5472fc7a6f2df99b3b48ec2de7cf33cda102a1532"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/oneadvantage.txt",
+      "sha256": "3c835ecc881e924eb24e127f27badaa45be70b4654d5c36678e49ee736e188ac"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/paradigms.txt",
+      "sha256": "ab28de8b183112071a45dfa364dfa9c9a3dde71a61e051a29e1f4a441ee6551f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/population.txt",
+      "sha256": "456717533acf22b23b28c246f29eef496cf988bf9e73c2c4857e2ce5347c4c6a"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/reallyrather.txt",
+      "sha256": "331383e53a37987f7590c7f782311bfaa34b62801529a361bfea3799efd651e6"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/seminar.txt",
+      "sha256": "077ae51fdc79ba20403eebd0e45cf8f1bd27eb10707428ed6d78cc68dd4cae84"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/shake_your_tail_feathers.txt",
+      "sha256": "a1ba3542c1e8e3384ffdc18e402b9157ecb3d63281047698e961e6af16f0a542"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/shortest_and_most.txt",
+      "sha256": "99ffc5376c99e72497623198c663674699bd661c03af3241fe1afdaa98a7d030"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/sleazypitch.txt",
+      "sha256": "ff55b4cb627ccf3dc29f57c0c58b9e942226d565a39a1a22c8095a04296d0432"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/theresafarewell.txt",
+      "sha256": "c2702e5a4ca4247ef181c90bbb8b1dd840a687bd70044377791b23317c524d46"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/urgentmessage.txt",
+      "sha256": "4932be76d5f54775a4661e0a86e70f54e9125cc7a96f0120cb70d4ab26b23dda"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/yougottabethere.txt",
+      "sha256": "808bc77c83fe4c050645a1c9d65dc42a510f8396a661d32627b32c00b834715b"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zakj_lesser_brethren.txt",
+      "sha256": "2f61f78a21993a315ebe7aa209cbaa428aa8d7d26fc4555d15fac7d8055fba7f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zakk_grabbers.txt",
+      "sha256": "d674ca1a87444269e3bc7e36bc8cbdc42d2c048cb3937bc605a4279e7c1118da"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zakl_talent_for_management.txt",
+      "sha256": "fd89eff256909584fb05dbfa9b4f64da78fc21ac85644cdc50b43787c8c6d046"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zall_more_stock_secrets.txt",
+      "sha256": "5052ef3728d13099abd51a31eeb05943b684f58de87f463b0a4c3de8ca7e83ac"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zaza_interesting_facts.txt",
+      "sha256": "952ddc80eec5d6142130d769a9d96d6d1c9ebc3d71cd755830dc62ead14a4c0f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zazs_automatic_telephone_calls.txt",
+      "sha256": "cbe4947727703a6e7a7061c9b7e700871ffd4281cfdaf5fe8701bb3b212423b5"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zdkj_protecting_customer_list.txt",
+      "sha256": "612fec0ed8ffe4f3bb6370bf06bc2dce84caabab28258dddc74cd48fea448b20"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zdkl_human_deadwood.txt",
+      "sha256": "637b00cbf7a511f9c9dc544c00a5201709f9144309c5b2774e5126cdc94f50fa"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zdla_multi_level_marketing.txt",
+      "sha256": "5735a6966bc2a522fd8bbcfb2ce44eac9ddd7e26ddbce7ed9be26d85c2788748"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zdld_do_the_twist.txt",
+      "sha256": "32e3257341833d812c0cb8f42296ed54384b413278d37301a06c0eeb01c8d0db"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zdlk_financial_sodomy.txt",
+      "sha256": "52cab1a5f4de0355d0445f1b68322ff3c7123de8495eda10018c021fef0e4d63"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zdll_world_is_urinal.txt",
+      "sha256": "a01f6ee5b3dff5099728001c64c487d76dde4c10e1abb998b0f88df2c42d59b9"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zdls_halbert_index.txt",
+      "sha256": "77b5a10777bec2a5a1bf725375ba76edeb0d7fcc2b2c99562d3147de5d957915"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zdzd_piss_somebody_off.txt",
+      "sha256": "9eb1d71955ffc36de23f2d256c2bedb51dc50fc303057a357106c3011ac2a82e"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zdzs_warning_not_newsletter.txt",
+      "sha256": "0fc81c7f1da5a70160ac86dd5cf07d5f8dd72075e21731e8b1d111a24a8b2b33"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zdzz_the_suck.txt",
+      "sha256": "aabc1aa48935a7c92ced609d55ec978ad1d0a54cf2a88284d4a85d33c45d8655"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zfkj_hands_on_experience.txt",
+      "sha256": "33a218aee4e19b015c602bd3a6717cad71bb16ca3f095995ebe788234c9d9224"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zfkk_best_shot.txt",
+      "sha256": "7620cbb9a7d7a11974433e43b9bcc4411c8068780b66a38de24276a8a88d0cdb"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zfkl_first_step.txt",
+      "sha256": "a4ccfacab451c405eba427d6f1af9d49c85c175d993c0452d1ce3e75bd523e21"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zfla_where_money_is.txt",
+      "sha256": "a764565a01b631406f353d53302ba9f02db34f7f590db4567730fd69d30056a5"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zflk_blitzkrieg_paradigm.txt",
+      "sha256": "04c72c9d4706bee17a345fb230c35a42aaaf63a2865151d20b0874f6455c28b3"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zfll_remember_y2k.txt",
+      "sha256": "3648870a84f474f60cbdd0b46d0c3a01837313f57608c25de2d5823e8fbaa8e4"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zfza_more_money_website.txt",
+      "sha256": "23b4b14bf6663faabad2b10f0ebfea44a52ccdce63c40909663decab6c038e9b"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zfzs_pearls_of_wisdom.txt",
+      "sha256": "4013ff2f0d97c926131571710d2e0dd5cd621eae3de4eeb946e8ec347a61b477"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zfzz_grout_sponge.txt",
+      "sha256": "3b6ae6ea7df3c9458d6c15f61e8b55d96dd0d5f4d3159308efcf7cd3aa9a7677"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zgkj_blue_books.txt",
+      "sha256": "5866e4e82c957a8b67bf594fea42686528baacafb91a29fef52e7d0675485ba6"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zgkk_contests_and_sweepstakes.txt",
+      "sha256": "61a44be958227054ff984354e668e7382ff7b6f6abb24cf549aec3099686594c"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zgkl_best_copywriter.txt",
+      "sha256": "820f0150bcfb4ec81972ec4e210243c041da696ce9acb055ce7d40247d7ea665"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zglk_post_office.txt",
+      "sha256": "15f8d290b5e8ac730a76c0e778dbc0d6abbddb2c7f214aefc540244e61d13f6c"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zgll_scared_shitless.txt",
+      "sha256": "739bb9abf825f0acb4a4e6592d5879b7084bee85383dfda8505c35fd029700b9"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zgza_guru_garys_guide.txt",
+      "sha256": "e94ebdc50dca3fafad98cb3aa8e6332f41c2475d56bbadbe8999500cb7d6bf88"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zgzd_promoting_website.txt",
+      "sha256": "7a2deac87d944a598201e701fb5cfc60856a08cc9b7340de98e91abc3cc4db3f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zhkj_976_numbers.txt",
+      "sha256": "8738fb5fb57b5aa7e35511965f0e02cf5a70d3885a106ae63a9b640e02c1606d"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zhkk_image_suicide.txt",
+      "sha256": "02fb52c1dfc84a403643c1144ce7718fcb6afe025046de83df55772ae2b15201"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zhkl_get_it_going.txt",
+      "sha256": "7adfd69ffc49d8c11f2c8074156affdc040f018a7cc08a2a991e8492f54293b0"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zhlg_meditation.txt",
+      "sha256": "d0215528ba5200658f7a4222fd89cf06014f3820b9f8635fe2b38c8e993baef8"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zhlj_real_asshole.txt",
+      "sha256": "4b05d58b4e12c5773f17ee1282d94c3962150a0d0d47ef59ba2859078f68bb95"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zhlk_promote_website.txt",
+      "sha256": "907f63558f96ce65f452535848b2940b51cc5f707ea843ba3575cf15f82a9881"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zhll_marketing_secrets_revealed.txt",
+      "sha256": "c8bf8e8777bbc0c5a01f3638c852ba941e711f958abe257e83c59db91a041723"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zhzz-07_big_idea.txt",
+      "sha256": "51d8cf3b32c3204a57dd83ff8e40cfb2578e04b82821a7290689acc8f47022ec"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zjkj_by_the_numbers.txt",
+      "sha256": "016c92019c0ca414b61366af5050b551dccf83fd079837d720b03cb32d4040e7"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zjkk_cheap_little_classifieds.txt",
+      "sha256": "4715dcdbaff38709ec2ec6df82abce5be102a47bbfc141fc293cbfb897598aa8"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zjkl_whats_good.txt",
+      "sha256": "2994ab978074d101206a942aa68be8f78fd79ee14f8faad0ba7a23ea99ee3fa0"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zjlk_personal_computer.txt",
+      "sha256": "3ba350c3f2d7da4da9f25df3dd54bdf39184a88d4e3c4e89d6ed7ce601cadcf8"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zjll_most_valuable_skill.txt",
+      "sha256": "d53156631ff682bed17194b7caf2ec069a2b57a1f9d35f307b990e37e048b5ba"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zjlz_sweeten_profits.txt",
+      "sha256": "ae93275f88e2bf332fee2cbcbc8724bdae5aaef1327b078c53fa4b843c48d5b6"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zjzd_self_pity.txt",
+      "sha256": "14b55514fa15c42033cb2cae83aea4c9fbd2edf099d88c2cc29397bde5badbb3"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zkkj_advertising_more_profitable.txt",
+      "sha256": "7f7ecc994ffb6cae3f71833ae96ef48633b641485b2bc271b336b143fc043b91"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zkkk_killer_headlines.txt",
+      "sha256": "ae66e0ac9e92fa2e2aeb25ee2d3e8b1054ac7cef8711b7630c1c2bfd04f3fd4e"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zkld_out_of_closet.txt",
+      "sha256": "b3e2b2070632a2579f33ae549e63b4af19f7ed02bb7d00c5738efed3e15ab471"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zkll_better_be_running.txt",
+      "sha256": "62bbdf36ed8027a7b337d6c5614e475573c6a9dcf19b1d89fe402b026c0d531f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zkza_nuggets.txt",
+      "sha256": "f2fa875cf887da180d93555140239bfe4333b325257fa270e9655e430c6704f4"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zkzd_disaster_insurance.txt",
+      "sha256": "74fae228ad37a2f1875373966cfff5f515bad32c879a7e8ab94b8dcc4cbe4c5d"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zkzs_sex_and_money.txt",
+      "sha256": "f9ad439a158094777c487390803d8a6e781dba0d8c55106d3a64e4438dd0edf0"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zkzz_pound_for_pound.txt",
+      "sha256": "abc488f383b70fa451f5a6f7e4f3a849de361ebb76bfa90db92cc1b19aa57ef9"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zlkh_direct_mail_nerd.txt",
+      "sha256": "f76d27f8963ff77e684e5f0604d07fcf11918c3c97d05285576742a04ac2c4b2"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zlkk_movie_and_tv_stars.txt",
+      "sha256": "48f50124a08daf979d583b4bfd67689e677cbb776944172e5de3382b70b41eed"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zllj_thoughtless_writing.txt",
+      "sha256": "0e8da55f7d3721f2f9337b7793cb9eaf06d719919d7004828d5044dd0820b42b"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zlll_profitable_website.txt",
+      "sha256": "fc4eeb46a6d3859341657b71f43839f757c71af68045574167a4d3b7282e44d9"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zlzz_ski_masks.txt",
+      "sha256": "490dd2e82fc9a4a3a8b2c6af79d26aa5f8ad999fbc7a6216f2cadc877d01b4ca"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zskj_10_stupid_things.txt",
+      "sha256": "4bb5982323f3eccedc4cb679aae441b72a089cdd3eb11af0a75d3fe47218d394"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zskl_price_is_relative.txt",
+      "sha256": "8c1a8cd8158ef02cb2ea649b7d5c81fd090f0053a67afaded8137e9205ee137f"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zslh_neurological.txt",
+      "sha256": "597fa400c6f6d9563606df7c740aad397bd2cb903d37fecccdfb52cd54571267"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zslj_bill_gates.txt",
+      "sha256": "6d44676025886b521974ea723ecff8107cdf3488f591bb78b84ebd172cae9aea"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zsll_live_to_be_110.txt",
+      "sha256": "927adb11ad7df80b69f1e834967bddec535c8ba1e56244596ca7b0673b474208"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zsza_nightmare_clients_alec.txt",
+      "sha256": "375005b6c8e49686c9a3edd1ad5e0354059ddf0e1bf13b912c92f93cfafda0bd"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zszd_didn_t_masturbate.txt",
+      "sha256": "e809a6c0f4ee170f4109b4e44902edd4d653746ad416c6f6a0ef2bd09b923087"
+    },
+    {
+      "path": "data/minds/gary-halbert/source-text/zszs_aida.txt",
+      "sha256": "5ad102bb66891b6c8886cc4d1ded3cf24547075afaeb047be4034f6003012a32"
+    },
+    {
+      "path": "data/minds/gary-halbert/state/etl-7d-state.json",
+      "sha256": "9dc741d8253e6916acd8877c824584e7566b3fdc2cacf3978da84e2c66006c31"
+    },
+    {
+      "path": "data/minds/gary-halbert/state/etl-7d-state.json.bak",
+      "sha256": "65dbd240aeba67ed0ddfdb8032e76eb6151f36ac958a137edda00c9d8eba6c1a"
+    },
+    {
+      "path": "data/minds/gary-halbert/state/extraction-state.yaml",
+      "sha256": "cfbf69ea539a6ada944463512429e5ee09a45a210a49dc4ee247517fe2a8193e"
+    },
+    {
+      "path": "data/minds/gary-halbert/state/progress.txt",
+      "sha256": "3434ae17ecfeb23eac235625eb3009558c47ff8c4887d94df42f26fa87ea7592"
+    },
+    {
+      "path": "data/minds/gary-halbert/thinking_dna.yaml",
+      "sha256": "bb23cc6acf0756521affa750bd1f384e9ca68f93e16a446a53e8aae9f8db2359"
+    },
+    {
+      "path": "data/minds/gary-halbert/voice_dna.yaml",
+      "sha256": "d20c5a801fd144a7c896916a0de6a1ea3beedaa7f327705416abfaf88bbd8106"
+    },
+    {
+      "path": "data/minds/icaro-de-carvalho/7d-extraction-raw.md",
+      "sha256": "ba425e7d60efb9bc0fe2e26999eb285a68598811792c0c1fcbf2637d37aaf7dd"
+    },
+    {
+      "path": "data/minds/icaro-de-carvalho/thinking_dna.yaml",
+      "sha256": "8a6821b13aa3d00a2d0e4f40f4244acb74483fc5c8915ba255c1924372d31b68"
+    },
+    {
+      "path": "data/minds/icaro-de-carvalho/voice_dna.yaml",
+      "sha256": "18d660234b5aa66cd40c3b2f0d825222b1ca2e995074bb1239f7aec34865c468"
+    },
+    {
+      "path": "data/minds/jeff-walker/source-text/Launch.md",
+      "sha256": "40e98095f93c514fe20b16277f0a513c197cc9d5c3cacbd72f4137d715befe6e"
+    },
+    {
+      "path": "data/minds/jeff-walker/state/etl-7d-state.json",
+      "sha256": "b1d24ae0467ff8ff4de1d9d5f283431b1dabee87cab65fede0c875dd04378004"
+    },
+    {
+      "path": "data/minds/jeff-walker/state/etl-7d-state.json.bak",
+      "sha256": "d4b60ea880d15c264d6ec850455e98121f4ceef5e7c1a42330a699e65cd13860"
+    },
+    {
+      "path": "data/minds/jeff-walker/state/extraction-state.yaml",
+      "sha256": "f35c698cedc9d06804ebee41a8e227ba574af0df6a305c8df97045b498b8c10c"
+    },
+    {
+      "path": "data/minds/jeff-walker/state/progress.txt",
+      "sha256": "eedfb6c26866914d2764ea5688becb6554826db07db06601eac17ee2519360fe"
+    },
+    {
+      "path": "data/minds/jeff-walker/thinking_dna.yaml",
+      "sha256": "aef7f39999e6080e7b62668c9f345b42df9c0427b2e8178afa439f3b7e29d81d"
+    },
+    {
+      "path": "data/minds/jeff-walker/voice_dna.yaml",
+      "sha256": "a633b70ac27dcb9105d709e02d940fde7ac9c0ebc5949c5a9cb2285816b38b05"
+    },
+    {
+      "path": "data/minds/jim-rutz/7d-extraction-raw.md",
+      "sha256": "0348cda66d94d443174945d543b5b611f12fc5be77c60c333d945f84130e37dc"
+    },
+    {
+      "path": "data/minds/jim-rutz/source-text/bejakovic-jim-rutz-posts.txt",
+      "sha256": "91b71fcce192683bde33dd89617eaab733a69c6f0dab2df36ffe4dd9c1976ae3"
+    },
+    {
+      "path": "data/minds/jim-rutz/source-text/briankurtz-gods-copywriter.txt",
+      "sha256": "4bc2b20b98a649995e045fb82d3576f8ec9d7cdfc8ecc0c7d70658ded7863de9"
+    },
+    {
+      "path": "data/minds/jim-rutz/source-text/briankurtz-jim-rutz.txt",
+      "sha256": "619b9d80ab5fd09a230b9ab89cb47d76bf059efc0293222a53be4debe6f3eabb"
+    },
+    {
+      "path": "data/minds/jim-rutz/source-text/briankurtz-tribute.txt",
+      "sha256": "399e3b0734879ad0ce718fef3f11f181b4ccc391d1d6c75c4980683f858932a0"
+    },
+    {
+      "path": "data/minds/jim-rutz/source-text/copywriting-tricks-jim-rutz.txt",
+      "sha256": "081a73cf7aca0bdd0dddea495250f16e69700d6f377a0dd8c6ed0d25e408623d"
+    },
+    {
+      "path": "data/minds/jim-rutz/source-text/deutsch-most-interesting-copywriter.txt",
+      "sha256": "da3a4005450e74a13e859dd58f512fe5f8523679445d9a0924cc01967df4ddc5"
+    },
+    {
+      "path": "data/minds/jim-rutz/state/etl-7d-state.json",
+      "sha256": "25d11702720409aa13a78c789772424006173126d3af524f1d76da5126023f96"
+    },
+    {
+      "path": "data/minds/jim-rutz/state/etl-7d-state.json.bak",
+      "sha256": "f5b1f845fc20f344bc888710e050a55af228c2599362baf9bbb59d6a7138ce73"
+    },
+    {
+      "path": "data/minds/jim-rutz/state/extraction-state.yaml",
+      "sha256": "dfc303c45c8d4dc1b7917f0424a1cc7ca0f38304ec873b219420c82679ef5a9b"
+    },
+    {
+      "path": "data/minds/jim-rutz/state/progress.txt",
+      "sha256": "b05ae9670baee875cb48197637fe71308a23d0e9df60f8b3bce49b30bf5ebec6"
+    },
+    {
+      "path": "data/minds/jim-rutz/thinking_dna.yaml",
+      "sha256": "7a839e4cfc1450d7d91e63ca776f267520b6ee2bfb8b320e0c591825067b8f5f"
+    },
+    {
+      "path": "data/minds/jim-rutz/voice_dna.yaml",
+      "sha256": "7a554263383c4cd207804d3525888fbcf6e27a5d32e6119585cc77fccb6e911f"
+    },
+    {
+      "path": "data/minds/joe-sugarman/7d-extraction-raw.md",
+      "sha256": "23fe7e4d05c3fbe13d21e814a8035ffcaf9fcce35ff5dbb3b42f92775d47e9d4"
+    },
+    {
+      "path": "data/minds/joe-sugarman/7d-extraction.md",
+      "sha256": "5dc6e41c6e8d7aa9bfa5ef273911b28bbf19f80f84d29bfc61e132e8664a9102"
+    },
+    {
+      "path": "data/minds/joe-sugarman/source-text/Advertising_Secrets_Written_Word.md",
+      "sha256": "6c389abe83576cf37e7e579bda32942dd76b3c7cb3299e9b47e75ab1d6d07995"
+    },
+    {
+      "path": "data/minds/joe-sugarman/source-text/Adweek_Copywriting_Handbook.md",
+      "sha256": "b94dbb3fe94c75b92cf64200b89ed1a6cf2bbd029706a4da534e9a541ea7624a"
+    },
+    {
+      "path": "data/minds/joe-sugarman/source-text/Triggers.md",
+      "sha256": "1e94c044e6c670c25819425d172079c10fee07fa381a0a8a2a7acceae54bfa72"
+    },
+    {
+      "path": "data/minds/joe-sugarman/state/extraction-state.yaml",
+      "sha256": "dc918279b699a0b1c61c63d378065ad96022c402667c77cfc912b1ab696a9772"
+    },
+    {
+      "path": "data/minds/joe-sugarman/state/progress.txt",
+      "sha256": "01a88aad393da4e3817de2db0902026806b501bc97e1e704e2c5dfc3374bb42f"
+    },
+    {
+      "path": "data/minds/joe-sugarman/thinking_dna.yaml",
+      "sha256": "0e9139d1d8f67d6742582c7427c0a713cf3efcc2dbb2bf556e036cd1b929611f"
+    },
+    {
+      "path": "data/minds/joe-sugarman/voice_dna.yaml",
+      "sha256": "eaea7b3310c23d4da507a30456f54cf90c9affd25870679542df869891878ed8"
+    },
+    {
+      "path": "data/minds/john-carlton/7d-extraction-raw.md",
+      "sha256": "f4a8fb07f2c4be952cb07ed3eae332794e9e061d153f7613010612617632c3a9"
+    },
+    {
+      "path": "data/minds/john-carlton/source-text/Kickass_Copywriting.md",
+      "sha256": "55fe516f3dde5a952c9c22ea8c61bce47c6828af253ea2cc671d23dfb99e97b7"
+    },
+    {
+      "path": "data/minds/john-carlton/state/etl-7d-state.json",
+      "sha256": "17ee49e7caab90e25ac0978589a7228191962bb892b912bdcf17b3c40baafb56"
+    },
+    {
+      "path": "data/minds/john-carlton/state/etl-7d-state.json.bak",
+      "sha256": "086909e2e44302e8fe5a1637c6b67193854af54cec4ef1f9e8b96359ae859a21"
+    },
+    {
+      "path": "data/minds/john-carlton/state/extraction-state.yaml",
+      "sha256": "a1fa4ab6c8460586e6eca6adb337ec01dc65a0ec08fe1d05af98f0be0b2a2e17"
+    },
+    {
+      "path": "data/minds/john-carlton/state/progress.txt",
+      "sha256": "185cdd892b79b99cf3572f1efd6a11d198961f97fa18fd12ddd863618148b84e"
+    },
+    {
+      "path": "data/minds/john-carlton/thinking_dna.yaml",
+      "sha256": "d132d7f31639a29e45b1936254a6787c6116bcafadc6aa3d444a7acbe4b08408"
+    },
+    {
+      "path": "data/minds/john-carlton/voice_dna.yaml",
+      "sha256": "4f3bb206d172ab8b13598a75fd376d97d87a0a59c7e42c38a13ab9dd45698454"
+    },
+    {
+      "path": "data/minds/jon-benson/7d-extraction-raw.md",
+      "sha256": "95d4b30aa9590afdabd6a61bd0477fc8ba5fbcab5fd48c06a01ad144aba44b9a"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/3Al-8n4f_fE.txt",
+      "sha256": "4de52086f3d63058c21f0ad6404d648c3c5cb626f7eb89e0d1fe29e76e235f95"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/6CT67VbmkAs.txt",
+      "sha256": "5cfb37075b371de3efcb63bf93ace61831691a008ffa5915c6b78491b83bb696"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/caAYfs8Elj4.txt",
+      "sha256": "e51c264f676a7dbe9260506c39e0193a89745c74146bf7cff23f2413ddc65c58"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/clcsEm-Y6DI.txt",
+      "sha256": "9b010c945bb1676e9e26e0431becdb26aa2dcf97b6815d36549f187503b9cc14"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/EUjDBd6OURs.txt",
+      "sha256": "92424ee20df05f69de72cb1deac893e6064b51cd5e583530600b3d1645c1daad"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/gECA5owit7c.txt",
+      "sha256": "cddff973a6b1c97b84499ffef32f3e7347d5c4878fed8e1fb9641e62c323e09c"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/I5osTfZNvS4.txt",
+      "sha256": "c3d20fe0b02677980834f52e88b87365fea74f5125a22896148e12f35cd4a876"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/IBx4tJ7dYNs.txt",
+      "sha256": "a633b248c5fe4a6c8a44629093c40d844e48e1fe0e082c953e5b78323244587c"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/IyrscafMX4A.txt",
+      "sha256": "ed3fe140c821b3627e30e04ac625abc118a9c3a50c5d74e4cbe69990f714a09a"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/jon-benson-youtube-transcripts.md",
+      "sha256": "6dcb4c500831983fa348aabf700c0a152db92da1b83fad15442f644edb0d4947"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/KuwjRiS4KrY.txt",
+      "sha256": "0b9565c581e49abc5ac2a31b6589c78d0b8dfad9023571ea82a248be82dceed9"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/mCu-3H8r8Oo.txt",
+      "sha256": "f61738e8cc33ebaacd41f8416eaff5a87141aaca48ff1d4f94226d3f11194360"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/sqdVAuRf1Ts.txt",
+      "sha256": "04ca5daf762b111439dae41f43bc895fcd51345d791ce7768ce16cd6bd4fc1fd"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/TURm54aOzDk.txt",
+      "sha256": "1d6b6e8c03c163d57c605415d363123cd6cbd34228d9035ba0a33ef5fead8287"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/uDcukAuS8Gs.txt",
+      "sha256": "07bf07d21c7cc0f306d02f7fefbab47800f80abd03a3a229e45ea13227076462"
+    },
+    {
+      "path": "data/minds/jon-benson/source-text/xS9Y232yKdg.txt",
+      "sha256": "8b1c08c260ea68e33cc16632e7efcfc8b4c888694b3d3253e1525227768e8ebb"
+    },
+    {
+      "path": "data/minds/jon-benson/state/etl-7d-state.json",
+      "sha256": "60d53a58272d57b74c76e45b5f8dac1c47493da78856b75f71227a98edc9ea45"
+    },
+    {
+      "path": "data/minds/jon-benson/state/extraction-state.yaml",
+      "sha256": "7022f0b912e7597d33ea7ddeca8724f76bc34020d511bc5b14102534b4edd579"
+    },
+    {
+      "path": "data/minds/jon-benson/state/progress.txt",
+      "sha256": "8c6f5ada5de1995dcb749bb4caad4dcccae25380902ddcf09fdd750e8099b76b"
+    },
+    {
+      "path": "data/minds/jon-benson/thinking_dna.yaml",
+      "sha256": "f15c51437edc9e7f35cb5513f1e6263efa28113022b25322526c9cbdf335fb44"
+    },
+    {
+      "path": "data/minds/jon-benson/voice_dna.yaml",
+      "sha256": "74f549a9fc2bea70b77ffbd662da9e2c7dac3ca6ffea57c599f10cb2bc1c2816"
+    },
+    {
+      "path": "data/minds/leandro-ladeira/7d-extraction-raw.md",
+      "sha256": "3d069419493644ce7b6b1b99c7ff35fb896da808ecf8f28e9111a3cef0034520"
+    },
+    {
+      "path": "data/minds/leandro-ladeira/thinking_dna.yaml",
+      "sha256": "e60cb0ff27db219ec2599ae404287bcc6acd7a1d26210a5f6c00a89ff795bc63"
+    },
+    {
+      "path": "data/minds/leandro-ladeira/voice_dna.yaml",
+      "sha256": "0a998410ae52907485342c131999f359d79690545ca5a9ce676254bdccbf7a28"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/7d-extraction-raw.md",
+      "sha256": "a3356b0fda3dab0f70fbf6117fffb9a90d0791ef4f5f1d0714b68ff2395ae924"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/source-text/chris-haddad-ep26-brain.txt",
+      "sha256": "abb25f30dee15220fe6ff56c5dd29a6d3d828045a279fe9c096394779bb9ed8b"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/source-text/conversion-copywriting-interview.txt",
+      "sha256": "f1c85c65703628deda3c8de2a5c6bb21c21d089a0dd61a64e05e99d528f6afe8"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/source-text/copychief-ep101-persuasive-copy-pt1.txt",
+      "sha256": "c99838c4c2708aedc578e893b8d0f431032c58b0a712d2c7056988c37c4747cf"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/source-text/copychief-ep102-persuasive-copy-pt2.txt",
+      "sha256": "e52ac4a9e8c0731c5073fd49376dbe450308081298722ebbd7baba5d096a3c81"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/source-text/genius-network-marketing-secret.txt",
+      "sha256": "a6a792adb6491411a82b4efd74e5e7a57ad81e48836c03fd616d05c225d22c31"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/source-text/tcc-201-mentors.txt",
+      "sha256": "60903199c9b396d969f283f1b7d335fb0e66812bbfb2ef0094e8f9358d44babc"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/state/etl-7d-state.json",
+      "sha256": "e02091ed148b132874e1dfbaf28fe985820a0bcb1bed6138ca1510be5944e35c"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/state/etl-7d-state.json.bak",
+      "sha256": "a2bc41f3d1e5573d44cba16a66277d03bb5ac34fd6f49c31602e7ce5a406ac88"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/state/extraction-state.yaml",
+      "sha256": "07daa53e5dfa261be2ffc494223120bf66448561991b62fa1063c71bcced98bc"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/state/progress.txt",
+      "sha256": "ba489c2ffedb07e16c204428725ff3984891c93fdc7cde4afcb24caf1a907be1"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/thinking_dna.yaml",
+      "sha256": "ec78f6b60d89b7dd4bca2d1356d3134511927fc415da3cde3beb17a5cdc0cdcb"
+    },
+    {
+      "path": "data/minds/parris-lampropoulos/voice_dna.yaml",
+      "sha256": "8c150e9b2b43f07f59fc9167082d4c8ce51972897277359ec37050e2478d02c3"
+    },
+    {
+      "path": "data/minds/robert-collier/7d-extraction-raw.md",
+      "sha256": "d3b06a079cc7592160e9e5f1c5537a294ca1c3c16f91d46424af9a22832b5c0f"
+    },
+    {
+      "path": "data/minds/robert-collier/source-text/Robert_Collier_Letter_Book.md",
+      "sha256": "0b19294062fc1209fa8fd058a05c52f7a67f31c36500364ce553ae4661da9307"
+    },
+    {
+      "path": "data/minds/robert-collier/state/etl-7d-state.json",
+      "sha256": "8dffe1e73a7a2cf98dcb4076c5c1e28298f8534bdeebe5c87aa6a570752bd8cc"
+    },
+    {
+      "path": "data/minds/robert-collier/state/etl-7d-state.json.bak",
+      "sha256": "3d4fbf98f678adf0f0c03873594897ed95fcec4a4864aa4ec40b586e938a3e26"
+    },
+    {
+      "path": "data/minds/robert-collier/state/extraction-state.yaml",
+      "sha256": "d6963b177b82fa74444c54203475c306804e52b3721107a05106cfb0d860f3d8"
+    },
+    {
+      "path": "data/minds/robert-collier/state/progress.txt",
+      "sha256": "a8c1f4efb3c71ba6821fdbcb1b0db82c017f90b911863e959fa0f8f9393ec1f2"
+    },
+    {
+      "path": "data/minds/robert-collier/thinking_dna.yaml",
+      "sha256": "489438ead9861e78f73b2baa51e910ef466a81f77e97384696346420a1e5f299"
+    },
+    {
+      "path": "data/minds/robert-collier/voice_dna.yaml",
+      "sha256": "7ce58863f0b64513ed4147fb152fcae7ff67e8516d636bda0a05ed5f6e1b7eea"
+    },
+    {
+      "path": "data/minds/russell-brunson/7d-extraction-raw.md",
+      "sha256": "d536c565e61840b4d4a52c8110529a13d6faa72c0b01bf632a6dc55d01d1aa5e"
+    },
+    {
+      "path": "data/minds/russell-brunson/source-text/DotCom_Secrets.md",
+      "sha256": "587ca804084a381ec1eef32582b648e84f1b48624fd8f723e27455dcd1131cf0"
+    },
+    {
+      "path": "data/minds/russell-brunson/source-text/Expert_Secrets.md",
+      "sha256": "fb3ece079d059a2b2fdb0cc4c2c4babd5ebfb34cb8af046a85c00543d367672a"
+    },
+    {
+      "path": "data/minds/russell-brunson/source-text/Traffic_Secrets.md",
+      "sha256": "c703e4b5efbd27fe8facf18b1327a8e487b75274d13ff0c7f2b29ca026f957c4"
+    },
+    {
+      "path": "data/minds/russell-brunson/state/etl-7d-state.json",
+      "sha256": "0852fef8c34f069a5c04d28ef3d6466fd6f4c87761c9e22fb8a4f0df5b4e8f71"
+    },
+    {
+      "path": "data/minds/russell-brunson/state/extraction-state.yaml",
+      "sha256": "7d7b8be0b5b2d6668487575cd71411b78ab34c822911dfc2b8d2751443d0e5e2"
+    },
+    {
+      "path": "data/minds/russell-brunson/state/progress.txt",
+      "sha256": "085dfb3f22e4fda1e958f4a6d73aed97497da8ed04d4e644819b3d0b36dfeedc"
+    },
+    {
+      "path": "data/minds/russell-brunson/thinking_dna.yaml",
+      "sha256": "66494b909431cd95d6d2af1c56d03339ceedfa80fa6a3b146475d6b2dbb3dbef"
+    },
+    {
+      "path": "data/minds/russell-brunson/voice_dna.yaml",
+      "sha256": "abe912f02e963826e7ebc1b92ad70d3b310c231f5ccf7ec17ce18569258ec804"
+    },
+    {
+      "path": "data/minds/ry-schwartz/7d-extraction-raw.md",
+      "sha256": "6548e2caa0265ef56e5f4badd4dd2452d9c7b125deb8140f91dafd12b7aa7d5b"
+    },
+    {
+      "path": "data/minds/ry-schwartz/source-text/01VLvn6lseI.txt",
+      "sha256": "45ae8dfcac31ab791c53fec05681d838dad25a518df5bef73b42a1f816a04ac8"
+    },
+    {
+      "path": "data/minds/ry-schwartz/source-text/5sRaL2fuS3M.txt",
+      "sha256": "5d087f79fc30738f7a0313bb2a22c865e8d180a5d86a803fd8843d67663267b2"
+    },
+    {
+      "path": "data/minds/ry-schwartz/source-text/_uEOKssVGdg.txt",
+      "sha256": "77e33e7f37c706799311b45932b522d28e531190d729eaa9e4605729290e33f5"
+    },
+    {
+      "path": "data/minds/ry-schwartz/source-text/fuu_2Em2IC0.txt",
+      "sha256": "dc90d8ffa46e5e6c502df5c8da38bfb69aaddb915bc92fa204973b6afad32db7"
+    },
+    {
+      "path": "data/minds/ry-schwartz/source-text/otWclc9cZ3U.txt",
+      "sha256": "fcad857f20608c839144589c62f7dd7825edddaa78ebf5346bc90be5709524ab"
+    },
+    {
+      "path": "data/minds/ry-schwartz/source-text/qq96MAiUOf8.txt",
+      "sha256": "5ec98ef36ba8bb814b1256b9a3a83fceb5f0eb2549b832b7fd440746dc1cbc37"
+    },
+    {
+      "path": "data/minds/ry-schwartz/source-text/QVg__tmDqO0.txt",
+      "sha256": "19e4285106b044d006f9aaf70b4568d77c17130780488510a654a7f192355750"
+    },
+    {
+      "path": "data/minds/ry-schwartz/source-text/ry-schwartz-youtube-transcripts.md",
+      "sha256": "bd7779703b9fa2273a467b5450629c8809d6faac9f9e555b791e3ab2fbce4b92"
+    },
+    {
+      "path": "data/minds/ry-schwartz/source-text/TUMjnmfsPeM.txt",
+      "sha256": "ca31cc12f8113dc75a55b76365ccd15f007c4e70782f50646491b8ce5e724a60"
+    },
+    {
+      "path": "data/minds/ry-schwartz/state/etl-7d-state.json",
+      "sha256": "34fcc9913f30ed8e24b50b4b8b319384bc7e2774b4995e3897653c3df7e2b7dd"
+    },
+    {
+      "path": "data/minds/ry-schwartz/state/extraction-state.yaml",
+      "sha256": "a47a06af1a69d6a7cca3970f55a8422c3dea5ff5f93b5bf59c8362eaf619d17e"
+    },
+    {
+      "path": "data/minds/ry-schwartz/state/progress.txt",
+      "sha256": "08f9803c6984744ec3bd347d851e496fcdd0ce701eefeebb011bcb80c29680a9"
+    },
+    {
+      "path": "data/minds/ry-schwartz/thinking_dna.yaml",
+      "sha256": "cb413d4ad50ecea89763708be790c0d5ec3b4bf77fec58a005ef96613a7f8dee"
+    },
+    {
+      "path": "data/minds/ry-schwartz/voice_dna.yaml",
+      "sha256": "8ec786866725f97f75df28387bffbd0645c3dc80d119a9dcf2aa63ccef55d1b1"
+    },
+    {
+      "path": "data/minds/stefan-georgi/7d-extraction-raw.md",
+      "sha256": "6eed1b2f625ad45ec81f9fea953d48d17065c206d14ca6bf018d7009adb3b9aa"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/2cFb1fKU-jY.txt",
+      "sha256": "7692b3843e4d4129b6b335a7238bbf34147583fe3c1dd1a1b83863f1866b9d47"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/9MNvQD-el8k.txt",
+      "sha256": "46cb44ec672e3b5ec11982ca532e33e3c0993e466d8d2cfb7e201ce60a346f1f"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/ACvlPcXm3yw.txt",
+      "sha256": "e9477f88b7e8743b68fca613960d8632b8ee08dbe67150df499c0e405dcbfc9c"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/eq6adAKY7xM.txt",
+      "sha256": "471a2a4bc2bafb470b74eafe6b142b73fe4d7a19cef09ca01eda6dd7c5b32163"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/EQVu0NDXlWM.txt",
+      "sha256": "50b368a56797df888bd3e8253f8cc3ec3560a48df9acbebb8899bacdb2acd6c5"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/fpSKrMEgw1Y.txt",
+      "sha256": "12ae1f2bd5c99035cb645697675d6449ff5efd5bcd7525012d937a1262873bf1"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/hIGuBl6P1sQ.txt",
+      "sha256": "7860b67e8709a8e13bb2ecfc6e61a10c463a411d515e7cbeb881c0801ab7640e"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/j3X5p9ehp3M.txt",
+      "sha256": "84f35cba2badeed2c1ef14ff0ccbbd86ee25a571928c89258b8ab06129992524"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/lIuEGPHjnHE.txt",
+      "sha256": "6362db151cab723ce6bc6c0d738cdc533287a524060561cdcc3c137657494faa"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/MDorfAtxYpA.txt",
+      "sha256": "269e15efe0836f8cd2a6d97ce11f7fd8876c73ff11c13c9b75c1a8e198c381b2"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/nE8lES_kDjA.txt",
+      "sha256": "78a4f34ba5e9b7e0cda38ce69ce0b4c89e62baa27fefb26cbd2976d5d9a2d25e"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/nN_56DVWMR4.txt",
+      "sha256": "af979e1eaeb4185e30f63821aa58d26e97988f87a1874a57b94ee23b7e9115c3"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/PgfTYAngaTQ.txt",
+      "sha256": "e501c6de968e1f9440f01156182c0eb88d7400433fa6dbe9d5859f7548eef49d"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/pGmcoOACLns.txt",
+      "sha256": "aa0ef9bca49171c8b1c36329d3e8070ac7eadfbcfae54065a325209c9b3d5766"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/pZ82pzVoAZo.txt",
+      "sha256": "e6dbb445012b1f255609ca8a6f139ac7a0264a7590fadb2bb8505a5ed6b71130"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/rOISjF9terQ.txt",
+      "sha256": "bd1112b57ec2fbd906b75b861812d00464e5fb9aeec438ca0423b9368f3e1978"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/stefan-georgi-youtube-transcripts.md",
+      "sha256": "0bec860cb38081b0bc08d11187236e41e678a592475e438ee72402c2b38423f7"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/VQJ_Y8E6Hw0.txt",
+      "sha256": "a13914dd027696d15ef0ddbb339b9d374d1f7af0e6901a7c9714d661ea7b6bef"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/Xye4VEe1HKM.txt",
+      "sha256": "9e00b0116febd40b2a202bd1cfc0d090f6766b0bf8da982fec09b9d1b18dfabf"
+    },
+    {
+      "path": "data/minds/stefan-georgi/source-text/zgFL9IMzww0.txt",
+      "sha256": "32f3d5abc5b074ed10b2e9051d2c6de8a9364145f4728c24840abf4b55e34063"
+    },
+    {
+      "path": "data/minds/stefan-georgi/state/etl-7d-state.json",
+      "sha256": "e863add44f97cd1bcef139d8bf39f00daaf2271cc7cc6bc248f0349b282e34cd"
+    },
+    {
+      "path": "data/minds/stefan-georgi/state/extraction-state.yaml",
+      "sha256": "90ae873040dada5255f3d4d9f662f434900fa6a8ec3150f9f46488c8c8e8ae4d"
+    },
+    {
+      "path": "data/minds/stefan-georgi/state/progress.txt",
+      "sha256": "2284dce2084b44c12d40f46bea01658b5f2ea23dc5d3a2a46e9f5e31d9423239"
+    },
+    {
+      "path": "data/minds/stefan-georgi/thinking_dna.yaml",
+      "sha256": "64d550d1db12140b924bee75f284c1a4638e523cab5b17b921f7414989505f9e"
+    },
+    {
+      "path": "data/minds/stefan-georgi/voice_dna.yaml",
+      "sha256": "b0c00fdbd6d6b28a3462d2d1cb1091e7112ec87d12bbe6306a57515f71dbca9a"
+    },
+    {
+      "path": "data/minds/todd-brown/7d-extraction-raw.md",
+      "sha256": "40d92f5d2ba41a88dbf1b4e825151a7c0c300f68418eefa10e979a0da4666bd1"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/-r-vjVNJid0.txt",
+      "sha256": "c199e930026bcdfc43d650beb3978a1ecb721295b35d667dfb49d11753426809"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/2dpGUKI-NLI.txt",
+      "sha256": "1ecbbb6cc2397d0eef5ee37c0298ff33c31cb149de90fc772a0784447d4afef2"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/6LLfLkNXhsk.txt",
+      "sha256": "b2000c3ad5927f9d84581fda1cdf16be55d172c926bc6a3f4b8eb755545f24ef"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/aTjsii4ip5E.txt",
+      "sha256": "bb140801d05b8c4959b881851d50027e53df6f143ee30fad439410e683f91e95"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/bzQRxSXC0-0.txt",
+      "sha256": "ac9131b9950338ab28b97e31c0ebc5d5ad2a856a88ff1d1b856295a4f2f230b2"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/FO6Z_vzgGDc.txt",
+      "sha256": "667e79cf072a09c59acdf2280fdc6f40f534dccd6f3fdb935b94312de85d1c53"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/fWD8cX1FjSU.txt",
+      "sha256": "3633ad9f745684d22dcfffe0c287d22729aa10c91c8da16fe10da39169cdfda9"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/Gs18-SRNNBc.txt",
+      "sha256": "63dcd53404d4a224b327ae738ac3be1032cfe291e9151bbf08c55ed19f05cda0"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/IIuhGfcEAng.txt",
+      "sha256": "628ee625e06bd3ac89fc11b0de7fd81cb14ba737c3731f1ba55035fa216a5b19"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/nq-zSvEfZe0.txt",
+      "sha256": "5aa62b42142fedcd651b314c116b83ee6d526accaa7cdffec229dd451bc3e81b"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/pI-2MqEXH2o.txt",
+      "sha256": "0289f24d71abe1ba5879deec2281c8efec0905f8f1900cbc4100190ed2478deb"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/todd-brown-youtube-transcripts.md",
+      "sha256": "32f36ed2d22efc1dea9d0bf8930586b57a054778b160e17395a6d0335a1f69dc"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/w_U_5pMQ7Sw.txt",
+      "sha256": "b06913b1aaee85c704f083c08403e3868b161a90442e2ef207ee19750f6f109f"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/WeafsFe6HJQ.txt",
+      "sha256": "784a8f3e4d4e289a3d063ddf1abf4d2f5fa63ea061bc3d133d86a923be3cc6b7"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/XiS_aoa9RDY.txt",
+      "sha256": "69b6a8db2b86335b61e27b8aaf57189ec72657e3eec0668d21d016fc6425e540"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/xxXJXqVznYc.txt",
+      "sha256": "9931566e70a3eb0781da7fc60facd1d86850d400d99b92dde57fb489e74bfe75"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/Y6M3EDpsHmA.txt",
+      "sha256": "69be5c5db2f7e1f58e94f4c3b001b87b6d0a04044cf3099eb0e72ad8c8158092"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/Ybaxjpw-y30.txt",
+      "sha256": "57f36afedd9405404ec08e11144615744e38a749cf38938e0f055ef64a60bb1e"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/YiNQIL1pSiM.txt",
+      "sha256": "45476c7fe2594fc7e12e4f91ff61eb333cb0544f9add46e334e5fcfa5d8d6d64"
+    },
+    {
+      "path": "data/minds/todd-brown/source-text/ZFLbWXi_K-k.txt",
+      "sha256": "aa49b9b8a8a18632db8818f3d185ca8c89af1f09b1c0988b44deaaf398d456d0"
+    },
+    {
+      "path": "data/minds/todd-brown/state/etl-7d-state.json",
+      "sha256": "a333f17ff624952e5c3cb42e6610681f1b04b3598b31323331b82ac2965bf903"
+    },
+    {
+      "path": "data/minds/todd-brown/state/extraction-state.yaml",
+      "sha256": "100070ad5855294c72fe3181eeed5d7645b93dce920da9e996d372c41cc6f4ee"
+    },
+    {
+      "path": "data/minds/todd-brown/state/progress.txt",
+      "sha256": "e447f6d942943cc61941ad133c04cad142d1f3d562b0218097f0bb5117690f3c"
+    },
+    {
+      "path": "data/minds/todd-brown/thinking_dna.yaml",
+      "sha256": "768d6104b4df387683adf5ee702f8c67a86878cbde6cdd732358b320221e733d"
+    },
+    {
+      "path": "data/minds/todd-brown/voice_dna.yaml",
+      "sha256": "565b082d93dd78dceb67e9605a388f3addaddd67e2aa7c669bae83eab9f5e2b0"
+    },
+    {
+      "path": "data/page-section-contract.md",
+      "sha256": "20701a4ae69dce7fd54c06706cbb5cb4be805adc6b0357568f15de2232d9b88a"
+    },
+    {
+      "path": "data/plf/avatar-framework-kb.yaml",
+      "sha256": "4f68554d2656f9f21219d48abd48246063c239f9e35ef3c7d04739815e137634"
+    },
+    {
+      "path": "data/plf/content-formats-kb.yaml",
+      "sha256": "b8f755105339bde22263a482caed544af10f0368fbdbe45ed348b13e058f55f9"
+    },
+    {
+      "path": "data/plf/contingency-framework-kb.yaml",
+      "sha256": "317383bbde32a08bfc05d9714ba863b5beaa9369bae488e79a982d1a5d45591f"
+    },
+    {
+      "path": "data/plf/copy-scripts-extracted.yaml",
+      "sha256": "22390974857ed2c2175d295ad7e41bed23260c597386674c798ef64ecd5e4410"
+    },
+    {
+      "path": "data/plf/copy-swipes-kb.yaml",
+      "sha256": "669760abc7c5205ba51800c665bd2b725781d9e100196cac615f27ed2dffbbbc"
+    },
+    {
+      "path": "data/plf/email-benchmarks-kb.yaml",
+      "sha256": "d834b05c0c91e59a3cc299e75102ae59e8e897ec5dc2ffadaa048d66a0dd6464"
+    },
+    {
+      "path": "data/plf/launch-budget-kb.yaml",
+      "sha256": "2d42ca8db454175a1271ee78ad8cac65f02f8eac56cb22c935567fa4e09fbc69"
+    },
+    {
+      "path": "data/plf/mental-triggers-kb.yaml",
+      "sha256": "13f49b20afce4ded437b5a36a992590558b2bbd29145aa90ef9b25f04f069072"
+    },
+    {
+      "path": "data/plf/objection-database.yaml",
+      "sha256": "609be8a1731e2f59c6cd07ca46e874f67bf136e4afaa30dcce88ee7b4b3aacea"
+    },
+    {
+      "path": "data/plf/platform-comparison-kb.yaml",
+      "sha256": "d3d5002baaecf1b7218d9e3a02d76f67d0703bf50280d77309c27f4776e12a57"
+    },
+    {
+      "path": "data/plf/plc-criteria-extracted.yaml",
+      "sha256": "06fdef88d36f92bc277a8fd2bc10b91c34f927b294687fcfb7af5b0f5c551ab0"
+    },
+    {
+      "path": "data/plf/timeline-reference-kb.yaml",
+      "sha256": "52368df031935571256a881d7e4d8b1b60940a4ea46c297fb842aca37d2afff2"
+    },
+    {
+      "path": "data/premium-positioning-guardrails.md",
+      "sha256": "cbe4b66d95c17c00f90aa06cdb7f81ecbb8829044c9671c365726697a7d6c7b6"
+    },
+    {
+      "path": "data/references/thiagoroas-copy-analysis.yaml",
+      "sha256": "f0e1de532433620d771d4effe03906e54745c352b5a37da6d2117071ab92f8b4"
+    },
+    {
+      "path": "data/routing-matrix.yaml",
+      "sha256": "9713cc6d09becacb6baca336229f3b875a84313aff6f6b95557d7f2bbe474aad"
+    },
+    {
+      "path": "data/sops/vsl-diagnostic-optimization-sop.md",
+      "sha256": "81b1756e5f747a5518d71fec5b7b04734a895b69c3dcbae363e17de6546bc944"
+    },
+    {
+      "path": "data/sops/vsl-funnel-architecture-sop.md",
+      "sha256": "bac66c4b0fe82a7fd5ec12eb6c34714456aceeecf56a842dd0bed63a5a51a2ee"
+    },
+    {
+      "path": "data/sops/vsl-model-selection-sop.md",
+      "sha256": "9c9adb221809b73fb8cf62ad99b711ab29d768739ad9bffe01e6f5eb2118c990"
+    },
+    {
+      "path": "data/sops/vsl-script-creation-sop.md",
+      "sha256": "bd56231f778d3a7361d8091cbde5b9babe206a7f5125ba0d00e172c57e415a30"
+    },
+    {
+      "path": "data/sops/vsl-traffic-perpetuo-andromeda-sop.md",
+      "sha256": "d73de8065d4eb46b63fa9bc6576966559770b25096bccd9354bd6eb9ad9ac4c1"
+    },
+    {
+      "path": "data/tier-definitions.yaml",
+      "sha256": "77b9b6220cb89e54a65aefa9047d938d1f69ff25ceec34f271be7c9d2853349e"
+    },
+    {
+      "path": "docs/distinctiveness-metrics.md",
+      "sha256": "bf59c3b2a013fe68c309d2b401c0532239f1d634aed72c6730beaae9b877e0c5"
+    },
+    {
+      "path": "docs/etl-7d-extraction-plan.md",
+      "sha256": "5e8c817e017bd0fd7c6648efb3273cf03c0e2ae83485e41981e4cdf6c3210ffc"
+    },
+    {
+      "path": "docs/ETL-SCRIPTS-GUIDE.md",
+      "sha256": "8b06b365a0bf243a73c94ae40ee0fe6b06567555393c02d17f88137d22c838c5"
+    },
+    {
+      "path": "docs/frameworks/02-TIER0-FOUNDATION-AI-OPTIMIZED.md",
+      "sha256": "23901b83d6303fe91976e6d782dd166efd97f1fa12acc7750bc68297e5988181"
+    },
+    {
+      "path": "docs/frameworks/03-TIER1-MASTERS-AI-OPTIMIZED.md",
+      "sha256": "097f7b25f8026c168793fea8cf91a04573307301d4935379ddfca0114d482148"
+    },
+    {
+      "path": "docs/frameworks/05-TIER3-SPECIALISTS-AI-OPTIMIZED.md",
+      "sha256": "ea32c8f11b124fa4e7dde912b2bab6f8241550842dc942c053f5db2abca8d186"
+    },
+    {
+      "path": "docs/frameworks/07-WORKFLOWS-ENHANCED.md",
+      "sha256": "e24b0a76b983aa0ce0588257b5394c7d3c1773cdbcf11602fb04e71ea906390f"
+    },
+    {
+      "path": "docs/FUSION-LOG.md",
+      "sha256": "91b2245495fb3c46085dff7f71fec54718aa43812307e9a5ca46a1005e29f30a"
+    },
+    {
+      "path": "docs/MINDS-ENRICHMENT-REPORT.md",
+      "sha256": "d6a1477335424c4556d96fd1ca7aefdc90e669538aa5e02abbba448cbc80f9a2"
+    },
+    {
+      "path": "docs/phase-f-dna-to-artifacts.md",
+      "sha256": "ce68c242e83f0e37d7725de4659e7cb65c0ea32082dc0b587569cb2aacb3b29c"
+    },
+    {
+      "path": "docs/research/abandoned-cart-methodology-research.md",
+      "sha256": "7c901fd3cae03a1c374a9a21d22c9a0395785327948dc130a916c2204ebf8676"
+    },
+    {
+      "path": "docs/research/ad-copy-methodology-research.md",
+      "sha256": "222ba47b8ed82fb8c303926b2d4c9e610be7fd241cb74850b524821d6c2409da"
+    },
+    {
+      "path": "docs/research/ad-script-methodology-research.md",
+      "sha256": "e90bb735ff50e5446b2dfbb3e3f67d3d2865eab9756b5440786ba3f34e43f180"
+    },
+    {
+      "path": "docs/research/authority-arsenal-methodology-research.md",
+      "sha256": "13fb6296a867ad43d59e0d119f1d90ed1c5f176df880d65ee91b5b2cc6536876"
+    },
+    {
+      "path": "docs/research/avatar-research-methodology-research.md",
+      "sha256": "0e19f7e542ce9f1b67cd8286969955a319fdeba77cbd0409aa2114b727fcd739"
+    },
+    {
+      "path": "docs/research/book-launch-system-research.md",
+      "sha256": "5fd5b18eb412dc25b8766140f31146b93b4e138f40901b8792b96ca97e2f868f"
+    },
+    {
+      "path": "docs/research/bullets-methodology-research.md",
+      "sha256": "4ead2f7faebf207fd0fba70564023f8a18bebf0cc44642fdb6882c77e21ba57f"
+    },
+    {
+      "path": "docs/research/close-script-methodology-research.md",
+      "sha256": "3b83f6986e0f4c3c5acf4d2159989921dcca6f08250e4b37d97a3c8b19aa085f"
+    },
+    {
+      "path": "docs/research/cold-email-methodology-research.md",
+      "sha256": "d96e67061cb6820b51bc356e6d9a1bb3bd388c833a287375006dd427c36028e1"
+    },
+    {
+      "path": "docs/research/communication-dna-methodology-research.md",
+      "sha256": "8d07d25a7588cc3900be830a12da5510cb8427dc097245da58683c1404778584"
+    },
+    {
+      "path": "docs/research/copy-blending-methodology-research.md",
+      "sha256": "a22e14337c3eb27d20bfcb54c73e591951fffb3912de019f764945164240e9b5"
+    },
+    {
+      "path": "docs/research/copy-debate-methodology-research.md",
+      "sha256": "63422fdc907ec3061b377dd2328768906a2779e94f89f063092b67247c378c76"
+    },
+    {
+      "path": "docs/research/copysearch-methodology-research.md",
+      "sha256": "76156d1216b0114944d3f3cef8cde0b2c31db74b1dbd32046a9465c63fbb0bd0"
+    },
+    {
+      "path": "docs/research/copywriter-agent-creation-methodology-research.md",
+      "sha256": "0d6cee6585ff8c22f325756456f9425039c62cb834f459a96731413d439912ee"
+    },
+    {
+      "path": "docs/research/downsell-methodology-research.md",
+      "sha256": "3df16bf83d8b47ca2a674e113e0bd052cce9723e8c58db7f50e25cde82c84e49"
+    },
+    {
+      "path": "docs/research/email-sequence-methodology-research.md",
+      "sha256": "e897ac73192b3f9c7e9ff97fcc829eaa6c2cb5b73b86d61f2812a3087388708b"
+    },
+    {
+      "path": "docs/research/evaluate-offer-methodology-research.md",
+      "sha256": "96fdf00ed16f65ec564b5acf04b01e735a788554671fc2074df92f388b49ee01"
+    },
+    {
+      "path": "docs/research/framework-extraction-methodology-research.md",
+      "sha256": "dc79abdaf9c8830f1ed5b19189b719d3ad4edd459aad34277bd7c4f789ba8e9e"
+    },
+    {
+      "path": "docs/research/headline-methodology-research.md",
+      "sha256": "74fd075a9cffaf290746175bd014313b77ee8b923db28d4219df61083fad5393"
+    },
+    {
+      "path": "docs/research/landing-page-audit-methodology-research.md",
+      "sha256": "49c3d81758c636249dbf795995ff0dcb325443f8f8916b70da8b528b22ef19a8"
+    },
+    {
+      "path": "docs/research/landing-page-methodology-research.md",
+      "sha256": "743ac6d548bba2a5b336d52102e9f98167a69217abbbe8dbec35c846750eefca"
+    },
+    {
+      "path": "docs/research/launch-emails-methodology-research.md",
+      "sha256": "9983903b2578c6c5c072d35760bfc4499ecb8a22dcd875ab183baa5feb653aa2"
+    },
+    {
+      "path": "docs/research/lead-magnet-methodology-research.md",
+      "sha256": "131e5ae6b7d0419d7b98bdc87e2ae55d0299c2421df34f125492c13aee6e365c"
+    },
+    {
+      "path": "docs/research/native-ads-methodology-research.md",
+      "sha256": "42b6ae90cbb985fd3914767342b4ac1fa523170955c962490b3d188815e4c4e0"
+    },
+    {
+      "path": "docs/research/newsletter-methodology-research.md",
+      "sha256": "54060ad2c5a27da1282a5e1786ce5f0f5c586cfa276a044afe940dcac8d9df40"
+    },
+    {
+      "path": "docs/research/objection-algorithms-methodology-research.md",
+      "sha256": "66689d997d3bbbc33a1cef3a0f5fdbf063f86a0d7d3ce5dfe57e75fc2ff9cfca"
+    },
+    {
+      "path": "docs/research/offer-creation-methodology-research.md",
+      "sha256": "5ff01254a4740a6a29497c0d43bcfedc2c953a2ba8400ce054dc9bdcd9d205f5"
+    },
+    {
+      "path": "docs/research/offer-evaluation-methodology-research.md",
+      "sha256": "bcdd5e92f5fbc1b2d86722c6a7aef55a2a873e33684888859a98ccd79b9a8666"
+    },
+    {
+      "path": "docs/research/order-bump-methodology-research.md",
+      "sha256": "cc110c6e542eaa8440ea6c0f5770da3496312c77d8ba44faff61c5c48389165f"
+    },
+    {
+      "path": "docs/research/sales-page-methodology-research.md",
+      "sha256": "1ac4fedd30bcbc6e2669f16051274a3712fbcea50ccf0486e4c1e3e5108e47c1"
+    },
+    {
+      "path": "docs/research/signature-phrases-methodology-research.md",
+      "sha256": "f595d11c2d3ddc4be5f030c06e7005762c5b1664aaec1c225ce7378046d392d9"
+    },
+    {
+      "path": "docs/research/thank-you-page-methodology-research.md",
+      "sha256": "941274c4f3579e2f5f8fd40db2fe3a257408ca002b6fadb1846bc5f4158c0272"
+    },
+    {
+      "path": "docs/research/upsell-methodology-research.md",
+      "sha256": "9fee47290c5f14e1dbef6a342e61ba3ece136afe1afa0a9b15b077c812682b30"
+    },
+    {
+      "path": "docs/research/video-hook-methodology-research.md",
+      "sha256": "bc8a9cd9c690c59e096d898cf1a435463ff1ca3f15491dc9eab102b9c9cdd7b7"
+    },
+    {
+      "path": "docs/research/vsl-methodology-research.md",
+      "sha256": "4e802c821dde2e248cb8433ed8287f01dde60ac13c004c079e394082dfbeb2a6"
+    },
+    {
+      "path": "docs/research/webinar-script-methodology-research.md",
+      "sha256": "b23a862bab2d5a19aeb1a829a0d06df00a2603dba3d2775f03c5e3c68f1fd2c8"
+    },
+    {
+      "path": "docs/research/youtube-ads-methodology-research.md",
+      "sha256": "848510e3bd0c780dc0ad17f67f79c60c482086204556de1ad2246763efb562ec"
+    },
+    {
+      "path": "docs/SOURCE_REFERENCES_INDEX.md",
+      "sha256": "cd259d7131d28d6e01faec43b64ea08b0cc02ad11537922796b7dd6b7a50b4be"
+    },
+    {
+      "path": "frameworks/bencivenga/12-marketing-maxims.yaml",
+      "sha256": "8c02690ae309f94407ac857d788cb94b8732961c54406a8b48a3a5773eb79d31"
+    },
+    {
+      "path": "frameworks/bencivenga/29-marketing-bullets.yaml",
+      "sha256": "452fc4ccaf1a0703fb7cc87bfb34ddc90ffb2b16e9ad98fd809327a0a5639adf"
+    },
+    {
+      "path": "frameworks/bencivenga/7x-research.yaml",
+      "sha256": "9864d32bff3f36dba4cdc6287add522dca4ba5d937127b0af10b5cd3b2a65ac5"
+    },
+    {
+      "path": "frameworks/bencivenga/80-20-rule.yaml",
+      "sha256": "a89cdbe3802bb10ae114450b6d83735914e09ac897768e1fe88e930b4ddf15cd"
+    },
+    {
+      "path": "frameworks/bencivenga/ad-a-day.yaml",
+      "sha256": "09268f265705c1cf22b77ff2e84bc6bb72b8ca3032b4bc9fe3c87b1487a10651"
+    },
+    {
+      "path": "frameworks/bencivenga/credo-technique.yaml",
+      "sha256": "e6c9bc6ecc4cf70c791aded447ffc938d0cb32d34a05a4453f00da82f9477814"
+    },
+    {
+      "path": "frameworks/bencivenga/fascinations.yaml",
+      "sha256": "f289324bc9b37582f5df00ecfe41a9a4825a94ba9f31d04a85b8a3d0e71c785a"
+    },
+    {
+      "path": "frameworks/bencivenga/gifted-product.yaml",
+      "sha256": "14fc80842bd4aa14f86548e1f7b7c88c183ade5e2e160a48aa500f1cdc6a4c1a"
+    },
+    {
+      "path": "frameworks/bencivenga/persuasion-equation.yaml",
+      "sha256": "3c09915290251f6e7533f870e30d9d912f2ee49dc788bcdb7cdc946ea915f0ec"
+    },
+    {
+      "path": "frameworks/bencivenga/proof-elements.yaml",
+      "sha256": "bf29fe1192775e6ea3cfc4071f31c6ecf819c1d0c0f403cd26cc1a2ebea8e400"
+    },
+    {
+      "path": "frameworks/bencivenga/three-questions.yaml",
+      "sha256": "5b229f23670ea9612ccdaf75626e8cfff61c9bfb4f54dc1e13e572d124072140"
+    },
+    {
+      "path": "frameworks/bencivenga/two-step-selling.yaml",
+      "sha256": "25997bfe66981127a95a754777100f42d51a10b95e01cc407d4ccfb9d765f330"
+    },
+    {
+      "path": "frameworks/halbert/a-pile-b-pile.yaml",
+      "sha256": "5a4a09f5fb69ba03ad04be06a48b97f733e10e5653eb2b3ca3a7eed0d511bf99"
+    },
+    {
+      "path": "frameworks/halbert/boron-letters.yaml",
+      "sha256": "e955b9ca0b9b0e28d54c3da413b43eb1e7bc12b90e92a506ce281a43ab8c82c4"
+    },
+    {
+      "path": "frameworks/halbert/bullet-writing.yaml",
+      "sha256": "7da8194298a355a7272a7c636f5e141042d74b4d6fbffe1d3fb0f4121deaf78a"
+    },
+    {
+      "path": "frameworks/halbert/halbert-aida.yaml",
+      "sha256": "16c5b66929e45f53e65f16febfa30b297a47dc7668c03a10702000582196dc5d"
+    },
+    {
+      "path": "frameworks/halbert/halbert-test.yaml",
+      "sha256": "00270b20b8dd67b5d8ae30e8b51e59cc20d0ae3be26a4ea41ac72ca78c7f833e"
+    },
+    {
+      "path": "frameworks/halbert/headline-formulas.yaml",
+      "sha256": "8d451cad1ca3b14a422375679694101748fee8eafd616e3248f4d75af30e2970"
+    },
+    {
+      "path": "frameworks/halbert/sales-letter-structure.yaml",
+      "sha256": "83c89d458fe0b9a938d4fcfe1adb17bb315820a66b469a2dd85f1ae242e31008"
+    },
+    {
+      "path": "frameworks/halbert/starving-crowd.yaml",
+      "sha256": "2dd1c8491235ede278d21c998f2832da7d08753a69be2952e3272d726db43fbb"
+    },
+    {
+      "path": "frameworks/halbert/swipe-file-methodology.yaml",
+      "sha256": "6da228819ab6419829f405fd410dd82e8496fd74a7ced1ad1c163e47594475b9"
+    },
+    {
+      "path": "frameworks/halbert/writing-process.yaml",
+      "sha256": "f2d0931b798171b2619bce8e27da32fbd8aa7f905fb8e8f1cf519f685181110d"
+    },
+    {
+      "path": "frameworks/kennedy/10-rules.yaml",
+      "sha256": "5a6f20fc49dc95cc3fb92cc99d6d670a5095ec08fa9cd5ea6337cc574f72c025"
+    },
+    {
+      "path": "frameworks/kennedy/3ms-triangle.yaml",
+      "sha256": "3c35dc230f42130e8f09ee4d0ab42f0b0e4ea189e880a2eeceae3dcc96e7bdac"
+    },
+    {
+      "path": "frameworks/kennedy/6-step-sales-process.yaml",
+      "sha256": "f88f79760a42a880d76a18f16c6c3673b73aebb6f0c57a2957a30e6d6ebd9bfa"
+    },
+    {
+      "path": "frameworks/kennedy/guarantee-architecture.yaml",
+      "sha256": "9ddd2bc71465358a098afee8dec4f9cfa7c1b57aadf74a23da2c23dd7f5f17e2"
+    },
+    {
+      "path": "frameworks/kennedy/magnetic-marketing.yaml",
+      "sha256": "32e11d662b2d09f5e3d845cd3439c2bc32c52ee184c6281c50eb5a8711043bd6"
+    },
+    {
+      "path": "frameworks/kennedy/market-selection.yaml",
+      "sha256": "ceefb96c8af68affeedb3e72f79796c34d1a7419409c188944d970656ed2d768"
+    },
+    {
+      "path": "frameworks/kennedy/pas.yaml",
+      "sha256": "771ec21f28c3f0512f598e65b9363a3d1135084493fd38dcd703659fe4a0cb9c"
+    },
+    {
+      "path": "frameworks/kennedy/takeaway-selling.yaml",
+      "sha256": "9e3dc92649664a5ad40add87dc142819d1282eec05ebac30c9facb6645ebf39b"
+    },
+    {
+      "path": "frameworks/kennedy/ultimate-sales-letter.yaml",
+      "sha256": "eb378c725bf2e78a199a026fbed384fe6ba9fe4e4950cb28670241abbccc3129"
+    },
+    {
+      "path": "frameworks/kennedy/urgency-engineering.yaml",
+      "sha256": "c2133e9318cf749b9fabf778811ebbfdd57686106d26fd5649aa77e366e13ac1"
+    },
+    {
+      "path": "frameworks/makepeace/16-dominant-emotions.yaml",
+      "sha256": "9bba5769281373323492b88e7fa69e60797f20dbcc8276c978ea59dac7d268ed"
+    },
+    {
+      "path": "frameworks/makepeace/21-fascination-bullets.yaml",
+      "sha256": "1cc554f64e544f3bc866535511db03102bec5de8bb7c4ffd60de0f426bd60425"
+    },
+    {
+      "path": "frameworks/makepeace/dimensionalized-benefits.yaml",
+      "sha256": "5dc751684d78894c837068ad66a073ce4cbc793c5081eb47d577a1fcff3f3364"
+    },
+    {
+      "path": "frameworks/makepeace/dominant-emotion-methodology.yaml",
+      "sha256": "5a361493f16b440e2d6665bc6e7c308d978e54abfe20dddeb34dbf781c25c636"
+    },
+    {
+      "path": "frameworks/makepeace/niche-specializations.yaml",
+      "sha256": "0482e566d69984d3e8462957c0253a978cb6ac456a66c479a8bd4d29d38ea8ac"
+    },
+    {
+      "path": "frameworks/makepeace/pain-agitation-system.yaml",
+      "sha256": "4e9a0f15104b0a3e1c5c3a86922219c50c420927f21d80d8bf4b7e9884310db4"
+    },
+    {
+      "path": "frameworks/makepeace/sales-letter-outline.yaml",
+      "sha256": "44eec19642dc56db37397646ec0860bbd5e4a28ee5617171282c4541ef8be29d"
+    },
+    {
+      "path": "frameworks/makepeace/visceral-copy-transformation.yaml",
+      "sha256": "ab9a31245ed6d36268fee0137db1e10cbde02607f7690245f1e3431c551fa8c4"
+    },
+    {
+      "path": "frameworks/schwartz/38-headline-techniques.yaml",
+      "sha256": "7fa1e7ec0c961196f7335f6bc21f7d11e8e595c2e6a15064cff4acd1a5e8d449"
+    },
+    {
+      "path": "frameworks/schwartz/copy-assembly-method.yaml",
+      "sha256": "3320282fc13b0dc20cbcf208fd4897f0c87f05c69e787c6201fd8040db9d2ea7"
+    },
+    {
+      "path": "frameworks/schwartz/copy-intensification.yaml",
+      "sha256": "0ead9e1df421018649b9f64b03bdd48b100f50dfddd9e2c53806a4dacf2f42c5"
+    },
+    {
+      "path": "frameworks/schwartz/five-levels-of-awareness.yaml",
+      "sha256": "693455f12c806c6b1d8de4d9498faaf42c6a0e721f7a69f792bc512f500fddf0"
+    },
+    {
+      "path": "frameworks/schwartz/five-stages-of-sophistication.yaml",
+      "sha256": "52a1d4e99a1cb59002806c7459df6bbde193f302fd3d618dda19a42fbf8a6194"
+    },
+    {
+      "path": "frameworks/schwartz/graduation.yaml",
+      "sha256": "6cc632921327be9237de36a15a34aaea9c7e8aa46825041993c4dd882a727deb"
+    },
+    {
+      "path": "frameworks/schwartz/mass-desire-channeling.yaml",
+      "sha256": "258f30adcea05f2164b6a077ce81a25632d551b5359214a77c2ca3e750fa8fe0"
+    },
+    {
+      "path": "frameworks/schwartz/method-33-33.yaml",
+      "sha256": "0d47e7ba8e78461bb7965dc8bd91aac13b317402a64dd6f1fe582d254871b29a"
+    },
+    {
+      "path": "frameworks/schwartz/sales-letter-architecture.yaml",
+      "sha256": "aeba0d9fd092bd74fad1e5d33450481736c216a565666f122ea0061e19d948e0"
+    },
+    {
+      "path": "frameworks/schwartz/three-brain-writing.yaml",
+      "sha256": "52a8976c756cdf5cff998ae56915604b597a1295905e02ca7c12664dd1393511"
+    },
+    {
+      "path": "frameworks/sugarman/30-triggers.yaml",
+      "sha256": "09da5b8f86092e3784276d04c781a183ba863b2de06ccfa73f836248cf127566"
+    },
+    {
+      "path": "frameworks/sugarman/conversational-tone.yaml",
+      "sha256": "90df8aa2eb97c75461f00d72a84837b60a543a891df3be3902e8a56a4f4b0b8c"
+    },
+    {
+      "path": "frameworks/sugarman/first-sentence.yaml",
+      "sha256": "e002de01ffe944837111dee81cb311c6b209ad44ff71440a3da9256bd1cb648b"
+    },
+    {
+      "path": "frameworks/sugarman/graphic-elements.yaml",
+      "sha256": "4fed6ef5f4c25e18d53e036ba48f226adab72391f2be1d39f521c5dada09afa0"
+    },
+    {
+      "path": "frameworks/sugarman/honesty-framework.yaml",
+      "sha256": "3add41db368beb7b74d455272c64fa23cc39837160fbe2cdb16dc0306bafa1c1"
+    },
+    {
+      "path": "frameworks/sugarman/incubation-process.yaml",
+      "sha256": "53f4c26626faa6cf76fbc919b65687a129ba0d4feb70d66e0e9a99d3a23e24a2"
+    },
+    {
+      "path": "frameworks/sugarman/infomercial-formula.yaml",
+      "sha256": "96e4e212f70df2d46856cb63fc7a1d4a914bcd5aaa73d929774066c05534e211"
+    },
+    {
+      "path": "frameworks/sugarman/seeds-of-curiosity.yaml",
+      "sha256": "4f7e9fa7e62cd974bfbf253b55cc0f8a1989475de3281ad812672df89e28d0c9"
+    },
+    {
+      "path": "frameworks/sugarman/slippery-slide.yaml",
+      "sha256": "4c5db6cfee6e78641fda401ba2554b0c588eb5536ab7b26d18b34084d3ba74f6"
+    },
+    {
+      "path": "frameworks/sugarman/story-structure.yaml",
+      "sha256": "c497254110e290eb7f8a47ac7aea63f8f56e90469bf93444fe94ee80a02047b1"
+    },
+    {
+      "path": "HEADLINE.md",
+      "sha256": "34f3074f66e1437928f5a236b3e398eab945364ede804af6e741f97abde1ff85"
+    },
+    {
+      "path": "lib/loader.md",
+      "sha256": "c93e29b8ed5268aaa66dc05ff117cf93f1bbf961651901433e4f4ca6a117fa86"
+    },
+    {
+      "path": "phrases/bencivenga.yaml",
+      "sha256": "19df8022e43c7470b12078e7bb0838207d404fe278aac2bb61414158a813420f"
+    },
+    {
+      "path": "phrases/halbert.yaml",
+      "sha256": "32f850a11122929e7fbb922e0d3b243e57a2560b77e14f0b0c3f5df547d1c988"
+    },
+    {
+      "path": "phrases/kennedy.yaml",
+      "sha256": "dc59fc0c51ffdbc246e397763e0e73cc58fa576cd69e3b9759dacc4c18172b5d"
+    },
+    {
+      "path": "phrases/makepeace.yaml",
+      "sha256": "7db0f5cc4fa1a5138bf2d52647fc5d25aa39cc754a52f770bb9a737ba0d83646"
+    },
+    {
+      "path": "phrases/schwartz.yaml",
+      "sha256": "dee72786ba7b0f24e9ce6d8c271317b6360765fae82d0610d165c25016302bf1"
+    },
+    {
+      "path": "phrases/sugarman.yaml",
+      "sha256": "1ad8e62dab9c9c668a88189fc608d23d4730626e0513442418f374ec3f1e4440"
+    },
+    {
+      "path": "projects/copy-v2-enrichment/prd.json",
+      "sha256": "04cfefa074f69e59dc767e434574e230a9107aec3f1e286b05b418cd337e3a80"
+    },
+    {
+      "path": "projects/copy-v2-enrichment/prompt.md",
+      "sha256": "91cd46c22528fc0205fc089c93ede63544fd4f39cb8170bc86f7758eec8920a6"
+    },
+    {
+      "path": "projects/copy-v2-upgrade/local-sources-map.yaml",
+      "sha256": "dbd2cf0525fed8640fc94d7d3f9de020754ba29b09bcf61e0fabd303477505ac"
+    },
+    {
+      "path": "projects/copy-v2-upgrade/prd.json",
+      "sha256": "a4cb6934d39eac184dfe740a8e0ecfd041ab7468af0cd9b65118712160581437"
+    },
+    {
+      "path": "projects/copy-v2-upgrade/progress.txt",
+      "sha256": "6daef3b83c9d433f46717d0cb6c8b5c606ca21e882dadd3708d3be95078854d4"
+    },
+    {
+      "path": "projects/copy-v2-upgrade/prompt.md",
+      "sha256": "ef09b9957b9a19dbec475407c8ac6fe3950f0e3fc6dfc9f4d6360424b71da717"
+    },
+    {
+      "path": "projects/copy-workflows-yolo/handoff.md",
+      "sha256": "982622ef7f926bcc80e2667d81e6b34545a18009a8c4006c99c6f512a1adbe5d"
+    },
+    {
+      "path": "projects/copy-workflows-yolo/outputs/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "projects/copy-workflows-yolo/prd.json",
+      "sha256": "1f01c7094b989be7a2771c02081daf9aa65486513c42f5a86848964f619c4efd"
+    },
+    {
+      "path": "projects/copy-workflows-yolo/progress.txt",
+      "sha256": "8603f330c77380b55953bf1643f9014386a17cac87c10e8c7a460c9515e899af"
+    },
+    {
+      "path": "projects/copy-workflows-yolo/prompt.md",
+      "sha256": "3701832343bf88fd02a1adf3f42cba95484a8662dd775ea1750c539b1295e493"
+    },
+    {
+      "path": "projects/copy-workflows-yolo/test-results.md",
+      "sha256": "7dad7e5d039fe223dfaecf5ed96742d3b8a1cd2acdae1b805c8f88d9ef70b435"
+    },
+    {
+      "path": "projects/prd-dan-koe.json",
+      "sha256": "c530c2e7a211a51a863d1937ea235c42f2e20e84fb5ba95e40f3d82e7dadb498"
+    },
+    {
+      "path": "projects/prd.json",
+      "sha256": "a0471d37e9f7b61ff820cc8a6497eb08509a7323b92c505abe1183ac5337727e"
+    },
+    {
+      "path": "projects/progress-dan-koe.txt",
+      "sha256": "5519a367981a4c195c74370ceb301d4ba264c0dabb48bb4686507dacba6aada5"
+    },
+    {
+      "path": "projects/progress.txt",
+      "sha256": "a9d2c9ef758043ad00d5ea92dd233eb65ec6cdad7617e5d730d7b7d4a65f4321"
+    },
+    {
+      "path": "projects/README.md",
+      "sha256": "6e88e0644418b42590592793402b3e37d49b098ee78080204947661468244233"
+    },
+    {
+      "path": "projects/test-e2e/copy-state.json",
+      "sha256": "fef824e0efb12e98678cbd5ffe2c80ac48cc2f77d63f3fdee6e79079ac5e75bc"
+    },
+    {
+      "path": "projects/test-e2e/progress.txt",
+      "sha256": "fbd2f33edbc67237775e34f6f418c89abf5506506d9d840fae09332ec33b4f1c"
+    },
+    {
+      "path": "README.md",
+      "sha256": "e92d59dc27428ff2d3887904f0187abbf599b4c9c839df9aeaf5a5178d3bd29a"
+    },
+    {
+      "path": "reference/copysearch-anti-hallucination.md",
+      "sha256": "65804b4ce6e424228bc0bb4df6a8d393da329a21995a733298b54e1f2f04cff9"
+    },
+    {
+      "path": "reference/copysearch-quick-reference.md",
+      "sha256": "10ec53aedf916357d424efeb3835df571da94655875819a480cdf4cb56aa2d0e"
+    },
+    {
+      "path": "reference/copysearch-tool-stack.md",
+      "sha256": "02b70ee74ba645a2f9d5217f96c97fd3e95400fddbf778fdaa4d83b32afb6b17"
+    },
+    {
+      "path": "squad.yaml",
+      "sha256": "5206da1a0a32d36db2ccf2ad767b9f0842cfbc750755aeb08ad264d63e23b3d4"
+    },
+    {
+      "path": "swipe/_meta/swipe-state.json",
+      "sha256": "ac1d786ab152733cf2c7a30075adf49f385676a944c257b2626aba05f0637919"
+    },
+    {
+      "path": "swipe/bullets/_index.yaml",
+      "sha256": "b49dd64c6216b09b4bf8335460b5994930da0a01c8b9047894a304593fb0cded"
+    },
+    {
+      "path": "swipe/closes/_index.yaml",
+      "sha256": "fdb193cf63564ea72d18dfc52769c6577fb6cd4b9535157a0bb5688423bd3984"
+    },
+    {
+      "path": "swipe/email/hammer-them-examples.md",
+      "sha256": "7485babc4e906ab5e81d6d2743570a1318e172f9f29cbd5f98f873a9382b2d01"
+    },
+    {
+      "path": "swipe/emails/_index.yaml",
+      "sha256": "4ac792c1058816c3b8f920f16d3c6316c7494c333a53d8644b1d983cbf902dab"
+    },
+    {
+      "path": "swipe/full_pieces/_index.yaml",
+      "sha256": "bd513901c3ccb81509987b0eb8b994e9810ec627e4b5678d8dc9c812bfed6009"
+    },
+    {
+      "path": "swipe/headlines/_index.yaml",
+      "sha256": "7905bba0840b584d000ab1368265190debf566d3b19793d29909f9d80e480839"
+    },
+    {
+      "path": "swipe/headlines/headlines_batch_1.yaml",
+      "sha256": "092b0f81e49b5d767fe19faee29d59f0561b76eedee1ca01fff1faf6059f3fa6"
+    },
+    {
+      "path": "swipe/leads/_index.yaml",
+      "sha256": "7142b50294867064a4209c1b770bafbb81cab1c7ce572e13a64bfae5b3b97984"
+    },
+    {
+      "path": "swipe/sources/_sources.yaml",
+      "sha256": "eae011d46b84974762b1cec5349934eabde26d01e8a2f6357f190b939a62ae1e"
+    },
+    {
+      "path": "swipe/tactics/break-the-glass-tactics.md",
+      "sha256": "345b81c3a0fdb2b0ada874e212b84882e107c2cc4221513a0a9fa1767d3dd9e5"
+    },
+    {
+      "path": "swipe/transitions/_index.yaml",
+      "sha256": "2654e23c625d326db11f00d09445bdda47826602f65a84c80f8e7e395bcf1667"
+    },
+    {
+      "path": "swipe-sources/hormozi-copy-patterns.yaml",
+      "sha256": "2b601a869a34c4edceac591fb44afaac0c7c3bd6bba0d6fd3be8fe3767759bf5"
+    },
+    {
+      "path": "swipe-sources/hormozi-frameworks.yaml",
+      "sha256": "bd12f481af75b109badf95b6b509a0b0f41541a014e4ef254478070d46102998"
+    },
+    {
+      "path": "swipe.config",
+      "sha256": "c37021410fd87327b8aeb7fabac453b6e54c9a7017b400bda12a63833ffb8424"
+    },
+    {
+      "path": "tasks/analyze-mental-conversation.md",
+      "sha256": "6e591c85d14b3fe5f6e83f823a2053665f9a4b199504715e86c15183a4ae475d"
+    },
+    {
+      "path": "tasks/apply-sugarman-triggers.md",
+      "sha256": "1c6e4eed92e95bb3e2384140300de4aacc1b22fd533559cf5da6dca6f587b738"
+    },
+    {
+      "path": "tasks/audit-copy-hopkins.md",
+      "sha256": "245c410c1343bb2245e2eec950d305c349ec49621411103f7b9894fdc77fb424"
+    },
+    {
+      "path": "tasks/audit-landing-page.md",
+      "sha256": "43fe53ca41ea692d26cd8f7d56f5a47766405e477bf1d6bae6f56f3e372b7b4c"
+    },
+    {
+      "path": "tasks/avatar-research.md",
+      "sha256": "d69008df61126f5b01b6d26bf0cf1c25b2f6ddcac276af37cd329c9121803961"
+    },
+    {
+      "path": "tasks/blend.md",
+      "sha256": "b72fc160a1e13f64100000b277552ba2e6cc46f9368dafc02b8445608cf00213"
+    },
+    {
+      "path": "tasks/briefing.md",
+      "sha256": "783f0c4a6c2d22ce2692fc503d1c01ea4962e4dfb4cf2aa94e547a091cb4a07e"
+    },
+    {
+      "path": "tasks/brunson/create-book-funnel.md",
+      "sha256": "ab58b598824f5064e3417791a22fde27f310c054ec6afdc8b5f0621ae1b8ffe9"
+    },
+    {
+      "path": "tasks/build-authority-arsenal.md",
+      "sha256": "bdd7042b286f289694d0e7487d26f47d6c9c3aa234795a3e72f8266a2e4484e9"
+    },
+    {
+      "path": "tasks/campaign-planning-pack.md",
+      "sha256": "a979044cc923e953d161f68056a9763939a8815fd9ff7a0f2078d75b8b6f743d"
+    },
+    {
+      "path": "tasks/copy-debate.md",
+      "sha256": "2fbd0fbdfc6b16c77c25b7abd607873db80fa2b405388d0f7545aa3a9ae8591a"
+    },
+    {
+      "path": "tasks/copysearch.md",
+      "sha256": "25057e647e980b452cbf4caa37d6739ca62ffae9a8db04f5d9a083f993f5ce5b"
+    },
+    {
+      "path": "tasks/create-abandoned-cart.md",
+      "sha256": "982cc96b1ed2f19951132b0c9435df89821f3f68c093129105ddd9edf18526fc"
+    },
+    {
+      "path": "tasks/create-ad-copy.md",
+      "sha256": "8d288ecf0649285bca004012261eebfc5c92018567c13e867a9939ea418fe842"
+    },
+    {
+      "path": "tasks/create-ad-script.md",
+      "sha256": "9ad1fcdf1ec2fc45dca1604ddb755eac1405337f65f60ed781b1e04fd102b3b2"
+    },
+    {
+      "path": "tasks/create-artifact-from-kb.md",
+      "sha256": "e8b8d4701fb846681623c8b4e5ca128ec255e3ba90b8b98c256aa78d100a58d5"
+    },
+    {
+      "path": "tasks/create-big-idea.md",
+      "sha256": "75727ed71edffe9a66ddc45a6971ac3ce29d14c77e745d54612ac1ade439b44f"
+    },
+    {
+      "path": "tasks/create-bullets.md",
+      "sha256": "e434df2bf08d984878f5b39e4299bce4971de35bf63c43aadc789b11d201b557"
+    },
+    {
+      "path": "tasks/create-call-script.md",
+      "sha256": "5c0910aca9bf0a56897a527a04cedde89ba89da29a03f92592a9208934d828f8"
+    },
+    {
+      "path": "tasks/create-campaign-brief.md",
+      "sha256": "a4f14a24a55540fcdf8a07bdccb96179d788126b73b049c48648cd94353bdb2d"
+    },
+    {
+      "path": "tasks/create-close-script.md",
+      "sha256": "c92394b6cd60cfdd7e992ed8c7b8bd2418ac8a702b92045f2ab60b63f51aa03f"
+    },
+    {
+      "path": "tasks/create-cold-email.md",
+      "sha256": "8d91ae06ebf7bbf20d32c11547dffc4078ce3e60c0e943d91f56c43dc1e0e05c"
+    },
+    {
+      "path": "tasks/create-cold-webinar-script.md",
+      "sha256": "2a20b82136312044622002a3522fac4df304810f0e63124754d62711e55d5705"
+    },
+    {
+      "path": "tasks/create-copywriter-agent.md",
+      "sha256": "2c22a692c6a8ce94df381de74a95c2d01d3701ac51a2b081046f468f95929fd2"
+    },
+    {
+      "path": "tasks/create-daily-email.md",
+      "sha256": "6c61743e9c9aab3d1cd1037fcfa4367c84ef0b61e78f590669e082d5667fd4f0"
+    },
+    {
+      "path": "tasks/create-decision-matrix.md",
+      "sha256": "461cb2a8587152b5607a905117f36fa150f71da135e166666af5d7172061dbd0"
+    },
+    {
+      "path": "tasks/create-downsell-page.md",
+      "sha256": "dbf7b1bd91c3cfcf9298eb755f128329fa8463ac3bec4d4d4a52d48a55016615"
+    },
+    {
+      "path": "tasks/create-email-sequence.md",
+      "sha256": "2092f0e513443357c540c616932cb1fe13ea0e469851788d81cae78ba466e1f2"
+    },
+    {
+      "path": "tasks/create-ghosted-lead-recovery.md",
+      "sha256": "2775cca72939e2e7e4e0ee6bd005eb7223a3fe13ae9f3c5033cc0c6ec56582ac"
+    },
+    {
+      "path": "tasks/create-headlines.md",
+      "sha256": "4b37c8a9755ae4e69bfcd786995d2c7c2c886db993bc66b0416269a8a906c976"
+    },
+    {
+      "path": "tasks/create-landing-page.md",
+      "sha256": "216b084518b55a3a96593858d3132596de27f50cce8f2a1124f6fe53085550ce"
+    },
+    {
+      "path": "tasks/create-launch-emails.md",
+      "sha256": "8b42cbca4846bd0c1348fb1c0e7306c84b564beb0efcbdd2cfe5df2cf404dd3e"
+    },
+    {
+      "path": "tasks/create-launch-sequence.md",
+      "sha256": "069c85c1dfd8a7489d5021f3d933cfdb52125e4661801289c3b5320f8d74b147"
+    },
+    {
+      "path": "tasks/create-lead-magnet.md",
+      "sha256": "f0d75fdfcf09c128d286d65d155c87b33315eb781be93241fd1142163c30e96a"
+    },
+    {
+      "path": "tasks/create-magalog.md",
+      "sha256": "f3aa69ab90b3796249d4a7c605cec80395a170ab7157c37d8321de8e1f9d6570"
+    },
+    {
+      "path": "tasks/create-native-ads.md",
+      "sha256": "7b8fb4fdb736923983b0ca484f89228ea9496decb32d00f3afe4c6ec033a9e12"
+    },
+    {
+      "path": "tasks/create-newsletter.md",
+      "sha256": "c1e307d494e59e7711fb96a4c10c0532fa9fbcbba9dce0c3ccc42b6cd59c5a23"
+    },
+    {
+      "path": "tasks/create-objection-algorithms.md",
+      "sha256": "121d6627bc8ca45b439315601a8dcd5be53f8063bbef40d3cfe314e4580702ca"
+    },
+    {
+      "path": "tasks/create-offer.md",
+      "sha256": "ff2097a3fc1ba1dd7e14c67692817469e12e80789b7b592c72aa50f3bd6bf60d"
+    },
+    {
+      "path": "tasks/create-order-bump.md",
+      "sha256": "7cdc6ea898d0a79e387bb41cf66744d0039e34e294a93d200b45089146fabef8"
+    },
+    {
+      "path": "tasks/create-pre-call-hammer-sequence.md",
+      "sha256": "ec26eabd97d54ac32901a5f84e104f5aa3cf3bbc1e9b6d6f1c74ccee25ce961d"
+    },
+    {
+      "path": "tasks/create-proof-stack.md",
+      "sha256": "5e9c7c0e91e653eabbe31d8830b0fec284771030fa751799d87cf9422f0cb269"
+    },
+    {
+      "path": "tasks/create-sales-page.md",
+      "sha256": "5b4811f67a585b3bfcf4d5af20a2799a2455ed59dc3af09a5d556cf6bed54e2b"
+    },
+    {
+      "path": "tasks/create-soap-opera-sequence.md",
+      "sha256": "4e4f61ed9655c7430fa28169239954f94bdf10a00c426c4f8361f65919c84c78"
+    },
+    {
+      "path": "tasks/create-thank-you-page.md",
+      "sha256": "f6b1bed09529dc3888f71eb8a6542a0222e690d9d2555a752222effe1a310019"
+    },
+    {
+      "path": "tasks/create-unique-mechanism.md",
+      "sha256": "445a959746523f425f547c0175c14db6d4a8e1c05a5efeaa72222029dd70d0cb"
+    },
+    {
+      "path": "tasks/create-upsell-page.md",
+      "sha256": "0ce6d58113c3468986dbcc39e7e1f29ee0cc4e229917b77cfae2b2656d667efc"
+    },
+    {
+      "path": "tasks/create-video-hook.md",
+      "sha256": "ae1eb9e0d3f8d91a2ba69e50f4d09bee67fb1370ae6056764a486e64d56a3f92"
+    },
+    {
+      "path": "tasks/create-warm-webinar-script.md",
+      "sha256": "329ba9bfcc5c484191b0f893449bcd5d2b2b0fe3526176af87655f8bb4ebae08"
+    },
+    {
+      "path": "tasks/create-webinar-script.md",
+      "sha256": "047b63f436d731fcf810d03cc978b7da7ef3c81bbf017dabb985e543e182132a"
+    },
+    {
+      "path": "tasks/create-youtube-ads.md",
+      "sha256": "5cf248252d861a73f48e6613b1c73a40d54d0e0a3038bb9412ace4edfebe2ad6"
+    },
+    {
+      "path": "tasks/deliver.md",
+      "sha256": "34e15b0f1e2992c74e600614ec1df09f9def50b21705b3e660ea58b4605c99bb"
+    },
+    {
+      "path": "tasks/diagnose-awareness-level.md",
+      "sha256": "ccb2486686ce2c08ed7c8c1a66fa9a833ac22b9a55136a348fbed60ac57b393d"
+    },
+    {
+      "path": "tasks/diagnose-market-sophistication.md",
+      "sha256": "102c2e13f3fcab8ee6aaa1472c920f10e8a36a247535b03a42c7eadc9651900d"
+    },
+    {
+      "path": "tasks/diagnose.md",
+      "sha256": "e84d487218112a3ad7330b90aace770df22e71009d98bb996aae24c0002ee9d6"
+    },
+    {
+      "path": "tasks/evaluate-offer.md",
+      "sha256": "305f6b71acb4383a164a80b51634285b95ac5769bc5ae1790f5d5c457df067c1"
+    },
+    {
+      "path": "tasks/extract-communication-dna.md",
+      "sha256": "acc19782a59b0a65fd2107e277cd89ed749fe2c0cf22a8261010bf983ff48470"
+    },
+    {
+      "path": "tasks/extract-frameworks.md",
+      "sha256": "ee159b14e5d7c86dde504522a65a3a830b46e53614b9a54c83bac4a1ec2fcd40"
+    },
+    {
+      "path": "tasks/extract-signature-phrases.md",
+      "sha256": "ecb69d40ddfd4aae5a41520af81daf80c0f0b099da61750a2e5e66a7b00cccf3"
+    },
+    {
+      "path": "tasks/load-mmos-voice.md",
+      "sha256": "75c9d5cedfd56803d33d7ab3e9c09253abe733775d45bc5cee28a9cb42bac2ca"
+    },
+    {
+      "path": "tasks/load-workspace-context.md",
+      "sha256": "b7817aac4e3ce3e43567410b1cd94e8340d2a83ec8aa46c535cf29057d9db08a"
+    },
+    {
+      "path": "tasks/map-6-primary-motives.md",
+      "sha256": "da1117cf1029a77ec32befa4487dbcdc1aa49b3e7e81a623a0bdbb370a0c66f5"
+    },
+    {
+      "path": "tasks/plf/create-case-study.md",
+      "sha256": "cb1ee6427361b9bbe70401d102c55bb67f16f2906b4f3129c3a4a086bf12b0d9"
+    },
+    {
+      "path": "tasks/plf/create-evergreen-launch.md",
+      "sha256": "904a12d828238e0b0c6d3636ca6841c9c4b34b0b0dc5918780db9bf34625cb44"
+    },
+    {
+      "path": "tasks/plf/create-jv-launch.md",
+      "sha256": "dad5263d7a5c58a5a1f9d7b910e68f2e88c16c7c14c1beece6d39b4d210284d7"
+    },
+    {
+      "path": "tasks/plf/create-launch-emails.md",
+      "sha256": "872f21ca437e6d1240f9fecf1226b18138d47bb87b2c0776e82de480d0883abe"
+    },
+    {
+      "path": "tasks/plf/create-launch-stack.md",
+      "sha256": "5fabeb4e124347fd2975a12b00b4670fa74a389f9c8e4c035c5df1128f53e470"
+    },
+    {
+      "path": "tasks/plf/create-live-launch.md",
+      "sha256": "2894cb03b58e82f6004d8b382756faedb36d3639c220272bd8dfe394b03a389f"
+    },
+    {
+      "path": "tasks/plf/create-open-cart-sequence.md",
+      "sha256": "e2fbdad4c88df32a35c2606e9deefd5e78624af84aaf0799210285907cf2e69c"
+    },
+    {
+      "path": "tasks/plf/create-plc-sequence.md",
+      "sha256": "d447c02f18adef0096e0bf98963006a388a7f049bed6a50e145cacd88bd928f8"
+    },
+    {
+      "path": "tasks/plf/create-preprelaunch.md",
+      "sha256": "931d3e6833f1d873c6bc9922a26cc994727665a1c8ad29171a88db7cce493bf4"
+    },
+    {
+      "path": "tasks/plf/create-sales-page-plf.md",
+      "sha256": "76de2eac4c4193b15879a5fa2b54e3544877f91dfa6aaea4f8c0de464279b9b3"
+    },
+    {
+      "path": "tasks/plf/create-seed-launch.md",
+      "sha256": "1b6990eec84c86ae45d20aaaa01a24b22d8ac1ee8e320327b3b34bbd00d54c2f"
+    },
+    {
+      "path": "tasks/plf/diagnose-failed-launch.md",
+      "sha256": "d9bf31eb33373c90b40bc86222018647f5dca433c908037024643f28b5795863"
+    },
+    {
+      "path": "tasks/plf/evaluate-cpl.md",
+      "sha256": "4ed8a0c48e1a8e2a70a30c8abaa429252a027b1833201f62d1aa8b50aa2ad7d9"
+    },
+    {
+      "path": "tasks/plf/map-mental-triggers.md",
+      "sha256": "9287f9c9cb138a4f086599ed81e2d5343fb5fab09f05e1c9441784ac5a811f95"
+    },
+    {
+      "path": "tasks/plf/plan-paid-traffic.md",
+      "sha256": "5965330277228d0c2bb93ed2bf40f8dbb2da1f3153c7fcca25721d1d8a7a562d"
+    },
+    {
+      "path": "tasks/qa-gate.md",
+      "sha256": "6344389fcfecd4c3865be2e55df0009c09825a69993a15328144176f3c9a1d78"
+    },
+    {
+      "path": "tasks/review-copy.md",
+      "sha256": "bbe1673a2511f9b4cdebacfbc9035d1535deffd8ea4d1a20443345d26979b033"
+    },
+    {
+      "path": "tasks/rmbc-method.md",
+      "sha256": "b6db5abf389561b03b600961d8eb83d5076e7a1cabcc1151d01867392dc18a6f"
+    },
+    {
+      "path": "tasks/self-improve.md",
+      "sha256": "2e47c711619ca827bbb626581585ce1bb769cd68e46407408aba2cc10f31ab28"
+    },
+    {
+      "path": "tasks/setup-split-test.md",
+      "sha256": "7ee6499076d275f39f3a56ccc0478f9e99bb7b1ad5ea3cc8a7c33a1f78ec7a33"
+    },
+    {
+      "path": "tasks/simple-writing-audit.md",
+      "sha256": "466fdd4aaa8876099a8bebe916737f3bf6a2f26ec0e6f62169d7e36fa9f5ede7"
+    },
+    {
+      "path": "tasks/vsl-script.md",
+      "sha256": "0196082ad5056326db47dd536654dbbacbc04840d73cc09dc9191ab5d1e8d79e"
+    },
+    {
+      "path": "tasks/write-copy.md",
+      "sha256": "b63455883411c03d611bdaf41b8f6eab74a8e89ebeca7f364087e599e87ee3f8"
+    },
+    {
+      "path": "tasks/write-lampropoulos-bullets.md",
+      "sha256": "7ade104ed50e0339e43b70e4ce2060433130c7280307153fadbdd76e0bc12802"
+    },
+    {
+      "path": "tasks/write-visceral-copy.md",
+      "sha256": "c286e513a743c58569239f902f10190aa553ac74e8b7d2d6ab454feaee736c3d"
+    },
+    {
+      "path": "templates/ad-copy-tmpl.yaml",
+      "sha256": "950b13b7c23e4c814e50a00208241761b45df446a0e593a54a85e435f1a3b591"
+    },
+    {
+      "path": "templates/asset-brief-template.md",
+      "sha256": "44c25fbf8eb2b1d79b38c3ab5d240eda2bf11d48e780af698ebf8599fa827715"
+    },
+    {
+      "path": "templates/authority-arsenal-tmpl.yaml",
+      "sha256": "5674f7515bbc662eab8aec31e3606c0d0bcf94f61eea561204214827e443192e"
+    },
+    {
+      "path": "templates/avatar-research-template.md",
+      "sha256": "ad1a810dad14a12461a9ed19a9093ba4945497da79bbfd79bab3e3d0fe1fa43e"
+    },
+    {
+      "path": "templates/blend-tmpl.yaml",
+      "sha256": "9558251808f80e859c99190c9272390df784fef6c1dccbc85add9a70d6c909ce"
+    },
+    {
+      "path": "templates/brunson/book-funnel-sales-page-tmpl.md",
+      "sha256": "e9f7835ab64ab98c0761b1073ab882055ad1c7d335cc018a220604267b601a20"
+    },
+    {
+      "path": "templates/brunson/follow-up-email-sequence-tmpl.md",
+      "sha256": "e1c686522810fceeb827bdd8d0ca6d021f911033390591e0936b3f2490a022db"
+    },
+    {
+      "path": "templates/brunson/order-bump-tmpl.md",
+      "sha256": "1d3e5405b936237c1815f4cda437db8d744401140f720cb5a171791ed64fad2b"
+    },
+    {
+      "path": "templates/brunson/upsell-oto-tmpl.md",
+      "sha256": "7a1fde38ca98fc82db34c13ee8a84edad0fc183ccaa6ee004b933d904321de9a"
+    },
+    {
+      "path": "templates/campaign-brief-template.md",
+      "sha256": "5d4255b92e9b2a980ffaf2f3dd9b5ec4eec8c6c122df4af7d016a45497d17522"
+    },
+    {
+      "path": "templates/cold-webinar-script-tmpl.yaml",
+      "sha256": "64634446db84108adc934cc7ab8b9c4878e13d6e2c661aaa81888a1090d87ca7"
+    },
+    {
+      "path": "templates/collier-letter-tmpl.yaml",
+      "sha256": "b47186d3308b5c17be4adeb6842ab087b192eb3bbad6dca1f9b595182a166318"
+    },
+    {
+      "path": "templates/communication-dna-tmpl.yaml",
+      "sha256": "6bfc504644e43a07bf41fc4d0ff05756046dc775cc3dbebfea9af0b364f88519"
+    },
+    {
+      "path": "templates/copy-deck-template.md",
+      "sha256": "56c2033dc475317bd94689d8d1fb88047b5a11e16028830115a0b66e3e9e9cc0"
+    },
+    {
+      "path": "templates/copy-state.json",
+      "sha256": "85d0ff96e2dc64c232671b3039d8714575709baabd8352c95b9fc3a0e7de8b9d"
+    },
+    {
+      "path": "templates/copysearch-template.md",
+      "sha256": "24282bcddd26c4a1113b677f233241a5995cad2c4c0f704959ae008c170c2f7d"
+    },
+    {
+      "path": "templates/copywriter-agent-tmpl.yaml",
+      "sha256": "04ce1414b558e11ad3043ab1d78803e308553272e77c48a65ce3fd6e658f0bda"
+    },
+    {
+      "path": "templates/creative-brief-template.md",
+      "sha256": "c8d4c3de8e0c8e47cee066a113673740150b96b9a3fb8e568bca2902f77934e2"
+    },
+    {
+      "path": "templates/daily-email-tmpl.yaml",
+      "sha256": "70f5539d24a3916260a81377236163fd45be72c8258674e9f374f081a4b69ca8"
+    },
+    {
+      "path": "templates/debate-tmpl.yaml",
+      "sha256": "00f454ca7cf031bc46a0de80517d21232d16efdfba0702b77bd9d38c1f9c43e9"
+    },
+    {
+      "path": "templates/email-sequence-tmpl.yaml",
+      "sha256": "b2836dbeb710fe6886d58066f1a6553933ae9f43436230ad34da032e489555f7"
+    },
+    {
+      "path": "templates/frameworks-extraction-tmpl.yaml",
+      "sha256": "558e01d65bca930bda5d6f63d85a2209b10c0276bc67a1ec418d976817c78d57"
+    },
+    {
+      "path": "templates/hammer-email-sequence-tmpl.yaml",
+      "sha256": "a2eb5264fc6975292c7850ba35fed97ee80127ef21081fa124139e70b47a9789"
+    },
+    {
+      "path": "templates/magalog-tmpl.yaml",
+      "sha256": "d1f36fa443ecda11a09081efd60c9945aef945b198764e13131bbd4153587f70"
+    },
+    {
+      "path": "templates/message-architecture-template.md",
+      "sha256": "6647c46d85770c0abe1a2a06bd79f012716ce0936197e2a187712e5bf3e46b14"
+    },
+    {
+      "path": "templates/objection-algorithms-tmpl.yaml",
+      "sha256": "481868d95dd0760a7128caf436f892d2cad6b665e534fac6a9ec280f88766786"
+    },
+    {
+      "path": "templates/owner-cleanup-call-tmpl.yaml",
+      "sha256": "8422cb80f166a85b7f2c908a361e156f5d5a66aed2cc98d511480afc54298686"
+    },
+    {
+      "path": "templates/pipeline/prompt.md",
+      "sha256": "13920a0d536ca3a4d4441c42b9da09ed31d77222deee70cca0bb9a1a5ab76ac3"
+    },
+    {
+      "path": "templates/pipeline/state.json",
+      "sha256": "7d1f64cea8f44be150fceca076e49ba38933ebee7f263c1691f2990ac1fdbea9"
+    },
+    {
+      "path": "templates/plf/beat-analysis-tmpl.yaml",
+      "sha256": "89e30f48d71b60ff9bc12cf3bff05efbb3641b6de0320520a6e5e6905730249e"
+    },
+    {
+      "path": "templates/plf/case-study-tmpl.md",
+      "sha256": "2730c18593827346af653120289d0c5cd9e8bc447f3b8abe08aa63e0baecca78"
+    },
+    {
+      "path": "templates/plf/cpl-evaluation-report-tmpl.md",
+      "sha256": "3476d88382a85bab8a98d6751519a42e9a3268c426fabd942c2f34d2612785ea"
+    },
+    {
+      "path": "templates/plf/email-subject-lines-tmpl.md",
+      "sha256": "0eca69ae85e0c1c073f668fd424ba7894f233e23ecd79b8e7a08e45dc43508da"
+    },
+    {
+      "path": "templates/plf/jv-swipe-tmpl.md",
+      "sha256": "b80b6b39f2174992ad6615260a6857a0fffbb197d63d26973d0d8496a9b0a366"
+    },
+    {
+      "path": "templates/plf/launch-stack-tmpl.md",
+      "sha256": "7a80dbaf5415db02fc12fe307a02b04a72f9ecbd5c16180635f6fd103a6787a6"
+    },
+    {
+      "path": "templates/plf/launch-timeline-tmpl.md",
+      "sha256": "67d97ed56aea02def6d0dce8418211f34d705aae27c71bab066694e8ed2477c0"
+    },
+    {
+      "path": "templates/plf/objection-crusher-tmpl.md",
+      "sha256": "bcb53680568a006971678c8f9cb128edaddc8162edb09250c1ad1db72ee79564"
+    },
+    {
+      "path": "templates/plf/open-cart-day1-tmpl.md",
+      "sha256": "aa18404ab8918503ae3b35c8b2620f8108c8bca2733c465dfce6535557d53264"
+    },
+    {
+      "path": "templates/plf/open-cart-final-tmpl.md",
+      "sha256": "3f506e690684021d6c0d2a5efac2cae9a4441190c9dd2d1c8b957a31a231838f"
+    },
+    {
+      "path": "templates/plf/plc1-script-tmpl.md",
+      "sha256": "2e686366e33b33abff92ab85d12089b88d013d569b5dc03e4bc5fe119c66b7de"
+    },
+    {
+      "path": "templates/plf/plc2-script-tmpl.md",
+      "sha256": "e068a73efc6ec03dc974890470b5c5d67f8c00f57cd3dc4175a64ce25f42175e"
+    },
+    {
+      "path": "templates/plf/plc3-script-tmpl.md",
+      "sha256": "5eeb21ddf14f3092667e865d1ecb474643d27d75702a3ad07c40fb5e3caf65ab"
+    },
+    {
+      "path": "templates/plf/preprelaunch-survey-tmpl.md",
+      "sha256": "d978e341f419999b7d8d1b86dc70e8cf5076c30b1640ccd4e490ee265828eb08"
+    },
+    {
+      "path": "templates/plf/rubric-scores-tmpl.yaml",
+      "sha256": "a14ca8cdfc306d09382e6a895bc92544f1f8caba50115d7488cf2ac0c07232b2"
+    },
+    {
+      "path": "templates/plf/sales-page-blueprint-tmpl.md",
+      "sha256": "191fc8bbea001cf9b00d8ba39e392deb72dec30cd48ee6ca704adb849d60f3fc"
+    },
+    {
+      "path": "templates/progress-copy.txt",
+      "sha256": "c71244d16651e61dd0c8a1ebce456429527f24e3a906b535b8a0ba6540b13889"
+    },
+    {
+      "path": "templates/prompt-copy.md",
+      "sha256": "b8434f0fbe9577aec7622aeca0cea597cae3f2d0add94ed6bc34574774160b7a"
+    },
+    {
+      "path": "templates/rmbc-brief-tmpl.yaml",
+      "sha256": "1b3b91693d7c5ded62c35ee6caa350a0241f980dfe7acb495d0a84b0a1c83487"
+    },
+    {
+      "path": "templates/sales-page-tmpl.yaml",
+      "sha256": "f2cbf980e7ab70a88fa08b5bae33f25004570a4993294750025e3c540800102c"
+    },
+    {
+      "path": "templates/signature-phrases-tmpl.yaml",
+      "sha256": "f2dcdf6de9aef3045e8263ea85f53f8dbe0200dac4b36c47f24f13e6ad1440f7"
+    },
+    {
+      "path": "templates/soap-opera-tmpl.yaml",
+      "sha256": "5c15aaa7eeeee79a1a92fdaf5005d88d79c9209b2e68ca41626771429ead51e1"
+    },
+    {
+      "path": "templates/swipe/extract-bullets.md",
+      "sha256": "72e614db2fdcef0216f5258284afa78670500ff40f252c9dc265e6001c4e5a7b"
+    },
+    {
+      "path": "templates/swipe/extract-closes.md",
+      "sha256": "6759f78b4d035b99064dbbad219379732ea25ecf1a48d941cec22eee87588045"
+    },
+    {
+      "path": "templates/swipe/extract-emails.md",
+      "sha256": "da16f42b22bc0c4b1db0ddcb99e0e1405c47da12cd88dbe1373690fd6bdef297"
+    },
+    {
+      "path": "templates/swipe/extract-full-pieces.md",
+      "sha256": "8501145007129c114c1854b515bd449eb10419a9d51b5e644b60512094de7519"
+    },
+    {
+      "path": "templates/swipe/extract-headlines.md",
+      "sha256": "d19a226e75518351520434b158cbbb4486f052ddcf6db8e0141f86d161464817"
+    },
+    {
+      "path": "templates/swipe/extract-hooks.md",
+      "sha256": "c48c1601d600c778d995f60ad34c15b3c2f8c56f2b816f0beca5a364e952e3e8"
+    },
+    {
+      "path": "templates/swipe/extract-leads.md",
+      "sha256": "e9ea946bcc8575e3ffd787d8db9dd79fbe9cfa7b2476e91de760e47fbe3bb750"
+    },
+    {
+      "path": "templates/swipe/extract-naming.md",
+      "sha256": "a05eabf2c5903a0f3db765600fd3738fa92144ca7f05465e17683cc9c681cbb6"
+    },
+    {
+      "path": "templates/swipe/extract-transitions.md",
+      "sha256": "1947c0b95c8a63afe54a987b8dd76745943801c41e854fca7fa793f7c594f33f"
+    },
+    {
+      "path": "templates/vsl-tmpl.yaml",
+      "sha256": "84263dc98debc36764e19ea50db3dbf62e14471dfec8d5997e20ae35bf0b2255"
+    },
+    {
+      "path": "voice/bencivenga.yaml",
+      "sha256": "9ce44745310a1ce0a216ecab305e95f98d93ba98e53cfe5cfd5bf833d2ebcebb"
+    },
+    {
+      "path": "voice/halbert.yaml",
+      "sha256": "0567df8ea11d2b9322145015f4f7a2848d47755bc508f4f418f13b204c0c5cbb"
+    },
+    {
+      "path": "voice/kennedy.yaml",
+      "sha256": "b6d1286671a18d7ca60ddf0461527ec30e3fbb881b43b1fa184619345d8bb670"
+    },
+    {
+      "path": "voice/makepeace.yaml",
+      "sha256": "fb43146e5ab7e736b0b5cde229491ad89ccb5dc8807adc53e5989bf3300f9e7d"
+    },
+    {
+      "path": "voice/schwartz.yaml",
+      "sha256": "b4e451f0ad8073eb76687f9edf48338ba2f7af17ef05fb0f6e7ab5d5bb27947d"
+    },
+    {
+      "path": "voice/sugarman.yaml",
+      "sha256": "b662dd9131b53783f98227eb14a982767f818878a87f89982526c4556352362d"
+    },
+    {
+      "path": "workflows/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflows/wf-1-full-launch.yaml",
+      "sha256": "cc0623c46310fb0b237cdc0839c59d70b61945a7681f72a8d315f7e5c626db88"
+    },
+    {
+      "path": "workflows/wf-10-webinar-cold-weekly.yaml",
+      "sha256": "85deea893dd7494de32fe6fe0b9fb488f46bd4e77c3012bdf1273fd1c761067e"
+    },
+    {
+      "path": "workflows/wf-11-ghosted-recovery.yaml",
+      "sha256": "24a76392f8a1726a04ca8c4abdce17550a54c5cc2f38693d790d0b1c7cdb9eae"
+    },
+    {
+      "path": "workflows/wf-2-paid-traffic.yaml",
+      "sha256": "ad456ab249e97cee0342850bc854f6ca0dcbb3670c33fd32f84d81f22fd8389d"
+    },
+    {
+      "path": "workflows/wf-3-high-ticket.yaml",
+      "sha256": "a351931362668a8693db3f81453563ab9eb1fd021517c5def85ec5ba3b62cc4a"
+    },
+    {
+      "path": "workflows/wf-4-organic-content.yaml",
+      "sha256": "7dcd391d9c7ba9265484342bb2d173c22a0576ea19e5eb2a7beaaceab8e7e8fa"
+    },
+    {
+      "path": "workflows/wf-5-email-marketing.yaml",
+      "sha256": "29e33defe64d4ba9bb5880f1914628823cdf9048935a6311dd9a0fc3d03b2fd8"
+    },
+    {
+      "path": "workflows/wf-6-funnel-optimization.yaml",
+      "sha256": "8f0882b000fb7c0427537f07e2e0345ec6fbc1e7748e7a389a428a68486d329f"
+    },
+    {
+      "path": "workflows/wf-7-direct-mail.yaml",
+      "sha256": "a199a1b74aa9a21e2561171ca58e9e96647ea0a79cdf1f3365ce09364551da76"
+    },
+    {
+      "path": "workflows/wf-9-call-funnel-complete.yaml",
+      "sha256": "2adccf8fa8d05a83afc2cded1dc1d406cd3a9794e94ccc1ae23abc7abc940e42"
+    },
+    {
+      "path": "workflows/wf-book-launch.yaml",
+      "sha256": "5d9dfe32faf6c9f5fbfdb149f1b6ae9b080587b86baa353ca9a5e25d6e070b54"
+    },
+    {
+      "path": "workflows/wf-copy-production.yaml",
+      "sha256": "3ff74bfd8e50d92383ce39f6216b1c3d929dba8bb5688764fed6f4f342c874d8"
+    },
+    {
+      "path": "workflows/wf-evaluate-cpl.yaml",
+      "sha256": "5487cbe19af62672cbe113106b09db041d0be18695822c01bda45e48df4bc483"
+    },
+    {
+      "path": "workflows/wf-evaluate-cpls-batch.yaml",
+      "sha256": "b49f615a4066d9490172eb7c9e6c08f5b6d228cc4012bd32f4e54fdc587d9c00"
+    },
+    {
+      "path": "workflows/wf-voice-clone-copy.yaml",
+      "sha256": "f427e3c6f4463ecfd36727eb5072a33dd69ab2f2c6af707fc220c18d89dff87f"
+    },
+    {
+      "path": "workflows/wf-vsl-perpetual.yaml",
+      "sha256": "5b47e3ec3cd35bd1fa5262274c7bfce246416f3413c46de25d28604b4cdf470b"
+    }
+  ]
+}

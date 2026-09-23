@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Squad Sales — Academia Lendária</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Brand V3 — Academia Lendária */
+    --bg: #06060a;
+    --bg-elevated: #0a0810;
+    --surface: #111116;
+    --surface-2: #18181f;
+    --gold: #C9B298;
+    --gold-bright: #E4D8CA;
+    --gold-deep: #8D7556;
+    --gold-soft: rgba(201, 178, 152, 0.12);
+    --gold-faint: rgba(201, 178, 152, 0.06);
+    --cream: #F3EEE6;
+    --cream-ink: #1A1712;
+    --text: #EDEBE6;
+    --text-mid: rgba(237, 235, 230, 0.68);
+    --text-dim: rgba(237, 235, 230, 0.42);
+    --text-faint: rgba(237, 235, 230, 0.18);
+    --border: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --green: #34C759;
+    --red: #FF453A;
+
+    /* Typography */
+    --font-display: 'Instrument Serif', 'Times New Roman', serif;
+    --font-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(201,178,152,0.04) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+
+  /* ============ LAYOUT ============ */
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+  .main { flex: 1; min-width: 0; }
+  .container { max-width: 920px; margin: 0 auto; padding: 1rem; }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar {
+    width: 260px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-brand-mark {
+    width: 36px; height: 36px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+  }
+  .sidebar-brand-mark svg { width: 16px; height: 16px; }
+  .sidebar-brand-text {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: -.01em;
+    line-height: 1.2;
+  }
+  .sidebar-brand-text .sub {
+    font-size: .6rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    font-weight: 500;
+    font-family: var(--font-mono);
+    margin-top: 2px;
+  }
+  .nav-group { margin-bottom: 1.25rem; }
+  .nav-group-title {
+    color: var(--text-dim);
+    font-size: .6rem;
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    font-weight: 500;
+    margin-bottom: .5rem;
+    padding: 0 .5rem;
+    font-family: var(--font-mono);
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .5rem .6rem;
+    color: var(--text-mid);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: .85rem;
+    transition: all .15s;
+    margin-bottom: 2px;
+  }
+  .nav-item:hover {
+    background: var(--surface-2);
+    color: var(--gold);
+  }
+  .nav-item svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .nav-item .nav-num {
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    font-weight: 500;
+    width: 18px;
+  }
+
+  /* Mobile toggle */
+  .menu-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    background: var(--gold);
+    border: none;
+    color: var(--bg);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,.4);
+    align-items: center;
+    justify-content: center;
+  }
+  .menu-toggle svg { width: 22px; height: 22px; }
+
+  /* ============ HEADER ============ */
+  header {
+    background:
+      radial-gradient(circle at 20% 0%, rgba(201,178,152,0.10) 0%, transparent 50%),
+      radial-gradient(circle at 80% 100%, rgba(141,117,86,0.18) 0%, transparent 50%),
+      var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 1rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    color: var(--gold);
+    font-size: .7rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    font-family: var(--font-mono);
+  }
+  .brand-mark svg { width: 12px; height: 12px; }
+  header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 400;
+    letter-spacing: -.02em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  header h1 .accent {
+    font-style: italic;
+    color: var(--gold);
+  }
+  header .tagline {
+    font-size: clamp(.95rem, 2.5vw, 1.1rem);
+    color: var(--text-mid);
+    max-width: 580px;
+    margin: 0 auto 1.75rem;
+    line-height: 1.55;
+  }
+  .repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: .55rem 1rem;
+    border-radius: 6px;
+    font-size: .85rem;
+    transition: all .2s;
+  }
+  .repo-link:hover { border-color: var(--gold); color: var(--gold); }
+  .repo-link svg { width: 16px; height: 16px; }
+
+  /* ============ INTRO ============ */
+  .intro {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--gold);
+    padding: 1.75rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+  .intro p { color: var(--text-mid); margin-bottom: .85rem; font-size: .95rem; line-height: 1.65; }
+  .intro p:last-child { margin-bottom: 0; }
+  .intro strong { color: var(--text); font-weight: 600; }
+  .intro .highlight {
+    color: var(--gold);
+    font-weight: 500;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05em;
+  }
+
+  /* ============ SECTION HEADERS ============ */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin: 3rem 0 1.25rem;
+  }
+  .section-label .num {
+    color: var(--gold);
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .25em;
+    font-family: var(--font-mono);
+  }
+  .section-label .line { flex: 1; height: 1px; background: var(--border); }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+    font-weight: 400;
+    letter-spacing: -.01em;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  h2 .accent {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .section-sub {
+    color: var(--text-mid);
+    font-size: .95rem;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+  }
+
+  /* ============ FEATURE GRID ============ */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .75rem;
+  }
+  .feature {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.1rem;
+    border-radius: 8px;
+    display: flex;
+    gap: .9rem;
+    align-items: flex-start;
+    transition: all .2s;
+  }
+  .feature:hover { border-color: var(--gold); transform: translateY(-1px); }
+  .feature-icon {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    background: var(--gold-soft);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+  }
+  .feature-icon svg { width: 20px; height: 20px; }
+  .feature-text .title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: .25rem;
+    font-size: 1.15rem;
+    letter-spacing: -.01em;
+  }
+  .feature-text .desc { color: var(--text-mid); font-size: .88rem; line-height: 1.55; }
+
+  /* ============ NICHE GRID ============ */
+  .niche-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .75rem;
+  }
+  .niche-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem;
+    transition: all .2s;
+  }
+  .niche-card:hover { border-color: var(--gold-dim); }
+  .niche-head {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin-bottom: .5rem;
+  }
+  .niche-icon {
+    width: 32px; height: 32px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .niche-icon svg { width: 16px; height: 16px; }
+  .niche-name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.15rem;
+    color: var(--text);
+    flex: 1;
+    letter-spacing: -.01em;
+  }
+  .niche-ticket {
+    font-size: .7rem;
+    color: var(--gold);
+    background: var(--surface-2);
+    padding: 4px 9px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+  .niche-desc { color: var(--text-mid); font-size: .88rem; margin-bottom: .6rem; }
+  .niche-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .35rem;
+  }
+  .niche-tag {
+    font-size: .7rem;
+    padding: 3px 8px;
+    background: var(--surface-2);
+    color: var(--text-dim);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  /* ============ AGENT CARDS ============ */
+  .agent {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .agent:hover { border-color: var(--gold-dim); }
+  .agent-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .75rem;
+    padding-bottom: .75rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: .9rem;
+  }
+  .agent-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--gold-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .agent-avatar svg { width: 22px; height: 22px; }
+  .agent-name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: var(--text);
+    letter-spacing: -.01em;
+    line-height: 1.1;
+  }
+  .agent-meta { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .agent-role {
+    color: var(--text-dim);
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    margin-top: 4px;
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+  .tier-badge {
+    padding: .35rem .75rem;
+    border-radius: 4px;
+    font-size: .65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    border: 1px solid;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+  }
+  .tier-orc { color: var(--gold-bright); border-color: var(--gold); background: var(--gold-soft); }
+  .tier-0 { color: var(--gold-bright); border-color: var(--gold); background: var(--gold-soft); }
+  .tier-1 { color: var(--gold); border-color: var(--gold-deep); background: rgba(141,117,86,0.1); }
+  .tier-2 { color: var(--gold-deep); border-color: var(--gold-deep); background: rgba(141,117,86,0.08); }
+  .tier-3 { color: var(--text-mid); border-color: var(--border-strong); background: rgba(255,255,255,0.04); }
+  .agent-what { color: var(--text-mid); font-size: .95rem; margin-bottom: .9rem; }
+  .agent-what strong { color: var(--text); }
+  .commands-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+  .commands-list li { display: flex; gap: .6rem; align-items: flex-start; font-size: .88rem; color: var(--text-mid); }
+  .commands-list .dot { color: var(--gold); font-weight: 700; }
+  code {
+    background: var(--surface-2);
+    color: var(--gold-bright);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: .78rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  /* ============ FLOW BOXES ============ */
+  .flow-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .flow-title {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin-bottom: .9rem;
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.25rem;
+    letter-spacing: -.01em;
+  }
+  .flow-title svg { width: 18px; height: 18px; }
+  .flow-steps { list-style: none; counter-reset: step; }
+  .flow-steps li {
+    display: flex;
+    gap: .9rem;
+    padding: .6rem 0;
+    border-bottom: 1px dashed var(--border);
+    align-items: center;
+  }
+  .flow-steps li:last-child { border-bottom: none; }
+  .flow-steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--gold-soft);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: .8rem;
+    flex-shrink: 0;
+  }
+  .flow-text { flex: 1; font-size: .9rem; }
+  .flow-arrow { color: var(--text-dim); font-size: .85rem; }
+
+  /* ============ STATS ============ */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .75rem;
+    margin: 1rem 0;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: .35rem;
+    font-style: italic;
+    letter-spacing: -.02em;
+  }
+  .stat .label {
+    font-size: .65rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+
+  /* ============ USE CASE ============ */
+  .use-case {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .use-case-tag {
+    display: inline-block;
+    padding: .35rem .75rem;
+    background: var(--gold-soft);
+    color: var(--gold);
+    border-radius: 4px;
+    font-size: .65rem;
+    font-weight: 500;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    margin-bottom: .9rem;
+    font-family: var(--font-mono);
+    border: 1px solid var(--gold-deep);
+  }
+  .use-case h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: .6rem;
+    letter-spacing: -.01em;
+  }
+  .use-case .scenario { color: var(--text-mid); margin-bottom: 1.25rem; font-size: .95rem; line-height: 1.65; }
+  .step-block {
+    background: var(--surface-2);
+    border-left: 3px solid var(--gold);
+    padding: .85rem 1rem;
+    margin-bottom: .6rem;
+    border-radius: 0 6px 6px 0;
+  }
+  .step-block-head {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    margin-bottom: .3rem;
+  }
+  .step-num {
+    background: var(--gold);
+    color: var(--bg);
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: .75rem;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+  }
+  .step-block-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--text);
+    font-size: 1.05rem;
+    letter-spacing: -.01em;
+  }
+  .step-block-action { color: var(--text-mid); font-size: .88rem; line-height: 1.55; }
+
+  /* ============ PROPOSAL (Brand V3 Cream Light) ============ */
+  .proposal {
+    background: var(--cream);
+    color: var(--cream-ink);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    border: 1px solid var(--gold-deep);
+  }
+  .proposal-header {
+    background: var(--bg);
+    color: var(--text);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--gold);
+  }
+  .proposal-header .label {
+    color: var(--gold);
+    font-size: .65rem;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: .75rem;
+    font-family: var(--font-mono);
+  }
+  .proposal-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin-bottom: .25rem;
+    letter-spacing: -.01em;
+  }
+  .proposal-header .product-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--gold);
+    margin-top: .25rem;
+    display: block;
+  }
+  .proposal-header .meta {
+    color: var(--text-mid);
+    font-size: .8rem;
+    margin-top: .85rem;
+    font-family: var(--font-mono);
+  }
+  .proposal-body { padding: 2rem 1.5rem; }
+  .proposal-body h4 {
+    font-family: var(--font-display);
+    color: var(--cream-ink);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin: 1.75rem 0 .75rem;
+    padding-bottom: .4rem;
+    border-bottom: 1px solid var(--gold-deep);
+    display: inline-block;
+    letter-spacing: -.01em;
+  }
+  .proposal-body h4:first-child { margin-top: 0; }
+  .proposal-body p {
+    color: rgba(26, 23, 18, 0.78);
+    margin-bottom: .85rem;
+    font-size: .94rem;
+    line-height: 1.65;
+  }
+  .proposal-body ul {
+    margin: .5rem 0 .85rem 1.25rem;
+    color: rgba(26, 23, 18, 0.78);
+    font-size: .92rem;
+  }
+  .proposal-body li { margin-bottom: .3rem; }
+  .proposal-body strong { color: var(--cream-ink); font-weight: 600; }
+  .proposal-pain {
+    background: rgba(141, 117, 86, 0.08);
+    border-left: 2px solid var(--gold-deep);
+    padding: 1rem 1.1rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+    color: var(--cream-ink);
+    font-size: .9rem;
+  }
+  .proposal-pain ul { color: rgba(26, 23, 18, 0.78); margin-top: .35rem; }
+  .proposal-value-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: .88rem;
+  }
+  .proposal-value-table th {
+    background: var(--cream-ink);
+    color: var(--gold);
+    padding: .65rem .85rem;
+    text-align: left;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    font-weight: 500;
+    font-family: var(--font-mono);
+  }
+  .proposal-value-table td {
+    padding: .65rem .85rem;
+    border-bottom: 1px solid rgba(141, 117, 86, 0.25);
+    color: rgba(26, 23, 18, 0.85);
+  }
+  .proposal-value-table .total td {
+    background: rgba(201, 178, 152, 0.18);
+    font-weight: 500;
+    color: var(--cream-ink);
+    border-bottom: 2px solid var(--gold-deep);
+    font-family: var(--font-display);
+    font-size: 1rem;
+  }
+  .proposal-roi {
+    background: var(--cream-ink);
+    color: var(--text);
+    padding: 1.75rem 1.25rem;
+    border-radius: 8px;
+    margin: 1.25rem 0;
+    text-align: center;
+    border: 1px solid var(--gold-deep);
+  }
+  .proposal-roi .label {
+    color: var(--gold);
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    font-weight: 500;
+    font-family: var(--font-mono);
+  }
+  .proposal-roi .value {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: var(--gold-bright);
+    margin: .5rem 0;
+    font-style: italic;
+    letter-spacing: -.02em;
+    line-height: 1;
+  }
+  .proposal-roi .calc {
+    color: var(--text-mid);
+    font-size: .82rem;
+    font-family: var(--font-mono);
+  }
+  .proposal-roi .calc strong { color: var(--gold); }
+  .proposal-cta {
+    background: var(--cream-ink);
+    color: var(--gold);
+    padding: 1.25rem;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 1.25rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-style: italic;
+  }
+  .proposal-guarantee {
+    background: rgba(201, 178, 152, 0.12);
+    border: 1px solid var(--gold-deep);
+    padding: 1.1rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: 1.25rem 0;
+    color: var(--cream-ink);
+    font-size: .9rem;
+  }
+  .proposal-guarantee strong {
+    color: var(--cream-ink);
+    display: block;
+    margin-bottom: .35rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* ============ CTA ============ */
+  .cta-box {
+    background:
+      radial-gradient(circle at 30% 0%, rgba(201,178,152,0.15) 0%, transparent 60%),
+      var(--surface);
+    border: 1px solid var(--gold-deep);
+    border-radius: 12px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    margin: 2rem 0;
+  }
+  .cta-box h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: .75rem;
+    color: var(--gold);
+    letter-spacing: -.01em;
+  }
+  .cta-box p { color: var(--text-mid); margin-bottom: 1.25rem; }
+  .cta-command {
+    display: inline-block;
+    background: var(--bg);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: .85rem 1.75rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: .02em;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: .8rem;
+  }
+  footer .signature {
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: .75rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    font-size: .7rem;
+    font-family: var(--font-mono);
+  }
+  footer a { color: var(--text-mid); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (min-width: 768px) {
+    .container { padding: 1.5rem 2rem; }
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+    .niche-grid { grid-template-columns: 1fr 1fr; }
+    .stats { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .stats { grid-template-columns: repeat(6, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .sidebar {
+      position: fixed;
+      left: -280px;
+      top: 0;
+      z-index: 999;
+      transition: left .3s ease;
+      box-shadow: 8px 0 32px rgba(0,0,0,.5);
+    }
+    .sidebar.open { left: 0; }
+    .menu-toggle { display: flex; }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 998;
+    }
+    .sidebar.open + .sidebar-overlay { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+
+<div class="layout">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="sidebar-brand-text">
+        Squad Sales
+        <div class="sub">Academia Lendária</div>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title">Navegação</div>
+      <a class="nav-item" href="#intro"><span class="nav-num">00</span><span>Visão geral</span></a>
+      <a class="nav-item" href="#funcoes"><span class="nav-num">01</span><span>11 Funções</span></a>
+      <a class="nav-item" href="#nichos"><span class="nav-num">02</span><span>7 Nichos cobertos</span></a>
+      <a class="nav-item" href="#agentes"><span class="nav-num">03</span><span>9 Agentes</span></a>
+      <a class="nav-item" href="#fluxos"><span class="nav-num">04</span><span>Fluxos prontos</span></a>
+      <a class="nav-item" href="#exemplo"><span class="nav-num">05</span><span>Exemplo de uso</span></a>
+      <a class="nav-item" href="#proposta"><span class="nav-num">06</span><span>Proposta personalizada</span></a>
+      <a class="nav-item" href="#stats"><span class="nav-num">07</span><span>O que tem dentro</span></a>
+      <a class="nav-item" href="#comecar"><span class="nav-num">08</span><span>Começar agora</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title">Comandos rápidos</div>
+      <a class="nav-item" href="#agentes"><code>@sales-chief</code></a>
+      <a class="nav-item" href="#agentes"><code>*diagnose</code></a>
+      <a class="nav-item" href="#agentes"><code>*sales-copy</code></a>
+      <a class="nav-item" href="#agentes"><code>*help</code></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title">Recursos</div>
+      <a class="nav-item" href="https://github.com/fran-lendaria/squad-sales" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        Repositório
+      </a>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="overlay"></div>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+
+    <header id="topo">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Academia Lendária
+      </div>
+      <h1>Squad <span class="accent">Sales</span></h1>
+      <p class="tagline">Nove mentes lendárias da venda, operando como um time de IA. Do primeiro contato ao fechamento — sem mimimi, sem ruído, sem desculpa.</p>
+      <a class="repo-link" href="https://github.com/fran-lendaria/squad-sales" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        fran-lendaria/squad-sales
+      </a>
+    </header>
+
+    <div class="container">
+
+      <div class="intro" id="intro">
+        <p><strong>O que é.</strong> Um squad de <span class="highlight">9 agentes de IA</span> construídos a partir das mentes que definiram a venda moderna: Neil Rackham, Chris Voss, David Sandler, Aaron Ross e mais.</p>
+        <p><strong>O que faz.</strong> Cobre o funil inteiro — diagnóstico, prospecção, qualificação, negociação, fechamento e escala — com método, não improviso.</p>
+        <p><strong>Para quem.</strong> Cobre <span class="highlight">7 tipos de negócio</span>: infoproduto low/high-ticket, SaaS SMB, SaaS Enterprise, Serviços/Consultoria, E-commerce DTC e nicho customizado.</p>
+        <p><strong>Como usar.</strong> Você chama <code>@sales-chief</code>. Ele lê a situação e direciona para o especialista certo. Clareza radical, execução direta.</p>
+      </div>
+
+      <!-- ============ 01 FUNÇÕES ============ -->
+      <div class="section-label" id="funcoes"><span class="num">01</span><span class="line"></span></div>
+      <h2>As <span class="accent">11 funções</span> do squad</h2>
+      <p class="section-sub">Cada função resolve uma alavanca específica do funil de vendas. Sem dispersão.</p>
+
+      <div class="feature-grid">
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="feature-text"><div class="title">Diagnosticar</div><div class="desc">Avalia a saúde do deal e da operação em 6 dimensões.</div></div></div>
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="feature-text"><div class="title">Prospectar</div><div class="desc">Cold calls, cold emails e seleção dos 100 clientes-sonho.</div></div></div>
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div class="feature-text"><div class="title">Qualificar</div><div class="desc">Filtra dor real, orçamento e poder de decisão.</div></div></div>
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div><div class="feature-text"><div class="title">Ensinar & Reframear</div><div class="desc">Pitches que mudam como o cliente vê o problema.</div></div></div>
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="feature-text"><div class="title">Negociar</div><div class="desc">Empatia tática (técnicas do FBI) para fechar nos seus termos.</div></div></div>
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="feature-text"><div class="title">Fechar</div><div class="desc">Método Sandler. Fechamento natural, sem pressão.</div></div></div>
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></div><div class="feature-text"><div class="title">Follow-up</div><div class="desc">Sequências para deals em qualquer estágio do funil.</div></div></div>
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="feature-text"><div class="title">Email Marketing</div><div class="desc">Nurture, lançamento, carrinho abandonado, onboarding.</div></div></div>
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="feature-text"><div class="title">Copy de Vendas</div><div class="desc">Sales page, VSL, webinar, proposta, landing page.</div></div></div>
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div><div class="feature-text"><div class="title">Scripts</div><div class="desc">Discovery, demo, closing, objeções e DMs prontos.</div></div></div>
+        <div class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><div class="feature-text"><div class="title">Escalar</div><div class="desc">Outbound engine, SDR playbook, máquina previsível.</div></div></div>
+      </div>
+
+      <!-- ============ 02 NICHOS ============ -->
+      <div class="section-label" id="nichos"><span class="num">02</span><span class="line"></span></div>
+      <h2>Os <span class="accent">7 nichos</span> cobertos</h2>
+      <p class="section-sub">O squad detecta automaticamente seu nicho (Dimensão 0 do diagnóstico) e adapta o playbook. SPIN não funciona pra ebook de R$97. Challenger não funciona sem buyer committee. O método se adapta — ou não funciona.</p>
+
+      <div class="niche-grid">
+        <div class="niche-card">
+          <div class="niche-head">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <div class="niche-name">Infoproduto Low-Ticket</div>
+            <span class="niche-ticket">R$47–997</span>
+          </div>
+          <div class="niche-desc">Cursos, ebooks, mentorias de grupo, comunidades. B2C alto volume.</div>
+          <div class="niche-tags">
+            <span class="niche-tag">Aaron Ross (cold email)</span>
+            <span class="niche-tag">Jeb Blount</span>
+            <span class="niche-tag">Sales Page + VSL</span>
+          </div>
+        </div>
+
+        <div class="niche-card">
+          <div class="niche-head">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+            <div class="niche-name">Infoproduto High-Ticket</div>
+            <span class="niche-ticket">R$2k–30k</span>
+          </div>
+          <div class="niche-desc">Mentorias individuais, masterminds, programas premium. B2C consultivo.</div>
+          <div class="niche-tags">
+            <span class="niche-tag">SPIN (Rackham)</span>
+            <span class="niche-tag">Sandler</span>
+            <span class="niche-tag">Chris Voss</span>
+            <span class="niche-tag">Proposta</span>
+          </div>
+        </div>
+
+        <div class="niche-card">
+          <div class="niche-head">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="niche-name">SaaS SMB</div>
+            <span class="niche-ticket">$1k–20k ARR</span>
+          </div>
+          <div class="niche-desc">SaaS para PMEs. Sweet spot do squad. Demo + Gap Selling convertem.</div>
+          <div class="niche-tags">
+            <span class="niche-tag">Gap Selling (Keenan)</span>
+            <span class="niche-tag">SPIN</span>
+            <span class="niche-tag">Outbound Engine</span>
+          </div>
+        </div>
+
+        <div class="niche-card">
+          <div class="niche-head">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 7v14M21 7v14M6 11h.01M6 15h.01M6 19h.01M10 11h.01M10 15h.01M10 19h.01M14 11h.01M14 15h.01M14 19h.01M18 11h.01M18 15h.01M18 19h.01M3 7l9-4 9 4"/></svg></div>
+            <div class="niche-name">SaaS Enterprise</div>
+            <span class="niche-ticket">$50k+ ARR</span>
+          </div>
+          <div class="niche-desc">SaaS enterprise e serviços complexos. Buyer committee, ciclo longo.</div>
+          <div class="niche-tags">
+            <span class="niche-tag">Challenger Sale</span>
+            <span class="niche-tag">SPIN</span>
+            <span class="niche-tag">Dream 100</span>
+          </div>
+        </div>
+
+        <div class="niche-card">
+          <div class="niche-head">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-3V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM9 5h6v2H9V5z"/></svg></div>
+            <div class="niche-name">Services / Consulting</div>
+            <span class="niche-ticket">R$5k–200k</span>
+          </div>
+          <div class="niche-desc">Consultoria, agências, serviços profissionais. Venda consultiva alto valor.</div>
+          <div class="niche-tags">
+            <span class="niche-tag">SPIN consultivo</span>
+            <span class="niche-tag">Sandler</span>
+            <span class="niche-tag">Proposta + Case Study</span>
+          </div>
+        </div>
+
+        <div class="niche-card">
+          <div class="niche-head">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+            <div class="niche-name">E-commerce DTC</div>
+            <span class="niche-ticket">B2C volume</span>
+          </div>
+          <div class="niche-desc">Produtos físicos venda direta ao consumidor. Marketing + social, sem call.</div>
+          <div class="niche-tags">
+            <span class="niche-tag">Copy (sales page)</span>
+            <span class="niche-tag">Email sequences</span>
+            <span class="niche-tag">Aaron Ross</span>
+          </div>
+        </div>
+
+        <div class="niche-card">
+          <div class="niche-head">
+            <div class="niche-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+            <div class="niche-name">Custom Niche</div>
+            <span class="niche-ticket">Personalizado</span>
+          </div>
+          <div class="niche-desc">Nicho fora dos 6 padrões. O squad faz 3 perguntas e classifica seu modelo customizado.</div>
+          <div class="niche-tags">
+            <span class="niche-tag">Análise adaptativa</span>
+            <span class="niche-tag">Routing dinâmico</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 03 AGENTES ============ -->
+      <div class="section-label" id="agentes"><span class="num">03</span><span class="line"></span></div>
+      <h2>Os <span class="accent">9 agentes</span></h2>
+      <p class="section-sub">Cada um carrega o método de uma mente que provou resultado em mercado real.</p>
+
+      <div class="agent">
+        <div class="agent-header">
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <div class="agent-meta"><div class="agent-name">Sales Chief</div><div class="agent-role">O Maestro do Squad</div></div>
+          <span class="tier-badge tier-orc">Orchestrator</span>
+        </div>
+        <div class="agent-what">Lê a situação, diagnostica em 6 dimensões e direciona para o especialista certo. <strong>É por aqui que tudo começa.</strong></div>
+        <ul class="commands-list">
+          <li><span class="dot">›</span> <span><code>*diagnose</code> — diagnóstico completo</span></li>
+          <li><span class="dot">›</span> <span><code>*prospect</code> · <code>*qualify</code> · <code>*negotiate</code> · <code>*close</code> · <code>*scale</code></span></li>
+          <li><span class="dot">›</span> <span><code>*followup</code> · <code>*email-sequence</code> · <code>*sales-copy</code> · <code>*scripts</code></span></li>
+        </ul>
+      </div>
+
+      <div class="agent">
+        <div class="agent-header">
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+          <div class="agent-meta"><div class="agent-name">Neil Rackham</div><div class="agent-role">SPIN Selling · Descoberta</div></div>
+          <span class="tier-badge tier-0">Tier 0</span>
+        </div>
+        <div class="agent-what">Mestre do <strong>SPIN Selling</strong>. Faz as perguntas que extraem a dor real do cliente.</div>
+        <ul class="commands-list">
+          <li><span class="dot">›</span> <span><code>*spin-discovery</code> — descoberta completa</span></li>
+          <li><span class="dot">›</span> <span><code>*develop-implications</code> — aprofunda impacto do problema</span></li>
+          <li><span class="dot">›</span> <span><code>*craft-need-payoff</code> — perguntas que fazem o cliente vender pra ele mesmo</span></li>
+          <li><span class="dot">›</span> <span><code>*diagnose-deal</code> — avalia saúde do deal</span></li>
+        </ul>
+      </div>
+
+      <div class="agent">
+        <div class="agent-header">
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="agent-meta"><div class="agent-name">David Sandler</div><div class="agent-role">Submarine System · Controle</div></div>
+          <span class="tier-badge tier-1">Tier 1</span>
+        </div>
+        <div class="agent-what">Sistema <strong>Submarine</strong>. Mantém você no controle — sem ser empurrado pelo cliente.</div>
+        <ul class="commands-list">
+          <li><span class="dot">›</span> <span><code>*pain-funnel</code> — 8 perguntas para chegar na dor real</span></li>
+          <li><span class="dot">›</span> <span><code>*upfront-contract</code> — combina regras antes da reunião</span></li>
+          <li><span class="dot">›</span> <span><code>*qualify-budget</code> — confirma dinheiro</span></li>
+          <li><span class="dot">›</span> <span><code>*sandler-close</code> — fechamento natural</span></li>
+        </ul>
+      </div>
+
+      <div class="agent">
+        <div class="agent-header">
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          <div class="agent-meta"><div class="agent-name">Keenan</div><div class="agent-role">Gap Selling · Problema</div></div>
+          <span class="tier-badge tier-1">Tier 1</span>
+        </div>
+        <div class="agent-what">Foca no <strong>gap</strong>: distância entre onde o cliente está e onde quer chegar. Quantifica em números.</div>
+        <ul class="commands-list">
+          <li><span class="dot">›</span> <span><code>*gap-analysis</code> — análise atual → futuro</span></li>
+          <li><span class="dot">›</span> <span><code>*map-current-state</code> · <code>*quantify-gap</code> · <code>*problem-discovery</code></span></li>
+        </ul>
+      </div>
+
+      <div class="agent">
+        <div class="agent-header">
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+          <div class="agent-meta"><div class="agent-name">Chris Voss</div><div class="agent-role">Tactical Empathy · Negociação</div></div>
+          <span class="tier-badge tier-1">Tier 1</span>
+        </div>
+        <div class="agent-what">Ex-FBI. <strong>Empatia tática</strong> e perguntas calibradas. Negocia sem confronto, sem ceder.</div>
+        <ul class="commands-list">
+          <li><span class="dot">›</span> <span><code>*negotiate</code> · <code>*accusation-audit</code> · <code>*handle-objection</code> · <code>*calibrate-questions</code></span></li>
+        </ul>
+      </div>
+
+      <div class="agent">
+        <div class="agent-header">
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div class="agent-meta"><div class="agent-name">Challenger Sale</div><div class="agent-role">Teach · Tailor · Take Control</div></div>
+          <span class="tier-badge tier-2">Tier 2</span>
+        </div>
+        <div class="agent-what">Não escuta o cliente — <strong>ensina e desafia</strong>. Cria tensão construtiva.</div>
+        <ul class="commands-list">
+          <li><span class="dot">›</span> <span><code>*teaching-pitch</code> · <code>*reframe-insight</code> · <code>*constructive-tension</code> · <code>*challenger-profile</code></span></li>
+        </ul>
+      </div>
+
+      <div class="agent">
+        <div class="agent-header">
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div class="agent-meta"><div class="agent-name">Jeb Blount</div><div class="agent-role">Fanatical Prospecting</div></div>
+          <span class="tier-badge tier-2">Tier 2</span>
+        </div>
+        <div class="agent-what"><strong>Prospecção fanática.</strong> Pipeline cheio é o que evita a fome em vendas.</div>
+        <ul class="commands-list">
+          <li><span class="dot">›</span> <span><code>*prospect-plan</code> · <code>*cold-call-script</code> · <code>*handle-objection</code> · <code>*pipeline-audit</code></span></li>
+        </ul>
+      </div>
+
+      <div class="agent">
+        <div class="agent-header">
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div class="agent-meta"><div class="agent-name">Chet Holmes</div><div class="agent-role">Ultimate Sales Machine</div></div>
+          <span class="tier-badge tier-2">Tier 2</span>
+        </div>
+        <div class="agent-what"><strong>Dream 100.</strong> Foca nos 100 clientes que mudam o jogo.</div>
+        <ul class="commands-list">
+          <li><span class="dot">›</span> <span><code>*dream-100</code> · <code>*stadium-pitch</code> · <code>*sales-machine-audit</code> · <code>*education-pitch</code></span></li>
+        </ul>
+      </div>
+
+      <div class="agent">
+        <div class="agent-header">
+          <div class="agent-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
+          <div class="agent-meta"><div class="agent-name">Aaron Ross</div><div class="agent-role">Predictable Revenue · Escala</div></div>
+          <span class="tier-badge tier-3">Tier 3</span>
+        </div>
+        <div class="agent-what"><strong>Predictable Revenue.</strong> O método que gerou US$ 100M na Salesforce.</div>
+        <ul class="commands-list">
+          <li><span class="dot">›</span> <span><code>*outbound-engine</code> · <code>*sdr-playbook</code> · <code>*pipeline-math</code> · <code>*cold-email-sequence</code></span></li>
+        </ul>
+      </div>
+
+      <!-- ============ 04 FLUXOS ============ -->
+      <div class="section-label" id="fluxos"><span class="num">04</span><span class="line"></span></div>
+      <h2>Fluxos <span class="accent">prontos</span></h2>
+      <p class="section-sub">Sequências testadas. Copie, cole, execute.</p>
+
+      <div class="flow-card">
+        <div class="flow-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Fechando um deal consultivo</div>
+        <ol class="flow-steps">
+          <li><span class="flow-text"><code>@sales-chief *diagnose</code> <span class="flow-arrow">— diagnóstico inicial</span></span></li>
+          <li><span class="flow-text"><code>neil-rackham *spin-discovery</code> <span class="flow-arrow">— descoberta profunda</span></span></li>
+          <li><span class="flow-text"><code>keenan *gap-analysis</code> <span class="flow-arrow">— quantifica o gap</span></span></li>
+          <li><span class="flow-text"><code>david-sandler *pain-funnel</code> <span class="flow-arrow">— aprofunda a dor</span></span></li>
+          <li><span class="flow-text"><code>chris-voss *negotiate</code> <span class="flow-arrow">— negocia termos</span></span></li>
+          <li><span class="flow-text"><code>david-sandler *sandler-close</code> <span class="flow-arrow">— fecha o deal</span></span></li>
+        </ol>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> Montando operação de prospecção</div>
+        <ol class="flow-steps">
+          <li><span class="flow-text"><code>aaron-ross *outbound-engine</code> <span class="flow-arrow">— estrutura a operação</span></span></li>
+          <li><span class="flow-text"><code>jeb-blount *prospect-plan</code> <span class="flow-arrow">— plano de prospecção</span></span></li>
+          <li><span class="flow-text"><code>chet-holmes *dream-100</code> <span class="flow-arrow">— seleciona Dream 100</span></span></li>
+        </ol>
+      </div>
+
+      <!-- ============ 05 EXEMPLO DE USO ============ -->
+      <div class="section-label" id="exemplo"><span class="num">05</span><span class="line"></span></div>
+      <h2>Exemplo <span class="accent">prático</span> de uso</h2>
+      <p class="section-sub">Cenário real, passo a passo. Veja como o squad opera de ponta a ponta.</p>
+
+      <div class="use-case">
+        <span class="use-case-tag">Caso · Mentoria High-Ticket</span>
+        <h3>Vender mentoria de IA generativa para CEO de PME</h3>
+        <p class="scenario">A Academia Lendária quer vender o programa <strong>"CEO Lendário com IA"</strong> (ticket R$15.000) para um CEO de empresa de serviços que está sobrecarregado, tem time confuso com tantas ferramentas de IA e zero sistema. Veja como o squad opera:</p>
+
+        <div class="step-block">
+          <div class="step-block-head"><div class="step-num">1</div><div class="step-block-title">Diagnóstico inicial</div></div>
+          <div class="step-block-action">Você chama <code>@sales-chief *diagnose</code>. Ele identifica: nicho = infoproduto_high_ticket, dor = ROI baixo de IA + time confuso, urgência = alta (concorrente já automatizou).</div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-block-head"><div class="step-num">2</div><div class="step-block-title">Roteamento automático</div></div>
+          <div class="step-block-action">Sales Chief direciona para <strong>Neil Rackham</strong> (descoberta SPIN) por ser venda consultiva acima de R$10k.</div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-block-head"><div class="step-num">3</div><div class="step-block-title">Discovery profunda</div></div>
+          <div class="step-block-action"><code>neil-rackham *spin-discovery</code> gera 12 perguntas SPIN customizadas. Descobre: CEO perdeu 3 contratos por não automatizar relatórios; time gasta 15h/semana em tarefas manuais.</div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-block-head"><div class="step-num">4</div><div class="step-block-title">Quantificação do gap</div></div>
+          <div class="step-block-action"><code>keenan *quantify-gap</code> calcula: 15h × 4 pessoas × R$120/h × 4 semanas = <strong>R$28.800/mês de desperdício</strong>. Custo anual: R$345.600.</div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-block-head"><div class="step-num">5</div><div class="step-block-title">Aprofundamento da dor</div></div>
+          <div class="step-block-action"><code>david-sandler *pain-funnel</code> executa 8 perguntas que levam o CEO a verbalizar o custo emocional: "Não consigo crescer porque vivo apagando incêndio."</div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-block-head"><div class="step-num">6</div><div class="step-block-title">Proposta personalizada</div></div>
+          <div class="step-block-action"><code>@sales-chief *sales-copy</code> com opção <code>proposal</code> ativa Keenan + Aaron Ross + Sandler em conjunto. Gera proposta com gap quantificado, ROI calculado e Up-Front Contract. <strong>Veja o resultado abaixo ↓</strong></div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-block-head"><div class="step-num">7</div><div class="step-block-title">Negociação e fechamento</div></div>
+          <div class="step-block-action">Se houver objeção de preço: <code>chris-voss *handle-objection</code>. Se for hora de fechar: <code>david-sandler *sandler-close</code>. <strong>Deal fechado.</strong></div>
+        </div>
+      </div>
+
+      <!-- ============ 06 PROPOSTA ============ -->
+      <div class="section-label" id="proposta"><span class="num">06</span><span class="line"></span></div>
+      <h2>Proposta <span class="accent">personalizada</span> — gerada pelo squad</h2>
+      <p class="section-sub">Esta proposta foi gerada pelo comando <code>*sales-copy</code> combinando Keenan (quantificação do gap) + Aaron Ross (ROI) + Sandler (Up-Front Contract). Brand: Academia Lendária. Nicho: infoproduto high-ticket.</p>
+
+      <div class="proposal">
+        <div class="proposal-header">
+          <div class="label">Academia Lendária</div>
+          <h3>Proposta Comercial</h3>
+          <span class="product-name">CEO Lendário com IA</span>
+          <div class="meta">Preparado para <strong style="color: var(--text);">Carlos Silva</strong> · CEO @ Innova Soluções · 20 mai 2026</div>
+        </div>
+
+        <div class="proposal-body">
+
+          <h4>Sumário Executivo</h4>
+          <p>Carlos, a Innova Soluções enfrenta hoje um <strong>gap operacional crítico</strong>: seu time gasta <strong>240h/mês em tarefas manuais</strong> que podem ser automatizadas com IA generativa. Isso resulta em <strong>R$345.600/ano em produtividade perdida</strong> e — pior — em oportunidades de crescimento abandonadas.</p>
+          <p>Esta proposta apresenta o <strong>CEO Lendário com IA</strong> como a ponte para fechar esse gap em <strong>90 dias</strong>.</p>
+
+          <h4>Situação Atual (o que observamos)</h4>
+          <div class="proposal-pain">
+            <strong>Diagnóstico:</strong>
+            <ul style="margin-top: .35rem;">
+              <li>3 contratos perdidos nos últimos 6 meses por falta de agilidade nos relatórios</li>
+              <li>Time de 4 pessoas perdendo 15h/semana em tarefas repetitivas</li>
+              <li>Stack de IA descoordenado (ChatGPT, Claude, Midjourney sem método)</li>
+              <li>CEO sobrecarregado, apagando incêndios em vez de crescer</li>
+            </ul>
+          </div>
+
+          <h4>Custo de Não Agir</h4>
+          <table class="proposal-value-table">
+            <tr><th>Impacto</th><th>Cálculo</th><th>Valor anual</th></tr>
+            <tr><td>Produtividade perdida</td><td>15h × 4 pessoas × R$120/h × 48 sem</td><td>R$ 345.600</td></tr>
+            <tr><td>Contratos perdidos</td><td>3 contratos × R$50k médio</td><td>R$ 150.000</td></tr>
+            <tr><td>Tempo do CEO em operacional</td><td>20h/sem × R$500/h × 48 sem</td><td>R$ 480.000</td></tr>
+            <tr class="total"><td colspan="2">Custo total anual de não agir</td><td>R$ 975.600</td></tr>
+          </table>
+
+          <h4>Solução Proposta</h4>
+          <p>Programa de <strong>12 semanas</strong> de implementação assistida do sistema lendário de IA aplicada ao seu negócio:</p>
+          <ul>
+            <li><strong>Mês 1 — Clareza Radical:</strong> mapeamento de processos, identificação dos 0,8% que geram impacto real</li>
+            <li><strong>Mês 2 — Sistema de Execução:</strong> automação dos relatórios, scripts e workflows do time</li>
+            <li><strong>Mês 3 — Escala Lendária:</strong> playbook próprio + capacitação do time para autonomia total</li>
+          </ul>
+
+          <h4>O que está incluído</h4>
+          <table class="proposal-value-table">
+            <tr><th>Entregável</th><th>Detalhe</th></tr>
+            <tr><td>12 sessões 1:1 com mentor lendário</td><td>Semanais, 90min cada, ao vivo</td></tr>
+            <tr><td>Acesso ao Sistema Operacional Lendário</td><td>Frameworks, templates, prompts validados</td></tr>
+            <tr><td>2 workshops com o time</td><td>4h cada, capacitação prática</td></tr>
+            <tr><td>Comunidade Lendários (1 ano)</td><td>150+ membros, accountability semanal</td></tr>
+            <tr><td>Suporte WhatsApp direto</td><td>Resposta em até 4h úteis</td></tr>
+          </table>
+
+          <h4>Investimento</h4>
+          <table class="proposal-value-table">
+            <tr><td>Valor à vista</td><td style="text-align: right;"><strong>R$ 15.000,00</strong></td></tr>
+            <tr><td>Parcelado em até 12x</td><td style="text-align: right;"><strong>R$ 1.450,00/mês</strong></td></tr>
+          </table>
+
+          <div class="proposal-roi">
+            <div class="label">Retorno Esperado</div>
+            <div class="value">65x</div>
+            <div class="calc">R$ 975.600 economizados ÷ R$ 15.000 investidos = <strong style="color: var(--gold);">payback em 6 dias</strong></div>
+          </div>
+
+          <h4>Up-Front Contract (regras claras)</h4>
+          <ul>
+            <li><strong>Você se compromete a:</strong> 90 dias de dedicação séria, presença nas sessões, execução do método</li>
+            <li><strong>Nós nos comprometemos a:</strong> entregar clareza, sistema e accountability radical — sem hype</li>
+            <li><strong>Próximo passo:</strong> assinar até 27/mai e iniciar em 03/jun</li>
+          </ul>
+
+          <div class="proposal-guarantee">
+            <strong>Garantia Anti-Tédio de 30 Dias.</strong><br>
+            Se nos primeiros 30 dias você sentir que não está tendo clareza e progresso, devolvemos 100% — sem perguntas.
+          </div>
+
+          <div class="proposal-cta">
+            Próximo passo: agendar call de assinatura · Carlos, vamos construir isso?
+          </div>
+
+        </div>
+      </div>
+
+      <p style="font-size: .85rem; color: var(--text-dim); margin-bottom: 2rem;"><strong style="color: var(--gold);">Como gerar uma proposta como essa:</strong> chame <code>@sales-chief</code> → execute <code>*sales-copy</code> → quando perguntar quais assets, escolha <code>proposal</code>. O squad puxa dados do seu diagnóstico anterior e gera personalizado em 5-10 min.</p>
+
+      <!-- ============ 07 STATS ============ -->
+      <div class="section-label" id="stats"><span class="num">07</span><span class="line"></span></div>
+      <h2>O que está <span class="accent">dentro</span></h2>
+      <div class="stats">
+        <div class="stat"><div class="num">9</div><div class="label">Agentes</div></div>
+        <div class="stat"><div class="num">9</div><div class="label">Tasks</div></div>
+        <div class="stat"><div class="num">7</div><div class="label">Nichos</div></div>
+        <div class="stat"><div class="num">2</div><div class="label">Checklists</div></div>
+        <div class="stat"><div class="num">18</div><div class="label">Mentes</div></div>
+        <div class="stat"><div class="num">15K+</div><div class="label">Linhas</div></div>
+      </div>
+
+      <!-- ============ 08 CTA ============ -->
+      <div class="cta-box" id="comecar">
+        <h3>Comece agora</h3>
+        <p>No Claude Code, ative o squad. O resto o método resolve.</p>
+        <div class="cta-command">@sales-chief</div>
+        <p style="margin-top: 1rem; font-size: .85rem;">Não sabe por onde começar? Mande <code>*diagnose</code>.</p>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="signature">Movimento Lendário</div>
+      <div>Squad Sales v1.0.0 · Elite Sales Methodology Agents</div>
+      <div style="margin-top: .5rem;">
+        <a href="https://github.com/fran-lendaria/squad-sales" target="_blank">github.com/fran-lendaria/squad-sales</a>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  toggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+  overlay.addEventListener('click', () => sidebar.classList.remove('open'));
+  document.querySelectorAll('.nav-item').forEach(a => {
+    a.addEventListener('click', () => sidebar.classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>

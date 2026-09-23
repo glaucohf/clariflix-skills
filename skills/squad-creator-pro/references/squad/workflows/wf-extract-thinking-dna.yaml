@@ -1,0 +1,130 @@
+workflow:
+  id: wf-extract-thinking-dna
+  name: Extract Thinking DNA Pipeline
+  version: "1.0.0"
+  description: Canonical atomic pipeline for thinking DNA extraction across frameworks, heuristics, decision logic and final assembly.
+  type: orchestration
+  state_machine:
+    states: [init, recognition-patterns, discover-frameworks, extract-heuristics, decision-architecture, anti-patterns, objection-handling, handoff-triggers, assemble-output, complete, failed]
+    transitions:
+      - trigger: start
+        source: init
+        dest: recognition-patterns
+      - trigger: recognition_patterns_complete
+        source: recognition-patterns
+        dest: discover-frameworks
+      - trigger: recognition_patterns_failed
+        source: recognition-patterns
+        dest: failed
+      - trigger: discover_frameworks_complete
+        source: discover-frameworks
+        dest: extract-heuristics
+      - trigger: discover_frameworks_failed
+        source: discover-frameworks
+        dest: failed
+      - trigger: extract_heuristics_complete
+        source: extract-heuristics
+        dest: decision-architecture
+      - trigger: extract_heuristics_failed
+        source: extract-heuristics
+        dest: failed
+      - trigger: decision_architecture_complete
+        source: decision-architecture
+        dest: anti-patterns
+      - trigger: decision_architecture_failed
+        source: decision-architecture
+        dest: failed
+      - trigger: anti_patterns_complete
+        source: anti-patterns
+        dest: objection-handling
+      - trigger: anti_patterns_failed
+        source: anti-patterns
+        dest: failed
+      - trigger: objection_handling_complete
+        source: objection-handling
+        dest: handoff-triggers
+      - trigger: objection_handling_failed
+        source: objection-handling
+        dest: failed
+      - trigger: handoff_triggers_complete
+        source: handoff-triggers
+        dest: assemble-output
+      - trigger: handoff_triggers_failed
+        source: handoff-triggers
+        dest: failed
+      - trigger: assemble_output_complete
+        source: assemble-output
+        dest: complete
+      - trigger: assemble_output_failed
+        source: assemble-output
+        dest: failed
+      - trigger: fail
+        source: "*"
+        dest: failed
+  sequence:
+    - step: recognition-patterns
+      id: recognition-patterns
+      phase: 1
+      phase_name: Recognition Patterns
+      agent: aiox-master
+      action: execute_etd_recognition_patterns
+      task_ref: tasks/etd-recognition-patterns.md
+      next: discover-frameworks
+    - step: discover-frameworks
+      id: discover-frameworks
+      phase: 2
+      phase_name: Discover Frameworks
+      agent: aiox-master
+      action: execute_etd_discover_frameworks
+      task_ref: tasks/etd-discover-frameworks.md
+      next: extract-heuristics
+    - step: extract-heuristics
+      id: extract-heuristics
+      phase: 3
+      phase_name: Extract Heuristics
+      agent: aiox-master
+      action: execute_etd_extract_heuristics
+      task_ref: tasks/etd-extract-heuristics.md
+      next: decision-architecture
+    - step: decision-architecture
+      id: decision-architecture
+      phase: 4
+      phase_name: Decision Architecture
+      agent: aiox-master
+      action: execute_etd_decision_architecture
+      task_ref: tasks/etd-decision-architecture.md
+      next: anti-patterns
+    - step: anti-patterns
+      id: anti-patterns
+      phase: 5
+      phase_name: Anti-Patterns
+      agent: aiox-master
+      action: execute_etd_anti_patterns
+      task_ref: tasks/etd-anti-patterns.md
+      next: objection-handling
+    - step: objection-handling
+      id: objection-handling
+      phase: 6
+      phase_name: Objection Handling
+      agent: aiox-master
+      action: execute_etd_objection_handling
+      task_ref: tasks/etd-objection-handling.md
+      next: handoff-triggers
+    - step: handoff-triggers
+      id: handoff-triggers
+      phase: 7
+      phase_name: Handoff Triggers
+      agent: aiox-master
+      action: execute_etd_handoff_triggers
+      task_ref: tasks/etd-handoff-triggers.md
+      next: assemble-output
+    - step: assemble-output
+      id: assemble-output
+      phase: 8
+      phase_name: Assemble Thinking DNA
+      agent: aiox-master
+      action: execute_etd_assemble_output
+      task_ref: tasks/etd-assemble-output.md
+    - workflow_end:
+        id: complete
+        action: workflow_complete

@@ -1,0 +1,100 @@
+workflow:
+  id: wf-compare-outputs
+  name: Compare Model Outputs
+  version: "1.0.0"
+  description: >
+    Compare Opus baseline vs Haiku output across 4 evaluation dimensions to
+    determine model qualification. Evaluator Independence -- Opus ONLY.
+    NEVER use Haiku to evaluate Haiku.
+  type: orchestration
+  command: "*compare-outputs {task_name}"
+  state_machine:
+    states: [init, load-inputs, score-dimensions, generate-report, complete, failed]
+    transitions:
+      - trigger: start
+        source: init
+        dest: load-inputs
+      - trigger: load_inputs_complete
+        source: load-inputs
+        dest: score-dimensions
+      - trigger: load_inputs_failed
+        source: load-inputs
+        dest: failed
+      - trigger: score_dimensions_complete
+        source: score-dimensions
+        dest: generate-report
+      - trigger: score_dimensions_failed
+        source: score-dimensions
+        dest: failed
+      - trigger: generate_report_complete
+        source: generate-report
+        dest: complete
+      - trigger: generate_report_failed
+        source: generate-report
+        dest: failed
+      - trigger: fail
+        source: "*"
+        dest: failed
+  sequence:
+    - step: load-inputs
+      id: load-inputs
+      phase: 1
+      phase_name: LOAD INPUTS
+      agent: oalanicolas
+      task_ref: tasks/an-compare-outputs-load.md
+      action: execute_load_and_extract_comparable_items
+      description: Load Opus baseline and Haiku output, extract comparable items
+      inputs:
+        - task_name
+        - opus_baseline
+        - haiku_output
+        - task_file
+      outputs:
+        - comparable_items
+      next: score-dimensions
+    - step: score-dimensions
+      id: score-dimensions
+      phase: 2
+      phase_name: SCORE DIMENSIONS
+      agent: oalanicolas
+      task_ref: tasks/an-compare-outputs-score.md
+      action: execute_score_4_evaluation_dimensions
+      description: Score tier_match, score_variance, checkpoint_match, recommendation_quality
+      inputs:
+        - comparable_items
+      outputs:
+        - dimension_scores
+      next: generate-report
+    - step: generate-report
+      id: generate-report
+      phase: 3
+      phase_name: GENERATE REPORT
+      agent: oalanicolas
+      task_ref: tasks/an-compare-outputs-report.md
+      action: execute_generate_qualification_report
+      description: Generate qualification report with QUALIFIED/CONDITIONAL/NOT_QUALIFIED
+      inputs:
+        - dimension_scores
+        - comparable_items
+      outputs:
+        - qualification_report
+    - workflow_end:
+        id: complete
+        action: workflow_complete
+  inputs:
+    required:
+      - name: task_name
+        type: string
+        description: Task being evaluated
+      - name: opus_baseline
+        type: string
+        description: Path to Opus output file
+      - name: haiku_output
+        type: string
+        description: Path to Haiku output file
+      - name: task_file
+        type: string
+        description: Original task definition
+  outputs:
+    primary:
+      - qualification_report

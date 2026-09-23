@@ -1,0 +1,37 @@
+moments:
+  aquecido:
+    signs:
+      - "membros respondendo e puxando conversa"
+      - "eventos com boa presenca"
+      - "posts gerando retorno"
+    recommendation:
+      - "manter ritmo"
+      - "convidar para proximo passo mais profundo"
+
+  estavel:
+    signs:
+      - "ritmo previsivel"
+      - "alguma resposta, mas sem aceleracao"
+      - "eventos ok, sem grande energia"
+    recommendation:
+      - "criar um motivo claro para nova ativacao"
+      - "escolher um foco da semana"
+
+  atencao:
+    signs:
+      - "pouca resposta recente"
+      - "baixa adesao a convites"
+      - "eventos sem repercussao"
+    recommendation:
+      - "simplificar CTA"
+      - "reativar membros silenciosos"
+      - "planejar um encontro de baixa friccao"
+
+  alerta:
+    signs:
+      - "longo silencio"
+      - "sem encontros recentes"
+      - "embaixador sem clareza do proximo passo"
+    recommendation:
+      - "retomar com um evento simples"
+      - "fazer diagnostico e plano de recuperacao curto"

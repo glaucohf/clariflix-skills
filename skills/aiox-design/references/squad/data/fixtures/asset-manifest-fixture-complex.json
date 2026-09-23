@@ -1,0 +1,151 @@
+{
+  "$schema": "asset-manifest-v1",
+  "metadata": {
+    "source_url": "https://complex-site.example.com/pricing",
+    "extraction_date": "2026-03-24T16:45:30.123Z",
+    "extractor_version": "1.0.0",
+    "playwright_version": "1.52.0"
+  },
+  "images": [
+    {
+      "original_url": "https://complex-site.example.com/img/hero-pricing.webp",
+      "local_path": "images/hero-pricing-a1b2c3.webp",
+      "type": "image",
+      "status": "downloaded",
+      "alt": "Pricing plans comparison table",
+      "alt_source": "original",
+      "selector": "section.pricing-hero > picture > img",
+      "width": 2560,
+      "height": 1440,
+      "size_bytes": 512000,
+      "sha256": "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"
+    },
+    {
+      "original_url": "https://complex-site.example.com/img/bg-gradient.png",
+      "local_path": "images/bg-gradient-d4e5f6.png",
+      "type": "image",
+      "status": "downloaded",
+      "alt": "",
+      "alt_source": "decorative",
+      "selector": "div.background > img",
+      "width": 1920,
+      "height": 400,
+      "size_bytes": 89600,
+      "sha256": "fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210"
+    },
+    {
+      "original_url": "https://complex-site.example.com/img/cta-badge.png",
+      "local_path": "images/cta-badge-000000.png",
+      "type": "image",
+      "status": "failed",
+      "selector": "div.cta > img.badge"
+    },
+    {
+      "original_url": "https://complex-site.example.com/img/social-proof-wall.jpg",
+      "local_path": "images/social-proof-wall-000000.jpg",
+      "type": "image",
+      "status": "skipped_size",
+      "alt_source": "missing",
+      "selector": "section.social-proof > img"
+    },
+    {
+      "original_url": "https://cdn.external.com/img/partner-logo.png",
+      "local_path": "images/partner-logo-000000.png",
+      "type": "image",
+      "status": "cors_blocked",
+      "alt": "Partner company logo",
+      "alt_source": "original",
+      "selector": "footer > div.partners > img"
+    },
+    {
+      "original_url": "https://complex-site.example.com/img/testimonial-video-thumb.jpg",
+      "local_path": "images/testimonial-video-thumb-000000.jpg",
+      "type": "image",
+      "status": "timeout",
+      "alt_source": "missing",
+      "selector": "div.video-testimonial > img.thumbnail",
+      "width": 640,
+      "height": 360
+    },
+    {
+      "original_url": "https://complex-site.example.com/img/decorative-dots.svg",
+      "local_path": "images/decorative-dots-000000.svg",
+      "type": "image",
+      "status": "skipped_type",
+      "alt": "",
+      "alt_source": "decorative",
+      "selector": "div.pattern > img"
+    }
+  ],
+  "svgs": [
+    {
+      "original_url": "https://complex-site.example.com/icons/logo-full.svg",
+      "local_path": "svgs/logo-full-b7c8d9.svg",
+      "type": "svg",
+      "status": "downloaded",
+      "selector": "header > a.logo > svg",
+      "size_bytes": 4800,
+      "sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    },
+    {
+      "original_url": "https://complex-site.example.com/icons/arrow-right.svg",
+      "local_path": "svgs/arrow-right-000000.svg",
+      "type": "svg",
+      "status": "failed",
+      "selector": "a.cta-button > svg"
+    }
+  ],
+  "fonts": [
+    {
+      "original_url": "https://fonts.gstatic.com/s/poppins/v22/pxiEyp8kv8JHgFVrJJfecg.woff2",
+      "local_path": "fonts/poppins-regular-e1f2a3.woff2",
+      "type": "font",
+      "status": "downloaded",
+      "size_bytes": 78336,
+      "sha256": "aabbccdd11223344aabbccdd11223344aabbccdd11223344aabbccdd11223344"
+    },
+    {
+      "original_url": "https://fonts.gstatic.com/s/poppins/v22/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2",
+      "local_path": "fonts/poppins-bold-000000.woff2",
+      "type": "font",
+      "status": "timeout"
+    }
+  ],
+  "icons": [
+    {
+      "original_url": "https://complex-site.example.com/icons/check-circle.svg",
+      "local_path": "icons/check-circle-c3d4e5.svg",
+      "type": "icon",
+      "status": "downloaded",
+      "alt": "Feature included",
+      "alt_source": "original",
+      "selector": "ul.features > li > svg.check",
+      "size_bytes": 1024,
+      "sha256": "99887766554433221100ffeeddccbbaa99887766554433221100ffeeddccbbaa"
+    },
+    {
+      "original_url": "https://complex-site.example.com/icons/x-circle.svg",
+      "local_path": "icons/x-circle-000000.svg",
+      "type": "icon",
+      "status": "skipped_type",
+      "alt": "",
+      "alt_source": "decorative",
+      "selector": "ul.features > li > svg.x"
+    },
+    {
+      "original_url": "https://complex-site.example.com/icons/star.svg",
+      "local_path": "icons/star-000000.svg",
+      "type": "icon",
+      "status": "cors_blocked",
+      "alt_source": "missing",
+      "selector": "div.rating > svg.star"
+    }
+  ],
+  "stats": {
+    "total": 14,
+    "downloaded": 5,
+    "failed": 6,
+    "skipped": 3,
+    "total_size_bytes": 685760
+  }
+}
