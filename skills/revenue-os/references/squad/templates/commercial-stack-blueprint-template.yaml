@@ -1,0 +1,41 @@
+name: commercial-stack-blueprint
+version: "1.0"
+
+offer:
+  name: ""
+  icp: ""
+  pricing:
+    starter: ""
+    growth: ""
+    enterprise: ""
+
+landing_page:
+  hero_message: ""
+  proof_blocks: []
+  cta_primary: ""
+  faq: []
+
+checkout:
+  provider: "stripe"
+  modes: ["one_time", "subscription"]
+  webhook_events:
+    - payment_succeeded
+    - payment_failed
+    - subscription_updated
+
+dashboard:
+  kpis:
+    - mrr
+    - churn
+    - lead_to_close
+    - cac
+
+activation:
+  channels: []
+  creative_sprints: []
+  email_sequences: []
+
+sales_ops:
+  crm_stages: []
+  sla_minutes: 0
+  follow_up_rules: []

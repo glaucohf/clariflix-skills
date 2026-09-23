@@ -1,0 +1,121 @@
+# Design Inspiration References
+# Fontes curadas de referência visual para uso em qualquer task de design.
+# Atualizado: 2026-03-27
+
+categories:
+
+  portfolio_showcase:
+    description: "Portfólios de design de alta qualidade — referência para layouts, tipografia, apresentação visual"
+    sources:
+      - name: Behance
+        url: https://www.behance.net/
+        type: portfolio_platform
+        use_for:
+          - "Referência visual para mindmaps, dashboards, apresentações"
+          - "Tendências de design editorial e branding"
+          - "Case studies e mockups de alta fidelidade"
+          - "Inspiração para layouts de portfolio e landing pages"
+
+      - name: Dribbble
+        url: https://dribbble.com/
+        type: portfolio_platform
+        use_for:
+          - "UI shots e micro-interações"
+          - "Paletas de cores e tendências visuais"
+          - "Componentes isolados (cards, buttons, modals)"
+          - "Ilustrações e ícones de referência"
+
+  component_libraries:
+    description: "Bibliotecas de componentes e patterns de UI modernos"
+    sources:
+      - name: 21st.dev Community Components
+        url: https://21st.dev/community/components
+        type: component_library
+        use_for:
+          - "Componentes React/Tailwind prontos para uso"
+          - "Referência de patterns de UI modernos"
+          - "Inspiração para design systems"
+          - "Shadcn/ui patterns avançados"
+
+  motion_design:
+    description: "Referências de motion design e animações para web"
+    sources:
+      - name: Motion Sites
+        url: https://motionsites.ai/
+        type: motion_gallery
+        use_for:
+          - "Animações de entrada e transição"
+          - "Scroll-triggered animations"
+          - "Micro-interações e hover effects"
+          - "Loading states e skeleton screens"
+          - "Referência para motion tokens e timing"
+
+  landing_pages:
+    description: "Curadoria de landing pages e sites premiados"
+    sources:
+      - name: Land-book
+        url: https://land-book.com/
+        type: site_gallery
+        use_for:
+          - "Referência de landing pages por categoria"
+          - "Estrutura de seções e hero patterns"
+          - "Tendências de layout e tipografia web"
+          - "Inspiração para páginas de produto e SaaS"
+
+      - name: Godly
+        url: https://godly.website/
+        type: site_gallery
+        use_for:
+          - "Sites premiados com design excepcional"
+          - "Referência de dark mode e glassmorphism"
+          - "Layouts experimentais e criativos"
+          - "Padrões de navegação e scroll experiences"
+          - "Tendências cutting-edge de web design"
+
+  html_templates:
+    description: "Templates HTML self-contained para visualizações e páginas estáticas"
+    sources:
+      - name: medium-day
+        path: squads/aiox-design/templates/medium-day-tmpl.html
+        type: html_template
+        trigger_keywords:
+          - "medium-day"
+          - "estilo editorial"
+          - "brutalist"
+          - "estilo artifact"
+          - "estilo Claude"
+        design_system:
+          fonts: "JetBrains Mono (corpo) + Instrument Serif (títulos)"
+          palette: "fafafa/111/666/e0e0e0 — brutalist preto e branco"
+          container: "740px centralizado"
+          components:
+            - "header com label uppercase + título serif itálico"
+            - "step-number (quadrado preto numerado)"
+            - "kpi-grid (3 colunas, variantes alert/success/warn)"
+            - "card com card-title uppercase"
+            - "tag (sólida preta, outline, green, red)"
+            - "tip e warn boxes"
+            - "tabelas sem bordas externas"
+            - "arch diagram (3 boxes com setas)"
+            - "divider entre seções"
+            - "footer com borda top 2px"
+        use_for:
+          - "Storyboards e mapas de projeto"
+          - "Documentação visual de features"
+          - "Dashboards estáticos / relatórios"
+          - "Guias passo-a-passo"
+          - "Qualquer página HTML standalone com visual editorial"
+
+usage_guide: |
+  Quando usar estas referências:
+  1. Antes de criar qualquer artefato visual (mindmap, dashboard, landing page)
+  2. Durante design review para validar qualidade visual
+  3. Ao definir motion tokens e animações
+  4. Para pesquisa de tendências e benchmarking visual
+  5. Como input para /site-alchemy e /print-to-code
+
+  Workflow recomendado:
+  - Godly + Land-book → inspiração de layout e estrutura
+  - Behance + Dribbble → referência visual e paleta
+  - 21st.dev → componentes prontos para implementação
+  - Motion Sites → padrões de animação e interação

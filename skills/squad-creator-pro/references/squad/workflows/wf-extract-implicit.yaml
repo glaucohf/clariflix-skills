@@ -1,0 +1,88 @@
+workflow:
+  id: wf-extract-implicit
+  name: Extract Implicit Pipeline
+  version: "1.0.0"
+  description: Canonical atomic pipeline for tacit knowledge extraction across scan, analysis, prioritization, synthesis and validation.
+  type: orchestration
+  state_machine:
+    states: [init, scan, analyze, prioritize, synthesize, validate, complete, failed]
+    transitions:
+      - trigger: start
+        source: init
+        dest: scan
+      - trigger: scan_complete
+        source: scan
+        dest: analyze
+      - trigger: scan_failed
+        source: scan
+        dest: failed
+      - trigger: analyze_complete
+        source: analyze
+        dest: prioritize
+      - trigger: analyze_failed
+        source: analyze
+        dest: failed
+      - trigger: prioritize_complete
+        source: prioritize
+        dest: synthesize
+      - trigger: prioritize_failed
+        source: prioritize
+        dest: failed
+      - trigger: synthesize_complete
+        source: synthesize
+        dest: validate
+      - trigger: synthesize_failed
+        source: synthesize
+        dest: failed
+      - trigger: validate_complete
+        source: validate
+        dest: complete
+      - trigger: validate_failed
+        source: validate
+        dest: failed
+      - trigger: fail
+        source: "*"
+        dest: failed
+  sequence:
+    - step: scan
+      id: scan
+      phase: 1
+      phase_name: Initial Scan
+      agent: aiox-master
+      action: execute_extract_implicit_scan
+      task_ref: tasks/extract-implicit-scan.md
+      next: analyze
+    - step: analyze
+      id: analyze
+      phase: 2
+      phase_name: Deep Analysis
+      agent: aiox-master
+      action: execute_extract_implicit_analyze
+      task_ref: tasks/extract-implicit-analyze.md
+      next: prioritize
+    - step: prioritize
+      id: prioritize
+      phase: 3
+      phase_name: Prioritize Findings
+      agent: aiox-master
+      action: execute_extract_implicit_prioritize
+      task_ref: tasks/extract-implicit-prioritize.md
+      next: synthesize
+    - step: synthesize
+      id: synthesize
+      phase: 4
+      phase_name: Synthesize Report
+      agent: aiox-master
+      action: execute_extract_implicit_synthesize
+      task_ref: tasks/extract-implicit-synthesize.md
+      next: validate
+    - step: validate
+      id: validate
+      phase: 5
+      phase_name: Feynman Validation
+      agent: aiox-master
+      action: execute_extract_implicit_validate
+      task_ref: tasks/extract-implicit-validate.md
+    - workflow_end:
+        id: complete
+        action: workflow_complete

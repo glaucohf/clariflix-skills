@@ -1,0 +1,15 @@
+row: marketing
+title: Histórias que movem
+title_netflix: STORYTELLING
+subtitle: Constrói narrativas para marca, vendas e apresentações
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 41 arquivo(s) de origem
+  requer: Público, mensagem e objetivo
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Mensagem, Estrutura, Emoção]
+  generos: [Storytelling, Marketing, Marca]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

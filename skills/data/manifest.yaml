@@ -1,0 +1,15 @@
+row: gestao
+title: Dados que decidem
+title_netflix: DATA
+subtitle: Analisa métricas e encontra alavancas de crescimento
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 67 arquivo(s) de origem
+  requer: Dados, métrica e pergunta de negócio
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Métricas, Diagnóstico, Ações]
+  generos: [Dados, Estratégia, Crescimento]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

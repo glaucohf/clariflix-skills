@@ -1,0 +1,15 @@
+row: especialistas
+title: Aplicação mais segura
+title_netflix: WEBAPP DEFENDER
+subtitle: Audita aplicações web de forma defensiva com referências OWASP
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 76 arquivo(s) de origem
+  requer: Aplicação, escopo e evidências
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Superfície, Riscos, Correções]
+  generos: [Segurança, OWASP, Desenvolvimento]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

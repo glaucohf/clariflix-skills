@@ -1,0 +1,15 @@
+row: especialistas
+title: Squads com profundidade
+title_netflix: SQUAD CREATOR PRO
+subtitle: Cria squads avançadas com DNA, qualidade e validação
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 747 arquivo(s) de origem
+  requer: Objetivo, especialistas e critérios
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [DNA, Agentes, Qualidade]
+  generos: [Agentes, Squads, Estratégia]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

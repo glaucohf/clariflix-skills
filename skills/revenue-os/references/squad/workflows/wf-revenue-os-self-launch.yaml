@@ -1,0 +1,81 @@
+id: wf-revenue-os-self-launch
+name: "Revenue OS Self Launch"
+version: "1.0.0"
+orchestrator: cro-oracle-guardian
+description: "Dogfooding: usar o Revenue OS para criar vendas e MRR do proprio Revenue OS."
+
+phases:
+  - id: PHASE-0
+    name: "CRO Self-Launch Direction"
+    agent: cro-oracle-guardian
+    tasks:
+      - cro-oracle-intake-and-route
+      - cro-oracle-build-macro-revenue-plan
+
+  - id: PHASE-1
+    name: "Self Offer Definition"
+    agent: monetization-strategist
+    depends_on:
+      - PHASE-0
+    tasks:
+      - monetization-strategist-design-offer-architecture
+      - monetization-strategist-define-pricing-and-packaging
+
+  - id: PHASE-2
+    name: "Commercial Stack Build"
+    agent: revenue-chief
+    depends_on:
+      - PHASE-1
+    tasks:
+      - revenue-chief-orchestrate-commercial-stack
+
+  - id: PHASE-3
+    name: "LP, Checkout, Billing, Dashboard"
+    agent: revops-automation-engineer
+    depends_on:
+      - PHASE-2
+    tasks:
+      - revops-automation-engineer-setup-checkout-and-billing
+      - revops-automation-engineer-setup-subscription-analytics
+      - revops-automation-engineer-build-revenue-dashboard
+
+  - id: PHASE-4
+    name: "Demand and Activation"
+    agent: demand-gen-architect
+    depends_on:
+      - PHASE-3
+    tasks:
+      - demand-gen-architect-build-acquisition-plan
+      - demand-gen-architect-plan-creative-and-email-engine
+
+  - id: PHASE-5
+    name: "Sales Execution"
+    agent: sales-system-operator
+    depends_on:
+      - PHASE-4
+    tasks:
+      - sales-system-operator-setup-inbound-closing-machine
+      - sales-system-operator-automate-follow-up
+
+  - id: PHASE-6
+    name: "First MRR Validation"
+    agent: experimentation-analyst
+    depends_on:
+      - PHASE-5
+    tasks:
+      - experimentation-analyst-run-growth-experiments
+
+  - id: PHASE-7
+    name: "Self Launch Debrief"
+    agent: cro-oracle-guardian
+    depends_on:
+      - PHASE-6
+    tasks:
+      - revenue-chief-run-self-launch
+      - cro-oracle-control-weekly-metrics
+    checkpoint:
+      human_review: true
+      criteria:
+        - "Primeiros clientes fechados"
+        - "MRR inicial registrado"
+        - "Aprendizados capturados"

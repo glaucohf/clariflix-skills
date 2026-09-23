@@ -1,0 +1,30 @@
+id: member-reactivation-cycle
+name: Member Reactivation Cycle
+description: Fluxo para reativar membros silenciosos com CTA simples e follow-up leve.
+trigger: manual
+checkpoints:
+  - "Tipo de silencio identificado"
+  - "CTA pequeno e claro"
+  - "Follow-up leve definido"
+veto_conditions:
+  - "Mensagem sem CTA"
+  - "Tom culpabilizador ou agressivo"
+  - "Follow-up ausente"
+steps:
+  - id: diagnose-silence
+    agent: hub-chief
+    task: diagnose-hub-health
+    purpose: Entender o tipo de silencio e o momento do hub.
+  - id: reactivate
+    agent: hub-members
+    task: reactivate-members
+    purpose: Criar mensagem e CTA de reengajamento.
+  - id: support-copy
+    agent: hub-content
+    task: create-hub-post
+    optional: true
+    purpose: Adaptar copy para mensagem publica ou convite coletivo.
+outputs:
+  - mensagem de reativacao
+  - CTA
+  - follow-up sugerido

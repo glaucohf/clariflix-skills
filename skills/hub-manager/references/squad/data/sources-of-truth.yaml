@@ -1,0 +1,59 @@
+# Fontes da verdade — Validação e Onboarding de Embaixador
+# Consumido por: tasks/validate-onboard-ambassador.md, workflows/ambassador-onboarding-cycle.yaml
+
+# ---------------------------------------------------------------------------
+# EMBAIXADORES/CONSELHEIROS JÁ ATIVOS (contatos, status, hubs)
+# Distinto de `candidaturas` abaixo: isto é quem JÁ é embaixador, não o pipeline.
+# ---------------------------------------------------------------------------
+embaixadores_ativos:
+  fonte_viva:
+    nome: "Supabase — projeto hub-lendario"
+    project_ref: "ryiqffcsippphtqarmlc"
+    tabelas: ["public.embaixadores", "public.conselheiros", "public.hubs"]
+    acesso: "MCP supabase (execute_sql) — service role para escrita"
+    papel: >-
+      FONTE DA VERDADE VIVA de contatos (whatsapp/email), status e vínculo de hub.
+      Atualizar/adicionar/desligar = sempre aqui (soft-delete via status + data_saida).
+  doc_de_regras:
+    path: "FONTE-DA-VERDADE.md (raiz do repo hub-lendario)"
+    papel: >-
+      Regras canônicas: onde buscar cada dado, normalização de telefone (E.164),
+      protocolo de envio via MCP WhatsApp (busca por nome → fallback E.164 → gate),
+      ações determinísticas de escrita. LER ANTES de enviar mensagem a embaixador.
+  doc_legivel:
+    path: "data/contatos/CONTATOS.md (repo hub-lendario)"
+    acesso: "auto-gerado por `npm run contatos` — NÃO editar à mão"
+    papel: "Lista legível dos ativos + conselheiros, telefone pronto p/ send_message."
+
+candidaturas:
+  fonte_oficial:
+    nome: "Tally — formulário Quero ser Embaixador"
+    url: "https://tally.so/forms/3yR2J6/submissions"
+    form_id: "3yR2J6"
+    acesso: "tally MCP (requer autorização OAuth) — fallback: CSV exportado do Tally"
+    papel: >-
+      FONTE DA VERDADE oficial. É onde o candidato efetivamente se candidata.
+      Sempre prevalece em caso de divergência com o app.
+
+  app_claus:
+    nome: "App Hub Lendário (Claus) — candidaturas pendentes"
+    url: "https://hub.lendario.ai (admin)"
+    acesso: "CSV exportado manualmente do app"
+    papel: >-
+      Onde Rodrigo ACOMPANHA as candidaturas no dia a dia. Deveria receber as
+      candidaturas do Tally por integração — mas a sincronia Tally→app está com
+      problema (em conserto): nem todas as candidaturas chegam ao app.
+    estado: "dessincronia conhecida — em conserto (registrado 2026-06-16)"
+
+reconciliacao:
+  chave_de_match: "email"
+  objetivo: >-
+    Cruzar Tally (oficial) × CSV do app. Apontar candidaturas presentes no Tally
+    e ausentes no app, para Rodrigo não perder nenhuma já que acompanha pelo app.
+  sinais_de_dessincronia:
+    - "candidatura no Tally ausente do CSV do app"
+    - "campo 'Data Candidatura' vazio no export do app"
+
+landing_publica:
+  url: "https://hub-lendario-beryl.vercel.app/embaixadores"
+  papel: "Página que o candidato lê antes de se candidatar (etapa 0)."

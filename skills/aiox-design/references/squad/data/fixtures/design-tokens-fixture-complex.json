@@ -1,0 +1,395 @@
+{
+  "$schema": "design-tokens-v1",
+  "metadata": {
+    "source_url": "https://bilhon.com.br",
+    "extraction_date": "2026-03-24T15:00:00.000Z",
+    "extractor_version": "1.0.0",
+    "playwright_version": "1.49.0",
+    "coverage": {
+      "elements_analyzed": 340,
+      "elements_total": 892,
+      "stylesheets_accessed": 5,
+      "stylesheets_blocked": 1
+    }
+  },
+  "colors": {
+    "palette": {
+      "obsidian": {
+        "value": "#0D0D0F",
+        "confidence": "ALTA",
+        "hsl": "240 10% 4%",
+        "oklch": "oklch(0.07 0.01 265)",
+        "usage": "body background",
+        "name": "obsidian"
+      },
+      "antique-gold": {
+        "value": "#C8A24E",
+        "confidence": "ALTA",
+        "hsl": "42 53% 55%",
+        "oklch": "oklch(0.73 0.11 78)",
+        "usage": "primary actions, brand accent",
+        "name": "antique-gold"
+      },
+      "ivory": {
+        "value": "#FAF9F6",
+        "confidence": "ALTA",
+        "hsl": "40 33% 97%",
+        "usage": "text on dark backgrounds",
+        "name": "ivory"
+      },
+      "champagne": {
+        "value": "#E8D5A8",
+        "confidence": "ALTA",
+        "hsl": "38 56% 78%",
+        "usage": "secondary accent, highlights",
+        "name": "champagne"
+      },
+      "warm-charcoal": {
+        "value": "#2A2825",
+        "confidence": "ALTA",
+        "hsl": "30 5% 15%",
+        "usage": "card backgrounds, elevated surfaces",
+        "name": "warm-charcoal"
+      },
+      "refined-sage": {
+        "value": "#8B9178",
+        "confidence": "MEDIA",
+        "hsl": "74 10% 52%",
+        "usage": "muted text, secondary info",
+        "name": "refined-sage",
+        "candidates": ["#8B9178", "#7A7D70", "#9A9E88"]
+      },
+      "gold-glow": {
+        "value": "#FFCD9C",
+        "confidence": "MEDIA",
+        "hsl": "30 100% 81%",
+        "usage": "glow effects, hover highlights",
+        "name": "gold-glow",
+        "candidates": ["#FFCD9C", "#FFE9D3", "#FFDDB8"]
+      },
+      "error-red": {
+        "value": "#EF4444",
+        "confidence": "BAIXA",
+        "hsl": "0 84% 60%",
+        "usage": "error states",
+        "name": "error-red",
+        "candidates": ["#EF4444", "#DC2626", "#F87171"]
+      }
+    },
+    "semantic_mapping": {
+      "primary": {
+        "value": "#C8A24E",
+        "confidence": "ALTA",
+        "hsl": "42 53% 55%",
+        "name": "primary"
+      },
+      "secondary": {
+        "value": "#E8D5A8",
+        "confidence": "ALTA",
+        "hsl": "38 56% 78%",
+        "name": "secondary"
+      },
+      "background": {
+        "value": "#0D0D0F",
+        "confidence": "ALTA",
+        "hsl": "240 10% 4%",
+        "name": "background"
+      },
+      "foreground": {
+        "value": "#FAF9F6",
+        "confidence": "ALTA",
+        "hsl": "40 33% 97%",
+        "name": "foreground"
+      },
+      "success": {
+        "value": "#22C55E",
+        "confidence": "MEDIA",
+        "hsl": "142 71% 45%",
+        "name": "success",
+        "candidates": ["#22C55E", "#16A34A"]
+      },
+      "warning": {
+        "value": "#F59E0B",
+        "confidence": "MEDIA",
+        "hsl": "38 92% 50%",
+        "name": "warning",
+        "candidates": ["#F59E0B", "#EAB308"]
+      },
+      "error": {
+        "value": "#EF4444",
+        "confidence": "BAIXA",
+        "hsl": "0 84% 60%",
+        "name": "error",
+        "candidates": ["#EF4444", "#DC2626", "#F87171"]
+      },
+      "info": {
+        "value": "#3B82F6",
+        "confidence": "MEDIA",
+        "hsl": "217 91% 60%",
+        "name": "info",
+        "candidates": ["#3B82F6", "#2563EB"]
+      }
+    },
+    "dark_mode": {
+      "enabled": true,
+      "palette": {
+        "background": {
+          "value": "#0D0D0F",
+          "confidence": "ALTA",
+          "hsl": "240 10% 4%"
+        },
+        "surface": {
+          "value": "#2A2825",
+          "confidence": "ALTA",
+          "hsl": "30 5% 15%"
+        },
+        "foreground": {
+          "value": "#FAF9F6",
+          "confidence": "ALTA",
+          "hsl": "40 33% 97%"
+        }
+      }
+    },
+    "contrast_pairs": [
+      {
+        "foreground": "#FAF9F6",
+        "background": "#0D0D0F",
+        "ratio": 18.9,
+        "wcag_aa": true,
+        "wcag_aaa": true,
+        "context": "body text on background"
+      },
+      {
+        "foreground": "#C8A24E",
+        "background": "#0D0D0F",
+        "ratio": 7.3,
+        "wcag_aa": true,
+        "wcag_aaa": true,
+        "context": "primary accent on background"
+      },
+      {
+        "foreground": "#0D0D0F",
+        "background": "#C8A24E",
+        "ratio": 7.3,
+        "wcag_aa": true,
+        "wcag_aaa": true,
+        "context": "button label on primary"
+      },
+      {
+        "foreground": "#8B9178",
+        "background": "#0D0D0F",
+        "ratio": 4.8,
+        "wcag_aa": true,
+        "wcag_aaa": false,
+        "context": "muted text on background"
+      }
+    ],
+    "confidence": "ALTA"
+  },
+  "typography": {
+    "font_families": {
+      "heading": {
+        "family": "Archia",
+        "source": "custom",
+        "confidence": "ALTA",
+        "weight_range": [400, 600, 700],
+        "usage": "heading"
+      },
+      "body": {
+        "family": "Inter",
+        "source": "google",
+        "confidence": "ALTA",
+        "weight_range": [400, 500, 600],
+        "usage": "body"
+      },
+      "mono": {
+        "family": "JetBrains Mono",
+        "source": "google",
+        "confidence": "ALTA",
+        "weight_range": [400, 700],
+        "usage": "mono"
+      }
+    },
+    "scale": {
+      "xs": {
+        "size": "0.75rem",
+        "line_height": "1rem",
+        "weight": "400",
+        "confidence": "ALTA"
+      },
+      "sm": {
+        "size": "0.875rem",
+        "line_height": "1.25rem",
+        "weight": "400",
+        "confidence": "ALTA"
+      },
+      "base": {
+        "size": "1rem",
+        "line_height": "1.5rem",
+        "weight": "400",
+        "confidence": "ALTA"
+      },
+      "lg": {
+        "size": "1.125rem",
+        "line_height": "1.75rem",
+        "weight": "400",
+        "confidence": "ALTA"
+      },
+      "xl": {
+        "size": "1.25rem",
+        "line_height": "1.75rem",
+        "weight": "600",
+        "confidence": "ALTA"
+      },
+      "2xl": {
+        "size": "1.5rem",
+        "line_height": "2rem",
+        "weight": "600",
+        "confidence": "MEDIA"
+      },
+      "3xl": {
+        "size": "1.875rem",
+        "line_height": "2.25rem",
+        "weight": "700",
+        "confidence": "MEDIA"
+      },
+      "4xl": {
+        "size": "2.25rem",
+        "line_height": "2.5rem",
+        "weight": "700",
+        "confidence": "MEDIA"
+      }
+    },
+    "confidence": "ALTA"
+  },
+  "spacing": {
+    "base_unit": "4px",
+    "scale": {
+      "0": "0",
+      "px": "1px",
+      "0.5": "2px",
+      "1": "4px",
+      "2": "8px",
+      "3": "12px",
+      "4": "16px",
+      "5": "20px",
+      "6": "24px",
+      "8": "32px",
+      "10": "40px",
+      "12": "48px",
+      "16": "64px",
+      "20": "80px",
+      "24": "96px"
+    },
+    "confidence": "ALTA"
+  },
+  "borders": {
+    "width": {
+      "none": "0",
+      "default": "1px",
+      "thick": "2px"
+    },
+    "radius": {
+      "none": "0",
+      "sm": "0.25rem",
+      "md": "0.375rem",
+      "lg": "0.5rem",
+      "xl": "0.75rem",
+      "2xl": "1rem",
+      "full": "9999px"
+    },
+    "confidence": "ALTA"
+  },
+  "shadows": {
+    "sm": {
+      "value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+      "confidence": "ALTA"
+    },
+    "md": {
+      "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+      "confidence": "ALTA"
+    },
+    "lg": {
+      "value": "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+      "confidence": "MEDIA"
+    },
+    "xl": {
+      "value": "0 20px 25px -5px rgba(0, 0, 0, 0.1)",
+      "confidence": "MEDIA"
+    },
+    "glow": {
+      "value": "0 0 20px rgba(200, 162, 78, 0.3)",
+      "confidence": "MEDIA"
+    },
+    "confidence": "ALTA"
+  },
+  "custom_properties": {
+    "--brand-primary": {
+      "value": "#C8A24E",
+      "type": "color",
+      "confidence": "ALTA"
+    },
+    "--brand-primary-dark": {
+      "value": "#A68538",
+      "type": "color",
+      "confidence": "ALTA"
+    },
+    "--background": {
+      "value": "#0D0D0F",
+      "type": "color",
+      "confidence": "ALTA"
+    },
+    "--foreground": {
+      "value": "#FAF9F6",
+      "type": "color",
+      "confidence": "ALTA"
+    },
+    "--card": {
+      "value": "#2A2825",
+      "type": "color",
+      "confidence": "ALTA"
+    },
+    "--spacing-base": {
+      "value": "4px",
+      "type": "size",
+      "confidence": "ALTA"
+    },
+    "--radius-md": {
+      "value": "0.375rem",
+      "type": "size",
+      "confidence": "ALTA"
+    },
+    "--font-heading": {
+      "value": "'Archia', sans-serif",
+      "type": "string",
+      "confidence": "ALTA"
+    },
+    "--font-body": {
+      "value": "'Inter', sans-serif",
+      "type": "string",
+      "confidence": "ALTA"
+    },
+    "--shadow-glow": {
+      "value": "0 0 20px rgba(200, 162, 78, 0.3)",
+      "type": "string",
+      "confidence": "MEDIA"
+    },
+    "--transition-fast": {
+      "value": "100ms",
+      "type": "size",
+      "confidence": "MEDIA"
+    }
+  },
+  "raw_computed": {
+    "body": "background-color: #0D0D0F; color: #FAF9F6; font-family: 'Inter', sans-serif; font-size: 16px;",
+    "h1": "font-family: 'Archia', sans-serif; font-size: 36px; font-weight: 700; color: #FAF9F6;",
+    "h2": "font-family: 'Archia', sans-serif; font-size: 30px; font-weight: 700; color: #FAF9F6;",
+    "h3": "font-family: 'Archia', sans-serif; font-size: 24px; font-weight: 600; color: #FAF9F6;",
+    "p": "font-family: 'Inter', sans-serif; font-size: 16px; line-height: 24px; color: #FAF9F6;",
+    "a": "color: #C8A24E; text-decoration: underline;",
+    "button.primary": "background-color: #C8A24E; color: #0D0D0F; border-radius: 0.375rem; padding: 10px 20px;",
+    "button.secondary": "background-color: #2A2825; color: #FAF9F6; border: 1px solid rgba(255,255,255,0.1);",
+    ".card": "background-color: #2A2825; border-radius: 0.75rem; border: 1px solid rgba(255,255,255,0.1); padding: 24px;",
+    "input": "background-color: #2A2825; border: 1px solid rgba(255,255,255,0.1); border-radius: 0.375rem; padding: 8px 12px;"
+  }
+}

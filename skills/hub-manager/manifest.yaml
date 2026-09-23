@@ -1,0 +1,15 @@
+row: operacoes
+title: Hubs em movimento
+title_netflix: HUB MANAGER
+subtitle: Organiza a operação de hubs locais e seus responsáveis
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 41 arquivo(s) de origem
+  requer: Hub, equipe e objetivo operacional
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Agenda, Equipe, Acompanhamento]
+  generos: [Operações, Comunidade, Gestão]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

@@ -1,0 +1,15 @@
+row: vendas
+title: Receita em sistema
+title_netflix: REVENUE OS
+subtitle: Coordena marketing, comercial e RevOps para receita previsível
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 89 arquivo(s) de origem
+  requer: Funil, metas e dados comerciais
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Funil, Receita, Operação]
+  generos: [Vendas, RevOps, Marketing]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

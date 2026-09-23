@@ -1,0 +1,364 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/revenue-os",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/cco-commercial-director.md",
+      "sha256": "b6ce2e9f0b33aec47527fc5b06394bcd57f5b370b744dcf4fef2aa595d24552c"
+    },
+    {
+      "path": "agents/cgo-growth-director.md",
+      "sha256": "7e858a7f7a5b25314e2d8b2383ea567bd7eaed72c2a40c46ea35177002efb932"
+    },
+    {
+      "path": "agents/cmo-marketing-director.md",
+      "sha256": "bc2fc1424dc11d2db3f3dd30d2da09a1b5451d600aa31073316cc9389c105083"
+    },
+    {
+      "path": "agents/commercial-senior-analyst.md",
+      "sha256": "554251e7bffea2534b47abeb7d422333d1594a8ab9a664d519c5375f3d4978e0"
+    },
+    {
+      "path": "agents/commercial-senior-manager.md",
+      "sha256": "2e582dad32aba2e2f5a37712dbf0031817a64e19fd5b3feb0671b261e4c8c31f"
+    },
+    {
+      "path": "agents/cro-oracle-guardian.md",
+      "sha256": "ca9780cc08dfadccefdaacb2e3ddfa84ed9bad6d627a84d8169e0fde20659067"
+    },
+    {
+      "path": "agents/demand-gen-architect.md",
+      "sha256": "da34ca0799b4bfe602e2346466cdb94db42473780bee64ddcdba5f01ee405e6f"
+    },
+    {
+      "path": "agents/experimentation-analyst.md",
+      "sha256": "4ccbefdd8dae224daa23071b6572d487bcf694cae4703a9d7d1f68470dcadc71"
+    },
+    {
+      "path": "agents/funnel-conversion-engineer.md",
+      "sha256": "3bc2b08ca35871a3a89721081941f126ad508f9a1cc5ded3a76246b8906dad92"
+    },
+    {
+      "path": "agents/growth-senior-analyst.md",
+      "sha256": "c3f76d1c01a33e6e9ff9bf2a0c7b1572b062e11f7be40580e2fc8b5f4bf0b94c"
+    },
+    {
+      "path": "agents/growth-senior-manager.md",
+      "sha256": "1df753d90c5b6a3dfc7aaccd6c628007bd9babd6069c3ec6ec6f462df90217f0"
+    },
+    {
+      "path": "agents/marketing-senior-analyst.md",
+      "sha256": "6d4017a1d8f54ba96155ab38de57c466c4fef5d62cbeabd25b1e12c981109b2d"
+    },
+    {
+      "path": "agents/marketing-senior-manager.md",
+      "sha256": "3f69e6d0b30b77754fe9b0ee1288d3bfef291bb16b7008ea6cc3b89188035cd0"
+    },
+    {
+      "path": "agents/monetization-strategist.md",
+      "sha256": "058c642d05c9e79bfebcd35203fc0139567255dc37fee29ffc7b7da55dc29590"
+    },
+    {
+      "path": "agents/revenue-chief.md",
+      "sha256": "e32cb65f48392068e7e898eb2681a3cb882f617b25b05cce31091ab68afd002b"
+    },
+    {
+      "path": "agents/revops-automation-engineer.md",
+      "sha256": "46a90006138f8d3f2bc614a03057fa848a922beb8971be63322ff7121f9884dd"
+    },
+    {
+      "path": "agents/sales-system-operator.md",
+      "sha256": "b798642157ec38b84613edf6ee3d2e41585f3168e386fae120f40ff59563d029"
+    },
+    {
+      "path": "checklists/commercial-stack-readiness.md",
+      "sha256": "5951b66dcbe60ea5f6279fb9b2d5987b5b7cb7f8e77ff346d21059abb4c686a8"
+    },
+    {
+      "path": "checklists/funnel-quality-gate.md",
+      "sha256": "1669ddfe3e307b51040699b9f3d779191e0e7e0d660e7891aff6f658ab0689b3"
+    },
+    {
+      "path": "checklists/revenue-experiment-checklist.md",
+      "sha256": "4b057a5b48ddcc3eefb91014a45ec5e3c251b970986fd837a822d2a040b47955"
+    },
+    {
+      "path": "checklists/revenue-go-live-checklist.md",
+      "sha256": "c0af3f5f9aa51ed646c0bcab11a93ec5852fcbdca5fd36c0af12bb630d00481f"
+    },
+    {
+      "path": "checklists/self-launch-validation.md",
+      "sha256": "37a99758dbe53a919a09f03f9ccbc584a2ec1b367f1609150ee66a7c0086815b"
+    },
+    {
+      "path": "config/coding-standards.md",
+      "sha256": "7acf84c0c96e455596a6b198d64e65ef2350a6ef0ecd3dc95640858d8458aec7"
+    },
+    {
+      "path": "config/source-tree.md",
+      "sha256": "1015522368dcd496148373472dd4fce258e35b0ae5c267bd07d3fba02401d984"
+    },
+    {
+      "path": "config/tech-stack.md",
+      "sha256": "1b1df7d14c67b833438a23436f56a807cca20ae0396fef90ee2caddc654c9b84"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "ae77990d4d9868d12fd16ac7323c2a074cdbb489b882b7275c1aaf703bf65dc5"
+    },
+    {
+      "path": "data/differentiation-vs-hormozi.md",
+      "sha256": "187d369bcd362cbe84d736e494df9159c69f7d1c62c342b5623ed39d94df0455"
+    },
+    {
+      "path": "data/kickoff-7-days-v1.yaml",
+      "sha256": "610026c86e755f6b1fb2329a77de7851d0e7b9fd47ecfb57a4aadb0d7838a392"
+    },
+    {
+      "path": "data/self-launch-blueprint-v1.yaml",
+      "sha256": "aa56db1454e334b03aeee09494628c8132c3228a32417a3fef7aaba5d2c2ebef"
+    },
+    {
+      "path": "docs/EQUIPE-E-OPERACAO.md",
+      "sha256": "3e5022d1eddc16764bd0aaef22392a129b1692a30744fb39746ad35f796c50e1"
+    },
+    {
+      "path": "docs/KICKOFF-7-DIAS-REVENUE-OS.md",
+      "sha256": "a0c77e4e8847216fd6958c7a1f906979f0b898fec5d210be5d7e284225de6399"
+    },
+    {
+      "path": "docs/PROJECT-SETUP-RECOMMENDATION.md",
+      "sha256": "c419201082efd09a529112d1eaa61c16afef7b7e84459f51151ae34b2cb40ebf"
+    },
+    {
+      "path": "docs/REPLICABLE-MODEL.md",
+      "sha256": "e1bd76a3473cb4ab43078eb3691f9757bfd2746515208e675ae0ae6194972ada"
+    },
+    {
+      "path": "docs/SELF-LAUNCH-ARTIFACT-V1.md",
+      "sha256": "a6bda9129915c6740d14a6b097c468be46d6c99a160a3b4c0e6daea1815c9753"
+    },
+    {
+      "path": "docs/SELF-LAUNCH-EXAMPLE-REVENUE-OS.md",
+      "sha256": "f14abde9b407534a503246c2d42cf284811a11dc86b30d6c7b118264ac005f72"
+    },
+    {
+      "path": "docs/TESTE-RAPIDO-REVENUE-OS.md",
+      "sha256": "b578484894c3ea5553d2ede39645278c023cb339f3c4695eb53aaa4ef215a22a"
+    },
+    {
+      "path": "README-VISUAL.html",
+      "sha256": "da816fd90787714fca0e81cff47317137dc957f76dee1ed198b8804caa22cd6e"
+    },
+    {
+      "path": "README.md",
+      "sha256": "a549630e396d85fcb816fdaefc5af9bc8496f134f0ace18d0924481c2662a029"
+    },
+    {
+      "path": "tasks/cco-commercial-director-decompose-sales-targets.md",
+      "sha256": "9df8f0f57d022289f4da67a3cdc1aa92947663ffe29928f2dc1e7740e46fcd4e"
+    },
+    {
+      "path": "tasks/cco-commercial-director-design-commercial-strategy.md",
+      "sha256": "1a7bf21b68caaa6d15415398f8da1d462159807393f8e2fe2ddcca03a2761219"
+    },
+    {
+      "path": "tasks/cgo-growth-director-design-growth-system.md",
+      "sha256": "8027c03efa69537820db031ed321fb8a48e6b92a7a2a024ace94d93f5f7e20b9"
+    },
+    {
+      "path": "tasks/cgo-growth-director-prioritize-growth-bets.md",
+      "sha256": "302b6c040fabab1a46f9067bde3f5d657cf85883b73eb8fd43d7203d751dfb94"
+    },
+    {
+      "path": "tasks/cmo-marketing-director-define-channel-portfolio.md",
+      "sha256": "1cb99112e805fc5051eaac7096c0df882664cd0c7641da4d711cb3bd9ee630b0"
+    },
+    {
+      "path": "tasks/cmo-marketing-director-design-marketing-masterplan.md",
+      "sha256": "2b418e17a85ca5f95870e7d93c7bf4c4a50d091bb0f8eb3682b938f8a8407ea7"
+    },
+    {
+      "path": "tasks/commercial-senior-analyst-execute-sales-routine.md",
+      "sha256": "31dcc411b481fc8535ff731b11b4dde12d97256cbf7296c35d3824a8907c756c"
+    },
+    {
+      "path": "tasks/commercial-senior-manager-run-pipeline-operations.md",
+      "sha256": "5c35fda4c9d00e75f6e4cc4191c6236e616ae496608be2a765af38942949b866"
+    },
+    {
+      "path": "tasks/cro-oracle-build-macro-revenue-plan.md",
+      "sha256": "4e17d79272122d36cd372f99fc6249667caaf83876e8378b4f18c26f4b8adf72"
+    },
+    {
+      "path": "tasks/cro-oracle-capability-gap-and-squad-scaling.md",
+      "sha256": "2f0c7352dc9d78e0483218d6df79d97ee62f852e2431854613ac27f73dad661a"
+    },
+    {
+      "path": "tasks/cro-oracle-control-weekly-metrics.md",
+      "sha256": "e03a3c3f168edeefe5913bf36f1774bd87c715401998777c2e0bd36245cfab07"
+    },
+    {
+      "path": "tasks/cro-oracle-intake-and-route.md",
+      "sha256": "916d93be920294c4c1beeeea932928d3b034ad4bb529c289688d4f55fc00910d"
+    },
+    {
+      "path": "tasks/cro-oracle-run-7-day-kickoff.md",
+      "sha256": "3d8800d394f64d9adee628c745649a3f54bfdf505a37d97cfe43000ed5d31844"
+    },
+    {
+      "path": "tasks/cro-oracle-run-monthly-planning-cycle.md",
+      "sha256": "12056145fff48342dd14c5c3e65cd60fcafb7ab311c9079ef038c9771a15bea3"
+    },
+    {
+      "path": "tasks/demand-gen-architect-build-acquisition-plan.md",
+      "sha256": "655f4457d880a4c3359242684d648c0b69622895465ea44751915b379fd4ca7d"
+    },
+    {
+      "path": "tasks/demand-gen-architect-create-campaign-briefs.md",
+      "sha256": "dc5fa93ba1d63ff44cc4a4abb97b2e8620eea9b058f8fc47d38bc2f4cfba0f7c"
+    },
+    {
+      "path": "tasks/demand-gen-architect-plan-creative-and-email-engine.md",
+      "sha256": "b9f74cfd6cb3cab5bb02c65781523df4882868ba00ce4001eb7e541404bc53a3"
+    },
+    {
+      "path": "tasks/experimentation-analyst-run-growth-experiments.md",
+      "sha256": "0803e759ec247c815b94e442aa8e8c50ea2ebedeb1aa0a4bcc03a387fa7255cd"
+    },
+    {
+      "path": "tasks/funnel-conversion-engineer-design-funnel-journey.md",
+      "sha256": "e61cbcd37fb306c1b4c585ec5a474a3e24bf08fc1c7806ac6ef4b67428205f60"
+    },
+    {
+      "path": "tasks/funnel-conversion-engineer-improve-conversion-rates.md",
+      "sha256": "4a4a65bbe39a6952eebcb77f3a77f966f53a4e2cb0bf8e159ed56d60de7b40c7"
+    },
+    {
+      "path": "tasks/funnel-conversion-engineer-spec-sales-lp-and-checkout-flow.md",
+      "sha256": "134c2d101c581228784434a24c56f9aed359f3f01e4fda264be11984d2832368"
+    },
+    {
+      "path": "tasks/growth-senior-analyst-execute-experiment-backlog.md",
+      "sha256": "12c8cb2646ecfd4210c5406e89a5067875450105b504e85ee72814def8a1b462"
+    },
+    {
+      "path": "tasks/growth-senior-manager-run-growth-operations.md",
+      "sha256": "2d73423356edadf207acd3d9b7e5546564a6702cae310c4117bff04fe75e97bc"
+    },
+    {
+      "path": "tasks/marketing-senior-analyst-execute-content-email-creative.md",
+      "sha256": "0feb72d7660a186ded85f70241eda84d21b839474335b4c90b40791a6c0269f8"
+    },
+    {
+      "path": "tasks/marketing-senior-manager-run-campaign-operations.md",
+      "sha256": "f09d9b5fa7771cac31ae1b6f97569f7895a083396fc15e95c5fac20df5e82f64"
+    },
+    {
+      "path": "tasks/monetization-strategist-define-pricing-and-packaging.md",
+      "sha256": "f458f2e25b1f1e66907a77a0c0a8ae77029b9d5e72d6eaecb545f4ed6e58f7b3"
+    },
+    {
+      "path": "tasks/monetization-strategist-design-offer-architecture.md",
+      "sha256": "6cdfd37ee12c7cb088b34deff0e3ee1f77c6be396f6c15486934da36077a847e"
+    },
+    {
+      "path": "tasks/revenue-chief-build-revenue-roadmap.md",
+      "sha256": "8a584e7fcded0668b939441c62a969a1563e8d7fb74b80909ecb32492a17cd4b"
+    },
+    {
+      "path": "tasks/revenue-chief-diagnose-revenue-gaps.md",
+      "sha256": "a30fa417ffb4d4e0f7add27e4a6a0e1fac6ca4a88c4a1d21bb0c8269267f5926"
+    },
+    {
+      "path": "tasks/revenue-chief-go-live-readiness.md",
+      "sha256": "e6ffc420a8d5aa4026513fde52dd070bfc8105ca67581fd0fb5731a5c7065bd4"
+    },
+    {
+      "path": "tasks/revenue-chief-orchestrate-commercial-stack.md",
+      "sha256": "acf4736e2b2ae66654b0763a4b6ba0f0b8f97c4bb8b5bf541190a2d3f546653a"
+    },
+    {
+      "path": "tasks/revenue-chief-run-self-launch.md",
+      "sha256": "e8ce9a294e90dfc9cf89d5c18f22561abed04c135b2c6b1db37cdc40b40ad1bd"
+    },
+    {
+      "path": "tasks/revops-automation-engineer-build-revenue-dashboard.md",
+      "sha256": "7062b9ea6a6847930307ad0b8eb84e7038ca5bbb7dd1c2148292b950c0a296a8"
+    },
+    {
+      "path": "tasks/revops-automation-engineer-setup-checkout-and-billing.md",
+      "sha256": "c90c314c28ddb15e64842cd39f12c34ecadbc4c7ce15eb84519ee2a93392d6be"
+    },
+    {
+      "path": "tasks/revops-automation-engineer-setup-revenue-telemetry.md",
+      "sha256": "7a6332d107d5446325b8b4409755b87f632043a8d64ca4fc36cb9e0520b9048a"
+    },
+    {
+      "path": "tasks/revops-automation-engineer-setup-subscription-analytics.md",
+      "sha256": "247f94d7b890b7f45bc6953d34875e0cbf6ca26ad94ea7b325576b0e66c3159c"
+    },
+    {
+      "path": "tasks/sales-system-operator-automate-follow-up.md",
+      "sha256": "5e4f7cd69194141b3305dc0b909f118d0783733c12a37b7e66d4831e6a65d911"
+    },
+    {
+      "path": "tasks/sales-system-operator-setup-inbound-closing-machine.md",
+      "sha256": "8b441b3e9f011a93246f2baa79ceeeed60ec6fc5664a67ea11ee725bafd04a14"
+    },
+    {
+      "path": "tasks/sales-system-operator-setup-sales-playbook.md",
+      "sha256": "dc4d1a1ca93092559091d617beaa8ba444e2af804881aa00dc5a1063f93129fe"
+    },
+    {
+      "path": "templates/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "templates/commercial-stack-blueprint-template.yaml",
+      "sha256": "cc2e5ea7fcc66721b3890fa0f44bc55e80a87612aa49989b2c2bfcc36897561b"
+    },
+    {
+      "path": "templates/experiment-backlog-template.md",
+      "sha256": "2ba5f7251a8848a1b11ae839beff49b4cc19ac10fadd92f9953b1d17b70d59e2"
+    },
+    {
+      "path": "templates/kickoff-daily-report-template.md",
+      "sha256": "5ab302301fefaee32be2c44fbc8b3b9a60caaeadf68de4e871589fea702a2726"
+    },
+    {
+      "path": "templates/revenue-roadmap-template.md",
+      "sha256": "1e557643079c7fea961cd3f667447c8d22d3a91652ee1963c1f0fe8df7a78a14"
+    },
+    {
+      "path": "workflows/wf-commercial-stack-activation.yaml",
+      "sha256": "13d986943ba7537b2541c942fc4a331901ee766f60037881625e2d36db96d5f9"
+    },
+    {
+      "path": "workflows/wf-cro-command-chain.yaml",
+      "sha256": "8e40873decf04d7a3552f8a956af81269965c53a1676eba2116d6f9ed7453010"
+    },
+    {
+      "path": "workflows/wf-demand-to-close-loop.yaml",
+      "sha256": "205766abb684699a598d54c247f8d969beb3bbd0a68883ad8e41e5925e0af534"
+    },
+    {
+      "path": "workflows/wf-kickoff-7-days.yaml",
+      "sha256": "105b6beba14121da56f6bff66bd99ffca5fad58563d29c30c6a64d082b5e19ed"
+    },
+    {
+      "path": "workflows/wf-revenue-os-self-launch.yaml",
+      "sha256": "2f36463ac9806ba76a7de33dc1a4f5bd0776654a926747cac74ae0c74328a274"
+    },
+    {
+      "path": "workflows/wf-weekly-revenue-optimization.yaml",
+      "sha256": "57a010a8e8aa27f3df509512dd9281916d5c05baf31eb85ee9607315c12c144b"
+    },
+    {
+      "path": "workflows/wf-zero-to-revenue.yaml",
+      "sha256": "910bc1f6e25339f7775d7d89da4a88b2f84bd5afbc595de4768efb544437eb35"
+    }
+  ]
+}

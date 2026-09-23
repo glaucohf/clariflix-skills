@@ -1,0 +1,15 @@
+row: operacoes
+title: Operação de design
+title_netflix: DESIGN OPS
+subtitle: Organiza ferramentas, processos e governança para times de design
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 381 arquivo(s) de origem
+  requer: Time, processo e contexto de design
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Processos, Ferramentas, Governança]
+  generos: [DesignOps, Design, Operações]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

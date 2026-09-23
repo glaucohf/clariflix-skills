@@ -1,0 +1,144 @@
+workflow:
+  id: wf-extract-voice-dna
+  name: Extract Voice DNA Pipeline
+  version: "1.0.0"
+  description: Canonical atomic pipeline for voice DNA extraction across source curation, pattern extraction and final assembly.
+  type: orchestration
+  state_machine:
+    states: [init, collect-sources, vocabulary, storytelling, writing-style, tone, anti-patterns, immune-system, contradictions, assemble-output, complete, failed]
+    transitions:
+      - trigger: start
+        source: init
+        dest: collect-sources
+      - trigger: collect_sources_complete
+        source: collect-sources
+        dest: vocabulary
+      - trigger: collect_sources_failed
+        source: collect-sources
+        dest: failed
+      - trigger: vocabulary_complete
+        source: vocabulary
+        dest: storytelling
+      - trigger: vocabulary_failed
+        source: vocabulary
+        dest: failed
+      - trigger: storytelling_complete
+        source: storytelling
+        dest: writing-style
+      - trigger: storytelling_failed
+        source: storytelling
+        dest: failed
+      - trigger: writing_style_complete
+        source: writing-style
+        dest: tone
+      - trigger: writing_style_failed
+        source: writing-style
+        dest: failed
+      - trigger: tone_complete
+        source: tone
+        dest: anti-patterns
+      - trigger: tone_failed
+        source: tone
+        dest: failed
+      - trigger: anti_patterns_complete
+        source: anti-patterns
+        dest: immune-system
+      - trigger: anti_patterns_failed
+        source: anti-patterns
+        dest: failed
+      - trigger: immune_system_complete
+        source: immune-system
+        dest: contradictions
+      - trigger: immune_system_failed
+        source: immune-system
+        dest: failed
+      - trigger: contradictions_complete
+        source: contradictions
+        dest: assemble-output
+      - trigger: contradictions_failed
+        source: contradictions
+        dest: failed
+      - trigger: assemble_output_complete
+        source: assemble-output
+        dest: complete
+      - trigger: assemble_output_failed
+        source: assemble-output
+        dest: failed
+      - trigger: fail
+        source: "*"
+        dest: failed
+  sequence:
+    - step: collect-sources
+      id: collect-sources
+      phase: 1
+      phase_name: Collect Sources
+      agent: aiox-master
+      action: execute_evd_collect_sources
+      task_ref: tasks/evd-collect-sources.md
+      next: vocabulary
+    - step: vocabulary
+      id: vocabulary
+      phase: 2
+      phase_name: Extract Vocabulary
+      agent: aiox-master
+      action: execute_evd_extract_vocabulary
+      task_ref: tasks/evd-extract-vocabulary.md
+      next: storytelling
+    - step: storytelling
+      id: storytelling
+      phase: 3
+      phase_name: Extract Storytelling
+      agent: aiox-master
+      action: execute_evd_extract_storytelling
+      task_ref: tasks/evd-extract-storytelling.md
+      next: writing-style
+    - step: writing-style
+      id: writing-style
+      phase: 4
+      phase_name: Extract Writing Style
+      agent: aiox-master
+      action: execute_evd_extract_writing_style
+      task_ref: tasks/evd-extract-writing-style.md
+      next: tone
+    - step: tone
+      id: tone
+      phase: 5
+      phase_name: Extract Tone and Voice
+      agent: aiox-master
+      action: execute_evd_extract_tone
+      task_ref: tasks/evd-extract-tone.md
+      next: anti-patterns
+    - step: anti-patterns
+      id: anti-patterns
+      phase: 6
+      phase_name: Extract Anti-Patterns
+      agent: aiox-master
+      action: execute_evd_extract_anti_patterns
+      task_ref: tasks/evd-extract-anti-patterns.md
+      next: immune-system
+    - step: immune-system
+      id: immune-system
+      phase: 7
+      phase_name: Extract Immune System
+      agent: aiox-master
+      action: execute_evd_extract_immune_system
+      task_ref: tasks/evd-extract-immune-system.md
+      next: contradictions
+    - step: contradictions
+      id: contradictions
+      phase: 8
+      phase_name: Extract Contradictions
+      agent: aiox-master
+      action: execute_evd_extract_contradictions
+      task_ref: tasks/evd-extract-contradictions.md
+      next: assemble-output
+    - step: assemble-output
+      id: assemble-output
+      phase: 9
+      phase_name: Assemble Voice DNA
+      agent: aiox-master
+      action: execute_evd_assemble_voice_dna
+      task_ref: tasks/evd-assemble-voice-dna.md
+    - workflow_end:
+        id: complete
+        action: workflow_complete

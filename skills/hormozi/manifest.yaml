@@ -1,0 +1,15 @@
+row: marketing
+title: Oferta que vende
+title_netflix: HORMOZI
+subtitle: Aplica frameworks de oferta, aquisição e escala comercial
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 260 arquivo(s) de origem
+  requer: Oferta, cliente e meta de receita
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Oferta, Preço, Aquisição]
+  generos: [Marketing, Vendas, Crescimento]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

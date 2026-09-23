@@ -1,0 +1,60 @@
+workflow:
+  id: wf-sync-ide-command
+  name: Sync IDE Command Pipeline
+  version: 1.0.0
+  description: Orquestra 5 subtasks atômicas sobre o worker script de sync para IDEs, com validação e relatório.
+  type: orchestration
+  agent_mapping:
+    agents:
+      squad-chief: orchestrator
+  state_machine:
+    states: [init, parse, config, discover, execute, verify, complete, failed]
+    transitions:
+      - { trigger: start, source: init, dest: parse }
+      - { trigger: parse_complete, source: parse, dest: config }
+      - { trigger: config_complete, source: config, dest: discover }
+      - { trigger: discover_complete, source: discover, dest: execute }
+      - { trigger: execute_complete, source: execute, dest: verify }
+      - { trigger: verify_complete, source: verify, dest: complete }
+      - { trigger: fail, source: "*", dest: failed }
+  sequence:
+    - phase: parse
+      id: parse
+      agent: squad-chief
+      task_ref: sync-ide-command-parse
+      action: parse_sync_request
+      inputs: [type, name, ides, dry_run, force]
+      outputs: [sync_request]
+      on_complete: { trigger: parse_complete }
+    - phase: config
+      id: config
+      agent: squad-chief
+      task_ref: sync-ide-command-config
+      action: load_sync_configuration
+      inputs: [sync_request]
+      outputs: [sync_config]
+      on_complete: { trigger: config_complete }
+    - phase: discover
+      id: discover
+      agent: squad-chief
+      task_ref: sync-ide-command-discover
+      action: resolve_sync_plan
+      inputs: [sync_request, sync_config]
+      outputs: [sync_plan]
+      on_complete: { trigger: discover_complete }
+    - phase: execute
+      id: execute
+      agent: squad-chief
+      task_ref: sync-ide-command-execute
+      action: run_sync_worker
+      inputs: [sync_request, sync_config, sync_plan]
+      outputs: [sync_execution]
+      on_complete: { trigger: execute_complete }
+    - phase: verify
+      id: verify
+      agent: squad-chief
+      task_ref: sync-ide-command-verify
+      action: validate_sync_outputs
+      inputs: [sync_request, sync_plan, sync_execution]
+      outputs: [sync_report]
+      on_complete: { trigger: verify_complete }

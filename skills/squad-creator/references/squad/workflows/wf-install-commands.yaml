@@ -1,0 +1,191 @@
+workflow:
+  id: wf-install-commands
+  name: Install Squad Commands Pipeline
+  version: 1.0.0
+  description: Orchestrates 6 atomic sub-tasks to convert squad agents into IDE-specific commands and install them across all detected IDEs. Covers discovery, conflict resolution, file writing, verification, sync, and reporting.
+  type: orchestration
+  agent_mapping:
+    agents:
+      squad-chief: orchestrator
+    phase_ownership:
+      discover: squad-chief
+      resolve: squad-chief
+      write: squad-chief
+      verify: squad-chief
+      sync: squad-chief
+      report: squad-chief
+  state_machine:
+    states:
+      - init
+      - discover
+      - resolve
+      - write
+      - verify
+      - sync
+      - report
+      - complete
+      - failed
+    transitions:
+      - trigger: start
+        source: init
+        dest: discover
+      - trigger: discover_complete
+        source: discover
+        dest: resolve
+      - trigger: discover_failed
+        source: discover
+        dest: failed
+      - trigger: resolve_complete
+        source: resolve
+        dest: write
+      - trigger: resolve_failed
+        source: resolve
+        dest: failed
+      - trigger: write_complete
+        source: write
+        dest: verify
+      - trigger: verify_complete
+        source: verify
+        dest: sync
+      - trigger: sync_complete
+        source: sync
+        dest: report
+      - trigger: report_generated
+        source: report
+        dest: complete
+      - trigger: fail
+        source: "*"
+        dest: failed
+  sequence:
+    - phase: discover
+      id: discover
+      agent: squad-chief
+      task_ref: install-commands-discover
+      action: detect_ides
+      description: Detect installed IDEs and validate squad structure before installation
+      blocking: true
+      inputs:
+        - squad_name
+      outputs:
+        - detected_ides
+        - squad_validation_result
+        - agent_list
+      on_pass:
+        trigger: discover_complete
+      on_fail:
+        trigger: discover_failed
+        output: discovery_errors
+      veto: VETO-INSTALL-002
+    - phase: resolve
+      id: resolve
+      agent: squad-chief
+      task_ref: install-commands-resolve
+      action: resolve_conflicts
+      description: Resolve naming conflicts and create target directories for each IDE
+      blocking: true
+      inputs:
+        - detected_ides
+        - agent_list
+        - squad_name
+      outputs:
+        - conflict_resolutions
+        - target_directories
+      on_pass:
+        trigger: resolve_complete
+      on_fail:
+        trigger: resolve_failed
+      veto: VETO-INSTALL-001
+    - phase: write
+      id: write
+      agent: squad-chief
+      task_ref: install-commands-write
+      action: write_command_files
+      description: Convert agent definitions to command files and write to IDE directories
+      inputs:
+        - agent_list
+        - target_directories
+        - conflict_resolutions
+      outputs:
+        - written_files
+        - write_failures
+      scripts:
+        - scripts/sync-ide-command.py
+    - phase: verify
+      id: verify
+      agent: squad-chief
+      task_ref: install-commands-verify
+      action: verify_installation
+      description: Validate installation integrity -- file existence, syntax, permissions
+      inputs:
+        - written_files
+        - detected_ides
+      outputs:
+        - verification_result
+        - integrity_issues
+    - phase: sync
+      id: sync
+      agent: squad-chief
+      task_ref: install-commands-sync
+      action: sync_skills_index
+      description: Sync installed commands with Claude Code skills index
+      inputs:
+        - written_files
+        - squad_name
+      outputs:
+        - sync_result
+        - skills_updated
+    - phase: report
+      id: report
+      agent: squad-chief
+      task_ref: install-commands-report
+      action: generate_report
+      description: Generate before/after installation report with next steps
+      inputs:
+        - detected_ides
+        - written_files
+        - write_failures
+        - verification_result
+        - sync_result
+      outputs:
+        - installation_report
+        - before_after_diff
+        - next_steps
+      report_sections:
+        - summary
+        - ides_detected
+        - commands_installed
+        - failures
+        - verification_status
+        - next_steps
+      on_complete:
+        trigger: report_generated
+  veto_conditions:
+    - id: VETO-INSTALL-001
+      condition: Overwrite existing command files without user confirmation
+      trigger: resolve
+      block_behavior: BLOCK write phase until user confirms overwrite
+    - id: VETO-INSTALL-002
+      condition: Squad structure validation failed
+      trigger: discover
+      block_behavior: BLOCK pipeline, suggest *validate-squad first
+  error_handling:
+    on_error:
+      - save_state
+      - log_error
+    recovery:
+      enabled: true
+      strategy: restart_from_init
+    sub_task_failure:
+      blocking_failure: halt_pipeline_report_to_human
+      non_blocking_failure: continue_surface_in_report
+  resume:
+    state_file: .aiox/squad-runtime/install-commands/{squad_name}/state.json
+    supported: true
+    preserve_outputs: true
+    allowed_phases:
+      - discover
+      - resolve
+      - write
+      - verify
+      - sync
+      - report

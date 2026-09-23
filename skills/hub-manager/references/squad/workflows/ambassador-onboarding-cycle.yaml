@@ -1,0 +1,72 @@
+id: ambassador-onboarding-cycle
+name: Ambassador Validation & Onboarding Cycle
+description: >-
+  Fluxo de ponta a ponta para validar e onboardar um novo Embaixador Lendário:
+  triagem da candidatura (Tally) -> call de alinhamento -> aceite -> aprovacao no app
+  -> acesso ao painel -> grupos -> All-Hands -> tag Circle.
+trigger: manual
+entry_command: "@hub-chief iniciar validacao e onboarding de embaixador"
+sources_of_truth:
+  tally: "https://tally.so/forms/3yR2J6/submissions"
+  app_export_csv: "exportado do app hub.lendario.ai (candidaturas pendentes)"
+note: >-
+  A aprovacao formal acontece no app hub.lendario.ai. Este workflow orquestra a jornada,
+  prepara mensagens na voz do Rodrigo e mantem o mapa de status. Rodrigo e o decisor unico.
+checkpoints:
+  - "Candidaturas carregadas da fonte da verdade (Tally)"
+  - "Reconciliacao Tally x app concluida (nenhuma candidatura perdida)"
+  - "Hubs duplicados sinalizados"
+  - "Rodrigo decidiu quais candidatos seguem"
+  - "Mensagem de aprovacao previa + convite de call pronta por candidato"
+  - "Aceite na call registrado antes de qualquer onboarding"
+  - "4 combinados minimos comunicados"
+  - "Mapa de status (fluxograma) atualizado"
+veto_conditions:
+  - "Candidatura nao confirmavel na fonte da verdade (Tally)"
+  - "Onboarding iniciado sem aceite na call registrado"
+  - "Mensagem com tratamento tu/tua (quebra a voz do Rodrigo)"
+  - "Promessa de beneficio automatico"
+steps:
+  - id: load-and-reconcile
+    agent: hub-chief
+    task: validate-onboard-ambassador
+    phase: triagem
+    purpose: >-
+      Carregar candidaturas do Tally, reconciliar com o CSV do app, sinalizar dessincronia
+      e hubs duplicados, e listar os candidatos a avaliar.
+  - id: rodrigo-decides
+    agent: hub-chief
+    phase: triagem
+    human_in_the_loop: true
+    purpose: Rodrigo escolhe quais candidatos seguem para a call. Nunca decidido pelo agente.
+  - id: approval-and-invite-message
+    agent: hub-content
+    task: validate-onboard-ambassador
+    phase: validacao
+    purpose: >-
+      Gerar a mensagem de aprovacao previa + convite para a call de alinhamento
+      (individual, enxuta ou grupo) na voz do Rodrigo.
+  - id: register-acceptance
+    agent: hub-chief
+    phase: validacao
+    human_in_the_loop: true
+    purpose: Registrar o aceite oficial apos a call e lembrar Rodrigo de aprovar no app.
+  - id: grant-access-and-welcome
+    agent: hub-members
+    task: validate-onboard-ambassador
+    phase: onboarding
+    purpose: >-
+      Orientar a concessao de acesso ao painel e gerar mensagens de boas-vindas
+      e apresentacao nos grupos.
+  - id: confirm-minimums-and-map
+    agent: hub-chief
+    task: validate-onboard-ambassador
+    phase: onboarding
+    purpose: >-
+      Confirmar os 4 combinados minimos (objetivo unico, encontro mensal, relatorio, All-Hands)
+      e atualizar o fluxograma com o status de cada embaixador.
+outputs:
+  - lista de candidaturas a avaliar
+  - relatorio de reconciliacao Tally x app
+  - mensagens por etapa (aprovacao previa, boas-vindas, apresentacao)
+  - mapa de status por embaixador (fluxograma HTML)

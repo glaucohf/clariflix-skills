@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "asset-manifest-v1",
+  "title": "Asset Manifest Schema",
+  "description": "Contrato formal para o output do asset-extractor (DC-007). Define a estrutura do asset-manifest.json com metadata de extracao, arrays tipadas de assets (images, svgs, fonts, icons), e stats agregados. Suporta deduplicacao via SHA-256 (ADR-7) e accessibility tracking via alt_source (ADR-11).",
+  "type": "object",
+  "required": ["$schema", "metadata", "images", "svgs", "fonts", "icons", "stats"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "asset-manifest-v1",
+      "description": "Versao do schema. Deve ser 'asset-manifest-v1'."
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata"
+    },
+    "images": {
+      "type": "array",
+      "description": "Assets de imagem extraidos (JPG, PNG, WebP, AVIF, GIF).",
+      "items": {
+        "$ref": "#/$defs/AssetEntry"
+      }
+    },
+    "svgs": {
+      "type": "array",
+      "description": "Assets SVG extraidos (inline ou referenciados).",
+      "items": {
+        "$ref": "#/$defs/AssetEntry"
+      }
+    },
+    "fonts": {
+      "type": "array",
+      "description": "Web fonts extraidas (WOFF2, WOFF, TTF, OTF).",
+      "items": {
+        "$ref": "#/$defs/AssetEntry"
+      }
+    },
+    "icons": {
+      "type": "array",
+      "description": "Icones extraidos (SVG icons, favicon, touch icons).",
+      "items": {
+        "$ref": "#/$defs/AssetEntry"
+      }
+    },
+    "stats": {
+      "$ref": "#/$defs/Stats"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Metadata": {
+      "type": "object",
+      "description": "Metadados da extracao: URL fonte, data, versao do extractor.",
+      "required": ["source_url", "extraction_date", "extractor_version"],
+      "properties": {
+        "source_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL de onde os assets foram extraidos."
+        },
+        "extraction_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Data/hora da extracao em ISO 8601."
+        },
+        "extractor_version": {
+          "type": "string",
+          "description": "Versao do asset-extractor (semver)."
+        },
+        "playwright_version": {
+          "type": "string",
+          "description": "Versao do Playwright usada na extracao (opcional, presente apenas quando Playwright foi utilizado)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "AssetType": {
+      "type": "string",
+      "enum": ["image", "svg", "font", "icon"],
+      "description": "Tipo do asset extraido."
+    },
+    "AssetStatus": {
+      "type": "string",
+      "enum": ["downloaded", "failed", "skipped_size", "skipped_type", "cors_blocked", "timeout"],
+      "description": "Status do download do asset. downloaded=sucesso, failed=erro generico, skipped_size=excede limite de tamanho, skipped_type=tipo nao suportado, cors_blocked=CORS impediu acesso, timeout=timeout de download."
+    },
+    "AltSource": {
+      "type": "string",
+      "enum": ["original", "decorative", "missing"],
+      "description": "Origem do atributo alt do asset (ADR-11). original=alt presente no HTML, decorative=alt vazio no HTML (alt=''), missing=alt ausente no HTML."
+    },
+    "AssetEntry": {
+      "type": "object",
+      "description": "Um asset individual extraido de uma pagina web.",
+      "required": ["original_url", "local_path", "type", "status"],
+      "properties": {
+        "original_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL original do asset na pagina fonte."
+        },
+        "local_path": {
+          "type": "string",
+          "description": "Path relativo ao output_dir onde o asset foi salvo (ex: 'images/hero-banner-a1b2c3.jpg')."
+        },
+        "type": {
+          "$ref": "#/$defs/AssetType"
+        },
+        "status": {
+          "$ref": "#/$defs/AssetStatus"
+        },
+        "alt": {
+          "type": "string",
+          "description": "Texto alternativo do asset. Presente quando alt_source e 'original' ou 'decorative' (alt='' para decorativos)."
+        },
+        "alt_source": {
+          "$ref": "#/$defs/AltSource"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector do elemento DOM de origem (ex: 'section.hero > img')."
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Largura do asset em pixels. Presente apenas para images."
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Altura do asset em pixels. Presente apenas para images."
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Tamanho do arquivo baixado em bytes. Presente apenas quando status=downloaded."
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Hash SHA-256 do conteudo do arquivo para deduplicacao (ADR-7). Presente apenas quando status=downloaded."
+        }
+      },
+      "additionalProperties": false
+    },
+    "Stats": {
+      "type": "object",
+      "description": "Estatisticas agregadas da extracao de assets.",
+      "required": ["total", "downloaded", "failed", "skipped", "total_size_bytes"],
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total de assets encontrados na pagina."
+        },
+        "downloaded": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total de assets baixados com sucesso."
+        },
+        "failed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total de assets que falharam (failed + cors_blocked + timeout)."
+        },
+        "skipped": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total de assets ignorados (skipped_size + skipped_type)."
+        },
+        "total_size_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Soma total em bytes de todos os assets baixados com sucesso."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

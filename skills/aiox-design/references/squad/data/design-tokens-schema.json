@@ -1,0 +1,472 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "design-tokens-v1",
+  "title": "Design Tokens Extraction Schema",
+  "description": "Contrato formal para tokens de design extraidos de site live via Playwright + getComputedStyle + CSSOM. Consumido pelo print-to-code Phase 5 para gerar :root CSS variables e @theme inline.",
+  "type": "object",
+  "required": ["$schema", "metadata", "colors"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "design-tokens-v1",
+      "description": "Versao do schema. Deve ser 'design-tokens-v1'."
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata"
+    },
+    "colors": {
+      "$ref": "#/$defs/ColorsSection"
+    },
+    "typography": {
+      "$ref": "#/$defs/TypographySection"
+    },
+    "spacing": {
+      "$ref": "#/$defs/SpacingSection"
+    },
+    "borders": {
+      "$ref": "#/$defs/BordersSection"
+    },
+    "shadows": {
+      "$ref": "#/$defs/ShadowsSection"
+    },
+    "custom_properties": {
+      "$ref": "#/$defs/CustomPropertiesSection"
+    },
+    "raw_computed": {
+      "$ref": "#/$defs/RawComputedSection"
+    }
+  },
+  "additionalProperties": false,
+
+  "$defs": {
+
+    "ConfidenceLevel": {
+      "type": "string",
+      "enum": ["ALTA", "MEDIA", "BAIXA"],
+      "description": "Nivel de confianca da extracao. ALTA (>80%): evidencia direta de CSS custom property ou computed style consistente em multiplos elementos. MEDIA (50-80%): inferido por heuristica de frequencia ou posicao DOM. BAIXA (<50%): ambiguo, multiplos candidatos possiveis."
+    },
+
+    "CoverageMetrics": {
+      "type": "object",
+      "description": "Metricas de cobertura da extracao. Permite avaliar se a extracao foi completa ou parcial.",
+      "required": ["elements_analyzed", "elements_total"],
+      "properties": {
+        "elements_analyzed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Numero de elementos DOM que tiveram computed style extraido."
+        },
+        "elements_total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total estimado de elementos no DOM (document.querySelectorAll('*').length)."
+        },
+        "stylesheets_accessed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Numero de stylesheets cujas cssRules foram acessiveis."
+        },
+        "stylesheets_blocked": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Numero de stylesheets bloqueadas por CORS (SecurityError)."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "ContrastPair": {
+      "type": "object",
+      "description": "Par de contraste WCAG entre duas cores extraidas.",
+      "required": ["foreground", "background", "ratio", "wcag_aa", "wcag_aaa"],
+      "properties": {
+        "foreground": {
+          "type": "string",
+          "description": "Cor de primeiro plano (hex)."
+        },
+        "background": {
+          "type": "string",
+          "description": "Cor de fundo (hex)."
+        },
+        "ratio": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Ratio de contraste (e.g., 4.5, 7.2). Minimo 1:1."
+        },
+        "wcag_aa": {
+          "type": "boolean",
+          "description": "True se ratio >= 4.5:1 (texto normal) ou >= 3:1 (texto grande / UI)."
+        },
+        "wcag_aaa": {
+          "type": "boolean",
+          "description": "True se ratio >= 7:1 (texto normal) ou >= 4.5:1 (texto grande)."
+        },
+        "context": {
+          "type": "string",
+          "description": "Contexto DOM onde este par aparece (e.g., 'body text on background', 'button label on primary')."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Metadata": {
+      "type": "object",
+      "description": "Metadados da extracao: URL fonte, data, versao, metricas de cobertura.",
+      "required": ["source_url", "extraction_date", "extractor_version", "coverage"],
+      "properties": {
+        "source_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL de onde os tokens foram extraidos."
+        },
+        "extraction_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Data/hora da extracao em ISO 8601."
+        },
+        "extractor_version": {
+          "type": "string",
+          "description": "Versao do design-extractor (e.g., '1.0.0')."
+        },
+        "playwright_version": {
+          "type": "string",
+          "description": "Versao do Playwright usada na extracao."
+        },
+        "coverage": {
+          "$ref": "#/$defs/CoverageMetrics"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "ColorRef": {
+      "type": "object",
+      "description": "Representa um unico token de cor extraido.",
+      "required": ["value", "confidence"],
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "Valor da cor em qualquer formato CSS valido (hex, hsl, oklch, rgba)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Nome semantico inferido ou herdado de custom property (e.g., 'primary', 'background')."
+        },
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel"
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Valores candidatos alternativos quando confidence e MEDIA/BAIXA. Resultado de K-means++ clustering (ADR-8)."
+        },
+        "usage": {
+          "type": "string",
+          "description": "Onde a cor aparece (e.g., 'body background', 'heading color', 'button background')."
+        },
+        "hsl": {
+          "type": "string",
+          "description": "Valor em HSL para consumo Tailwind (e.g., '222.2 84% 4.9%')."
+        },
+        "oklch": {
+          "type": "string",
+          "description": "Valor em OKLCH (e.g., 'oklch(0.73 0.11 78)')."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "ColorPalette": {
+      "type": "object",
+      "description": "Mapa de nome do token → ColorRef. Chave e o nome do token de cor.",
+      "additionalProperties": {
+        "$ref": "#/$defs/ColorRef"
+      }
+    },
+
+    "SemanticMapping": {
+      "type": "object",
+      "description": "Mapeamento semantico de cores (primary, secondary, success, warning, error, info, etc.).",
+      "additionalProperties": {
+        "$ref": "#/$defs/ColorRef"
+      }
+    },
+
+    "DarkMode": {
+      "type": "object",
+      "description": "Variante dark mode detectada no site.",
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "True se .dark class ou prefers-color-scheme: dark foi detectado."
+        },
+        "palette": {
+          "$ref": "#/$defs/ColorPalette"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "ColorsSection": {
+      "type": "object",
+      "description": "Secao de cores: palette, mapeamento semantico, dark mode, pares de contraste WCAG.",
+      "required": ["palette", "confidence"],
+      "properties": {
+        "palette": {
+          "$ref": "#/$defs/ColorPalette"
+        },
+        "semantic_mapping": {
+          "$ref": "#/$defs/SemanticMapping"
+        },
+        "dark_mode": {
+          "$ref": "#/$defs/DarkMode"
+        },
+        "contrast_pairs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ContrastPair"
+          },
+          "description": "Pares de contraste WCAG entre cores extraidas (ADR-11)."
+        },
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel",
+          "description": "Confidence overall da secao de cores."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "FontFamilyRef": {
+      "type": "object",
+      "description": "Uma font family detectada na extracao.",
+      "required": ["family", "source", "confidence"],
+      "properties": {
+        "family": {
+          "type": "string",
+          "description": "Nome da font family (e.g., 'Inter', 'system-ui')."
+        },
+        "source": {
+          "type": "string",
+          "enum": ["system", "google", "custom", "unknown"],
+          "description": "Origem da font. google = Google Fonts URL detectada. custom = self-hosted @font-face. system = stack de sistema."
+        },
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel"
+        },
+        "weight_range": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 900
+          },
+          "description": "Pesos detectados (e.g., [400, 600, 700])."
+        },
+        "usage": {
+          "type": "string",
+          "enum": ["heading", "body", "mono", "accent", "unknown"],
+          "description": "Classificacao de uso inferida."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "TypeScaleEntry": {
+      "type": "object",
+      "description": "Uma entrada na escala tipografica extraida.",
+      "required": ["size", "confidence"],
+      "properties": {
+        "size": {
+          "type": "string",
+          "description": "Tamanho em CSS (e.g., '1rem', '16px')."
+        },
+        "line_height": {
+          "type": "string",
+          "description": "Line-height associada (e.g., '1.5', '24px')."
+        },
+        "weight": {
+          "type": "string",
+          "description": "Font-weight predominante neste tamanho (e.g., '400', '700')."
+        },
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "TypographySection": {
+      "type": "object",
+      "description": "Secao de tipografia: font families e escala tipografica.",
+      "required": ["font_families", "scale", "confidence"],
+      "properties": {
+        "font_families": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/FontFamilyRef"
+          },
+          "description": "Mapa de nome → FontFamilyRef. Chave e o identificador da family (e.g., 'heading', 'body', 'mono')."
+        },
+        "scale": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/TypeScaleEntry"
+          },
+          "description": "Mapa de nome da escala → TypeScaleEntry (e.g., 'xs', 'sm', 'base', 'lg')."
+        },
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel",
+          "description": "Confidence overall da secao de tipografia."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "SpacingSection": {
+      "type": "object",
+      "description": "Secao de spacing: unidade base e escala de espacamento.",
+      "required": ["base_unit", "scale", "confidence"],
+      "properties": {
+        "base_unit": {
+          "type": "string",
+          "description": "Valor unitario do sistema de espacamento (e.g., '4px', '0.25rem')."
+        },
+        "scale": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Mapa de nome → valor de spacing (e.g., { '1': '4px', '2': '8px', '4': '16px' })."
+        },
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel",
+          "description": "Confidence overall da secao de spacing."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "BorderRef": {
+      "type": "object",
+      "description": "Um token de border extraido.",
+      "required": ["confidence"],
+      "properties": {
+        "width": {
+          "type": "string",
+          "description": "Border-width (e.g., '1px', '2px')."
+        },
+        "style": {
+          "type": "string",
+          "description": "Border-style (e.g., 'solid', 'dashed')."
+        },
+        "radius": {
+          "type": "string",
+          "description": "Border-radius (e.g., '8px', '0.5rem', '50%')."
+        },
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "BordersSection": {
+      "type": "object",
+      "description": "Secao de borders: width e radius detectados.",
+      "required": ["confidence"],
+      "properties": {
+        "width": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Mapa de nome → valor de border-width (e.g., { 'default': '1px', 'thick': '2px' })."
+        },
+        "radius": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Mapa de nome → valor de border-radius (e.g., { 'sm': '4px', 'md': '8px', 'full': '9999px' })."
+        },
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel",
+          "description": "Confidence overall da secao de borders."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "ShadowRef": {
+      "type": "object",
+      "description": "Um token de shadow extraido.",
+      "required": ["value", "confidence"],
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "Valor CSS completo de box-shadow."
+        },
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "ShadowsSection": {
+      "type": "object",
+      "description": "Secao de shadows: sombras detectadas, indexadas por nome semantico.",
+      "required": ["confidence"],
+      "properties": {
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel",
+          "description": "Confidence overall da secao de shadows."
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/ShadowRef"
+      }
+    },
+
+    "CustomPropertyEntry": {
+      "type": "object",
+      "description": "Uma CSS custom property extraida de :root.",
+      "required": ["value", "type", "confidence"],
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "Valor da custom property."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["color", "size", "number", "string", "unknown"],
+          "description": "Tipo inferido do valor."
+        },
+        "confidence": {
+          "$ref": "#/$defs/ConfidenceLevel"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "CustomPropertiesSection": {
+      "type": "object",
+      "description": "CSS custom properties como campo de primeira classe (ADR-12). Chave = nome da propriedade (e.g., '--brand-primary', '--spacing-base').",
+      "additionalProperties": {
+        "$ref": "#/$defs/CustomPropertyEntry"
+      }
+    },
+
+    "RawComputedSection": {
+      "type": "object",
+      "description": "Map de selector → computed style values. Artefato de debug, cap 200 entries (ADR-6).",
+      "maxProperties": 200,
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

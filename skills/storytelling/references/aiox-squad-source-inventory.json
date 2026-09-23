@@ -1,0 +1,172 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/storytelling",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/blake-snyder.md",
+      "sha256": "8f77e9dbddb75036c5112281378473b9cd02ee17bdfe4633c2f5744478f09ef7"
+    },
+    {
+      "path": "agents/dan-harmon.md",
+      "sha256": "7b311cf3de0224fd01f977a638a84e0ea5966bb24bc7dd0a51cd2817c3d6f8ff"
+    },
+    {
+      "path": "agents/donald-miller.md",
+      "sha256": "183f24397d0bb4c03d2c2fe00ec3dd23cde626262657356072723a96e6d2e90e"
+    },
+    {
+      "path": "agents/joseph-campbell.md",
+      "sha256": "5418e176d1c0b6d318f1dce1e921ae3748a8be0e8fa44d06fab637c16187920e"
+    },
+    {
+      "path": "agents/keith-johnstone.md",
+      "sha256": "eb3d9ece6ea2352e36920b9df97bb2f39e441a09a38994ff0652aa54dc3802b8"
+    },
+    {
+      "path": "agents/kindra-hall.md",
+      "sha256": "45371b710f1f3702b965f757b73a62fe04d37621b944671f41b6327de19024a6"
+    },
+    {
+      "path": "agents/marshall-ganz.md",
+      "sha256": "74db20994ffac0b7bb54ddcc3774b6beeabdd9859d28ff05602e4f5a4edc07fc"
+    },
+    {
+      "path": "agents/matthew-dicks.md",
+      "sha256": "9888f48afed51032f408300021002925f3d69cdc133a37143cc583aad8b51e33"
+    },
+    {
+      "path": "agents/nancy-duarte.md",
+      "sha256": "cdaf127ee13d23eae0236e7fcca1892f68159587cf13b4dd7f83eaafacd97732"
+    },
+    {
+      "path": "agents/oren-klaff.md",
+      "sha256": "18ab5c8c75eac43526daf43309a589d55eefd0f36d8a8d4fe7d7a5c80e8dd89f"
+    },
+    {
+      "path": "agents/park-howell.md",
+      "sha256": "0592db28e98e2ff0186d77e0a2433ad65ede65701b043eedc5f9dcf0589ed252"
+    },
+    {
+      "path": "agents/shawn-coyne.md",
+      "sha256": "67b2ee79f16e556fbcf18ad4bab4f9bafda5129305389020600a105331a4916b"
+    },
+    {
+      "path": "agents/story-chief.md",
+      "sha256": "9f0d913490de10167bd051214273d3c48eac3ba5a9b316688d35ddebdd1e8c85"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "2d6667c510573a28f5fdae74a3840630c988eb7430929a58e241fdfca715f2dc"
+    },
+    {
+      "path": "checklists/story-quality-checklist.md",
+      "sha256": "fe4104f805c8ecb7ea9e7940a0ca2f6fa85729b1d9e89cdb64a5d23b8e862eb4"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "eb7f421185f719a6f634e12e6f57f8fad0b3d1defe73d3ac6ce9ccbd96a72e21"
+    },
+    {
+      "path": "data/story-mappings.yaml",
+      "sha256": "987b574363ab126f8a00d6ea77d180ad7c8119d5b03d68283667ff17f34fc1f6"
+    },
+    {
+      "path": "HEADLINE.md",
+      "sha256": "c3a2f05a30c3fca492ab9a307be465c6b6c94a2adb7e91aade21b1b09bf4d7ff"
+    },
+    {
+      "path": "README.md",
+      "sha256": "06dd2b4708b02cc7b4f6dcdb0fd290a79a5a89b4fdeb85466e37c24c5bb03967"
+    },
+    {
+      "path": "research/blake-snyder-save-the-cat-research.md",
+      "sha256": "0e55b8f928b86c2ea2b5177617b28ff6a06999a2d3a69716543a5035d4177252"
+    },
+    {
+      "path": "research/donald-miller-storybrand-research.md",
+      "sha256": "f02ee44e0eb7be3eebafa24007e04ffcacc807f8a1d0fe205297920a2b6ead1b"
+    },
+    {
+      "path": "research/joseph-campbell-heros-journey-research.md",
+      "sha256": "a32859e418ae27af9dfcb3c06786ca3043018e58e68010b9be9dd1e870e79ae1"
+    },
+    {
+      "path": "research/keith-johnstone-improv-spontaneity-research.md",
+      "sha256": "90695cdb141ebe7ab6052b117e8e93b369b488dd92cc4378104adff945130885"
+    },
+    {
+      "path": "research/marshall-ganz-public-narrative-research.md",
+      "sha256": "a216f804a0b02bea1a8479a9a62675a134379dcc0fce9f829ac0eaf0681a5696"
+    },
+    {
+      "path": "research/nancy-duarte-sparkline-research.md",
+      "sha256": "7297e170323050b37d6aabfb5c2a2a5ee00f5698e91263e33a2416b30a0cdd2c"
+    },
+    {
+      "path": "research/shawn-coyne-story-grid-research.md",
+      "sha256": "61789dbd6935e22fbc81b639326ee5d0aea0b9bbe4639dff9eb7a01d0ef9dc53"
+    },
+    {
+      "path": "squad.yaml",
+      "sha256": "cda66869e1f01e53e41feb7f42c54330fbeabc68dd6f67243a7c0d003b2e0fc6"
+    },
+    {
+      "path": "tasks/apply-abt.md",
+      "sha256": "4fc4d452f28ef7d6681911402bacc15731ea295ab1eb48412b1a02d2f82f187b"
+    },
+    {
+      "path": "tasks/apply-beat-sheet.md",
+      "sha256": "4c1d9ce8675268a7c762be94abc83773f9bb8632ebb20fa7d5199a1e758ae51e"
+    },
+    {
+      "path": "tasks/apply-heros-journey.md",
+      "sha256": "3779ba8bac2bc3369e01e6ad872b42ddd27905f6c7775726ba3df5de463ba435"
+    },
+    {
+      "path": "tasks/apply-save-the-cat.md",
+      "sha256": "c40b402532e11d6685df020252e825604133453d884da32e42e27d3bc0ca5355"
+    },
+    {
+      "path": "tasks/apply-story-circle.md",
+      "sha256": "ff3944ab4f169f6ac8e7e9da24b6e327fb419d34767b2373704cf6c007c52f3f"
+    },
+    {
+      "path": "tasks/craft-personal-story.md",
+      "sha256": "db21f2e35850ff35017315203f56f69f121fc2a6be12007e0fdf40741f698519"
+    },
+    {
+      "path": "tasks/craft-public-narrative.md",
+      "sha256": "2587055aacf8207e26c5a2b8733adc4d24203f568f6f675f78053c314f672d5d"
+    },
+    {
+      "path": "tasks/craft-ted-talk.md",
+      "sha256": "d73e2727acaff3617b515259404da076dfea4855bcbe263092b9377283449301"
+    },
+    {
+      "path": "tasks/create-brandscript.md",
+      "sha256": "fe97826f6c2f01987c59f8de0568f4ef36ea21ba54ba40e5f08328212529e1a8"
+    },
+    {
+      "path": "tasks/create-business-story.md",
+      "sha256": "6d6186af12ef76485c96e4191b0e981f9399afe284b6a6c41ba27838d96d2e8c"
+    },
+    {
+      "path": "tasks/create-pitch.md",
+      "sha256": "75f06637a7a435d3f14e2d49edc963d0598e4aa7afe5dbca32ba8ae7e4c8d98c"
+    },
+    {
+      "path": "tasks/diagnose-story-grid.md",
+      "sha256": "338c1fad8e328e13774f958dba513609c30d092a37ad7c049085fbf8b966c06a"
+    },
+    {
+      "path": "tasks/improvise-story.md",
+      "sha256": "11c7d71f28ff14887eb2c334dacbc442e7a155165c7681437ce162664423236c"
+    },
+    {
+      "path": "workflows/story-creation.yaml",
+      "sha256": "b5718d66587e834bd79b623bae5b91ac9633eff446aacce17459a0fc64d44c6b"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+id: event-launch-cycle
+name: Event Launch Cycle
+description: Fluxo para planejar, comunicar e acompanhar um encontro local.
+trigger: manual
+checkpoints:
+  - "Objetivo do encontro validado"
+  - "Plano de comunicacao definido antes do evento"
+  - "Follow-up pos-evento previsto"
+veto_conditions:
+  - "Evento sem objetivo claro"
+  - "Sem convite principal ou CTA"
+  - "Sem acao prevista depois do encontro"
+steps:
+  - id: event-brief
+    agent: hub-events
+    task: create-event-plan
+    purpose: Estruturar encontro, proposta e checklist.
+  - id: invitation-copy
+    agent: hub-content
+    task: create-hub-post
+    purpose: Criar convite e lembretes.
+  - id: host-prep
+    agent: hub-chief
+    task: plan-weekly-hub
+    optional: true
+    purpose: Ajustar o encontro ao foco da semana.
+  - id: post-event
+    agent: hub-events
+    task: analyze-event-results
+    optional: true
+    purpose: Capturar aprendizados e proximo ajuste.
+outputs:
+  - plano do encontro
+  - convite principal
+  - checklist
+  - follow-up recomendado

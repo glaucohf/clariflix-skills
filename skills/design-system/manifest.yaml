@@ -1,0 +1,15 @@
+row: operacoes
+title: Sistema visual coerente
+title_netflix: DESIGN SYSTEM
+subtitle: Estrutura tokens, componentes e documentação de interface
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 836 arquivo(s) de origem
+  requer: Interface, componentes e objetivos
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Tokens, Componentes, Padrões]
+  generos: [Design, UI, Sistema]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

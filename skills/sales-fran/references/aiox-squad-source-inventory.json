@@ -1,0 +1,108 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/sales-fran",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/aaron-ross.md",
+      "sha256": "47f45926c83bcb6e6d73b347f951c122de9293656e62d820b24bbee133f06c41"
+    },
+    {
+      "path": "agents/challenger-sale.md",
+      "sha256": "2489d298586f3fd9aaf290f32c5ff3b648bba2c619f935644fdd711a5c5730a9"
+    },
+    {
+      "path": "agents/chet-holmes.md",
+      "sha256": "329c06ce5519257f98d5a38ca98cb421c772f109867eb1bbe904ed16d595d0f5"
+    },
+    {
+      "path": "agents/chris-voss.md",
+      "sha256": "8ca8ee2bc56137e9ce209797be2e0ce04a84af46141230fddf628ce26bec812a"
+    },
+    {
+      "path": "agents/david-sandler.md",
+      "sha256": "22f6879d387da9d0e84beb27aec904b5a6a8038ced0a5a5d3de3c5073b964ea5"
+    },
+    {
+      "path": "agents/jeb-blount.md",
+      "sha256": "790b89eba9982203b91fc6f0536b0662bff9332319897a6024ddabff09cf2ed5"
+    },
+    {
+      "path": "agents/keenan.md",
+      "sha256": "c153be3941991cca8c21368b6880b216308ca1efa9746d128e8787cbf6f06fe8"
+    },
+    {
+      "path": "agents/neil-rackham.md",
+      "sha256": "8bb8dc70cc86ae1808a54daac8bddcc4cf488b1e14baac76b91558d49e06ce79"
+    },
+    {
+      "path": "agents/sales-chief.md",
+      "sha256": "611b86e86e4230011c343aa3f97dbbddbca25c505afb0cf33dd945307b3d311c"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "sha256": "70f5c8557df7e3aa5ae9285222d464493a0afb5d113b36dec6df530c55eab961"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "49a4cf27e3ad2a54b58136582b9a8f485597303555fd3de29fb0dfcbd33db470"
+    },
+    {
+      "path": "checklists/deal-qualification-checklist.md",
+      "sha256": "b37764bf3c1846ecf6d4ab4f3c2ada2e776ae9d688949dfee613885a7e8f6f58"
+    },
+    {
+      "path": "checklists/discovery-quality-checklist.md",
+      "sha256": "f913729030bcb93e88935d7012f967e344d43919898ccde4e7a7a0b03db872bc"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "06d97bc18c5e7070cdbef22dcbd76223aef9ff488a3e4d79e6ac9a9f978123ee"
+    },
+    {
+      "path": "README.md",
+      "sha256": "0e146050234520b652611d39f7c9de81004440c52fafd3a5db886e348781434b"
+    },
+    {
+      "path": "squad-sales-overview.html",
+      "sha256": "4b2b2997e8ea03ae538c3046aba7a19209805bd06a1dce73ea01a855d532f3bf"
+    },
+    {
+      "path": "tasks/close-deal.md",
+      "sha256": "4685b410e9f07a5cfede60403b17f90c569a09290313d73505c5ac7269d2e098"
+    },
+    {
+      "path": "tasks/create-cold-outreach.md",
+      "sha256": "d2818d1fdb8fd287c50dd78872e3ab2b1ad01642d85457eb892f74aea71cfdf5"
+    },
+    {
+      "path": "tasks/create-email-sequences.md",
+      "sha256": "610c6ad2de7f029c87e31003fe57e08d07a3dda03a13046916a5a8498e26ed19"
+    },
+    {
+      "path": "tasks/create-followup-sequence.md",
+      "sha256": "a2a7a4760a8317e8107da278bfb33c118e3c7483e2fedd9a03dfd2b99a8155ab"
+    },
+    {
+      "path": "tasks/create-sales-copy.md",
+      "sha256": "98fde1dd81d4a09fced624b08f8eda7730713b4a03bc2c63ad3f55477b49de79"
+    },
+    {
+      "path": "tasks/create-sales-scripts.md",
+      "sha256": "fbd2e39389eb4ef9664b0e492ad548919699fa8e47f52ccfd8a0bead959d21f0"
+    },
+    {
+      "path": "tasks/diagnose-deal.md",
+      "sha256": "4e5c945685ff800c615a3ce03d1915dde6724bdf7811c4bc0fb980f06397a071"
+    },
+    {
+      "path": "tasks/negotiate-deal.md",
+      "sha256": "fe79a3752590d96947085e7b1615235642f7fed11d433aa8a5503598030184ea"
+    },
+    {
+      "path": "tasks/qualify-prospect.md",
+      "sha256": "30da4a4969396c1f07941b8ea4a272dc13749debedce434ff8c1636338430917"
+    }
+  ]
+}

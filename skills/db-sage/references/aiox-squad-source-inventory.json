@@ -1,0 +1,232 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/db-sage",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/db-sage.md",
+      "sha256": "d0c1d83a5b15dae56fe3585ace59ad965094d04e96d888ae2192dfeeaef570a3"
+    },
+    {
+      "path": "checklists/database-design-checklist.md",
+      "sha256": "dae94ab1bb2a049f0f937ea9a384f8641a8b3c71f869a066a2584991eac6cd30"
+    },
+    {
+      "path": "checklists/database-migration-documentation-checklist.md",
+      "sha256": "85d4f24f6deb4d918c8828824012b9c113c4542a4b0f6958185a8b43aeb2e3cb"
+    },
+    {
+      "path": "checklists/db-kiss-validation-checklist.md",
+      "sha256": "1fec0b5445fe7a1e542416cb3e6f868656ad792e79e22cc8fd1c1dff0d382712"
+    },
+    {
+      "path": "checklists/dba-predeploy-checklist.md",
+      "sha256": "638b4c5bd20de0ef2c165f72a4a97f97d10e8f41ab804f9f227bb26c376461bb"
+    },
+    {
+      "path": "checklists/dba-rollback-checklist.md",
+      "sha256": "e6d0446f9be6fa9f1d47fa504669eba6f9c034337d0b239e23868f8186194190"
+    },
+    {
+      "path": "checklists/migration-validation-checklist.md",
+      "sha256": "b8bbef97242055092f4f89dfbc4105a10911d5d15ebe657bc45e3a9288692db5"
+    },
+    {
+      "path": "checklists/supabase-best-practices-audit.md",
+      "sha256": "1d5e58fb4ac4ca0262de270e3fc4f407df3992d8799b30fa7215417454389a4a"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "6c733a97775ef93ce743c8716c7866fd395e5cb31b1549791aa578227991cf92"
+    },
+    {
+      "path": "data/database-best-practices.md",
+      "sha256": "c926258320d79beff1bef081cb1a0a4dbf77199f270e933a0d2effeffad6f541"
+    },
+    {
+      "path": "data/migration-safety-guide.md",
+      "sha256": "a1de30ceafe4fa0944ddf9c8d7fcd7d3e8d48520e1290165cd5ec22001367886"
+    },
+    {
+      "path": "data/postgres-tuning-guide.md",
+      "sha256": "09cce41993e4d4f423bc4548135b011cc236edede073cb92434c5a390abf83d6"
+    },
+    {
+      "path": "data/rls-security-patterns.md",
+      "sha256": "ff92be1cdb61e70763723c09b11cc93e45e5c8a3ff1f7e1b36527f16f1c607ff"
+    },
+    {
+      "path": "data/supabase-agent-skills.md",
+      "sha256": "8961dc7be3a85150f6c48c9b209585b3d045127f0094556d352ef448d757a282"
+    },
+    {
+      "path": "data/supabase-patterns.md",
+      "sha256": "ab6772e0e88a383ba79e83f3ee55ec96c0309e86af916230c36046ea361f059b"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1ef02dea0287a0658168ff4ab12bf9a39dd339a0f67109818c89ed4142f608a7"
+    },
+    {
+      "path": "tasks/create-doc.md",
+      "sha256": "b6e2d4f22f8309db019b35c6bf8aef4dc8f330924f2cbcbc60c96d0e84edfc39"
+    },
+    {
+      "path": "tasks/db-analyze-hotpaths.md",
+      "sha256": "fda07b001c9ac6d0d263554acf51273b12601f7f09d754cae5b7b42c314950a9"
+    },
+    {
+      "path": "tasks/db-apply-migration.md",
+      "sha256": "103ea97333bf9699b038bbefa0da5272db0755e48daf9cb92917eb235f2dfc46"
+    },
+    {
+      "path": "tasks/db-best-practices-audit.md",
+      "sha256": "3c5f1ffcc61a5906fa23338a5ffd254e992f9ad7d6dfcf03eef09653e8841ae5"
+    },
+    {
+      "path": "tasks/db-bootstrap.md",
+      "sha256": "c9dd9a695f26ef1ba586b644774d0a55757a57684d710cb99f78cfd37027a7bb"
+    },
+    {
+      "path": "tasks/db-dry-run.md",
+      "sha256": "c86aab747a02387f0cfbebe2ca4200ccf725f2a3050393d1bfd49a76d80bc638"
+    },
+    {
+      "path": "tasks/db-env-check.md",
+      "sha256": "c3c535f5074d163eb6a7fc799e1ae6726638d7919900c576fa50881ff668968b"
+    },
+    {
+      "path": "tasks/db-explain.md",
+      "sha256": "2abf453769de00a8d5088b597e19ba499fbb159fcdfca870bffad260e2cde5da"
+    },
+    {
+      "path": "tasks/db-impersonate.md",
+      "sha256": "d19edcdc5e24e89bc7a7eb93069965f33e316f6feb29340361f23f2f36b755fb"
+    },
+    {
+      "path": "tasks/db-load-csv.md",
+      "sha256": "131a25a16ba2901b9ab069d46c258ef703148edf51d55fbe32c075bd7228e8a7"
+    },
+    {
+      "path": "tasks/db-policy-apply.md",
+      "sha256": "a168a539a3e5744c7ebd832e064a61c639563ce0aff1643424bfb71ebc2ea2d4"
+    },
+    {
+      "path": "tasks/db-rls-audit.md",
+      "sha256": "45d494b6d8a65d0bb80ca640f0519c71dd04325841afd7c18a2819f9045bf875"
+    },
+    {
+      "path": "tasks/db-rollback.md",
+      "sha256": "3c7ba4048baf7920024eead8bde6480506f781311474d3590a62c8fb39b456cc"
+    },
+    {
+      "path": "tasks/db-run-sql.md",
+      "sha256": "e37b6516787cee3be1241dc8a4711855d609d073e9b062a77945060e8e022758"
+    },
+    {
+      "path": "tasks/db-seed.md",
+      "sha256": "734402dfde7fd8dd86277917a888d811131952e7069ecbfbed34198c583e1957"
+    },
+    {
+      "path": "tasks/db-smoke-test.md",
+      "sha256": "53cafdde16b42d64827912b5b744dd4bac700d4fd25f4f1832db94a1a3ce67c1"
+    },
+    {
+      "path": "tasks/db-snapshot.md",
+      "sha256": "099b5294cfb2b4c44ccebdbcbba1ea1d027a59f9c7ecd340ae3bb3150d7d5b90"
+    },
+    {
+      "path": "tasks/db-squad-integration.md",
+      "sha256": "a04dabb82609b067c851a48834289908893b5a5fec56a56bc03b9fdd574b8213"
+    },
+    {
+      "path": "tasks/db-verify-order.md",
+      "sha256": "5057e557d2e814d171f35b517292083645169edf718744745fc7c42d25cd36c5"
+    },
+    {
+      "path": "tasks/domain-modeling.md",
+      "sha256": "44781ee0f9ee67b942a52fa34030824f307a4ba5415d5be76b9d45551eecd817"
+    },
+    {
+      "path": "tasks/execute-checklist.md",
+      "sha256": "528165d0b2b5f453d785f69cd801ec96db2d816374da7657f948b3c8f0937189"
+    },
+    {
+      "path": "tasks/kiss.md",
+      "sha256": "2ec83c329596cdf0ba2ebbdc8d5388905477089b46da3e049c2931e53ab4571c"
+    },
+    {
+      "path": "tasks/query-optimization.md",
+      "sha256": "e396622cff4ee21d78d814d3f1332de4bc7026071cffe5ef2b8e95ed14d86152"
+    },
+    {
+      "path": "tasks/schema-audit.md",
+      "sha256": "c6f58be151534ef86a9b46805e5a640500b383194c3fcdee4e72002ebb057e95"
+    },
+    {
+      "path": "tasks/supabase-setup.md",
+      "sha256": "feef22a1df5cf29640fb734172f8b09c5ef02a4643cf809aae56313aa907862c"
+    },
+    {
+      "path": "templates/backup-metadata.json.tmpl",
+      "sha256": "40daaff496164bb36f6eeeca84a90db6d4b397f80d61b00cd8b2391986aa4b38"
+    },
+    {
+      "path": "templates/db-analysis-template.yaml",
+      "sha256": "763755d4ee10d691c729599a07424a85324d38f304308ca5d392421e786a1c97"
+    },
+    {
+      "path": "templates/index-strategy-tmpl.yaml",
+      "sha256": "515aca62c5ee5e3965615df1bafbd454c0cc10a509caaeb7ebf127ba459ee0c6"
+    },
+    {
+      "path": "templates/migration-plan-tmpl.yaml",
+      "sha256": "54ebf6cba8f2e321112be88f27a9cf3ccff817ae682042bbbfef5da4d202a985"
+    },
+    {
+      "path": "templates/migration.sql.tmpl",
+      "sha256": "ef8408eff6dd0e4b9a1c9f7b92c7da2b83b464b837efb9f6f4b932affb982e64"
+    },
+    {
+      "path": "templates/rls-policies-tmpl.yaml",
+      "sha256": "66bcd8a1dee59ced82c1ec3bb8af9fcaa6606e4c0d8157b1d872bd50e4e938d0"
+    },
+    {
+      "path": "templates/rollback.sql.tmpl",
+      "sha256": "efbf0b77d6fd4f98df56a13ab200a42f7ecd0ccd1bcd5ddf80167c1dba5283bc"
+    },
+    {
+      "path": "templates/schema-design-tmpl.yaml",
+      "sha256": "651b220e5c126c3d8c6348b86f88042613792e0c653430a5b7d33912045c4f2b"
+    },
+    {
+      "path": "workflows/analyze-data-workflow.yaml",
+      "sha256": "9dda2ef92a26b2841ce51f111bef652fb7154f633ea488b0d3b52d50486b3c23"
+    },
+    {
+      "path": "workflows/backup-restore-workflow.yaml",
+      "sha256": "0c3ff6c91e5e674ae86cbf3c4a7046d0d8ebb1c5b5b7d46b54800381e6e9cbf0"
+    },
+    {
+      "path": "workflows/kiss-gate-workflow.yaml",
+      "sha256": "1fb1006fcce7586a5326f67c2e7def6301d0a60822596fe0d76ff6c671a5fb14"
+    },
+    {
+      "path": "workflows/modify-schema-workflow.yaml",
+      "sha256": "ecbabec74820fcd338d860ca808b2fe95c1f8eeeb06493df011a1324f7d6d8c4"
+    },
+    {
+      "path": "workflows/performance-tuning-workflow.yaml",
+      "sha256": "60e358117d91f5c7a28e6a932fffbbce1d7accb995f5e5dfa5c81d5efafe7f98"
+    },
+    {
+      "path": "workflows/query-database-workflow.yaml",
+      "sha256": "6318c399b825afaf791952c0e9e99b63b1d8e221e16e95607765c86902a403ce"
+    },
+    {
+      "path": "workflows/setup-database-workflow.yaml",
+      "sha256": "4fc5a9394cbf9700440a2ca3e46ce8de9d82c3192262d6fb99e1e50ace11bfe5"
+    }
+  ]
+}

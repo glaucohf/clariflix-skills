@@ -1,0 +1,39 @@
+name: kickoff-7-days-v1
+version: "1.0"
+owner: "Rodrigo"
+
+targets:
+  weekly:
+    lp_checkout_live: true
+    dashboard_live: true
+    campaigns_live: true
+    crm_live: true
+
+day_targets:
+  day_1:
+    executive_plan: true
+    owners_confirmed: true
+  day_2:
+    directors_plan_approved: true
+  day_3:
+    offer_locked: true
+    lp_checkout_spec_approved: true
+  day_4:
+    campaign_plan_ready: true
+    sales_playbook_ready: true
+  day_5:
+    telemetry_ready: true
+    dashboard_ready: true
+  day_6:
+    go_live_pass: true
+  day_7:
+    week_2_plan_ready: true
+    scaling_decision_ready: true
+
+metric_triggers:
+  weekly_control:
+    lead_to_call_drop_pct: 20
+    payment_failure_rate_pct: 8
+  escalation_rules:
+    capability_gap_uncovered: true
+    create_new_squad_if_needed: true

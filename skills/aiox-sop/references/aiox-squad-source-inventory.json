@@ -1,0 +1,424 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/aiox-sop",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/sop-analyst.md",
+      "sha256": "107f1b958f7b0350b5ca53aae49645968245d8f6be8a1da1add945d6462e13ba"
+    },
+    {
+      "path": "agents/sop-auditor.md",
+      "sha256": "29e6cc6bab940071060e15462f67dca02e9ec13bc91b23e0f80541c32cf7ffe1"
+    },
+    {
+      "path": "agents/sop-chief.md",
+      "sha256": "af2c59c38d8f15577841829c621cfb4f0ef50569ccacd22cf7d392f522cf3baf"
+    },
+    {
+      "path": "agents/sop-creator.md",
+      "sha256": "7cdc41038d4315982e01f77ebccc5f4f0c8d78571c6742e3d1b6a66646169342"
+    },
+    {
+      "path": "agents/sop-extractor.md",
+      "sha256": "f0303e4f308c6c7deaeae8950c52ff376c917526c039a588e1b763057b078b17"
+    },
+    {
+      "path": "agents/sop-ml-architect.md",
+      "sha256": "c1b60af8d55f1a3f8691654287e4b0d547c87d011088b7285cc8d717a58cfc25"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "sha256": "d0189ea63ba3621e10a950fc80fc029a64167c6907c294896341b3875ed92452"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "ac3050b8f4aabdc4c55b66626c33ed6738d7586a97e31cf11764ee14269ff6a4"
+    },
+    {
+      "path": "checklists/14-point-crosby-checklist.md",
+      "sha256": "4d5e12521e9bae668a6cb83ddbf0512da09fa7451f9c30066083ec623b3c538d"
+    },
+    {
+      "path": "checklists/extraction-completeness-checklist.md",
+      "sha256": "bdd5c54565029d0a90d7937e1b4a014365af49cdd656f042e5840204cfbe559b"
+    },
+    {
+      "path": "checklists/sop-completeness-checklist.md",
+      "sha256": "c43ea4037468e406521aca02ba14c81d6a502b3fe7c60d0237c435efebcac448"
+    },
+    {
+      "path": "checklists/sop-ml-validation-checklist.md",
+      "sha256": "4af8dbeef99469c1c1ff8d1453620ea21323dc6abc501f8dddfca822e887c88b"
+    },
+    {
+      "path": "checklists/sop-quality-checklist.md",
+      "sha256": "bd22551b67c9e69f579ee63694492db0d2ed42794e2212d75f82cbad96b45fe4"
+    },
+    {
+      "path": "checklists/stranger-test-checklist.md",
+      "sha256": "f1b48701f7996f04c8e45fde71e9204cd93f561fd66f3f444f8bdb1de2a1815f"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "417ba33fcfc74a5469a95490ab7111ed17e3a0f393fbe29eec17a634bf020431"
+    },
+    {
+      "path": "data/category-map.yaml",
+      "sha256": "c1f1c4eccce154e78b869f1d8ebab3fd13b85a36e93ff0af2ed4c7f56eae7f4e"
+    },
+    {
+      "path": "data/confidence-levels.yaml",
+      "sha256": "a6bbd1772ded04b8116a8fa02eb4ec9c1d4bad8e6ab9aaec97dc3498f3709a97"
+    },
+    {
+      "path": "data/infrastructure-connections.yaml",
+      "sha256": "045ac6c66e0cf85812782714f1542b14b4463cd1d80f7a0e9df0542e44522bf9"
+    },
+    {
+      "path": "data/market-categories.yaml",
+      "sha256": "9f7eed7fb8a16bf963484e1ef9b8d022e34310cfc090c0bb955cb2c64f750098"
+    },
+    {
+      "path": "data/risk-register.yaml",
+      "sha256": "01fcefc5a56440ac4afdc5df415b86b18be91f3c6f0f38ca7f13c41d359ffa00"
+    },
+    {
+      "path": "data/sop-ml-schema-examples.yaml",
+      "sha256": "8c4725d8d07ffa70ac95f75d782e0dd196e218f0b14f8164515afb8a3a2e0a53"
+    },
+    {
+      "path": "data/sop-ml-schema.yaml",
+      "sha256": "6baad13802a08929bea3ed9cedf78a51e6061ac98429c12eaf61223ba7a69f01"
+    },
+    {
+      "path": "data/sop-registry.yaml",
+      "sha256": "42ad6d56889b3ba9ecc8f5e8f74fbe6bebc5416a0da55f851360174a9f038a91"
+    },
+    {
+      "path": "data/sop-scoring-rubric.yaml",
+      "sha256": "67543748db1bc3ba982fe2818a5daacb799556eed907348bf6079b3ef90fe28c"
+    },
+    {
+      "path": "data/sop-standards-reference.yaml",
+      "sha256": "82bd08cf8a01914eaece9d0bcb1c9f7e06b0679ab0bcc9ac6477d4947ca9b2d0"
+    },
+    {
+      "path": "data/task-definitions.yaml",
+      "sha256": "a1db36169483f677d5e7e1634ce258de52978dd34e3f5208cb91c6c0172a5448"
+    },
+    {
+      "path": "data/token-assignments.yaml",
+      "sha256": "1803e3eb748477e736b5ccdbd59b82b89ec158ead13475f854126ca7fde3d54c"
+    },
+    {
+      "path": "data/verdict-thresholds.yaml",
+      "sha256": "a2ed29ed01d5031cfbe17b5335c40b4e97e79641cda77200866e19f559a24c14"
+    },
+    {
+      "path": "data/workflow-quality-rubric.yaml",
+      "sha256": "6ae36222371cc1e38a3b8f5364e9971c56d25a2ac245b670b54d5405f26268e0"
+    },
+    {
+      "path": "docs/optimization-doc-drift-2026-03-18.json",
+      "sha256": "91df2fafa27ef42c6b989af11e9bbbca0d0293dca9944a6b3a214ce9cc14020f"
+    },
+    {
+      "path": "docs/optimization-economy-2026-03-18.md",
+      "sha256": "94ad3adaccad26fa182f0a59aeab3aedb786c416ac4e27d21e23fb8230605d7b"
+    },
+    {
+      "path": "docs/optimization-environment-2026-03-18.json",
+      "sha256": "98ed26291f055d630ae07b3eea5b99e567115ff764744b235fb84a7f00664bc2"
+    },
+    {
+      "path": "docs/optimization-material-inventory-2026-03-18.yaml",
+      "sha256": "dabc6d12ddf1c8670a7b19f7b9bfb6792f518def5978cfc50fb992b690621805"
+    },
+    {
+      "path": "docs/optimization-repo-baseline-2026-03-18.json",
+      "sha256": "761874195c3de94f6dfa17f86da3cbaf274f8323390c1fd264be4a7a89743319"
+    },
+    {
+      "path": "docs/optimization-runtime-smoke-2026-03-18.json",
+      "sha256": "d1acfac7c6ba81a0cd40f96d5ac4b22ce1564f162446eda3c190a33dff540930"
+    },
+    {
+      "path": "docs/optimization-split-verdict-2026-03-18.json",
+      "sha256": "bd1958aea8320069dcc7ee33020ae359d6d90ef2dca4ed44dea8f52172fd1c08"
+    },
+    {
+      "path": "docs/optimization-validation-2026-03-18.json",
+      "sha256": "c534f6be1893bdc99a6cd99c86c67c3f25b097e8d7b0413e827b5e76e8d43fa0"
+    },
+    {
+      "path": "docs/optimization-validation-fallback-2026-03-18.json",
+      "sha256": "f871a5e9543b30737b945ef27975fefcfd0c952d19c30e23999d56209eb3b703"
+    },
+    {
+      "path": "docs/optimization-workflow-contracts-2026-03-18.json",
+      "sha256": "a89586db351f3f7647d00319e5d415d39341ade8ea6753bc9c8a24a4f0c0e24e"
+    },
+    {
+      "path": "docs/optimization-yolo-plan-2026-03-18.md",
+      "sha256": "dce4c05ee09be74d00a69e593dea89dcc10a6f7024ae9229768742aa6ac9c764"
+    },
+    {
+      "path": "docs/optimization-yolo-report-2026-03-18.md",
+      "sha256": "253a270ff01e34d6002f1d99362ec38cab3babb71408b76426bd4ed05236f8ae"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "6a5271f80b709f647d5b3912db2a4d2d6938d0b3feeaa79ebace71b801ae8a3b"
+    },
+    {
+      "path": "docs/scaling-strategy.md",
+      "sha256": "5c6dabdec819ab26d9d552905e3880a05ec0a7e5ba71e0527ed42c6ae5d59703"
+    },
+    {
+      "path": "examples/README.md",
+      "sha256": "de0fb873b4620d20d028b16ecf6a06d2d67bd68637ef5a9f36ff93b53c97bd48"
+    },
+    {
+      "path": "examples/sample-human-sop.md",
+      "sha256": "d6c870f9c5d54f63ca0ca658fb1ffaef6e78ac52fb2d127912f417ab330c48a2"
+    },
+    {
+      "path": "examples/sample-ml-sop.yaml",
+      "sha256": "1b47ee3a9b51903748abd13a8c4ab5e9417989e108da2f795c3025141fe86b9e"
+    },
+    {
+      "path": "HEADLINE.md",
+      "sha256": "6b5e769b5d4058150bc8b8d82da1fcca1cccff75fc54f81e3f0d19025feb29eb"
+    },
+    {
+      "path": "outputs/README.md",
+      "sha256": "d8ee9b1781f17f9d2e7b5e5eef67f2acfacb946f13f14210f90017a0cf3b5cf2"
+    },
+    {
+      "path": "outputs/SOP-SLIDES-001.md",
+      "sha256": "7b047321a90efb922b9be6e8307fa61133efb8e7845b0afd1114d76624d41462"
+    },
+    {
+      "path": "outputs/SOP-SLIDES-001.yaml",
+      "sha256": "bf7d8754fe694f790cad365aca7e52e3ae4318701d5e57c2019724eef4cd9ff2"
+    },
+    {
+      "path": "outputs/SOP-SLIDES-002.md",
+      "sha256": "649d9fc8572b61df714c596d119eda6f96f587ec09474bac6bd163f7424d959d"
+    },
+    {
+      "path": "outputs/SOP-SLIDES-002.yaml",
+      "sha256": "ef1530d56a7d6fdb0ea7526b4ac7791c5bd17ff4fb4dd17eea21548469533324"
+    },
+    {
+      "path": "outputs/SOP-SLIDES-003.md",
+      "sha256": "17450ff2f08a5bc296f74570dab2b2c3abfe4d423bbd7715f6e8ba45fa44e8cd"
+    },
+    {
+      "path": "outputs/SOP-SLIDES-003.yaml",
+      "sha256": "c93aa1c0ea7602848f8fe07025542cd9e37364aa7bdf0285a3782f54cc924cea"
+    },
+    {
+      "path": "outputs/SOP-SLIDES-004.md",
+      "sha256": "120fa4d876b552fd16bdedac8e34bcf08db760fcdab50fa9c7676286a6541b5d"
+    },
+    {
+      "path": "outputs/SOP-SLIDES-004.yaml",
+      "sha256": "10b603b97c59fe660764b1069e998c538a44817616de3bfd032741cb5fab03b3"
+    },
+    {
+      "path": "protocols/sop-workflow-integration.md",
+      "sha256": "dc679be266c4b3291f858a1ef6ccd47775aa567131265703172e8e4e0913bd85"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1c46d413fdfcb6617de8a51becb81f87970d754a7c38d43139c5f8b2e0fb4fea"
+    },
+    {
+      "path": "tasks/analyze-sop.md",
+      "sha256": "4c4c59962b0b6140487ed604b083343a40695e904ebf23f11b21a3fc363dbf9a"
+    },
+    {
+      "path": "tasks/analyze-squad.md",
+      "sha256": "4148c98bc4154ed27babe0dd9a22c61416f44106cbf42f39a1c02c0d500b658a"
+    },
+    {
+      "path": "tasks/analyze-workflow.md",
+      "sha256": "fb433110737c2fa1b2af7d14bb034903f1897c7f10d88c441be6658fe2681e16"
+    },
+    {
+      "path": "tasks/audit-batch.md",
+      "sha256": "41695a38b54adb3af0d12e781f7ca99670c0cad989566dee9cad125ae87e0fe8"
+    },
+    {
+      "path": "tasks/audit-sop.md",
+      "sha256": "ca72c30b2c010a3390463a15e83796b9319ea1b449c88c5fafae6351d8056733"
+    },
+    {
+      "path": "tasks/benchmark-sop.md",
+      "sha256": "0fb8c47624a4bf2fd35f6ffd5aebd45fc73eb940e29fe239f0dc6394c52dd9a8"
+    },
+    {
+      "path": "tasks/certify-sop.md",
+      "sha256": "d6e2ad2029a98c59aa28e7dbf4256f128d9093da641f95c9c85ed4d4d9dbf38a"
+    },
+    {
+      "path": "tasks/check-environment.md",
+      "sha256": "b21dd1109c76d1a72592eff59c151d03f1739f3296434a4e397a4c9f61cbc96b"
+    },
+    {
+      "path": "tasks/compliance-check.md",
+      "sha256": "cd2dbd1bfba5c3c88266423838407525b6a1d4d9cbbb8ef984cc3df655ad4fd4"
+    },
+    {
+      "path": "tasks/convert-sop-format.md",
+      "sha256": "c3bc166c252c43d8c41ee538bf192d72e957177f730b65d6aecc0ab9c5ce1102"
+    },
+    {
+      "path": "tasks/create-checklist.md",
+      "sha256": "6b19cabba0c88f1e0a886463002be47b3c1e3ce0a234197410b04fc357cb6065"
+    },
+    {
+      "path": "tasks/create-sop-human.md",
+      "sha256": "285b2698931480384f2b32c55bc95e9793b8163a056a3e441b03b8b5b6d7f92d"
+    },
+    {
+      "path": "tasks/create-sop-ml.md",
+      "sha256": "93cf7902c28c463d315e704e85bf964b06d382ae6e66e342637e5d29593c24bb"
+    },
+    {
+      "path": "tasks/create-sop-operations-suite.md",
+      "sha256": "2eacb6df76377eb43e48306705429b9d319fc06e487b84ec696e561f5d424593"
+    },
+    {
+      "path": "tasks/delete-aiox-sop.md",
+      "sha256": "5069a7b734191acc64fa44e4c93609502ea94476123d275bb55dd7cc2c209f0a"
+    },
+    {
+      "path": "tasks/extract-from-video.md",
+      "sha256": "b6d7619fdbb0a8e690c5813ca6489bb419cd7ae7529559252e853f35cefcf9fb"
+    },
+    {
+      "path": "tasks/extract-sop.md",
+      "sha256": "899943149f29628ad5acfe8da92a20e74721631a6c63ce6edef7a2b331982d93"
+    },
+    {
+      "path": "tasks/load-workspace-context.md",
+      "sha256": "6e3bb437ef9493d4a9c40ffaf0ca9f47b4db55e84b7775e4d6d8002b4988624a"
+    },
+    {
+      "path": "tasks/map-core-sop-backlog.md",
+      "sha256": "f3a8e74f4b195449a428dfbf1674bd6b2b1e862de8702fa3de77a88679f70a49"
+    },
+    {
+      "path": "tasks/re-audit.md",
+      "sha256": "d0aeeda2c5a8b3b56c583564b8850469d7f25d0acbab0f728948e47dd056ca29"
+    },
+    {
+      "path": "tasks/structured-interview.md",
+      "sha256": "aa08fe1220e11f46e6db3b18aa4dc6b262ffe4f8760f46f1e455f2ce55414ae2"
+    },
+    {
+      "path": "tasks/update-aiox-sop.md",
+      "sha256": "ef1ea337f6b0839677f036a86eb5ae1caa1e2ff81af47816944c7f3ab51a0875"
+    },
+    {
+      "path": "templates/audit-report-template.md",
+      "sha256": "7dd47e35457d0f816adc3b22fc323f60669383db944e4eee1b8eca1650acb4c2"
+    },
+    {
+      "path": "templates/certification-template.md",
+      "sha256": "b3a4b30fa0fe9ca4addd3a3151ec5491096780f3ab4e1d6a9d053d770d5a88f6"
+    },
+    {
+      "path": "templates/checklist-from-sop-tmpl.md",
+      "sha256": "e51dff49a63ac1c5612780a422fc9686f1e41c541fb0de80c7cbaf63918e222d"
+    },
+    {
+      "path": "templates/decision-tree-template.yaml",
+      "sha256": "8e47daf513323cbf59650bdf3c8e4667d0a0fe3a08302dce015d428f900522ec"
+    },
+    {
+      "path": "templates/extraction-output-template.md",
+      "sha256": "c0907310d5e83e87a8c27c56ec0d5fe27ac2e7ebdaaab00ca24b2dac18ca76df"
+    },
+    {
+      "path": "templates/handoff-tmpl.yaml",
+      "sha256": "5a421eb4ce6947784b754e2e22632a99197e3d0edcfaa273e7db2d9f07c1edb9"
+    },
+    {
+      "path": "templates/ml-sop-json-template.json",
+      "sha256": "b440fe88c89f5b28cb371f560698b1a17d65261b8180e0d5a9eee4f320e09839"
+    },
+    {
+      "path": "templates/ml-sop-yaml-template.yaml",
+      "sha256": "ee4fb6c4b31e07f6625a894934c21afa1672200f6ef064e758cbd6b4da2ad025"
+    },
+    {
+      "path": "templates/nonconformity-register-template.md",
+      "sha256": "6c6c4593861f9c6da0238c82f8ef1bf7e0e74a34dc08af7abdebf33db9561e31"
+    },
+    {
+      "path": "templates/sop-analysis-report-tmpl.md",
+      "sha256": "ab2f389ba64673403efda3f34535558d79cab556d4916a9b95f5883fb1f9a1d5"
+    },
+    {
+      "path": "templates/sop-human-tmpl.md",
+      "sha256": "6fb9926ec2647b6c58343aa87deb417d80077adf1c287e86e8e4ae4efa982a3e"
+    },
+    {
+      "path": "templates/sop-ml-tmpl.md",
+      "sha256": "eb11b04823240351c5afddaeeaf14c11485159ddfdd1e5170b67b59edd6c513f"
+    },
+    {
+      "path": "templates/sop-scorecard-tmpl.md",
+      "sha256": "0381109f804bcbd9d0945f4a231cadcbf276a17fe4db85cad74d9cd6db53d448"
+    },
+    {
+      "path": "templates/state-machine-template.yaml",
+      "sha256": "10f1a7969e69feefbec90c9cb92d8c2260a3943fbb2277439a743fd96ba2a5b3"
+    },
+    {
+      "path": "templates/tool-binding-template.yaml",
+      "sha256": "b3c7c3d983f6e579bd9c0603165c61525c67e96215a8f082ce8402497ac5f5fe"
+    },
+    {
+      "path": "templates/workflow-gap-report-tmpl.yaml",
+      "sha256": "693baaf24de4b9c59ecfa110a5789ac67e79662a02391898db305264d6ec6805"
+    },
+    {
+      "path": "workflows/wf-sop-audit-pipeline.yaml",
+      "sha256": "7660e178e169c815d34ae1547a5df6a0cd458896914fb93ee3988c5af9b43839"
+    },
+    {
+      "path": "workflows/wf-sop-audit-pipeline.yaml.bak",
+      "sha256": "853662bc7fdd13af45eb7d93903be3f1ada219beb7de29349a3501127079d8a9"
+    },
+    {
+      "path": "workflows/wf-sop-creation-pipeline.yaml",
+      "sha256": "bb7b8950407d781b0100f522fd7c38c740de8fc91a6fcd044281a0cf3e3d086e"
+    },
+    {
+      "path": "workflows/wf-sop-creation-pipeline.yaml.bak",
+      "sha256": "e68b53da60d2b277db85a77ceab92fe484ef51266849db9f933c15c904c7d5b4"
+    },
+    {
+      "path": "workflows/wf-sop-extraction-pipeline.yaml",
+      "sha256": "40c33c7eb7c9942cd3e57dd07e7657d711e828476bb9595a2a91ef632de78d1d"
+    },
+    {
+      "path": "workflows/wf-sop-extraction-pipeline.yaml.bak",
+      "sha256": "3ced04c793645134e700442bb29ad9c19bb5dcd56afea2ec1bd8a1f1f6ed6966"
+    },
+    {
+      "path": "workflows/wf-sop-pipeline-definition.yaml",
+      "sha256": "bc7a6f46b72624433fa7c9572dafb5cb172df3393d1056df7d416d828b8fc67a"
+    },
+    {
+      "path": "workflows/wf-sop-quality-gates.yaml",
+      "sha256": "4f061c7ded70e719dd69f3aaf6c922b1b79a4ff6c28defaf7cf51a5a6ae55a5d"
+    }
+  ]
+}

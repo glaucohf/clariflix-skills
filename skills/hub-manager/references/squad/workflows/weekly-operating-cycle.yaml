@@ -1,0 +1,40 @@
+id: weekly-operating-cycle
+name: Weekly Operating Cycle
+description: Planejamento semanal do hub com foco, prioridades e proximo passo.
+trigger: manual
+checkpoints:
+  - "Foco da semana definido antes de expandir a lista de acoes"
+  - "No maximo 5 acoes no plano final"
+  - "Risco principal explicitado antes de concluir"
+veto_conditions:
+  - "Plano sem foco principal"
+  - "Lista de acoes excessiva e sem prioridade"
+  - "Sem checkpoint final"
+steps:
+  - id: read-moment
+    agent: hub-chief
+    task: diagnose-hub-health
+    purpose: Ler rapidamente o momento do hub.
+  - id: set-focus
+    agent: hub-chief
+    task: plan-weekly-hub
+    purpose: Definir foco e ordem da semana.
+  - id: content-support
+    agent: hub-content
+    task: create-hub-post
+    optional: true
+    purpose: Preparar post ou convite da semana.
+  - id: event-support
+    agent: hub-events
+    task: create-event-plan
+    optional: true
+    purpose: Preparar encontro ou ritual da semana.
+  - id: member-support
+    agent: hub-members
+    task: onboard-hub-member
+    optional: true
+    purpose: Apoiar onboarding ou ativacao.
+outputs:
+  - plano semanal
+  - prioridades
+  - CTA principal da semana

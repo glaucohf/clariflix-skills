@@ -1,0 +1,164 @@
+workflow:
+  id: wf-optimize-workflow
+  name: Optimize Workflow Execution
+  version: "1.0.0"
+  purpose: "Canonical atomic workflow for analyzing and optionally applying workflow optimization in the pro pack."
+  orchestrator: "@pedro-valerio"
+  type: optimization
+  state_machine:
+    states: [init, load, phase-necessity, parallelization, checkpoints, executor-distribution, gap-zero, cost-projection, report, apply, validate, complete, failed]
+    transitions:
+      - trigger: start
+        source: init
+        dest: load
+      - trigger: load_complete
+        source: load
+        dest: phase-necessity
+      - trigger: load_failed
+        source: load
+        dest: failed
+      - trigger: phase_necessity_complete
+        source: phase-necessity
+        dest: parallelization
+      - trigger: phase_necessity_failed
+        source: phase-necessity
+        dest: failed
+      - trigger: parallelization_complete
+        source: parallelization
+        dest: checkpoints
+      - trigger: parallelization_failed
+        source: parallelization
+        dest: failed
+      - trigger: checkpoints_complete
+        source: checkpoints
+        dest: executor-distribution
+      - trigger: checkpoints_failed
+        source: checkpoints
+        dest: failed
+      - trigger: executor_distribution_complete
+        source: executor-distribution
+        dest: gap-zero
+      - trigger: executor_distribution_failed
+        source: executor-distribution
+        dest: failed
+      - trigger: gap_zero_complete
+        source: gap-zero
+        dest: cost-projection
+      - trigger: gap_zero_failed
+        source: gap-zero
+        dest: failed
+      - trigger: cost_projection_complete
+        source: cost-projection
+        dest: report
+      - trigger: cost_projection_failed
+        source: cost-projection
+        dest: failed
+      - trigger: report_complete
+        source: report
+        dest: apply
+      - trigger: report_failed
+        source: report
+        dest: failed
+      - trigger: apply_complete
+        source: apply
+        dest: validate
+      - trigger: apply_failed
+        source: apply
+        dest: failed
+      - trigger: validate_complete
+        source: validate
+        dest: complete
+      - trigger: validate_failed
+        source: validate
+        dest: failed
+      - trigger: fail
+        source: "*"
+        dest: failed
+  mode_contract:
+    scan:
+      execute_steps: [phase-0, phase-1, phase-2, phase-3, phase-4, phase-5, phase-6, phase-7]
+    implement:
+      execute_steps: [phase-0, phase-1, phase-2, phase-3, phase-4, phase-5, phase-6, phase-7, phase-8, phase-9]
+  sequence:
+    - step: phase-0
+      id: phase-0
+      phase: 1
+      phase_name: LOAD
+      agent: pedro-valerio
+      action: execute_load
+      task_ref: tasks/optimize-workflow-load.md
+      next: phase-1
+    - step: phase-1
+      id: phase-1
+      phase: 2
+      phase_name: PHASE NECESSITY
+      agent: pedro-valerio
+      action: execute_phase_necessity
+      task_ref: tasks/optimize-workflow-phase-necessity.md
+      next: phase-2
+    - step: phase-2
+      id: phase-2
+      phase: 3
+      phase_name: PARALLELIZATION
+      agent: pedro-valerio
+      action: execute_parallelization
+      task_ref: tasks/optimize-workflow-parallelization.md
+      next: phase-3
+    - step: phase-3
+      id: phase-3
+      phase: 4
+      phase_name: CHECKPOINTS
+      agent: pedro-valerio
+      action: execute_checkpoints
+      task_ref: tasks/optimize-workflow-checkpoints.md
+      next: phase-4
+    - step: phase-4
+      id: phase-4
+      phase: 5
+      phase_name: EXECUTOR DISTRIBUTION
+      agent: pedro-valerio
+      action: execute_executor_distribution
+      task_ref: tasks/optimize-workflow-executor-distribution.md
+      next: phase-5
+    - step: phase-5
+      id: phase-5
+      phase: 6
+      phase_name: GAP ZERO
+      agent: pedro-valerio
+      action: execute_gap_zero
+      task_ref: tasks/optimize-workflow-gap-zero.md
+      next: phase-6
+    - step: phase-6
+      id: phase-6
+      phase: 7
+      phase_name: COST PROJECTION
+      agent: pedro-valerio
+      action: execute_cost_projection
+      task_ref: tasks/optimize-workflow-cost-projection.md
+      next: phase-7
+    - step: phase-7
+      id: phase-7
+      phase: 8
+      phase_name: REPORT
+      agent: pedro-valerio
+      action: execute_report
+      task_ref: tasks/optimize-workflow-report.md
+      next: phase-8
+    - step: phase-8
+      id: phase-8
+      phase: 9
+      phase_name: APPLY
+      agent: pedro-valerio
+      action: execute_apply
+      task_ref: tasks/optimize-workflow-apply.md
+      next: phase-9
+    - step: phase-9
+      id: phase-9
+      phase: 10
+      phase_name: VALIDATE
+      agent: pedro-valerio
+      action: execute_validate
+      task_ref: tasks/optimize-workflow-validate.md
+    - workflow_end:
+        id: complete
+        action: workflow_complete

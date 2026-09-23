@@ -1,0 +1,136 @@
+workflow:
+  id: wf-brownfield-upgrade-squad
+  name: Brownfield Squad Upgrade
+  version: 1.1.0
+  purpose: Upgrade existing squads with safe phase reexecution and final artifact quality gates
+  description: Brownfield orchestration with module imports and guarded phase reexecution.
+  orchestrator: "@squad-chief"
+  type: brownfield
+  state_machine:
+    states: [init, discovery, baseline, upgrade-plan, workspace-governance, workspace-hardening, selective-rerun, optimization, integration, quality-gates, complete, failed]
+    transitions:
+      - trigger: start
+        source: init
+        dest: discovery
+      - trigger: discovery_complete
+        source: discovery
+        dest: baseline
+      - trigger: discovery_failed
+        source: discovery
+        dest: failed
+      - trigger: baseline_complete
+        source: baseline
+        dest: upgrade-plan
+      - trigger: baseline_failed
+        source: baseline
+        dest: failed
+      - trigger: upgrade_plan_complete
+        source: upgrade-plan
+        dest: workspace-governance
+      - trigger: upgrade_plan_failed
+        source: upgrade-plan
+        dest: failed
+      - trigger: workspace_governance_complete
+        source: workspace-governance
+        dest: workspace-hardening
+      - trigger: workspace_governance_failed
+        source: workspace-governance
+        dest: failed
+      - trigger: workspace_hardening_complete
+        source: workspace-hardening
+        dest: selective-rerun
+      - trigger: workspace_hardening_failed
+        source: workspace-hardening
+        dest: failed
+      - trigger: selective_rerun_complete
+        source: selective-rerun
+        dest: optimization
+      - trigger: selective_rerun_failed
+        source: selective-rerun
+        dest: failed
+      - trigger: optimization_complete
+        source: optimization
+        dest: integration
+      - trigger: optimization_failed
+        source: optimization
+        dest: failed
+      - trigger: integration_complete
+        source: integration
+        dest: quality-gates
+      - trigger: integration_failed
+        source: integration
+        dest: failed
+      - trigger: quality_gates_complete
+        source: quality-gates
+        dest: complete
+      - trigger: quality_gates_failed
+        source: quality-gates
+        dest: failed
+      - trigger: fail
+        source: "*"
+        dest: failed
+  sequence:
+    - import: modules/module-discovery.yaml
+      agent: various
+      action: import_module
+    - phase: baseline
+      agent: various
+      task: validate-squad
+      task_ref: tasks/validate-squad.md
+      action: capture_baseline_validation
+      notes: Capture baseline score before changes
+    - phase: upgrade-plan
+      agent: various
+      task: upgrade-squad
+      task_ref: tasks/upgrade-squad.md
+      action: define_upgrade_plan
+    - phase: workspace-governance
+      agent: various
+      task: validate-squad
+      task_ref: tasks/validate-squad.md
+      action: validate_workspace_governance
+      notes: Ensure upgraded squad declares valid workspace integration level and contract
+    - phase: workspace-hardening
+      agent: various
+      task: workspace-integration-hardening
+      task_ref: tasks/workspace-integration-hardening.md
+      action: harden_workspace_integration
+      notes: Enforce template-first pairing and apply workspace contract remediations when needed
+    - phase: selective-rerun
+      agent: various
+      task: reexecute-squad-phase
+      action: reexecute_changed_phases
+      optional: true
+      notes: Use when upgrade modifies phase-critical artifacts
+    - phase: optimization
+      agent: various
+      task: optimize-workflow
+      task_ref: tasks/optimize-workflow.md
+      action: optimize_workflow
+    - import: modules/module-integration.yaml
+      agent: various
+      action: import_module
+    - import: modules/module-quality-gates.yaml
+      agent: various
+      action: import_module
+  checkpoints:
+    - id: CP_BASELINE
+      phase: baseline
+      decision: CONTINUE_OR_ABORT
+    - id: CP_RERUN
+      phase: selective-rerun
+      decision: APPROVE_RERUN
+    - id: CP_WORKSPACE
+      phase: workspace-governance
+      decision: WORKSPACE_GOVERNANCE_PASS
+    - id: CP_WORKSPACE_HARDENING
+      phase: workspace-hardening
+      decision: WORKSPACE_CONTRACT_VALID
+    - id: CP_FINAL
+      phase: quality-final-artifacts
+      decision: PASS_OR_REVISE
+  outputs:
+    - .aiox/squad-runtime/squad-upgrade/{squad_name}/upgrade-report.yaml
+    - .aiox/squad-runtime/squad-upgrade/{squad_name}/before-after-score.yaml
+    - .aiox/squad-runtime/squad-upgrade/{squad_name}/workspace-governance-report.yaml
+    - .aiox/squad-runtime/squad-upgrade/{squad_name}/workspace-hardening-final.yaml

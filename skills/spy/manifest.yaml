@@ -1,0 +1,15 @@
+row: marketing
+title: Mercado em foco
+title_netflix: SPY
+subtitle: Pesquisa concorrentes, sinais e inteligência de mercado
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 141 arquivo(s) de origem
+  requer: Mercado, concorrente ou pergunta
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Concorrentes, Sinais, Insights]
+  generos: [Pesquisa, Marketing, Inteligência]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

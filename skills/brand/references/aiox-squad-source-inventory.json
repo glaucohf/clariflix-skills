@@ -1,0 +1,280 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/brand",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/aaker-brand-identity.md",
+      "sha256": "818bbef72512d0c9c9441921df54d528acf0093ac63290cfd3782f920a1d522c"
+    },
+    {
+      "path": "agents/archetype-consultant.md",
+      "sha256": "22908248bed02b25e38367c2645492b9d608947002b85fb5d31923285507869f"
+    },
+    {
+      "path": "agents/brand-chief.md",
+      "sha256": "1209d6e2c34c2f54b14170b9df636d9685bc520eab1a1f7b07b6f185623b6a5b"
+    },
+    {
+      "path": "agents/brand-strategist.md",
+      "sha256": "9e43a499620bc54a95d85a27d3fd6cdc40f2cb9424eb5e429de395d1e674317b"
+    },
+    {
+      "path": "agents/domain-scout.md",
+      "sha256": "a9d9bc45ac12794b661c8dfcd517361cea2fa8dee23e0c3f9a782383543f2d71"
+    },
+    {
+      "path": "agents/heyward-dtc-brand.md",
+      "sha256": "b00911b458bb212a503a334e777faf547b755d97852a3c586ec886dc38ea5116"
+    },
+    {
+      "path": "agents/keller-brand-equity.md",
+      "sha256": "9726338551239138cf29712fc00eb5c6cbff7ae4b4ef22b240a49dd9801a1a23"
+    },
+    {
+      "path": "agents/miller-sticky-brand.md",
+      "sha256": "ae5745b52db1be48e226ea81291801ddea8b4144044c3a8cb22063491e337be1"
+    },
+    {
+      "path": "agents/naming-strategist.md",
+      "sha256": "84dfdcda77e5f07d14683264f5605eccb192ecb9a7c84a4bbc84f0ff45d3d103"
+    },
+    {
+      "path": "agents/nano-banana-generator.md",
+      "sha256": "597f3581e05770301aea61cef26234fe1110d5c6b1868dab17524b1cd39b487d"
+    },
+    {
+      "path": "agents/neumeier-differentiation.md",
+      "sha256": "10bbaa4114002bd7407afa399f5f6112e7482f8693e4cc55d7d319182bb7925e"
+    },
+    {
+      "path": "agents/ries-positioning.md",
+      "sha256": "b29db626aa96165ac8c185f54a61a8f4751e0189d978cd215ab6dfa4431c7e64"
+    },
+    {
+      "path": "agents/sharp-brand-science.md",
+      "sha256": "b97dfaac9e4da2cb68b79bfe28dc6d6d7c6b8a11029e927c0d3cbf1b42de74ef"
+    },
+    {
+      "path": "agents/storybrand-narrator.md",
+      "sha256": "a026be7d6a23e06ae7be800ecbf5e0cde9ba8002f46222293bda8a8a4afcf36a"
+    },
+    {
+      "path": "agents/wheeler-brand-design.md",
+      "sha256": "bef321d0bb846457f833311aa771ba4cfc5a809260e82b9c112a3adf945a5b3f"
+    },
+    {
+      "path": "agents/yohn-brand-culture.md",
+      "sha256": "96d4eed6e477241c396ccd206e0a0a3eb9fccb740dd333eed4d02a590ae54f8f"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "sha256": "f3f0a0a0281db89c3747be09a02ea870fa57b4c0b12bc4dab9034ae5eb314212"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "7fa9f626780d498df61c8437111a207b62f6c9dcfae5540baa66e0c52e5af5be"
+    },
+    {
+      "path": "checklists/brand-naming-checklist.md",
+      "sha256": "b5649f3fb9690f69f02a7bb90099fcfba8963cd8b19f65fea9a8a562a95fa394"
+    },
+    {
+      "path": "checklists/brand-quality-gate.md",
+      "sha256": "44ab91030029b7baccd3af69123385c8bb0f3e2e848b4a27706c248dc81c4958"
+    },
+    {
+      "path": "config/veto-conditions.yaml",
+      "sha256": "9ccb1a85708ade389a921cdcaa4ee3476a1ef156d2226e5726ec92195f56237e"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "d523bbc4ef766070dec3e7ced5fca2b6b7976b56e852fddd1cedbc98a19168f8"
+    },
+    {
+      "path": "data/brand-mappings.yaml",
+      "sha256": "310e1630620770153bbd7d75ae9c2086c4a2e2825af2562cd463b5a0addffb4d"
+    },
+    {
+      "path": "data/logo-scds-templates.yaml",
+      "sha256": "b3fb344e5b4713e5677f4ca191b1936e88132ca73f0616fc71240b9a80824885"
+    },
+    {
+      "path": "data/logo-style-library.yaml",
+      "sha256": "a7559015be68b33720db0e9139c8c2e865fa8f63bd3941a2372aa41cca9fafb2"
+    },
+    {
+      "path": "data/swipe-file.yaml",
+      "sha256": "17fa842e9e6cb0ce2723cb00644044467e277fb847d92b73dbeebe6a482c7e43"
+    },
+    {
+      "path": "docs/governance-flow.md",
+      "sha256": "6af0b227ef7894993548f82782e79af8d384dfbe7b311728012491cb0c8fcb69"
+    },
+    {
+      "path": "docs/optimization-economy-2026-03-10.md",
+      "sha256": "1af4d555d7d28be639fda1437f8d2fe31a7f7162cfb25419a643fec70b6ad485"
+    },
+    {
+      "path": "docs/optimization-material-inventory-2026-03-10.yaml",
+      "sha256": "7671efca95057b36ac8acfb923df18a6c1a479cc870620b6a64f17af4086a968"
+    },
+    {
+      "path": "docs/optimization-validation-2026-03-10.json",
+      "sha256": "f7accf8397fa5d3514d8fe59625ca0f792a0a199346a8467e91ed13412b159ff"
+    },
+    {
+      "path": "docs/optimization-yolo-plan-2026-03-10.md",
+      "sha256": "b22a4fe40e28be1b80b1b7f1adfc1a17552a76a18fd16ab1661959b5d97fb2e0"
+    },
+    {
+      "path": "docs/optimization-yolo-report-2026-03-10.md",
+      "sha256": "4c215fb58da21d4e74e06ffd855fdfca462cd1ee722d920ec03cb7c57eac81a8"
+    },
+    {
+      "path": "README.md",
+      "sha256": "e1104b6b54e7e559ddf9015614b0452a89fd93a29d86681a127756ee26750b17"
+    },
+    {
+      "path": "tasks/brand-activation.md",
+      "sha256": "9f3669c00cb142de4fb769c0c36fd2b43c4e813e11348866fb89173d5a926511"
+    },
+    {
+      "path": "tasks/brand-book.md",
+      "sha256": "9bb9d4dc33e103a2d60ea118f6641dcdedd6c1d38721c6e800ce22b193372b00"
+    },
+    {
+      "path": "tasks/brand-consulting.md",
+      "sha256": "8d1d00ca68a0f0fae5366242135e81376f8bbbd464104352a83fc4dfa3b052d8"
+    },
+    {
+      "path": "tasks/brand-diagnosis.md",
+      "sha256": "a87d14e75a0a004994b68c306cefc8cf72618d58ae5d83b685fc3c3c470a28ec"
+    },
+    {
+      "path": "tasks/brand-identity.md",
+      "sha256": "09ca9785f518e58a6b17f2718d45985d9b440a9a8f5fc78e51ce18753602faa3"
+    },
+    {
+      "path": "tasks/brand-messaging.md",
+      "sha256": "3a5b68cc72723bc748f6c044515f7b1c918f04289ebf055caf682cc9821806e4"
+    },
+    {
+      "path": "tasks/brand-quality-gate.md",
+      "sha256": "a53ab9b6d75cdfe552f79f27049cf6d706bed78e040151ba7f3d4268e89bd202"
+    },
+    {
+      "path": "tasks/create-brand-epic.md",
+      "sha256": "30163565386473b0d6c4f818700d193fc3a0145edeef8b275abc1727da4a964a"
+    },
+    {
+      "path": "tasks/create-brand-story.md",
+      "sha256": "bf1e20e4a9a919da28a4f2dd5138131bb4d03ce07b7a10439186b2e8a2cee733"
+    },
+    {
+      "path": "tasks/delete-brand.md",
+      "sha256": "d598638ca78fe28e7bab56a8930888d821261fee08b52d03e5c5d7ffc3e97ba5"
+    },
+    {
+      "path": "tasks/domain-check.md",
+      "sha256": "5d9e236272541a08de481a7401a047fa7f9b3940906b8f753d09eba37258ffe9"
+    },
+    {
+      "path": "tasks/load-workspace-context.md",
+      "sha256": "716c9eddcc629222a3458109d84e5c98b5065d1bf6f881105be834c46e8ddac3"
+    },
+    {
+      "path": "tasks/logo-curate.md",
+      "sha256": "1d5617eab489e61b57bea96cd8afeaddb90b8719ac8c5b2ffe4a4767ffc4c0bd"
+    },
+    {
+      "path": "tasks/logo-deliverable.md",
+      "sha256": "d3e06f6a7788e6adc7d11a4fea28d15020ddbeee7a31782c8b0127b4ec6a681e"
+    },
+    {
+      "path": "tasks/logo-generate.md",
+      "sha256": "61907519cd461635d0b1dde16bd805c16fc390046635f4e7400066b229a295eb"
+    },
+    {
+      "path": "tasks/logo-intake.md",
+      "sha256": "cf461e93a5e766762f165d60137676a9bac89aaba879ffe9e4c2a6b552e76e57"
+    },
+    {
+      "path": "tasks/logo-prompt-engineering.md",
+      "sha256": "43f16ee3fe5c2ced86ac7f499f67b5f1744238b61dc99cf19a68e1439635756d"
+    },
+    {
+      "path": "tasks/logo-refine.md",
+      "sha256": "71c0cd8eddc73a263afbe435f64fa1c4aef3347812621850e07aff6598773b4e"
+    },
+    {
+      "path": "tasks/logo-strategic-direction.md",
+      "sha256": "4dca11a2bf3aa934b36b6120881594ff582d706a13de4d3d71a2072fd1a7cc0c"
+    },
+    {
+      "path": "tasks/naming-generation.md",
+      "sha256": "d665adfa9dad914bbbbce50a141e78212ce0b752033be4d17d105856dc5b4c9c"
+    },
+    {
+      "path": "tasks/positioning-narrative.md",
+      "sha256": "56db89f81a33f6099c99866be9b87f5449c186c91b8ed69af486f2480b24f125"
+    },
+    {
+      "path": "tasks/update-brand.md",
+      "sha256": "99404771788b3d5c1c49ea21c063311f660d053923de56a23ed484807151b612"
+    },
+    {
+      "path": "templates/brand-epic-tmpl.md",
+      "sha256": "8738a8a43cfe9c8b206ec199507ddcb6c38c29490d1196f2e2966991a8e3ed77"
+    },
+    {
+      "path": "templates/brand-story-tmpl.md",
+      "sha256": "ecea312326c130e7b50b632ed10ca73fbe28dc4558f1ef206e66b8e19ad2f294"
+    },
+    {
+      "path": "templates/brandbook-tmpl.yaml",
+      "sha256": "f419ad1d0b64e704066287c91348c0510bfe3763ff81bb337024335c5c92d9d4"
+    },
+    {
+      "path": "templates/naming-report-tmpl.md",
+      "sha256": "c30b52d94386227f070861659333dd9a738df6742df263cd40b99b1365f8f99d"
+    },
+    {
+      "path": "workflows/wf-brand-activation-system.yaml",
+      "sha256": "99bb2feabc59892d59ef6c3b9c9b36dcf6ab673348eb1f932658286f12f49a91"
+    },
+    {
+      "path": "workflows/wf-brand-all-hands.yaml",
+      "sha256": "00cd7716bbe4cd83dfdaa9cf3ce9e378a2d22dd1fb8bc9555780af40128c3a7c"
+    },
+    {
+      "path": "workflows/wf-brand-complete.yaml",
+      "sha256": "80cda81c6bc730e34a27603e1f7a23b6d2b6d6de7b24b7b066df27a5f0e0c149"
+    },
+    {
+      "path": "workflows/wf-brand-consulting.yaml",
+      "sha256": "c8207d6620bc9d28af74108a113e764e86e964992d3f2dad69d970b50c3fca1e"
+    },
+    {
+      "path": "workflows/wf-brand-foundations.yaml",
+      "sha256": "d56e287145a874089da5962b6f1b6388bd0ded1b8d823905f5fd1172c6c344ab"
+    },
+    {
+      "path": "workflows/wf-brand-mockup-generation.yaml",
+      "sha256": "9ac48641e9e882f0020a2d310db273d8e8a457d7032c852a9dc3b02708af29a1"
+    },
+    {
+      "path": "workflows/wf-brand-positioning-narrative.yaml",
+      "sha256": "d1ecae63ff9e6c297c540a8f3976b4c7b52cd34c9300c47628cf2f526f54cd51"
+    },
+    {
+      "path": "workflows/wf-logo-brainstorm.yaml",
+      "sha256": "eb7a5e682eb9108e7dcd9140409493876e6805b31fd4df3bcad3e2fab6a79e53"
+    },
+    {
+      "path": "workflows/wf-naming-to-domain.yaml",
+      "sha256": "8f9e92e44517f14d7480cec207a299be05e5872c05000de0acd707764e7e419d"
+    }
+  ]
+}

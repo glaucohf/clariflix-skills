@@ -1,0 +1,71 @@
+{
+  "$schema": "asset-manifest-v1",
+  "metadata": {
+    "source_url": "https://example.com/landing-page",
+    "extraction_date": "2026-03-24T14:30:00Z",
+    "extractor_version": "1.0.0"
+  },
+  "images": [
+    {
+      "original_url": "https://example.com/images/hero-banner.jpg",
+      "local_path": "images/hero-banner-a1b2c3.jpg",
+      "type": "image",
+      "status": "downloaded",
+      "alt": "Hero banner showing product dashboard",
+      "alt_source": "original",
+      "selector": "section.hero > img",
+      "width": 1920,
+      "height": 1080,
+      "size_bytes": 245760,
+      "sha256": "a3b4c5d6e7f8091a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a"
+    },
+    {
+      "original_url": "https://cdn.example.com/assets/testimonial-avatar.png",
+      "local_path": "images/testimonial-avatar-f9e8d7.png",
+      "type": "image",
+      "status": "cors_blocked",
+      "alt": "Customer testimonial photo",
+      "alt_source": "original",
+      "selector": "div.testimonial > img.avatar"
+    }
+  ],
+  "svgs": [
+    {
+      "original_url": "https://example.com/icons/logo.svg",
+      "local_path": "svgs/logo-c6d7e8.svg",
+      "type": "svg",
+      "status": "downloaded",
+      "selector": "header > a.brand > svg",
+      "size_bytes": 3420,
+      "sha256": "1122334455667788990011223344556677889900aabbccddeeff0011223344ff"
+    }
+  ],
+  "fonts": [
+    {
+      "original_url": "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiA.woff2",
+      "local_path": "fonts/inter-regular-d4e5f6.woff2",
+      "type": "font",
+      "status": "downloaded",
+      "size_bytes": 98304,
+      "sha256": "deadbeef0123456789abcdef0123456789abcdef0123456789abcdef01234567"
+    }
+  ],
+  "icons": [
+    {
+      "original_url": "https://example.com/icons/checkmark.svg",
+      "local_path": "icons/checkmark-b2c3d4.svg",
+      "type": "icon",
+      "status": "skipped_size",
+      "alt": "",
+      "alt_source": "decorative",
+      "selector": "ul.features > li > svg.icon"
+    }
+  ],
+  "stats": {
+    "total": 5,
+    "downloaded": 3,
+    "failed": 1,
+    "skipped": 1,
+    "total_size_bytes": 347484
+  }
+}

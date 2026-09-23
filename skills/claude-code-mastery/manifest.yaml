@@ -1,0 +1,15 @@
+row: especialistas
+title: Claude Code em domínio
+title_netflix: CLAUDE CODE MASTERY
+subtitle: Orienta hooks, skills, MCP e subagentes no Claude Code
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 82 arquivo(s) de origem
+  requer: Repositório e objetivo técnico
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Hooks, Skills, MCP]
+  generos: [Desenvolvimento, Agentes, Claude Code]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

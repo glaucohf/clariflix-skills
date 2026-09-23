@@ -1,0 +1,15 @@
+row: sop
+title: SOP de ponta a ponta
+title_netflix: AIOX SOP
+subtitle: Estrutura SOPs com qualidade, evidências e melhoria contínua
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 104 arquivo(s) de origem
+  requer: Processo, responsáveis e evidências
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Processo, Qualidade, Melhoria]
+  generos: [SOP, Operações, Qualidade]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

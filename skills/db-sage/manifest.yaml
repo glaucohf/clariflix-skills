@@ -1,0 +1,15 @@
+row: operacoes
+title: Banco sem mistério
+title_netflix: DB SAGE
+subtitle: Orienta PostgreSQL e Supabase com foco em dados e consultas
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 56 arquivo(s) de origem
+  requer: Schema, consulta ou problema de banco
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Schema, Consultas, Segurança]
+  generos: [Banco de dados, PostgreSQL, Supabase]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

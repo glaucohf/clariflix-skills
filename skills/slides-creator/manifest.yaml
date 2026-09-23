@@ -1,0 +1,15 @@
+row: marketing
+title: Slides que convencem
+title_netflix: SLIDES CREATOR
+subtitle: Cria apresentações estruturadas com narrativa e design
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 147 arquivo(s) de origem
+  requer: Briefing, público e objetivo
+  como_usar: 'Instale a squad e siga os pré-requisitos declarados pela fonte'
+  elenco: [Narrativa, Slides, Design]
+  generos: [Apresentações, Marketing, Storytelling]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

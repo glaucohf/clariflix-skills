@@ -1,0 +1,1372 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/squads/squad-creator",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "6914b498b799bbbbab32fac251586cca05d6c253711ed1f2e7fcdcad9ea3a608"
+    },
+    {
+      "path": "agents/squad-chief.md",
+      "sha256": "903e31b1ba78fb2dec437bffd01284e8f8692ed5d872e576d329f3b61c7924ac"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "93e149df3b9a7aa0dce561a76375df78fa5b8c1b33b55c9d020469c16de5e91c"
+    },
+    {
+      "path": "checklists/agent-quality-gate.md",
+      "sha256": "240de93bd8badf2acc526f5c2076e6ed70c163d715894d9e202c8efb0a99c4b4"
+    },
+    {
+      "path": "checklists/analysis-quality-checklist.md",
+      "sha256": "5a4c92b7a48c54527e13afc13643b08538f682e425e7d34a24f8d41154e4b83a"
+    },
+    {
+      "path": "checklists/create-agent-checklist.md",
+      "sha256": "446fed1a3b488b6ef9c69ab477c67c16d8ae6796e54d173a385babe078b2f9d4"
+    },
+    {
+      "path": "checklists/create-squad-checklist.md",
+      "sha256": "514d2f84dfecf7efa420c3eef156e946e6e6f8acfa24073919d7ca8bdcef98f3"
+    },
+    {
+      "path": "checklists/create-task-checklist.md",
+      "sha256": "80720f4e22aa85f77e6189ada21d2c27431071d38b677cfbb8eccc5ad64ca7a9"
+    },
+    {
+      "path": "checklists/create-workflow-checklist.md",
+      "sha256": "076a946aa4af0549928b3a2d9c1e1900e39703e732d684f798e7ceb19c3d3df7"
+    },
+    {
+      "path": "checklists/greeting-script-checklist.md",
+      "sha256": "386ff097415fd65d36160097bb8b7d4b9add132e709cd0d4df991eee62f291e2"
+    },
+    {
+      "path": "checklists/install-commands-checklist.md",
+      "sha256": "5b0662b1024114de21126ddd4053ce671e06c02960e5481190ad193859886428"
+    },
+    {
+      "path": "checklists/install-skills-checklist.md",
+      "sha256": "0df6ee54b267713d4e65f73f5284fd1a2f10eee30ef126ce83ca2eb317c76d84"
+    },
+    {
+      "path": "checklists/pipeline-runner-checklist.md",
+      "sha256": "0a4940831227f18b4efe3c86c6663a632dd26b15902605704b70a87d2cf01b9b"
+    },
+    {
+      "path": "checklists/report-quality-checklist.md",
+      "sha256": "41a77ad8623b251c7b252fdfc40a1ed834c96316b02f1a36b11d7fdd1e2f515b"
+    },
+    {
+      "path": "checklists/smoke-test-agent.md",
+      "sha256": "a41e0f3db206dcb911fe50491be504073f0788163f9fe5a954c27b1e518ae001"
+    },
+    {
+      "path": "checklists/squad-checklist.md",
+      "sha256": "3054320272de62f7099496db8d5825004cec53c02fa369a9e1e24dfb57cff00c"
+    },
+    {
+      "path": "checklists/squad-consistency-patterns.md",
+      "sha256": "70efe4a456db7316fb58bb60827c9cc70bdce1233b6325bc074de1ac60c22afd"
+    },
+    {
+      "path": "checklists/squad-overview-checklist.md",
+      "sha256": "c23a05346a501d2c4326f065cb19c61acc639a0b945b4cd80088ef716be388c7"
+    },
+    {
+      "path": "checklists/squad-structural-completeness.md",
+      "sha256": "7d492c6f89abb6d285c275830588d9c3593b15c661aab235492f13234c96a60e"
+    },
+    {
+      "path": "checklists/task-anatomy-checklist.md",
+      "sha256": "c5ba704629bd34e288b66f805d0f5df22a6137ae454cac77d2a421decea87624"
+    },
+    {
+      "path": "checklists/upgrade-squad-checklist.md",
+      "sha256": "2985eb1e70b2da66238d76b9b8b9d0adb414f5d820a2f05df5a848d1a81eaec5"
+    },
+    {
+      "path": "config/squad-config.yaml",
+      "sha256": "440d09f607bdf33e8729617ab87462ecac8d1172a9e798b4ab0d21f488c5f563"
+    },
+    {
+      "path": "config/workflow-yaml-schema.yaml",
+      "sha256": "c7ab853652afb3c521893c1b115fa0b2d9f260eed60252a532a929408346031d"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "635c70397b5c11e1acf17fe111562ec07bacbaee33ffcf26443dcb0e4b3d4190"
+    },
+    {
+      "path": "data/base-core-contract.yaml",
+      "sha256": "fae3d5d51284fa3fbc291687c4035d849b32a51215eb0c9fc2725b2d8e839de1"
+    },
+    {
+      "path": "data/baselines/ecosystem-baseline.yaml",
+      "sha256": "d290ffd5872fe72e5f1e6921ab62bc9cb957115b2696cc3ec632714b30e29002"
+    },
+    {
+      "path": "data/baselines/initial-radar.yaml",
+      "sha256": "e861e7c155d384061c7b6b415f58a034df1da20d83d6624a5375627f7bcf8477"
+    },
+    {
+      "path": "data/best-practices.md",
+      "sha256": "f0c76e9c076469ab83ab7567807f70d6ed160cf190e1392515f6c657e6aa72ff"
+    },
+    {
+      "path": "data/cc-agent-schema-ref.yaml",
+      "sha256": "e35141f9d9cb3d76221ae547487cac3d956ed54bf05042fe426847853be8c0cb"
+    },
+    {
+      "path": "data/core-heuristics.md",
+      "sha256": "785502f1a23f04796ec955a87196474d2b8ccad051498693d319af1eb122b62a"
+    },
+    {
+      "path": "data/decision-heuristics-framework.md",
+      "sha256": "72b47f7cfc37f138bb409aa556ce530ea600b2cd29c3672bf5db84938fe11d1d"
+    },
+    {
+      "path": "data/design-heuristics-diagnostic-systems.md",
+      "sha256": "85076f317e4894232b55999e1fdaffe25356732fe3f1c27eee2342a440f9022e"
+    },
+    {
+      "path": "data/executor-decision-tree.md",
+      "sha256": "e33fcad67d7fb06c59c66a07a0bd47a4f8151dfa1b3e3c4c749e175080590d84"
+    },
+    {
+      "path": "data/executor-matrix-framework.md",
+      "sha256": "569294e4321af5a88b3589e9f38f0a425db87d69ecdcf8d1855d61abd67eda1f"
+    },
+    {
+      "path": "data/hybridops-patterns.md",
+      "sha256": "b4d853b5de33446ab94abebabaf936a0c6952e742de514b9fc25ed380c6d1232"
+    },
+    {
+      "path": "data/journey-log-events.yaml",
+      "sha256": "168f982624d1a8ddb0e16bc8c354694a709611f2daaf5ff03bb6618abc16c8a8"
+    },
+    {
+      "path": "data/kaizen-legacy/kaizen-infrastructure-map.yaml",
+      "sha256": "309dd11840eeccd96ee95f7e64e4f15b6a3a6a9ae7ae50ff9f0142bd6b4c20c7"
+    },
+    {
+      "path": "data/kpi-baseline.yaml",
+      "sha256": "97439faca5eb6bee39dcebf13dfb3e0f0346ee06eda8936add5723455e01cd22"
+    },
+    {
+      "path": "data/pipeline-patterns.md",
+      "sha256": "344bc5233fbed4761fd515f92d1a1637d54138ccbf19b3c43cbfb781695b347c"
+    },
+    {
+      "path": "data/process-token-map.yaml",
+      "sha256": "ef052d68792cb20de4f23d07c63b4d8995f095169ac18421e06fd61c2103470c"
+    },
+    {
+      "path": "data/quality-dimensions-framework.md",
+      "sha256": "bb2ffb6c9598c58560ee07c1dd997c3c2172e26cf314d540bfeb1b64af85523b"
+    },
+    {
+      "path": "data/quality-gates.yaml",
+      "sha256": "b2da17cc67262da4f78edf7deeb831b3ebf26eaa540d19d942f76e600230a6bf"
+    },
+    {
+      "path": "data/radar/initial-radar.yaml",
+      "sha256": "d977abde45cd3195bc108b3212d607301ddb59465c42539ded7aba94bc2a738d"
+    },
+    {
+      "path": "data/recommendation-tracker.yaml",
+      "sha256": "805e1dc0eea437117766d06a46ccc560cec88c926bce48b5b7b92c2cece51e0d"
+    },
+    {
+      "path": "data/reports/self-improve-2026-02-15.md",
+      "sha256": "a412b66c63b1fd77a7d85465a33136e3de8d362cac12cbc34dff98b28843714b"
+    },
+    {
+      "path": "data/reports/week-07-2026-02-15.md",
+      "sha256": "0665d5c4f2b4a52541508611d119fe63601077f3be8944adb5c6415ec8286fbd"
+    },
+    {
+      "path": "data/reports/week-09-2026-02-28.md",
+      "sha256": "e01883be94879c951f0ee5e70a6bff695e50a2e6e128554cc2b78303b063c565"
+    },
+    {
+      "path": "data/reports/week-14-2026-04-04.md",
+      "sha256": "0db6196701e927a2ee7b67426f1540c7f2ab46ccf1811170d7f989baee0ba9aa"
+    },
+    {
+      "path": "data/squad-analytics-guide.md",
+      "sha256": "172522a0d197f6166b7744d3612dfcd2d3f28d726121157f5ae9e695c5c85442"
+    },
+    {
+      "path": "data/squad-creator-infrastructure-map.yaml",
+      "sha256": "47d47032e4fa2eea6b9938ac19a8439a8e442c64f123dca1bbc24b5f0c4b2474"
+    },
+    {
+      "path": "data/squad-creator-service-catalog.yaml",
+      "sha256": "c5ab339aa84ef573ddfc0791d407cc57b16a56ef253edb307ae8b67f4a1e3827"
+    },
+    {
+      "path": "data/squad-kb.md",
+      "sha256": "c5fcf3deddcabf0ee673165daa32b28fbd84e05e3d351d90d2bbdd8878d762cc"
+    },
+    {
+      "path": "data/squad-registry.yaml",
+      "sha256": "d57fa16c40f0758ec6b7b8191c39df901dc3245d691e0c11e30d0d7197063b79"
+    },
+    {
+      "path": "data/squad-type-definitions.yaml",
+      "sha256": "fa5857510b8be9fb9b9bb7129e9989a9fe923b0afce9d778e981fc4725f9ddbf"
+    },
+    {
+      "path": "data/tier-system-framework.md",
+      "sha256": "1cfc0ad84810acb7b8454ea7f58293881db58bfcc92dc8d5f91fa9d2ad3db552"
+    },
+    {
+      "path": "data/tool-discovery-sources.yaml",
+      "sha256": "0f22f6fc152789af259c5bf8a30cde39726fd4ba191dfaaf6c3fdf59bf98c6f4"
+    },
+    {
+      "path": "docs/ADR-001-model-tier-qualification.md",
+      "sha256": "4e9baa4c0f77027813ed58d34ef4e6da302d06b4726f490a4a3b166012ca1337"
+    },
+    {
+      "path": "docs/AGENT-COLLABORATION.md",
+      "sha256": "b5ac8f1ecbdba5b58f9f19cf5533e6ff34d53e92a690825265127be07f169415"
+    },
+    {
+      "path": "docs/ARCHITECTURE-DIAGRAMS.md",
+      "sha256": "1124a9973bbf06151e23a8dfc70c25a3f26cecdc5aa00936f45611149568e518"
+    },
+    {
+      "path": "docs/COMMANDS.md",
+      "sha256": "fd916769aaea8e3073b7435124dede511e052f3f58e840d412e872457ce2bc6d"
+    },
+    {
+      "path": "docs/CONCEPTS.md",
+      "sha256": "bbc444a3a59725b2618b21b3d0894fd207f8d56e71cdfad88b5920fb4a6462a6"
+    },
+    {
+      "path": "docs/FAQ.md",
+      "sha256": "cd187ac653b6a7ad666e36f6bd92bbe9d6b97b9503546a8a2c3f3b421c415082"
+    },
+    {
+      "path": "docs/HITL-FLOW.md",
+      "sha256": "5b97cf5ae08c075761d3abc7b91bb730c16c788e48f03b8cffd05be9df18f94e"
+    },
+    {
+      "path": "docs/MIGRATION-PLAN-AGENT-CONFORMITY.md",
+      "sha256": "0b124defe9b89afd25140c85fd4736cbefe41749f81a25db491ab7efa03f7ad6"
+    },
+    {
+      "path": "docs/MIGRATION-ROADMAP-HYBRIDOPS.md",
+      "sha256": "e8adb7459ff367a360b206afaaa2f25b9cb26d2da5c7fde83ff46b1cbba50d6f"
+    },
+    {
+      "path": "docs/MODEL-TIER-QUALIFICATION.md",
+      "sha256": "27f4cf1f9e7c59f3c63b77a97933ebaa74856196fdaf5949c4b602c7a6153c9a"
+    },
+    {
+      "path": "docs/optimize-v4-proposal.md",
+      "sha256": "01d349062efc05c4d369e318952a1d179b2415557d41c05366662496fd150984"
+    },
+    {
+      "path": "docs/PATTERN-LIBRARY.md",
+      "sha256": "7b3dea15658584079bc9aa6c195fdd66608c71293358a328aff9ea5fbef53a5c"
+    },
+    {
+      "path": "docs/PEDRO-VALERIO-ARCHITECTURE.md",
+      "sha256": "dd893389113f8b285268d44a83e415d60c05a7c003c36fd0aace69e697ccd9ce"
+    },
+    {
+      "path": "docs/POR-ONDE-COMECAR.md",
+      "sha256": "02217e38c0f77b961cabc3a726e3c0f537f5c2f7f36bcfde3465a1e96d2fb736"
+    },
+    {
+      "path": "docs/QUICK-START.md",
+      "sha256": "0aeecafeb6244356f508e4620b1e242caf30310119d7a37a19dfc2e94c7ab98c"
+    },
+    {
+      "path": "docs/RFC-001-deterministic-refactoring.md",
+      "sha256": "beaed114384f3dcdc1b2f01335ac49f91ff6cf28cc8c4bb5aa22b454ab0984d0"
+    },
+    {
+      "path": "docs/session-report-2026-02-01.md",
+      "sha256": "09a72da27203dd99fe79f8d1474834cafbb4b13e58e25b84141dacbeff30302b"
+    },
+    {
+      "path": "docs/sop-extraction-process.md",
+      "sha256": "ec0cb2eabc518528bc8619a85fa587f0fe884b46e1c8af6612cd708738491e41"
+    },
+    {
+      "path": "docs/squad-chief-agent-flow.md",
+      "sha256": "1ae6441b790573c89d3209694fc90a909e3614cf0d812d00438ef56a717bcb3b"
+    },
+    {
+      "path": "docs/squad-creation-pipeline-workflow.md",
+      "sha256": "56be15fa64dcc06b96e72937ade26c7a0afb8e6a0039d5e1aed30e1fc3d12b2c"
+    },
+    {
+      "path": "docs/squad-free-vs-open.md",
+      "sha256": "7eb889513ab81bfb37c955a38c1292ef88c90393a9563fb8a59326ae867cf62a"
+    },
+    {
+      "path": "docs/task-optimization-framework.md",
+      "sha256": "a92a86867b6c4dd7b40398796ee244fbe0f0a68d228444f47f06a37d848110de"
+    },
+    {
+      "path": "docs/TOOL-RECOMMENDATIONS.md",
+      "sha256": "375bb91a0a8af951633908302ecc01610c85a00689c2bfdc19c8295abe5ef457"
+    },
+    {
+      "path": "docs/TROUBLESHOOTING.md",
+      "sha256": "5103d31be9ea2b95eae925a1cbc2fb3ae6118f0386ac0ed26b6ec7939afcb6f2"
+    },
+    {
+      "path": "docs/TUTORIAL-COMPLETO.md",
+      "sha256": "122a3c6e3dfa51a59ffe7fcc0db7600ad1c80512ea30eed0a7274bb83d7bad8f"
+    },
+    {
+      "path": "docs/validation-report-2026-02-01.md",
+      "sha256": "68e8711b15538b0b286bb82245cf8aa69b114336c6098fd80f56ef6fb57c1046"
+    },
+    {
+      "path": "HEADLINE.md",
+      "sha256": "dc126b5f0f0f1db80380f30068be33896cdf581e8105cef9c15f5c3105c32332"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "2eb0f1ba7654651fe862830fc356e89ba4c6570ef459833c7647b93e02154bf8"
+    },
+    {
+      "path": "protocols/ai-first-governance.md",
+      "sha256": "be3de69f64e41683aba0da1da3c4dc5aa97142c285f04634a66ef4a16899ec03"
+    },
+    {
+      "path": "README.md",
+      "sha256": "5f3e2650c988f0f1cec1dd3d1a33222e687e2803fe70e200769b3eb1d70349eb"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "f1fbafab44561d15045d47ec96bd5d680f26386374daf86389b50f4a3bf28a43"
+    },
+    {
+      "path": "rules/agent-naming-convention.md",
+      "sha256": "b602cc25a171a452596a37469b3118d48b0c81e6da0d4720e3057510fd0f9502"
+    },
+    {
+      "path": "rules/recommendation-defensibility.md",
+      "sha256": "a28e4d5d212a27fc96a4740fc3f93b381ce639e2c8a8fca2b07473609c2f6046"
+    },
+    {
+      "path": "schemas/agent-persona.schema.json",
+      "sha256": "1a62a0e19bb06ff7980cd94d52629091bec88f231713d4180f8ccfe9d9686026"
+    },
+    {
+      "path": "schemas/squad-config.schema.json",
+      "sha256": "873dbdddb9a1383f1d8da74e79041fdfc276e08d69071b2e7932405a9d1da0d0"
+    },
+    {
+      "path": "schemas/validation-report.schema.json",
+      "sha256": "d52f20d4de429b4a2629c1741f436c737e2fd835ece08e3c74e59117aac8a1d6"
+    },
+    {
+      "path": "squad-io.yaml",
+      "sha256": "847dd841853d3231173e9dd3bea9de9c98b881094f91b294adc93eacb77b143a"
+    },
+    {
+      "path": "tasks/an-clone-review.md",
+      "sha256": "bb68d8fc3361ea45cccc988420be54a905b6dae59507527df90c4432d2ef3577"
+    },
+    {
+      "path": "tasks/an-compare-outputs.md",
+      "sha256": "7a97d3043c1d5ed8d5fb3663a2413840acb1884f4021cb2d4706e34606ede8b8"
+    },
+    {
+      "path": "tasks/an-validate-clone.md",
+      "sha256": "22c17cbef0d63203f5ab1c64e623c4fd82182ccf317adec8d29ebeb8d1d038ca"
+    },
+    {
+      "path": "tasks/audit-output-quality.md",
+      "sha256": "ad5fbf58956f42f20a0261fba427e228e0d941d02a193425869fbd64a7de0d1c"
+    },
+    {
+      "path": "tasks/auto-heal-close.md",
+      "sha256": "5f7057307f02ffe6a3e9d0375f0f404e79ad53dd1ccc8291036fc726dcd2420c"
+    },
+    {
+      "path": "tasks/auto-heal-diagnose.md",
+      "sha256": "85532b6374ba9d82f38c69fbd786a13c6d8959f4b306c6ee60f6df804572ee77"
+    },
+    {
+      "path": "tasks/auto-heal-escalate.md",
+      "sha256": "910c445c6777171d281edb180c529db7f55a14d50b0693a19b88165688753741"
+    },
+    {
+      "path": "tasks/auto-heal-fix.md",
+      "sha256": "0f2874d9afdc0486e41a84a657f28e83b60afe99d092d590119d030549a2c8da"
+    },
+    {
+      "path": "tasks/auto-heal-persist.md",
+      "sha256": "1694757dd75ef8d705512002a2560dda543baabd044b63d2b321008ebcd98ba8"
+    },
+    {
+      "path": "tasks/auto-heal-resolve.md",
+      "sha256": "57925d76f9b8251930bf7d419bfdb2e0baa6983e88d9d8a4a2a88b156a61dedd"
+    },
+    {
+      "path": "tasks/auto-heal-verify.md",
+      "sha256": "b5f5c7d13e2126b9b4803a80c70feac8cc46b222741eb62f9d768b0a91c36b2b"
+    },
+    {
+      "path": "tasks/auto-heal.md",
+      "sha256": "74e1a771a882e5167c8c5bb69c2e0cb8e616dafbe0b682c9271f448e4d8c52b0"
+    },
+    {
+      "path": "tasks/auto-healing-gate.md",
+      "sha256": "8a792f35785a633e0c9fee4148d2c32c70bc6f59ee019d718dcd0a01932fe33d"
+    },
+    {
+      "path": "tasks/cost-analysis.md",
+      "sha256": "71a3d830f9e3aa1dda90589033f06254382976bbc6602816ecb3092481f4a289"
+    },
+    {
+      "path": "tasks/create-agent-commands.md",
+      "sha256": "d52dd667f0c901b479aec44e656a0c249ad1ffce865b49da1dcd5c56722d7b76"
+    },
+    {
+      "path": "tasks/create-agent-generate.md",
+      "sha256": "d5136d181554e945b6fe049c790bb413c693e0dee4d41d836bf8a106e41a3f11"
+    },
+    {
+      "path": "tasks/create-agent-persona.md",
+      "sha256": "bd406575b25a06e84049d979568e32a908102da0a0a7279e991c6ac9724d6cfc"
+    },
+    {
+      "path": "tasks/create-agent-publish.md",
+      "sha256": "39efd367ae98be6ff854f3a96ed3a6f3df0fb1efd3142b1c4e57707cddaec831"
+    },
+    {
+      "path": "tasks/create-agent-research.md",
+      "sha256": "39eedae92c39db01005b4acfc0bf87807173823203c62ac93ff608bcd6981544"
+    },
+    {
+      "path": "tasks/create-agent-validate.md",
+      "sha256": "51e73a05b4f006c9eb1b96d9aafc7b47e53b7b17e4e3035693c0f9058661f59c"
+    },
+    {
+      "path": "tasks/create-agent.md",
+      "sha256": "466726bcd2d89adababd4629b2560c1bd8cf27631eed575adc626299dee59cc1"
+    },
+    {
+      "path": "tasks/create-documentation.md",
+      "sha256": "b3329d9a1bccb4d3260993c4bab3ddfbabed2bbde75202c1737db548aa049e07"
+    },
+    {
+      "path": "tasks/create-greeting-script-discovery.md",
+      "sha256": "37dbd7dbb9787200770b3f9bef540727c1ad242f568266863a43460355c75e34"
+    },
+    {
+      "path": "tasks/create-greeting-script-gap-map.md",
+      "sha256": "a4b129a8e0139461638968f866a8e43caf25b42a801bf52d2bacd82a0126d55a"
+    },
+    {
+      "path": "tasks/create-greeting-script-generate.md",
+      "sha256": "22358a0aa6884035380c124911ad912d4f83f53436ab7f2fec4a56293f2b965a"
+    },
+    {
+      "path": "tasks/create-greeting-script-integrate.md",
+      "sha256": "1b51e1724997e24fdf49a27850d757dc8429fc5cd9c65b77921be3fac31c719b"
+    },
+    {
+      "path": "tasks/create-greeting-script-validate.md",
+      "sha256": "f522700741e805570b94063f41c366bc9b9c7c2c76ff44d3880e9d835fa07de2"
+    },
+    {
+      "path": "tasks/create-greeting-script.md",
+      "sha256": "abd9c7996f7b1e5a5c79d44dd86ce9fe6d72f8fb2ff184081e52b3a234f420ae"
+    },
+    {
+      "path": "tasks/create-pipeline-design.md",
+      "sha256": "881ca85b2bdc61f723cd9ab7a5c77db05fb4b9c1395fa499c75683e080688a55"
+    },
+    {
+      "path": "tasks/create-pipeline-persist.md",
+      "sha256": "c45b0395bca3bad0cff37091cec91fb971f335dc5e6af4d94917780c2d1cc568"
+    },
+    {
+      "path": "tasks/create-pipeline-qualify.md",
+      "sha256": "bb8826c62f2e8f289456d5d054052ad26c11876348ab8b29e480519eef3c5494"
+    },
+    {
+      "path": "tasks/create-pipeline-render.md",
+      "sha256": "0810beb21489e95f743cf4eed47bdede600202a038f83842a44d3b6adb8d85a4"
+    },
+    {
+      "path": "tasks/create-pipeline-validate.md",
+      "sha256": "db264496bbc6ba37ae49950d430c16d1ed982fbc317491a496b3f5ebfa684183"
+    },
+    {
+      "path": "tasks/create-pipeline.md",
+      "sha256": "03570902e6c2d6dcb88c1bf2f52e080890d7870ab22f40ba3fd3f6ae3ef08b3e"
+    },
+    {
+      "path": "tasks/create-squad-architecture.md",
+      "sha256": "79e3f730912231b5ab91ee888ab52d3356ba317bc6ca3eb528c08982355e8436"
+    },
+    {
+      "path": "tasks/create-squad-build.md",
+      "sha256": "6c846dd199f6498e9af062020a4f09dd5ffafcbab9e719ce72827a8c60176241"
+    },
+    {
+      "path": "tasks/create-squad-components.md",
+      "sha256": "6dafc25080b35350215af636c73c1f7124b7588ca04ce126d18ad2ec12c1cc46"
+    },
+    {
+      "path": "tasks/create-squad-design.md",
+      "sha256": "e5394504be1e860bc17ea868c7307d7560009b9c3f8f9a23c80ae9cac10f417e"
+    },
+    {
+      "path": "tasks/create-squad-discover.md",
+      "sha256": "0afb32b00006ba63001e73f55cf3a2dbca269b9ecaa4ed6c732daca821caee3e"
+    },
+    {
+      "path": "tasks/create-squad-fix.md",
+      "sha256": "6c71a6cfc973c73de1fb15ad7ef9c009c5eb8b650c2ec5d2219e6a4b43a5f298"
+    },
+    {
+      "path": "tasks/create-squad-integrate.md",
+      "sha256": "029b363d1756b6703e797f8bf4f95875ea3fd4b2d7e4ff935e9b3242a9870416"
+    },
+    {
+      "path": "tasks/create-squad-optimize.md",
+      "sha256": "88a19ea4930589e246a7fe1c8061282afbed865ce867a8765a33fe15882b7776"
+    },
+    {
+      "path": "tasks/create-squad-publish.md",
+      "sha256": "ac8f5599e66c664f009297d30a5d3dae3f0659a9f7566c093d9399c6632963b3"
+    },
+    {
+      "path": "tasks/create-squad-scaffold.md",
+      "sha256": "d8c9d1714434c68d83c16081d53b50b2cee9f810f55de553761adcb4485e9b1f"
+    },
+    {
+      "path": "tasks/create-squad-select-type.md",
+      "sha256": "6e71a77b298d195c5253fa678e2b7cc4943af5f6ca5354177810445131c34f72"
+    },
+    {
+      "path": "tasks/create-squad-smoke-test.md",
+      "sha256": "77c29fb5cf12d76db196bf6415d694db3474abf7ac489a63f3203a69c63eaec7"
+    },
+    {
+      "path": "tasks/create-squad-validate.md",
+      "sha256": "1d5d9fcda858eb5e1435657f663f0f8aae967206d51d4b8ae3ff916eb58001a2"
+    },
+    {
+      "path": "tasks/create-squad.md",
+      "sha256": "1336f1571647e05df9df3e0e6ad33cbc22860c94016d16172015aba97625bde6"
+    },
+    {
+      "path": "tasks/create-task-anatomy.md",
+      "sha256": "c0d7ba5f5c33579ecae177a576b3cf308cdcbc16bb294788f3e3059039f7fe46"
+    },
+    {
+      "path": "tasks/create-task-classify.md",
+      "sha256": "5843240eec65bb93892689cfb9fe753d71907be3fcc955b7b8a232e90445f7d5"
+    },
+    {
+      "path": "tasks/create-task-executor.md",
+      "sha256": "bf4aa41c36fe585653451c6e3fff764ecfd5cd4d9c788a9d6af54d4ac10bd970"
+    },
+    {
+      "path": "tasks/create-task-generate.md",
+      "sha256": "51200b07d75f81362c50ff37cae74e1255cccd0b7f1719f6db955d270830f240"
+    },
+    {
+      "path": "tasks/create-task-register.md",
+      "sha256": "54505f2ef0f4db44daf6e994c9684f749c662d18966861eba467fdc8067f5a7e"
+    },
+    {
+      "path": "tasks/create-task-validate.md",
+      "sha256": "5fdbd2d1f455df600a43f7f2cf247a122a89e65e19f10aa234fd438be4c5f1de"
+    },
+    {
+      "path": "tasks/create-task.md",
+      "sha256": "17971533364b5437c26ec6aeb3dc4ad0a76aabecd685548ebaac0ba92244b2ed"
+    },
+    {
+      "path": "tasks/create-template-elicitation.md",
+      "sha256": "66ada26c5cde1bb74c828c4299b8348e5632d4c2765685665056b9f32a1fc0e6"
+    },
+    {
+      "path": "tasks/create-template-identity.md",
+      "sha256": "23997de243a6e360603ac7356ea478decc4a985b74439e45887497f8ab4ad7b7"
+    },
+    {
+      "path": "tasks/create-template-register.md",
+      "sha256": "f55118d9c0c2c1ea4bdfaed189c4351bc8c0e78eb5ecc02377bc17e307bef16b"
+    },
+    {
+      "path": "tasks/create-template-structure.md",
+      "sha256": "1e157d6dfe4b97a614219ea0651c9159d53c9bbf505863d2e1551db503927174"
+    },
+    {
+      "path": "tasks/create-template-validate.md",
+      "sha256": "2e49bb2cb409abd3f4572b4eed9fcb492e65d022f46ce39fb7f539a0816039ab"
+    },
+    {
+      "path": "tasks/create-template.md",
+      "sha256": "145bee9f37b6ca8c95cd31b7c9b2ffb0686bee90f739693874b1f6958f0f95c4"
+    },
+    {
+      "path": "tasks/create-workflow-classify.md",
+      "sha256": "06dede04e64a0153fe042686df2ae4136773f6d2fa26ece98284de2ecb07d9e2"
+    },
+    {
+      "path": "tasks/create-workflow-design.md",
+      "sha256": "dd1e11c356817d1f53d8d4a9c1ea91f35ff45948e4c868060b4f2359a37f9be8"
+    },
+    {
+      "path": "tasks/create-workflow-from-sop.md",
+      "sha256": "19845a3aed58f1a26e342a3b0d68714be73f636146c715badb2015fee79265d7"
+    },
+    {
+      "path": "tasks/create-workflow-gates.md",
+      "sha256": "93323668aefc5a96ab8b70498c6b043d9d1580b5b95a1a725ba93c2102a32986"
+    },
+    {
+      "path": "tasks/create-workflow-generate.md",
+      "sha256": "607db1201b67751751b8e747635f8dfca729d9bf578eeeae6944891d6f78a2e4"
+    },
+    {
+      "path": "tasks/create-workflow-phases.md",
+      "sha256": "5a20fce8ce29c84a837295f4ed13c37e1e1d2e84ecd801654c91f8772742e090"
+    },
+    {
+      "path": "tasks/create-workflow-register.md",
+      "sha256": "99f60ef515fbdc854d83c3325724b6763992f4564801a9b4332d8387122b17ae"
+    },
+    {
+      "path": "tasks/create-workflow-task-refs.md",
+      "sha256": "fe486e7fea69995ef4c6d709fedb36ab0053c18b345c73fb34d65216ddf5a0ce"
+    },
+    {
+      "path": "tasks/create-workflow.md",
+      "sha256": "a44a1d426e704a372665220a6fd38a2ac8d02dbb1d280941dcb83ba1ebfdfd7f"
+    },
+    {
+      "path": "tasks/deep-research-pre-agent.md",
+      "sha256": "378c29c8fc6a87633ec48a31eb37ff62a45abe6c7fc44b8afc76b0bab76db794"
+    },
+    {
+      "path": "tasks/detect-gaps.md",
+      "sha256": "be949826145b11afcf919d41fcf617a857a70415cfab136a0ad99254d95a6a4e"
+    },
+    {
+      "path": "tasks/detect-operational-mode-classify.md",
+      "sha256": "9886326baf5e39f26ccb34d5579eed4df99ca2651b86b197371318ec066fe818"
+    },
+    {
+      "path": "tasks/detect-operational-mode-infrastructure.md",
+      "sha256": "623ca479bae51243167a20b09dd46098833207d0e399f1d9a259d55136180230"
+    },
+    {
+      "path": "tasks/detect-operational-mode-outputs.md",
+      "sha256": "791f5c30992b6cac3b806c39640dbba1553e71ac0389939badda6b608c27d6ec"
+    },
+    {
+      "path": "tasks/detect-operational-mode-systems.md",
+      "sha256": "2419aca164000af40fb6afa3a9ebccc785b64d4af443d2e5df88ede5712f0cf4"
+    },
+    {
+      "path": "tasks/detect-operational-mode-verbs.md",
+      "sha256": "3573dfd255b60030e7ef77d5f910fbd74de8cb1608a40ad6b8c40fc43e9d176b"
+    },
+    {
+      "path": "tasks/detect-operational-mode.md",
+      "sha256": "024776c3217a0f86aec6faafff05f468bda2c0b67d4aad4a5647194e9f940388"
+    },
+    {
+      "path": "tasks/detect-squad-context.md",
+      "sha256": "fd9a609ab88543fb1d6f92a14378ce08a40f9d078f21ef79dd9809ff8f5a6624"
+    },
+    {
+      "path": "tasks/discover-tools-classify.md",
+      "sha256": "331cf5e9ec2d4a333f672e434c33d992ba7fa9d914e7781797629fb710defcb7"
+    },
+    {
+      "path": "tasks/discover-tools-evaluate.md",
+      "sha256": "bdc7715fdc93ffabe2737a8a6f40f150467a296916c064442c55e586db260b61"
+    },
+    {
+      "path": "tasks/discover-tools-recommend.md",
+      "sha256": "c59c267da21e1d256c0c4a6958ac3c5cf883fdf81cc6e301696bc59b28fd1917"
+    },
+    {
+      "path": "tasks/discover-tools-report.md",
+      "sha256": "15e6849d6d7fc99e0cdf04db872e95e0e979edb915145d3575c843c1a7d35763"
+    },
+    {
+      "path": "tasks/discover-tools-scan.md",
+      "sha256": "3a2dd4ff1ccb77adc67123d47b8405d121f96b155330b11b7e288f9744daebe3"
+    },
+    {
+      "path": "tasks/discover-tools.md",
+      "sha256": "8dce7ef7e1d42232add63921a2d3ea626522af20895d27b5f1a0eda1f619d33d"
+    },
+    {
+      "path": "tasks/extract-expert-gold.md",
+      "sha256": "976e25b01655381ffd5b859338a4eac3440c427e241cbd9e500af31ca5f4fd8d"
+    },
+    {
+      "path": "tasks/generate-recommendations.md",
+      "sha256": "0b8a5abdea0d5bd920999b9f2dc6873ab746c60cd5655ad7012e2283daa603af"
+    },
+    {
+      "path": "tasks/improve-workflow-from-report.md",
+      "sha256": "e96d8cc9e03a2505a651c294897b5e43ac690191afd2c4d34e82b02365270aa5"
+    },
+    {
+      "path": "tasks/improve-workflow-report-apply-p1.md",
+      "sha256": "77aa7192b9cca3fa7a12a3ee7c8b86668f63e44a2e12f1071e3dcbf73054dea3"
+    },
+    {
+      "path": "tasks/improve-workflow-report-apply-secondary.md",
+      "sha256": "f2767f13d44ca847152996991fd99d5c3c1cc84e2a0e08ad8ce1c189762b39cb"
+    },
+    {
+      "path": "tasks/improve-workflow-report-backup.md",
+      "sha256": "c3745ac7a3a1de5cc45aab6d938a81300b83ddad122f256123c4cd1e2a363b00"
+    },
+    {
+      "path": "tasks/improve-workflow-report-ingest.md",
+      "sha256": "ae2e007e92ba1b3f381bce4665c54b73ca12d54fc7c0b0ecfc6bd3428a18ce6c"
+    },
+    {
+      "path": "tasks/improve-workflow-report-target.md",
+      "sha256": "c36a221092419589e5218375734d3de7f6f88b547701b05dbf3b59ca9464e06d"
+    },
+    {
+      "path": "tasks/improve-workflow-report-validate-report.md",
+      "sha256": "b839dbf48e12e3bad17bcdc67dbe3cc28d957313df6bdffddd9de2a129f945b8"
+    },
+    {
+      "path": "tasks/install-commands-discover.md",
+      "sha256": "d839be625b1e75a5fe7834184182623a80adb01489f0a43ef77db88b1433f463"
+    },
+    {
+      "path": "tasks/install-commands-report.md",
+      "sha256": "0902b3b02da7f6ebe5c97899027b2c75b0d71ea5311e713d251f5583dd0aa53d"
+    },
+    {
+      "path": "tasks/install-commands-resolve.md",
+      "sha256": "31af036327804b55e84b1ed95b82784fd7f76f363c13588d335af2a68c94e1fe"
+    },
+    {
+      "path": "tasks/install-commands-sync.md",
+      "sha256": "6631be8823bc78c7f0930851ff9b3e60b344e1887e415a3ab60b889e6a8134a5"
+    },
+    {
+      "path": "tasks/install-commands-verify.md",
+      "sha256": "121929e252f835193c98cc2ff67abda410388a55c2ae51da173a7c8e810a579d"
+    },
+    {
+      "path": "tasks/install-commands-write.md",
+      "sha256": "4b058640a96f827481a5168e3b1cc2d41170646002e1e06f65fdc9f154c7c905"
+    },
+    {
+      "path": "tasks/install-commands.md",
+      "sha256": "a2a990593caf06eb94e8deb150b1e0f2c9f67684d9166ff19276f7e92691ef69"
+    },
+    {
+      "path": "tasks/install-skills-finalize.md",
+      "sha256": "96fbfcd7e496f491525abdc5094089fd6d3141a0e6b84b23d512c8265e169ddb"
+    },
+    {
+      "path": "tasks/install-skills-prepare.md",
+      "sha256": "7a34864d3141458245e5372e02fcb8e51eb2652eda33d9dfe2e4a96655d4b8f8"
+    },
+    {
+      "path": "tasks/install-skills-write.md",
+      "sha256": "30c148f8c85de30ee67f92892e8d23d4e3a860d6ef72261eb3947cb0d1c5d5ed"
+    },
+    {
+      "path": "tasks/install-skills.md",
+      "sha256": "57ae600d5b9a57e95d1eda7ca0d5c2a1e1f2b237824a2cde169a07b90ae2cab8"
+    },
+    {
+      "path": "tasks/next-squad-ranking.md",
+      "sha256": "b92971c1ebc5f71f276447cf59a3f911a4ecff9b8386e36cc77830f915cc79e9"
+    },
+    {
+      "path": "tasks/next-squad-registry.md",
+      "sha256": "a222a69ce0d2be5a226f9b9e0d4ed8557cb7207a2e8d4bbbb020ec737a892563"
+    },
+    {
+      "path": "tasks/next-squad-report.md",
+      "sha256": "6b70da69c4b3fec5aa2abede52ffe56b045f2d5c0cd9ab0b0b60530c35b98554"
+    },
+    {
+      "path": "tasks/next-squad-scoring.md",
+      "sha256": "aca39bf56c65cacac3676ee4244c19946f81f9366b3ba0f0ad5b9864d1d07cc7"
+    },
+    {
+      "path": "tasks/next-squad-signals.md",
+      "sha256": "2234afcd27b41d170219803296e47fa0dcf8700647af8966cbd61bd756d17b21"
+    },
+    {
+      "path": "tasks/next-squad.md",
+      "sha256": "a854a6d380102fcae10e0baaacafbba6dd4475b92fab0d933893a805bd301255"
+    },
+    {
+      "path": "tasks/operational-test-baseline.md",
+      "sha256": "878234a53ff137c8c29eaa87f3080afcf8150864ac254cd9168441227d8b6d83"
+    },
+    {
+      "path": "tasks/operational-test-preflight.md",
+      "sha256": "bf9eb781d13cad54528a44d54735f6a0d054b860672f2978031b5531d8e90e9e"
+    },
+    {
+      "path": "tasks/operational-test-report.md",
+      "sha256": "26804beaf2b94442d13a988ebb2ecda8157fae0c5fab3fd92b9893e9a8266949"
+    },
+    {
+      "path": "tasks/operational-test-smoke.md",
+      "sha256": "52c76963f5836556b352dfa9bab105d75a14f864d5df8f7b59c41d41e4a3f91b"
+    },
+    {
+      "path": "tasks/operational-test-target.md",
+      "sha256": "25ee8c4461e5381ea6a191615613faa0826d63f1c79d82702398e6d04462a913"
+    },
+    {
+      "path": "tasks/operational-test.md",
+      "sha256": "70b0fbf36d67ee251888bdd43fac83a47f61eec33982435b5dd4e3fac6607de4"
+    },
+    {
+      "path": "tasks/performance-dashboard.md",
+      "sha256": "410591c49df8e01c410681245726f21767a2d9cb4f7dfbe5ad3f053428f0e749"
+    },
+    {
+      "path": "tasks/pv-axioma-assessment.md",
+      "sha256": "b78a6269746d768c5ca0657b63a97690c90ed87b302e45e585b3169e07e0c9ff"
+    },
+    {
+      "path": "tasks/pv-modernization-score.md",
+      "sha256": "1eebe7724d5ea9de80dc8e85f74ffc6a6378e18c4c3ada0d96b6489f08ad67d1"
+    },
+    {
+      "path": "tasks/qa-after-creation.md",
+      "sha256": "86f4158dd33b9f4f9ea74a442a1624b2abec232e7e89f3b65e1ae27dce305ad3"
+    },
+    {
+      "path": "tasks/qa-check-compatibility.md",
+      "sha256": "3129692bb1d62186b58f4ef03dcc75e0753bde69e058ba2696fe74661314190f"
+    },
+    {
+      "path": "tasks/qa-check-completeness.md",
+      "sha256": "6055fd731132d35b49d8cdd2c5122ce6c2e39d992981409585dc2832c26a77e1"
+    },
+    {
+      "path": "tasks/qa-check-references.md",
+      "sha256": "469202cd6659bb73362e23905b8cfad1cba04befef9d4d07feb1ae086e080cc3"
+    },
+    {
+      "path": "tasks/qa-check-schema.md",
+      "sha256": "812d39db9cb8136d2fd87c89552741e5b27a102f70a70143d98d3cfef6ed6c6c"
+    },
+    {
+      "path": "tasks/qa-check-structure.md",
+      "sha256": "c4f8e7c4a3b07db349fd391504e4f50cb8914a4d05d8d6171fe8d954a6bb9017"
+    },
+    {
+      "path": "tasks/qa-generate-report.md",
+      "sha256": "27eeed488a6b295634d0998baf2efb369b3cd198602690c998515673694baa2d"
+    },
+    {
+      "path": "tasks/qualify-provider-baseline.md",
+      "sha256": "a2613cbe38b3cc8f4e6f9ea4fe40938dcd3dc716c35ad3bbc56dc951bd4c8e51"
+    },
+    {
+      "path": "tasks/qualify-provider-compare.md",
+      "sha256": "6bbcc498f64267bcc1ad86b2c9f18bfde482d9e7d279195a20f9a1bca4d59ead"
+    },
+    {
+      "path": "tasks/qualify-provider-preflight.md",
+      "sha256": "5af6658abe36da5073219fe70a99d55ec92a7360d06dc17dafdb2652b20675f3"
+    },
+    {
+      "path": "tasks/qualify-provider-ptbr.md",
+      "sha256": "5d7cf9ce79f5eb8a8e5aedc76989bafc1710745d289c77d429a54ae3b7bbd7c4"
+    },
+    {
+      "path": "tasks/qualify-provider-reliability.md",
+      "sha256": "80ba1a28801cd14f5d600e776a19cc8dde042ec7d6245e45c8213d8d8b7e6025"
+    },
+    {
+      "path": "tasks/qualify-provider-report.md",
+      "sha256": "79376988de1edd417bcaf2e0d89b051a0d6882017067c875d949f28546a80f8d"
+    },
+    {
+      "path": "tasks/qualify-task.md",
+      "sha256": "e0cdd2b9e23db2936a3c9695f51c7257e390acc8a04b175adb50e00dd0351191"
+    },
+    {
+      "path": "tasks/reexecute-squad-phase.md",
+      "sha256": "84b3716372b5359b8d1fae1e5b8f9a86a8e3882c6f30a67fbda7de78699b83d3"
+    },
+    {
+      "path": "tasks/refresh-registry.md",
+      "sha256": "57f53e44da4fc6b6ca27c0239ff3bc8e8e64fae5e009388f0d1b1512813c5c40"
+    },
+    {
+      "path": "tasks/rename-squad-map.md",
+      "sha256": "62790ac7d3801e7a1103f870ef0476748a3231d6fc9288d216d31e81c307f5b3"
+    },
+    {
+      "path": "tasks/rename-squad-propagate.md",
+      "sha256": "9a062344cff4f647283c291a9551fbdd414b7f051bd477e0985abe97c7a34aba"
+    },
+    {
+      "path": "tasks/rename-squad-structural.md",
+      "sha256": "d65e045ca681ab1bda92f54d66a12c49ec893477a6edef3154a14821bef6c92c"
+    },
+    {
+      "path": "tasks/rename-squad-validate.md",
+      "sha256": "4a0324df9403cb88a9a96d9c6016f52d44beef871f3fd92690ace3ee01c5fe1c"
+    },
+    {
+      "path": "tasks/rename-squad.md",
+      "sha256": "23310a62cdfedb096dd9f5f9ddb7ba2c2da54ec254f2af9095991703aaf5792f"
+    },
+    {
+      "path": "tasks/self-improve.md",
+      "sha256": "27879e86c007d05d3ae00834163880b98594a6e0e21777855a600f9853bc59e1"
+    },
+    {
+      "path": "tasks/setup-runtime-handoff.md",
+      "sha256": "20b93583b45b203ae0b68bda009da7b6ed2392c4484893479097130a1268dfda"
+    },
+    {
+      "path": "tasks/setup-runtime-persist.md",
+      "sha256": "25be42b0be5ad087a3c5690dca213c49c4991784a17ec03965fdaa3395e5d137"
+    },
+    {
+      "path": "tasks/setup-runtime-requirements.md",
+      "sha256": "509915bbcb70ca5811bfe8b016bfff01406b78ee629de8ee3dd6cc42980fcaab"
+    },
+    {
+      "path": "tasks/setup-runtime-validate.md",
+      "sha256": "619750bb3be16f882dbd4b6367337a86b441a092e8d3d9efdb39e52b102c6bde"
+    },
+    {
+      "path": "tasks/setup-runtime-wizard.md",
+      "sha256": "b8e7a4216df2c0a65d445e7f4c79f0267c98f984d41ac08ab5cf6cddb6569388"
+    },
+    {
+      "path": "tasks/setup-runtime.md",
+      "sha256": "2e32955a7d68d89cc99910b93ea13b3943f224aef6d087bc78157fe68b78e88a"
+    },
+    {
+      "path": "tasks/squad-analytics.md",
+      "sha256": "deb077979fe9ce127f1d4db092cf7e5bd2688311088b5de119900b26d5856793"
+    },
+    {
+      "path": "tasks/squad-overview-agents.md",
+      "sha256": "b73e44162158e7d79aed99ccc80d854f3eac265bd9a421c6add4b5630fd2aefa"
+    },
+    {
+      "path": "tasks/squad-overview-generate.md",
+      "sha256": "f258fe970aa3fcf713b876d5525eae7f945d704276feec1201d7599207be062b"
+    },
+    {
+      "path": "tasks/squad-overview-metadata.md",
+      "sha256": "66af8fad78b29fc9968bd89c6df6193c74775ea03807c734eede095021478fd0"
+    },
+    {
+      "path": "tasks/squad-overview-minds.md",
+      "sha256": "1ba579977ac5ee345d9680129223aea0c9a68d587de861c94ca1da5487dfcf94"
+    },
+    {
+      "path": "tasks/squad-overview-structure.md",
+      "sha256": "92ada26cc70bb8b0760724c1331af2c813eabf67f1c586ceb74d0d16d2194498"
+    },
+    {
+      "path": "tasks/squad-overview-write.md",
+      "sha256": "db2d7d7af42afc8c92afd8aa89bf779f137b51e2abebbb5ae4452228d1344951"
+    },
+    {
+      "path": "tasks/squad-overview.md",
+      "sha256": "1272a81df61056f12489d122da6604daafa3c2e5d69c7b999bcc00afd2b31f09"
+    },
+    {
+      "path": "tasks/sync-chief-codex-skill.md",
+      "sha256": "2fa28f99ece919acfc84a3e8c3722bdc8345d55bf13ab87871b04d55b538429e"
+    },
+    {
+      "path": "tasks/sync-ide-command-config.md",
+      "sha256": "626985b5d3ae46272a56decf55153664ef336ce2977ec4e42dd2ab17ed44c1ac"
+    },
+    {
+      "path": "tasks/sync-ide-command-discover.md",
+      "sha256": "9208d58606a5f162bf128ac73a24081dcb46f482064054483657388b1a680b96"
+    },
+    {
+      "path": "tasks/sync-ide-command-execute.md",
+      "sha256": "5da96b28931792e8d8e232d1410b19fff2ed8f143869b9aee1a701790b05ac97"
+    },
+    {
+      "path": "tasks/sync-ide-command-parse.md",
+      "sha256": "8099711031a9cc3d76fdfe7f2e5c8d1f9582946958c02f948faf6f39a7dc807b"
+    },
+    {
+      "path": "tasks/sync-ide-command-verify.md",
+      "sha256": "52c5a89f6388a9052342c73d41e278cf5524ef82bf86574d76484f19de138ba8"
+    },
+    {
+      "path": "tasks/sync-ide-command.md",
+      "sha256": "ee297db81b09cc4a2cea12163e741592c30c76904532dbea8e9218916efcd94c"
+    },
+    {
+      "path": "tasks/sync-ide-skills.md",
+      "sha256": "276af9848eda246aa6bc0b02a4e53738758276b3e00202ca2c6dafe7bcd57b05"
+    },
+    {
+      "path": "tasks/update-radar.md",
+      "sha256": "7c53b6d5834d3dfc3c297ad941ce08f394fc5fc740444605070a038f8664cbd5"
+    },
+    {
+      "path": "tasks/upgrade-squad-apply.md",
+      "sha256": "4a68f50c5ba920d75c3afc7f76f372185eca074a7cca320b60ba61684d312901"
+    },
+    {
+      "path": "tasks/upgrade-squad-gap.md",
+      "sha256": "8e1b1acb24d6b6e786cc4f3a6b3e595ee1c0a36a68c7f8aefcb3d2855b822f8a"
+    },
+    {
+      "path": "tasks/upgrade-squad-inventory.md",
+      "sha256": "a4e9d024a2f840635c0a96ea2944f2494984bdbec6b460bdb0de914edbd68b32"
+    },
+    {
+      "path": "tasks/upgrade-squad-plan.md",
+      "sha256": "e33032858c144e0381468b05e9ca2547bdc20a71714fd044d233af84e58f6f86"
+    },
+    {
+      "path": "tasks/upgrade-squad-verify.md",
+      "sha256": "2d7336deadc646db3aed9c61e3b2f7b44e8800c72017ad482d5d50fefff05599"
+    },
+    {
+      "path": "tasks/upgrade-squad.md",
+      "sha256": "6d407252e9a29a0ceb4d75cf3087cff60465fc766156b29b31e30ed25a7202bb"
+    },
+    {
+      "path": "tasks/validate-final-artifacts.md",
+      "sha256": "02c29e35ecdc361cf0b62ef3b858df03d0f23c6681cfa56837ac27a54c5a2017"
+    },
+    {
+      "path": "tasks/validate-squad-classify.md",
+      "sha256": "ff2f204e2dafc9f9ff634995d5ae2efc740ba7ddba19f3307769a23c16a29ebe"
+    },
+    {
+      "path": "tasks/validate-squad-compliance.md",
+      "sha256": "9fe3eb1587951cd4127e4bb8d0178313bbcdceb4f482357a306eefb0886602c2"
+    },
+    {
+      "path": "tasks/validate-squad-deep-review.md",
+      "sha256": "e5aebc4225913d985a5af72b919ebc3e066da750398b7cba8109294e0ca0a6c7"
+    },
+    {
+      "path": "tasks/validate-squad-preflight.md",
+      "sha256": "2c2e265e01c392b2cd73f392308c7081a553caa4fd3473dd7f183dd158723d77"
+    },
+    {
+      "path": "tasks/validate-squad-reconcile.md",
+      "sha256": "88999863a1a9bbf633248022ec5fe7541ed2472eb4261f1bdcbf02a761e6f7b8"
+    },
+    {
+      "path": "tasks/validate-squad-report.md",
+      "sha256": "b475cab869ad665f9bd5c39e1b7da79ba9cc57b0a5030d3b027665cf00d55fac"
+    },
+    {
+      "path": "tasks/validate-squad-type-detect.md",
+      "sha256": "3d5c9dc897e3be880367f7f1331ae0d3e82cb716f9ad054b0af2da99a51c0679"
+    },
+    {
+      "path": "tasks/validate-squad-verdict.md",
+      "sha256": "8041fe7034c1b3e6d2247a9f55d98ee3ab966cea30e2c180bcb4b17bca31b249"
+    },
+    {
+      "path": "tasks/validate-squad-veto.md",
+      "sha256": "3a4ae6882d373f701e494ff5a71e71cd5024c99d406fafd30243eb12336d92a9"
+    },
+    {
+      "path": "tasks/validate-squad.md",
+      "sha256": "f0c101bd5dd8a458584898060aa2719b6c9abe36f404afbf58aa9634c132d1df"
+    },
+    {
+      "path": "templates/agent-flow-doc-tmpl.md",
+      "sha256": "c74500dadd4a89608eb9f9e19c2d7931fceed25c7d7d4fb759332d5fab1d6477"
+    },
+    {
+      "path": "templates/agent-tmpl.md",
+      "sha256": "fe7802f64e479fb7e391b7f762e5d496193b15a3407b0488c88e02ebfe278632"
+    },
+    {
+      "path": "templates/auto-heal-task-tmpl.md",
+      "sha256": "274410b35b5dd6374ac2283e4eba5f6d3426ac725b944df8768e9ca598f970b4"
+    },
+    {
+      "path": "templates/capability-map-tmpl.md",
+      "sha256": "d4bad91a07bf443562c563494d72a20b471c357cc68e6aba31f0f090746a3027"
+    },
+    {
+      "path": "templates/config-tmpl.yaml",
+      "sha256": "ad89edc0335b26d3b0717a69b7f7b3a3e43f818d61c17a52588ce4a6ca89d4dc"
+    },
+    {
+      "path": "templates/cross-domain-handoff-tmpl.yaml",
+      "sha256": "8de5451d5fc366100cbb7d0ac80a41c51e080f24e65ef2d644f2033d0f293823"
+    },
+    {
+      "path": "templates/ecosystem-health-tmpl.md",
+      "sha256": "c7bd1d812e2954b7c2e0c8883ef6ba66a526c52b057a6b44fcae88f638fefeef"
+    },
+    {
+      "path": "templates/gap-analysis-tmpl.md",
+      "sha256": "3165539a0f35f6a02589cf8a158aae498f4d982e4fcefb5f6674f926c9050633"
+    },
+    {
+      "path": "templates/handoff-insumos-tmpl.yaml",
+      "sha256": "a5b9a420493773f1bb36ae88eb12d1eb284df8345edf92c6b65bd2158ddf0cd8"
+    },
+    {
+      "path": "templates/journey-log-tmpl.yaml",
+      "sha256": "21bb7dff44d68c51140435a969ac8cb2f9a2596eb323b19e26ccabdcb380a0f6"
+    },
+    {
+      "path": "templates/operational-test-task-tmpl.md",
+      "sha256": "12256a148519a1566ee6e8b25a62ae5ce76dace4f956be5099aa2e966c2df80e"
+    },
+    {
+      "path": "templates/orchestrator-tmpl.md",
+      "sha256": "3c407503228847c33eafa7f96082c56a2880823c35edcc0be28d8a5d96506441"
+    },
+    {
+      "path": "templates/performance-dashboard-tmpl.md",
+      "sha256": "24b0ef96a10842c840092985fdeae4b0500580800d57ce58fd87831472c12e8a"
+    },
+    {
+      "path": "templates/pipeline-prompt-tmpl.md",
+      "sha256": "8ea3ed0a221a4ebb96e1e510b0e63db932735852e632b95771d528fd82780d2e"
+    },
+    {
+      "path": "templates/pop-extractor-prompt.md",
+      "sha256": "3ca33bb1e97b27c7a26ecf5becbe5f97797ffaf4971a411e6f12ca3310c9bc2a"
+    },
+    {
+      "path": "templates/quality-dashboard-tmpl.md",
+      "sha256": "ac8a1616bc3f4a16bf755f1ddefc739b208430133b6e54d33c2e425efd28e257"
+    },
+    {
+      "path": "templates/quality-gate-tmpl.yaml",
+      "sha256": "1f25d375f4c6f389b61330d5314126d6bb4e67da9f24b89cf84f6a2e84122b99"
+    },
+    {
+      "path": "templates/readme-tmpl.md",
+      "sha256": "aafa9854fe24be68ce6e9cb26441f058566ec48a06b25b9d2814c35b28a6f3b3"
+    },
+    {
+      "path": "templates/research-output-tmpl.md",
+      "sha256": "6527995422153da2d959fa2f079b32c151e769d52c5cb81b41728f4657f7dee7"
+    },
+    {
+      "path": "templates/research-prompt-tmpl.md",
+      "sha256": "58313316526269d6dfddbb351e7d3be995c4406b5d5069a05362d30a75bd57ff"
+    },
+    {
+      "path": "templates/setup-runtime-task-tmpl.md",
+      "sha256": "99d816e028cd0c44d82b4497ecc68a3c347080e3bd40c0defdfe1b6f2c137a8d"
+    },
+    {
+      "path": "templates/squad-mappings-tmpl.yaml",
+      "sha256": "f0c6f3e9433d3123f973edbf008e89c4b847e1a8fc1183a27d7b033d3566bc65"
+    },
+    {
+      "path": "templates/squad-prd-tmpl.md",
+      "sha256": "4ed14e30e0db9dd6337bba45832674e88fb3c4e177c9d5bd6e83333866ed4b78"
+    },
+    {
+      "path": "templates/squad-readme-tmpl.md",
+      "sha256": "28774a2bb88507c7fe988a396a54ca0ec1699d780c13e40d61c4820a0d00d532"
+    },
+    {
+      "path": "templates/story-create-agent-tmpl.md",
+      "sha256": "f16988f2be4716eda26e6d4d5ebaadc259bf22e6d66c4ea877b2ad062102893e"
+    },
+    {
+      "path": "templates/task-tmpl.md",
+      "sha256": "a48e9119b6ae3ab23f05e99c6ec49a821b48097be51d41d6353ec0286fb7ad15"
+    },
+    {
+      "path": "templates/tech-radar-tmpl.md",
+      "sha256": "da6b4c2bbf121828cebe4f6e4481a0978bebf64ad2cef99a02d99eb96c34f297"
+    },
+    {
+      "path": "templates/template-tmpl.yaml",
+      "sha256": "d709332d7d1803972b7a3515d79b53a9b1ee55a354edf9cf0345b1eeb786e717"
+    },
+    {
+      "path": "templates/weekly-digest-tmpl.md",
+      "sha256": "8abc01587a4128565739f96bcfcdd1ac4c47c71618c4b4f374fcf4668a75f4c6"
+    },
+    {
+      "path": "templates/weekly-report-tmpl.md",
+      "sha256": "043ee47856e5501f03e7677f2822e73a79cb6655ebafd1824cc88669b59e3b71"
+    },
+    {
+      "path": "templates/workflow-doc-tmpl.md",
+      "sha256": "809c94a66b2d6b1ab740ac0f48f32f6490de6f47ed0e099d5855b268c25e5ca4"
+    },
+    {
+      "path": "templates/workflow-tmpl.yaml",
+      "sha256": "beb259e07c0655b65f519a88c90cd011aa8eeb9879071e6ecf134ef868b4f058"
+    },
+    {
+      "path": "test-cases/an-assess-sources/formal-qualification-report.yaml",
+      "sha256": "9665b4ad5fb010b3782dfeebeec797699aa88a31467006e27a78e542d4aead7b"
+    },
+    {
+      "path": "test-cases/an-assess-sources/TEST-REPORT-v2.1.md",
+      "sha256": "64733ff1dd9acb228dc1a2a167396963d2636676953a14f9d2dbdf860e0d2b5e"
+    },
+    {
+      "path": "test-cases/an-clone-review/opus-baseline.yaml",
+      "sha256": "7cb519da784e9d06b536e39516dd93e6af433d3321aabc77bf249b02cd78d40f"
+    },
+    {
+      "path": "test-cases/pv-axioma-assessment/opus-baseline.yaml",
+      "sha256": "73294053861c4092b964ffd8b84cc49c88ac6b68c6e73ccd55a00a85ea9efb58"
+    },
+    {
+      "path": "test-cases/pv-modernization-score/opus-baseline.yaml",
+      "sha256": "afd31145ed27408669c46f16d533396087e208585c6a2978ddcac770416a018f"
+    },
+    {
+      "path": "test-cases/smoke-test-model-routing/test-case.yaml",
+      "sha256": "19024c5b1a1360290a379ac6da90396280d5a3c5a89eef64b8f8be8dd3f1e186"
+    },
+    {
+      "path": "workflows/create-squad.yaml",
+      "sha256": "6492d89d2288b51b0e7b9df2338a3deb3f0ae6bfa50ce6821b82d34082109f6f"
+    },
+    {
+      "path": "workflows/validate-squad.yaml",
+      "sha256": "e6901450becbd103d378137ee63c52616788c1b48c2e1114204ee6c3a6e795b4"
+    },
+    {
+      "path": "workflows/wf-auto-heal.yaml",
+      "sha256": "cb31cecb8c43a58615b1ea085063d036c8034907ac0268a6d17a92843b847c3d"
+    },
+    {
+      "path": "workflows/wf-create-agent.yaml",
+      "sha256": "81fa6448bc7ac19422e4d329c5980291dbe9e625e202e6e6766617272abf775d"
+    },
+    {
+      "path": "workflows/wf-create-greeting-script.yaml",
+      "sha256": "f5516f36924ffac15a29b8340b6fb2e916fb4623fc7ea4bfd7c5f172a60fb061"
+    },
+    {
+      "path": "workflows/wf-create-pipeline.yaml",
+      "sha256": "3f9ae43524fe2bfb89c47968dd7f0e19e70b4f3ff7d0f54d8a0eb3c3ae03b3b2"
+    },
+    {
+      "path": "workflows/wf-create-squad.yaml",
+      "sha256": "8a423a090eb79c99bcedc257bcd79afc1431ed6e9e1cbc38874bb3a5d48b3f05"
+    },
+    {
+      "path": "workflows/wf-create-task.yaml",
+      "sha256": "eaa3f4f3efaf926fa5c91fe961e94d3d1285f6af6ed179c5ae368296fe8fbfaa"
+    },
+    {
+      "path": "workflows/wf-create-template.yaml",
+      "sha256": "5a41ce39a05c0f8f4a433d17ac28d92a48177a069865afb12f43f65050fe0abe"
+    },
+    {
+      "path": "workflows/wf-create-workflow.yaml",
+      "sha256": "6a51e0946e66c5938c5972e32e0f91ba70b17e67c263df4aa12bdb1c8a771f12"
+    },
+    {
+      "path": "workflows/wf-cross-provider-qualification.yaml",
+      "sha256": "3716fe18c296a69e0445a6be2aa24ed2297e8f66964b0b41825442c9aa02793d"
+    },
+    {
+      "path": "workflows/wf-detect-operational-mode.yaml",
+      "sha256": "229645c2dea885fd46516b067546071266666f43376d18d42ecf3fd696bb6c82"
+    },
+    {
+      "path": "workflows/wf-discover-tools.yaml",
+      "sha256": "97691df1266ef59f32c4ea06fdd690aa070aa4db249531564648297e08cb2650"
+    },
+    {
+      "path": "workflows/wf-ecosystem-analysis.yaml",
+      "sha256": "32c9f7db0824b3a845196456e4d3ba2913f3b25ddd5acc92a7a91d0502e24748"
+    },
+    {
+      "path": "workflows/wf-improve-workflow-from-report.yaml",
+      "sha256": "62e18ceacaaac53e0ca606494334b6326c0ea11ef088b7a8acf6bc87b15f9f64"
+    },
+    {
+      "path": "workflows/wf-install-commands.yaml",
+      "sha256": "19037b12483477b74feb957f2c5e2c13e9f9128c00af1790edb76f9ca6535484"
+    },
+    {
+      "path": "workflows/wf-install-skills.yaml",
+      "sha256": "649c62fea72d239a6fa4e0e0033a1ca39ae4c5f43bfb571d5be55d37ea216b71"
+    },
+    {
+      "path": "workflows/wf-next-squad.yaml",
+      "sha256": "c96d2de21b7d81a13a03903763c4d2928b5b0a8c4a0dfbaeeb3367c55e19038a"
+    },
+    {
+      "path": "workflows/wf-operational-test.yaml",
+      "sha256": "1db61f095bc2e704ef99a65a56abb0580a37246c0d50c36eaedf90723f91872d"
+    },
+    {
+      "path": "workflows/wf-qa-after-creation.yaml",
+      "sha256": "4709838b0a752e90ad1a4ea90a19cf21a29b1ac48c33b9a5195dff1ff7cb112e"
+    },
+    {
+      "path": "workflows/wf-rename-squad.yaml",
+      "sha256": "c53f1903da05ca0768b8b30c45ca5ffadcbef701784b072782064762aa0ff984"
+    },
+    {
+      "path": "workflows/wf-self-improve.yaml",
+      "sha256": "0b6bf0dd4a42c0f16d12dd1f24ea3a780ab58bb83975d70f4b656da04c834453"
+    },
+    {
+      "path": "workflows/wf-setup-runtime.yaml",
+      "sha256": "b31a23b44cf4a63980b2989a468c394d25bcc55a7f20c09637a30ef273d1cc97"
+    },
+    {
+      "path": "workflows/wf-squad-overview.yaml",
+      "sha256": "c908b04fbb82a9298310766d3080ffb7ef84ae36253391eb48c49f3a789f81c8"
+    },
+    {
+      "path": "workflows/wf-sync-ide-command.yaml",
+      "sha256": "14cc5b3fd70babb0e7feebad5f614d654c01ceb499f3781a08d1b6ddb9e9b92e"
+    },
+    {
+      "path": "workflows/wf-sync-ide-skills.yaml",
+      "sha256": "c696e6fabc32c7d3842d831bd188412702d8f64c4e31758decfedbaa3aadc791"
+    },
+    {
+      "path": "workflows/wf-upgrade-squad.yaml",
+      "sha256": "9425d7b7f4d5ff2e4240e1b7d0191d2f8af0fb4a14e11452ac4aa795582558d5"
+    },
+    {
+      "path": "workflows/wf-weekly-report.yaml",
+      "sha256": "54987bedc61c463222612a57877ae062694e3d84a2c13f630e73f79dec643f07"
+    }
+  ]
+}
