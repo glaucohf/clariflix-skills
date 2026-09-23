@@ -1,0 +1,15 @@
+row: vendas
+title: Preço ancorado em valor
+title_netflix: PRICING STRATEGY
+subtitle: Estrutura precificação com cenários, valor e disposição a pagar
+genre: procedural
+badge: Nova
+runtime_only: false
+painel:
+  ano: 2026
+  tamanho: 6 arquivo(s) de origem
+  requer: Oferta, cliente e contexto de preço
+  como_usar: 'Instale a skill e forneça o contexto solicitado pela fonte'
+  elenco: [Valor, Cenários, Preço]
+  generos: [Vendas, Precificação, Produto]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

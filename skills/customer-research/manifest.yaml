@@ -1,0 +1,15 @@
+row: marketing
+title: Pesquisa que escuta
+title_netflix: CUSTOMER RESEARCH
+subtitle: Extrai dores, linguagem e evidências de conversas, tickets e pesquisas
+genre: procedural
+badge: Nova
+runtime_only: false
+painel:
+  ano: 2026
+  tamanho: 4 arquivo(s) de origem
+  requer: Transcrições, tickets ou pesquisas
+  como_usar: 'Instale a skill e forneça o contexto solicitado pela fonte'
+  elenco: [Evidências, Dores, Citações]
+  generos: [Pesquisa, Marketing, Produto]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

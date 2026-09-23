@@ -1,0 +1,15 @@
+row: gestao
+title: Brainstorm com propósito
+title_netflix: BRAINSTORMING
+subtitle: Transforma uma ideia vaga em hipóteses, requisitos e um desenho que alguém possa revisar
+genre: procedural
+badge: Nova
+runtime_only: false
+painel:
+  ano: 2026
+  tamanho: 8 arquivo(s) de origem
+  requer: Ideia, requisitos, decisão
+  como_usar: 'Instale a skill e forneça o contexto solicitado pela fonte'
+  elenco: [Objetivo, Hipóteses, Design]
+  generos: [Produto, Descoberta, Planejamento]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

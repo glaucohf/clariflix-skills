@@ -1,0 +1,12 @@
+{
+  "source_url": "https://github.com/vercel-labs/agent-skills/tree/063bee94c3f4df8453406c830b0a7df0f2860278/skills/web-design-guidelines",
+  "source_commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+  "source_repository": "https://github.com/vercel-labs/agent-skills",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "17e48da905f83a19c174079b50760a98c069527ba50079239b3c187236627c29"
+    }
+  ]
+}

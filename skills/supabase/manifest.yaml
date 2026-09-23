@@ -1,0 +1,15 @@
+row: operacoes
+title: Dados com segurança
+title_netflix: SUPABASE
+subtitle: Orienta banco, autenticação, storage e funções Supabase com checagens de segurança
+genre: procedural
+badge: Nova
+runtime_only: false
+painel:
+  ano: 2026
+  tamanho: 4 arquivo(s) de origem
+  requer: Projeto Supabase e objetivo técnico
+  como_usar: 'Instale a skill e forneça o contexto solicitado pela fonte'
+  elenco: [Banco, Auth, RLS]
+  generos: [Desenvolvimento, Banco de dados, Segurança]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

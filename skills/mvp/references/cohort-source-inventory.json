@@ -1,0 +1,12 @@
+{
+  "source_url": "https://github.com/slavingia/skills/tree/eb9f57fba03ddb0382ed3bfe6654d3d7df128c70/skills/mvp",
+  "source_commit": "eb9f57fba03ddb0382ed3bfe6654d3d7df128c70",
+  "source_repository": "https://github.com/slavingia/skills",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "7f2aae99d9583df0f412b968c9cc4bc59f28e3a0316d9ece691adf2492cc12d5"
+    }
+  ]
+}

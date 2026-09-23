@@ -1,0 +1,36 @@
+{
+  "source_url": "https://github.com/n8n-io/skills/tree/180b8415e3b73f78828cfa01e908e67f89f2a139/skills/n8n-workflow-lifecycle-official",
+  "source_commit": "180b8415e3b73f78828cfa01e908e67f89f2a139",
+  "source_repository": "https://github.com/n8n-io/skills",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "path": "references/FOLDER_LIMITATIONS.md",
+      "sha256": "b103ab683571183438896adc38bdfc8b473da21d788d8c13f7f507e965fd1823"
+    },
+    {
+      "path": "references/MCP_ACCESS_PER_WORKFLOW.md",
+      "sha256": "37c953de19fe3fab4417218897658d3216d6059e20fb97b4fdbb1680e0a42c6a"
+    },
+    {
+      "path": "references/NAMING_CONVENTIONS.md",
+      "sha256": "6604836d5135d7f5674c7154799d1604b50564ebe8fe362ea0e34016d25fccd1"
+    },
+    {
+      "path": "references/REVIEW_CHECKLIST.md",
+      "sha256": "91cd120763541096373c0e5290379170ea6160c47c5d30cf4387fa08d5360a1e"
+    },
+    {
+      "path": "references/TESTING.md",
+      "sha256": "b678dd01817a6a7c8c59db0f07b7948f8f3cfa7a5e73054236d7ea35266bdf48"
+    },
+    {
+      "path": "references/VALIDATION_CHECKLIST.md",
+      "sha256": "91adbd562a9799f3c7d8d961289970c30585b3328c1b8a11aacfb6db79a1716f"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "60952d446b829a11abdd4c98de1079799164878df7c47db001163f45cdd5218e"
+    }
+  ]
+}

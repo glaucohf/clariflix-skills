@@ -1,0 +1,15 @@
+row: gestao
+title: O mínimo que entrega
+title_netflix: MVP
+subtitle: Define o fluxo essencial e corta o que ainda não precisa existir
+genre: procedural
+badge: Nova
+runtime_only: false
+painel:
+  ano: 2026
+  tamanho: 1 arquivo(s) de origem
+  requer: Problema, cliente e restrições
+  como_usar: 'Instale a skill e forneça o contexto solicitado pela fonte'
+  elenco: [Escopo, Manual, Primeira entrega]
+  generos: [Produto, MVP, Escopo]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]
