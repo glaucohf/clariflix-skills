@@ -1,0 +1,15 @@
+row: marketing
+title: Vídeo que vira entrega
+title_netflix: MONEYPRINTER TURBO
+subtitle: Gera vídeos curtos a partir de tema ou roteiro com script, voz, mídia e legendas
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 2 arquivos de origem
+  requer: Terminal, uv, rede e credenciais dos provedores escolhidos
+  como_usar: 'Instale a skill, forneça o tema ou roteiro e revise custos e direitos de mídia'
+  elenco: [Tema, Roteiro, Voz, Mídia]
+  generos: [Vídeo, Marketing, Automação]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]
