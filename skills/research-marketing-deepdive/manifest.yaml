@@ -1,0 +1,15 @@
+row: marketing
+title: Marketing em profundidade
+title_netflix: MARKETING DEEPDIVE
+subtitle: Investiga players, tendências, conteúdo e oportunidades de mercado
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 1 arquivo(s) de origem
+  requer: Mercado, player ou tema de pesquisa
+  como_usar: 'Instale a skill e siga os pré-requisitos declarados pela fonte'
+  elenco: [Players, Tendências, Oportunidades]
+  generos: [Marketing, Pesquisa, Conteúdo]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

@@ -1,0 +1,15 @@
+row: gestao
+title: Benchmark com evidências
+title_netflix: RESEARCH BENCH
+subtitle: Compara produtos, empresas ou tecnologias com métricas e lacunas
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 1 arquivo(s) de origem
+  requer: Dois assuntos e critérios de comparação
+  como_usar: 'Instale a skill e siga os pré-requisitos declarados pela fonte'
+  elenco: [Matriz, Pontuação, Lacunas]
+  generos: [Pesquisa, Estratégia, Benchmark]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

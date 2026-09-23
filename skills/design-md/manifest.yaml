@@ -1,0 +1,15 @@
+row: operacoes
+title: Design de uma URL
+title_netflix: DESIGN MD
+subtitle: Extrai um contrato de design e tokens de uma URL pública
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 1 arquivo(s) de origem
+  requer: URL pública e objetivo da análise
+  como_usar: 'Instale a skill e siga os pré-requisitos declarados pela fonte'
+  elenco: [Tokens, Componentes, Contrato]
+  generos: [Design, UI, Auditoria]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

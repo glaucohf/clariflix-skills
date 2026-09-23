@@ -1,0 +1,15 @@
+row: operacoes
+title: Orquestração de design
+title_netflix: DESIGN CHIEF
+subtitle: Organiza a triagem, o roteamento e a sequência de trabalho de design
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 1 arquivo(s) de origem
+  requer: Objetivo de design e contexto do projeto
+  como_usar: 'Instale a skill e siga os pré-requisitos declarados pela fonte'
+  elenco: [Triagem, Roteamento, Sequência]
+  generos: [Design, Operações, Orquestração]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

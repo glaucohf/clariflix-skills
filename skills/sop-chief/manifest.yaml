@@ -1,0 +1,15 @@
+row: sop
+title: SOP que roda
+title_netflix: SOP CHIEF
+subtitle: Cria, extrai, analisa e audita procedimentos operacionais
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 1 arquivo(s) de origem
+  requer: Processo, evidências e público executor
+  como_usar: 'Instale a skill e siga os pré-requisitos declarados pela fonte'
+  elenco: [Processo, Critérios, Melhoria]
+  generos: [SOP, Operações, Qualidade]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

@@ -1,0 +1,15 @@
+row: gestao
+title: Pesquisa técnica profunda
+title_netflix: TECH RESEARCH
+subtitle: Conduz pesquisa técnica com cobertura, referências e registro de aprendizado
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 1 arquivo(s) de origem
+  requer: Pergunta técnica e profundidade desejada
+  como_usar: 'Instale a skill e siga os pré-requisitos declarados pela fonte'
+  elenco: [Cobertura, Fontes, Dossiê]
+  generos: [Pesquisa, Tecnologia, Decisão]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

@@ -1,0 +1,15 @@
+row: marketing
+title: Apresentações que contam
+title_netflix: SLIDE CREATOR
+subtitle: Cria decks com narrativa, direção visual, roteiro e critérios de qualidade
+genre: procedural
+badge: Nova
+runtime_only: true
+painel:
+  ano: 2026
+  tamanho: 151 arquivo(s) de origem
+  requer: Briefing, audiência e objetivo do deck
+  como_usar: 'Instale a skill e siga os pré-requisitos declarados pela fonte'
+  elenco: [Narrativa, Slides, Qualidade]
+  generos: [Apresentações, Storytelling, Design]
+  esta_skill_e: [Rastreável, Estruturada, Revisável]

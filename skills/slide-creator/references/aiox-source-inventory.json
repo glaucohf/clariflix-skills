@@ -1,0 +1,612 @@
+{
+  "source_url": "https://github.com/aiox-embaixadores/aiox-embaixador-pro/tree/a137d3b87af63a8b05ef51cab8ea293d44a2a1c4/skills/slide-creator",
+  "source_repository": "https://github.com/aiox-embaixadores/aiox-embaixador-pro",
+  "source_commit": "a137d3b87af63a8b05ef51cab8ea293d44a2a1c4",
+  "license": "Authorized redistribution",
+  "files": [
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "b342d1b9b33e1cc066760268d61982c97edd260c4478c99e87015d1445cd6ee2"
+    },
+    {
+      "path": "examples/design-100-fixture/brand-template-manifest.yaml",
+      "sha256": "206af10049eb5b2d5cf33a8db4e97fec38d966c0797efd7f4918fde2d5e539cf"
+    },
+    {
+      "path": "examples/design-100-fixture/design-mastery-report.yaml",
+      "sha256": "6488a7e2b520c7a3c5b4c504d299f517d1664884bf3de55e1a16fe7313779707"
+    },
+    {
+      "path": "examples/design-100-fixture/key-slide-render-review.yaml",
+      "sha256": "7395ef0d7f48a87a5ce21eb05f57a49137b3d7dc13b95e010fe5404bc29b552d"
+    },
+    {
+      "path": "examples/design-100-fixture/render-lock.yaml",
+      "sha256": "ef1578ed1b361d840664f9b854a89c6c012ebc4bceb2d1f3484b4cf1a18ef4ef"
+    },
+    {
+      "path": "examples/design-100-fixture/template-selection-report.yaml",
+      "sha256": "1f09679a7e04512b5a23db1f6cb6139863b81a50feaa3f7fd7fcba3a6d3b2115"
+    },
+    {
+      "path": "examples/design-100-fixture/visual-regression-checklist.yaml",
+      "sha256": "5b0df7858aabfd18474804334b5fae35a382a363f77ce8c23c68862cdcc71e81"
+    },
+    {
+      "path": "references/anti-patterns.md",
+      "sha256": "4dbf748f4ccf85fb2a597fa0a9976fa59de7266c224c9c52793345a8af71d81c"
+    },
+    {
+      "path": "references/bench-absorption-map.md",
+      "sha256": "b6223787e60a1bc0fab2d1ee8f6fd90f1eba3ad98fa0d2ace0148ab64f09a8f5"
+    },
+    {
+      "path": "references/design-system.md",
+      "sha256": "59ef2a27b447878a93a8e254357190dc52cad45b06c803cb2e14fc594e113699"
+    },
+    {
+      "path": "references/narrative-patterns.md",
+      "sha256": "c1a3b839dbbd50246e08ecb9b76c64ef6510f2219076e9b51aea75c3edb6370e"
+    },
+    {
+      "path": "references/output-contracts.md",
+      "sha256": "91d6b26ea4d5eb0a4d1071ec68ac2388595c058b1affa3bf559ea8904686e244"
+    },
+    {
+      "path": "references/regression-test-protocol.md",
+      "sha256": "39595665c0e16593c34afda4ab3b6a64f92b5a2c30d5035d88cffde0df173d3c"
+    },
+    {
+      "path": "references/roteiro-template-library.md",
+      "sha256": "3a07928225dde1e3d3a25fd9ca7991975a260b7a61613a17b459b7c81534fc86"
+    },
+    {
+      "path": "references/rubrics.md",
+      "sha256": "ede332d59678261e9620523bcc1cb06046d91c1bf1d569e65c8b65797bd91d52"
+    },
+    {
+      "path": "references/slide-structure-library.md",
+      "sha256": "5dabd13ae594247d35e624be9dc92d6a22d132f76a36eead22696ff7f27f2096"
+    },
+    {
+      "path": "references/template-selection-guide.md",
+      "sha256": "c80479463e628c7b25ffff95d1e79323bf2d9398a4cf2d9b1680c7458fd6e183"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "32d9551081f1284f25bac545082d70ac48cda04144c73e38e46a69176bf44dfc"
+    },
+    {
+      "path": "templates/deck/copy-derived.yaml",
+      "sha256": "a04e7b4076c39488539e50ae49afbcc3b7b0b19b56ab9370ebbc4282b19a4719"
+    },
+    {
+      "path": "templates/deck/playbook-routing.yaml",
+      "sha256": "38f6746dacfecf764321f21e73f10fb385f4878101410d7ffd1d6537b9061c33"
+    },
+    {
+      "path": "templates/deck/route-map.yaml",
+      "sha256": "3acc8b5f70b444eedc00a8e065ec59d24b345b3de21fa1c28d0d1af8f47f5de5"
+    },
+    {
+      "path": "templates/eval/design-regression-corpus.yaml",
+      "sha256": "5f2ccc36e60b56e43d32e4eeb64e8bbfff58ba94f0fb3118526ebb96fec79883"
+    },
+    {
+      "path": "templates/eval/rendered-design-fixture-set.yaml",
+      "sha256": "5d5d80ac95490faff9f7120473d6aebcaf5a19021898e9cd8228edfd42614926"
+    },
+    {
+      "path": "templates/eval/rendered-eval.yaml",
+      "sha256": "7de3733d2172082497949317359356b82e5f7c766c24b51c2a97f5c30aba6bec"
+    },
+    {
+      "path": "templates/import/document-extraction.yaml",
+      "sha256": "1fb8d2d662bc030568372efe3b671b4f3f3d0ed5f1471b65596d7755d9d7e724"
+    },
+    {
+      "path": "templates/import/induced-layout-packs.yaml",
+      "sha256": "6a3ec870a7dfcafee669a04b6d089938b26238419f2dc31df8f4384a26275779"
+    },
+    {
+      "path": "templates/import/pptx-template-manifest.yaml",
+      "sha256": "5f2f72dc3b656ee4bc6e88f6dbbb346ba8f6984527b7eae05f348a936eaf753d"
+    },
+    {
+      "path": "templates/import/source-deck-fixtures.yaml",
+      "sha256": "9c6b586730e6597ab6378321a63ea8f97ca3b8272cf94fb0b9dcd8fcca0c308b"
+    },
+    {
+      "path": "templates/import/template-import-regression-corpus.yaml",
+      "sha256": "327c0947ba6bf57c177b6b69f93f47f3847c48ee19b54e6aef5daaac970bb95f"
+    },
+    {
+      "path": "templates/index.yaml",
+      "sha256": "6cbb69e9260718e95600147054e89ab28a2356c8d1e22b4d33567893e8599392"
+    },
+    {
+      "path": "templates/qa/copy-gates.yaml",
+      "sha256": "1a38b1053265a6310d91b9ae5193ae047f7fc7f5886cf7ae18a07b43d93a7328"
+    },
+    {
+      "path": "templates/qa/narrative-gates.yaml",
+      "sha256": "5eec1b92069a63408701dd86245643fe5d0d7e71baa10ae5250b957160b93cb8"
+    },
+    {
+      "path": "templates/qa/pptx-technical-gates.yaml",
+      "sha256": "498d11720e607f727b65b5d63caf89bc5a491704868b03bd58021907eaf5d523"
+    },
+    {
+      "path": "templates/qa/regression-fixtures.yaml",
+      "sha256": "20ab8673950075fa84a73e4ea7792cef63048b5a06134f4dc889993ad7e88900"
+    },
+    {
+      "path": "templates/qa/squad-quality-rubric.yaml",
+      "sha256": "7a3b4d28c3bace2271969d05c847b8f551e5063c8a810bb88af05dea7c95aad3"
+    },
+    {
+      "path": "templates/qa/template-selection-gates.yaml",
+      "sha256": "bf0792682a00389ce32b4f4c8adc0f7dab0b00b411e2611276caafc096ef0090"
+    },
+    {
+      "path": "templates/qa/visual-gates.yaml",
+      "sha256": "1d174e281ef03c851d5ed29819a2da0feff162327b69c04ce41190c7fede7f1e"
+    },
+    {
+      "path": "templates/research/evidence-ledger.yaml",
+      "sha256": "66941cd01e7c61e8336d617fed6cc9f1f210a698246196daa541fbc2530f6dbc"
+    },
+    {
+      "path": "templates/research/source-routing.yaml",
+      "sha256": "526350e2447bf774b22c780bec45972ed49ca68e573b7135a0660d7a09387a6d"
+    },
+    {
+      "path": "templates/runtime/api-mcp-cli-contract.yaml",
+      "sha256": "e965b059cf7672aca59629ebed2fb8e9f6e37690d46ae2a6c65406d1c696243d"
+    },
+    {
+      "path": "templates/runtime/delivery-package-contract.yaml",
+      "sha256": "459e0e18a4bed90fbcf55535ddd5e4f55c5ef9bc6ed9acff342897716ba12507"
+    },
+    {
+      "path": "templates/runtime/design-direction-contract.yaml",
+      "sha256": "d1787099b3b5e692b6f7b3a8f4bf707c658b76e6afae4266388a6ce8f770eac3"
+    },
+    {
+      "path": "templates/runtime/design-score-evidence.yaml",
+      "sha256": "11a30a2a6b89cdf9f59e60498b3f530914afffbe3a10def3c2b56b4f425524b3"
+    },
+    {
+      "path": "templates/runtime/diagram-rendering.yaml",
+      "sha256": "475f34fb878e368e628d0247ce032eb56fa873336cd628fefe70eaa9956e13ce"
+    },
+    {
+      "path": "templates/runtime/edit-history.yaml",
+      "sha256": "13f36ccbe8d095d04a507b8f565578c52127bd88c5914e42ad0ccd72f7912c34"
+    },
+    {
+      "path": "templates/runtime/edit-operations.yaml",
+      "sha256": "240a2d4544056fc1e0397ede62b5590301dd32b56305dbfd50b4a9e13e4a7151"
+    },
+    {
+      "path": "templates/runtime/export-contract.yaml",
+      "sha256": "c61be95dff3e4c85e0ea457df03e1de926f9b76e2076788f4d20fa5ba6af29aa"
+    },
+    {
+      "path": "templates/runtime/html-to-pptx.yaml",
+      "sha256": "1bbc8052c0ef2eb89b7acc16c6f0d54bc1d413d352a10046f455fac032c83465"
+    },
+    {
+      "path": "templates/runtime/import-template.yaml",
+      "sha256": "f695451a9a49a6f077d490c07c3ee2576141466d25fb1b7b41d5423355ea1cb0"
+    },
+    {
+      "path": "templates/runtime/job-state.schema.yaml",
+      "sha256": "d835ca6c18a4aa356021bb590acd8b1a0db9cf3c5472a1aac0fb87ff49a36f66"
+    },
+    {
+      "path": "templates/runtime/jobs.yaml",
+      "sha256": "56282693b6ac8a27fd9ac7787b88df7815010e63ec31891fa38d73867487d4de"
+    },
+    {
+      "path": "templates/runtime/manuscript-pipeline.yaml",
+      "sha256": "17e71336d406a6cb45e72ee059e29f6d5ada51bb398fdbc13038c22a385e76f4"
+    },
+    {
+      "path": "templates/runtime/narrative-design-moment-grammar.yaml",
+      "sha256": "061857d6e23d7a8046df2ce3b7145c7d0f9169af265f5fd6ce8d499ec7e998c1"
+    },
+    {
+      "path": "templates/runtime/narrative-regression-corpus.yaml",
+      "sha256": "d858faa6b27f51c5e7f2b5dc9af32a02461c90302c5100f1390219a7dc729cfb"
+    },
+    {
+      "path": "templates/runtime/provider-routing.yaml",
+      "sha256": "fb51e760ba8a03da31a389ccb9ceb251878dacafe3404ea9b51a4f6d8b0a4088"
+    },
+    {
+      "path": "templates/runtime/render-lock.yaml",
+      "sha256": "a95ae512dd74681a21a8685c6aa2fc929374bd1887c6f47b6423ad4a642c3fb3"
+    },
+    {
+      "path": "templates/runtime/runtime-gap-absorption-corpus.yaml",
+      "sha256": "2c5e1fcd6931aa7c5fb727c000e7f15c7203c5d29bd6dccaead5398f97025655"
+    },
+    {
+      "path": "templates/runtime/slide-function-map-contract.yaml",
+      "sha256": "09a4dc2270ee0f8afb210b537bf8555843e7d8e4bcd6714dceed258d036e878d"
+    },
+    {
+      "path": "templates/runtime/source-of-truth-policy.yaml",
+      "sha256": "bd8cd33413f2aaf3a3e93adef1095be0ce1e8c5845a1b1bb21865d6ea7356424"
+    },
+    {
+      "path": "templates/runtime/speaker-notes-narration-contract.yaml",
+      "sha256": "05719c7cf238e48177ef7ebb2bbb0fe01192dd9010546e386132d7ccd580cce5"
+    },
+    {
+      "path": "templates/runtime/story-arc-contract.yaml",
+      "sha256": "75928de6b8c0cebc847cf8674dc63e078ba69a717f990380423dec43e9dfe789"
+    },
+    {
+      "path": "templates/runtime/storyboard-edit-contract.yaml",
+      "sha256": "380175f7e41e7fd8e2971210c4ae6766ef9b6af33ea6ff50e4da2f3a0bb7e458"
+    },
+    {
+      "path": "templates/runtime/storyboard-render-bridge.yaml",
+      "sha256": "27ccddbdf79fedf7c57916bb5f6d754f06e1892f0863c2f9d4afe488eae65788"
+    },
+    {
+      "path": "templates/runtime/template-example-routing.yaml",
+      "sha256": "9c1d550d5ec76c7616830e282b899cf10ecfba58c7691f9c24c3df990d179ec4"
+    },
+    {
+      "path": "templates/runtime/template-selection-report.yaml",
+      "sha256": "6fbd42fc81140c9651ca29c81e8a642ac7dd0a4a920ddc4bbf91af7be63e3c2d"
+    },
+    {
+      "path": "templates/runtime/theme-runtime-snapshot-suite.yaml",
+      "sha256": "d298b5eaf844cbd018dd87110c504a1ea12668946c68d5c5acc53f1150abb9e3"
+    },
+    {
+      "path": "templates/runtime/trace-handoff.yaml",
+      "sha256": "dd598c15bfb5c64c1d0d8d3aa458cbfcd227e264a1d1b4eafd42c20c7f3a287f"
+    },
+    {
+      "path": "templates/runtime/workflow-modes.yaml",
+      "sha256": "362cbe5652b7e92d64dca79887a5eeddb9249b07c7bd2b7183a3214a3594d782"
+    },
+    {
+      "path": "templates/schemas/deck-template.schema.yaml",
+      "sha256": "8bb9331cc4c691642264ebc98c33541a3370fe56daa6f9afaeaf55aaff812073"
+    },
+    {
+      "path": "templates/schemas/qa-gate.schema.yaml",
+      "sha256": "7172cbba45478f163e6bfefd02c5ede5cfe6c14c7714ca31b4ca57532ace5033"
+    },
+    {
+      "path": "templates/schemas/runtime-job.schema.yaml",
+      "sha256": "8cd2eddf71492622aa28bbe67190da34dfb737d49562dfa0689ed441444ab39e"
+    },
+    {
+      "path": "templates/schemas/slide-template.schema.yaml",
+      "sha256": "fce59b820855f7d23b8471aefd22e176dccca4be2c85a85ae3e3949409600650"
+    },
+    {
+      "path": "templates/schemas/theme.schema.yaml",
+      "sha256": "fe72b37216f045f91e4bfd3d254e11921065d7c759770fd1a82ed864e91463af"
+    },
+    {
+      "path": "templates/schemas/visual-template.schema.yaml",
+      "sha256": "46c847651353e4dd6c210b2189c8c63fdb29b70b2d3e65fb9c170fc5b289e0b5"
+    },
+    {
+      "path": "templates/slide/function-library.yaml",
+      "sha256": "dd92cb7c4be6b98f00bb267ea35a5522f7dbdc48af6615a398a670ce13c089d5"
+    },
+    {
+      "path": "templates/theme/brand-systems.yaml",
+      "sha256": "3392246fcc070d92bc6c3b6ba2c6bd3fbffacb494c8fe4436da7b58eeb6156e2"
+    },
+    {
+      "path": "templates/theme/design-philosophy-routing.yaml",
+      "sha256": "a61205409f5803ef6a615e26f39a7a9bd2a343baf3617dfb86d14503e218fe15"
+    },
+    {
+      "path": "templates/theme/theme-tokens.yaml",
+      "sha256": "30dae982d78d86755f2a1ee93f4ca38fbd79e3431bc41957c81d96dba85c9d21"
+    },
+    {
+      "path": "templates/visual/ai-image-type-routing.yaml",
+      "sha256": "81ef3c10dd7dbbcd0165038638d9041ac795efadcc85bfd6febc26db96492ff4"
+    },
+    {
+      "path": "templates/visual/aiox-brandbook-deep-patterns.yaml",
+      "sha256": "d297432fcebf8516938cf1d2507703e0c6294be09539fd3eb5ffeb1a2c54885a"
+    },
+    {
+      "path": "templates/visual/brand-fidelity-playbooks.yaml",
+      "sha256": "3020df7492774ab4f4c7fcf1e659bd63a2c878e41796a10de5c4208d8a6ce639"
+    },
+    {
+      "path": "templates/visual/brand-system-patterns.yaml",
+      "sha256": "da972ff0f56f56de8217efee0cd1bd3b36deaf1781446fc8a3331fc68c3c2e00"
+    },
+    {
+      "path": "templates/visual/brand-template-manifest.yaml",
+      "sha256": "da64108c50b90a0b0d0e51912d75fdce16df90c8818ad8e74e27c7a9329e2508"
+    },
+    {
+      "path": "templates/visual/chart-data-contracts.yaml",
+      "sha256": "a7b47d6f19e12172c32528e2847a18ac65f3538dc50202bfea11cd82f570565f"
+    },
+    {
+      "path": "templates/visual/charts-and-diagrams.yaml",
+      "sha256": "e1258115513ea0c3e7e504cf73a8a6495783c352d2c6ad79ff2efedd93683189"
+    },
+    {
+      "path": "templates/visual/composition-patterns.yaml",
+      "sha256": "62201d2fe531d589d2989ecff4ff5c03568948c05a24d7d2b1d15114106809f7"
+    },
+    {
+      "path": "templates/visual/design-mastery-contract.yaml",
+      "sha256": "048770ca66acc55754d664c6f78fcb092574660432bc9a0cdc085db88c8ac82d"
+    },
+    {
+      "path": "templates/visual/design-mastery-report.yaml",
+      "sha256": "3e80bd7e809edc94290088c267fe3722d7f29de1e9b4810ff67412cc71646e72"
+    },
+    {
+      "path": "templates/visual/key-slide-render-review.yaml",
+      "sha256": "465ec0a375df9c5d2e0dd9a92bf6b0576055115ac2edb743e3e388f51413eb2e"
+    },
+    {
+      "path": "templates/visual/layout-families.yaml",
+      "sha256": "24fda5e4c90b01bbdaabfcc31350a2e91b8d7a519e90a77115c44a0fa2576565"
+    },
+    {
+      "path": "templates/visual/media-layouts.yaml",
+      "sha256": "74c92482d0f2de8e5229ece8a73b0e856401ebc8eb6a42ed174b88097633559f"
+    },
+    {
+      "path": "templates/visual/redpine-deep-patterns.yaml",
+      "sha256": "66841b02b26f62e64e5af3beb236bf2dfbd1cc0b3a5e47d0861767142569e7ad"
+    },
+    {
+      "path": "templates/visual/visual-regression-checklist.yaml",
+      "sha256": "20a85f78e0cb3f908ee15317aa6a3423d8456940fdd7098792bb2b7daf4d8072"
+    },
+    {
+      "path": "templates/wireframes/agenda-timeline.html",
+      "sha256": "b06d93ec6e3147c1c751082a06ec10e2d351dac4d48bfba381dd34a0711b1650"
+    },
+    {
+      "path": "templates/wireframes/api-request-response.html",
+      "sha256": "7ca24d4864f3e99e63f4c36f9a7b67e6c1c692c18425f5576fd4d66d7735b178"
+    },
+    {
+      "path": "templates/wireframes/architecture-tradeoff-table.html",
+      "sha256": "ed96412ae95989ba0caa51be098233ca0015d31e4c2894232ea69207582da25a"
+    },
+    {
+      "path": "templates/wireframes/benchmark-matrix.html",
+      "sha256": "dc23dc4f77dea7b222782edae1493ee7c4c3706f406a9e9cb8007748dc317b2c"
+    },
+    {
+      "path": "templates/wireframes/brand-principles.html",
+      "sha256": "1cb0760f0043beb163d9d56954f9ceb3fe82220961a0b88abc4d8b9de6b361ae"
+    },
+    {
+      "path": "templates/wireframes/business-challenges.html",
+      "sha256": "566e7e10942481585ac1c1a4a0aeae3dcd984325068180ab0db3d12acb51e2bb"
+    },
+    {
+      "path": "templates/wireframes/case-study-proof.html",
+      "sha256": "9c8a213f2b992713e9fc9ddba3798f5f594d7b663d0bd20531cfb1a45349b2fe"
+    },
+    {
+      "path": "templates/wireframes/code-explanation.html",
+      "sha256": "931a664222d404997a4851fe4aaa3e3d60cefb055bcbbf965f375fa31d596075"
+    },
+    {
+      "path": "templates/wireframes/cohort-retention.html",
+      "sha256": "348be60bab38fa05712a91c2e3e41993ff3e3602893c0bb8cdbc7e66d26e3755"
+    },
+    {
+      "path": "templates/wireframes/competitive-landscape.html",
+      "sha256": "534959cd9aff1a4051ea810bf5fc4dd4b5bfac4b7bc4cac35b085994b053bab5"
+    },
+    {
+      "path": "templates/wireframes/compliance-grid.html",
+      "sha256": "ad15a6599def9ec54c3846fbe0685fb59e665e5610b88a4bff0bb0e211f5f012"
+    },
+    {
+      "path": "templates/wireframes/contact-next-step.html",
+      "sha256": "02580b154306c5f9c2ff9f776c57f450d8a6360611926deafb76253baf7d7f29"
+    },
+    {
+      "path": "templates/wireframes/dashboard-grid.html",
+      "sha256": "a2766b51bce845a211c0a0ae7c93e2f928b87a18eebe196197896e5cd30d37ef"
+    },
+    {
+      "path": "templates/wireframes/data-lineage.html",
+      "sha256": "188b343b31281c76b96cf6c34c401e89725f1a8a99b344213a85df070e569b1d"
+    },
+    {
+      "path": "templates/wireframes/decision-options.html",
+      "sha256": "6b62cf0ea5e93dff3e8275ea122a265075589c5fdcd5709649b461b8b46d56e1"
+    },
+    {
+      "path": "templates/wireframes/decision-tree.html",
+      "sha256": "8771d77e8ab68b61e9e80f79bde563a8f7fb5c570371ee82c5d9b809ef0ecb50"
+    },
+    {
+      "path": "templates/wireframes/dependency-map.html",
+      "sha256": "a63b87808d76c005dc988ca11af5fa53b42b4b05a1f6c997219212e7ad069abf"
+    },
+    {
+      "path": "templates/wireframes/design-system-audit.html",
+      "sha256": "9032d49149a2c1186c762bad15f84426fa90fb7bde8f65db2205c632edbeb2bf"
+    },
+    {
+      "path": "templates/wireframes/executive-summary.html",
+      "sha256": "737a30ea5bd513a01dd0468bab6b5a4958e1a0137db15747944119f527a71977"
+    },
+    {
+      "path": "templates/wireframes/experiment-grid.html",
+      "sha256": "a18e359cf13dcf57759acdf4e013830108b2812c02198fc04762fd60570baec7"
+    },
+    {
+      "path": "templates/wireframes/feature-matrix.html",
+      "sha256": "7a3f18fc183282bf5835adf391793e37cd4a0e554500bdd7252c5f7bfa21a6b6"
+    },
+    {
+      "path": "templates/wireframes/financial-waterfall.html",
+      "sha256": "f21acf35819ee8222207865f40d56075c9bf584a36b7eb10f22dfdebe3aacd18"
+    },
+    {
+      "path": "templates/wireframes/gallery.html",
+      "sha256": "2f8b1c27b438f7eacd99dfb301d6be5dc041129ed84ab7b547b873e16a957b8d"
+    },
+    {
+      "path": "templates/wireframes/harvey-balls-table.html",
+      "sha256": "0a0052c935d8bafabac45083515e549c08fef0e7b2a029e25a885be74624eff4"
+    },
+    {
+      "path": "templates/wireframes/hiring-scorecard.html",
+      "sha256": "d509a21c8a73766530847c0b8d252e5ae74d5caf974396a017f72c2dab0b572c"
+    },
+    {
+      "path": "templates/wireframes/incident-timeline.html",
+      "sha256": "0d1468e41a7e0810721694c689d8c2670b91c94deb15490cbbee4fb7334b8fbd"
+    },
+    {
+      "path": "templates/wireframes/launch-calendar.html",
+      "sha256": "2e770d75d4a5c32ed073d4b26274f19e4159093c7804dc537e8df6d52bd62dad"
+    },
+    {
+      "path": "templates/wireframes/maturity-ladder.html",
+      "sha256": "1a9356158cb5eaf47a3ebb2818520fe011a33d7c15b022167f3fc8230ce7ceef"
+    },
+    {
+      "path": "templates/wireframes/mechanism-map.html",
+      "sha256": "dbfd1f840761ae914ce3d01a84b708043d45e79164015aea6312873f792cac8a"
+    },
+    {
+      "path": "templates/wireframes/mission-vision.html",
+      "sha256": "565660df5e9288dd3921f6f8e33d78f5980381bd3f48f271836473d81b256d9e"
+    },
+    {
+      "path": "templates/wireframes/moodboard-grid.html",
+      "sha256": "0f2c7e0a10c4357fb2c8a17974250dfc1d69d0ccfcd44cee6b68bc320f4ce89c"
+    },
+    {
+      "path": "templates/wireframes/objection-matrix.html",
+      "sha256": "a99f251196d00ce04020b5ae898ccd7f07dd112fa7bd7b57fd5470aa7a9f4637"
+    },
+    {
+      "path": "templates/wireframes/org-chart.html",
+      "sha256": "02de0122d6d1a9c44582a4a3ebb2fada50afc31d35f7b54ec9fedf30daa7f2fe"
+    },
+    {
+      "path": "templates/wireframes/persona-fit-matrix.html",
+      "sha256": "c151cc4c007e5a88d7cb5f4683c4942b3b0fa38d5a62c74d5159e043521a16d3"
+    },
+    {
+      "path": "templates/wireframes/portfolio-allocation.html",
+      "sha256": "5d4db40dc4c1a79cdf6ad456b124c6985c9e4675308a30bee8b62bdeadb9c387"
+    },
+    {
+      "path": "templates/wireframes/pricing-table.html",
+      "sha256": "f49a1fd98d5d274157d138e06c6a3fe992349ce3afe764633ddd9a1a2e151c6d"
+    },
+    {
+      "path": "templates/wireframes/proof-stack.html",
+      "sha256": "287a2fe5623f2f6a4c1f0aa399a544ff0dfd4a2c57d2dad8a9a82f3ea7495c8a"
+    },
+    {
+      "path": "templates/wireframes/quote-evidence-panel.html",
+      "sha256": "9a6d5c6ce38fcb6f4db4d4b5eccf3b6f4f6f0d767cddfb69eb8b58c9c92b338a"
+    },
+    {
+      "path": "templates/wireframes/responsibility-matrix.html",
+      "sha256": "3ecb9cdbf6e8c67211fefd5ad67695269dd063128971cddcb4094f5fc4fdf43c"
+    },
+    {
+      "path": "templates/wireframes/risk-heatmap.html",
+      "sha256": "e2e25ae9bc26cb5964722eb6319a92fdd454708e041929d6dc5831ad19f84bd8"
+    },
+    {
+      "path": "templates/wireframes/roadmap-decision.html",
+      "sha256": "294a76d88532d98d772eb32534f25fb9b45b728aa45a12ee8001dcdaad76cb8b"
+    },
+    {
+      "path": "templates/wireframes/roadmap-status.html",
+      "sha256": "aa56a57c7793e1e0093b63630acbb2cb80c351b158d2385b878be5166098acac"
+    },
+    {
+      "path": "templates/wireframes/sankey-flow.html",
+      "sha256": "9d887ab11d4c5af75a7042bb8f1545009075efa8ac4744d16e7c7869a93a40b6"
+    },
+    {
+      "path": "templates/wireframes/scatter-plot.html",
+      "sha256": "ddec72ab11cf747584a1ba5af1b95c72bd946b28e8e357d66d6cf9d20aa3da1d"
+    },
+    {
+      "path": "templates/wireframes/scoring-rubric.html",
+      "sha256": "5ebe73237aabe84f7415d8b4f317e5cf21ae5ca09b15ca0edbb23f5e89376236"
+    },
+    {
+      "path": "templates/wireframes/screen-sequence.html",
+      "sha256": "153565d9dc7f653891af1e598d2b13c63d71aca4f5746ea56a02fa1d05eb23b0"
+    },
+    {
+      "path": "templates/wireframes/service-catalog.html",
+      "sha256": "1b41b9f24658dcf1a7d2167260db04930f394701971cf7636fbf3bdddf2a8e65"
+    },
+    {
+      "path": "templates/wireframes/social-proof-wall.html",
+      "sha256": "5c6c57f1dc2165267f8f2f73858c12af4057b23faade7f8585c5d74e9579f689"
+    },
+    {
+      "path": "templates/wireframes/survey-results.html",
+      "sha256": "c1013e990a4c65d2ed5236f85f633cdf2181bdaf9dad2032f409223f89a8852e"
+    },
+    {
+      "path": "templates/wireframes/table-of-contents.html",
+      "sha256": "ef0d8adb1a779ed4aea4a758b5fe953344100c5a929e6ec2bb35df6f64ab4c46"
+    },
+    {
+      "path": "templates/wireframes/team-credentials.html",
+      "sha256": "8d9eac02fce8b95828f53ce0f9048408862abb4dd020909802c4bf2254a5d3de"
+    },
+    {
+      "path": "templates/wireframes/technical-architecture.html",
+      "sha256": "31c3b26258331b7319813d5acef24a4dfe4ea871ad64f68028e0c04650abda6b"
+    },
+    {
+      "path": "templates/wireframes/traceability-matrix.html",
+      "sha256": "265a9232543c8fb110fffd7eec92dd89b9968b1ed6004840b411c41d0636a28a"
+    },
+    {
+      "path": "templates/wireframes/unit-economics.html",
+      "sha256": "69ee2d4cef8c544d1f057fa56332b5123c466d2193e1f933f8a309dfe521e35f"
+    },
+    {
+      "path": "templates/wireframes/user-story-map.html",
+      "sha256": "1dadb9a4886c66bf40e86a5c2581e2c7669a8b553a7215fa443af982ed88d1be"
+    },
+    {
+      "path": "templates/wireframes/value-chain.html",
+      "sha256": "096cbb94acb8ad4cf4d55abdac5e5d5f06b149574b11c2f90f08d9beac69cd71"
+    },
+    {
+      "path": "templates/wireframes/webinar-flow.html",
+      "sha256": "f242698ae838b21d755ec90d8a5d4a679a04748246909194c25211e6b9c12444"
+    },
+    {
+      "path": "templates/wireframes/workshop-canvas.html",
+      "sha256": "f4391136c3ab785133bab4f5cbc1fc4e005fc17ad8a31fe58e31308c603ae4ae"
+    }
+  ]
+}
